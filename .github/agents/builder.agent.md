@@ -1,7 +1,7 @@
 ---
 name: builder
 description: "Agente do Estágio 3 — traduz Natural para Java, gera JPA a partir de FDT, escreve testes de equivalência, constrói REST + Next.js"
-model: claude-sonnet-4-6
+model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
 tools:
   - codebase
   - search

@@ -1,7 +1,7 @@
 ---
 description: "Traduz um programa Natural para Java 21 + Spring Boot 3.3 idiomático, preservando semântica de negócio."
-mode: agent
-model: claude-sonnet-4-6
+agent: agent
+model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
 tools: ['codebase', 'search', 'editFiles', 'fetch']
 ---
 

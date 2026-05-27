@@ -1,8 +1,8 @@
 ---
 description: "Mapeia dependências program-to-program (CALLNAT, INCLUDE) e program-to-data (acesso a DDM) para um escopo escolhido."
-mode: ask
-model: claude-opus-4-7
-tools: ['codebase', 'search', 'usages']
+agent: agent
+model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
+tools: ['codebase', 'search', 'usages', 'editFiles']
 ---
 
 # /map-dependencies

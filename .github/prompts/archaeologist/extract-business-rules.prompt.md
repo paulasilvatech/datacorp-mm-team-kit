@@ -1,8 +1,8 @@
 ---
 description: "Extrai regras de negócio de um programa Natural lendo blocos IF/THEN/ELSE e confirmando com documentação."
-mode: ask
-model: claude-opus-4-7
-tools: ['codebase', 'search']
+agent: agent
+model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
+tools: ['codebase', 'search', 'editFiles']
 ---
 
 # /extract-business-rules

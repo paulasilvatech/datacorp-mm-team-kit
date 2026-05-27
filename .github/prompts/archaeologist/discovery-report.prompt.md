@@ -1,8 +1,8 @@
 ---
 description: "Sintetiza as saídas do Estágio 1 em um único relatório de descoberta pronto para passagem ao Estágio 2."
-mode: ask
-model: claude-opus-4-7
-tools: ['codebase', 'search']
+agent: agent
+model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
+tools: ['codebase', 'search', 'editFiles']
 ---
 
 # /discovery-report

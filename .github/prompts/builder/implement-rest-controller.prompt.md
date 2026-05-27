@@ -1,7 +1,7 @@
 ---
 description: "Implementa um controller Spring REST a partir de uma definição de endpoint OpenAPI, conectando-o aos services do bounded context."
-mode: agent
-model: claude-sonnet-4-6
+agent: agent
+model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
 tools: ['codebase', 'search', 'editFiles', 'runCommands']
 ---
 

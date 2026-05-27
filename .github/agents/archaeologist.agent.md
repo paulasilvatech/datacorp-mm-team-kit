@@ -1,7 +1,7 @@
 ---
 name: archaeologist
 description: "Agente do Estágio 1 — lê código legado Natural/Adabas, extrai regras de negócio, mapeia dependências, cataloga mistérios"
-model: claude-opus-4-7
+model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
 tools:
   - codebase
   - search

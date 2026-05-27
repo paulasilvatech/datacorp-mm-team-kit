@@ -1,8 +1,8 @@
 ---
 description: "Cataloga perguntas sem resposta encontradas durante a arqueologia — coisas que precisam de uma pessoa para resolver."
-mode: ask
-model: claude-opus-4-7
-tools: ['codebase', 'search']
+agent: agent
+model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
+tools: ['codebase', 'search', 'editFiles']
 ---
 
 # /catalog-mysteries

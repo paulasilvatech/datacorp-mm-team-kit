@@ -1,7 +1,7 @@
 ---
 description: "Gera classes de entidade JPA a partir de definições Adabas FDT, com JSONB para campos MU/PE."
-mode: agent
-model: claude-sonnet-4-6
+agent: agent
+model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
 tools: ['codebase', 'search', 'editFiles']
 ---
 

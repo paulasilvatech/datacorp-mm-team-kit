@@ -1,8 +1,8 @@
 ---
 description: "Avalia as hipóteses de recorte do Estágio 1 e decide bounded contexts para o Modular Monolith."
-mode: ask
-model: claude-opus-4-7
-tools: ['codebase', 'search']
+agent: agent
+model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
+tools: ['codebase', 'search', 'editFiles']
 ---
 
 # /carve-bounded-contexts

@@ -1,7 +1,7 @@
 ---
 description: "Checklist de self-review para segurança e problemas OWASP Top 10 em uma feature recém-construída."
-mode: ask
-model: claude-sonnet-4-6
+agent: ask
+model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
 tools: ['codebase', 'search']
 ---
 

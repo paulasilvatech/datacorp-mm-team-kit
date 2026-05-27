@@ -1,8 +1,8 @@
 ---
 description: "Entrega uma issue ao GitHub Copilot Agent na nuvem e acompanha o PR resultante."
-mode: ask
-model: claude-sonnet-4-6
-tools: ['githubRepo', 'fetch']
+agent: agent
+model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
+tools: ['githubRepo', 'fetch', 'editFiles', 'runCommands']
 ---
 
 # /delegate-to-copilot-agent

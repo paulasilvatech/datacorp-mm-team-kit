@@ -1,8 +1,8 @@
 ---
 description: "Escreve uma GitHub issue de alta qualidade pronta para ser assumida pelo Copilot Agent na nuvem."
-mode: ask
-model: claude-haiku-4-5
-tools: ['codebase', 'search', 'githubRepo']
+agent: agent
+model: ['Claude Haiku 4.5 (copilot)', 'Claude Sonnet 4.5 (copilot)']
+tools: ['codebase', 'search', 'githubRepo', 'editFiles']
 ---
 
 # /write-github-issue

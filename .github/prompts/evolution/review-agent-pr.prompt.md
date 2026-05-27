@@ -1,8 +1,8 @@
 ---
 description: "Revisa um PR gerado pelo Copilot Agent na nuvem, com atenção explícita a failure modes típicos de IA."
-mode: ask
-model: claude-sonnet-4-6
-tools: ['codebase', 'search', 'githubRepo', 'fetch']
+agent: agent
+model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
+tools: ['codebase', 'search', 'githubRepo', 'fetch', 'editFiles']
 ---
 
 # /review-agent-pr
