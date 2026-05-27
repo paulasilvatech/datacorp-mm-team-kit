@@ -2,7 +2,7 @@
 description: "Checklist de self-review para segurança e problemas OWASP Top 10 em uma feature recém-construída."
 agent: ask
 model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
-tools: ['codebase', 'search']
+tools: ['search/codebase', 'com.microsoft/azure/search']
 ---
 
 # /security-self-review

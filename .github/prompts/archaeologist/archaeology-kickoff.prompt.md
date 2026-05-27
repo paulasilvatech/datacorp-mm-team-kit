@@ -2,7 +2,7 @@
 description: "Inicia o Estágio 1 — orienta a equipe sobre a pasta de legado e produz um inventário inicial."
 agent: agent
 model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['codebase', 'search', 'findFiles', 'editFiles']
+tools: ['search/codebase', 'com.microsoft/azure/search', 'findFiles', 'edit/editFiles']
 ---
 
 # /archaeology-kickoff

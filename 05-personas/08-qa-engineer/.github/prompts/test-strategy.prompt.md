@@ -1,8 +1,8 @@
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 ---
-mode: ask
-model: claude-opus-4-6
+agent: agent
+model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
 description: "Escreva uma estratégia de testes para uma feature do SIFAP 2.0: camadas da pirâmide, escolhas de framework, ambientes e critérios de saída."
 ---
 

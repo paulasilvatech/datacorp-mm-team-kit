@@ -2,7 +2,7 @@
 description: "Encerra o Estágio 4 com uma retrospectiva da equipe sobre a experiência com agentes no dia."
 agent: agent
 model: ['Claude Haiku 4.5 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['codebase', 'search', 'editFiles']
+tools: ['search/codebase', 'com.microsoft/azure/search', 'edit/editFiles']
 ---
 
 # /final-experience-report

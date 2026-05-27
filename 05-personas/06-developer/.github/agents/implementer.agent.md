@@ -3,7 +3,7 @@
 ---
 name: implementer
 description: "Implementação, TDD e correção de bugs (entender-reproduzir-corrigir-verificar)"
-model: claude-sonnet-4-6
+model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
 tools:
  - read
  - search

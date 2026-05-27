@@ -2,7 +2,7 @@
 description: "Implementa um controller Spring REST a partir de uma definição de endpoint OpenAPI, conectando-o aos services do bounded context."
 agent: agent
 model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
-tools: ['codebase', 'search', 'editFiles', 'runCommands']
+tools: ['search/codebase', 'com.microsoft/azure/search', 'edit/editFiles', 'execute/getTerminalOutput','execute/runInTerminal','read/terminalLastCommand','read/terminalSelection']
 ---
 
 # /implement-rest-controller

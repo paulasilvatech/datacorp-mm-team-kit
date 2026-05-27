@@ -3,12 +3,13 @@
 ---
 name: tech-lead
 description: "Liderança técnica: curadoria de CODEMAP, auditorias de context engineering e roteamento de modelos"
-model: claude-sonnet-4-6
+model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
 tools:
  - read
  - search
  - grep
  - glob
+ - edit
  - bash
 ---
 

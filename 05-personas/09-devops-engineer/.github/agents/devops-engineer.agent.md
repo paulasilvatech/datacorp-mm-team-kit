@@ -3,7 +3,7 @@
 ---
 name: devops-engineer
 description: "Pipelines CI/CD, IaC, monitoramento, resposta a incidentes"
-model: claude-sonnet-4-6
+model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
 tools:
  - read
  - search

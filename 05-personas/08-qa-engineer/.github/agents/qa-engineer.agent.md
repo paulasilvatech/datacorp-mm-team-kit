@@ -3,7 +3,7 @@
 ---
 name: qa-engineer
 description: "Geração de testes a partir de specs, análise de cobertura e gates de qualidade"
-model: claude-sonnet-4-6
+model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
 tools:
  - read
  - search

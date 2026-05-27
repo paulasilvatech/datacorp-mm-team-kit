@@ -2,7 +2,7 @@
 description: "Extrai regras de negócio de um programa Natural lendo blocos IF/THEN/ELSE e confirmando com documentação."
 agent: agent
 model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['codebase', 'search', 'editFiles']
+tools: ['search/codebase', 'com.microsoft/azure/search', 'edit/editFiles']
 ---
 
 # /extract-business-rules

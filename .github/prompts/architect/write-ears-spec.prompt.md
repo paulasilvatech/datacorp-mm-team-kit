@@ -2,7 +2,7 @@
 description: "Traduz regras de negócio confirmadas em requisitos em notação EARS para o sistema moderno."
 agent: agent
 model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['codebase', 'search', 'editFiles']
+tools: ['search/codebase', 'com.microsoft/azure/search', 'edit/editFiles']
 ---
 
 # /write-ears-spec

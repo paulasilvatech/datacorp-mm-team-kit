@@ -1,8 +1,8 @@
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 ---
-mode: ask
-model: claude-opus-4-6
+agent: agent
+model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
 description: "Escreva uma seção de SPECIFICATION.md a partir de user stories usando notação EARS com rastreabilidade obrigatória ao legado. Use para novas features."
 ---
 

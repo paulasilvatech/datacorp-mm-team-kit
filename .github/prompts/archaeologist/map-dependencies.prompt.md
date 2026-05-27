@@ -2,7 +2,7 @@
 description: "Mapeia dependências program-to-program (CALLNAT, INCLUDE) e program-to-data (acesso a DDM) para um escopo escolhido."
 agent: agent
 model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['codebase', 'search', 'usages', 'editFiles']
+tools: ['search/codebase', 'com.microsoft/azure/search', 'search/usages', 'edit/editFiles']
 ---
 
 # /map-dependencies

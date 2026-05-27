@@ -3,10 +3,10 @@ name: architect
 description: "Agente do Estágio 2 — recorta bounded contexts, escreve specs EARS, gera ADRs, projeta arquitetura de Modular Monolith"
 model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
 tools:
-  - codebase
-  - search
-  - editFiles
-  - fetch
+  - search/codebase
+  - com.microsoft/azure/search
+  - edit/editFiles
+  - web/fetch
 ---
 
 # @architect-agent

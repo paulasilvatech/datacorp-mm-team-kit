@@ -2,7 +2,7 @@
 description: "Cataloga perguntas sem resposta encontradas durante a arqueologia — coisas que precisam de uma pessoa para resolver."
 agent: agent
 model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['codebase', 'search', 'editFiles']
+tools: ['search/codebase', 'com.microsoft/azure/search', 'edit/editFiles']
 ---
 
 # /catalog-mysteries

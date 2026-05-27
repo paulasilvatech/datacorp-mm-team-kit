@@ -2,7 +2,7 @@
 description: "Rascunha um Arquitetura Decision Record para uma escolha específica de design que a equipe está fazendo."
 agent: agent
 model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['codebase', 'search', 'editFiles']
+tools: ['search/codebase', 'com.microsoft/azure/search', 'edit/editFiles']
 ---
 
 # /generate-adr

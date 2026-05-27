@@ -3,7 +3,7 @@
 ---
 name: dba
 description: "Migrações, otimização de consultas, auditoria contra SQL injection"
-model: claude-sonnet-4-6
+model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
 tools:
  - read
  - search

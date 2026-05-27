@@ -3,11 +3,12 @@
 ---
 name: tech-writer
 description: "Redação técnica: documentação de API, runbooks, tutoriais e conteúdo no estilo Diátaxis"
-model: claude-sonnet-4-6
+model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
 tools:
  - read
  - search
  - grep
+ - edit
  - glob
 ---
 

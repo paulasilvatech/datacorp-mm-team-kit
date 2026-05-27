@@ -1,8 +1,8 @@
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 ---
-mode: ask
-model: claude-sonnet-4-6
+agent: agent
+model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
 description: "Detectar drift entre a documentação do SIFAP 2.0 (README, CODEMAP, ADRs, runbooks) e o código atual, expondo correções concretas."
 ---
 

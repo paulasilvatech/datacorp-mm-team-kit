@@ -3,11 +3,12 @@
 ---
 name: requirements-engineer
 description: "Engenharia de requisitos para notação EARS, validação de spec e EARS rastreáveis ao legado no cenário SIFAP do workshop"
-model: claude-opus-4-6
+model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
 tools:
  - read
  - search
  - grep
+ - edit
  - glob
 ---
 
