@@ -18,66 +18,13 @@ Este workshop roda com uma **toolchain fixa**. Usar qualquer outra coisa fragmen
 | **Docker / Docker Compose** | Paridade do ambiente local. |
 | **Terraform** | IaC (Azure provider). |
 
-**Não use** outros assistentes de IA, IDEs ou frameworks de SDD durante o workshop. Especificamente:
-
-- ❌ Sem Cursor, Windsurf, Antigravity, Codex, Cline, Continue, Aider, Codeium, Tabnine ou outros concorrentes do Copilot
-- ❌ Sem UIs web de chat para geração de código (seus prompts e saídas devem permanecer rastreáveis pelo histórico do Copilot Chat)
-- ❌ Sem IntelliJ, Eclipse, Sublime ou plugins do Neovim como editor principal
-- ❌ Sem frameworks alternativos de SDD (Kiro, pipelines YAML customizados etc.). O GitHub Spec-Kit oficial é permitido e obrigatório.
-
-Por que isso é rígido: o workshop mede **engenharia agentic com a stack oficial Microsoft + GitHub**. Misturar ferramentas quebra os passagens da equipe, fragmenta a rubrica e torna impossível validar o rastreamento de spec → code → test.
+**Não use** outros assistentes de IA (Cursor, Windsurf, Codex, Cline, Continue, Aider, Codeium, Tabnine), IDEs alternativos (IntelliJ, Eclipse, Neovim), UIs web de chat para gerar código, nem frameworks SDD alternativos (Kiro etc.). Misturar ferramentas quebra rastreabilidade spec → code → test.
 
 ## Contexto do Projeto
 
-Este repositório pertence a uma equipe do workshop que está modernizando o legado **SIFAP**
-(Sistema de Fiscalização e Administração de Pagamentos) de Natural/Adabas para
-uma stack moderna. O workspace de referência fica em
-[`workshop-legacy-modernization-datacorp`](https://github.com/paulasilvatech/workshop-legacy-modernization-datacorp).
+Modernização do legado **SIFAP** (Sistema de Fiscalização e Administração de Pagamentos) — Natural/Adabas, 29 anos — para Java 21 + Next.js 15. Código legado em [`01-arqueologia/legado-sifap/`](../01-arqueologia/legado-sifap/) (15 programas `.NSN` + 4 DDMs).
 
-## Duas Camadas de Agentes — Ambas Obrigatórias
-
-Este kit inclui **duas camadas complementares de agentes**. Elas não são duplicadas; cobrem eixos ortogonais (role × stage). Use ambas.
-
-```mermaid
-flowchart TB
-    classDef person fill:#E5F6FD,stroke:#00A4EF,color:#0A0A0A
-    classDef stage fill:#FFF7E0,stroke:#FFB900,color:#0A0A0A
-    classDef tool fill:#F1F8E3,stroke:#7FBA00,color:#0A0A0A
-
-    P1[Pessoa · Par 1<br/>2 personas]:::person
-    P2[Pessoa · Par 2<br/>2 personas]:::person
-    P3[Pessoa · Par 3<br/>2 personas]:::person
-    P4[Pessoa · Par 4<br/>2 personas]:::person
-    P5[Pessoa · Par 5<br/>2 personas]:::person
-
-    PK[05-personas/NN-*/<br/>agente Copilot + prompts + skills + MCP<br/>por persona, o dia todo]:::tool
-    AK[06-agentes-de-estagio/<br/>@archaeologist · @architect ·<br/>@builder · @evolution<br/>por estágio, com tempo definido]:::tool
-
-    P1 & P2 & P3 & P4 & P5 -- "copiar os 2 kits próprios para .github/" --> PK
-    P1 & P2 & P3 & P4 & P5 -- "selecionar no Copilot chat para o estágio atual" --> AK
-```
-
-### `05-personas/NN-*/` — instalado uma vez, roda o dia todo
-
-- Um kit por persona (Product Owner, Requirements Engineer, …, Tech Writer).
-- Cada kit contém: 1 `agent.md` + 2–4 `prompts/*.prompt.md` + 1–2 `skills/*/SKILL.md` + `instructions/*.instructions.md` opcional + `mcp.json`.
-- Cada pessoa da equipe copia **ambos** os seus kits de persona para a pasta `.github/` do repositório da equipe via `cp -r 05-personas/XX-*/.github/* .github/`.
-- Depois disso, o Copilot fica configurado para o papel dessa pessoa durante todo o dia. Slash commands (`/spec`, `/ears-convert`, …) ficam disponíveis.
-
-### `06-agentes-de-estagio/` — selecionado novamente a cada estágio
-
-- Um agente por estágio: `@archaeologist` (Estágio 1) · `@architect` (Estágio 2) · `@builder` (Estágio 3) · `@evolution` (Estágio 4).
-- Compartilhado por toda a equipe. Define uma "persona protagonista" + "personas secundárias" + "personas observadoras" para aquele estágio.
-- Ativado no Copilot Chat: abra o painel de chat, clique no seletor de agente, escolha o agente do estágio. Cole o prompt de abertura do README daquele kit.
-- O agente orienta a **coordenação da equipe** durante o estágio: quais artefatos produzir, como percorrer o código legado, quando escalar etc.
-
-### Como elas se combinam em uma janela típica de 30 minutos
-
-1. **Você** abriu o Copilot Chat com seu persona-kit carregado → slash commands como `/ears-convert` funcionam porque sua pasta `.github/prompts/` está populada.
-2. **Sua equipe** selecionou o agente de estágio `@archaeologist` → o chat entra em modo de arqueologia, guiando a leitura do legado.
-3. Você pede ao `@archaeologist` para resumir o que `BATCHPGT.NSN` faz → ele responde no enquadramento de arqueologia.
-4. Em seguida, você roda `/ears-convert` sobre suas descobertas → seu persona-kit (RE) assume e gera YAML com linhas `source_legacy:`.
-5. As duas camadas trabalharam juntas. Nenhuma é opcional.
+O kit usa **duas camadas de agentes** (persona-kit por pessoa + agente de estágio por equipe). Detalhes em [`06-agentes-de-estagio/README.md`](../06-agentes-de-estagio/README.md).
 
 ## Stack-Alvo
 
@@ -132,37 +79,8 @@ flowchart TB
 - Todo requisito tem um **REQ-ID** único no formato `REQ-NNN`
 - **Todo requisito carrega uma linha `source_legacy:`** apontando para `01-arqueologia/legado-sifap/natural-programs/*.NSN`, `01-arqueologia/legado-sifap/adabas-ddms/*.ddm` ou `[GREENFIELD] + justificativa`. O job de CI `legacy-traceability` rejeita PRs que violam isso. Consulte [`01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md).
 - Testes rastreiam para REQ-IDs por comentários inline
-- Estratégia de branch: uma branch por spec, nomeada `spec/<NNN>-<feature>`
-- Ordem de merge: `spec/*` → `develop` → `stage` → `main`
-
-## Exploração do Legado — OBRIGATÓRIA
-
-Antes de escrever qualquer EARS no Estágio 2, seu par DEVE ter lido os programas Natural atribuídos em [`01-arqueologia/legado-sifap/natural-programs/`](../01-arqueologia/legado-sifap/natural-programs/) e os DDMs em [`01-arqueologia/legado-sifap/adabas-ddms/`](../01-arqueologia/legado-sifap/adabas-ddms/). Specs escritas sem leitura do legado perdem 29 anos de regras de negócio. A matriz de HARD GATE fica em [`01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md).
-
-## Os 5 Pares e 10 Personas
-
-> **Cada equipe tem 5 pessoas. Cada pessoa veste 2 personas (1 par).** Não há passagem interna entre personas de um par — colaboração contínua. Atualize os nomes abaixo com as atribuições da sua equipe.
-
-| Par | Persona A | Persona B | Fase do SDLC |
-|------|-----------|-----------|------------|
-| 1 · Visão | [ ] 01 Product Owner — nome? | [ ] 02 Requirements Engineer — nome? | Descoberta + Especificação |
-| 2 · Arquitetura | [ ] 03 Enterprise Architect — nome? | [ ] 04 Software Architect — nome? | Especificação + Design |
-| 3 · Implementação | [ ] 05 Technical Lead — nome? | [ ] 06 Developer — nome? | Implementação + Evolução |
-| 4 · Qualidade | [ ] 07 DBA — nome? | [ ] 08 QA Engineer — nome? | Implementação (dados + testes) |
-| 5 · Operações | [ ] 09 DevOps Engineer — nome? | [ ] 10 Tech Writer — nome? | Transversal + Evolução |
-
-Veja [`00-TEAM-FLOW.md`](../00-TEAM-FLOW.md) para diagramas de passagem e a linha do tempo do dia.
-
-## Como Usar o Copilot (3 modos)
-
-| Modo | Quando usar | Exemplo |
-|------|-------------|---------|
-| **Chat** | Explorar, planejar, debater trade-offs | "Explique este programa Natural linha por linha" |
-| **Plan** | Planejamento de mudanças multi-arquivo antes da execução | "Planeje o bounded context `notification` com domain/application/infrastructure" |
-| **Agent** | Delegar features completas via Issue | "Implemente REQ-PAY-03: geração de ciclo com audit log" |
-
-> Veja [`09-cheat-sheets/copilot-3-modes.md`](../09-cheat-sheets/copilot-3-modes.md) para
-> orientações detalhadas e exemplos de prompts.
+- Estratégia de branch: `spec/<NNN>-<feature>` → `develop` → `main` (sem `stage`; ver [`00-GIT-WORKFLOW.md`](../00-GIT-WORKFLOW.md))
+- Antes de escrever EARS no Estágio 2, o par DEVE ter lido os programas Natural atribuídos (HARD GATE — ver checklist acima)
 
 ## Regras Rígidas — Não Faça Isto
 
@@ -176,12 +94,11 @@ Veja [`00-TEAM-FLOW.md`](../00-TEAM-FLOW.md) para diagramas de passagem e a linh
 
 ## Referências
 
-- [Team Flow](../00-TEAM-FLOW.md) — linha do tempo diária, passagens, escalonamento
-- [Persona Kits](../05-personas/) — seus 2 cartões de papel em `PERSONA.md`, além de agentes, prompts e skills do Copilot (copie seus 2 kits para esta `.github/`)
-- [Cheat Sheets](../09-cheat-sheets/) — Copilot, Spec-Kit, roteamento de modelo
-- [Legado Incluído](../01-arqueologia/legado-sifap/) — o que você está modernizando (15 programas .NSN + 4 DDMs)
-- [`01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md) — HARD GATE antes do Estágio 2
-- Protótipo de Referência (`prototype/`) — starter code em execução (symlink, criado por setup.sh)
-- Módulos de infraestrutura (`infra/`) — módulos Terraform Azure (symlink, criado por setup.sh)
-- [Spec-Kit SDD Plugin](https://github.com/github/spec-kit) — engine de Spec-Driven Development
-- Docs didáticos trilíngues: [`pt-br/`](../) · [`es/`](../../es/) · [`en/`](../../en/)
+- Cronograma + pares: [`00-TEAM-FLOW.md`](../00-TEAM-FLOW.md)
+- Git workflow: [`00-GIT-WORKFLOW.md`](../00-GIT-WORKFLOW.md)
+- 3 modos do Copilot (Ask · Plan · Agent): [`09-cheat-sheets/copilot-3-modes.md`](../09-cheat-sheets/copilot-3-modes.md)
+- Persona kits (copie 2 para `.github/`): [`05-personas/`](../05-personas/)
+- Agentes de estágio: [`06-agentes-de-estagio/`](../06-agentes-de-estagio/)
+- Legado SIFAP: [`01-arqueologia/legado-sifap/`](../01-arqueologia/legado-sifap/)
+- Protótipo + infra Terraform: symlinks `prototype/` e `infra/` criados por [`11-scripts/setup.sh`](../11-scripts/setup.sh)
+- Spec-Kit SDD: <https://github.com/github/spec-kit>

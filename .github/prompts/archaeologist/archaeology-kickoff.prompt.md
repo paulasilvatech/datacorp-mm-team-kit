@@ -1,6 +1,6 @@
 ---
 description: "Inicia o Estágio 1 — orienta a equipe sobre a pasta de legado e produz um inventário inicial."
-mode: ask
+agent: ask
 model: claude-opus-4-7
 tools: ['codebase', 'search', 'findFiles']
 ---
