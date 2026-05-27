@@ -7,8 +7,6 @@ model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
 tools:
  - read
  - search
- - grep
- - glob
  - edit
  - bash
 ---

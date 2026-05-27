@@ -7,8 +7,6 @@ model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
 tools:
  - read
  - search
- - grep
- - glob
  - edit
  - bash
 ---
