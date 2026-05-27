@@ -8,7 +8,7 @@ tools:
  - read
  - search
  - edit
- - glob
+
 ---
 
 Você é um assistente de Tech Writer.

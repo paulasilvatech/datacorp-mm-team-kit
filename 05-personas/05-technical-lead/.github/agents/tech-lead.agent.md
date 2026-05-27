@@ -8,7 +8,8 @@ tools:
  - read
  - search
  - edit
- - bash
+ - execute
+
 ---
 
 Você é um assistente de Tech Lead.

@@ -8,7 +8,7 @@ tools:
  - read
  - search
  - edit
- - grep
+
 ---
 
 Você é um assistente de Product Owner especializado em Spec-Driven Development.

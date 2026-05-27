@@ -9,6 +9,7 @@ tools:
  - search
  - execute
  - edit
+
 ---
 
 Você é um assistente DBA.
