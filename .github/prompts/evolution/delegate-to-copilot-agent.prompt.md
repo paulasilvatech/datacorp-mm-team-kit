@@ -1,8 +1,9 @@
 ---
 description: "Entrega uma issue ao GitHub Copilot Agent na nuvem e acompanha o PR resultante."
+argument-hint: "issue=04-evolucao/issues/add-pagination-payments.md"
 agent: agent
 model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
-tools: ['web/githubRepo', 'web/fetch', 'edit/editFiles', 'execute/getTerminalOutput','execute/runInTerminal','read/terminalLastCommand','read/terminalSelection']
+tools: ['web/githubRepo', 'edit/editFiles']
 ---
 
 # /delegate-to-copilot-agent

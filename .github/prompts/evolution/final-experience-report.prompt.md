@@ -1,8 +1,9 @@
 ---
 description: "Encerra o Estágio 4 com uma retrospectiva da equipe sobre a experiência com agentes no dia."
+argument-hint: "team=\"Team 07\""
 agent: agent
 model: ['Claude Haiku 4.5 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['search/codebase', 'com.microsoft/azure/search', 'edit/editFiles']
+tools: ['search/codebase', 'edit/editFiles']
 ---
 
 # /final-experience-report
@@ -47,7 +48,7 @@ Um arquivo Markdown em `04-evolucao/agent-experience-report.md`:
 # Relatório de Experiência com Agentes — [Nome da Equipe]
 ## Metadata
 - Equipe: [nome]
-- Date: 2026-04-28
+- Date: [YYYY-MM-DD]
 - Estágios concluídos: [1-4]
 - Agentes usados: [lista]
 ## Reflections

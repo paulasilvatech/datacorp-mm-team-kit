@@ -1,8 +1,9 @@
 ---
 description: "Traduz um programa Natural para Java 21 + Spring Boot 3.3 idiomático, preservando semântica de negócio."
+argument-hint: "file=01-arqueologia/legado-sifap/natural-programs/PGMAIN01.NSN context=payment package=com.datacorp.app.payment"
 agent: agent
 model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
-tools: ['search/codebase', 'com.microsoft/azure/search', 'edit/editFiles', 'web/fetch']
+tools: ['search/codebase', 'edit/editFiles']
 ---
 
 # /translate-natural-to-java
@@ -24,7 +25,7 @@ No início do Estágio 3, quando a equipe começa a implementar bounded contexts
 
 ## Entradas que a Equipe Deve Fornecer
 
-- O path do arquivo do programa Natural (por exemplo, `01-arqueologia/legado-sifap/programs/PGXXXXXX.nat`)
+- O path do arquivo do programa Natural (por exemplo, `01-arqueologia/legado-sifap/natural-programs/PGXXXXXX.NSN`)
 - O bounded context e package Java de destino
 - Quaisquer requisitos EARS relacionados (REQ-IDs)
 
@@ -53,7 +54,7 @@ Arquivos Java sob o package `src/main/java/` apropriado, mais stubs de teste sob
 - [ ] Arquivos Java compilam sem erros
 - [ ] Todo método público tem Javadoc citando o arquivo-fonte Natural e intervalo de linhas
 - [ ] Toda regra de negócio dos requisitos EARS relevantes tem um método correspondente
-- [ ] Orphan logic (código sem REQ) está documentada com `// ORPHAN: [file:line] — decisão da equipe necessária`
+- [ ] Orphan logic (código sem REQ) está documentada com `// ORPHAN: [file:line] - Team decision required`
 - [ ] Existem stubs de teste unitário para todo método público
 - [ ] Sem port linha por linha de Natural — a tradução usa idiomas Java 21
 
@@ -74,7 +75,7 @@ Abra o arquivo especificado. Leia a seção `DEFINE DATA` para entender o modelo
 **Passo 3 — Mapear blocos para requisitos.**
 Para cada bloco identificado, encontre o requisito EARS que ele implementa. Se um bloco não tiver requisito correspondente, marque como orphan logic:
 ```java
-// ORPHAN: [natural-file.nat:L42-58] — Nenhum REQ correspondente. Decisão da equipe: manter, modificar ou remover?
+// ORPHAN: [natural-file.NSN:L42-58] - No matching REQ. Team decision required: keep, modify, or remove?
 ```
 Pergunte à equipe o que fazer com orphan logic antes de prosseguir.
 
@@ -102,7 +103,7 @@ Todo método público recebe Javadoc que inclui:
 /**
  * [Descrição de negócio].
  *
- * <p>Traduzido de: {@code [natural-file.nat:L42-58]}</p>
+ * <p>Translated from: {@code [natural-file.NSN#L42-L58]}</p>
  * <p>Implementa: REQ-NNN</p>
  */
 ```
@@ -127,5 +128,5 @@ Se uma construção Natural não tiver um idioma Java limpo, apresente 2 alterna
 ## Exemplo de Invocação
 
 ```
-/translate-natural-to-java file=01-arqueologia/legado-sifap/programs/PGMAIN01.nat context=payment package=com.datacorp.app.payment
+/translate-natural-to-java file=01-arqueologia/legado-sifap/natural-programs/PGMAIN01.NSN context=payment package=com.datacorp.app.payment
 ```

@@ -1,8 +1,9 @@
 ---
 description: "Checklist de self-review para segurança e problemas OWASP Top 10 em uma feature recém-construída."
-agent: ask
+argument-hint: "context=payment files=PaymentController.java,PaymentService.java,Payment.java"
+agent: agent
 model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
-tools: ['search/codebase', 'com.microsoft/azure/search']
+tools: ['search/codebase', 'edit/editFiles']
 ---
 
 # /security-self-review

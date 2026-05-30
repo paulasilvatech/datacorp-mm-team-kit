@@ -1,8 +1,9 @@
 ---
 description: "Mapeia dependências program-to-program (CALLNAT, INCLUDE) e program-to-data (acesso a DDM) para um escopo escolhido."
+argument-hint: "scope=01-arqueologia/legado-sifap/natural-programs/ recursive=true"
 agent: agent
 model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['search/codebase', 'com.microsoft/azure/search', 'search/usages', 'edit/editFiles']
+tools: ['search/codebase', 'search/usages', 'edit/editFiles']
 ---
 
 # /map-dependencies
@@ -122,5 +123,5 @@ Toda aresta deve citar um arquivo-fonte e número de linha. Se você não conseg
 ## Exemplo de Invocação
 
 ```
-/map-dependencies scope=01-arqueologia/legado-sifap/programs/ recursive=true
+/map-dependencies scope=01-arqueologia/legado-sifap/natural-programs/ recursive=true
 ```

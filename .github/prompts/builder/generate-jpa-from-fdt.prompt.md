@@ -1,8 +1,9 @@
 ---
 description: "Gera classes de entidade JPA a partir de definições Adabas FDT, com JSONB para campos MU/PE."
+argument-hint: "ddm=01-arqueologia/legado-sifap/adabas-ddms/DDM001.ddm context=payment package=com.datacorp.app.payment dateformat=YYYYMMDD"
 agent: agent
 model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
-tools: ['search/codebase', 'com.microsoft/azure/search', 'edit/editFiles']
+tools: ['search/codebase', 'edit/editFiles']
 ---
 
 # /generate-jpa-from-fdt
@@ -18,12 +19,12 @@ No início do Estágio 3, quando a equipe está configurando a camada de dados p
 ## Pré-condições
 
 - `02-spec-moderna/bounded-contexts.md` existe (para saber qual context possui este DDM)
-- O arquivo DDM está acessível em `01-arqueologia/legado-sifap/ddms/`
+- O arquivo DDM está acessível em `01-arqueologia/legado-sifap/adabas-ddms/`
 - A equipe decidiu o package-alvo a partir do design do modular monolith
 
 ## Entradas que a Equipe Deve Fornecer
 
-- O path do arquivo DDM (por exemplo, `01-arqueologia/legado-sifap/ddms/DDMXXXXX.ddm`)
+- O path do arquivo DDM (por exemplo, `01-arqueologia/legado-sifap/adabas-ddms/DDMXXXXX.ddm`)
 - O bounded context e package Java de destino
 - Formato de data usado no sistema legado (por exemplo, `YYYYMMDD` packed, ou `YYYY-MM-DD` alpha)
 
@@ -56,7 +57,7 @@ Dois arquivos:
 - [ ] Campos MU usam JSONB (`@JdbcTypeCode(SqlTypes.JSON)`) ou `@ElementCollection`
 - [ ] Grupos PE usam `@OneToMany` com uma classe de entidade separada
 - [ ] A migration Flyway é DDL PostgreSQL 16 válida
-- [ ] Nomes de campos crípticos têm comentários `// FIXME: confirm semantics`
+- [ ] Nomes de campos crípticos têm comentários em inglês `// FIXME: confirm semantics`
 - [ ] Campos crípticos são adicionados ao catálogo de mistérios se ainda não estiverem lá
 
 ## Corpo do Prompt
@@ -111,7 +112,7 @@ Para cada super-descriptor, adicione uma annotation `@Index` composta na entidad
 **Passo 5 — Sinalizar nomes crípticos.**
 Para qualquer campo cujo nome Adabas de 2 caracteres não tenha equivalente claro em inglês:
 ```java
-/** FIXME: confirmar semântica com a equipe para o campo Adabas XX */
+/** FIXME: confirm semantics with the team for Adabas field XX */
 @Column(name = "xx_value", length = 20)
 private String xxValue;
 ```
@@ -135,5 +136,5 @@ Garanta que a classe de entidade compile. Reporte quaisquer problemas.
 ## Exemplo de Invocação
 
 ```
-/generate-jpa-from-fdt ddm=01-arqueologia/legado-sifap/ddms/DDM001.ddm context=payment package=com.datacorp.app.payment dateformat=YYYYMMDD
+/generate-jpa-from-fdt ddm=01-arqueologia/legado-sifap/adabas-ddms/DDM001.ddm context=payment package=com.datacorp.app.payment dateformat=YYYYMMDD
 ```

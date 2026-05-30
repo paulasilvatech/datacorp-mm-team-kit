@@ -1,8 +1,9 @@
 ---
 description: "Traduz regras de negócio confirmadas em requisitos em notação EARS para o sistema moderno."
+argument-hint: "rules=01-arqueologia/business-rules-catalog.md contexts=02-spec-moderna/bounded-contexts.md"
 agent: agent
 model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['search/codebase', 'com.microsoft/azure/search', 'edit/editFiles']
+tools: ['search/codebase', 'edit/editFiles']
 ---
 
 # /write-ears-spec
@@ -50,7 +51,8 @@ Um arquivo Markdown em `02-spec-moderna/SPECIFICATION.md`:
 ## Bounded Context: [Name]
 ### REQ-001: [Statement]
 - EARS Pattern: [pattern]
-- Source: [rule #, file, line]
+- source_legacy: [01-arqueologia/legado-sifap/natural-programs/file.NSN#Lx-Ly, 01-arqueologia/legado-sifap/adabas-ddms/file.ddm#Lx-Ly, ou [GREENFIELD] + justificativa]
+- Source Rule: [rule #, file, line]
 - Critérios de Aceite:
   - [ ] ...
 ...
@@ -61,6 +63,7 @@ Um arquivo Markdown em `02-spec-moderna/SPECIFICATION.md`:
 ## Definição de Pronto
 
 - [ ] Existem pelo menos 10 requisitos EARS com REQ-IDs únicos
+- [ ] Todo requisito tem uma linha `source_legacy:` apontando para `.NSN`/`.ddm` ou `[GREENFIELD] + justificativa`
 - [ ] Todo requisito cita sua regra-fonte e arquivo legado
 - [ ] Todo requisito tem pelo menos 2 critérios de aceitação
 - [ ] Requisitos são agrupados por bounded context
@@ -75,6 +78,7 @@ Você é o `@architect-agent`. A equipe precisa escrever a especificação EARS 
 Leia `01-arqueologia/business-rules-catalog.md`. Filtre somente regras classificadas como "confirmed". Liste-as com suas referências de fonte.
 
 Se a equipe quiser promover regras "inferred" específicas, peça confirmação explícita por regra. Cada regra promovida deve incluir uma nota: "Promovida de inferred — decisão da equipe, [motivo]."
+Toda regra promovida ainda precisa de `source_legacy:` apontando para a evidência no legado; se a regra for nova, use `[GREENFIELD] + justificativa`.
 
 **Passo 2 — Mapear regras para bounded contexts.**
 Leia `02-spec-moderna/bounded-contexts.md`. Para cada regra confirmed, determine qual bounded context é dono dela com base nos dados e programas envolvidos. Se uma regra atravessar múltiplos contextos, sinalize para discussão — talvez precise ser dividida ou atribuída a uma camada coordenadora.
@@ -93,6 +97,7 @@ Valide cada declaração contra o padrão. Se uma declaração não se encaixar 
 
 **Passo 4 — Atribuir REQ-IDs.**
 Numere requisitos sequencialmente: REQ-001, REQ-002 etc. Agrupe por bounded context.
+Para cada requisito, adicione imediatamente uma linha `source_legacy:`. Esta linha é obrigatória no workshop e deve apontar para `01-arqueologia/legado-sifap/natural-programs/*.NSN`, `01-arqueologia/legado-sifap/adabas-ddms/*.ddm` ou `[GREENFIELD] + justificativa`.
 
 **Passo 5 — Escrever critérios de aceitação.**
 Para cada requisito, escreva pelo menos 2 critérios de aceitação testáveis. Cada critério deve ser:
@@ -106,7 +111,7 @@ Formato: `Given [precondition], when [action], then [expected result]`.
 Para todo mistério de `01-arqueologia/mysteries-found.md` classificado como "blocks-stage-2", adicione-o à seção "Open Questions". Não o converta em requisito. Anote qual informação é necessária para resolvê-lo.
 
 **Passo 7 — Construir matriz de rastreabilidade.**
-Crie uma tabela conectando: `| REQ-ID | EARS Pattern | Source Rule # | Source File | Bounded Context |`.
+Crie uma tabela conectando: `| REQ-ID | EARS Pattern | source_legacy | Source Rule # | Source File | Bounded Context |`.
 
 **Passo 8 — Escrever no arquivo.**
 Gere a saída em `02-spec-moderna/SPECIFICATION.md`. Se o arquivo já existir, pergunte à equipe se deve sobrescrever ou anexar.

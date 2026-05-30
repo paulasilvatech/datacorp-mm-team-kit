@@ -1,8 +1,9 @@
 ---
 description: "Sintetiza as saídas do Estágio 1 em um único relatório de descoberta pronto para passagem ao Estágio 2."
+argument-hint: "team=\"Team 07\""
 agent: agent
 model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['search/codebase', 'com.microsoft/azure/search', 'edit/editFiles']
+tools: ['search/codebase', 'edit/editFiles']
 ---
 
 # /discovery-report

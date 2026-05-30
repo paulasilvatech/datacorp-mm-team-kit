@@ -1,8 +1,9 @@
 ---
 description: "Gera testes JUnit que validam se a implementação Java moderna produz as mesmas saídas que o original Natural para as mesmas entradas."
+argument-hint: "class=com.datacorp.app.payment.PaymentService method=calculateAmount"
 agent: agent
 model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
-tools: ['search/codebase', 'com.microsoft/azure/search', 'edit/editFiles', 'execute/runTests']
+tools: ['search/codebase', 'edit/editFiles', 'execute/runTests']
 ---
 
 # /generate-equivalence-tests

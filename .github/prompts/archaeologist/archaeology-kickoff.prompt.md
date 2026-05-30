@@ -1,8 +1,9 @@
 ---
 description: "Inicia o Estágio 1 — orienta a equipe sobre a pasta de legado e produz um inventário inicial."
+argument-hint: "path=01-arqueologia/legado-sifap/"
 agent: agent
 model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: [read, edit/editFiles, com.microsoft/azure/search, com.microsoft/azure/search]
+tools: ['search/codebase', 'edit/editFiles']
 ---
 
 # /archaeology-kickoff
@@ -17,7 +18,7 @@ Logo no início do Estágio 1, imediatamente depois que a equipe recebe acesso �
 
 ## Pré-condições
 
-- A pasta `01-arqueologia/legado-sifap/` está disponível no workspace (com symlink criado por `11-scripts/setup.sh` ou posicionada manualmente)
+- A pasta `01-arqueologia/legado-sifap/` está disponível no workspace (ela é parte do kit; `11-scripts/setup.sh` cria apenas os symlinks `prototype/` e `infra/`)
 - A equipe ainda não abriu programas individuais
 
 ## Entradas que a Equipe Deve Fornecer
@@ -28,7 +29,7 @@ Logo no início do Estágio 1, imediatamente depois que a equipe recebe acesso �
 ## O Que Vou Fazer
 
 - Escanear a pasta `01-arqueologia/legado-sifap/` recursivamente e listar todos os diretórios
-- Contar arquivos por extensão (`.nat`, `.cpy`, `.ddm`, `.map` e quaisquer outras)
+- Contar arquivos por extensão (`.NSN`, `.cpy`, `.ddm`, `.map` e quaisquer outras)
 - Classificar programas por prefixos de padrão de nomes (por exemplo, `BN-*` para batch, `PG-*` para online)
 - Sinalizar os 3 principais itens que parecem incomuns com base no tamanho do nome, tamanho do arquivo ou localização
 - Propor uma ordem de leitura com base na classificação
@@ -71,7 +72,7 @@ Execute os seguintes passos em ordem. Não pule nenhum passo.
 Liste todos os diretórios e subdiretórios sob o path de legado fornecido. Exiba a estrutura em árvore. Conte o número total de diretórios.
 
 **Passo 2 — Contar arquivos por extensão.**
-Para cada extensão de arquivo encontrada (`.nat`, `.cpy`, `.ddm`, `.map`, `.txt`, `.md` ou qualquer outra), reporte a contagem. Apresente como tabela: `| Extensão | Contagem | Finalidade provável |`. Para "Finalidade provável", use apenas conhecimento genérico de Natural/Adabas (por exemplo, `.nat` = programa-fonte Natural, `.cpy` = copycode, `.ddm` = Data Definition Module). Não adivinhe o conteúdo de nenhum arquivo específico.
+Para cada extensão de arquivo encontrada (`.NSN`, `.cpy`, `.ddm`, `.map`, `.txt`, `.md` ou qualquer outra), reporte a contagem. Apresente como tabela: `| Extensão | Contagem | Finalidade provável |`. Para "Finalidade provável", use apenas conhecimento genérico de Natural/Adabas (por exemplo, `.NSN` = programa-fonte Natural, `.cpy` = copycode, `.ddm` = Data Definition Module). Não adivinhe o conteúdo de nenhum arquivo específico.
 
 **Passo 3 — Identificar padrões de convenção de nomes.**
 Escaneie todos os nomes de arquivos (sem abrir os arquivos). Agrupe arquivos pelo padrão de prefixo (primeiros 2-3 caracteres antes de um delimitador como `-`, `_` ou um dígito). Para cada padrão com 2+ arquivos, reporte: `| Prefixo | Contagem | Hipótese |`. A hipótese se baseia apenas em conhecimento genérico de convenções Natural. Se um prefixo não tiver padrão claro, marque a hipótese como `Desconhecido — investigar no próximo passo`.

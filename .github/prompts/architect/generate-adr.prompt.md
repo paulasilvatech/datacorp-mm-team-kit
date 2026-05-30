@@ -1,15 +1,16 @@
 ---
-description: "Rascunha um Arquitetura Decision Record para uma escolha específica de design que a equipe está fazendo."
+description: "Rascunha um Architecture Decision Record (ADR) para uma escolha específica de design que a equipe está fazendo."
+argument-hint: "title=\"Map Adabas MU fields to JSONB vs ElementCollection\""
 agent: agent
 model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['search/codebase', 'com.microsoft/azure/search', 'edit/editFiles']
+tools: ['search/codebase', 'edit/editFiles']
 ---
 
 # /generate-adr
 
 ## Objetivo
 
-Crie um Arquitetura Decision Record formal documentando uma escolha específica de design. O ADR captura opções consideradas, trade-offs avaliados, a decisão tomada e suas consequências.
+Crie um Architecture Decision Record (ADR) formal documentando uma escolha específica de design. O ADR captura opções consideradas, trade-offs avaliados, a decisão tomada e suas consequências.
 
 ## Quando Invocar
 
@@ -48,7 +49,7 @@ Um arquivo Markdown em `02-spec-moderna/ADRs/adr-NNN-<slug>.md`:
 ```markdown
 # ADR-NNN: [Title]
 - Status: Accepted
-- Date: 2026-04-28
+- Date: [YYYY-MM-DD]
 - Context: ...
 - Decision: ...
 - Options Considered:
