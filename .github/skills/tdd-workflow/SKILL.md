@@ -1,9 +1,9 @@
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 ---
-name: Workflow de TDD
+name: "tdd-workflow"
 description: "Use ao praticar desenvolvimento orientado por testes, escrever primeiro um teste que falha ou orientar red-green-refactor. Aciona com 'TDD', 'red-green-refactor', 'test first', 'failing test', 'write a test'."
 ---
+
+<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # Workflow de TDD
 

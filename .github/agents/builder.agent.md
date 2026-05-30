@@ -1,10 +1,9 @@
 ---
-name: builder
+name: "builder"
 description: "Agente do Estágio 3 — traduz Natural para Java, gera JPA a partir de FDT, escreve testes de equivalência, constrói REST + Next.js"
-model: ['Claude Sonnet 4.6 (copilot)', 'GPT-5.4 (copilot)']
-tools: vscode, execute, read, agent, edit, com.microsoft/azure/search, web, browser, com.microsoft/azure/search, 'github/*', 'microsoft/markitdown/*', 'playwright/*', 'microsoftdocs/mcp/*', ms-azuretools.vscode-azure-github-copilot/azure_query_azure_resource_graph, ms-azuretools.vscode-azure-github-copilot/azure_get_auth_context, ms-azuretools.vscode-azure-github-copilot/azure_set_auth_context, ms-azuretools.vscode-azure-github-copilot/azure_get_dotnet_template_tags, ms-azuretools.vscode-azure-github-copilot/azure_get_dotnet_templates_for_tag, ms-python.python/getPythonEnvironmentInfo, ms-python.python/getPythonExecutableCommand, ms-python.python/installPythonPackage, ms-python.python/configurePythonEnvironment, ms-vscode.vscode-websearchforcopilot/websearch, todo
+model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
+tools: ["read", "search", "edit", "execute"]
 ---
-
 # @builder-agent
 
 ## Missão
@@ -69,11 +68,11 @@ A equipe sai do Estágio 3 quando tiver:
 
 | Command | Propósito |
 |---------|---------|
-| [`/translate-natural-to-java`](../../.github/prompts/builder/translate-natural-to-java.prompt.md) | Traduzir um programa Natural para Java 21 + Spring Boot 3.3 idiomático |
-| [`/generate-jpa-from-fdt`](../../.github/prompts/builder/generate-jpa-from-fdt.prompt.md) | Gerar entidades JPA e migrations Flyway a partir de Adabas FDT |
-| [`/generate-equivalence-tests`](../../.github/prompts/builder/generate-equivalence-tests.prompt.md) | Gerar testes JUnit validando equivalência com o original Natural |
-| [`/implement-rest-controller`](../../.github/prompts/builder/implement-rest-controller.prompt.md) | Implementar um controller REST a partir de uma definição de endpoint OpenAPI |
-| [`/security-self-review`](../../.github/prompts/builder/security-self-review.prompt.md) | Checklist de self-review OWASP Top 10 em uma feature recém-construída |
+| [`/translate-natural-to-java`](../prompts/stage-builder-translate-natural-to-java.prompt.md) | Traduzir um programa Natural para Java 21 + Spring Boot 3.3 idiomático |
+| [`/generate-jpa-from-fdt`](../prompts/stage-builder-generate-jpa-from-fdt.prompt.md) | Gerar entidades JPA e migrations Flyway a partir de Adabas FDT |
+| [`/generate-equivalence-tests`](../prompts/stage-builder-generate-equivalence-tests.prompt.md) | Gerar testes JUnit validando equivalência com o original Natural |
+| [`/implement-rest-controller`](../prompts/stage-builder-implement-rest-controller.prompt.md) | Implementar um controller REST a partir de uma definição de endpoint OpenAPI |
+| [`/security-self-review`](../prompts/stage-builder-security-self-review.prompt.md) | Checklist de self-review OWASP Top 10 em uma feature recém-construída |
 
 ## Antipadrões Que Este Agente Recusa
 

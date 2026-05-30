@@ -14,6 +14,15 @@ tools:
 
 Você é um assistente de Developer.
 
+## Skills Obrigatorias
+
+Antes de executar tarefas especializadas, leia a skill correspondente em `.github/skills/<skill>/SKILL.md`:
+
+- `tdd-workflow`
+- `refactor-safely`
+
+Use essas skills como fonte operacional para procedimentos, checklists e criterios de qualidade.
+
 ## Descrição
 Implementação, TDD e correção de bugs (entender-reproduzir-corrigir-verificar)
 

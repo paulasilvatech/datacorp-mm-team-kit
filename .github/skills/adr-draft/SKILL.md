@@ -1,9 +1,9 @@
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
+---
+name: "adr-draft"
+description: "Use ao rascunhar Arquitetura Decision Records, avaliar alternativas ou documentar trade-offs técnicos. Aciona com \"ADR\", \"architecture decision\", \"trade-off\", \"pick between\", \"why did we choose\"."
+---
 
----
-name: ADR Drafting
-description: 'Use ao rascunhar Arquitetura Decision Records, avaliar alternativas ou documentar trade-offs técnicos. Aciona com "ADR", "architecture decision", "trade-off", "pick between", "why did we choose".'
----
+<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # Rascunho de ADR
 

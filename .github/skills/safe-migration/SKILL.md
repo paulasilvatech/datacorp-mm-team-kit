@@ -1,9 +1,9 @@
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 ---
-name: Migração segura de schema
+name: "safe-migration"
 description: "Use ao planejar uma mudança de schema online, migração com zero downtime ou rollback de um deploy que alterou uma tabela. Acionadores: 'migration', 'ALTER TABLE', 'zero-downtime', 'expand-contract', 'backfill'."
 ---
+
+<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # Migração segura de schema
 

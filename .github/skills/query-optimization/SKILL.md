@@ -1,9 +1,9 @@
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 ---
-name: Otimização de consultas
+name: "query-optimization"
 description: "Use ao investigar consultas lentas, desenhar índices ou revisar planos de execução. Acionadores: 'slow query', 'explain plan', 'index', 'query tuning', 'N+1', 'table scan'."
 ---
+
+<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # Otimização de consultas
 

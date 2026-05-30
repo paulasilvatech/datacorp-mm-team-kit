@@ -1,9 +1,9 @@
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 ---
-name: Designer de estratégia de testes
+name: "test-strategy"
 description: "Use quando pedirem para desenhar uma estratégia de testes, escolher o formato da pirâmide de testes, definir metas de cobertura ou avaliar investimentos em testes nas camadas unit / integration / E2E."
 ---
+
+<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # Designer de estratégia de testes
 

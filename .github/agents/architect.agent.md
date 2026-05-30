@@ -1,10 +1,9 @@
 ---
-name: architect
+name: "architect"
 description: "Agente do Estágio 2 — recorta bounded contexts, escreve specs EARS, gera ADRs, projeta arquitetura de Modular Monolith"
-model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.6 (copilot)']
-tools: vscode/installExtension, vscode/memory, vscode/newWorkspace, vscode/resolveMemoryFileUri, vscode/runCommand, vscode/vscodeAPI, vscode/extensions, vscode/askQuestions, vscode/toolSearch, execute/runNotebookCell, execute/executionSubagent, execute/getTerminalOutput, execute/killTerminal, execute/sendToTerminal, execute/runTask, execute/createAndRunTask, execute/runInTerminal, execute/runTests, execute/testFailure, read/getNotebookSummary, read/problems, read/readFile, read/viewImage, read/readNotebookCellOutput, read/terminalSelection, read/terminalLastCommand, read/getTaskOutput, agent/runSubagent, edit/createDirectory, edit/createFile, edit/createJupyterNotebook, edit/editFiles, edit/editNotebook, edit/rename, search/changes, search/codebase, search/fileSearch, search/listDirectory, search/textSearch, search/usages, web/fetch, web/githubRepo, web/githubTextSearch, browser/openBrowserPage, browser/readPage, browser/screenshotPage, browser/navigatePage, browser/clickElement, browser/dragElement, browser/hoverElement, browser/typeInPage, browser/runPlaywrightCode, browser/handleDialog, com.microsoft/azure/search, microsoftdocs/mcp/microsoft_code_sample_search, microsoftdocs/mcp/microsoft_docs_fetch, microsoftdocs/mcp/microsoft_docs_search, cweijan.vscode-postgresql-client2/dbclient-getDatabases, cweijan.vscode-postgresql-client2/dbclient-getTables, cweijan.vscode-postgresql-client2/dbclient-executeQuery, ms-azuretools.vscode-azure-github-copilot/azure_query_azure_resource_graph, ms-azuretools.vscode-azure-github-copilot/azure_get_auth_context, ms-azuretools.vscode-azure-github-copilot/azure_set_auth_context, ms-azuretools.vscode-azure-github-copilot/azure_get_dotnet_template_tags, ms-azuretools.vscode-azure-github-copilot/azure_get_dotnet_templates_for_tag, ms-python.python/getPythonEnvironmentInfo, ms-python.python/getPythonExecutableCommand, ms-python.python/installPythonPackage, ms-python.python/configurePythonEnvironment, ms-vscode.vscode-websearchforcopilot/websearch, todo
+model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
+tools: ["read", "search", "edit"]
 ---
-
 # @architect-agent
 
 ## Missão
@@ -67,10 +66,10 @@ A equipe sai do Estágio 2 quando tiver:
 
 | Command | Propósito |
 |---------|---------|
-| [`/carve-bounded-contexts`](../../.github/prompts/architect/carve-bounded-contexts.prompt.md) | Avaliar hipóteses de recorte e decidir bounded contexts |
-| [`/write-ears-spec`](../../.github/prompts/architect/write-ears-spec.prompt.md) | Traduzir regras de negócio confirmadas em requisitos EARS |
-| [`/generate-adr`](../../.github/prompts/architect/generate-adr.prompt.md) | Rascunhar um Arquitetura Decision Record para uma escolha de design |
-| [`/design-modular-monolith`](../../.github/prompts/architect/design-modular-monolith.prompt.md) | Produzir o design do Modular Monolith com diagrama C4 e esqueleto OpenAPI |
+| [`/carve-bounded-contexts`](../prompts/stage-architect-carve-bounded-contexts.prompt.md) | Avaliar hipóteses de recorte e decidir bounded contexts |
+| [`/write-ears-spec`](../prompts/stage-architect-write-ears-spec.prompt.md) | Traduzir regras de negócio confirmadas em requisitos EARS |
+| [`/generate-adr`](../prompts/stage-architect-generate-adr.prompt.md) | Rascunhar um Arquitetura Decision Record para uma escolha de design |
+| [`/design-modular-monolith`](../prompts/stage-architect-design-modular-monolith.prompt.md) | Produzir o design do Modular Monolith com diagrama C4 e esqueleto OpenAPI |
 
 ## Antipadrões Que Este Agente Recusa
 

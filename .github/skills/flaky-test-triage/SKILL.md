@@ -1,9 +1,9 @@
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 ---
-name: Triagem de testes flaky
+name: "flaky-test-triage"
 description: "Use quando um teste for intermitente, quando pedirem para investigar instabilidade no CI, 'quarantine a flaky test', ou para criar um dashboard de flaky tests."
 ---
+
+<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # Triagem de testes flaky
 

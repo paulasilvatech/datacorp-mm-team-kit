@@ -1,9 +1,9 @@
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
+---
+name: "ears-validate"
+description: "Use ao validar requisitos contra padrões da notação EARS. Aciona com \"EARS\", \"requirement review\", \"requirement quality\", \"shall statement\", \"REQ-ID\"."
+---
 
----
-name: Validação EARS
-description: 'Use ao validar requisitos contra padrões da notação EARS. Aciona com "EARS", "requirement review", "requirement quality", "shall statement", "REQ-ID".'
----
+<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # Validação EARS
 

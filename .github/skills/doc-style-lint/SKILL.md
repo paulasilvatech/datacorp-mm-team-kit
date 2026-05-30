@@ -1,9 +1,9 @@
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
+---
+name: "doc-style-lint"
+description: "Use ao revisar documentação quanto a estilo, clareza, linguagem inclusiva ou conformidade com os guias de estilo Microsoft/Google. Dispara com \"doc review\", \"style guide\", \"plain language\", \"inclusive language\", \"readability\"."
+---
 
----
-name: Lint de estilo de documentação
-description: 'Use ao revisar documentação quanto a estilo, clareza, linguagem inclusiva ou conformidade com os guias de estilo Microsoft/Google. Dispara com "doc review", "style guide", "plain language", "inclusive language", "readability".'
----
+<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # Lint de estilo de documentação
 

@@ -1,10 +1,9 @@
 ---
-name: evolution
+name: "evolution"
 description: "Agente do Estágio 4 — escreve GitHub issues para Copilot Agent, revisa PRs gerados por IA, configura CI/CD e IaC"
-model: ['Claude Sonnet 4.6 (copilot)', 'GPT-5.4 (copilot)']
-tools: vscode, execute, read, agent, edit, com.microsoft/azure/search, web, browser, 'com.microsoft/azure/*', 'io.github.chromedevtools/chrome-devtools-mcp/*', 'github/*', 'microsoft/markitdown/*', 'playwright/*', cweijan.vscode-postgresql-client2/dbclient-getDatabases, cweijan.vscode-postgresql-client2/dbclient-getTables, cweijan.vscode-postgresql-client2/dbclient-executeQuery, ms-azuretools.vscode-azure-github-copilot/azure_query_azure_resource_graph, ms-azuretools.vscode-azure-github-copilot/azure_get_auth_context, ms-azuretools.vscode-azure-github-copilot/azure_set_auth_context, ms-azuretools.vscode-azure-github-copilot/azure_get_dotnet_template_tags, ms-azuretools.vscode-azure-github-copilot/azure_get_dotnet_templates_for_tag, ms-python.python/getPythonEnvironmentInfo, ms-python.python/getPythonExecutableCommand, ms-python.python/installPythonPackage, ms-python.python/configurePythonEnvironment, ms-vscode.vscode-websearchforcopilot/websearch, todo
+model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
+tools: ["read", "search", "edit", "execute", "web"]
 ---
-
 # @evolution-agent
 
 ## Missão
@@ -66,10 +65,10 @@ A equipe sai do Estágio 4 quando tiver:
 
 | Command | Propósito |
 |---------|---------|
-| [`/write-github-issue`](../../.github/prompts/evolution/write-github-issue.prompt.md) | Rascunhar uma GitHub Issue otimizada para execução pelo Copilot Agent |
-| [`/delegate-to-copilot-agent`](../../.github/prompts/evolution/delegate-to-copilot-agent.prompt.md) | Entregar uma issue ao Copilot Agent e preparar uma watch-list |
-| [`/review-agent-pr`](../../.github/prompts/evolution/review-agent-pr.prompt.md) | Revisar um PR gerado por IA com atenção a failure modes típicos de IA |
-| [`/final-experience-report`](../../.github/prompts/evolution/final-experience-report.prompt.md) | Retrospectiva da equipe sobre a experiência com agentes |
+| [`/write-github-issue`](../prompts/stage-evolution-write-github-issue.prompt.md) | Rascunhar uma GitHub Issue otimizada para execução pelo Copilot Agent |
+| [`/delegate-to-copilot-agent`](../prompts/stage-evolution-delegate-to-copilot-agent.prompt.md) | Entregar uma issue ao Copilot Agent e preparar uma watch-list |
+| [`/review-agent-pr`](../prompts/stage-evolution-review-agent-pr.prompt.md) | Revisar um PR gerado por IA com atenção a failure modes típicos de IA |
+| [`/final-experience-report`](../prompts/stage-evolution-final-experience-report.prompt.md) | Retrospectiva da equipe sobre a experiência com agentes |
 
 ## Antipadrões Que Este Agente Recusa
 

@@ -1,9 +1,9 @@
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 ---
-name: Revisão de IaC
+name: "iac-review"
 description: "Use ao revisar Terraform, Bicep ou CloudFormation, verificar drift ou fortalecer código de infraestrutura. Aciona com 'review terraform', 'review bicep', 'IaC review', 'drift detection', 'state file'."
 ---
+
+<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # Revisão de IaC
 

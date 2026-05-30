@@ -54,3 +54,12 @@ REQ-<DOMAIN>-NNN:
  - "<criterion 2>"
  priority: P0|P1|P2
 ```
+
+## Skills Obrigatorias
+
+Antes de executar tarefas especializadas, leia a skill correspondente em `.github/skills/<skill>/SKILL.md`:
+
+- `ears-validate`
+
+Use essas skills como fonte operacional para procedimentos, checklists e criterios de qualidade.
+

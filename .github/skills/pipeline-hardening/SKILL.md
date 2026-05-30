@@ -1,9 +1,9 @@
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 ---
-name: Pipeline Hardening
+name: "pipeline-hardening"
 description: "Use ao fortalecer um pipeline CI/CD, migrar para OIDC, assinar artefatos ou atender requisitos SLSA. Aciona com 'SLSA', 'supply chain', 'OIDC', 'sigstore', 'cosign', 'pipeline security', 'GHA hardening'."
 ---
+
+<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # Fortalecimento de Pipeline
 

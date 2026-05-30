@@ -1,9 +1,9 @@
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 ---
-name: Refatorar com segurança
+name: "refactor-safely"
 description: "Use ao refatorar código legado, extrair um serviço ou fazer mudanças que preservam comportamento. Aciona com 'refactor', 'legacy code', 'strangler fig', 'characterization test', 'mikado method'."
 ---
+
+<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # Refatorar com segurança
 

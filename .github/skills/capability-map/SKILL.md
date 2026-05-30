@@ -1,9 +1,9 @@
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
+---
+name: "capability-map"
+description: "Use ao mapear capacidades de negócio, identificar sobreposições ou lacunas na empresa, ou alinhar investimentos de TI a resultados de negócio. Aciona com \"capability map\", \"business capability\", \"domain map\", \"enterprise architecture\"."
+---
 
----
-name: Capability Map
-description: 'Use ao mapear capacidades de negócio, identificar sobreposições ou lacunas na empresa, ou alinhar investimentos de TI a resultados de negócio. Aciona com "capability map", "business capability", "domain map", "enterprise architecture".'
----
+<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # Mapa de Capacidades
 

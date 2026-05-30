@@ -1,9 +1,9 @@
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
+---
+name: "context-audit"
+description: "Use quando uma nova pessoa de engenharia entra no time, durante onboarding em um codebase desconhecido, ou ao auditar se o time tem entendimento compartilhado. Aciona com \"onboard\", \"context\", \"knowledge gap\", \"bus factor\", \"team understanding\"."
+---
 
----
-name: Auditoria de Contexto
-description: 'Use quando uma nova pessoa de engenharia entra no time, durante onboarding em um codebase desconhecido, ou ao auditar se o time tem entendimento compartilhado. Aciona com "onboard", "context", "knowledge gap", "bus factor", "team understanding".'
----
+<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # Auditoria de Contexto
 

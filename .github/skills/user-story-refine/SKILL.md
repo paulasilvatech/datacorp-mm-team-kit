@@ -1,9 +1,9 @@
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
+---
+name: "user-story-refine"
+description: "Use ao refinar itens de backlog, dividir épicos ou validar critérios INVEST. Aciona com \"refine story\", \"split epic\", \"critérios de aceite\", \"user story\", \"INVEST\"."
+---
 
----
-name: User Story Refinement
-description: 'Use ao refinar itens de backlog, dividir épicos ou validar critérios INVEST. Aciona com "refine story", "split epic", "critérios de aceite", "user story", "INVEST".'
----
+<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # Refinamento de User Story
 
