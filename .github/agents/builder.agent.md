@@ -1,14 +1,8 @@
 ---
 name: builder
 description: "Agente do Estágio 3 — traduz Natural para Java, gera JPA a partir de FDT, escreve testes de equivalência, constrói REST + Next.js"
-model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
-tools:
-  - search/codebase
-  - com.microsoft/azure/search
-  - edit/editFiles
-  - execute/getTerminalOutput,execute/runInTerminal,read/terminalLastCommand,read/terminalSelection
-  - execute/runTests
-  - web/fetch
+model: ['Claude Sonnet 4.6 (copilot)', 'GPT-5.4 (copilot)']
+tools: vscode, execute, read, agent, edit, com.microsoft/azure/search, web, browser, com.microsoft/azure/search, 'github/*', 'microsoft/markitdown/*', 'playwright/*', 'microsoftdocs/mcp/*', ms-azuretools.vscode-azure-github-copilot/azure_query_azure_resource_graph, ms-azuretools.vscode-azure-github-copilot/azure_get_auth_context, ms-azuretools.vscode-azure-github-copilot/azure_set_auth_context, ms-azuretools.vscode-azure-github-copilot/azure_get_dotnet_template_tags, ms-azuretools.vscode-azure-github-copilot/azure_get_dotnet_templates_for_tag, ms-python.python/getPythonEnvironmentInfo, ms-python.python/getPythonExecutableCommand, ms-python.python/installPythonPackage, ms-python.python/configurePythonEnvironment, ms-vscode.vscode-websearchforcopilot/websearch, todo
 ---
 
 # @builder-agent
