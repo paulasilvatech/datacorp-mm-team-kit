@@ -1,9 +1,9 @@
 ---
-agent: ask
-model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
+name: "routing-table"
+agent: "ask"
+model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
 description: "Gere uma tabela de roteamento de tarefa para modelo"
 ---
-
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /routing-table

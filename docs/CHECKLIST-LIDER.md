@@ -29,12 +29,12 @@
 
 ## ⏰ Hora a hora — pontos de checagem
 
-### 🕙 10:00–11:00 · Setup + persona-kits
+### 🕙 10:00–11:00 · Setup + personas
 
 - [ ] **10:15** — Todos os laptops abriram o devcontainer
 - [ ] **10:30** — `docker compose up` verde em todos
-- [ ] **10:45** — Cada pessoa copiou seus 2 persona-kits para `.github/`
-- [ ] **10:55** — Cada pessoa testou um slash command do seu kit
+- [ ] **10:45** — Cada pessoa leu seus 2 `PERSONA.md` e confirmou que `.github/` já está consolidada
+- [ ] **10:55** — Cada pessoa testou um slash command da sua persona
 
 ### 🕚 11:00–12:00 · Estágio 1 — Arqueologia (parte 1)
 

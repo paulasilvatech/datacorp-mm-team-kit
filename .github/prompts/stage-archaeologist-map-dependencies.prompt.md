@@ -1,11 +1,11 @@
 ---
+name: "map-dependencies"
 description: "Mapeia dependências program-to-program (CALLNAT, INCLUDE) e program-to-data (acesso a DDM) para um escopo escolhido."
 argument-hint: "scope=01-arqueologia/legado-sifap/natural-programs/ recursive=true"
-agent: agent
-model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['search/codebase', 'search/usages', 'edit/editFiles']
+agent: "agent"
+model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
+tools: ["search/codebase", "search/usages", "edit/editFiles"]
 ---
-
 # /map-dependencies
 
 ## Objetivo

@@ -58,7 +58,7 @@ Cada classe tem em [`05-personas/0X-nome/`](../05-personas/):
 - 📡 **`mcp.json`** — radar (servidores MCP)
 
 > [!TIP]
-> Você carrega **as duas mochilas** dia inteiro (suas 2 personas). Faça `cp -r 05-personas/XX-*/.github/* .github/` para cada uma logo no setup, e os golpes ficam disponíveis automaticamente no Copilot Chat.
+> Você carrega **as duas mochilas** dia inteiro (suas 2 personas). A `.github/` da raiz já vem consolidada com os agents, prompts e skills de todas as personas; leia seus 2 `PERSONA.md` e valide os comandos no Copilot Chat.
 
 ---
 
@@ -130,7 +130,7 @@ Cada um destes erros é equivalente a "cair no buraco":
 |---|---|---|
 | Usar **Agent** para tarefa de 5 min | Gasta mana demais, perde turno | Use Ask ou Plan |
 | Selecionar agente errado para o mundo | Conversa fica fora de contexto | Confirme com o time antes do estágio |
-| Ignorar inventário (persona-kit) | Você ataca de mãos vazias | Copie seus 2 kits no setup, faça `/help` no Chat |
+| Ignorar inventário (persona-kit) | Você ataca de mãos vazias | Leia seus 2 `PERSONA.md`, selecione seu agente e teste um slash command |
 | Pular um mundo inteiro | Game over no fim do dia (demo fracassa) | Cumpra a DoD de cada estágio |
 | Delegar Issue vaga ao Agent | PR vem ruim, retrabalho dobro | Veja [`08-exemplos/issue-para-agent-exemplo.md`](../08-exemplos/issue-para-agent-exemplo.md) |
 
@@ -179,7 +179,7 @@ ativa, então /tdd-cycle funciona direto.
 | Sintoma | O que fazer |
 |---|---|
 | "Não sei selecionar agente no Chat" | Painel do Copilot Chat → ícone de seleção no topo do input → escolha do dropdown |
-| "Meu slash command não funciona" | Você copiou seu persona-kit para `.github/`? Veja `00-00-SETUP.md` Passo 8 |
+| "Meu slash command não funciona" | A janela foi recarregada na raiz do repo? Veja `00-SETUP.md` Passo 8 |
 | "O Copilot está respondendo fora de contexto" | Provavelmente nenhum agent-kit selecionado. Selecione o do estágio atual |
 | "Por que preciso escolher de novo no Estágio 3?" | Mundo mudou. Som da fase mudou. Selecione `@builder`. |
 

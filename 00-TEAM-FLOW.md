@@ -51,7 +51,7 @@ Cada pessoa escolhe **um par** (duas personas). As duas personas de um par são 
 | 4   | **Qualidade**                      | DBA + QA Engineer                         | Implementação (dados + testes)  | Azul     |
 | 5   | **Operações**                      | DevOps Engineer + Tech Writer             | Transversal + Evolução          | Preto    |
 
-> Personas e kits Copilot ficam juntos em [`05-personas/`](05-personas/): leia o `PERSONA.md` do seu papel e copie os artefatos `.github/` do mesmo diretório.
+> Personas e kits Copilot ficam juntos em [`05-personas/`](05-personas/) como referência de papel. Os artefatos ativos já ficam consolidados em `.github/`: leia o `PERSONA.md` do seu papel e valide os agents/prompts/skills na raiz.
 
 ![Distribuição de personas por par: visão, arquitetura, implementação, qualidade e operações](assets/personas-team.svg)
 
@@ -132,7 +132,7 @@ Entre **10:00 e 10:45**, **todo par** faz as mesmas 4 coisas. Depois começa a e
 | ----- | ---------------------------------------------------------------------------------------------------------- | ------ |
 | 1     | Leia [`00-TEAM-FLOW.md`](00-TEAM-FLOW.md) (este arquivo)                                                         | 10 min |
 | 2     | Leia o `PERSONA.md` dos seus dois kits em [`05-personas/`](05-personas/)                                 | 15 min |
-| 3     | Copie seu kit Copilot: `cp -r 05-personas/XX-persona-A/.github/* .github/` (repita para persona B)        |  5 min |
+| 3     | Valide a `.github/` consolidada: agents, prompts, instructions e skills já vêm prontos para todas as personas        |  5 min |
 | 4     | Abra o Copilot Chat, rode o prompt de teste de fumaça de um dos seus cards e valide `docker compose up`    | 15 min |
 
 ### Primeira ação de cada par na arqueologia, às 11:00

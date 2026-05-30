@@ -1,11 +1,11 @@
 ---
+name: "write-github-issue"
 description: "Escreve uma GitHub issue de alta qualidade pronta para ser assumida pelo Copilot Agent na nuvem."
 argument-hint: "feature=\"Add pagination to the payment list endpoint\" context=payment reqs=REQ-015"
-agent: agent
-model: ['Claude Haiku 4.5 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['search/codebase', 'web/githubRepo', 'edit/editFiles']
+agent: "agent"
+model: ["Claude Haiku 4.5 (copilot)", "Claude Sonnet 4.5 (copilot)"]
+tools: ["search/codebase", "web/githubRepo", "edit/editFiles"]
 ---
-
 # /write-github-issue
 
 ## Objetivo

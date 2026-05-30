@@ -13,7 +13,7 @@
 >
 > 1. Repositório GitHub do time criado com proteção de branch
 > 2. Spec-Kit oficial + GitHub Copilot funcionando no VS Code
-> 3. Cada pessoa com seu persona-kit copiado e Ask/Plan/Agent validados
+> 3. Cada pessoa com suas 2 personas lidas e Ask/Plan/Agent validados
 > 4. Estratégia de branches definida (`spec/*`, `impl/*`)
 > 5. Smoke test passando antes das 10:00 do dia 2
 
@@ -34,7 +34,7 @@
 - [🎟️ Passo 5 — Adicione os outros 4 membros do time (somente líder)](#%EF%B8%8F-passo-5--adicione-os-outros-4-membros-do-time-somente-líder)
 - [💻 Passo 6 — Cada membro clona o repositório do time](#-passo-6--cada-membro-clona-o-repositório-do-time)
 - [🤖 Passo 7 — Ative o GitHub Copilot no VS Code (todos)](#-passo-7--ative-o-github-copilot-no-vs-code-todos)
-- [🎭 Passo 8 — Instale o kit Copilot da sua persona (todos)](#-passo-8--instale-o-kit-copilot-da-sua-persona-todos)
+- [🎭 Passo 8 — Valide os agentes e prompts das suas personas (todos)](#-passo-8--valide-os-agentes-e-prompts-das-suas-personas-todos)
 - [📐 Passo 9 — Instale o Spec-Kit (todos)](#-passo-9--instale-o-spec-kit-todos)
 - [🎯 Passo 10 — Use o fluxo Spec-Kit (todos)](#-passo-10--use-o-fluxo-spec-kit-todos)
 - [🌿 Passo 11 — Entenda a estratégia de branches](#-passo-11--entenda-a-estratégia-de-branches)
@@ -360,9 +360,9 @@ Ele deve responder com **Java 21 + Spring Boot 3.3 + Next.js 15 + PostgreSQL 16*
 
 ---
 
-## 🎭 Passo 8 — Instale o kit Copilot da sua persona (todos)
+## 🎭 Passo 8 — Valide os agentes e prompts das suas personas (todos)
 
-Cada uma das 10 personas do workshop tem um **kit Copilot correspondente**. Como o time tem 5 pessoas e cada pessoa usa duas personas, você instala os dois kits do seu par.
+Cada uma das 10 personas do workshop tem um **kit Copilot correspondente**. A `.github/` do repositório já vem consolidada com agents, prompts, instructions e skills de todas as personas e dos 4 estágios. Como o time tem 5 pessoas e cada pessoa usa duas personas, você lê as duas cartas e valida que os artefatos já aparecem no Copilot.
 
 ### 8.1 Encontre seu papel
 
@@ -373,27 +373,24 @@ Abra `05-personas/` no VS Code. Você verá 10 pastas, numeradas de 01 a 10. Den
 - Prompts específicos que você pode copiar/colar
 - De quem você depende e quem depende de você
 
-### 8.2 Instale seu kit
+### 8.2 Valide seu kit
 
-Cada persona fica inteiramente consolidada em `05-personas/<role>/`. A mesma pasta contém a carta da persona e o kit Copilot:
+Cada persona fica documentada em `05-personas/<role>/`. A mesma pasta continua sendo a fonte de referência da persona:
 
 - `PERSONA.md` — responsabilidades, passagens, prompts de exemplo e rubrica do papel
-- `.github/agents/<role>.agent.md` — agente Copilot pré-configurado
-- `.github/prompts/<command>.prompt.md` — slash commands para tarefas recorrentes
-- `.github/skills/<skill>/SKILL.md` — modelos mentais reutilizáveis
+- `.github/agents/<role>.agent.md` — agente Copilot pré-configurado (ativo também em `.github/agents/`)
+- `.github/prompts/<command>.prompt.md` — prompts da persona (ativos em `.github/prompts/persona-<role>-*.prompt.md`)
+- `.github/skills/<skill>/SKILL.md` — modelos mentais reutilizáveis (ativos também em `.github/skills/`)
 - `mcp.json` — configuração de servidor MCP (se houver)
 
-Para instalar seu kit, copie o conteúdo de `.github/` dele para `.github/` no repositório do time:
+Não copie `.github/*` manualmente: isso já foi feito no kit consolidado do repositório. Valide assim:
 
 ```bash
-# Substitua XX-your-role pelo ID real da sua persona
-# por exemplo, 06-developer, 09-devops-engineer, 10-tech-writer
-cp -r 05-personas/XX-your-role/.github/* .github/
+# Deve listar agents, prompts, instructions e skills consolidados
+ls .github/agents .github/prompts .github/instructions .github/skills
 
-# If your kit has mcp.json, copy it into .vscode/
-[ -f 05-personas/XX-your-role/mcp.json ] && \
-  mkdir -p .vscode && \
-  cp 05-personas/XX-your-role/mcp.json .vscode/mcp.json
+# Se sua persona tiver mcp.json e o facilitador pedir MCP local, copie apenas esse arquivo
+# para .vscode/. Caso contrario, pule.
 ```
 
 ### 8.3 Mapeamento persona-para-kit
@@ -624,7 +621,7 @@ Cada persona tem um **ciclo diário padrão**. Rode-o quantas vezes forem necess
 ```
 1. Escolha uma issue de tarefa (T-NNN) no board do time
 2. git checkout -b impl/NNN-task-name (a partir de develop)
-3. No Copilot, rode /implement (seu prompt está em 06-developer/.github/prompts/)
+3. No Copilot, rode `/implement` (prompt ativo: `.github/prompts/persona-developer-implement.prompt.md`)
 4. Testes primeiro (vermelho), código (verde), refatoração
 5. ./11-scripts/check.sh (espelha o CI)
 6. git commit, git push, abra PR
@@ -637,7 +634,7 @@ Cada persona tem um **ciclo diário padrão**. Rode-o quantas vezes forem necess
 1. Escolha uma tarefa de schema/migração
 2. git checkout -b impl/NNN-migration-name
 3. Adicione a migração Flyway em backend/src/main/resources/db/migration/
-4. Rode o prompt /migration (em 07-dba/.github/prompts/)
+4. Rode o prompt `/migration` (prompt ativo: `.github/prompts/persona-dba-migration.prompt.md`)
 5. Teste localmente com docker compose up
 6. Abra PR e peça revisão de Developer
 ```
@@ -659,7 +656,7 @@ Cada persona tem um **ciclo diário padrão**. Rode-o quantas vezes forem necess
 2. git checkout -b infra/NNN-azure-foo
 3. Edite módulos Terraform em infra/
 4. Rode `terraform fmt` + `terraform validate` localmente
-5. Rode o prompt /iac-module (em 09-devops-engineer/.github/prompts/)
+5. Rode o prompt `/iac-module` (prompt ativo: `.github/prompts/persona-devops-engineer-iac-module.prompt.md`)
 6. Abra PR; workflows/ci.yml executa validação Terraform
 ```
 
@@ -667,7 +664,7 @@ Cada persona tem um **ciclo diário padrão**. Rode-o quantas vezes forem necess
 
 ```
 1. Depois de cada merge em develop, procure drift em ADR/glossário
-2. Rode o prompt /doc-drift (em 10-tech-writer/.github/prompts/)
+2. Rode o prompt `/doc-drift` (prompt ativo: `.github/prompts/persona-tech-writer-doc-drift.prompt.md`)
 3. Atualize docs/glossary.md, docs/adr/, READMEs
 4. Abra um PR pequeno por atualização de documentação
 ```
@@ -689,7 +686,7 @@ A pessoa líder do time lê cada item em voz alta. Cada pessoa confirma no próp
 - [ ] Todos os 5 membros do time aparecem em repo Settings → Collaborators
 - [ ] Cada persona leu sua carta em `05-personas/XX-role/PERSONA.md`
 - [ ] A pessoa líder do time atualizou `.github/copilot-instructions.md` com os nomes de todo mundo
-- [ ] Cada persona instalou seu kit: `cp -r 05-personas/XX/.github/* .github/`
+- [ ] `.github/agents`, `.github/prompts`, `.github/instructions` e `.github/skills` estão presentes e consolidados
 - [ ] [`00-TEAM-FLOW.md`](00-TEAM-FLOW.md) foi lido em voz alta uma vez (a linha do tempo do dia)
 
 Quando os 13 itens estiverem verdes, seu time está pronto para o **Estágio 1: Arqueologia**.
@@ -749,10 +746,10 @@ Quando os 13 itens estiverem verdes, seu time está pronto para o **Estágio 1: 
 - Recarregue a janela do VS Code: Command Palette → **Developer: Reload Window**.
 - Se você estiver dentro de um dev container, às vezes também precisa: Command Palette → **Dev Containers: Rebuild Container**.
 
-### A instalação do persona kit quebrou minha pasta `.github/`
+### A pasta `.github/` parece quebrada
 
-- O `.github/` do kit foi feito para **adicionar** ao que já existe, não sobrescrever.
-- Se algo parecer quebrado: `git checkout main -- .github/` para restaurar, depois `cp -r 05-personas/XX/.github/* .github/` de novo.
+- Não copie persona-kits manualmente por cima da `.github/` consolidada.
+- Se algo parecer quebrado: restaure a pasta com `git checkout develop -- .github/` ou peça ajuda ao facilitador antes de tentar sobrescrever arquivos.
 
 ---
 

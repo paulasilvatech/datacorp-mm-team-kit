@@ -1,11 +1,11 @@
 ---
+name: "catalog-mysteries"
 description: "Cataloga perguntas sem resposta encontradas durante a arqueologia — coisas que precisam de uma pessoa para resolver."
 argument-hint: "scope=01-arqueologia/"
-agent: agent
-model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['search/codebase', 'edit/editFiles']
+agent: "agent"
+model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
+tools: ["search/codebase", "edit/editFiles"]
 ---
-
 # /catalog-mysteries
 
 ## Objetivo

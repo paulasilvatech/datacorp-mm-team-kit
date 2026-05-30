@@ -120,8 +120,8 @@ Você é Developer.
 Passo 1: Leia o seu PERSONA.md         → 05-personas/06-developer/PERSONA.md
         (o que você possui, suas passagens, sua rubrica)
 
-Passo 2: Copie o seu PERSONA-KIT       → 05-personas/06-developer/.github/ → .github/
-        (seu agente Copilot pessoal, prompts, skills)
+Passo 2: Valide a .github consolidada  → .github/agents, .github/prompts, .github/skills
+        (os agentes, prompts e skills de todas as personas ja estao ativos)
 
 Passo 3: Verifique AGENTES QUE USO     → tabela "Agentes que uso" no seu cartão de persona
     (seu papel em cada etapa: Protagonista/Secundária/Observadora)
@@ -142,7 +142,7 @@ Passo 7: Ao final da etapa             → Verifique a DEFINIÇÃO DE PRONTO
 Passo 8: PASSAGEM                      → Apresente seus entregáveis ao próximo protagonista
 ```
 
-O seu **agente do persona-kit** (por exemplo, `@developer`) conhece profundamente o seu papel — idioms Java, padrões Spring, convenções de teste. O **agente de etapa** (por exemplo, `@builder`) conhece o _processo_ — quais prompts executar, quais entregáveis produzir, como é a Definição de Pronto. Use ambos. Eles se complementam.
+O seu **agente do persona-kit** (por exemplo, `@implementer`) conhece profundamente o seu papel — idioms Java, padrões Spring, convenções de teste. O **agente de etapa** (por exemplo, `@builder`) conhece o _processo_ — quais prompts executar, quais entregáveis produzir, como é a Definição de Pronto. Use ambos. Eles se complementam.
 
 ## Cartão de Referência Rápida
 
@@ -230,10 +230,10 @@ O agente `@builder` escreve código. O Spec-Kit mantém spec, plan e tasks como 
 | O que você precisa                        | Onde fica                                                                           |
 | ----------------------------------------- | ----------------------------------------------------------------------------------- |
 | Seu papel e passagens                      | [`05-personas/<your-role>/PERSONA.md`](../05-personas/)                           |
-| Seu agente Copilot + prompts + skills     | [`05-personas/<your-role>/`](../05-personas/)                                     |
+| Sua carta de persona e fonte do kit        | [`05-personas/<your-role>/`](../05-personas/)                                     |
 | O agente de etapa para a etapa atual      | [`06-agentes-de-estagio/<NN>-<stage>/README.md`](../06-agentes-de-estagio/)                               |
 | O arquivo de agente que o Copilot carrega | [`.github/agents/<agent>.agent.md`](../.github/agents/)                             |
-| Os prompts que você invoca                | [`.github/prompts/<agent>/`](../.github/prompts/)                                   |
+| Os prompts que você invoca                | [`.github/prompts/stage-*.prompt.md` e `persona-*.prompt.md`](../.github/prompts/) |
 | Os templates de entregáveis               | `01-arqueologia/templates/`, `02-spec-moderna/templates/`, `04-evolucao/templates/` |
 | Cartão de referência do Spec-Kit          | [`09-cheat-sheets/spec-kit-workflow.md`](../09-cheat-sheets/spec-kit-workflow.md)         |
 | Início rápido do Spec-Kit                 | [`00-SETUP.md` Passo 9](../00-SETUP.md)                                                   |

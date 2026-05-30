@@ -1,9 +1,9 @@
 ---
-agent: agent
-model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
+name: "pipeline"
+agent: "agent"
+model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
 description: "Crie um pipeline CI/CD no GitHub Actions para o SIFAP 2.0 com build, testes, gates de segurança e promoção entre ambientes."
 ---
-
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /pipeline

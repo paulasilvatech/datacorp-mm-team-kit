@@ -1,9 +1,9 @@
 ---
-agent: agent
-model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
+name: "create-tests"
+agent: "agent"
+model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
 description: "Gere uma classe de teste completa para um único REQ-ID, com happy path, limites e casos negativos."
 ---
-
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /create-tests

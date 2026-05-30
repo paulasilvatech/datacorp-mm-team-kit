@@ -97,7 +97,7 @@ O kit usa **duas camadas de agentes** (persona-kit por pessoa + agente de estág
 - Cronograma + pares: [`00-TEAM-FLOW.md`](../00-TEAM-FLOW.md)
 - Git workflow: [`00-GIT-WORKFLOW.md`](../00-GIT-WORKFLOW.md)
 - 3 modos do Copilot (Ask · Plan · Agent): [`09-cheat-sheets/copilot-3-modes.md`](../09-cheat-sheets/copilot-3-modes.md)
-- Persona kits (copie 2 para `.github/`): [`05-personas/`](../05-personas/)
+- Persona kits (leia 2 por pessoa; artefatos ativos já consolidados em `.github/`): [`05-personas/`](../05-personas/)
 - Agentes de estágio: [`06-agentes-de-estagio/`](../06-agentes-de-estagio/)
 - Legado SIFAP: [`01-arqueologia/legado-sifap/`](../01-arqueologia/legado-sifap/)
 - Protótipo + infra Terraform: symlinks `prototype/` e `infra/` criados por [`11-scripts/setup.sh`](../11-scripts/setup.sh)

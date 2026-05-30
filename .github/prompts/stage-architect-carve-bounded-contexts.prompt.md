@@ -1,11 +1,11 @@
 ---
+name: "carve-bounded-contexts"
 description: "Avalia as hipóteses de recorte do Estágio 1 e decide bounded contexts para o Modular Monolith."
 argument-hint: "report=01-arqueologia/discovery-report.md"
-agent: agent
-model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['search/codebase', 'edit/editFiles']
+agent: "agent"
+model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
+tools: ["search/codebase", "edit/editFiles"]
 ---
-
 # /carve-bounded-contexts
 
 ## Objetivo

@@ -7,16 +7,16 @@
 > 🗺 **Você está aqui:** [Kit PT-BR](../README.md) → **Personas**
 
 
-> **Para quem é isto?** Quem vai instalar os persona-kits Copilot no laptop.
+> **Para quem é isto?** Quem vai escolher e estudar suas duas personas do workshop.
 >
 > **O que você terá ao final desta leitura:**
 >
 > 1. Saber identificar suas 2 personas
-> 2. Copiar `.github/*` do kit certo para o repositório do time
-> 3. Validar que slash commands aparecem no Copilot Chat
+> 2. Entender quais artefatos Copilot pertencem a cada papel
+> 3. Validar que os agentes e slash commands consolidados aparecem no Copilot Chat
 > 4. Saber para onde ir depois (Estágio 1 às 11:00)
 
-> Esta pasta contém **somente os 10 kits usados neste workshop**. O time tem 5 pessoas; cada pessoa usa 2 kits do mesmo par. Cada kit é a fonte única da persona: `PERSONA.md` descreve o papel, e os artefatos `.github/`, `mcp.json`, prompts e skills configuram o Copilot para esse mesmo papel.
+> Esta pasta contém **somente os 10 kits usados neste workshop**. O time tem 5 pessoas; cada pessoa usa 2 kits do mesmo par. Cada kit é a fonte única da persona: `PERSONA.md` descreve o papel, e os artefatos `.github/`, `mcp.json`, prompts e skills servem como fonte de manutenção. A `.github/` da raiz já vem consolidada com todos os agentes, prompts, instructions e skills ativos.
 
 ![Visão geral das personas por par no hackathon SIFAP](../assets/personas-team.svg)
 
@@ -61,9 +61,9 @@ Cada pasta de persona segue uma estrutura consistente:
 | 09 | [DevOps Engineer](./09-devops-engineer/PERSONA.md) | CI/CD, Terraform, secrets e deploy |
 | 10 | [Tech Writer](./10-tech-writer/PERSONA.md) | Glossário, clareza de ADR, README e runbook |
 
-## Como ativar uma persona
+## Como usar uma persona
 
-![Cinco passos para instalar seu persona kit: leia PERSONA.md, revise README, copie .github, copie mcp.json, recarregue o Copilot](../assets/persona-onboarding.svg)
+![Cinco passos para usar sua persona: leia PERSONA.md, revise README, valide .github, copie mcp.json se necessário, recarregue o Copilot](../assets/persona-onboarding.svg)
 
 ### Passo a passo
 
@@ -71,14 +71,13 @@ Cada pasta de persona segue uma estrutura consistente:
 
 1. **Identifique suas duas personas.** Veja seu par em [00-TEAM-FLOW.md](../00-TEAM-FLOW.md).
 2. **Leia as duas cartas.** Abra `05-personas/<role>/PERSONA.md` para cada papel do seu par.
-3. **Copie os dois kits correspondentes.** Exemplo para o Par 3:
+3. **Valide a `.github/` consolidada.** Os agents, prompts, instructions e skills já estão ativos na raiz:
 
    ```bash
-   cp -r 05-personas/05-technical-lead/.github/* .github/
-   cp -r 05-personas/06-developer/.github/* .github/
+   ls .github/agents .github/prompts .github/instructions .github/skills
    ```
 
-4. **Copie o MCP quando existir.**
+4. **Copie o MCP somente se necessário.**
 
    ```bash
    [ -f 05-personas/06-developer/mcp.json ] && \
@@ -100,7 +99,7 @@ Cada pasta de persona segue uma estrutura consistente:
 ## Definição de Pronto da instalação
 
 - [ ] A pessoa leu os dois `PERSONA.md` do seu par.
-- [ ] Os dois `.github/` dos kits foram copiados para o repositório do time.
+- [ ] A `.github/` consolidada tem agents, prompts, instructions e skills.
 - [ ] `mcp.json` foi copiado para `.vscode/` quando existir.
 - [ ] O VS Code foi recarregado.
 - [ ] Os agentes aparecem ao digitar `@` no Copilot Chat.

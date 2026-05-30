@@ -1,9 +1,9 @@
 ---
-agent: agent
-model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
+name: "implement"
+agent: "agent"
+model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
 description: "Implemente uma única tarefa de TASKS.md de ponta a ponta: código de produção, testes e comentários de rastreabilidade — sem aumentar o escopo."
 ---
-
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /implement

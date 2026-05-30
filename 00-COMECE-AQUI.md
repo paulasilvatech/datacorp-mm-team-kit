@@ -174,7 +174,7 @@ Se você nunca abriu VS Code, Docker ou Copilot, este roteiro literal te coloca 
 | **25** | Selecionar o **agente** do dia (dropdown no topo do chat) | Você vê `@archaeologist`, `@architect`, `@builder`, `@evolution` na lista |
 | **28** | Abrir **2 abas** no navegador: <br>① [`00-TEAM-FLOW.md`](00-TEAM-FLOW.md) <br>② [`07-conceitos/03-glossario-visual.md`](07-conceitos/03-glossario-visual.md) | Duas abas fixas |
 | **32** | Abrir suas **2 pastas de persona** em `05-personas/0X-…/` e ler `PERSONA.md` de cada | Você sabe quais são suas 2 missões do dia |
-| **42** | Copiar seus kits para `.github/`: <br>`cp -r 05-personas/XX-*/.github/* .github/` <br>(uma vez por persona) | Pasta `.github/` agora tem `agents/`, `prompts/`, `skills/` |
+| **42** | Validar a `.github/` consolidada: `ls .github/agents .github/prompts .github/skills` | Pastas existem e já têm agents, prompts e skills de estágio + personas |
 | **45** | Recarregar VS Code: `Cmd+Shift+P` → *Reload Window* | Slash commands como `/ears-convert` aparecem ao digitar `/` no Chat |
 | **50** | Abrir [`01-arqueologia/GUIDE.md`](01-arqueologia/GUIDE.md) e ler seção "Quem lê o quê" | Você sabe quais 3 programas `.NSN` seu par vai ler |
 | **55** | Cumprimentar seu par. Combinar quem cobre qual persona. | Vocês dois sabem quem faz o quê |

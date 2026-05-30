@@ -1,11 +1,11 @@
 ---
+name: "write-ears-spec"
 description: "Traduz regras de negócio confirmadas em requisitos em notação EARS para o sistema moderno."
 argument-hint: "rules=01-arqueologia/business-rules-catalog.md contexts=02-spec-moderna/bounded-contexts.md"
-agent: agent
-model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['search/codebase', 'edit/editFiles']
+agent: "agent"
+model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
+tools: ["search/codebase", "edit/editFiles"]
 ---
-
 # /write-ears-spec
 
 ## Objetivo

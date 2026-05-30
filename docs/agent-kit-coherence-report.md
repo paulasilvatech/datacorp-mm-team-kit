@@ -27,7 +27,7 @@ O conjunto de ferramentas SDLC de 4 agentes é coerente em todas as camadas: age
 | ----------------------------------------------- | ------------------------------------------- | ----------------------------- |
 | `06-agentes-de-estagio/README.md` → agents                 | `.github/agents/*.agent.md`                 | ✅ Todos os 4 resolvem        |
 | `06-agentes-de-estagio/*/README.md` → agents               | `.github/agents/*.agent.md`                 | ✅ Todos os 4 resolvem        |
-| Arquivos de agent → 18 prompts                  | `.github/prompts/*/*.prompt.md`             | ✅ Todos os 18 resolvem       |
+| Arquivos de agent → 18 prompts de estágio       | `.github/prompts/stage-*.prompt.md`         | ✅ Todos os 18 resolvem       |
 | `generate-adr.prompt.md` → template de ADR      | `02-spec-moderna/templates/ADR.template.md` | ✅ Resolve                    |
 | 10 cartoes de persona → agent-kits              | `06-agentes-de-estagio/0N-*/README.md`                 | ✅ Todos os 40 links resolvem |
 | `docs/persona-agent-matrix.md` → agent-kits     | `06-agentes-de-estagio/README.md`                      | ✅ Resolve                    |

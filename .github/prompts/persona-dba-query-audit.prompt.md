@@ -1,9 +1,9 @@
 ---
-agent: agent
-model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
+name: "query-audit"
+agent: "agent"
+model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
 description: "Audite uma consulta SQL quanto a performance, segurança e padrões de código do SIFAP. Produza uma consulta corrigida mais uma justificativa baseada em EXPLAIN."
 ---
-
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /query-audit

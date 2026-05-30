@@ -1,11 +1,11 @@
 ---
+name: "translate-natural-to-java"
 description: "Traduz um programa Natural para Java 21 + Spring Boot 3.3 idiomático, preservando semântica de negócio."
 argument-hint: "file=01-arqueologia/legado-sifap/natural-programs/PGMAIN01.NSN context=payment package=com.datacorp.app.payment"
-agent: agent
-model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
-tools: ['search/codebase', 'edit/editFiles']
+agent: "agent"
+model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
+tools: ["search/codebase", "edit/editFiles"]
 ---
-
 # /translate-natural-to-java
 
 ## Objetivo

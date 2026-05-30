@@ -37,12 +37,18 @@ Implementação, Qualidade, Evolução
 | `.github/prompts/test-strategy.prompt.md` | Prompt | `/test-strategy` |
 | `.github/instructions/tests.instructions.md` | Instructions | Convenções de teste |
 
-## Instalação
-```bash
-cp -r .github/* /path/to/your-repo/.github/
-[ -f hooks.json ] && cp hooks.json /path/to/your-repo/
-[ -f mcp.json ] && cp mcp.json /path/to/your-repo/.vscode/
-```
+## Uso no workshop
+
+Os artefatos deste kit já estão consolidados na `.github/` da raiz do repositório:
+
+- Agents ativos: `.github/agents/`
+- Prompts ativos: `.github/prompts/persona-*.prompt.md`
+- Skills ativas: `.github/skills/`
+- Instructions ativas: `.github/instructions/` (quando existirem)
+
+Use esta pasta como referência da persona e fonte de manutenção. Não copie `.github/*` manualmente por cima da raiz sem orientação do facilitador.
+
+Se este kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
 
 ## Boas práticas
 - Use pirâmide de testes: maioria unitária, parte integração, poucos end-to-end.

@@ -53,13 +53,9 @@
 
 ### "Slash command (`/ears-convert`, `/tdd`, etc.) não aparece"
 
-- **Causa:** você não copiou seu persona-kit para `.github/`.
-- **Solução:**
-  ```bash
-  cp -r 05-personas/XX-sua-persona/.github/* .github/
-  cp -r 05-personas/YY-sua-outra-persona/.github/* .github/
-  ```
-  Recarregue a janela: `Cmd+Shift+P` → *Developer: Reload Window*.
+- **Causa provável:** o VS Code ainda não recarregou a `.github/` consolidada, ou a janela foi aberta fora da raiz do repositório.
+- **Solução:** confirme que existem arquivos em `.github/prompts/` e recarregue a janela: `Cmd+Shift+P` → *Developer: Reload Window*.
+- **Não faça:** copiar `05-personas/*/.github/*` por cima da `.github/` consolidada sem orientação do facilitador.
 
 ### "Não consigo selecionar `@archaeologist` no Chat"
 

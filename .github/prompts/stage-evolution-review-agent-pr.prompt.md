@@ -1,11 +1,11 @@
 ---
+name: "review-agent-pr"
 description: "Revisa um PR gerado pelo Copilot Agent na nuvem, com atenção explícita a failure modes típicos de IA."
 argument-hint: "pr=42 issue=add-pagination-payments"
-agent: agent
-model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
-tools: ['search/codebase', 'web/githubRepo', 'web/fetch', 'edit/editFiles']
+agent: "agent"
+model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
+tools: ["search/codebase", "web/githubRepo", "web/fetch", "edit/editFiles"]
 ---
-
 # /review-agent-pr
 
 ## Objetivo

@@ -1,11 +1,11 @@
 ---
+name: "archaeology-kickoff"
 description: "Inicia o Estágio 1 — orienta a equipe sobre a pasta de legado e produz um inventário inicial."
 argument-hint: "path=01-arqueologia/legado-sifap/"
-agent: agent
-model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['search/codebase', 'edit/editFiles']
+agent: "agent"
+model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
+tools: ["search/codebase", "edit/editFiles"]
 ---
-
 # /archaeology-kickoff
 
 ## Objetivo

@@ -1,11 +1,11 @@
 ---
+name: "design-modular-monolith"
 description: "Produz um design de alto nível para o Modular Monolith com base nos bounded contexts e na spec EARS."
 argument-hint: "package=com.datacorp.app communication=mixed"
-agent: agent
-model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['search/codebase', 'edit/editFiles']
+agent: "agent"
+model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
+tools: ["search/codebase", "edit/editFiles"]
 ---
-
 # /design-modular-monolith
 
 ## Objetivo

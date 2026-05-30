@@ -1,11 +1,11 @@
 ---
+name: "generate-adr"
 description: "Rascunha um Architecture Decision Record (ADR) para uma escolha específica de design que a equipe está fazendo."
 argument-hint: "title=\"Map Adabas MU fields to JSONB vs ElementCollection\""
-agent: agent
-model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools: ['search/codebase', 'edit/editFiles']
+agent: "agent"
+model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
+tools: ["search/codebase", "edit/editFiles"]
 ---
-
 # /generate-adr
 
 ## Objetivo

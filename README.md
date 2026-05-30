@@ -124,7 +124,7 @@ O kit traz **duas camadas** que cobrem eixos diferentes (papel × estágio). Use
 
 | Camada | O que é | Quando carrega | Como |
 |---|---|---|---|
-| [`05-personas/`](05-personas/) | Seu **personagem** (Mario, Peach…) com inventário (prompts, skills, MCP) | Uma vez no setup | `cp -r 05-personas/XX-*/.github/* .github/` |
+| [`05-personas/`](05-personas/) | Seu **personagem** (Mario, Peach…) com inventário e referência do papel | Uma vez no setup | Leia seus 2 `PERSONA.md`; os agents/prompts/skills já estão consolidados em `.github/` |
 | [`06-agentes-de-estagio/`](06-agentes-de-estagio/) | O **mundo atual** (@archaeologist → @evolution) | A cada estágio | Seletor de agentes no Copilot Chat |
 
 **Não são duplicados.** Persona = sua classe individual. Agente = mundo em que o time todo está agora.
@@ -179,9 +179,12 @@ cat 07-conceitos/00-README.md
 cat 05-personas/XX-persona-A/PERSONA.md
 cat 05-personas/YY-persona-B/PERSONA.md
 
-# 4. Copie SEUS kits para o .github/ do repo
-cp -r 05-personas/XX-persona-A/.github/* .github/
-cp -r 05-personas/YY-persona-B/.github/* .github/
+# 4. Valide que os kits Copilot ja estao consolidados
+ls .github/agents .github/prompts .github/skills
+
+# 5. Leia suas 2 personas
+cat 05-personas/XX-persona-A/PERSONA.md
+cat 05-personas/YY-persona-B/PERSONA.md
 ```
 
 ### 3. Dia do workshop — siga os 4 estágios
