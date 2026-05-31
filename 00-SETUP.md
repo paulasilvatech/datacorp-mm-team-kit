@@ -17,19 +17,19 @@
 > 4. Estratégia de branches definida (`spec/*`, `impl/*`)
 > 5. Smoke test passando antes das 10:00 do dia 2
 
-> **Vocês são 5 pessoas. Cada pessoa usa 2 personas. Vocês têm um dia de trabalho.** Este guia leva vocês de "ainda não temos nada" até "primeiro commit enviado, Copilot funcionando, todas as personas prontas" em **45 minutos**.
+> **Vocês são 5 pessoas. Cada pessoa usa 2 personas. Vocês têm um dia de trabalho.** Este guia leva vocês de "ainda não temos nada" até "repositório criado pelo template, Copilot funcionando, todas as personas prontas" em **45 minutos**.
 >
 > **Todas as pessoas do time devem acompanhar no próprio laptop.** Uma pessoa compartilha a tela com os passos, e as outras 4 repetem. Ao final, cada laptop estará totalmente configurado.
 >
 > [!WARNING]
-> **Usuários de Windows:** todos os comandos de terminal abaixo assumem **Git Bash** ou **WSL**. **Não** use PowerShell ou CMD — `cp -R`, `chmod`, `rm -rf` e a sintaxe de heredoc não vão funcionar.
+> **Usuários de Windows:** os blocos de terminal com heredoc ou `for` assumem **Git Bash** ou **WSL**. **Não** use PowerShell ou CMD nesses blocos.
 
 ## Sumário
 
 - [📋 Antes de Começar — Modelo Mental](#-antes-de-começar--modelo-mental)
 - [✅ Passo 1 — Verifique se seu laptop tem os pré-requisitos](#-passo-1--verifique-se-seu-laptop-tem-os-pré-requisitos)
-- [👥 Passo 2 — Crie o repositório GitHub do time (somente líder)](#-passo-2--crie-o-repositório-github-do-time-somente-líder)
-- [📥 Passo 3 — Faça o bootstrap do repositório do time a partir deste kit (somente líder)](#-passo-3--faça-o-bootstrap-do-repositório-do-time-a-partir-deste-kit-somente-líder)
+- [👥 Passo 2 — Crie o repositório do time pelo template (somente líder)](#-passo-2--crie-o-repositório-do-time-pelo-template-somente-líder)
+- [📥 Passo 3 — Clone o repositório do time e crie `develop` (somente líder)](#-passo-3--clone-o-repositório-do-time-e-crie-develop-somente-líder)
 - [🛡️ Passo 4 — Proteja a branch `main` (somente líder)](#%EF%B8%8F-passo-4--proteja-a-branch-main-somente-líder)
 - [🎟️ Passo 5 — Adicione os outros 4 membros do time (somente líder)](#%EF%B8%8F-passo-5--adicione-os-outros-4-membros-do-time-somente-líder)
 - [💻 Passo 6 — Cada membro clona o repositório do time](#-passo-6--cada-membro-clona-o-repositório-do-time)
@@ -46,23 +46,30 @@
 
 ## 📋 Antes de Começar — Modelo Mental
 
-Você vai terminar com **3 repositórios no seu laptop**:
+Você vai lidar com **2 repositórios GitHub**:
 
 ```
-~/Code/
-├── kit/                            (este team-kit, referência SOMENTE LEITURA)
-├── reference/sifap-01-arqueologia/legado-sifap/         (código SIFAP legado, referência SOMENTE LEITURA)
-└── hackathon-team-XX/              (repositório de trabalho do SEU time — onde você commita)
+GitHub
+├── <TEMPLATE_ORG>/workshop-preto-00/       (repositório principal do workshop, usado como template)
+└── <WORKSHOP_ORG>/hackathon-team-XX/       (repositório de trabalho do SEU time — onde você commita)
+```
+
+No seu laptop, você clona somente o repositório do seu time:
+
+```bash
+~/Code/hackathon-team-XX/
 ```
 
 | Repositório         | O que você faz com ele                                       | Onde ele fica                                                        |
 | ------------------- | ------------------------------------------------------------ | -------------------------------------------------------------------- |
-| `team-kit`          | Você lê a documentação e copia partes dele uma vez no início | github.com/paulasilvatech/hackathon-datacorp-team-kit (público)      |
-| `sifap-legacy`      | Você lê durante o Estágio 1 — nunca edita                    | github.com/paulasilvatech/sifap-legacy (público)                     |
-| `hackathon-team-XX` | **Todo o seu trabalho vai aqui**                             | github.com/<YOUR_GITHUB_USER>/hackathon-team-XX (privado, você cria) |
+| `workshop-preto-00` | Você usa como template uma vez no início                     | github.com/<TEMPLATE_ORG>/workshop-preto-00                          |
+| `hackathon-team-XX` | **Todo o seu trabalho vai aqui**                             | github.com/<WORKSHOP_ORG>/hackathon-team-XX (privado, você cria)     |
+
+> [!NOTE]
+> A organização exata será informada pela facilitação no dia do workshop. Ela fará parte do Enterprise [software-gbb-workshops](https://github.com/enterprises/software-gbb-workshops).
 
 > [!IMPORTANT]
-> **Regra-chave:** nunca faça push para o kit ou para o sifap-legacy. Os commits do seu time vão somente para `hackathon-team-XX`.
+> **Regra-chave:** nunca faça push para o repositório principal do workshop. Os commits do seu time vão somente para `hackathon-team-XX`. O legado SIFAP já vem dentro do kit em `01-arqueologia/legado-sifap/` e é material de leitura, não de edição.
 
 ---
 
@@ -90,102 +97,50 @@ Você vai terminar com **3 repositórios no seu laptop**:
 
 ---
 
-## 👥 Passo 2 — Crie o repositório GitHub do time (somente líder)
+## 👥 Passo 2 — Crie o repositório do time pelo template (somente líder)
 
 **Escolham uma pessoa para ser líder do time** (normalmente quem cobre a persona Technical Lead no Par 3). Somente a pessoa líder faz os Passos 2 a 5. As outras 4 pessoas aguardam e seguem a partir do Passo 6.
 
-### Opção A — usando o site (mais fácil para iniciantes)
+O repositório principal do workshop já está com **Use this template** habilitado. Então a pessoa líder não cria um repositório vazio: ela clica no template e cria uma cópia do kit diretamente na organização do workshop. A facilitação informará no dia qual organização usar; ela estará dentro do Enterprise [software-gbb-workshops](https://github.com/enterprises/software-gbb-workshops).
 
-1. Abra <https://github.com/new> no navegador.
-2. Preencha:
+### Pelo template no GitHub
 
-- **Proprietário**: **seu próprio usuário GitHub** (**não** escolha `paulasilvatech` — os times não têm permissão de admin lá). Se o seu time tiver uma organização GitHub própria e você for admin dela, pode usá-la.
+1. Abra o repositório principal do workshop no GitHub. A facilitação informará a URL no formato `https://github.com/<TEMPLATE_ORG>/workshop-preto-00`.
+2. Clique em **Use this template** → **Create a new repository**.
+3. Preencha:
+
+- **Owner**: a **organização do workshop** indicada pela facilitação no dia, dentro do Enterprise `software-gbb-workshops`. Não escolha seu usuário pessoal.
 - **Nome do repositório**: `hackathon-team-XX` (substitua XX pelo número do seu time, por exemplo, `hackathon-team-01`)
 - **Descrição**: `Hackathon DATACORP 2026 — Team XX`
 - **Visibilidade**: **Privado** ✅
 
-3. **NÃO** marque nenhuma caixa de inicialização. Deixe todas desmarcadas:
+4. Clique em **Create repository**.
 
-- ❌ Adicionar um arquivo README
-- ❌ Adicionar .gitignore
-- ❌ Escolher uma licença
-
-4. Clique no botão verde **Criar repositório**.
-
-> **Por que vazio?** No Passo 3, a pessoa líder vai enviar todo o conteúdo do team-kit como primeiro commit. Começar vazio evita conflitos de merge.
-
-Você agora deve ver a página de "configuração rápida" do GitHub com instruções de push. Mantenha essa aba aberta.
-
-### Opção B — usando a GitHub CLI (mais rápido, mas exige mais digitação)
-
-Abra um terminal e rode:
-
-```bash
-# Faça login uma vez por laptop — abre o navegador para autorizar
-gh auth login
-
-# Crie o repositório (troque 01 pelo número do seu time)
-# Use apenas o nome do repositório — sem prefixo de owner. Cria o repositório no SEU usuário GitHub.
-# O repositório precisa estar vazio (sem --add-readme) para o push de bootstrap do Passo 3 funcionar.
-gh repo create hackathon-team-01 \
-  --private \
-  --description "Hackathon DATACORP 2026 — Team 01"
-```
-
-Se o comando imprimir uma URL terminando em `hackathon-team-01`, está pronto.
+Você agora deve ver uma cópia completa do kit em `https://github.com/<WORKSHOP_ORG>/hackathon-team-XX`, com documentação, legado, templates, workflows e arquivos `.github/` já presentes.
 
 ---
 
-## 📥 Passo 3 — Faça o bootstrap do repositório do time a partir deste kit (somente líder)
+## 📥 Passo 3 — Clone o repositório do time e crie `develop` (somente líder)
 
-Agora copiamos tudo deste team-kit para o repositório vazio do time, para que vocês tenham todos os templates, personas, scripts e workflows de CI prontos.
+Agora a pessoa líder clona o repositório que acabou de nascer a partir do template e cria a branch de integração do time.
 
 ```bash
 # 1. Escolha uma pasta para todo o seu código
 mkdir -p ~/Code && cd ~/Code
 
-# 2. Clone este kit do time (referência somente leitura)
-git clone https://github.com/paulasilvatech/hackathon-datacorp-team-kit.git kit
-
-# 3. Crie um repositório local a partir do kit (sem o histórico Git do kit)
-cp -R kit hackathon-team-01
+# 2. Clone o repositório do seu time criado pelo template
+git clone https://github.com/<WORKSHOP_ORG>/hackathon-team-01.git
 cd hackathon-team-01
-rm -rf .git
-git init -b main
-git remote add origin https://github.com/<YOUR_GITHUB_USER>/hackathon-team-01.git
 
-# 4. Torne os scripts executáveis (ajuste único)
-chmod +x scripts/*.sh
-```
+# 3. Confira que o template veio completo
+ls 01-arqueologia/legado-sifap .github/agents .github/prompts .github/instructions .github/skills
 
-### Rode o script de bootstrap
-
-Isso clona os materiais de referência dentro de `reference/`, mantém `01-arqueologia/legado-sifap/` como pasta incluída no kit e inicializa a base de specs usada pelo Spec-Kit.
-
-```bash
-./11-scripts/setup.sh
-```
-
-Se terminar com **"Done."** e listar "Next steps", está tudo certo. Se der erro, veja a seção [Solução de problemas](#-solução-de-problemas).
-
-### Primeiro commit e push
-
-```bash
-git add -A
-git commit -m "chore: bootstrap team kit"
-git push -u origin main
-```
-
-Você deve ver "Branch 'main' set up to track remote branch 'main' from 'origin'." Isso significa que o push funcionou.
-
-> ⚠️ **Importante.** De agora em diante, você nunca deve fazer push diretamente para `main`. O Passo 4 protege essa branch.
-
-### Crie a branch de integração `develop`
-
-```bash
+# 4. Crie a branch de integração do time
 git checkout -b develop
 git push -u origin develop
 ```
+
+> ⚠️ **Importante.** De agora em diante, você nunca deve fazer push diretamente para `main`. O Passo 4 protege essa branch.
 
 `develop` é onde as branches de funcionalidade de todo mundo serão integradas. Promoções para `main` acontecem via PR depois de cada estágio.
 
@@ -195,7 +150,7 @@ git push -u origin develop
 
 Isso impede que qualquer pessoa (exceto o admin do repositório) faça push direto para `main`. Toda mudança deve passar por um Pull Request.
 
-> ⚠️ **Contas GitHub Free**: proteção de branch em repositórios **privados** exige **GitHub Pro**, **GitHub Team** ou **GitHub Enterprise**. Se sua conta está no plano gratuito, deixe o repositório **público** ou pule este passo (cumpram a regra de não fazer push direto por convenção).
+> ⚠️ **Organização do workshop**: como o repositório será criado em uma organização dentro do Enterprise `software-gbb-workshops`, a proteção de branch deve estar disponível. Se a opção não aparecer, chame a facilitação para conferir permissões na organização.
 
 ### Usando o site
 
@@ -211,7 +166,7 @@ Isso impede que qualquer pessoa (exceto o admin do repositório) faça push dire
 ### Usando a CLI
 
 ```bash
-gh api -X PUT "repos/<YOUR_GITHUB_USER>/hackathon-team-01/branches/main/protection" \
+gh api -X PUT "repos/<WORKSHOP_ORG>/hackathon-team-01/branches/main/protection" \
   --input - <<'JSON'
 {
   "required_status_checks": null,
@@ -237,14 +192,16 @@ A pessoa líder convida o restante do time para que todo mundo possa fazer push 
 
 ### Opção A — usando o site
 
-1. Vá para o repositório no GitHub: `https://github.com/<YOUR_GITHUB_USER>/hackathon-team-XX`
+1. Vá para o repositório no GitHub: `https://github.com/<WORKSHOP_ORG>/hackathon-team-XX`
 2. Clique em **Settings** (aba superior — exige permissão de admin, que a pessoa líder tem).
-3. Na barra lateral esquerda, clique em **Collaborators**.
-4. Clique em **Add people**.
+3. Na barra lateral esquerda, clique em **Collaborators and teams** ou **Manage access**.
+4. Clique em **Add people** ou **Add teams**.
 5. Digite o usuário GitHub (por exemplo, `alice-builder`) e escolha na lista.
 6. **Escolha o papel**: escolha **Write** (não Admin, não Read).
 7. Clique em **Adicionar ... a este repositório**.
 8. Repita para as outras 3 pessoas.
+
+> **Dica para organização.** Se a facilitação criou um time GitHub para cada equipe, adicione o time inteiro com permissão **Write** em vez de convidar pessoa por pessoa.
 
 > **Dica.** Cada pessoa convidada recebe um email e uma notificação dentro do GitHub. Ela precisa clicar em **Accept invitation** antes de conseguir fazer push.
 
@@ -254,7 +211,7 @@ Uma vez por colega:
 
 ```bash
 # Substitua alice pelo usuário GitHub real
-gh api -X PUT "repos/<YOUR_GITHUB_USER>/hackathon-team-01/collaborators/alice" \
+gh api -X PUT "repos/<WORKSHOP_ORG>/hackathon-team-01/collaborators/alice" \
   -f permission=write
 ```
 
@@ -262,7 +219,7 @@ Ou em loop:
 
 ```bash
 for user in alice bob carla dani; do
-  gh api -X PUT "repos/<YOUR_GITHUB_USER>/hackathon-team-01/collaborators/${user}" \
+  gh api -X PUT "repos/<WORKSHOP_ORG>/hackathon-team-01/collaborators/${user}" \
     -f permission=write
 done
 ```
@@ -283,8 +240,8 @@ done
 ```bash
 mkdir -p ~/Code && cd ~/Code
 
-# Substitua 01 pelo número real do seu time e <YOUR_GITHUB_USER> pelo usuário da pessoa líder
-git clone https://github.com/<YOUR_GITHUB_USER>/hackathon-team-01.git
+# Substitua 01 pelo número real do seu time e <WORKSHOP_ORG> pela organização informada no dia
+git clone https://github.com/<WORKSHOP_ORG>/hackathon-team-01.git
 cd hackathon-team-01
 
 # Mude para a branch develop (onde o trabalho diário acontece)
@@ -306,12 +263,12 @@ O repositório inclui `.devcontainer/devcontainer.json`. O dev container tem Jav
 3. Aguarde 2 a 5 minutos na primeira vez. O VS Code reconstrói o ambiente.
 4. Quando o canto inferior esquerdo mostrar **"Dev Container: SIFAP 2.0 …"**, você está dentro.
 
-### 6.5 Faça o bootstrap também na sua máquina
+### 6.5 Confirme que o template veio completo
 
-Mesmo que a pessoa líder já tenha feito o bootstrap do repositório, cada membro precisa rodar o setup local para materializar `prototype/` e `infra/`:
+Cada membro deve confirmar que recebeu a cópia completa do kit, incluindo o legado já embutido:
 
 ```bash
-./11-scripts/setup.sh
+ls 01-arqueologia/legado-sifap .github/agents .github/prompts .github/instructions .github/skills
 ```
 
 ---
@@ -677,7 +634,7 @@ A pessoa líder do time lê cada item em voz alta. Cada pessoa confirma no próp
 
 - [ ] Cada membro clonou `hackathon-team-XX`
 - [ ] Cada membro consegue rodar `git checkout develop && git pull origin develop` (acesso de escrita confirmado)
-- [ ] CI rodou no commit de bootstrap — check verde na aba **Actions**
+- [ ] CI rodou no commit inicial criado pelo template — check verde na aba **Actions**
 - [ ] `docker compose up -d` conclui com sucesso (ou a pessoa facilitadora entrega o tarball do protótipo no Estágio 3)
 - [ ] Cada Copilot Chat responde "Qual stack estamos usando neste projeto?" com a resposta certa
 - [ ] Cada membro instalou o Spec-Kit oficial: `specify version` imprime uma versão
@@ -704,10 +661,16 @@ Quando os 13 itens estiverem verdes, seu time está pronto para o **Estágio 1: 
 - Reinicie o VS Code depois de editar o arquivo.
 - Em Settings, verifique se `github.copilot.chat.useProjectInstructions` está como `true` (padrão na 1.93+).
 
-### `gh repo create` retorna 422
+### O botão **Use this template** não aparece
 
-- O nome já está em uso. Aumente o número (`hackathon-team-01b`).
-- Ou crie pelo site (Opção A em [§2](#-passo-2--crie-o-repositório-github-do-time-somente-líder)).
+- Confirme que você abriu o repositório principal do workshop, não o repositório de outro time.
+- Se ainda não aparecer, peça à facilitação para confirmar se a opção **Template repository** está habilitada em Settings → General.
+- Não use **Import repository**. O caminho oficial do workshop é **Use this template**.
+
+### O nome `hackathon-team-XX` já está em uso
+
+- Confirme se você está usando o número correto do seu time.
+- Se a facilitação autorizar, adicione um sufixo curto, por exemplo `hackathon-team-01b`.
 
 ### `specify init` falha ou os comandos `/speckit.*` não aparecem
 
