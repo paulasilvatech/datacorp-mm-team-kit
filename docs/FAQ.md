@@ -85,7 +85,7 @@ R: Só em branch sua e somente com `--force-with-lease`. Nunca em `develop` ou `
 R: ❌ NÃO. Só `plan`. Criar recursos Azure custa dinheiro real, não está autorizado no workshop.
 
 **Q: Onde guardo secrets?**
-R: Azure Key Vault. Nunca em `variables.tf` ou `.env` commitado. Veja módulo `12-scripts/` e o referencial `infra/`.
+R: Azure Key Vault. Nunca em `variables.tf` ou `.env` commitado. Quando o time criar `infra/`, modele secrets via Key Vault e Managed Identity.
 
 ---
 

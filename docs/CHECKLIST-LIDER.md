@@ -21,7 +21,7 @@
 - [ ] 5 laptops com VS Code Insiders instalado
 - [ ] 5 contas GitHub com Copilot ativo (verificar em <https://github.com/settings/copilot>)
 - [ ] Repositório `hackathon-team-XX` criado e clonado por todos
-- [ ] `./11-scripts/setup.sh` rodado e verde em pelo menos 1 laptop
+- [ ] Ferramentas locais validadas em pelo menos 1 laptop: Git, Java 21, Node, Docker e Spec-Kit
 - [ ] Branch `develop` criada e protegida
 - [ ] Todos os 5 membros confirmados (par + 2 personas cada)
 
@@ -31,8 +31,8 @@
 
 ### 🕙 10:00–11:00 · Setup + personas
 
-- [ ] **10:15** — Todos os laptops abriram o devcontainer
-- [ ] **10:30** — `docker compose up` verde em todos
+- [ ] **10:15** — Todos os laptops abriram o repositório no VS Code
+- [ ] **10:30** — Git, Java/Node, Docker e Spec-Kit validados em todos
 - [ ] **10:45** — Cada pessoa leu seus 2 `PERSONA.md` e confirmou que `.github/` já está consolidada
 - [ ] **10:55** — Cada pessoa testou um slash command da sua persona
 
@@ -82,7 +82,7 @@
 ### 🕔 16:50–17:00 · Preparação da demo
 
 - [ ] Cada par tem 30s de fala combinada
-- [ ] Demo testada uma vez (sem ao vivo do `docker compose`)
+- [ ] Demo testada uma vez com o modo de execução criado pelo time
 - [ ] Browser pronto: Swagger + frontend + PR mergeado abertos
 
 ### 🎤 17:00–17:30 · Demos

@@ -53,7 +53,7 @@ Traduzir o modelo Adabas para um schema relacional que funciona. Garantir migra�
 
 - **Copilot Chat** para traduzir DDM Adabas → SQL PostgreSQL.
 - **Copilot Plan** para planejar migrações em lote.
-- **PostgreSQL MCP** (se disponível no devcontainer) para introspecção e queries.
+- **PostgreSQL MCP** (se disponível no VS Code) para introspecção e queries.
 - **GitHub Spec-Kit** — `/speckit.plan` consome seu modelo de dados e contratos.
 
 ## Cheat-sheets que você usa
@@ -73,7 +73,7 @@ Traduzir o modelo Adabas para um schema relacional que funciona. Garantir migra�
 - Desnormaliza por hábito de Adabas.
 - Esquece de indexar e a query do ciclo fica lenta.
 - Usa `JSONB` para tudo porque "é flexível".
-- Deixa migração não-idempotente e o devcontainer de um colega quebra.
+- Deixa migração não-idempotente e o ambiente local de um colega quebra.
 
 ## Se você pegou duas personas
 
@@ -107,6 +107,7 @@ Traduzir o modelo Adabas para um schema relacional que funciona. Garantir migra�
 - Rubrica A3 (Integridade Técnica): migrações idempotentes, schema consistente com entidades JPA
 - Rubrica A1 (Arqueologia): mapa DDM → entidade relacional documentado
 - Critério: "Audit store é append-only. Nenhum DELETE no schema de auditoria."
+
 ---
 
 ### Continuar a leitura

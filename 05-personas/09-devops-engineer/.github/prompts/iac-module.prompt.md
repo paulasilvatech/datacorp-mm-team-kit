@@ -10,7 +10,7 @@ description: "Crie ou refatore um único módulo Terraform para a infraestrutura
 
 ## Objetivo
 
-Você é o DevOps engineer produzindo ou atualizando um **único módulo Terraform** em `05-terraform-azure/modules/` para o SIFAP 2.0. Os módulos são delimitados a uma área de serviço do Azure (rede, computação, banco de dados, monitoramento, segurança). O entregável passa sem erros em `terraform fmt`, `terraform validate`, `tflint` e `checkov`, e vem com um exemplo.
+Você é o DevOps engineer produzindo ou atualizando um **único módulo Terraform** em `infra/modules/` para o SIFAP 2.0. Os módulos são delimitados a uma área de serviço do Azure (rede, computação, banco de dados, monitoramento, segurança). O entregável passa sem erros em `terraform fmt`, `terraform validate`, `tflint` e `checkov`, e vem com um exemplo.
 
 ## Entradas
 
@@ -19,7 +19,7 @@ Peça ao usuário o que estiver faltando.
 - O nome do módulo e o serviço Azure (por exemplo, `postgres` para `azurerm_postgresql_flexible_server`).
 - O `REQ-ID` vinculado em `SPECIFICATION.md` (normalmente um requisito não funcional ou operacional).
 - Os ambientes-alvo (`dev`, `stage`, `prod`) e quaisquer sobrescritas específicas por ambiente.
-- A linha de base existente: estamos criando um módulo novo ou modificando `05-terraform-azure/modules/<name>/`?
+- A linha de base existente: estamos criando um módulo novo ou modificando `infra/modules/<name>/`?
 
 ## Processo
 

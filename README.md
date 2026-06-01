@@ -73,8 +73,6 @@
 ├── 📁 07-conceitos/                   🧠 analogias Mario (Lego/RPG/EARS)
 ├── 📁 08-exemplos/                    📘 artefatos completos prontos
 ├── 📁 09-cheat-sheets/                🎴 3 cartões de 1 página
-├── 📁 11-scripts/                     🛠 setup.sh, check.sh
-├── 📁 12-plugins/                     🔌 GitHub Issues, Azure Boards
 │
 ├── 📁 docs/                           📚 FAQ, troubleshooting, runbook, ADRs
 ├── 📁 assets/                         🖼 SVGs e diagramas
@@ -111,7 +109,7 @@ Cada pessoa veste **um par** (duas personas) e fica com ele o dia inteiro.
 | **GitHub Copilot CLI** *(opcional)* | UIs web de chat para gerar código |
 | **Spec-Kit oficial** (`Specify CLI`) | Kiro, frameworks SDD alternativos |
 | **GitHub** (Issues, PRs, Actions) | — |
-| **Docker / Docker Compose** | Instalações locais que divergem do devcontainer |
+| **Docker / Docker Compose** | Containerização pronta herdada de outro repositório |
 | **Terraform** (Azure provider) | `terraform apply` (só `plan`!) |
 
 O racional completo e o que o CI verifica estão em [`.github/copilot-instructions.md`](.github/copilot-instructions.md).
@@ -155,14 +153,15 @@ agent/<issue-NN>      ← Estágio 4 (Copilot Agent)
 ### 1. Setup inicial (uma vez, ~45 min)
 
 ```bash
-# Clone, bootstrap, e abra no VS Code
+# Clone e abra no VS Code
 cd ~/Code
 git clone <url-do-repo-do-seu-time> hackathon-team-XX
 cd hackathon-team-XX
-./11-scripts/setup.sh
+git checkout develop
 code .
-# Depois: Cmd+Shift+P > "Dev Containers: Reopen in Container"
 ```
+
+O kit não traz protótipo pré-pronto, scripts de bootstrap nem containerização herdada. Cada time cria `backend/`, `frontend/` e os arquivos de container/infra necessários durante o Estágio 3.
 
 📘 Detalhes em [`00-SETUP.md`](00-SETUP.md)
 

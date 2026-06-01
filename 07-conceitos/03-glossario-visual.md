@@ -173,7 +173,7 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 - **O que é:** descrever servidores, bancos e redes em arquivos de texto (Terraform) em vez de criar tudo na mão no portal Azure.
 - **Analogia:** receita do bolo da infraestrutura — qualquer pessoa pode refazer o mesmo bolo.
-- **Onde aparece:** Estágio 4, em `05-terraform-azure/`.
+- **Onde aparece:** Estágio 4, em `infra/` quando o time criar IaC.
 
 ### Issue (GitHub Issue)
 
@@ -296,7 +296,7 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 - **O que é:** ferramenta de IaC que descreve infraestrutura Azure em arquivos `.tf`.
 - **Analogia:** receita escrita da nuvem — `terraform apply` cria tudo.
-- **Onde aparece:** Estágio 4, em `05-terraform-azure/`. **No workshop só rodamos `terraform plan` — nada de `apply` real.**
+- **Onde aparece:** Estágio 4, em `infra/` quando o time criar IaC. **No workshop só rodamos `terraform plan` — nada de `apply` real.**
 
 ### Testcontainers
 

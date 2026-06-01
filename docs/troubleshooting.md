@@ -19,7 +19,7 @@
 - [📐 Spec-Kit e EARS](#-spec-kit-e-ears)
 - [☕ Backend (Java / Spring Boot)](#-backend-java--spring-boot)
 - [⚛️ Frontend (Next.js / Node)](#%EF%B8%8F-frontend-nextjs--node)
-- [🐳 Docker e docker-compose](#-docker-e-docker-compose)
+- [🐳 Docker](#-docker)
 - [🌿 Git e GitHub](#-git-e-github)
 - [☁️ Terraform e Azure](#%EF%B8%8F-terraform-e-azure)
 
@@ -27,25 +27,15 @@
 
 ## 💻 Setup e ambiente
 
-### "VS Code não abre o devcontainer"
-
-- **Causa:** Docker Desktop não está rodando.
-- **Solução:** abra o app Docker Desktop, espere a baleia ficar verde, depois `Cmd+Shift+P` → *Dev Containers: Reopen in Container*.
-
 ### "Faltando Java/Node/Maven"
 
-- **Causa:** você está rodando fora do devcontainer.
-- **Solução:** ou usa o devcontainer (recomendado), ou instala as versões da tabela em [`00-SETUP.md` Passo 1](../00-SETUP.md#-passo-1).
+- **Causa:** ferramentas locais ainda não instaladas.
+- **Solução:** instale as versões da tabela em [`00-SETUP.md` Passo 1](../00-SETUP.md#-passo-1) e valide com `java -version`, `node --version` e `git --version`.
 
 ### "git: command not found" no terminal do VS Code (Mac)
 
 - **Causa:** xcode-tools sem CLI tools.
 - **Solução:** `xcode-select --install`.
-
-### Erro `EACCES` ao rodar scripts
-
-- **Causa:** falta permissão.
-- **Solução:** `chmod +x scripts/*.sh`.
 
 ---
 
@@ -103,8 +93,8 @@
 
 ### "Backend não sobe — erro de conexão com Postgres"
 
-- **Causa:** Postgres não subiu antes do backend.
-- **Solução:** `docker compose down && docker compose up -d postgres && sleep 10 && docker compose up -d backend`.
+- **Causa:** Postgres não está em execução ou a URL configurada está errada.
+- **Solução:** valide a configuração em `application.yml` e suba o Postgres pelo método definido pelo time (local, Testcontainers ou compose criado no próprio protótipo).
 
 ### "Flyway: `Migration checksum mismatch`"
 
@@ -123,16 +113,16 @@
 ### "Frontend mostra `ECONNREFUSED localhost:8080`"
 
 - **Causa:** backend não está no ar ou está em outra porta.
-- **Solução:** verifique `docker compose ps`. Backend deve estar em 8080. Se subiu pelo docker-compose do root, frontend está em 3001, não 3000.
+- **Solução:** confirme que o backend criado pelo time está rodando e que a URL no frontend aponta para a porta correta.
 
 ### "`Module not found: shadcn/ui`"
 
 - **Causa:** dependências não instaladas.
-- **Solução:** `cd 04-prototipo-sifap-moderno/frontend && npm install`.
+- **Solução:** `cd frontend && npm install`.
 
 ---
 
-## 🐳 Docker e docker-compose
+## 🐳 Docker
 
 ### "`Cannot connect to the Docker daemon`"
 
@@ -142,7 +132,7 @@
 ### "`port is already allocated`"
 
 - **Causa:** outra coisa usando 5432 / 8080 / 3000.
-- **Solução:** `lsof -i :8080` para descobrir o que está usando, mate o processo, ou mude a porta no `docker-compose.yml`.
+- **Solução:** `lsof -i :8080` para descobrir o que está usando, mate o processo, ou mude a porta na configuração local criada pelo time.
 
 ### "`Out of memory` no Docker Desktop"
 

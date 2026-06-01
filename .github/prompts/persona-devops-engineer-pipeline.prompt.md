@@ -56,10 +56,10 @@ Sua resposta final deve incluir:
 name: backend-payments
 on:
  pull_request:
- paths: ['04-prototipo-sifap-moderno/backend/**']
+ paths: ['backend/**']
  push:
  branches: [develop, stage, main]
- paths: ['04-prototipo-sifap-moderno/backend/**']
+ paths: ['backend/**']
 
 permissions:
  id-token: write

@@ -87,7 +87,7 @@ No seu laptop, você clona somente o repositório do seu time:
 | **Java 21 JDK**    | 21            | `java -version`                          | <https://learn.microsoft.com/java/openjdk/download> |
 | **Node.js**        | 20 LTS        | `node --version`                         | <https://nodejs.org/en/download>                    |
 
-> **Faltando a maioria desses itens?** O caminho mais rápido é usar o **dev container** (Passo 6.4). Ele inclui todas as ferramentas. Você só precisa que o Docker Desktop esteja rodando.
+> **Faltando a maioria desses itens?** Instale as ferramentas antes do workshop começar. Este kit não traz ambiente pré-montado nem bootstrap automático.
 
 ### Verificação de licença (uma pessoa verifica pelo time)
 
@@ -254,14 +254,17 @@ git checkout develop
 code .
 ```
 
-### 6.4 Reabra no Dev Container (altamente recomendado)
+### 6.4 Confirme as ferramentas locais
 
-O repositório inclui `.devcontainer/devcontainer.json`. O dev container tem Java 21, Node 20, Docker-in-Docker e as extensões do Copilot já fixadas em versões conhecidas e boas.
+Este kit não inclui ambiente pré-montado, protótipo pré-pronto nem containerização herdada. Cada pessoa valida as ferramentas no próprio laptop; o protótipo será criado do zero no Estágio 3.
 
-1. O VS Code mostra um popup no canto inferior direito: **"Folder contains a Dev Container configuration. Reopen in Container?"** → clique em **Reopen in Container**.
-2. Se você perdeu o popup: abra a Command Palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> no Windows/Linux, <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> no Mac) e escolha **Dev Containers: Reopen in Container**.
-3. Aguarde 2 a 5 minutos na primeira vez. O VS Code reconstrói o ambiente.
-4. Quando o canto inferior esquerdo mostrar **"Dev Container: SIFAP 2.0 …"**, você está dentro.
+```bash
+git --version
+java -version
+node --version
+docker --version
+specify version
+```
 
 ### 6.5 Confirme que o template veio completo
 
@@ -580,7 +583,7 @@ Cada persona tem um **ciclo diário padrão**. Rode-o quantas vezes forem necess
 2. git checkout -b impl/NNN-task-name (a partir de develop)
 3. No Copilot, rode `/implement` (prompt ativo: `.github/prompts/persona-developer-implement.prompt.md`)
 4. Testes primeiro (vermelho), código (verde), refatoração
-5. ./11-scripts/check.sh (espelha o CI)
+5. Rode o gate local definido pelo protótipo (`./mvnw verify`, `npm test`, `npm run lint` ou equivalente)
 6. git commit, git push, abra PR
 7. Marque a issue com "Closes #NN" no corpo do PR
 ```
@@ -592,7 +595,7 @@ Cada persona tem um **ciclo diário padrão**. Rode-o quantas vezes forem necess
 2. git checkout -b impl/NNN-migration-name
 3. Adicione a migração Flyway em backend/src/main/resources/db/migration/
 4. Rode o prompt `/migration` (prompt ativo: `.github/prompts/persona-dba-migration.prompt.md`)
-5. Teste localmente com docker compose up
+5. Teste localmente contra o Postgres definido pelo time ou via Testcontainers
 6. Abra PR e peça revisão de Developer
 ```
 
@@ -635,7 +638,7 @@ A pessoa líder do time lê cada item em voz alta. Cada pessoa confirma no próp
 - [ ] Cada membro clonou `hackathon-team-XX`
 - [ ] Cada membro consegue rodar `git checkout develop && git pull origin develop` (acesso de escrita confirmado)
 - [ ] CI rodou no commit inicial criado pelo template — check verde na aba **Actions**
-- [ ] `docker compose up -d` conclui com sucesso (ou a pessoa facilitadora entrega o tarball do protótipo no Estágio 3)
+- [ ] Time confirmou que não há protótipo pré-pronto: `backend/`, `frontend/` e arquivos Docker/infra serão criados no Estágio 3 quando necessário
 - [ ] Cada Copilot Chat responde "Qual stack estamos usando neste projeto?" com a resposta certa
 - [ ] Cada membro instalou o Spec-Kit oficial: `specify version` imprime uma versão
 - [ ] Os comandos `/speckit.*` aparecem no Copilot depois de `specify init . --integration copilot`
@@ -683,7 +686,7 @@ Quando os 13 itens estiverem verdes, seu time está pronto para o **Estágio 1: 
 
 - Esperado. O fluxo de trabalho `ci.yml` só roda jobs cujos caminhos mudaram. Quando código backend/frontend entrar, os jobs relevantes vão rodar.
 
-### Docker compose up trava ou falha
+### Docker não está disponível quando o time precisar dele
 
 - As portas 5432, 8080 ou 3000 podem estar em uso. Rode:
 
@@ -691,7 +694,7 @@ Quando os 13 itens estiverem verdes, seu time está pronto para o **Estágio 1: 
   lsof -i :5432 -i :8080 -i :3000
   ```
 
-  Mate o processo que está ocupando a porta (`kill -9 <PID>`) e tente de novo.
+  Mate o processo que está ocupando a porta (`kill -9 <PID>`) antes de subir o ambiente criado pelo time.
 
 - Garanta que o Docker Desktop está **rodando** (o ícone na barra de menu deve estar estável, não animado).
 
@@ -707,7 +710,7 @@ Quando os 13 itens estiverem verdes, seu time está pronto para o **Estágio 1: 
 ### Fiz pull do `develop` mais recente, mas minha IDE ainda mostra código antigo
 
 - Recarregue a janela do VS Code: Command Palette → **Developer: Reload Window**.
-- Se você estiver dentro de um dev container, às vezes também precisa: Command Palette → **Dev Containers: Rebuild Container**.
+- Se o VS Code ainda mostrar estado antigo, feche e reabra a pasta do repositório.
 
 ### A pasta `.github/` parece quebrada
 

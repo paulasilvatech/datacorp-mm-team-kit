@@ -12,12 +12,12 @@
 >
 > **O que você terá ao final desta leitura:**
 >
-> 1. Estrutura do protótipo modular (4 módulos × 3 camadas)
+> 1. Como criar a primeira estrutura do protótipo modular
 > 2. Stack: Java 21 + Spring Boot 3 + Next.js 15 + PostgreSQL 16
-> 3. Como subir local com `docker compose up`
+> 3. Como validar backend, frontend e testes sem depender de protótipo herdado
 > 4. Link direto para o GUIDE com os 5 passos por feature
 
-> Construa o protótipo do SIFAP 2.0 — backend Java 21 + Spring Boot 3, frontend Next.js 15, PostgreSQL 16 — usando o modo Agent do GitHub Copilot.
+> Construa o protótipo do SIFAP 2.0 do zero — backend Java 21 + Spring Boot 3, frontend Next.js 15, PostgreSQL 16 — usando o modo Agent do GitHub Copilot.
 
 ## Onde isso encaixa no SDLC
 

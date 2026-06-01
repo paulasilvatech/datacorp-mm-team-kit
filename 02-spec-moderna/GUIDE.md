@@ -364,7 +364,7 @@ Use o arquivo [`scope-decisions.md`](scope-decisions.md) para registrar o que se
 
 **Spec-Kit** (<https://github.com/github/spec-kit>) é o motor de SDD usado neste workshop. Ele transforma uma intenção em `spec.md`, `plan.md`, `tasks.md` e implementação guiada.
 
-### Instalação (se não estiver no devcontainer)
+### Instalação (se a ferramenta ainda não estiver disponível)
 
 ```bash
 uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@vX.Y.Z

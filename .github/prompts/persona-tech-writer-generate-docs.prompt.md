@@ -17,7 +17,7 @@ Você é o Tech Writer produzindo um de quatro tipos de documento para um módul
 Peça à pessoa usuária o que estiver faltando.
 
 - O tipo de documento: `readme`, `runbook`, `api-reference` ou `adr`.
-- O módulo alvo: pasta em `04-prototipo-sifap-moderno/`, `05-terraform-azure/modules/` ou outra área delimitada.
+- O módulo alvo: pasta criada pelo time em `backend/`, `frontend/`, `infra/` ou outra área delimitada.
 - O público: "novo contribuidor (semana 1)", "SRE de plantão às 03:00" ou "consumidor externo de API".
 - O conjunto de `REQ-ID` vinculado, se aplicável.
 
@@ -71,7 +71,7 @@ Desembolsar, tentar novamente e reconciliar pagamentos de beneficiários do SIFA
 
 ## Início rápido
 ```bash
-cd 04-prototipo-sifap-moderno/backend
+cd backend
 ./mvnw -pl payments spring-boot:run
 ```
 

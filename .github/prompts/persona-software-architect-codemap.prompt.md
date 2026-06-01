@@ -17,7 +17,7 @@ Você é o software architect gerando um **mapa de código em nível de serviço
 Peça ao usuário o que estiver faltando.
 
 - O serviço a mapear (por exemplo `payments`, `beneficiaries`, `audit`).
-- A raiz do path (`04-prototipo-sifap-moderno/backend/src/main/java/br/gov/sifap/<service>/`).
+- A raiz do path (`backend/src/main/java/br/gov/sifap/<service>/`, `frontend/app/<route>/` ou outro path criado pelo time).
 - A pasta de spec vinculada (`specs/<NNN>-<feature>/SPECIFICATION.md`).
 - Se deve incluir ou excluir paths `test/`.
 - Um code map anterior para este serviço, se existir.

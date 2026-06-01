@@ -20,24 +20,28 @@
 ## Local — primeira vez
 
 ```bash
-./11-scripts/setup.sh # verifica ferramentas, clona referência, configura symlinks
-docker compose up -d # sobe Postgres + backend + frontend
+git --version
+java -version
+node --version
+docker --version
+specify version
 ```
 
-Depois:
+O kit não traz protótipo pré-pronto. Quando o time criar `backend/`, `frontend/` e, se necessário, `infra/`, documente aqui os comandos reais de execução.
 
-- Backend health: <http://localhost:8080/actuator/health>
-- Swagger UI: <http://localhost:8080/swagger-ui.html>
-- Frontend: <http://localhost:3001>
+Depois que o protótipo existir, registre:
 
-As credenciais padrão estão documentadas em `prototype/README.md`.
+- Backend health
+- Swagger UI
+- Frontend local
+- Credenciais de demonstração, se houver
 
 ## Local — diariamente
 
 ```bash
-docker compose up -d # se estiver parado
-./11-scripts/check.sh # antes do push
-git status # nunca commite symlinks (01-arqueologia/legado-sifap/, prototype/, infra/)
+git status # confirme que só há mudanças intencionais
+cd backend && ./mvnw test # quando backend existir
+cd frontend && npm test # quando frontend existir
 ```
 
 ## CI
@@ -49,7 +53,7 @@ Acionado automaticamente em push para `main`, `develop`, `spec/**`, `impl/**`.
 | `ci.yml`           | Backend `mvn verify`, frontend lint+test+typecheck, Terraform fmt+validate | Todo push e PR                    |
 | `spec-quality.yml` | markdownlint + rastreabilidade de REQ-ID                                   | Quando `**.md` ou `specs/` mudam |
 
-Verifique execuções com falha na aba Actions. Corrija localmente com `./11-scripts/check.sh`.
+Verifique execuções com falha na aba Actions. Corrija localmente com os comandos reais do protótipo criado pelo time.
 
 ## Azure — Estágio 4
 
@@ -68,7 +72,7 @@ terraform apply -var-file=envs/dev/terraform.tfvars
 
 | Sintoma                                   | Causa provável                     | Correção                                             |
 | ----------------------------------------- | ---------------------------------- | ---------------------------------------------------- |
-| `docker compose up` trava                 | Porta 5432 / 8080 / 3000 já em uso | `lsof -i :5432` e encerre o processo                 |
+| Ambiente local trava                      | Porta 5432 / 8080 / 3000 já em uso | `lsof -i :5432` e encerre o processo                 |
 | `mvn verify` falha em Testcontainers      | Docker não está em execução        | Inicie o Docker Desktop                              |
 | `pnpm test` falha em snapshots            | Componente mudou intencionalmente  | `pnpm test -- -u` para atualizar                     |
 | `terraform apply` rejeitado               | Tag `team=` ausente                | Adicione a tag ao recurso com falha                  |

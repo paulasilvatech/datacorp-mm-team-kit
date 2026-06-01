@@ -111,7 +111,7 @@ o valor e a data de pagamento.
 - [ ] Usar Spring Mail configurado via application.yml
 - [ ] Criar um teste unitário mockando o envio de e-mail
 - [ ] Criar um teste de integração com MailHog (container Docker)
-- [ ] Adicionar a variável SMTP_HOST ao docker-compose.yml
+- [ ] Adicionar a variável `SMTP_HOST` à configuração local criada pelo time
 
 ## Arquitetura
 
@@ -123,7 +123,7 @@ o valor e a data de pagamento.
 
 - [ ] Teste unitário passando
 - [ ] Teste de integração passando
-- [ ] docker compose up funcionando com MailHog
+- [ ] Ambiente local criado pelo time funcionando com MailHog, se a feature usar compose
 - [ ] E-mail recebido no MailHog ao aprovar um pagamento via Swagger
 
 ## Contexto
@@ -203,7 +203,7 @@ Quando o Agent abre um PR, revise com cuidado:
 Os módulos Terraform para deploy no Azure ficam em:
 
 ```
-05-terraform-azure/
+infra/
 ├── main.tf # Módulo raiz
 ├── variables.tf # Variáveis de entrada
 ├── outputs.tf # Saídas
@@ -238,7 +238,7 @@ Os módulos Terraform para deploy no Azure ficam em:
 #### Para explorar (não precisa aplicar):
 
 ```bash
-cd 05-terraform-azure/envs/dev
+cd infra/envs/dev
 terraform init # Inicializa providers
 terraform plan # Mostra o que SERIA criado (sem aplicar)
 ```
@@ -324,7 +324,7 @@ Ao final do Estágio 4, seu time deve ter:
 - [ ] **2 PRs** gerados pelo Agent (um para cada Issue)
 - [ ] **1 feature mergeada** — pelo menos um PR aprovado e mergeado
 - [ ] **Relatório de experiência com o Agent** (arquivo: [`agent-experience-report.md`](agent-experience-report.md))
-- [ ] `terraform plan` rodando sem erro em `05-terraform-azure/envs/dev/`
+- [ ] `terraform plan` rodando sem erro em `infra/envs/dev/`
 - [ ] CI verde na branch `develop` (build + test passando)
 
 ## Próximo passo

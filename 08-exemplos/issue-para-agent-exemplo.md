@@ -90,7 +90,7 @@ Quando um pagamento é aprovado (transição `PENDING → APPROVED`), o sistema 
           backoff-ms: 500
   ```
 
-- [ ] Adicionar variáveis ao `docker-compose.yml`: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`.
+- [ ] Adicionar variáveis à configuração local criada pelo time: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`.
 - [ ] Subir um **MailHog** (Docker) na porta 1025 (SMTP) e 8025 (UI) para testes locais.
 
 ### Migração de banco
@@ -116,7 +116,7 @@ Quando um pagamento é aprovado (transição `PENDING → APPROVED`), o sistema 
 ## ✅ Critérios de aceite
 
 - [ ] `./mvnw test` passa, incluindo os 3 testes novos.
-- [ ] `docker compose up` sobe MailHog e o backend conecta sem erros.
+- [ ] O ambiente local criado pelo time sobe MailHog e o backend conecta sem erros.
 - [ ] Aprovar um pagamento via Swagger UI envia e-mail visível em `http://localhost:8025`.
 - [ ] Aprovar pagamento de beneficiário sem e-mail completa normalmente (sem log de erro).
 - [ ] Forçar SMTP fora do ar (`docker stop mailhog`) e tentar aprovar → aprovação completa, log WARN aparece, `payment_audit.reason` contém *"email delivery failed: ..."*.
@@ -191,6 +191,7 @@ Compare lado a lado — frase fraca (que o Agent interpreta livremente) versus v
 3. **Aguarde** ~5-15 minutos. O Agent vai analisar o codebase, escrever o plano e abrir um PR.
 4. **Revise** o PR usando o checklist em `04-evolucao/GUIDE.md`.
 5. **Comente correções** no PR — o Agent re-itera com os comentários.
+
 ---
 
 ### Continuar a leitura

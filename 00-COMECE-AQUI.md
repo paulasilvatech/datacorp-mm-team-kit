@@ -29,7 +29,7 @@
 | 11–15 | Passo 5 — Abra o Estágio 1 e a Cheat-sheet do Copilot | 4 min |
 
 > [!NOTE]
-> **Não está no devcontainer ainda?** Tudo bem. Esses 15 minutos são só leitura. O setup técnico é feito depois — guiado pelo 00-SETUP.md.
+> **Ainda sem setup técnico completo?** Tudo bem. Esses 15 minutos são só leitura. O setup técnico é feito depois — guiado pelo 00-SETUP.md.
 
 ---
 
@@ -165,10 +165,10 @@ Se você nunca abriu VS Code, Docker ou Copilot, este roteiro literal te coloca 
 |---:|---|---|
 | **00** | Abrir o terminal e rodar `cd ~/Code/hackathon-team-XX` | Aparece o nome do repo no prompt |
 | **02** | `code .` para abrir VS Code | VS Code abriu mostrando a lista de pastas (`00-…`, `01-…`) |
-| **04** | `Cmd+Shift+P` → *"Dev Containers: Reopen in Container"* | Janela recarrega; canto inferior esquerdo mostra ⚙️ "Dev Container" |
-| **08** | Esperar o container subir (1ª vez demora ~5 min) | Terminal aparece com prompt do container |
-| **13** | Abrir terminal integrado (`Ctrl+\``) e rodar `docker compose up -d` | Saída "Started postgres, backend, frontend" |
-| **18** | Abrir http://localhost:8080/actuator/health no navegador | JSON `{"status":"UP"}` |
+| **04** | Abrir terminal integrado (`Ctrl+\``) e rodar `git status` | Branch e estado do repositório aparecem sem erro |
+| **08** | Validar ferramentas: `java -version`, `node --version`, `git --version` | Cada comando imprime uma versão |
+| **13** | Validar Docker, sem subir protótipo: `docker --version` | O comando imprime uma versão do Docker |
+| **18** | Validar Spec-Kit: `specify version` | O comando imprime uma versão do Specify CLI |
 | **20** | Voltar ao VS Code → ícone do **Copilot** na barra lateral (chapeuzinho) | Painel do Copilot Chat abre à direita |
 | **22** | No chat, digitar: *"Olá! O que você é capaz de fazer?"* e enviar | Copilot responde em PT-BR sobre os 3 modos |
 | **25** | Selecionar o **agente** do dia (dropdown no topo do chat) | Você vê `@archaeologist`, `@architect`, `@builder`, `@evolution` na lista |
@@ -184,8 +184,8 @@ Se você nunca abriu VS Code, Docker ou Copilot, este roteiro literal te coloca 
 
 | Travou em… | Vá para |
 |---|---|
-| Min 04 (devcontainer) | [`docs/troubleshooting.md`](docs/troubleshooting.md) — seção *Setup* |
-| Min 13 (docker compose) | [`docs/troubleshooting.md`](docs/troubleshooting.md) — seção *Docker* |
+| Min 04 (terminal/Git) | [`docs/troubleshooting.md`](docs/troubleshooting.md) — seção *Setup* |
+| Min 13 (Docker instalado) | [`docs/troubleshooting.md`](docs/troubleshooting.md) — seção *Docker* |
 | Min 20 (Copilot não abre) | [`docs/troubleshooting.md`](docs/troubleshooting.md) — seção *Copilot* |
 | Min 45 (slash command não funciona) | [`docs/troubleshooting.md`](docs/troubleshooting.md) — *"Slash command não aparece"* |
 

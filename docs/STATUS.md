@@ -17,7 +17,7 @@
 | Indicador | Estado | Observação |
 |---|---|---|
 | Time inteiro presente | ⚪ | Atualize: ✅ ou ⚠️ |
-| Devcontainer rodando em 5/5 laptops | ⚪ | — |
+| Ferramentas locais validadas em 5/5 laptops | ⚪ | — |
 | Branch `develop` protegida | ⚪ | — |
 | CI verde em `develop` | ⚪ | — |
 | Demo ensaiada | ⚪ | — |

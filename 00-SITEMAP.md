@@ -53,8 +53,6 @@
 | **07** | [`07-conceitos/`](07-conceitos/) | 🧠 Analogias Mario, EARS, ADR |
 | **08** | [`08-exemplos/`](08-exemplos/) | 📘 Artefatos prontos |
 | **09** | [`09-cheat-sheets/`](09-cheat-sheets/) | 🎴 Cartões de 1 página |
-| **11** | [`11-scripts/`](11-scripts/) | `setup.sh`, `check.sh` |
-| **12** | [`12-plugins/`](12-plugins/) | GitHub Issues, Azure Boards |
 | `docs/` | [`docs/`](docs/) | FAQ, troubleshooting, runbook, ADRs |
 | `assets/` | [`assets/`](assets/) | SVGs e diagramas |
 | `specs/` | [`specs/`](specs/) | Exemplo Spec-Kit |

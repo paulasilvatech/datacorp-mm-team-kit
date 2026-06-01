@@ -10,12 +10,12 @@ Este workshop roda com uma **toolchain fixa**. Usar qualquer outra coisa fragmen
 
 | Use estas | Por quê |
 |-----------|-----|
-| **VS Code** (ou VS Code Insiders) | Editor único para toda a equipe. O devcontainer + extensões assumem isso. |
+| **VS Code** (ou VS Code Insiders) | Editor único para toda a equipe. |
 | **GitHub Copilot** (modos Ask + Plan + Agent) | Assistente de IA principal. Copilot Workspace também é permitido para delegação Issue → PR. |
 | **GitHub Copilot CLI** *(opcional)* | Para tarefas em fluxo de terminal. As mesmas regras de roteamento de modelo se aplicam. |
 | **GitHub Spec-Kit** (`Specify CLI` + `/speckit.*`) | Toolkit oficial de Spec-Driven Development para especificação, planejamento, tarefas e implementação. |
 | **GitHub** (Issues, PRs, Actions, Projects) | Fonte da verdade para trabalho, código e CI. |
-| **Docker / Docker Compose** | Paridade do ambiente local. |
+| **Docker / Docker Compose** | Paridade do ambiente local quando o time criar containers no próprio protótipo. |
 | **Terraform** | IaC (Azure provider). |
 
 **Não use** outros assistentes de IA (Cursor, Windsurf, Codex, Cline, Continue, Aider, Codeium, Tabnine), IDEs alternativos (IntelliJ, Eclipse, Neovim), UIs web de chat para gerar código, nem frameworks SDD alternativos (Kiro etc.). Misturar ferramentas quebra rastreabilidade spec → code → test.
@@ -30,7 +30,7 @@ O kit usa **duas camadas de agentes** (persona-kit por pessoa + agente de estág
 
 - **Backend:** Java 21 + Spring Boot 3.3 + JPA/Hibernate + PostgreSQL 16
 - **Frontend:** Next.js 15 (App Router) + TypeScript 5 (strict) + Tailwind CSS + shadcn/ui
-- **Containers:** Docker + Docker Compose
+- **Containers:** Docker + Docker Compose criados pelo time no Estágio 3/4, quando necessário
 - **IaC:** Terraform (Azure provider ~> 3.x)
 - **CI/CD:** GitHub Actions
 - **Testing:** JUnit 5 + Testcontainers (backend); Vitest + Testing Library (frontend)
@@ -84,7 +84,7 @@ O kit usa **duas camadas de agentes** (persona-kit por pessoa + agente de estág
 
 ## Regras Rígidas — Não Faça Isto
 
-- ❌ Não gere código sem antes verificar o protótipo existente em `prototype/` (symlink criado por `11-scripts/setup.sh`)
+- ❌ Não assuma protótipo pré-existente, symlink de protótipo ou containerização herdada. O time deve criar `backend/`, `frontend/` e, quando necessário, `infra/` do zero a partir da spec.
 - ❌ Não escreva um EARS sem `source_legacy:` — o CI rejeitará o PR
 - ❌ Não adicione dependências sem justificativa em um ADR
 - ❌ Não escreva testes depois do fato — escreva-os enquanto implementa
@@ -100,5 +100,5 @@ O kit usa **duas camadas de agentes** (persona-kit por pessoa + agente de estág
 - Persona kits (leia 2 por pessoa; artefatos ativos já consolidados em `.github/`): [`05-personas/`](../05-personas/)
 - Agentes de estágio: [`06-agentes-de-estagio/`](../06-agentes-de-estagio/)
 - Legado SIFAP: [`01-arqueologia/legado-sifap/`](../01-arqueologia/legado-sifap/)
-- Protótipo + infra Terraform: symlinks `prototype/` e `infra/` criados por [`11-scripts/setup.sh`](../11-scripts/setup.sh)
+- Protótipo moderno: criado pelo time durante o Estágio 3 em `backend/`, `frontend/` e, se necessário, `infra/`; não há código-base pré-pronto para copiar.
 - Spec-Kit SDD: <https://github.com/github/spec-kit>

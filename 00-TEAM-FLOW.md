@@ -79,7 +79,7 @@ Faça rotação dentro do par a cada ~45 min para nenhuma pessoa monopolizar con
 | Horário         | Bloco                                      | Pares líderes                          | Pares de suporte                                                       |
 | --------------- | ------------------------------------------ | -------------------------------------- | ---------------------------------------------------------------------- |
 | **10:00–10:15** | Abertura + confirmação de pares            | Facilitador                            | Cada pessoa confirma suas 2 personas; abre seu PERSONA.md              |
-| **10:15–10:45** | Validação do setup + persona-kits          | Par 3 + Par 5                          | `docker compose up`, Spec-Kit `specify version`, Copilot Chat funciona |
+| **10:15–10:45** | Validação do setup + persona-kits          | Par 3 + Par 5                          | Git, Java/Node, Docker disponível, Spec-Kit `specify version`, Copilot Chat funciona |
 | **10:45–11:00** | Orientação rápida do legado                | Par 1 + Par 4                          | Apresentação dos 15 programas Natural + 4 DDMs                         |
 | **11:00–12:00** | **Estágio 1** — Arqueologia (parte 1)      | Todos os 5 pares em paralelo           | Cada par com 3 programas — Reconhecimento + Extração                   |
 | **12:00–13:30** | 🍴 **ALMOÇO**                               | —                                      | —                                                                      |
@@ -118,7 +118,7 @@ Nenhum par fica parado. Mesmo quando não está "liderando", cada par tem trabal
 | --------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------ |
 | **1 · Visão**         | **Lidera.** Extrai regras; PO prioriza escopo.                   | Valida EARS; assina escopo no H2.                                   | De prontidão para esclarecer requisitos. Constrói narrativa da demonstração. | Ensaio da demonstração.                                  |
 | **2 · Arquitetura**   | Mapeia contexto do sistema (rascunho C4 L1).                     | **Lidera.** C4 L2/L3 + ADRs.                                        | De prontidão para perguntas de fronteira; revisa PRs que tocam contratos. | Valida IaC contra ADRs.                                   |
-| **3 · Implementação** | Lê protótipo, define convenções (branches, template de PR, DoD). | Comenta sobre viabilidade; estima complexidade.                     | **Lidera.** Código, testes, integração.                                 | **Co-lidera.** Delegação em modo Agent, revisão de PR.       |
+| **3 · Implementação** | Define convenções (branches, template de PR, DoD) e esqueleto alvo do protótipo. | Comenta sobre viabilidade; estima complexidade.                     | **Lidera.** Código, testes, integração.                                 | **Co-lidera.** Delegação em modo Agent, revisão de PR.       |
 | **4 · Qualidade**     | Lê DDMs, planeja mapeamento de schema.                           | Comenta sobre implicações de dados; escreve primeiros cenários BDD. | **Lidera.** Schema, migrações, cobertura de testes.                     | Gate final de cobertura; contract tests no CI.               |
 | **5 · Operações**     | Glossário, semente do runbook, esqueleto do README.              | Revisão de clareza dos ADRs; voz consistente de escrita.            | Rascunho da estrutura do pipeline CI.                                   | **Lidera.** Terraform + CI/CD completos; runbook finalizado. |
 
@@ -133,7 +133,7 @@ Entre **10:00 e 10:45**, **todo par** faz as mesmas 4 coisas. Depois começa a e
 | 1     | Leia [`00-TEAM-FLOW.md`](00-TEAM-FLOW.md) (este arquivo)                                                         | 10 min |
 | 2     | Leia o `PERSONA.md` dos seus dois kits em [`05-personas/`](05-personas/)                                 | 15 min |
 | 3     | Valide a `.github/` consolidada: agents, prompts, instructions e skills já vêm prontos para todas as personas        |  5 min |
-| 4     | Abra o Copilot Chat, rode o prompt de teste de fumaça de um dos seus cards e valide `docker compose up`    | 15 min |
+| 4     | Abra o Copilot Chat, rode o prompt de teste de fumaça de um dos seus cards e valide ferramentas locais     | 15 min |
 
 ### Primeira ação de cada par na arqueologia, às 11:00
 
@@ -141,9 +141,9 @@ Entre **10:00 e 10:45**, **todo par** faz as mesmas 4 coisas. Depois começa a e
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **1 · Visão**         | PO abre [`../../01-blueprint/WORKSHOP-BLUEPRINT.md`](../../01-blueprint/WORKSHOP-BLUEPRINT.md); RE abre [`01-arqueologia/legado-sifap/natural-programs/`](01-arqueologia/legado-sifap/natural-programs/) e começa o catálogo de regras.       |
 | **2 · Arquitetura**   | EA abre [`01-arqueologia/legado-sifap/legacy-docs/`](01-arqueologia/legado-sifap/legacy-docs/) e começa C4 L1; SA prepara candidatos a bounded context.                                                                                       |
-| **3 · Implementação** | TL define estratégia de branches, template de PR, definição de pronto; Dev roda `docker compose up` no protótipo.                                                                                   |
-| **4 · Qualidade**     | DBA abre [`01-arqueologia/legado-sifap/adabas-ddms/`](01-arqueologia/legado-sifap/adabas-ddms/) e começa o mapeamento de campos; QA lê o layout dos testes em [`../../04-prototipo-sifap-moderno/`](../../04-prototipo-sifap-moderno/).       |
-| **5 · Operações**     | DevOps abre [`../../05-terraform-azure/`](../../05-terraform-azure/) e revisa módulos; TW abre o template em [`01-arqueologia/glossary.md`](01-arqueologia/glossary.md).                            |
+| **3 · Implementação** | TL define estratégia de branches, template de PR, definição de pronto e paths padrão (`backend/`, `frontend/`, `infra/` quando necessário).                                                        |
+| **4 · Qualidade**     | DBA abre [`01-arqueologia/legado-sifap/adabas-ddms/`](01-arqueologia/legado-sifap/adabas-ddms/) e começa o mapeamento de campos; QA prepara a estratégia de testes para o protótipo que será criado. |
+| **5 · Operações**     | DevOps planeja CI/IaC que o time criará no próprio repositório; TW abre o template em [`01-arqueologia/glossary.md`](01-arqueologia/glossary.md).                                                   |
 
 ---
 
@@ -208,8 +208,8 @@ Bom: _"Objetivo: validar CPF em `BeneficiaryService`. Tentei: regex + sugestão 
 
 | Artefato               | Caminho                                    | Pronto significa                                         |
 | ---------------------- | ------------------------------------------ | -------------------------------------------------------- |
-| Backend funcionando    | `04-prototipo-sifap-moderno/backend/`      | `mvn test` verde; OpenAPI documentada                    |
-| Frontend funcionando   | `04-prototipo-sifap-moderno/frontend/`     | `npm test` verde; fluxos principais usáveis              |
+| Backend funcionando    | `backend/`                                 | `mvn test` verde; OpenAPI documentada                    |
+| Frontend funcionando   | `frontend/`                                | `npm test` verde; fluxos principais usáveis              |
 | Migrações              | `backend/src/main/resources/db/migration/` | Scripts Flyway numerados; idempotentes (Par 4 cuida)     |
 | Relatório de cobertura | Artefato do CI                             | Backend ≥ 70%, frontend ≥ 60% de linhas (Par 4 verifica) |
 

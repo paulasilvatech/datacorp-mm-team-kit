@@ -39,7 +39,7 @@
 > - [ ] Você selecionou **`@builder`** no Copilot Chat
 > - [ ] `SPECIFICATION.md` tem REQ-IDs com `source_legacy:` válido
 > - [ ] ADRs principais aprovadas (≥3 ADRs)
-> - [ ] `docker compose up -d` está verde
+> - [ ] O time definiu os paths iniciais do protótipo (`backend/`, `frontend/` e, se necessário, `infra/`)
 > - [ ] Branch `impl/...` criada a partir de `develop` atualizada
 
 ## Quem trabalha aqui
@@ -48,7 +48,7 @@
 
 ## Objetivo
 
-Estender o protótipo funcional do SIFAP 2.0 implementando as features priorizadas no Estágio 2. O protótipo já tem a estrutura base — seu time vai **adicionar features, corrigir bugs e escrever testes**. Cada feature precisa rastrear até uma REQ-ID.
+Criar do zero o primeiro protótipo funcional do SIFAP 2.0 e implementar as features priorizadas no Estágio 2. O kit não traz código-base, containerização pronta ou symlink de protótipo: seu time vai **criar a estrutura, implementar features e escrever testes**. Cada feature precisa rastrear até uma REQ-ID.
 
 ## Por que isso importa
 
@@ -56,39 +56,39 @@ O Estágio 3 é onde a spec encontra a realidade. EARS escrita bonita no Estági
 
 ## Como pensar nisso
 
-Pense no protótipo como uma **cozinha aberta**: a estrutura está pronta (forno, geladeira, ingredientes), faltam pratos. Não reorganize a cozinha; cozinhe.
+Pense no protótipo como uma **obra começando pelo alicerce**: a spec e os ADRs dizem o que precisa existir, mas o código nasce agora no repositório do time.
 
-- O backend já tem 4 módulos (`beneficiary`, `payment`, `audit`, `admin`) com camadas `domain` / `application` / `infrastructure`.
-- O frontend já tem layout, rotas básicas e Server Components.
-- O banco já tem schema inicial via Flyway.
+- Crie `backend/` para a aplicação Spring Boot.
+- Crie `frontend/` para a aplicação Next.js.
+- Crie `infra/` apenas quando o time começar a descrever IaC ou composição local.
+- Arquivos de containerização, se necessários, devem ser criados pelo time neste repositório e revisados como código novo.
 
-Sua tarefa: pegar as REQ-IDs do Estágio 2 e transformar cada uma em **endpoint + service + repository + migração + teste**. Não invente arquitetura nova no meio do estágio.
+Sua tarefa: pegar as REQ-IDs do Estágio 2 e transformar cada uma em **endpoint + service + repository + migração + teste**. Não copie um protótipo externo nem ajuste caminhos de um repositório antigo.
 
 ---
 
-## Primeiros 15 minutos: subindo o ambiente
+## Primeiros 15 minutos: criando o esqueleto
 
-### 1. Suba o ambiente
+### 1. Defina os paths do protótipo
 
 ```bash
-# No raiz do repositório (04-prototipo-sifap-moderno/)
-docker compose up -d
+mkdir -p backend frontend
 ```
 
-Isso sobe:
+### 2. Crie a estrutura mínima
 
-- **PostgreSQL 16** na porta 5432
-- **Backend (Java 21 + Spring Boot 3)** na porta 8080
-- **Frontend (Next.js 15)** na porta **3000** (local) ou **3001** (docker-compose do root)
+- Backend: Spring Boot 3.3, Java 21, Maven Wrapper e pacote base `br.gov.sifap`.
+- Frontend: Next.js 15 App Router, TypeScript strict e Tailwind CSS.
+- Banco: migrações Flyway em `backend/src/main/resources/db/migration/`.
 
 > [!WARNING]
-> Se você rodou `docker compose up` no **ROOT** do workspace (recomendado), o frontend está em **`http://localhost:3001`**. Se rodou de dentro de `04-prototipo-sifap-moderno/`, está em **`http://localhost:3000`**.
+> Não use código ou containerização de protótipos externos. O objetivo do workshop é que o time construa o protótipo moderno a partir da leitura do legado.
 
-### 2. Verifique que tudo está no ar
+### 3. Verifique que o mínimo roda
 
-- Backend health: http://localhost:8080/actuator/health
-- Swagger UI: http://localhost:8080/swagger-ui.html
-- Frontend: http://localhost:3001 (ou 3000 se subiu local)
+- Backend: `cd backend && ./mvnw test` deve passar assim que o esqueleto existir.
+- Frontend: `cd frontend && npm test` ou o comando equivalente definido pelo time deve passar assim que o esqueleto existir.
+- Swagger e frontend local entram no runbook depois que o time criar esses pontos de execução.
 
 ### 3. Credenciais padrão
 
@@ -231,14 +231,14 @@ Para implementar features rapidamente:
 ### Rodar todos os testes
 
 ```bash
-cd 04-prototipo-sifap-moderno/backend
+cd backend
 ./mvnw test
 ```
 
 ### Requisitos
 
 - **Docker precisa estar rodando** — os testes usam Testcontainers para subir um PostgreSQL real
-- Java 21 instalado (ou use o DevContainer)
+- Java 21 instalado
 
 ### Tipos de teste esperados
 
@@ -255,7 +255,7 @@ cd 04-prototipo-sifap-moderno/backend
 ### Rodar o frontend localmente
 
 ```bash
-cd 04-prototipo-sifap-moderno/frontend
+cd frontend
 npm install
 npm run dev
 ```
@@ -344,8 +344,8 @@ Pronto. Rastreabilidade fechada.
 
 | Problema                            | Solução                                                                                                             |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `docker compose up` falha           | Verifique: Docker Desktop ligado? Portas 5432/8080/3000 livres? Tente `docker compose down && docker compose up -d` |
-| Backend não conecta no PostgreSQL   | Verifique que o container postgres está healthy: `docker compose ps`                                                |
+| Ambiente local não sobe             | Verifique Java 21, Node, variáveis de ambiente e portas 5432/8080/3000 livres                                      |
+| Backend não conecta no PostgreSQL   | Verifique a URL configurada e se o Postgres escolhido pelo time está em execução                                   |
 | Frontend mostra "Failed to load"    | O backend está rodando? Teste: `curl http://localhost:8080/actuator/health`                                         |
 | Login retorna "Invalid credentials" | Use: admin / client2026. Verifique que V4\_\_auth.sql rodou (Flyway)                                                |
 | Teste falha com Testcontainers      | Docker Desktop precisa estar rodando. Alternativa: unit test com Mockito                                            |
@@ -364,7 +364,7 @@ Ao final do Estágio 3, seu time deve ter:
 - [ ] Backend funcionando com pelo menos 2 endpoints novos implementados
 - [ ] Frontend com pelo menos 1 tela nova ou melhoria significativa
 - [ ] Testes passando: `./mvnw test` sem falhas
-- [ ] `docker compose up` funcionando — qualquer revisor consegue subir
+- [ ] Modo de execução local documentado no próprio protótipo — qualquer revisor consegue subir
 - [ ] Swagger UI mostrando todos os endpoints documentados
 - [ ] Pelo menos 1 regra de negócio do Estágio 1 implementada e testada
 - [ ] Todos os commits têm `Implements REQ-XXX` no message

@@ -18,7 +18,7 @@ Logo no início do Estágio 1, imediatamente depois que a equipe recebe acesso �
 
 ## Pré-condições
 
-- A pasta `01-arqueologia/legado-sifap/` está disponível no workspace (ela é parte do kit; `11-scripts/setup.sh` cria apenas os symlinks `prototype/` e `infra/`)
+- A pasta `01-arqueologia/legado-sifap/` está disponível no workspace; ela é parte do kit e não depende de script de setup
 - A equipe ainda não abriu programas individuais
 
 ## Entradas que a Equipe Deve Fornecer

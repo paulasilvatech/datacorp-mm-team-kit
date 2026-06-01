@@ -28,7 +28,7 @@
 
 ## Quem é essa pessoa
 
-O elo entre arquitetura e código do dia a dia. Decide padrões de implementação (convenções de código, estilo de teste, estrutura de módulo), desbloqueia o time quando alguém trava num detalhe técnico, e é responsável por garantir que ao final do Estágio 3 a aplicação realmente sobe com `docker compose up`.
+O elo entre arquitetura e código do dia a dia. Decide padrões de implementação (convenções de código, estilo de teste, estrutura de módulo), desbloqueia o time quando alguém trava num detalhe técnico, e é responsável por garantir que ao final do Estágio 3 a aplicação criada pelo time realmente roda de ponta a ponta.
 
 ## Missão no workshop
 
@@ -73,7 +73,7 @@ Manter velocidade de execução no Estágio 3. Escolher as batalhas técnicas qu
 - Tenta escrever metade do código sozinho.
 - Bloqueia review por detalhes estéticos.
 - Muda padrões no meio do Estágio 3.
-- Não percebe um gargalo e o `docker compose up` não sobe no final.
+- Não percebe um gargalo e o modo de execução local não funciona no final.
 
 ## Se você pegou duas personas
 
@@ -85,14 +85,14 @@ Manter velocidade de execução no Estágio 3. Escolher as batalhas técnicas qu
 
 1. **(Chat)** _"Revise este PR: verifique se segue as 3 camadas (domain/application/infrastructure), se o teste cobre caminho feliz + erro, e se há algum import cruzando bounded context."_
 2. **(Chat)** _"Temos 3 devs e 3 horas. Features pendentes: [lista]. Crie um plano distribuindo entre devs considerando dependências e complexidade."_
-3. **(Chat)** _"`docker compose up` falha com este erro: [cole]. Diagnostique a causa-raiz e proponha uma correção."_
+3. **(Chat)** _"O modo de execução local falha com este erro: [cole]. Diagnostique a causa-raiz e proponha uma correção."_
 
 ## Se travar (defaults de emergência)
 
-- **Docker não sobe?** Verifique: porta 5432 ocupada? `docker ps` mostra containers antigos? `docker compose down && docker compose up -d`.
+- **Ambiente local não sobe?** Verifique: porta 5432 ocupada? versão do Java/Node correta? containers antigos interferindo? logs do backend mostram qual erro?
 - **Time lento?** Pare, redistribua: "Dev A faz o endpoint, Dev B faz a migration, QA faz o teste. Merge em 45 min."
 - **PR em conflito?** `git pull --rebase` e resolva. Não deixe branch divergir por mais de 2 horas.
-- **Não sabe decidir um padrão?** Escolha o que o protótipo já usa. Copie o estilo de `BeneficiaryService.java`.
+- **Não sabe decidir um padrão?** Use a spec, os ADRs e as instruções do kit como fonte; documente a decisão no PR.
 
 ## Dependências — Quem depende de você
 
@@ -106,9 +106,10 @@ Manter velocidade de execução no Estágio 3. Escolher as batalhas técnicas qu
 
 ## Como você é avaliado
 
-- **Rubrica A3 (Integridade Técnica):** a aplicação sobe com `docker compose up`.
+- **Rubrica A3 (Integridade Técnica):** a aplicação criada pelo time roda localmente e no CI.
 - **Rubrica A6 (Colaboração):** ninguém travado por mais de 20 minutos.
 - Critério: "`main` verde o tempo todo, PRs revisados em menos de 15 minutos."
+
 ---
 
 ### Continuar a leitura

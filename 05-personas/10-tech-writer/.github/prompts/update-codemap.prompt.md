@@ -23,7 +23,7 @@ Peça à pessoa usuária o que estiver faltando.
 
 ## Processo
 
-1. **Liste as pastas de serviço de nível superior.** Serviços backend em `04-prototipo-sifap-moderno/backend/src/main/java/br/gov/sifap/<service>/`, rotas frontend em `04-prototipo-sifap-moderno/frontend/app/<route>/`, infra em `05-terraform-azure/modules/<name>/`.
+1. **Liste as pastas de serviço de nível superior.** Serviços backend em `backend/src/main/java/br/gov/sifap/<service>/`, rotas frontend em `frontend/app/<route>/`, infra em `infra/modules/<name>/` ou no layout criado pelo time.
 2. **Para cada módulo, capture cinco fatos.**
  - Propósito (uma frase).
  - Pontos de entrada públicos (endpoints REST, rotas de página, comandos CLI, entradas de IaC).
@@ -53,8 +53,8 @@ O entregável é `docs/CODEMAP.md` (ou subarquivos), com esta estrutura:
 
 ### payments — orquestração de desembolsos
 - **Propósito**: emitir, tentar novamente e reconciliar desembolsos de beneficiários.
-- **Path**: `04-prototipo-sifap-moderno/backend/src/main/java/br/gov/sifap/payments/`
-- **Testes**: `04-prototipo-sifap-moderno/backend/src/test/java/br/gov/sifap/payments/`
+- **Path**: `backend/src/main/java/br/gov/sifap/payments/`
+- **Testes**: `backend/src/test/java/br/gov/sifap/payments/`
 - **Pontos de entrada**: `POST /api/v1/payments`, `GET /api/v1/payments/{id}`, `POST /api/v1/payments/{id}/retry`
 - **Estado**: tabelas Postgres `payment`, `payment_attempt`, `disbursement_lock`. Fila Service Bus `payments-out`.
 - **REQ-IDs**: REQ-PAY-001..024
@@ -68,8 +68,8 @@ O entregável é `docs/CODEMAP.md` (ou subarquivos), com esta estrutura:
 ## 3. Rotas de frontend
 
 ### /beneficiaries — listagem e detalhe
-- **Path**: `04-prototipo-sifap-moderno/frontend/app/beneficiaries/`
-- **Testes**: `04-prototipo-sifap-moderno/frontend/app/beneficiaries/__tests__/`
+- **Path**: `frontend/app/beneficiaries/`
+- **Testes**: `frontend/app/beneficiaries/__tests__/`
 - **REQ-IDs**: REQ-UI-007..014
 - **Dono**: @sam
 - **Consome API de**: `payments`, `beneficiaries`
@@ -78,7 +78,7 @@ O entregável é `docs/CODEMAP.md` (ou subarquivos), com esta estrutura:
 ## 4. Módulos de infraestrutura
 
 ### postgres
-- **Path**: `05-terraform-azure/modules/postgres/`
+- **Path**: `infra/modules/postgres/`
 - **REQ-IDs**: REQ-OPS-014..018
 - **Dono**: @jordan
 - ...
