@@ -2,7 +2,7 @@
 name: "evolution"
 description: "Agente do Estágio 4 — escreve GitHub issues para Copilot Agent, revisa PRs gerados por IA, configura CI/CD e IaC"
 model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
-tools: ["read", "search", "edit", "execute", "web"]
+tools: [vscode, read, edit, com.microsoft/azure/search, ms-vscode.vscode-websearchforcopilot/websearch, todo]
 ---
 # @evolution-agent
 

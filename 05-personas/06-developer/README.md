@@ -11,7 +11,7 @@
 > **O que você terá ao final desta leitura:**
 >
 > 1. Lista de arquivos do kit (agente, prompts, skills, MCP)
-> 2. Como instalar no `.github/` do repo do time
+> 2. Onde os artefatos ativos vivem na `.github/` consolidada da raiz
 > 3. Boas práticas específicas desta persona
 >
 > 📘 **Antes de mais nada:** abra o `PERSONA.md` desta pasta para ver missão, atributos e prompts prontos.
@@ -32,10 +32,10 @@ Implementação, Evolução
 |------|------|---------|
 | `PERSONA.md` | Persona | Responsabilidades, passagens, prompts e rubrica do Developer |
 | `.github/agents/implementer.agent.md` | Agent | Implementação, TDD e correção de bugs |
-| `.github/prompts/implement.prompt.md` | Prompt | `/implement` |
-| `.github/prompts/fix-bug.prompt.md` | Prompt | `/fix-bug` |
-| `.github/prompts/tdd.prompt.md` | Prompt | `/tdd` |
-| `.github/prompts/refactor.prompt.md` | Prompt | `/refactor` |
+| `.github/prompts/persona-developer-implement.prompt.md` | Prompt | `/implement` |
+| `.github/prompts/persona-developer-fix-bug.prompt.md` | Prompt | `/fix-bug` |
+| `.github/prompts/persona-developer-tdd.prompt.md` | Prompt | `/tdd` |
+| `.github/prompts/persona-developer-refactor.prompt.md` | Prompt | `/refactor` |
 
 ## Uso no workshop
 
@@ -46,7 +46,7 @@ Os artefatos deste kit já estão consolidados na `.github/` da raiz do reposit�
 - Skills ativas: `.github/skills/`
 - Instructions ativas: `.github/instructions/` (quando existirem)
 
-Use esta pasta como referência da persona e fonte de manutenção. Não copie `.github/*` manualmente por cima da raiz sem orientação do facilitador.
+Use esta pasta como referência da persona (ficha, boas práticas e inventário). Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá se precisar de manutenção.
 
 Se este kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
 

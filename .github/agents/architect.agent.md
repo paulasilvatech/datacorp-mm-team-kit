@@ -2,7 +2,7 @@
 name: "architect"
 description: "Agente do Estágio 2 — recorta bounded contexts, escreve specs EARS, gera ADRs, projeta arquitetura de Modular Monolith"
 model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
-tools: ["read", "search", "edit"]
+tools: [vscode/installExtension, vscode/memory, vscode/newWorkspace, vscode/resolveMemoryFileUri, vscode/runCommand, vscode/switchAgent, vscode/vscodeAPI, vscode/extensions, vscode/askQuestions, vscode/toolSearch, read/getNotebookSummary, read/problems, read/readFile, read/viewImage, read/readNotebookCellOutput, read/skill, read/terminalSelection, read/terminalLastCommand, read/getTaskOutput, edit/createDirectory, edit/createFile, edit/createJupyterNotebook, edit/editFiles, edit/editNotebook, edit/rename, com.microsoft/azure/search, ms-vscode.vscode-websearchforcopilot/websearch, todo]
 ---
 # @architect-agent
 

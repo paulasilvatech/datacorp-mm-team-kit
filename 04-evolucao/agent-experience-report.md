@@ -21,7 +21,7 @@
 > Seja honesto — queremos aprender o que funciona e o que não funciona. Avaliação positiva forçada não ajuda ninguém.
 
 **Time**: [Nome do Time]
-**Data**: 19/05/2026
+**Data**: [YYYY-MM-DD]
 **Edição**:
 **Participantes**: [Liste os membros]
 

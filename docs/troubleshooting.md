@@ -45,7 +45,7 @@
 
 - **Causa provável:** o VS Code ainda não recarregou a `.github/` consolidada, ou a janela foi aberta fora da raiz do repositório.
 - **Solução:** confirme que existem arquivos em `.github/prompts/` e recarregue a janela: `Cmd+Shift+P` → *Developer: Reload Window*.
-- **Não faça:** copiar `05-personas/*/.github/*` por cima da `.github/` consolidada sem orientação do facilitador.
+- **Não faça:** criar cópias paralelas de agents/prompts/skills fora da `.github/` da raiz — ela é a única fonte ativa.
 
 ### "Não consigo selecionar `@archaeologist` no Chat"
 

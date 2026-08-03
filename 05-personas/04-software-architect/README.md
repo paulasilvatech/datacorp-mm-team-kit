@@ -11,7 +11,7 @@
 > **O que você terá ao final desta leitura:**
 >
 > 1. Lista de arquivos do kit (agente, prompts, skills, MCP)
-> 2. Como instalar no `.github/` do repo do time
+> 2. Onde os artefatos ativos vivem na `.github/` consolidada da raiz
 > 3. Boas práticas específicas desta persona
 >
 > 📘 **Antes de mais nada:** abra o `PERSONA.md` desta pasta para ver missão, atributos e prompts prontos.
@@ -32,9 +32,9 @@ Desenho, Supervisão da Implementação
 |------|------|---------|
 | `PERSONA.md` | Persona | Responsabilidades, passagens, prompts e rubrica do Software Architect |
 | `.github/agents/software-architect.agent.md` | Agent | Arquitetura |
-| `.github/prompts/codemap.prompt.md` | Prompt | `/codemap` |
-| `.github/prompts/impl-plan.prompt.md` | Prompt | `/impl-plan` |
-| `.github/prompts/api-validate.prompt.md` | Prompt | `/api-validate` |
+| `.github/prompts/persona-software-architect-codemap.prompt.md` | Prompt | `/codemap` |
+| `.github/prompts/persona-software-architect-impl-plan.prompt.md` | Prompt | `/impl-plan` |
+| `.github/prompts/persona-software-architect-api-validate.prompt.md` | Prompt | `/api-validate` |
 | `.github/instructions/backend.instructions.md` | Instructions | Convenções backend |
 | `.github/instructions/frontend.instructions.md` | Instructions | Convenções frontend |
 
@@ -47,7 +47,7 @@ Os artefatos deste kit já estão consolidados na `.github/` da raiz do reposit�
 - Skills ativas: `.github/skills/`
 - Instructions ativas: `.github/instructions/` (quando existirem)
 
-Use esta pasta como referência da persona e fonte de manutenção. Não copie `.github/*` manualmente por cima da raiz sem orientação do facilitador.
+Use esta pasta como referência da persona (ficha, boas práticas e inventário). Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá se precisar de manutenção.
 
 Se este kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
 

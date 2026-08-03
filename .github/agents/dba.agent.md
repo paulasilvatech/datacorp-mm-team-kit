@@ -2,11 +2,7 @@
 name: dba
 description: "Migrações, otimização de consultas, auditoria contra SQL injection"
 model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
-tools:
- - read
- - search
- - execute
- - edit
+tools: [vscode, read, edit, com.microsoft/azure/search, ms-vscode.vscode-websearchforcopilot/websearch, todo]
 
 ---
 

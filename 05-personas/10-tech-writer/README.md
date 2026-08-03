@@ -11,7 +11,7 @@
 > **O que você terá ao final desta leitura:**
 >
 > 1. Lista de arquivos do kit (agente, prompts, skills, MCP)
-> 2. Como instalar no `.github/` do repo do time
+> 2. Onde os artefatos ativos vivem na `.github/` consolidada da raiz
 > 3. Boas práticas específicas desta persona
 >
 > 📘 **Antes de mais nada:** abra o `PERSONA.md` desta pasta para ver missão, atributos e prompts prontos.
@@ -32,9 +32,9 @@ Transversal, documentação, evolução
 |------|------|---------|
 | `PERSONA.md` | Persona | Responsabilidades, passagens, prompts e rubrica do Tech Writer |
 | `.github/agents/tech-writer.agent.md` | Agent | Documentação de API, README, `CODEMAP.md`, changelog e drift |
-| `.github/prompts/generate-docs.prompt.md` | Prompt | `/generate-docs` |
-| `.github/prompts/update-codemap.prompt.md` | Prompt | `/update-codemap` |
-| `.github/prompts/doc-drift.prompt.md` | Prompt | `/doc-drift` |
+| `.github/prompts/persona-tech-writer-generate-docs.prompt.md` | Prompt | `/generate-docs` |
+| `.github/prompts/persona-tech-writer-update-codemap.prompt.md` | Prompt | `/update-codemap` |
+| `.github/prompts/persona-tech-writer-doc-drift.prompt.md` | Prompt | `/doc-drift` |
 
 ## Uso no workshop
 
@@ -45,7 +45,7 @@ Os artefatos deste kit já estão consolidados na `.github/` da raiz do reposit�
 - Skills ativas: `.github/skills/`
 - Instructions ativas: `.github/instructions/` (quando existirem)
 
-Use esta pasta como referência da persona e fonte de manutenção. Não copie `.github/*` manualmente por cima da raiz sem orientação do facilitador.
+Use esta pasta como referência da persona (ficha, boas práticas e inventário). Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá se precisar de manutenção.
 
 Se este kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
 

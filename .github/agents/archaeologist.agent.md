@@ -1,8 +1,8 @@
 ---
 name: "archaeologist"
 description: "Agente do Estágio 1 — lê código legado Natural/Adabas, extrai regras de negócio, mapeia dependências, cataloga mistérios"
-model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
-tools: ["read", "search", "edit"]
+model: ["Claude Opus 4.8 (copilot)", "Claude Sonnet 4.6 (copilot)"]
+tools: [vscode, read, edit, com.microsoft/azure/search, ms-vscode.vscode-websearchforcopilot/websearch, todo]
 ---
 # @archaeologist-agent
 

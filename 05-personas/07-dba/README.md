@@ -11,7 +11,7 @@
 > **O que você terá ao final desta leitura:**
 >
 > 1. Lista de arquivos do kit (agente, prompts, skills, MCP)
-> 2. Como instalar no `.github/` do repo do time
+> 2. Onde os artefatos ativos vivem na `.github/` consolidada da raiz
 > 3. Boas práticas específicas desta persona
 >
 > 📘 **Antes de mais nada:** abra o `PERSONA.md` desta pasta para ver missão, atributos e prompts prontos.
@@ -32,8 +32,8 @@ Implementação, Qualidade
 |------|------|---------|
 | `PERSONA.md` | Persona | Responsabilidades, passagens, prompts e rubrica do DBA |
 | `.github/agents/dba.agent.md` | Agent | Migrações, otimização de consultas e auditoria SQL |
-| `.github/prompts/migration.prompt.md` | Prompt | `/migration` |
-| `.github/prompts/query-audit.prompt.md` | Prompt | `/query-audit` |
+| `.github/prompts/persona-dba-migration.prompt.md` | Prompt | `/migration` |
+| `.github/prompts/persona-dba-query-audit.prompt.md` | Prompt | `/query-audit` |
 | `.github/instructions/database.instructions.md` | Instructions | Convenções de banco de dados |
 
 ## Uso no workshop
@@ -45,7 +45,7 @@ Os artefatos deste kit já estão consolidados na `.github/` da raiz do reposit�
 - Skills ativas: `.github/skills/`
 - Instructions ativas: `.github/instructions/` (quando existirem)
 
-Use esta pasta como referência da persona e fonte de manutenção. Não copie `.github/*` manualmente por cima da raiz sem orientação do facilitador.
+Use esta pasta como referência da persona (ficha, boas práticas e inventário). Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá se precisar de manutenção.
 
 Se este kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
 

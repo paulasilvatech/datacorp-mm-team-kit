@@ -11,7 +11,7 @@
 > **O que você terá ao final desta leitura:**
 >
 > 1. Lista de arquivos do kit (agente, prompts, skills, MCP)
-> 2. Como instalar no `.github/` do repo do time
+> 2. Onde os artefatos ativos vivem na `.github/` consolidada da raiz
 > 3. Boas práticas específicas desta persona
 >
 > 📘 **Antes de mais nada:** abra o `PERSONA.md` desta pasta para ver missão, atributos e prompts prontos.
@@ -32,9 +32,9 @@ Descoberta → Especificação → Aceite
 |------|------|---------|
 | `PERSONA.md` | Persona | Responsabilidades, passagens, prompts e rubrica do Product Owner |
 | `.github/agents/product-owner.agent.md` | Agent | Assistente de Product Owner para spec, backlog e aceite |
-| `.github/prompts/spec.prompt.md` | Prompt | `/spec` — escreve uma seção de `SPECIFICATION.md` a partir de user stories em EARS |
-| `.github/prompts/update-spec.prompt.md` | Prompt | `/update-spec` — atualiza a spec quando uma feature muda |
-| `.github/prompts/acceptance-check.prompt.md` | Prompt | `/acceptance-check` — verifica se o código atende aos critérios de aceite |
+| `.github/prompts/persona-product-owner-spec.prompt.md` | Prompt | `/spec` — escreve uma seção de `SPECIFICATION.md` a partir de user stories em EARS |
+| `.github/prompts/persona-product-owner-update-spec.prompt.md` | Prompt | `/update-spec` — atualiza a spec quando uma feature muda |
+| `.github/prompts/persona-product-owner-acceptance-check.prompt.md` | Prompt | `/acceptance-check` — verifica se o código atende aos critérios de aceite |
 | `mcp.json` | MCP | Manifesto de servidores GitHub + Azure DevOps work items |
 
 ## Uso no workshop
@@ -46,7 +46,7 @@ Os artefatos deste kit já estão consolidados na `.github/` da raiz do reposit�
 - Skills ativas: `.github/skills/`
 - Instructions ativas: `.github/instructions/` (quando existirem)
 
-Use esta pasta como referência da persona e fonte de manutenção. Não copie `.github/*` manualmente por cima da raiz sem orientação do facilitador.
+Use esta pasta como referência da persona (ficha, boas práticas e inventário). Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá se precisar de manutenção.
 
 Se este kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
 

@@ -11,7 +11,7 @@
 > **O que você terá ao final desta leitura:**
 >
 > 1. Lista de arquivos do kit (agente, prompts, skills, MCP)
-> 2. Como instalar no `.github/` do repo do time
+> 2. Onde os artefatos ativos vivem na `.github/` consolidada da raiz
 > 3. Boas práticas específicas desta persona
 >
 > 📘 **Antes de mais nada:** abra o `PERSONA.md` desta pasta para ver missão, atributos e prompts prontos.
@@ -32,9 +32,9 @@ Arquitetura, Desenho, Segurança
 |------|------|---------|
 | `PERSONA.md` | Persona | Responsabilidades, passagens, prompts e rubrica do Enterprise Architect |
 | `.github/agents/enterprise-architect.agent.md` | Agent | Arquitetura e segurança |
-| `.github/prompts/create-constitution.prompt.md` | Prompt | `/create-constitution` |
-| `.github/prompts/create-adr.prompt.md` | Prompt | `/create-adr` |
-| `.github/prompts/architecture-review.prompt.md` | Prompt | `/architecture-review` |
+| `.github/prompts/persona-enterprise-architect-create-constitution.prompt.md` | Prompt | `/create-constitution` |
+| `.github/prompts/persona-enterprise-architect-create-adr.prompt.md` | Prompt | `/create-adr` |
+| `.github/prompts/persona-enterprise-architect-architecture-review.prompt.md` | Prompt | `/architecture-review` |
 | `.github/instructions/security.instructions.md` | Instructions | Convenções de segurança |
 | `.github/instructions/infrastructure.instructions.md` | Instructions | Convenções de IaC |
 | `hooks.json` | Hooks | Bloqueios de edição para `CONSTITUTION.md` |
@@ -48,7 +48,7 @@ Os artefatos deste kit já estão consolidados na `.github/` da raiz do reposit�
 - Skills ativas: `.github/skills/`
 - Instructions ativas: `.github/instructions/` (quando existirem)
 
-Use esta pasta como referência da persona e fonte de manutenção. Não copie `.github/*` manualmente por cima da raiz sem orientação do facilitador.
+Use esta pasta como referência da persona (ficha, boas práticas e inventário). Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá se precisar de manutenção.
 
 Se este kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
 

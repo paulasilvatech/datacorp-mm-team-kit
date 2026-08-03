@@ -329,7 +329,7 @@ Ao final do Estágio 4, seu time deve ter:
 
 ## Próximo passo
 
-Demo (18:30) + Retrospectiva (19:10). Cada time tem ~3 minutos. O Par 1 (PO) conduz o demo; todos preparam 30 segundos cada. Veja [`../../07-playbook-facilitacao/DAY-SCRIPT.md`](../../../07-playbook-facilitacao/DAY-SCRIPT.md) para o roteiro completo.
+Demo (18:30) + Retrospectiva (19:10). Cada time tem ~3 minutos. O Par 1 (PO) conduz o demo; todos preparam 30 segundos cada. Veja [`docs/demo-script.md`](../docs/demo-script.md) para o roteiro completo.
 
 <details>
 <summary><strong>Prompts úteis para Copilot Chat</strong> — clique para expandir</summary>

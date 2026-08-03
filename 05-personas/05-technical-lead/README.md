@@ -11,7 +11,7 @@
 > **O que você terá ao final desta leitura:**
 >
 > 1. Lista de arquivos do kit (agente, prompts, skills, MCP)
-> 2. Como instalar no `.github/` do repo do time
+> 2. Onde os artefatos ativos vivem na `.github/` consolidada da raiz
 > 3. Boas práticas específicas desta persona
 >
 > 📘 **Antes de mais nada:** abra o `PERSONA.md` desta pasta para ver missão, atributos e prompts prontos.
@@ -32,9 +32,9 @@ Todas as fases (coordenação técnica)
 |------|------|---------|
 | `PERSONA.md` | Persona | Responsabilidades, passagens, prompts e rubrica do Technical Lead |
 | `.github/agents/tech-lead.agent.md` | Agent | Governança técnica |
-| `.github/prompts/setup-project.prompt.md` | Prompt | `/setup-project` |
-| `.github/prompts/routing-table.prompt.md` | Prompt | `/routing-table` |
-| `.github/prompts/audit-context.prompt.md` | Prompt | `/audit-context` |
+| `.github/prompts/persona-technical-lead-setup-project.prompt.md` | Prompt | `/setup-project` |
+| `.github/prompts/persona-technical-lead-routing-table.prompt.md` | Prompt | `/routing-table` |
+| `.github/prompts/persona-technical-lead-audit-context.prompt.md` | Prompt | `/audit-context` |
 | `hooks.json` | Hooks | Escopo, lint e testes |
 
 ## Uso no workshop
@@ -46,7 +46,7 @@ Os artefatos deste kit já estão consolidados na `.github/` da raiz do reposit�
 - Skills ativas: `.github/skills/`
 - Instructions ativas: `.github/instructions/` (quando existirem)
 
-Use esta pasta como referência da persona e fonte de manutenção. Não copie `.github/*` manualmente por cima da raiz sem orientação do facilitador.
+Use esta pasta como referência da persona (ficha, boas práticas e inventário). Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá se precisar de manutenção.
 
 Se este kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
 

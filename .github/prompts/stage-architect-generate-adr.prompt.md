@@ -61,7 +61,7 @@ Um arquivo Markdown em `02-spec-moderna/ADRs/adr-NNN-<slug>.md`:
 - Related Requirements: REQ-NNN
 ```
 
-Veja [`02-spec-moderna/templates/ADR.template.md`](../../../02-spec-moderna/templates/ADR.template.md) para o esqueleto.
+Veja [`02-spec-moderna/templates/ADR.template.md`](../../02-spec-moderna/templates/ADR.template.md) para o esqueleto.
 
 ## Definição de Pronto
 

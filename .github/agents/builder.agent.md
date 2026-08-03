@@ -2,7 +2,7 @@
 name: "builder"
 description: "Agente do Estágio 3 — traduz Natural para Java, gera JPA a partir de FDT, escreve testes de equivalência, constrói REST + Next.js"
 model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
-tools: ["read", "search", "edit", "execute"]
+tools: [vscode, execute, read, agent, browser, edit, com.microsoft/azure/search, cweijan.vscode-postgresql-client2/dbclient-getDatabases, cweijan.vscode-postgresql-client2/dbclient-getTables, cweijan.vscode-postgresql-client2/dbclient-executeQuery, ms-python.python/getPythonEnvironmentInfo, ms-python.python/getPythonExecutableCommand, ms-python.python/installPythonPackage, ms-python.python/configurePythonEnvironment, ms-vscode.vscode-websearchforcopilot/websearch, todo]
 ---
 # @builder-agent
 

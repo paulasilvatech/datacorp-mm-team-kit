@@ -16,7 +16,7 @@
 > 3. Validar que os agentes e slash commands consolidados aparecem no Copilot Chat
 > 4. Saber para onde ir depois (Estágio 1 às 11:00)
 
-> Esta pasta contém **somente os 10 kits usados neste workshop**. O time tem 5 pessoas; cada pessoa usa 2 kits do mesmo par. Cada kit é a fonte única da persona: `PERSONA.md` descreve o papel, e os artefatos `.github/`, `mcp.json`, prompts e skills servem como fonte de manutenção. A `.github/` da raiz já vem consolidada com todos os agentes, prompts, instructions e skills ativos.
+> Esta pasta contém **somente os 10 kits usados neste workshop**. O time tem 5 pessoas; cada pessoa usa 2 kits do mesmo par. Cada kit é a carta de referência da persona: `PERSONA.md` descreve o papel e o `README.md` lista o inventário de agents, prompts e skills daquele papel. A `.github/` da raiz já vem consolidada com todos os agentes, prompts, instructions e skills ativos.
 
 ![Visão geral das personas por par no hackathon SIFAP](../assets/personas-team.svg)
 
@@ -39,12 +39,17 @@ Cada pasta de persona segue uma estrutura consistente:
 | Artefato | Propósito |
 | --- | --- |
 | `PERSONA.md` | Carta completa da persona: responsabilidades, passagens, prompts e critérios de avaliação |
-| `README.md` | Inventário do kit Copilot e guia de instalação |
+| `README.md` | Inventário dos artefatos Copilot da persona (com os caminhos na `.github/` da raiz) |
 | `mcp.json` | Recomendações de servidores MCP para o papel |
-| `.github/agents/*.agent.md` | Agente Copilot ajustado ao papel |
-| `.github/skills/*/SKILL.md` | Modelos mentais reutilizáveis |
-| `.github/prompts/*.prompt.md` | Prompts prontos para tarefas recorrentes |
-| `.github/instructions/*.instructions.md` | Regras específicas de arquivos ou domínios, quando existirem |
+
+Os artefatos ativos de todas as personas vivem consolidados na `.github/` da raiz do repositório:
+
+| Artefato ativo | Onde vive |
+| --- | --- |
+| Agente Copilot ajustado ao papel | `.github/agents/*.agent.md` |
+| Prompts prontos para tarefas recorrentes | `.github/prompts/persona-*.prompt.md` |
+| Modelos mentais reutilizáveis (skills) | `.github/skills/*/SKILL.md` |
+| Regras específicas de arquivos ou domínios | `.github/instructions/*.instructions.md` |
 
 ## Kits disponíveis
 

@@ -439,7 +439,7 @@ Ao final do Estágio 2, seu time deve ter:
 
 - [ ] `SPECIFICATION.md` completo com EARS (arquivo: `02-spec-moderna/SPECIFICATION.md`)
 - [ ] 100% das REQ-IDs com `source_legacy:` preenchido
-- [ ] 3 a 5 ADRs (arquivos: `02-spec-moderna/ADR-001.md`, `ADR-002.md`, etc.)
+- [ ] 3 a 5 ADRs (arquivos: `02-spec-moderna/ADRs/adr-NNN-<slug>.md` — crie a pasta `ADRs/` com o `/generate-adr`)
 - [ ] Diagrama C4 em Mermaid (dentro de SPECIFICATION.md ou em arquivo separado)
 - [ ] Decisões de escopo documentadas (arquivo: `02-spec-moderna/scope-decisions.md`)
 - [ ] Par 1 (PO) assinou o sign-off de escopo no PR

@@ -104,7 +104,7 @@ Do dependency map, liste arestas program-to-program e program-to-data verificada
 
 Do inventário, resuma as estruturas DDM documentadas.
 
-Toda afirmação deve citar seu artefato-fonte: `[Veja business-rules-catalog.md, Regra #3](business-rules-catalog.md)`.
+Toda afirmação deve citar seu artefato-fonte: `[Veja business-rules-catalog.md, Regra #3](../../01-arqueologia/business-rules-catalog.md)`.
 
 **Passo 4 — Construir a seção "O Que Traz Risco".**
 Do catálogo de mistérios, extraia todos os mistérios classificados como "blocks-stage-2". Liste-os com seus MYS-IDs, descrições e caminhos de resolução sugeridos.
