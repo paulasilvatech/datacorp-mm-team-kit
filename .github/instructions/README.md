@@ -2,7 +2,7 @@
 
 Este diretório guarda as file-specific instructions do GitHub Copilot para o workshop.
 
-> Importante: mantenha os arquivos `*.instructions.md` diretamente em `.github/instructions/`. A localização reconhecida pelo Copilot para instructions de workspace é flat (`.github/instructions/*.instructions.md`). Subdiretórios podem dificultar ou impedir a descoberta automática. A organização fica neste índice e nos nomes/descriptions dos arquivos.
+> Importante: o Copilot descobre arquivos `*.instructions.md` em `.github/instructions/` e em seus subdiretórios. Este workshop os mantém diretamente neste diretório para que o índice e os escopos sejam fáceis de revisar.
 
 ## Arquitetura e Legado
 

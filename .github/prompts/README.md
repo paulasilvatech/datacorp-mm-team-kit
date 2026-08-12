@@ -38,6 +38,10 @@ Este diretório guarda os prompt files do GitHub Copilot para o workshop.
 ## Regra de Manutenção
 
 - Cada prompt deve ter frontmatter YAML válido.
-- Prefira `description`, `argument-hint`, `agent`, `model` e `tools` explícitos.
+- Prefira `description`, `name`, `argument-hint` (quando houver entradas), `agent` e `tools` explícitos.
 - Evite tools em excesso; use o menor conjunto necessário para a tarefa.
+- Tools definidos no prompt substituem, não se somam, aos tools do agente customizado; declare todas as permissões necessárias no próprio prompt.
+- Prefira aliases portáveis do VS Code (`read`, `search`, `edit`, `execute`, `agent`, `web`, `todo`) a IDs específicos de implementação.
+- Não fixe capacidade ou fornecedor no prompt. A pessoa usuária decide como executar a tarefa.
+- Ao usar um agente customizado, referencie seu `name` em `.github/agents/` (por exemplo, `archaeologist`, não o nome de exibição no corpo do arquivo).
 - Se adicionar um prompt novo, use um dos prefixos acima para manter a descoberta e a organização.

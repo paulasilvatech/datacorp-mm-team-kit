@@ -2,9 +2,8 @@
 name: "generate-adr"
 description: "Rascunha um Architecture Decision Record (ADR) para uma escolha específica de design que a equipe está fazendo."
 argument-hint: "title=\"Map Adabas MU fields to JSONB vs ElementCollection\""
-agent: "agent"
-model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
-tools: ["search/codebase", "edit/editFiles"]
+agent: "architect"
+tools: ["search", "edit"]
 ---
 # /generate-adr
 
@@ -74,7 +73,7 @@ Veja [`02-spec-moderna/templates/ADR.template.md`](../../02-spec-moderna/templat
 
 ## Corpo do Prompt
 
-Você é o `@architect-agent`. A equipe precisa documentar uma decisão arquitetural.
+Você é o `@architect`. A equipe precisa documentar uma decisão arquitetural.
 
 **Passo 1 — Clarificar a decisão.**
 Peça à equipe que declare:

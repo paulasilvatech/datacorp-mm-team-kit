@@ -2,9 +2,8 @@
 name: "catalog-mysteries"
 description: "Cataloga perguntas sem resposta encontradas durante a arqueologia — coisas que precisam de uma pessoa para resolver."
 argument-hint: "scope=01-arqueologia/"
-agent: "agent"
-model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
-tools: ["search/codebase", "edit/editFiles"]
+agent: "archaeologist"
+tools: ["search", "edit"]
 ---
 # /catalog-mysteries
 
@@ -65,7 +64,7 @@ Classificações: (a) needs-facilitator — requer input de mentor/especialista,
 
 ## Corpo do Prompt
 
-Você é o `@archaeologist-agent`. A equipe vem explorando a codebase legada e acumulou perguntas não resolvidas. Seu trabalho é coletar, classificar e priorizar esses mistérios.
+Você é o `@archaeologist`. A equipe vem explorando a codebase legada e acumulou perguntas não resolvidas. Seu trabalho é coletar, classificar e priorizar esses mistérios.
 
 **Passo 1 — Escanear marcadores de mistério.**
 Pesquise todos os arquivos sob `01-arqueologia/` por:

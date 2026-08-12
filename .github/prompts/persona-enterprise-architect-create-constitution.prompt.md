@@ -1,8 +1,8 @@
 ---
 name: "create-constitution"
-agent: "agent"
-model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
+agent: "enterprise-architect"
 description: "Escreva CONSTITUTION.md — as regras e princípios inegociáveis que governam a construção de uma feature do SIFAP 2.0."
+tools: ["search", "edit"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
@@ -84,7 +84,7 @@ O entregável é `specs/<NNN>-<feature>/CONSTITUTION.md`:
 ## 5. Processo
 | ID | Regra | Consequência |
 |----|------|-------------|
-| C16 | One branch per spec — `spec/<NNN>-<name>` from `develop`. No direct commits to `develop`, `stage`, or `main`. | PR rejected. |
+| C16 | One branch per spec — `spec/<NNN>-<name>` from `develop`. No direct commits to `develop` or `main`. | PR rejected. |
 | C17 | Every requirement uses EARS notation; every test cites a `REQ-ID`. | Spec review blocks. |
 | C18 | Every architectural decision is captured as an ADR before code lands. | Code review blocks. |
 

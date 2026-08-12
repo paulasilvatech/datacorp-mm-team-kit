@@ -1,6 +1,6 @@
 ---
 description: "Use when writing or reviewing requirements, EARS specifications, acceptance criteria, traceability, and docs-backed requirements."
-applyTo: "docs/**/*.md"
+applyTo: "docs/**/*.md,specs/**/*.md,02-spec-moderna/**/*.md"
 ---
 
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->

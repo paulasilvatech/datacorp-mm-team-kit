@@ -1,8 +1,8 @@
 ---
 name: "spec-sync"
-agent: "ask"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
+agent: "requirements-engineer"
 description: "Sincronize SPECIFICATION.md com o codebase atual"
+tools: ["search"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 

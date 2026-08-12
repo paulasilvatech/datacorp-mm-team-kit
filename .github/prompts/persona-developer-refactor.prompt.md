@@ -1,8 +1,8 @@
 ---
 name: "refactor"
-agent: "agent"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
+agent: "implementer"
 description: "Refatore código com testes verdes sem alterar comportamento observável nem quebrar a rastreabilidade de REQ-ID."
+tools: ["search", "edit", "execute"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 

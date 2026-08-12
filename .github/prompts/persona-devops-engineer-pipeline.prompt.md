@@ -1,8 +1,8 @@
 ---
 name: "pipeline"
-agent: "agent"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
+agent: "devops-engineer"
 description: "Crie um pipeline CI/CD no GitHub Actions para o SIFAP 2.0 com build, testes, gates de segurança e promoção entre ambientes."
+tools: ["search", "edit"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
@@ -10,15 +10,15 @@ description: "Crie um pipeline CI/CD no GitHub Actions para o SIFAP 2.0 com buil
 
 ## Objetivo
 
-Você é o DevOps engineer criando (ou refatorando) um workflow de **GitHub Actions** para o SIFAP 2.0. O pipeline deve fazer build, testar, escanear e promover artefatos por `develop` → `stage` → `main` (= produção) com gates explícitos. O entregável fica em `.github/workflows/` e referencia workflows reutilizáveis em `.github/workflows/_reusable/` quando forem compartilhados.
+Você é o DevOps engineer criando (ou refatorando) um workflow de **GitHub Actions** para o SIFAP 2.0. O pipeline deve fazer build, testar, escanear e promover artefatos por `develop` → `main` (= produção) com gates explícitos. O entregável fica em `.github/workflows/` e referencia workflows reutilizáveis em `.github/workflows/_reusable/` quando forem compartilhados.
 
 ## Entradas
 
 Peça ao usuário o que estiver faltando.
 
 - Alvo do pipeline — serviço backend Java, app frontend Next.js, módulo IaC ou orquestração end-to-end.
-- Modelo de branches — `spec/*` → `develop` → `stage` → `main` (padrão).
-- Ambientes configurados no GitHub (`dev`, `stage`, `prod`) com revisores obrigatórios.
+- Modelo de branches — `spec/*` → `develop` → `main` (padrão).
+- Ambientes configurados no GitHub (`dev`, `prod`) com revisores obrigatórios.
 - Container registry — Azure Container Registry (`acr.azurecr.io`).
 - Requisitos de compliance — SBOM, imagens assinadas, attestation (`sigstore`).
 
@@ -33,11 +33,10 @@ Peça ao usuário o que estiver faltando.
  - `security` — Trivy na imagem de container, OWASP Dependency Check, Gitleaks no diff.
  - `package` — build de container, push para ACR com tags `:sha-<short>` e `:latest`, gerar SBOM (`syft`), assinar com `cosign`.
  - `deploy-dev` — automático em push para `develop`, usa o ambiente GitHub `dev`.
- - `deploy-stage` — automático em push para `stage`, requer uma aprovação.
  - `deploy-prod` — automático em push para `main`, requer duas aprovações e uma referência válida a change ticket.
 5. **Use cache com responsabilidade.** Maven: `actions/cache@<sha>` com chave baseada no hash de `pom.xml`. Node: `pnpm/action-setup@<sha>` com cache de store embutido. Cache de camadas do Buildx para builds de container.
 6. **Defina timeouts e concorrência.** `timeout-minutes: 30` por job, `concurrency: { group: ${{ github.workflow }}-${{ github.ref }}, cancel-in-progress: true }`.
-7. **Aplique gates por regras de branch protection.** Checks obrigatórios: `build`, `quality`, `security`. Stage e prod exigem revisão de deployment.
+7. **Aplique gates por regras de branch protection.** Checks obrigatórios: `build`, `quality`, `security`. Produção exige revisão de deployment.
 8. **Emita rastreabilidade.** Taggeie a imagem implantada com o SHA do merge commit e os `REQ-ID`s relacionados da descrição do PR; exponha-os na descrição do deployment no GitHub.
 
 ## Saída
@@ -58,7 +57,7 @@ on:
  pull_request:
  paths: ['backend/**']
  push:
- branches: [develop, stage, main]
+ branches: [develop, main]
  paths: ['backend/**']
 
 permissions:
@@ -89,15 +88,15 @@ jobs:
 
 **Esqueleto esperado da resposta:**
 
-> Workflow `backend-payments.yml` com 7 jobs (`build`, `quality`, `security`, `package`, `deploy-dev`, `deploy-stage`, `deploy-prod`).
+> Workflow `backend-payments.yml` com 6 jobs (`build`, `quality`, `security`, `package`, `deploy-dev`, `deploy-prod`).
 >
 > OIDC federado para o app do Entra ID `sp-sifap-cicd`, com escopo na subscription `sub-sifap-prod`.
 >
 > Secrets obrigatórios: `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`, `AZURE_CLIENT_ID`, `ACR_NAME`. Sem senhas.
 >
-> Branch protection: `build`, `quality`, `security` obrigatórios em todos os PRs para `develop`. Stage exige um revisor. Prod exige dois revisores do time `release-managers` e um change ticket vinculado no corpo do PR.
+> Branch protection: `build`, `quality`, `security` obrigatórios em todos os PRs para `develop`. Produção exige dois revisores do time `release-managers` e um change ticket vinculado no corpo do PR.
 >
-> Promoção: PR → develop (auto-deploy `dev`) → cherry-pick para `stage` (1 aprovador) → cherry-pick para `main` (2 aprovadores).
+> Promoção: PR → develop (auto-deploy `dev`) → PR para `main` (2 aprovadores).
 
 ## Antipadrões
 
@@ -116,7 +115,7 @@ jobs:
 - [ ] Cada action fixada a um commit SHA com comentário nomeando a versão.
 - [ ] `build`, `quality` e `security` são checks obrigatórios nos PRs.
 - [ ] A imagem recebe tag `sha-<short>` e é assinada com cosign.
-- [ ] Deployments de stage e prod exigem aprovações conforme descrito.
+- [ ] Deployments de produção exigem aprovações conforme descrito.
 - [ ] O concurrency group impede dois deploys para o mesmo env ao mesmo tempo.
 - [ ] `timeout-minutes` definido em todos os jobs.
 - [ ] Requisito de descrição do PR aplicado para deploys em prod (`REQ-ID`s vinculados e change ticket).

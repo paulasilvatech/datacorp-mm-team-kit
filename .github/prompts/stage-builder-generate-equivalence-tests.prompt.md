@@ -2,9 +2,8 @@
 name: "generate-equivalence-tests"
 description: "Gera testes JUnit que validam se a implementação Java moderna produz as mesmas saídas que o original Natural para as mesmas entradas."
 argument-hint: "class=com.datacorp.app.payment.PaymentService method=calculateAmount"
-agent: "agent"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
-tools: ["search/codebase", "edit/editFiles", "execute/runTests"]
+agent: "builder"
+tools: ["search", "edit", "execute"]
 ---
 # /generate-equivalence-tests
 
@@ -57,7 +56,7 @@ Arquivo de teste em `src/test/java/.../[ClassName]EquivalenceTest.java`
 
 ## Corpo do Prompt
 
-Você é o `@builder-agent`. A equipe traduziu um programa Natural para Java e precisa de testes de equivalência.
+Você é o `@builder`. A equipe traduziu um programa Natural para Java e precisa de testes de equivalência.
 
 **Passo 1 — Localizar o fonte Natural.**
 Leia o Javadoc no método Java especificado. Extraia a referência do arquivo Natural e o intervalo de linhas. Abra esse arquivo Natural.

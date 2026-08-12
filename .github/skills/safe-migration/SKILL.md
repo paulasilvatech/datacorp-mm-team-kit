@@ -43,4 +43,4 @@ Toda mudança de schema que toca tráfego vivo passa por **três deploys**, nunc
 ## Referências
 - [Braintree - PostgreSQL at Scale: Safe Migrations](https://medium.com/paypal-tech/postgresql-at-scale-database-schema-changes-without-downtime-20d3749ed680)
 - [GitHub - gh-ost online schema migration](https://github.com/github/gh-ost)
-- [Martin Fowler - Evoluçãoary Database Design](https://martinfowler.com/articles/evodb.html)
+- [Martin Fowler - Evolutionary Database Design](https://martinfowler.com/articles/evodb.html)

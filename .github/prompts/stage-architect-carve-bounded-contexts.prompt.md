@@ -2,9 +2,8 @@
 name: "carve-bounded-contexts"
 description: "Avalia as hipóteses de recorte do Estágio 1 e decide bounded contexts para o Modular Monolith."
 argument-hint: "report=01-arqueologia/discovery-report.md"
-agent: "agent"
-model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
-tools: ["search/codebase", "edit/editFiles"]
+agent: "architect"
+tools: ["search", "edit"]
 ---
 # /carve-bounded-contexts
 
@@ -71,7 +70,7 @@ Um arquivo Markdown em `02-spec-moderna/bounded-contexts.md`:
 
 ## Corpo do Prompt
 
-Você é o `@architect-agent`. A equipe está começando o Estágio 2 e precisa decidir bounded contexts para o Modular Monolith.
+Você é o `@architect`. A equipe está começando o Estágio 2 e precisa decidir bounded contexts para o Modular Monolith.
 
 **Passo 1 — Ler o relatório de descoberta.**
 Abra `01-arqueologia/discovery-report.md`. Extraia a seção de hipóteses de recorte. Liste cada hipótese com nome, programas incluídos, DDMs próprios e racional.

@@ -1,8 +1,8 @@
 ---
 name: "contradiction-check"
-agent: "agent"
-model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
+agent: "requirements-engineer"
 description: "Detecte contradições entre requisitos em SPECIFICATION.md — mesma feature, regras diferentes — antes que virem bugs em produção."
+tools: ["search"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
@@ -19,7 +19,7 @@ Peça ao usuário o que estiver faltando.
 - O arquivo de spec (`specs/<NNN>-<feature>/SPECIFICATION.md`).
 - Quaisquer specs pai relacionadas cujos REQ-IDs sejam referenciados por esta.
 - A CONSTITUTION (`specs/<NNN>-<feature>/CONSTITUTION.md`) — contradições também devem ser verificadas contra regras constitucionais.
-- Qualquer log de esclarecimento já produzido por `/clarify`.
+- Qualquer log de esclarecimento já produzido por `/speckit.clarify`.
 
 ## Processo
 
@@ -90,7 +90,7 @@ Resolver Critical e Major antes da aprovação da spec. Levar (1) e (2) ao produ
 - Relatar "the spec is contradictory" sem nomear os pares. Revisores não conseguem agir.
 - Verificar apenas dentro de um domínio. Muitas contradições cruzam domínios.
 - Ignorar a constituição. Conflitos constitucionais têm severidade maior que conflitos entre REQs pares.
-- Confundir ambiguidade com contradição. Ambiguidade é para `/clarify`; contradição é incompatibilidade.
+- Confundir ambiguidade com contradição. Ambiguidade é para `/speckit.clarify`; contradição é incompatibilidade.
 - Resolver silenciosamente na própria cabeça. Sempre exponha e encaminhe — mesmo quando parecer "obvious".
 - Pular verificações de regressão legada. A modernização do SIFAP vive ou morre pela fidelidade ao legado.
 - Tratar conflitos de limite como "can fix in design". Se a matemática não fecha, o REQ está errado.

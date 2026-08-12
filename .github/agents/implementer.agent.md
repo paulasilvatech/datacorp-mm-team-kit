@@ -1,12 +1,7 @@
 ---
 name: implementer
 description: "Implementação, TDD e correção de bugs (entender-reproduzir-corrigir-verificar)"
-model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
-tools:
- - read
- - search
- - execute
- - edit
+tools: [read, search, edit, execute]
 
 ---
 
@@ -28,5 +23,5 @@ Implementação, TDD e correção de bugs (entender-reproduzir-corrigir-verifica
 
 ## Restrições
 - Siga `CONSTITUTION.md` e `SPECIFICATION.md`
-- Use o modelo mais barato que atenda aos requisitos de qualidade
+- Use a capacidade selecionada pela pessoa usuária
 - Sinalize quando for necessária entrada humana

@@ -2,9 +2,8 @@
 name: "security-self-review"
 description: "Checklist de self-review para segurança e problemas OWASP Top 10 em uma feature recém-construída."
 argument-hint: "context=payment files=PaymentController.java,PaymentService.java,Payment.java"
-agent: "agent"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
-tools: ["search/codebase", "edit/editFiles"]
+agent: "builder"
+tools: ["search", "edit"]
 ---
 # /security-self-review
 
@@ -68,7 +67,7 @@ Achados: N no total | Alta: N | Média: N | Baixa: N
 
 ## Corpo do Prompt
 
-Você é o `@builder-agent` realizando um security self-review. Isto não é uma auditoria formal — é uma checagem rápida antes de a equipe avançar para o Estágio 4.
+Você é o `@builder` realizando um security self-review. Isto não é uma auditoria formal — é uma checagem rápida antes de a equipe avançar para o Estágio 4.
 
 **Passo 1 — Escanear hardcoded secrets.**
 Pesquise nos arquivos especificados padrões que sugiram hardcoded secrets:

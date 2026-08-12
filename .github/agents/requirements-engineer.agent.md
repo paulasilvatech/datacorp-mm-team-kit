@@ -1,11 +1,7 @@
 ---
 name: requirements-engineer
 description: "Engenharia de requisitos para notação EARS, validação de spec e EARS rastreáveis ao legado no cenário SIFAP do workshop"
-model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools:
- - read
- - search
- - edit
+tools: [read, search, edit]
 
 ---
 
@@ -62,4 +58,3 @@ Antes de executar tarefas especializadas, leia a skill correspondente em `.githu
 - `ears-validate`
 
 Use essas skills como fonte operacional para procedimentos, checklists e criterios de qualidade.
-

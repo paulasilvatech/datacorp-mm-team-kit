@@ -1,8 +1,12 @@
 ---
 name: "architect"
 description: "Agente do Estágio 2 — recorta bounded contexts, escreve specs EARS, gera ADRs, projeta arquitetura de Modular Monolith"
-model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
-tools: [vscode/installExtension, vscode/memory, vscode/newWorkspace, vscode/resolveMemoryFileUri, vscode/runCommand, vscode/switchAgent, vscode/vscodeAPI, vscode/extensions, vscode/askQuestions, vscode/toolSearch, read/getNotebookSummary, read/problems, read/readFile, read/viewImage, read/readNotebookCellOutput, read/skill, read/terminalSelection, read/terminalLastCommand, read/getTaskOutput, edit/createDirectory, edit/createFile, edit/createJupyterNotebook, edit/editFiles, edit/editNotebook, edit/rename, com.microsoft/azure/search, ms-vscode.vscode-websearchforcopilot/websearch, todo]
+tools: [read, search, edit]
+handoffs:
+  - label: "Iniciar o Estágio 3"
+    agent: builder
+    prompt: "Implemente os requisitos, os contratos e o design aprovados neste estágio, mantendo a rastreabilidade para cada REQ-ID."
+    send: false
 ---
 # @architect-agent
 
@@ -91,4 +95,3 @@ Este agente trabalha **junto** com o Spec-Kit no Estágio 2. O fluxo recomendado
 6. **`/speckit.tasks`** e **`/speckit.analyze`** — produza tarefas de implementação e verifique consistência antes de avançar para o Estágio 3.
 
 Veja [`09-cheat-sheets/spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) para a referência completa de comandos do Spec-Kit.
-

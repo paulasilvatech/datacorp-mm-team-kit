@@ -1,8 +1,8 @@
 ---
 name: "acceptance-check"
-agent: "ask"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
+agent: "product-owner"
 description: "Verifique se o código atende aos critérios de aceitação de SPECIFICATION.md. Use durante UAT ou revisão de sprint."
+tools: ["search"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 

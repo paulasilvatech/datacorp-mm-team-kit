@@ -1,8 +1,8 @@
 ---
 name: "update-spec"
-agent: "agent"
-model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
+agent: "product-owner"
 description: "Atualize SPECIFICATION.md para uma feature nova ou alterada. Use antes da implementação."
+tools: ["search", "edit"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 

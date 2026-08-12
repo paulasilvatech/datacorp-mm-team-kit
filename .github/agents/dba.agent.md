@@ -1,8 +1,7 @@
 ---
 name: dba
 description: "Migrações, otimização de consultas, auditoria contra SQL injection"
-model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
-tools: [vscode, read, edit, com.microsoft/azure/search, ms-vscode.vscode-websearchforcopilot/websearch, todo]
+tools: [read, search, edit]
 
 ---
 
@@ -24,5 +23,5 @@ Migrações, otimização de consultas e auditoria contra SQL injection.
 
 ## Restrições
 - Siga `CONSTITUTION.md` e `SPECIFICATION.md`.
-- Use o modelo mais barato que atenda aos requisitos de qualidade.
+- Use a capacidade selecionada pela pessoa usuária.
 - Sinalize quando for necessária entrada humana.

@@ -2,9 +2,8 @@
 name: "write-github-issue"
 description: "Escreve uma GitHub issue de alta qualidade pronta para ser assumida pelo Copilot Agent na nuvem."
 argument-hint: "feature=\"Add pagination to the payment list endpoint\" context=payment reqs=REQ-015"
-agent: "agent"
-model: ["Claude Haiku 4.5 (copilot)", "Claude Sonnet 4.5 (copilot)"]
-tools: ["search/codebase", "web/githubRepo", "edit/editFiles"]
+agent: "evolution"
+tools: ["search", "edit"]
 ---
 # /write-github-issue
 
@@ -68,7 +67,7 @@ Um arquivo de rascunho em `04-evolucao/issues/<slug>.md`:
 
 ## Corpo do Prompt
 
-Você é o `@evolution-agent`. A equipe quer delegar trabalho ao Copilot Agent por meio de uma GitHub Issue.
+Você é o `@evolution`. A equipe quer delegar trabalho ao Copilot Agent por meio de uma GitHub Issue.
 
 **Passo 1 — Entender o pedido.**
 Pergunte à equipe:

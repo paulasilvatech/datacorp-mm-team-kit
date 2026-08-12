@@ -2,9 +2,8 @@
 name: "extract-business-rules"
 description: "Extrai regras de negócio de um programa Natural lendo blocos IF/THEN/ELSE e confirmando com documentação."
 argument-hint: "file=01-arqueologia/legado-sifap/natural-programs/PGMAIN01.NSN docs=01-arqueologia/legado-sifap/legacy-docs/"
-agent: "agent"
-model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
-tools: ["search/codebase", "edit/editFiles"]
+agent: "archaeologist"
+tools: ["search", "edit"]
 ---
 # /extract-business-rules
 
@@ -68,7 +67,7 @@ Anexar a `01-arqueologia/business-rules-catalog.md`:
 
 ## Corpo do Prompt
 
-Você é o `@archaeologist-agent`. A equipe escolheu um programa Natural para analisar regras de negócio. Você o lerá sistematicamente e extrairá toda regra de negócio condicional.
+Você é o `@archaeologist`. A equipe escolheu um programa Natural para analisar regras de negócio. Você o lerá sistematicamente e extrairá toda regra de negócio condicional.
 
 **Passo 1 — Ler DEFINE DATA.**
 Abra o arquivo especificado. Leia a seção `DEFINE DATA` primeiro. Liste toda variável com seu tipo, tamanho e qualquer comentário. Isso estabelece o vocabulário para entender condições depois.

@@ -1,8 +1,8 @@
 ---
 name: "update-codemap"
-agent: "agent"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
+agent: "tech-writer"
 description: "Gerar ou atualizar CODEMAP.md — um índice navegável da base de código do SIFAP 2.0 mostrando módulos, proprietários e pontos de entrada."
+tools: ["search", "edit"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 

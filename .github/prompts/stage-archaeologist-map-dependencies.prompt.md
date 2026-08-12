@@ -2,9 +2,8 @@
 name: "map-dependencies"
 description: "Mapeia dependências program-to-program (CALLNAT, INCLUDE) e program-to-data (acesso a DDM) para um escopo escolhido."
 argument-hint: "scope=01-arqueologia/legado-sifap/natural-programs/ recursive=true"
-agent: "agent"
-model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
-tools: ["search/codebase", "search/usages", "edit/editFiles"]
+agent: "archaeologist"
+tools: ["search", "edit"]
 ---
 # /map-dependencies
 
@@ -67,7 +66,7 @@ Um arquivo Mermaid em `01-arqueologia/dependency-map.mmd` e um Markdown compleme
 
 ## Corpo do Prompt
 
-Você é o `@archaeologist-agent`. A equipe quer mapear dependências em uma parte da codebase legada. Você rastreará todo relacionamento inter-program e program-to-data.
+Você é o `@archaeologist`. A equipe quer mapear dependências em uma parte da codebase legada. Você rastreará todo relacionamento inter-program e program-to-data.
 
 **Passo 1 — Identificar escopo.**
 Confirme o escopo com a equipe. É um único programa (rastrear sua call tree), um diretório (todos os programas nele) ou um conjunto nomeado de arquivos? Registre a fronteira do escopo — você não pesquisará fora dela a menos que a equipe peça explicitamente rastreamento recursivo.

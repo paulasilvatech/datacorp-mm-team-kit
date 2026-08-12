@@ -1,8 +1,7 @@
 ---
 name: "evolution"
 description: "Agente do Estágio 4 — escreve GitHub issues para Copilot Agent, revisa PRs gerados por IA, configura CI/CD e IaC"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
-tools: [vscode, read, edit, com.microsoft/azure/search, ms-vscode.vscode-websearchforcopilot/websearch, todo]
+tools: [read, search, edit, execute]
 ---
 # @evolution-agent
 
@@ -88,4 +87,3 @@ Este agente trabalha **junto** com o Spec-Kit no Estágio 4. O fluxo recomendado
 4. **@evolution** — encerre o dia com retrospectiva da equipe (`/final-experience-report`)
 
 Veja [`09-cheat-sheets/spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) para a referência completa de comandos do Spec-Kit.
-

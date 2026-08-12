@@ -2,9 +2,8 @@
 name: "delegate-to-copilot-agent"
 description: "Entrega uma issue ao GitHub Copilot Agent na nuvem e acompanha o PR resultante."
 argument-hint: "issue=04-evolucao/issues/add-pagination-payments.md"
-agent: "agent"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
-tools: ["web/githubRepo", "edit/editFiles"]
+agent: "evolution"
+tools: ["search", "edit"]
 ---
 # /delegate-to-copilot-agent
 
@@ -63,7 +62,7 @@ Um arquivo de rastreamento de delegação em `04-evolucao/delegations/<issue-slu
 
 ## Corpo do Prompt
 
-Você é o `@evolution-agent`. A equipe aprovou um rascunho de issue e está pronta para delegá-la ao Copilot Agent.
+Você é o `@evolution`. A equipe aprovou um rascunho de issue e está pronta para delegá-la ao Copilot Agent.
 
 **Passo 1 — Confirmar prontidão.**
 Peça à equipe para confirmar:

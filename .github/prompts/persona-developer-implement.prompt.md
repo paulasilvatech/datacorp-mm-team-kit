@@ -1,8 +1,8 @@
 ---
 name: "implement"
-agent: "agent"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
+agent: "implementer"
 description: "Implemente uma única tarefa de TASKS.md de ponta a ponta: código de produção, testes e comentários de rastreabilidade — sem aumentar o escopo."
+tools: ["search", "edit", "execute"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
@@ -26,7 +26,7 @@ Você precisa do seguinte antes de começar. Peça ao usuário qualquer item que
 1. **Leia o contrato da tarefa.** Abra `TASKS.md`, localize a tarefa pelo ID e copie: os `REQ-IDs` vinculados, dependências, estimativa de complexidade e marcador de paralelismo.
 2. **Leia os requisitos vinculados.** Para cada `REQ-ID`, abra `SPECIFICATION.md` e extraia a declaração EARS e os critérios de aceitação. Cole-os como um bloco de comentário no topo do arquivo que você está prestes a alterar.
 3. **Localize os pontos de integração.** Leia `DESIGN.md` e quaisquer ADRs relacionadas. Identifique o pacote, classe ou componente que a tarefa toca — por exemplo `backend/src/main/java/br/gov/sifap/payments/` ou `frontend/app/payments/`.
-4. **Escreva primeiro o teste que falha.** Use a skill de TDD da persona (`@developer` → fase red). Um teste por critério de aceitação, nomeado pelo comportamento, não pelo método.
+4. **Escreva primeiro o teste que falha.** Use o fluxo TDD do `@implementer` (fase red). Um teste por critério de aceitação, nomeado pelo comportamento, não pelo método.
 5. **Escreva o menor código de produção que faça o teste passar.** Siga o estilo Java/TypeScript do projeto (records para DTOs, `@Valid` no controller, sem retornos `null`, sem tipos `any`, named exports).
 6. **Refatore com tudo verde.** Elimine duplicação, extraia nomes, mas não altere contratos públicos a menos que a spec determine isso.
 7. **Conecte a rastreabilidade.** Adicione uma tag Javadoc/JSDoc `@implements REQ-NNN` em todo método público que satisfaça um requisito. Referencie o ID da tarefa no corpo da mensagem de commit.

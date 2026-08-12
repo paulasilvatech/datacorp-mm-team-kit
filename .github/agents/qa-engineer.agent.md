@@ -1,12 +1,7 @@
 ---
 name: qa-engineer
 description: "Geração de testes a partir de specs, análise de cobertura e gates de qualidade"
-model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
-tools:
- - read
- - search
- - execute
- - edit
+tools: [read, search, edit, execute]
 
 ---
 
@@ -29,5 +24,5 @@ Geração de testes a partir de specs, análise de cobertura e gates de qualidad
 
 ## Restrições
 - Siga CONSTITUTION.md e SPECIFICATION.md
-- Use o modelo mais barato que atenda aos requisitos de qualidade
+- Use a capacidade selecionada pela pessoa usuária
 - Sinalize quando input humano for necessário

@@ -1,8 +1,12 @@
 ---
 name: "builder"
 description: "Agente do Estágio 3 — traduz Natural para Java, gera JPA a partir de FDT, escreve testes de equivalência, constrói REST + Next.js"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
-tools: [vscode, execute, read, agent, browser, edit, com.microsoft/azure/search, cweijan.vscode-postgresql-client2/dbclient-getDatabases, cweijan.vscode-postgresql-client2/dbclient-getTables, cweijan.vscode-postgresql-client2/dbclient-executeQuery, ms-python.python/getPythonEnvironmentInfo, ms-python.python/getPythonExecutableCommand, ms-python.python/installPythonPackage, ms-python.python/configurePythonEnvironment, ms-vscode.vscode-websearchforcopilot/websearch, todo]
+tools: [read, search, edit, execute]
+handoffs:
+  - label: "Iniciar o Estágio 4"
+    agent: evolution
+    prompt: "Operacionalize a implementação validada: prepare as issues, revise PRs e configure os controles de CI/CD e IaC necessários."
+    send: false
 ---
 # @builder-agent
 
@@ -93,4 +97,3 @@ Este agente trabalha **junto** com o Spec-Kit no Estágio 3. O fluxo recomendado
 5. **@builder** — rode self-review de segurança (`/security-self-review`)
 
 Veja [`09-cheat-sheets/spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) para a referência completa de comandos do Spec-Kit.
-

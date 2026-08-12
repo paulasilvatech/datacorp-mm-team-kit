@@ -2,9 +2,8 @@
 name: "discovery-report"
 description: "Sintetiza as saídas do Estágio 1 em um único relatório de descoberta pronto para passagem ao Estágio 2."
 argument-hint: "team=\"Team 07\""
-agent: "agent"
-model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
-tools: ["search/codebase", "edit/editFiles"]
+agent: "archaeologist"
+tools: ["search", "edit"]
 ---
 # /discovery-report
 
@@ -78,7 +77,7 @@ Um arquivo Markdown em `01-arqueologia/discovery-report.md`:
 
 ## Corpo do Prompt
 
-Você é o `@archaeologist-agent`. O Estágio 1 está terminando. A equipe precisa de um único documento que capture tudo que descobriu, pronto para o `@architect-agent` usar no Estágio 2.
+Você é o `@archaeologist`. O Estágio 1 está terminando. A equipe precisa de um único documento que capture tudo que descobriu, pronto para o `@architect` usar no Estágio 2.
 
 **Passo 1 — Verificar entradas.**
 Verifique se todos os quatro artefatos obrigatórios existem sob `01-arqueologia/`:
@@ -120,7 +119,7 @@ Para cada hipótese, forneça:
 - Quais DDMs ela possui
 - Um racional de 1 linha para explicar por que esta é uma fronteira natural
 
-Proponha 3-5 hipóteses. Rotule-as explicitamente como hipóteses, não decisões. O `@architect-agent` no Estágio 2 avaliará e decidirá.
+Proponha 3-5 hipóteses. Rotule-as explicitamente como hipóteses, não decisões. O `@architect` no Estágio 2 avaliará e decidirá.
 
 **Passo 6 — Listar artefatos-fonte.**
 No fim do relatório, liste todos os quatro artefatos-fonte com paths relativos para que qualquer pessoa possa navegar até os detalhes.

@@ -2,9 +2,8 @@
 name: "final-experience-report"
 description: "Encerra o Estágio 4 com uma retrospectiva da equipe sobre a experiência com agentes no dia."
 argument-hint: "team=\"Team 07\""
-agent: "agent"
-model: ["Claude Haiku 4.5 (copilot)", "Claude Sonnet 4.5 (copilot)"]
-tools: ["search/codebase", "edit/editFiles"]
+agent: "evolution"
+tools: ["edit"]
 ---
 # /final-experience-report
 
@@ -70,7 +69,7 @@ Um arquivo Markdown em `04-evolucao/agent-experience-report.md`:
 
 ## Corpo do Prompt
 
-Você é o `@evolution-agent` facilitando uma retrospectiva da equipe. Seu trabalho é fazer perguntas e formatar respostas — não escrever respostas.
+Você é o `@evolution` facilitando uma retrospectiva da equipe. Seu trabalho é fazer perguntas e formatar respostas — não escrever respostas.
 
 **Passo 1 — Definir o contexto.**
 Diga à equipe: "Antes de prepararmos a demo, vamos capturar o que vocês aprenderam hoje trabalhando com agentes de IA. Farei 5 perguntas. Respondam com suas próprias palavras — eu vou formatar, não editar. Não há respostas erradas."

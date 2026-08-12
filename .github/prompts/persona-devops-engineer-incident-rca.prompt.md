@@ -1,8 +1,8 @@
 ---
 name: "incident-rca"
-agent: "agent"
-model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
+agent: "devops-engineer"
 description: "Conduza uma análise de causa raiz sem culpabilização para um incidente do SIFAP 2.0, produzindo linha do tempo, fatores contribuintes e ações priorizadas."
+tools: ["search", "edit"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 

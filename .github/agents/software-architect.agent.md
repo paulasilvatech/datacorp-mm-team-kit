@@ -1,12 +1,7 @@
 ---
 name: software-architect
 description: "Arquitetura de software para CODEMAP.md, design de módulos e contratos de API"
-model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
-tools:
- - read
- - search
- - edit
- - execute
+tools: [read, search, edit]
 
 ---
 
@@ -26,7 +21,7 @@ Use essas skills como fonte operacional para procedimentos, checklists e criteri
 ## Responsabilidades
 1. Gerar e manter CODEMAP.md (esqueleto do programa com módulos, fluxo de dados e integrações)
 2. Projetar topologia de módulos, bounded contexts e contratos de API (OpenAPI, AsyncAPI)
-3. Criar IMPLEMENTATION_PLAN.md com marcadores de paralelismo `[P]` e atribuições de modelo
+3. Criar IMPLEMENTATION_PLAN.md com marcadores de paralelismo `[P]` e atribuições de responsabilidade
 4. Validar conformidade de API e detectar breaking changes em relação ao contrato
 
 ## Especialidade de domínio

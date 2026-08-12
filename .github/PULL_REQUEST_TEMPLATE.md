@@ -21,7 +21,9 @@
 - [ ] Testes unitários passando
 - [ ] Sem dados sensíveis expostos
 - [ ] Atualizado CHANGELOG ou README se necessário
-- [ ] Vinculado ao REQ-ID correspondente na spec
+- [ ] Vinculado ao REQ-ID correspondente na spec (quando aplicável)
+- [ ] Todo REQ-ID novo ou alterado inclui `source_legacy:` válido ou `[GREENFIELD]` justificado
+- [ ] Alterações em workflow usam permissões mínimas e ações fixadas por SHA
 
 ## REQ-IDs Atendidos
 

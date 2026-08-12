@@ -1,8 +1,8 @@
 ---
 name: "fix-bug"
-agent: "agent"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
+agent: "implementer"
 description: "Reproduza, isole e corrija um defeito com um teste de regressão, preservando SPECIFICATION.md como fonte da verdade."
+tools: ["search", "edit", "execute"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 

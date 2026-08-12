@@ -59,7 +59,7 @@ Substitua:
 
 ## Etapas de revisão
 1. **Leia uma vez como a pessoa leitora pretendida**. Tem o tamanho certo? O nível de detalhe certo?
-2. **Execute verificações automatizadas**: Vale, Alex.js, markdownlint.
+2. **Execute as verificações automatizadas configuradas no repositório**: por exemplo, Vale, Alex.js ou markdownlint. Reporte ferramentas ausentes sem instalá-las.
 3. **Aplique as regras de estilo** seção por seção.
 4. **Teste todo exemplo de código**.
 5. **Pergunte**: uma nova contratação no dia 1 entenderia isto?
@@ -90,4 +90,4 @@ Substitua:
 - Ignorar acessibilidade (texto alternativo, níveis de título, texto de link).
 
 ## Gate de qualidade
-Todo documento deve passar nos linters automatizados antes da revisão humana.
+Todo documento deve passar nos linters automatizados configurados antes da revisão humana.

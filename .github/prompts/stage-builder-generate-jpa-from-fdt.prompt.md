@@ -2,9 +2,8 @@
 name: "generate-jpa-from-fdt"
 description: "Gera classes de entidade JPA a partir de definições Adabas FDT, com JSONB para campos MU/PE."
 argument-hint: "ddm=01-arqueologia/legado-sifap/adabas-ddms/DDM001.ddm context=payment package=com.datacorp.app.payment dateformat=YYYYMMDD"
-agent: "agent"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
-tools: ["search/codebase", "edit/editFiles"]
+agent: "builder"
+tools: ["search", "edit", "execute"]
 ---
 # /generate-jpa-from-fdt
 
@@ -62,7 +61,7 @@ Dois arquivos:
 
 ## Corpo do Prompt
 
-Você é o `@builder-agent`. A equipe precisa criar uma entidade JPA a partir de um DDM Adabas.
+Você é o `@builder`. A equipe precisa criar uma entidade JPA a partir de um DDM Adabas.
 
 **Passo 1 — Fazer parse do FDT.**
 Abra o arquivo DDM especificado. Extraia toda definição de campo:

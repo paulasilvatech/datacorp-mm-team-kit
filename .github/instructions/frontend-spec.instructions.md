@@ -1,11 +1,11 @@
 ---
-description: "Convenções de frontend para Next.js 15 App Router — TypeScript strict, Tailwind CSS, shadcn/ui, server components"
-applyTo: '**/app/**,**/components/**,**/*.tsx,**/*.ts'
+description: "Use when implementing or reviewing Next.js 15 App Router, TypeScript, Tailwind CSS, shadcn/ui, and server components under frontend/."
+applyTo: "frontend/app/**,frontend/components/**,frontend/src/app/**,frontend/src/components/**,frontend/**/*.ts,frontend/**/*.tsx"
 ---
 
 # Especificação de Frontend — Next.js 15 + TypeScript
 
-Este arquivo é ativado quando você trabalha em arquivos TypeScript ou TSX, ou em qualquer coisa sob `app/` ou `components/`. Ele reforça as convenções de frontend para o sistema modernizado.
+Este arquivo é ativado quando você trabalha em TypeScript, TSX, `app/` ou `components/` dentro de `frontend/`. Ele reforça as convenções de frontend para o sistema modernizado.
 
 ## Resumo da Stack
 
@@ -15,8 +15,8 @@ Este arquivo é ativado quando você trabalha em arquivos TypeScript ou TSX, ou 
 | Linguagem | TypeScript (strict mode) | 5+ |
 | Estilo | Tailwind CSS | 3.4+ |
 | Componentes | shadcn/ui | Latest |
-| Estado (client) | Zustand | 4+ |
-| Estado (server) | React Query / TanStack Query | 5+ |
+| Estado (client) | React `useState` e Context quando necessário | Nativo |
+| Dados no servidor | Server Components e Server Actions | Nativo |
 | Testes | Vitest + Testing Library | Latest |
 
 ## Padrões do App Router
@@ -32,7 +32,9 @@ Todo componente é um Server Component, salvo marcação explícita em contrári
 ```tsx
 // app/payments/page.tsx — Server Component (default)
 export default async function PaymentsPage() {
-  const payments = await fetch('/api/payments').then(r => r.json());
+  const response = await fetch('/api/v1/payments');
+  if (!response.ok) throw new Error('Payment loading failed');
+  const payments = await response.json();
   return <PaymentList payments={payments} />;
 }
 ```
@@ -62,6 +64,7 @@ Regras:
 
 - **Minimize a superfície de `'use client'`**: Empurre a interatividade para o menor componente possível. Uma página que busca dados deve ser um Server Component; somente o filtro/form interativo dentro dela deve ser um Client Component.
 - **Nunca exponha secrets em client components**: API keys, tokens e URLs internas devem permanecer server-side.
+- **Evite dependências de estado por padrão**: Use `useState` local e Context para estado client compartilhado. Adicione uma biblioteca de estado ou cache somente com ADR que justifique a dependência.
 
 ### Server Actions para Mutations
 
@@ -74,7 +77,7 @@ Use server actions em vez de API route handlers para submissões de formulário:
 export async function createPayment(formData: FormData) {
   const amount = formData.get('amount');
   // Valida e chama a API de backend
-  const res = await fetch(`${process.env.API_URL}/payments`, {
+  const res = await fetch(`${process.env.API_URL}/api/v1/payments`, {
     method: 'POST',
     body: JSON.stringify({ amount }),
     headers: { 'Content-Type': 'application/json' },
@@ -87,7 +90,7 @@ export async function createPayment(formData: FormData) {
 
 - **`strict: true`** em `tsconfig.json` — sem exceções, sem `// @ts-ignore`
 - **Sem `any`**: Use `unknown` e refine com type guards
-- **Somente named exports**: `export function PaymentCard()` — sem `export default`
+- **Somente named exports em componentes reutilizáveis**: `export function PaymentCard()`. Arquivos de rota do App Router podem usar o `export default` exigido pelo Next.js.
 - **Interface em vez de type** para object shapes que podem ser estendidos
 - **Utility types**: Use `Pick`, `Omit`, `Partial` em vez de duplicar interfaces
 
@@ -105,7 +108,7 @@ export default function PaymentCard({ payment }: { payment: any }) { ... }
 
 - Use classes utilitárias do Tailwind diretamente — sem arquivos CSS separados, a menos que seja absolutamente necessário
 - Use componentes shadcn/ui para elementos padrão de UI (Button, Card, Table, Dialog etc.)
-- Siga os tokens de design system definidos em `design-system/` para cores e espaçamento
+- Quando o time definir tokens de design system, use-os para cores e espaçamento
 - Responsivo por padrão: mobile-first com breakpoints `sm:`, `md:`, `lg:`
 
 ```tsx
@@ -118,7 +121,7 @@ export function PaymentSummary({ total }: { total: number }) {
         <CardTitle>Payment Summary</CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="text-2xl font-bold">{total.toLocaleString('en-US', { style: 'currency', currency: 'BRL' })}</p>
+        <p className="text-2xl font-bold">{total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
       </CardContent>
     </Card>
   );
@@ -143,7 +146,7 @@ import { describe, it, expect } from 'vitest';
 import { PaymentCard } from './PaymentCard';
 
 describe('PaymentCard', () => {
-  it('should display the payment amount', () => {
+  it('displays the payment amount when a payment is provided', () => {
     render(<PaymentCard payment={{ id: 1, amount: 100.50 }} />);
     expect(screen.getByText('100.5')).toBeInTheDocument();
   });

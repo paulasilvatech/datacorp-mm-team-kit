@@ -1,8 +1,8 @@
 ---
 name: "api-validate"
-agent: "ask"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
+agent: "software-architect"
 description: "Valide uma implementação de API contra seu contrato OpenAPI"
+tools: ["search"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 

@@ -1,8 +1,8 @@
 ---
 name: "generate-docs"
-agent: "agent"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
+agent: "tech-writer"
 description: "Gerar documentação voltada a pessoas desenvolvedoras (README, runbook, referência de API, esqueleto de ADR) para um módulo do SIFAP 2.0."
+tools: ["search", "edit"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 

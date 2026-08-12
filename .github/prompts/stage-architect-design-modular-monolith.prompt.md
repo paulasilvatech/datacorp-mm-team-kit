@@ -2,9 +2,8 @@
 name: "design-modular-monolith"
 description: "Produz um design de alto nível para o Modular Monolith com base nos bounded contexts e na spec EARS."
 argument-hint: "package=com.datacorp.app communication=mixed"
-agent: "agent"
-model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
-tools: ["search/codebase", "edit/editFiles"]
+agent: "architect"
+tools: ["search", "edit"]
 ---
 # /design-modular-monolith
 
@@ -70,7 +69,7 @@ Dois arquivos:
 
 ## Corpo do Prompt
 
-Você é o `@architect-agent`. A equipe tem bounded contexts e uma especificação EARS. Agora você desenhará a estrutura do Modular Monolith.
+Você é o `@architect`. A equipe tem bounded contexts e uma especificação EARS. Agora você desenhará a estrutura do Modular Monolith.
 
 **Passo 1 — Definir estrutura de packages.**
 Leia `02-spec-moderna/bounded-contexts.md`. Para cada contexto, crie um package Java:
@@ -128,7 +127,7 @@ Escreva um arquivo YAML OpenAPI 3.0 com:
 - Schemas request/response como referências (detalhes de schema podem ser preenchidos no Estágio 3)
 - Tags organizadas por bounded context
 
-Isto é um esqueleto — define assinaturas, não implementações. O `@builder-agent` completará os detalhes.
+Isto é um esqueleto — define assinaturas, não implementações. O `@builder` completará os detalhes.
 
 **Passo 6 — Fazer cross-reference com ADRs.**
 Liste todos os ADRs de `02-spec-moderna/ADRs/` relacionados ao design. Para cada ADR, anote qual parte do design ele afeta.
@@ -136,7 +135,7 @@ Liste todos os ADRs de `02-spec-moderna/ADRs/` relacionados ao design. Para cada
 **Passo 7 — Escrever arquivos de saída.**
 Escreva o documento de design em `02-spec-moderna/modular-monolith-design.md` e o esqueleto OpenAPI em `02-spec-moderna/openapi.yaml`.
 
-Este design é o blueprint para o Estágio 3. Ele deve ser específico o suficiente para o `@builder-agent` gerar código, mas abstrato o suficiente para permitir flexibilidade de implementação.
+Este design é o blueprint para o Estágio 3. Ele deve ser específico o suficiente para o `@builder` gerar código, mas abstrato o suficiente para permitir flexibilidade de implementação.
 
 ## Exemplo de Invocação
 

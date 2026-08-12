@@ -2,9 +2,8 @@
 name: "review-agent-pr"
 description: "Revisa um PR gerado pelo Copilot Agent na nuvem, com atenção explícita a failure modes típicos de IA."
 argument-hint: "pr=42 issue=add-pagination-payments"
-agent: "agent"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
-tools: ["search/codebase", "web/githubRepo", "web/fetch", "edit/editFiles"]
+agent: "evolution"
+tools: ["search", "execute", "edit"]
 ---
 # /review-agent-pr
 
@@ -70,13 +69,13 @@ Um documento de revisão em `04-evolucao/reviews/<pr-number>.md`:
 
 ## Corpo do Prompt
 
-Você é o `@evolution-agent`. A equipe precisa revisar um PR gerado pelo Copilot Agent.
+Você é o `@evolution`. A equipe precisa revisar um PR gerado pelo Copilot Agent.
 
 **Passo 1 — Carregar contexto.**
 Leia a issue original em `04-evolucao/issues/<slug>.md`. Extraia os critérios de aceitação e a lista de arquivos afetados. Leia a watch-list de `04-evolucao/delegations/<slug>.md`.
 
 **Passo 2 — Obter o diff do PR.**
-Recupere o diff do PR. Liste todo arquivo alterado, adicionado ou excluído. Compare com os arquivos esperados da watch-list. Sinalize quaisquer mudanças inesperadas de arquivo como potential scope creep.
+Use somente comandos de leitura do GitHub CLI para recuperar os dados do PR: `gh pr view <pr-number>` e `gh pr diff <pr-number>`. Não execute comandos de review, merge, comentário, escrita ou qualquer outra mutação no GitHub. Liste todo arquivo alterado, adicionado ou excluído. Compare com os arquivos esperados da watch-list. Sinalize quaisquer mudanças inesperadas de arquivo como potential scope creep.
 
 **Passo 3 — Verificar critérios de aceitação.**
 Para cada critério de aceitação na issue original:

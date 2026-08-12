@@ -1,6 +1,6 @@
 ---
 description: "Guia de arquitetura para Modular Monolith — package-by-feature, bounded contexts, mapeamento JPA, Strangler Fig"
-applyTo: '**/src/main/java/**,**/pom.xml,**/build.gradle*'
+applyTo: "backend/src/main/java/**,backend/pom.xml,backend/build.gradle*"
 ---
 
 # Guia de Arquitetura Modular Monolith

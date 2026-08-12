@@ -1,6 +1,6 @@
 ---
 description: "Guia de leitura para código legado Natural/Adabas — padrões da linguagem, estrutura FDT, convenções de nomes, fluxos batch"
-applyTo: '**/*.nat,**/*.cpy,**/*.ddm,**/01-arqueologia/legado-sifap/**'
+applyTo: "01-arqueologia/legado-sifap/**,**/*.NSN,**/*.nsn,**/*.NAT,**/*.nat,**/*.CPY,**/*.cpy,**/*.DDM,**/*.ddm"
 ---
 
 # Código Legado Natural/Adabas — Guia de Leitura

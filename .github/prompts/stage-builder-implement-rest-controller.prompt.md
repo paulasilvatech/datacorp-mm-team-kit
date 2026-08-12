@@ -2,9 +2,8 @@
 name: "implement-rest-controller"
 description: "Implementa um controller Spring REST a partir de uma definição de endpoint OpenAPI, conectando-o aos services do bounded context."
 argument-hint: "endpoint=\"POST /api/v1/payments\" context=payment service=PaymentService"
-agent: "agent"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
-tools: ["search/codebase", "edit/editFiles", "execute/getTerminalOutput", "execute/runInTerminal", "read/terminalLastCommand", "read/terminalSelection"]
+agent: "builder"
+tools: ["search", "edit", "execute"]
 ---
 # /implement-rest-controller
 
@@ -64,7 +63,7 @@ Arquivos Java:
 
 ## Corpo do Prompt
 
-Você é o `@builder-agent`. A equipe precisa de um controller REST para um endpoint definido na spec OpenAPI.
+Você é o `@builder`. A equipe precisa de um controller REST para um endpoint definido na spec OpenAPI.
 
 **Passo 1 — Ler a definição OpenAPI.**
 Abra `02-spec-moderna/openapi.yaml`. Encontre o endpoint especificado. Extraia:

@@ -9,6 +9,11 @@ labels: feature
 
 <!-- Ex: REQ-001 da SPECIFICATION.md -->
 
+## Rastreabilidade do Legado
+
+<!-- Obrigatório para cada REQ-ID: source_legacy: 01-arqueologia/legado-sifap/natural-programs/<ARQUIVO>.NSN#L<início>-L<fim>
+     ou source_legacy: "[GREENFIELD] <justificativa de uma linha>". -->
+
 ## Descrição
 
 <!-- O que precisa ser implementado -->

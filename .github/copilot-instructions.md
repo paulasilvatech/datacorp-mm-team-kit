@@ -12,7 +12,7 @@ Este workshop roda com uma **toolchain fixa**. Usar qualquer outra coisa fragmen
 |-----------|-----|
 | **VS Code** (ou VS Code Insiders) | Editor único para toda a equipe. |
 | **GitHub Copilot** (modos Ask + Plan + Agent) | Assistente de IA principal. Copilot Workspace também é permitido para delegação Issue → PR. |
-| **GitHub Copilot CLI** *(opcional)* | Para tarefas em fluxo de terminal. As mesmas regras de roteamento de modelo se aplicam. |
+| **GitHub Copilot CLI** *(opcional)* | Para tarefas em fluxo de terminal. |
 | **GitHub Spec-Kit** (`Specify CLI` + `/speckit.*`) | Toolkit oficial de Spec-Driven Development para especificação, planejamento, tarefas e implementação. |
 | **GitHub** (Issues, PRs, Actions, Projects) | Fonte da verdade para trabalho, código e CI. |
 | **Docker / Docker Compose** | Paridade do ambiente local quando o time criar containers no próprio protótipo. |
@@ -25,6 +25,8 @@ Este workshop roda com uma **toolchain fixa**. Usar qualquer outra coisa fragmen
 Modernização do legado **SIFAP** (Sistema de Fiscalização e Administração de Pagamentos) — Natural/Adabas, 29 anos — para Java 21 + Next.js 15. Código legado em [`01-arqueologia/legado-sifap/`](../01-arqueologia/legado-sifap/) (15 programas `.NSN` + 4 DDMs).
 
 O kit usa **duas camadas de agentes** (persona-kit por pessoa + agente de estágio por equipe). Detalhes em [`06-agentes-de-estagio/README.md`](../06-agentes-de-estagio/README.md).
+
+Use as skills em [`.github/skills/`](skills/) para workflows especializados. O Copilot seleciona a skill pertinente pela descrição; não duplique fluxos especializados nestas instruções globais.
 
 ## Stack-Alvo
 

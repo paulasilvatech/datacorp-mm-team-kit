@@ -1,8 +1,8 @@
 ---
 name: "audit-context"
-agent: "ask"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
+agent: "tech-lead"
 description: "Audite arquivos de context engineering do repositório"
+tools: ["search"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
@@ -15,7 +15,7 @@ Audite a superfície de context engineering do repositório (AGENTS.md, CODEMAP.
 1. Liste todos os arquivos em `.github/instructions/`, `.github/prompts/`, `.github/agents/` e reporte contagem de linhas.
 2. Verifique o escopo `applyTo:` em todo arquivo de instructions. Sinalize qualquer arquivo com `applyTo: "**"` ou escopo ausente.
 3. Leia CODEMAP.md. Sinalize como obsoleto se não tiver sido atualizado nos últimos 30 dias ou referenciar arquivos deletados.
-4. Verifique o frontmatter de todo prompt/agent para: `description` presente e informativa (não "TBD"), `model` definido, `mode` correto.
+4. Verifique o frontmatter de todo prompt/agent para: `description` presente e informativa (não "TBD"), `agent` apontando para um agente existente quando usado, tools mínimos e nenhuma seleção de modelo fixada.
 5. Use grep para referências obsoletas de pastas (rastreamento de renames) e links relativos quebrados.
 6. Resuma como tabela: `Arquivo | Problema | Severidade (Alta/Média/Baixa) | Correção`.
 

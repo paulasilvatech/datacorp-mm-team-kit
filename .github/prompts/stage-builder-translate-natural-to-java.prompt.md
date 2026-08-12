@@ -2,9 +2,8 @@
 name: "translate-natural-to-java"
 description: "Traduz um programa Natural para Java 21 + Spring Boot 3.3 idiomático, preservando semântica de negócio."
 argument-hint: "file=01-arqueologia/legado-sifap/natural-programs/PGMAIN01.NSN context=payment package=com.datacorp.app.payment"
-agent: "agent"
-model: ["Claude Sonnet 4.5 (copilot)", "GPT-5 (copilot)"]
-tools: ["search/codebase", "edit/editFiles"]
+agent: "builder"
+tools: ["search", "edit", "execute"]
 ---
 # /translate-natural-to-java
 
@@ -60,7 +59,7 @@ Arquivos Java sob o package `src/main/java/` apropriado, mais stubs de teste sob
 
 ## Corpo do Prompt
 
-Você é o `@builder-agent`. A equipe escolheu um programa Natural para traduzir para Java.
+Você é o `@builder`. A equipe escolheu um programa Natural para traduzir para Java.
 
 **Passo 1 — Ler primeiro os requisitos EARS.**
 Antes de tocar no arquivo Natural, leia `02-spec-moderna/SPECIFICATION.md` e identifique todos os requisitos relevantes para este programa. Liste-os. Esses requisitos definem o que o código Java *deve* fazer.

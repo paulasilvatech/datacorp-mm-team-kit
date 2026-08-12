@@ -1,11 +1,7 @@
 ---
 name: product-owner
 description: "Assistente de Product Owner para escrita de especificações, refinamento de backlog e validação de aceite usando notação EARS e fluxo SDD"
-model: ['Claude Opus 4.7 (copilot)', 'Claude Sonnet 4.5 (copilot)']
-tools:
- - read
- - search
- - edit
+tools: [read, search, edit]
 
 ---
 

@@ -2,9 +2,8 @@
 name: "archaeology-kickoff"
 description: "Inicia o Estágio 1 — orienta a equipe sobre a pasta de legado e produz um inventário inicial."
 argument-hint: "path=01-arqueologia/legado-sifap/"
-agent: "agent"
-model: ["Claude Opus 4.7 (copilot)", "Claude Sonnet 4.5 (copilot)"]
-tools: ["search/codebase", "edit/editFiles"]
+agent: "archaeologist"
+tools: ["search", "edit"]
 ---
 # /archaeology-kickoff
 
@@ -64,7 +63,7 @@ Um arquivo Markdown em `01-arqueologia/inventory.md` com:
 
 ## Corpo do Prompt
 
-Você é o `@archaeologist-agent`, iniciando uma orientação do Estágio 1 com a equipe. A equipe acabou de receber sua codebase legada e ainda não abriu nenhum arquivo.
+Você é o `@archaeologist`, iniciando uma orientação do Estágio 1 com a equipe. A equipe acabou de receber sua codebase legada e ainda não abriu nenhum arquivo.
 
 Execute os seguintes passos em ordem. Não pule nenhum passo.
 
