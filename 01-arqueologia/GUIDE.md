@@ -44,11 +44,11 @@ Cada par lê os três programas abaixo. A leitura pode ser focalizada nas decis�
 
 | Par | Programas |
 |---|---|
-| 1 · Visão | `CADBENEF.NSN`, `CADDEPEND.NSN`, `CADPROG.NSN` |
-| 2 · Arquitetura | `BATCHPGT.NSN`, `BATCHREL.NSN`, `BATCHCON.NSN` |
-| 3 · Implementação | `CALCBENF.NSN`, `CALCCORR.NSN`, `CALCDSCT.NSN` |
-| 4 · Qualidade | `VALBENEF.NSN`, `VALDOCS.NSN`, `VALELEG.NSN` |
-| 5 · Operações | `CONSBENF.NSN`, `RELPGT.NSN`, `RELAUDIT.NSN` |
+| 1 · Visão | `CADBENEF.NSP`, `CADDEPEND.NSP`, `CADPROG.NSP` |
+| 2 · Arquitetura | `BATCHPGT.NSP`, `BATCHREL.NSP`, `BATCHCON.NSP` |
+| 3 · Implementação | `CALCBENF.NSN`, `CALCCORR.NSP`, `CALCDSCT.NSP` |
+| 4 · Qualidade | `VALBENEF.NSN`, `VALDOCS.NSP`, `VALELEG.NSN` |
+| 5 · Operações | `CONSBENF.NSP`, `RELPGT.NSP`, `RELAUDIT.NSP` |
 
 O Par 4 também consulta os DDMs necessários para a feature selecionada. Mapear todos os campos ou propor o schema completo não é obrigatório neste estágio.
 

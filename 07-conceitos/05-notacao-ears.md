@@ -69,7 +69,7 @@ O sistema deve <ação>.
 REQ-001:
   pattern: ubiquitous
   text: "O sistema deve registrar data e hora de cada alteração em registros de beneficiários."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/CADBENEF.NSN#L45-L52
+  source_legacy: 01-arqueologia/legado-sifap/natural-programs/CADBENEF.NSP#L45-L52
   acceptance:
     - "Todo registro de beneficiário alterado contém timestamp de modificação"
     - "O timestamp usa fuso horário UTC"
@@ -182,7 +182,7 @@ O sistema não deve <comportamento proibido>.
 REQ-200:
   pattern: unwanted
   text: "O sistema não deve expor o CPF completo do beneficiário em respostas de API — deve exibir apenas os quatro últimos dígitos."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/CADBENEF.NSN#L88-L90
+  source_legacy: 01-arqueologia/legado-sifap/natural-programs/CADBENEF.NSP#L88-L90
   acceptance:
     - "Endpoint GET /api/v1/beneficiarios/{id} retorna CPF no formato ***.***.***-XX"
     - "Logs de aplicação não registram CPF em nenhuma circunstância"

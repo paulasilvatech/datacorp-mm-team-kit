@@ -46,7 +46,7 @@ Os rótulos indicam a **área** do mistério, nunca o achado.
 | 4 | Validação | `M-13` … `M-16` | `VALBENEF`, `VALDOCS`, `VALELEG` |
 | 5 | Consulta e relatórios | `M-17` … `M-20` | `CONSBENF`, `RELPGT`, `RELAUDIT` |
 
-\* `CALCDSCT.NSN` é leitura de apoio para o Par 3 — nenhum canônico vive nele. Vale a pergunta de por que ele existe.
+\* `CALCDSCT.NSP` é leitura de apoio para o Par 3 — nenhum canônico vive nele. Vale a pergunta de por que ele existe.
 
 > [!TIP]
 > **Se travar por mais de 40 minutos, peça uma dica ao facilitador.** Dica não tira ponto; ficar travado tira você do exercício.

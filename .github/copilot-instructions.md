@@ -22,7 +22,7 @@ Este workshop roda com uma **toolchain fixa**. Usar qualquer outra coisa fragmen
 
 ## Contexto do Projeto
 
-Modernização do legado **SIFAP** (Sistema de Fiscalização e Administração de Pagamentos) — Natural/Adabas, 29 anos — para Java 21 + Next.js 15. Código legado em [`01-arqueologia/legado-sifap/`](../01-arqueologia/legado-sifap/) (15 programas `.NSN` + 4 DDMs).
+Modernização do legado **SIFAP** (Sistema de Fiscalização e Administração de Pagamentos) — Natural/Adabas, 29 anos — para Java 21 + Next.js 15. Código legado em [`01-arqueologia/legado-sifap/`](../01-arqueologia/legado-sifap/) (12 programas `.NSP` + 5 subprogramas `.NSN` + 4 DDMs `.NSD`).
 
 O kit usa **duas camadas de agentes** (persona-kit por pessoa + agente de estágio por equipe). Detalhes em [`06-agentes-de-estagio/README.md`](../06-agentes-de-estagio/README.md).
 
@@ -83,7 +83,7 @@ Use as skills em [`.github/skills/`](skills/) para workflows especializados. O C
 
 - Todo requisito usa **notação EARS** (Easy Approach to Requirements Syntax)
 - Todo requisito tem um **REQ-ID** único no formato `REQ-NNN`
-- **Todo requisito carrega uma linha `source_legacy:`** apontando para `01-arqueologia/legado-sifap/natural-programs/*.NSN`, `01-arqueologia/legado-sifap/adabas-ddms/*.ddm` ou `[GREENFIELD] + justificativa`. O job de CI `legacy-traceability` rejeita PRs que violam isso. Consulte [`01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md).
+- **Todo requisito carrega uma linha `source_legacy:`** apontando para `01-arqueologia/legado-sifap/natural-programs/*.{NSP,NSN,NSS,NSA,NSL,NSC,NSM,jcl}`, `01-arqueologia/legado-sifap/adabas-ddms/*.{NSD,ddm,txt}` ou `[GREENFIELD] + justificativa`. O job de CI `legacy-traceability` rejeita PRs que violam isso. Consulte [`01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md).
 - Testes rastreiam para REQ-IDs por comentários inline
 - Estratégia de branch: `spec/<NNN>-<feature>` → `develop` → `main` (sem `stage`; ver [`00-GIT-WORKFLOW.md`](../00-GIT-WORKFLOW.md))
 - Antes de escrever EARS no Estágio 2, o par DEVE ter lido os programas Natural atribuídos (HARD GATE — ver checklist acima)
