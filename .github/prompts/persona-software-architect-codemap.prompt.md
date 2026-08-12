@@ -16,8 +16,8 @@ Você é o software architect gerando um **mapa de código em nível de serviço
 
 Peça ao usuário o que estiver faltando.
 
-- O serviço a mapear (por exemplo `payments`, `beneficiaries`, `audit`).
-- A raiz do path (`backend/src/main/java/br/gov/sifap/<service>/`, `frontend/app/<route>/` ou outro path criado pelo time).
+- O serviço a mapear.
+- A raiz do path criada pelo time.
 - A pasta de spec vinculada (`specs/<NNN>-<feature>/spec.md`).
 - Se deve incluir ou excluir paths `test/`.
 - Um code map anterior para este serviço, se existir.
@@ -25,7 +25,8 @@ Peça ao usuário o que estiver faltando.
 ## Processo
 
 1. **Liste pacotes e tipos principais.** Para Java, agrupe por `controller`, `service`, `domain`, `repository`, `infrastructure`, `config`. Para TypeScript, agrupe por `app/`, `components/`, `lib/`, `server/`.
-2. **Capture o papel de cada componente em uma linha.** "Orchestrates disbursement workflow," "JPA mapping for payment_attempt," "REST adapter for /api/v1/payments."
+2. **Capture o papel de cada componente em uma linha.** Use a responsabilidade
+   confirmada no código, sem inferir comportamento de negócio.
 3. **Mapeie dependências inbound e outbound.** Inbound: quem chama isto? Outbound: o que isto chama? Fique em dependências diretas; análise transitiva fica em `plan.md`.
 4. **Encontre tipos compartilhados e ports.** Interfaces em `domain/`, ports em `application/`, gateways em `infrastructure/`. Liste quais são contratos estáveis e quais são internos.
 5. **Cruze referências de REQ-IDs.** Para cada método público ou componente, encontre anotações `@implements REQ-NNN`. Liste componentes sem requisito ("no REQ-ID found") para revisão.
@@ -42,63 +43,51 @@ Peça ao usuário o que estiver faltando.
 Um documento Markdown `docs/codemap-<service>.md` com esta estrutura:
 
 ```markdown
-# Mapa de código — payments
+# Mapa de código — <service>
 
-> Última revisão: 2026-04-29 — owner: @morgan — mapa em nível de serviço.
+> Última revisão: <YYYY-MM-DD> — owner: <pessoa> — mapa em nível de serviço.
 
 ## 1. Diagrama de componentes (Mermaid)
 
 ```mermaid
 flowchart LR
- Controller[PaymentController]
- Service[PaymentService]
- Calculator[DisbursementCalculator]
- RepoP[(payment)]
- RepoA[(payment_attempt)]
- Bus[[Service Bus payments-out]]
+ Controller[<Controller>]
+ Service[<Service>]
+ Domain[<Domain component>]
+ Repository[(<persistent store>)]
+ Gateway[[<external dependency>]]
 
  Controller --> Service
- Service --> Calculator
- Service --> RepoP
- Service --> RepoA
- Service --> Bus
+ Service --> Domain
+ Service --> Repository
+ Service --> Gateway
 ```
 
 ## 2. Componentes
 
 | Tipo | FQN | Papel | REQ-IDs | Entrada | Saída |
 |------|-----|------|---------|---------|----------|
-| controller | `br.gov.sifap.payments.PaymentController` | Adaptador REST | REQ-PAY-001..006 | (HTTP) | PaymentService |
-| service | `br.gov.sifap.payments.PaymentService` | Orquestração | REQ-PAY-001..018 | PaymentController, RetryJob | DisbursementCalculator, PaymentRepository, PaymentAttemptRepository, PaymentsOutGateway, AuditLogger |
-| domain | `br.gov.sifap.payments.DisbursementCalculator` | Cálculo puro, ICMS, isenções | REQ-PAY-008..011 | PaymentService | (nenhuma) |
-| repository | `br.gov.sifap.payments.PaymentRepository` | Mapeamento JPA para `payment` | REQ-PAY-001 | PaymentService | (DB) |
-| gateway | `br.gov.sifap.payments.PaymentsOutGateway` | Produtor de Service Bus | REQ-PAY-014..018 | PaymentService | (Service Bus) |
+| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
 
 ## 3. API pública
 
 | Método | Path | Testado por |
 |--------|------|-----------|
-| POST | /api/v1/payments | PaymentControllerTest |
-| GET | /api/v1/payments/{id} | PaymentControllerTest |
-| POST | /api/v1/payments/{id}/retry | PaymentControllerTest |
+| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
 
 ## 4. Estado persistente
-- `payment` (REQ-PAY-001) — veja `db/migration/V*__create_payment.sql`.
-- `payment_attempt` (REQ-PAY-014) — auditoria append-only de novas tentativas.
-- `disbursement_lock` — advisory lock para evitar desembolso duplicado.
+- <!-- preencher a partir do código e das migrações criados pelo time -->
 
 ## 5. Linhagem legada
 | Componente Java | Substitui |
 |----------------|----------|
-| DisbursementCalculator | `CALCBENF.NSN`, `CALCDSCT.NSN` |
-| RetryJob | `BATCHPGT.NSN` |
+| <!-- preencher --> | <!-- preencher: programa.NSN e evidência --> |
 
 ## 6. Smells observados
-- `PaymentService` tem 6 dependências de saída — quase uma god class. Candidata a extrair um `RetryOrchestrator`.
-- Sem `@implements REQ-NNN` em `PaymentsOutGateway.send()` — atribua ou documente o motivo.
+- <!-- preencher somente com achados observados no código -->
 
 ## 7. Como atualizar
-Rode `/codemap` após qualquer adição/renomeação/exclusão em `payments/`. Vincule este arquivo a partir de `docs/CODEMAP.md`.
+Rode `/codemap` após qualquer adição, renomeação ou exclusão no serviço. Vincule este arquivo a partir de `docs/CODEMAP.md`.
 ```
 
 ## Antipadrões

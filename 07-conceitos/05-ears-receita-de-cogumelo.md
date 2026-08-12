@@ -41,9 +41,9 @@ EARS tem **6 formatos prontos**. Você escolhe o que combina com sua regra.
 
 > **O [sistema] deve [ação].**
 
-| 🍄 Mario | 🏛 SIFAP |
+| 🍄 Mario | 🏛 Estrutura para o SIFAP |
 |---|---|
-| O Mario deve usar a paleta de cores oficial Nintendo. | O SIFAP deve armazenar todos os registros em UTC. |
+| O Mario deve usar a paleta de cores oficial Nintendo. | O sistema deve `<ação sempre válida confirmada pelo time>`. |
 
 > ✅ Use quando a regra vale **sempre, sem condição**.
 
@@ -53,9 +53,9 @@ EARS tem **6 formatos prontos**. Você escolhe o que combina com sua regra.
 
 > **Quando [evento], o [sistema] deve [ação].**
 
-| 🍄 Mario | 🏛 SIFAP |
+| 🍄 Mario | 🏛 Estrutura para o SIFAP |
 |---|---|
-| Quando Mario tocar num cogumelo, ele deve crescer. | Quando um beneficiário é cadastrado, o SIFAP deve validar o CPF (módulo 11). |
+| Quando Mario tocar num cogumelo, ele deve crescer. | Quando `<evento confirmado>` ocorrer, o sistema deve `<ação verificável>`. |
 
 > ✅ Use quando a regra **dispara por um evento**.
 
@@ -65,9 +65,9 @@ EARS tem **6 formatos prontos**. Você escolhe o que combina com sua regra.
 
 > **Enquanto [condição], o [sistema] deve [ação].**
 
-| 🍄 Mario | 🏛 SIFAP |
+| 🍄 Mario | 🏛 Estrutura para o SIFAP |
 |---|---|
-| Enquanto Mario estiver com estrela, ele deve ser invencível. | Enquanto um pagamento estiver PENDING, o SIFAP deve permitir cancelamento pelo OPERATOR. |
+| Enquanto Mario estiver com estrela, ele deve ser invencível. | Enquanto `<estado confirmado>` for verdadeiro, o sistema deve `<ação verificável>`. |
 
 > ✅ Use quando a regra vale **durante um estado** que muda.
 
@@ -77,9 +77,9 @@ EARS tem **6 formatos prontos**. Você escolhe o que combina com sua regra.
 
 > **Onde [condição opcional], o [sistema] deve [ação].**
 
-| 🍄 Mario | 🏛 SIFAP |
+| 🍄 Mario | 🏛 Estrutura para o SIFAP |
 |---|---|
-| Onde o jogador apertar B durante o pulo, Mario deve dar um pulo mais alto. | Onde o operador escolher exportar, o SIFAP deve gerar CSV em UTF-8. |
+| Onde o jogador apertar B durante o pulo, Mario deve dar um pulo mais alto. | Onde `<opção confirmada>` for escolhida, o sistema deve `<ação verificável>`. |
 
 > ✅ Use quando é **escolha do usuário**.
 
@@ -89,9 +89,9 @@ EARS tem **6 formatos prontos**. Você escolhe o que combina com sua regra.
 
 > **O [sistema] não deve [ação proibida].**
 
-| 🍄 Mario | 🏛 SIFAP |
+| 🍄 Mario | 🏛 Estrutura para o SIFAP |
 |---|---|
-| Mario não deve atravessar paredes. | O SIFAP não deve permitir DELETE em registros de auditoria. |
+| Mario não deve atravessar paredes. | O sistema não deve `<comportamento proibido confirmado pelo time>`. |
 
 > ✅ Use para **proibições explícitas** (segurança, compliance).
 
@@ -128,7 +128,7 @@ REQ-XXX:
 |---|---|
 | Regra extraída do legado | `01-arqueologia/legado-sifap/natural-programs/X.NSN#L<inicio>-L<fim>` |
 | Campo de DDM | `01-arqueologia/legado-sifap/adabas-ddms/X.ddm` |
-| Funcionalidade nova (não existe no legado) | `"[GREENFIELD] OAuth2 não existia em terminal 3270, mas a API moderna precisa"` |
+| Funcionalidade nova (não existe no legado) | `"[GREENFIELD] <justificativa do time>"` |
 
 ---
 

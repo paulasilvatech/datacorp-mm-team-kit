@@ -1,7 +1,7 @@
 ---
 name: "generate-jpa-from-fdt"
 description: "Gera classes de entidade JPA a partir de definições Adabas FDT, com JSONB para campos MU/PE."
-argument-hint: "ddm=01-arqueologia/legado-sifap/adabas-ddms/DDM001.ddm context=payment package=com.datacorp.app.payment dateformat=YYYYMMDD"
+argument-hint: "ddm=01-arqueologia/legado-sifap/adabas-ddms/<DDM>.ddm context=<context> package=<java.package> dateformat=<format>"
 agent: "builder"
 tools: ["search", "edit", "execute"]
 ---
@@ -137,5 +137,5 @@ Garanta que a classe de entidade compile. Reporte quaisquer problemas.
 ## Exemplo de Invocação
 
 ```
-/generate-jpa-from-fdt ddm=01-arqueologia/legado-sifap/adabas-ddms/DDM001.ddm context=payment package=com.datacorp.app.payment dateformat=YYYYMMDD
+/generate-jpa-from-fdt ddm=01-arqueologia/legado-sifap/adabas-ddms/<DDM>.ddm context=<context> package=<java.package> dateformat=<format>
 ```

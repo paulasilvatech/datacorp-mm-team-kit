@@ -44,7 +44,7 @@
 
 ### 2.3 Estruturas de Dados
 
-<!-- preencher: resumo dos 4 DDMs Adabas (BENEFICIARIO, PAGAMENTO, PROGRAMA-SOCIAL, AUDITORIA) -->
+<!-- preencher: resumo dos DDMs Adabas analisados pelo time -->
 
 ## 3. O Que É Arriscado
 

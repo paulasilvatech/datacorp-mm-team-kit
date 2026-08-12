@@ -127,7 +127,7 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 - **O que é:** arquivo `.ddm` do Adabas que descreve a estrutura de uma "tabela" (campos, tipos, tamanhos).
 - **Analogia:** o schema do Excel — quais colunas existem, de que tipo, com que tamanho.
-- **Onde aparece:** Estágio 1, em `01-arqueologia/legado-sifap/adabas-ddms/`. Temos 4: BENEFICIARIO, PROGRAMA-SOCIAL, PAGAMENTO, AUDITORIA.
+- **Onde aparece:** Estágio 1, em `01-arqueologia/legado-sifap/adabas-ddms/`.
 
 ### DoD · Definition of Done
 
@@ -148,7 +148,7 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 - **O que é:** forma padrão de escrever requisitos sem ambiguidade, usando 6 padrões (sempre, evento, estado, opcional, proibido, combinado).
 - **Analogia:** receita de bolo — tem ingrediente, ordem e tempo. Sem chute.
 - **Onde aparece:** Estágio 2. Padrões detalhados em `02-spec-moderna/GUIDE.md§EARS`.
-- **Exemplo bom:** *"Quando um beneficiário é cadastrado, o SIFAP deve validar o CPF usando módulo 11."*
+- **Exemplo bom:** *"Quando `<evento confirmado>` ocorrer, o sistema deve `<ação verificável>`."*
 - **Exemplo ruim:** *"O sistema deve ser seguro."* (não é testável)
 
 ## F
@@ -187,7 +187,7 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 - **O que é:** padrão Java para mapear classes em tabelas do banco. Você marca a classe com `@Entity` e o banco entende.
 - **Analogia:** tradutor entre o mundo de objetos do Java e o mundo de tabelas do PostgreSQL.
-- **Onde aparece:** Estágio 3 (`@Entity public class PaymentEntity { ... }`).
+- **Onde aparece:** Estágio 3, nas entidades criadas pelo time.
 
 ### JWT · JSON Web Token
 

@@ -17,17 +17,17 @@ Você é um QA lead escrevendo a estratégia de testes para uma feature do SIFAP
 Peça ao usuário o que estiver faltando.
 
 - A pasta da feature (`specs/<NNN>-<feature>/`) com `spec.md` e `plan.md` já aprovados.
-- O perfil de risco: financeiro (`high`), regulatório (`high`), batch (`medium`), somente leitura (`low`).
+- O perfil de risco definido pelo time.
 - Restrições: orçamento de tempo, minutos de CI paralelo, ambientes disponíveis (`local`, `dev`, `stage`, `prod-shadow`).
 - Quaisquer requisitos não funcionais com limites mensuráveis (latência p95, throughput, RPO/RTO).
 
 ## Processo
 
 1. **Classifique cada `REQ-ID` por camada de teste.** Use a pirâmide de testes:
- - **Unit** — funções puras, calculadoras, validadores (a maioria de `REQ-CALC-*`).
- - **Integration** — adapters: repositories, filas, serviços externos (a maioria de `REQ-PAY-*`).
+ - **Unit** — funções puras, calculadoras e validadores.
+ - **Integration** — adapters: repositories, filas e serviços externos.
  - **Contract** — testes consumer/provider de API (frontend ↔ backend, backend ↔ wrapper Adabas externo).
- - **End-to-end** — apenas jornadas críticas de usuário (cadastro, desembolso, consulta de auditoria).
+ - **End-to-end** — apenas jornadas críticas de usuário definidas pelo time.
  - **Non-functional** — performance, segurança, acessibilidade, observabilidade.
 2. **Escolha ferramentas por camada.** JUnit 5 + AssertJ + Mockito (unit/integration backend), Testcontainers (integration), Pact (contract), Playwright (E2E), k6 (load), OWASP ZAP (security baseline), axe-core (a11y).
 3. **Defina a estratégia de dados de teste.** Dados sintéticos para happy paths, snapshots legados anonimizados para casos de borda, seeds determinísticas para testes property-based. Nenhum PII de produção em qualquer ambiente.
@@ -41,48 +41,35 @@ Peça ao usuário o que estiver faltando.
 O entregável é um arquivo markdown com esta estrutura:
 
 ```markdown
-# Test Strategy — <feature> (REQ-<DOMAIN>-*)
+# Test Strategy — <feature>
 
 ## 1. Scope
-In scope: REQ-PAY-001 .. REQ-PAY-024
-Out of scope: legacy compatibility tests (covered by `specs/002-legacy-bridge`)
+In scope: <!-- preencher com REQ-IDs -->
+Out of scope: <!-- preencher -->
 
 ## 2. Risk profile
-Financial: high — every disbursement is auditable.
-Regulatory: high — SISP / TCU audit trail required.
+<!-- preencher com riscos e evidências confirmadas -->
 
 ## 3. Test pyramid
 
 | Layer | Framework | Coverage target | Where it runs |
 |--------------|--------------------------|---------------------------|---------------|
-| Unit | JUnit 5 + AssertJ | 100% of `REQ-CALC-*` | every push |
-| Integration | Spring Boot Test + Testcontainers (Postgres 16) | 100% of `REQ-PAY-*` adapters | every push |
-| Contract | Pact (consumer-driven) | every API endpoint | PR to develop |
-| E2E | Playwright | 5 happy-path journeys | nightly stage |
-| Performance | k6 | p95 < 250 ms disburse | weekly |
-| Security | OWASP ZAP baseline + Trivy | every release candidate | nightly |
-| Accessibility| axe-core | WCAG 2.1 AA on key pages | every push |
+| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
 
 ## 4. Data strategy
-- Synthetic JSON fixtures in `src/test/resources/fixtures/`.
-- Anonymized snapshots from `01-arqueologia/legado-sifap/` for legacy regression cases.
-- No production PII anywhere — `dev` and `stage` use synthetic data only.
+<!-- preencher com dados, anonimização e restrições aprovadas -->
 
 ## 5. Environments
-local → dev (CI) → stage (nightly E2E) → prod-shadow (perf + chaos)
+<!-- preencher com ambientes disponíveis -->
 
 ## 6. Exit criteria
-- 100% of REQ-IDs have at least one direct test.
-- 0 critical or high security findings.
-- p95 latency under defined threshold for 7 consecutive nightly runs.
-- Flakiness rate < 1% over the last 50 runs.
+<!-- preencher com critérios mensuráveis aprovados pelo time -->
 
 ## 7. Risks
-- Adabas legacy bridge is single-vendor; mock it for CI, hit it once nightly.
-- Test data refresh from legacy is manual; automate by Sprint 4.
+<!-- preencher com riscos observados e mitigações -->
 
 ## 8. Schedule
-Sprint 1: unit + integration scaffolding. Sprint 2: contract + E2E. Sprint 3: perf + security.
+<!-- preencher com a sequência de execução -->
 ```
 
 ## Anti-padrões

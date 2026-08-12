@@ -172,7 +172,7 @@ A regra vale para todo mundo. Pedir não é fraqueza; sofrer calado é.
 ```
 
 Ruim: _"Isso não está funcionando."_
-Bom: _"Objetivo: validar CPF em `BeneficiaryService`. Tentei: regex + sugestão do Copilot (ambos falham em zeros). Bloqueio: não sei se o mod-11 deve rejeitar 00000000000 explicitamente."_
+Bom: _"Objetivo: validar `<dado>` em `<serviço>`. Tentei: `<abordagem>` e `<abordagem alternativa>`. Bloqueio: preciso de validação humana para confirmar `<regra em aberto>`."_
 
 ---
 

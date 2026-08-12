@@ -1,7 +1,7 @@
 ---
 name: "review-agent-pr"
 description: "Revisa um PR gerado pelo Copilot Agent na nuvem, com atenção explícita a failure modes típicos de IA."
-argument-hint: "pr=42 issue=add-pagination-payments"
+argument-hint: "pr=<number> issue=<slug>"
 agent: "evolution"
 tools: ["search", "execute", "edit"]
 ---

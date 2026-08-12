@@ -109,7 +109,7 @@ Se 2 de 3 forem "sim" → escreva ADR.
 |---|---|---|
 | Trocar `final` por `var` em uma variável | ❌ | Local, reversível |
 | Escolher Spring Boot 3 vs Quarkus | ✅ | Múltiplos arquivos, irreversível em 1 dia |
-| Nomear endpoint `/api/v1/payments` em vez de `/api/payments` | ✅ | Versionamento de API afeta todo o time |
+| Escolher um padrão de versionamento para a API | ✅ | Afeta contratos e múltiplos módulos |
 | Adicionar Lombok como dependência | ✅ | Afeta todo o módulo |
 | Usar `@Autowired` ou constructor injection | 🟡 | Só ADR se decidir como **padrão do time** |
 
@@ -138,10 +138,10 @@ Use o [template de ADR](../02-spec-moderna/ADR-TEMPLATE.md) para registrar o con
 ## 💡 Dicas práticas de prompts (Estágio 2)
 
 ```text
-# Pedir ao @architect para sugerir ADR
-"@architect, vamos decidir: PostgreSQL ou MongoDB para SIFAP 2.0?
-Considere: dados financeiros, auditoria pesada, sem expertise em NoSQL.
-Sugira ADR no formato padrão."
+# Pedir ao @architect para estruturar uma ADR
+"@architect, registre uma ADR sobre `<decisão em aberto>`.
+Considere as alternativas, as evidências e os trade-offs que o time forneceu.
+Use o formato padrão, sem escolher pela equipe."
 
 # Pedir para desafiar uma decisão (importante!)
 "@architect, leia esta ADR-002 e faça o papel de advogado do diabo.

@@ -46,24 +46,24 @@ Um relatório Markdown:
 ## Relatório de Contradições — <feature>
 
 ### Resumo
-- Requisitos analisados: 47
-- Achados: 6 (Critical 1, Major 3, Minor 2)
-- Maior severidade: REQ-PAY-014 vs REQ-PAY-019
+- Requisitos analisados: <quantidade>
+- Achados: <quantidade por severidade>
+- Maior severidade: <REQ-A vs REQ-B, se houver>
 
 ### Critical
 | # | REQ-A | REQ-B | Tipo | Evidência | Resolução proposta |
 |---|-------|-------|------|----------|---------------------|
-| 1 | REQ-PAY-014 ("Se o beneficiário estiver suspenso, então o sistema não deverá desembolsar") | REQ-PAY-019 ("Quando uma programação recorrente disparar, o sistema deverá desembolsar para todos os beneficiários inscritos") | Contradição direta (sobreposição quando beneficiário suspenso está inscrito em programação recorrente) | EARS unwanted vs event-driven; estado `SUSPENDED` não excluído em REQ-PAY-019 | Ajustar REQ-PAY-019: "...para todos os beneficiários inscritos, exceto os que estão no estado `SUSPENDED`. (Veja REQ-PAY-014.)" |
+| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
 
 ### Major
 | # | REQ-A | REQ-B | Tipo | Evidência | Resolução proposta |
 |---|-------|-------|------|----------|---------------------|
-| 2 | REQ-PAY-006 ("responder a /payments em até 250 ms p95") | REQ-PAY-008 + REQ-PAY-009 (duas chamadas externas sequenciais de 200 ms) | Conflito de limite | 200 + 200 > 250 | Paralelizar (novo ADR) ou relaxar REQ-PAY-006 para 500 ms; encaminhar ao produto. |
+| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
 
 ### Minor
 | # | REQ-A | REQ-B | Tipo | Evidência | Resolução proposta |
 |---|-------|-------|------|----------|---------------------|
-| 3 | REQ-BEN-007 usa "user" | REQ-BEN-008 usa "beneficiary" | Desvio terminológico | Mesmo ator em ambos | Substituir "user" por "beneficiary" globalmente. |
+| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
 
 ### Conflitos constitucionais
 | # | REQ | Regra | Conflito |
@@ -73,10 +73,10 @@ Um relatório Markdown:
 ### Riscos de regressão legada
 | # | REQ | Invariante legado | Conflito |
 |---|-----|------------------|---------|
-| 4 | REQ-PAY-021 ("arredondar para 2 casas decimais, half-up") | `CALCBENF.NSN` arredonda half-down para saldos negativos | Risco de mudança de comportamento; sinalizar para produto. |
+| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
 
 ### Próximo passo recomendado
-Resolver Critical e Major antes da aprovação da spec. Levar (1) e (2) ao product owner.
+Resolver achados Critical e Major antes da aprovação da spec.
 ```
 
 ## Antipadrões

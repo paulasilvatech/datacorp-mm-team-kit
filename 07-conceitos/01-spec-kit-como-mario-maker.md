@@ -68,30 +68,31 @@ Quando o jogo vai mal, é quase sempre porque alguém pulou uma etapa.
 
 ## 📜 Como isso fica no nosso workshop SIFAP
 
-Quando o Estágio 2 começa, sua dupla vai fazer **exatamente** isso, mas para a feature "Geração de Ciclo de Pagamento":
+Quando o Estágio 2 começa, sua dupla aplica esta sequência à funcionalidade que
+descobriu no legado:
 
 ```bash
 # 1. Princípios já existem (no .specify/memory/constitution.md)
 cat .specify/memory/constitution.md
 
 # 2. Cria a spec
-/speckit.specify Geração de Ciclo de Pagamento mensal para beneficiários ACTIVE
+/speckit.specify <funcionalidade confirmada pelo time> com source_legacy em cada requisito
 
 # 3. Resolve dúvidas
 /speckit.clarify
-# → "Beneficiários SUSPENDED devem entrar? E recém-cadastrados (<30 dias)?"
+# → Perguntas sobre comportamentos ainda sem validação humana
 
 # 4. Planeja
 /speckit.plan
-# → Bicep de módulo payment + DTO + service + Flyway V2
+# → Módulos, contratos, dados e riscos que o time decidiu registrar
 
 # 5. Quebra em tarefas
 /speckit.tasks
-# → 7 tarefas com dono, estimativa e dependência
+# → Tarefas com dono, estimativa e dependência
 
 # 6. Verifica consistência
 /speckit.analyze
-# → "Tarefa 4 não cobre o cenário 'mês com 28 dias'"
+# → Lacunas entre requisitos, plano e tarefas
 
 # 7. Implementa
 /speckit.implement
@@ -126,9 +127,8 @@ Cole estes prompts direto no Copilot Chat (depois de selecionar `@architect` no 
 
 ```text
 # Para começar uma feature
-/speckit.specify Quero criar a funcionalidade de notificação por
-e-mail quando um pagamento é aprovado. Beneficiários ACTIVE recebem.
-Anexar fonte legada se houver paralelo.
+/speckit.specify <descreva a funcionalidade confirmada no legado>.
+Anexe source_legacy a cada requisito ou [GREENFIELD] com justificativa.
 
 # Para forçar clarificação
 /speckit.clarify
@@ -136,8 +136,7 @@ Anexar fonte legada se houver paralelo.
 # Cada pergunta não respondida = bug futuro.
 
 # Para gerar plano
-/speckit.plan A spec acima usando Spring Boot 3, Spring Mail,
-Postgres 16 e Testcontainers para teste de integração.
+/speckit.plan Use as decisões registradas pelo time e a stack do workshop.
 
 # Para revisar antes de codar
 /speckit.analyze

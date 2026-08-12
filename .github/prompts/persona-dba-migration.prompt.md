@@ -16,7 +16,7 @@ Você é o DBA produzindo uma migração **PostgreSQL 16** para o SIFAP 2.0. Tod
 
 Peça ao usuário o que estiver faltando.
 
-- A mudança solicitada em linguagem natural (por exemplo, "adicionar timestamp `suspended_at` a `beneficiary`").
+- A mudança solicitada em linguagem natural.
 - O `REQ-ID` vinculado (e a declaração EARS).
 - A escala de dados: contagem de linhas das tabelas afetadas, pico de QPS.
 - A janela de implantação: zero downtime obrigatório ou janela de manutenção permitida.
@@ -50,27 +50,21 @@ Sua resposta final deve incluir:
 ### Template de avanço (adição de coluna com zero downtime)
 
 ```sql
--- V202604300930__add_suspended_at_to_beneficiary.sql
--- REQ-BEN-019: while a beneficiary is suspended, the system shall record the timestamp of suspension.
--- Online-safe: nullable column, backfill in separate script, constraint added in V...0945.
+-- V<timestamp>__<short_description>.sql
+-- REQ-XXX: <declaração EARS confirmada pelo time>.
+-- Online-safe: <estratégia escolhida e evidência>.
 
-ALTER TABLE beneficiary
- ADD COLUMN IF NOT EXISTS suspended_at TIMESTAMPTZ;
+ALTER TABLE <table_name>
+ ADD COLUMN IF NOT EXISTS <column_name> <sql_type>;
 
-COMMENT ON COLUMN beneficiary.suspended_at IS
- 'Set when status transitions to SUSPENDED. REQ-BEN-019.';
-
-CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_beneficiary_suspended_at
- ON beneficiary (suspended_at)
- WHERE suspended_at IS NOT NULL;
+-- Inclua índices e comentários somente após o time confirmar o schema.
 ```
 
 ### Template de rollback
 
 ```sql
--- V202604300930__add_suspended_at_to_beneficiary.undo.sql
-DROP INDEX CONCURRENTLY IF EXISTS idx_beneficiary_suspended_at;
-ALTER TABLE beneficiary DROP COLUMN IF EXISTS suspended_at;
+-- V<timestamp>__<short_description>.undo.sql
+-- Descreva o rollback validado para a mudança acima.
 ```
 
 ## Antipadrões

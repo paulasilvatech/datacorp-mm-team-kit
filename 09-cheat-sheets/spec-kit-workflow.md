@@ -74,7 +74,7 @@ specify init . --integration copilot
 
 Isso instala templates, scripts e comandos do Spec-Kit para o GitHub Copilot. Em
 macOS/Linux, os scripts ficam em `.specify/scripts/bash/`. As features geradas
-pelos comandos vivem em `specs/<numero-nome-da-feature>/`.
+pelos comandos vivem em `specs/<NNN>-<feature>/`.
 
 ## Comandos principais no Copilot
 

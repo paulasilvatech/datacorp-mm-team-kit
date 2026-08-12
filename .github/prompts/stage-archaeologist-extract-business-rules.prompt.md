@@ -1,7 +1,7 @@
 ---
 name: "extract-business-rules"
 description: "Extrai regras de negócio de um programa Natural lendo blocos IF/THEN/ELSE e confirmando com documentação."
-argument-hint: "file=01-arqueologia/legado-sifap/natural-programs/PGMAIN01.NSN docs=01-arqueologia/legado-sifap/legacy-docs/"
+argument-hint: "file=01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSN docs=01-arqueologia/legado-sifap/legacy-docs/"
 agent: "archaeologist"
 tools: ["search", "edit"]
 ---

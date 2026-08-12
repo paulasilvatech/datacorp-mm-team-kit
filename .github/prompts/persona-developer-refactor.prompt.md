@@ -16,7 +16,7 @@ Você está melhorando a estrutura interna do código do SIFAP 2.0 sem alterar o
 
 Peça ao usuário qualquer item que esteja faltando.
 
-- O arquivo, pacote ou componente alvo (por exemplo `backend/src/main/java/br/gov/sifap/payments/PaymentService.java`).
+- O arquivo, pacote ou componente alvo.
 - A motivação: code smell observado (long method, duplicação, primitive obsession, feature envy etc.).
 - Quaisquer restrições de `plan.md` ou ADRs que limitem seus movimentos (por exemplo "controllers devem permanecer finos").
 - A cobertura de testes atual da área (execute um relatório de cobertura se desconhecida).
@@ -43,12 +43,11 @@ Sua resposta final deve incluir:
 - **Nota de preservação de comportamento** — "API pública inalterada. Nenhuma nova cláusula throws. Nenhuma migration de DB. Nenhuma nova env var."
 - **Mensagem de commit** seguindo Conventional Commits com o tipo `refactor:`:
  ```
- refactor(payments): extract DisbursementCalculator from PaymentService
+ refactor(<scope>): <short description>
 
- Reduces PaymentService from 412 to 287 lines; isolates pure calculation
- for easier testing. No behavior change.
+ <descreva o comportamento preservado e a melhoria estrutural>
 
- Refs: REQ-PAY-014 (annotation moved to DisbursementCalculator.calculate)
+ Refs: REQ-XXX
  ```
 
 ## Antipadrões

@@ -30,12 +30,12 @@ Todo componente é um Server Component, salvo marcação explícita em contrári
 - Não podem usar hooks, event handlers ou APIs do browser
 
 ```tsx
-// app/payments/page.tsx — Server Component (default)
-export default async function PaymentsPage() {
-  const response = await fetch('/api/v1/payments');
-  if (!response.ok) throw new Error('Payment loading failed');
-  const payments = await response.json();
-  return <PaymentList payments={payments} />;
+// app/<resource>/page.tsx — Server Component (default)
+export default async function ResourcePage() {
+  const response = await fetch('/api/v1/<resource>');
+  if (!response.ok) throw new Error('Resource loading failed');
+  const resources = await response.json();
+  return <ResourceList resources={resources} />;
 }
 ```
 
@@ -48,13 +48,13 @@ Adicione `'use client'` somente quando precisar de interatividade:
 
 import { useState } from 'react';
 
-export function PaymentFilter({ onFilter }: { onFilter: (term: string) => void }) {
+export function ResourceFilter({ onFilter }: { onFilter: (term: string) => void }) {
   const [term, setTerm] = useState('');
   return (
     <input
       value={term}
       onChange={e => { setTerm(e.target.value); onFilter(e.target.value); }}
-      placeholder="Filter payments..."
+      placeholder="Filter resources..."
     />
   );
 }
@@ -71,18 +71,18 @@ Regras:
 Use server actions em vez de API route handlers para submissões de formulário:
 
 ```tsx
-// app/payments/actions.ts
+// app/<resource>/actions.ts
 'use server';
 
-export async function createPayment(formData: FormData) {
-  const amount = formData.get('amount');
+export async function createResource(formData: FormData) {
+  const value = formData.get('value');
   // Valida e chama a API de backend
-  const res = await fetch(`${process.env.API_URL}/api/v1/payments`, {
+  const res = await fetch(`${process.env.API_URL}/api/v1/<resource>`, {
     method: 'POST',
-    body: JSON.stringify({ amount }),
+    body: JSON.stringify({ value }),
     headers: { 'Content-Type': 'application/json' },
   });
-  if (!res.ok) throw new Error('Payment creation failed');
+  if (!res.ok) throw new Error('Resource creation failed');
 }
 ```
 
@@ -90,18 +90,18 @@ export async function createPayment(formData: FormData) {
 
 - **`strict: true`** em `tsconfig.json` — sem exceções, sem `// @ts-ignore`
 - **Sem `any`**: Use `unknown` e refine com type guards
-- **Somente named exports em componentes reutilizáveis**: `export function PaymentCard()`. Arquivos de rota do App Router podem usar o `export default` exigido pelo Next.js.
+- **Somente named exports em componentes reutilizáveis**: `export function ResourceCard()`. Arquivos de rota do App Router podem usar o `export default` exigido pelo Next.js.
 - **Interface em vez de type** para object shapes que podem ser estendidos
 - **Utility types**: Use `Pick`, `Omit`, `Partial` em vez de duplicar interfaces
 
 ```tsx
 // Good: named export, typed props
-export function PaymentCard({ payment }: { payment: PaymentDto }) {
-  return <div>{payment.amount}</div>;
+export function ResourceCard({ resource }: { resource: ResourceDto }) {
+  return <div>{resource.label}</div>;
 }
 
 // Bad: default export, any type
-export default function PaymentCard({ payment }: { payment: any }) { ... }
+export default function ResourceCard({ resource }: { resource: any }) { ... }
 ```
 
 ## Tailwind CSS + shadcn/ui
@@ -114,11 +114,11 @@ export default function PaymentCard({ payment }: { payment: any }) { ... }
 ```tsx
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-export function PaymentSummary({ total }: { total: number }) {
+export function ResourceSummary({ total }: { total: number }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Payment Summary</CardTitle>
+        <CardTitle>Resource Summary</CardTitle>
       </CardHeader>
       <CardContent>
         <p className="text-2xl font-bold">{total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
@@ -143,12 +143,12 @@ Toda página e componente deve cumprir estes mínimos:
 ```tsx
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import { PaymentCard } from './PaymentCard';
+import { ResourceCard } from './ResourceCard';
 
-describe('PaymentCard', () => {
-  it('displays the payment amount when a payment is provided', () => {
-    render(<PaymentCard payment={{ id: 1, amount: 100.50 }} />);
-    expect(screen.getByText('100.5')).toBeInTheDocument();
+describe('ResourceCard', () => {
+  it('displays the resource label when a resource is provided', () => {
+    render(<ResourceCard resource={{ label: 'Example' }} />);
+    expect(screen.getByText('Example')).toBeInTheDocument();
   });
 });
 ```

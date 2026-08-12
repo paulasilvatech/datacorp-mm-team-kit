@@ -1,7 +1,7 @@
 ---
 name: "translate-natural-to-java"
 description: "Traduz um programa Natural para Java 21 + Spring Boot 3.3 idiomático, preservando semântica de negócio."
-argument-hint: "file=01-arqueologia/legado-sifap/natural-programs/PGMAIN01.NSN context=payment package=com.datacorp.app.payment"
+argument-hint: "file=01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSN context=<context> package=<java.package>"
 agent: "builder"
 tools: ["search", "edit", "execute"]
 ---
@@ -92,7 +92,7 @@ Para cada bloco com requisito correspondente, escreva o equivalente Java:
 
 Use idiomas Java 21:
 - Records para DTOs e value objects
-- Sealed interfaces para uniões discriminadas (por exemplo, payment statuses)
+- Sealed interfaces para uniões discriminadas quando o domínio exigir
 - `Optional` para retornos anuláveis
 - Constructor injection (sem `@Autowired` em campos)
 - `@Valid` para validação de entrada na camada de controller
@@ -129,5 +129,5 @@ Se uma construção Natural não tiver um idioma Java limpo, apresente 2 alterna
 ## Exemplo de Invocação
 
 ```
-/translate-natural-to-java file=01-arqueologia/legado-sifap/natural-programs/PGMAIN01.NSN context=payment package=com.datacorp.app.payment
+/translate-natural-to-java file=01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSN context=<context> package=<java.package>
 ```

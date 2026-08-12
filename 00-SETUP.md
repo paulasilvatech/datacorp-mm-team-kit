@@ -437,13 +437,13 @@ Depois de recarregar o VS Code, os comandos principais devem aparecer no painel 
 No Copilot Chat:
 
 ```text
-/speckit.specify Permitir que operadores gerem um ciclo mensal de pagamento para beneficiários ativos. Preserve a rastreabilidade legada com source_legacy em cada requisito.
+/speckit.specify <descreva a funcionalidade identificada pelo time no legado>. Preserve a rastreabilidade legada com source_legacy em cada requisito.
 ```
 
 O Spec-Kit cria uma branch numerada e a estrutura:
 
 ```text
-specs/001-payment-cycle-generation/
+specs/<NNN>-<feature>/
 ├── spec.md
 └── (outros artefatos criados nos próximos comandos)
 ```
@@ -469,10 +469,10 @@ Para o workshop, use esta sequência única do Spec-Kit:
 | Fase | Comando | Saída principal | Persona dona |
 | --- | --- | --- | --- |
 | Constituição | `/speckit.constitution` | `.specify/memory/constitution.md` | Technical Lead + Architect |
-| Spec | `/speckit.specify` | `specs/<feature>/spec.md` | Requirements Engineer |
+| Spec | `/speckit.specify` | `specs/<NNN>-<feature>/spec.md` | Requirements Engineer |
 | Clarificação | `/speckit.clarify` | Perguntas resolvidas na spec | Requirements Engineer + Product Owner |
-| Plano | `/speckit.plan` | `specs/<feature>/plan.md` | Software Architect |
-| Tasks | `/speckit.tasks` | `specs/<feature>/tasks.md` | Technical Lead |
+| Plano | `/speckit.plan` | `specs/<NNN>-<feature>/plan.md` | Software Architect |
+| Tasks | `/speckit.tasks` | `specs/<NNN>-<feature>/tasks.md` | Technical Lead |
 | Análise | `/speckit.analyze` | Lacunas e inconsistências | QA Engineer + Architect |
 | Implementação | `/speckit.implement` | Código + testes guiados pela spec | Developer + QA Engineer |
 
@@ -496,11 +496,12 @@ infra/NNN-azure         ← trabalho de infraestrutura (Estágio 4)
 
 | Tipo           | Padrão                 | Exemplo                             |
 | -------------- | ---------------------- | ----------------------------------- |
-| Spec           | `spec/NNN-kebab-name`  | `spec/001-payment-cycle-generation` |
-| Implementação  | `impl/NNN-kebab-name`  | `impl/001-payment-cycle-generation` |
-| Infrastructure | `infra/NNN-kebab-name` | `infra/001-azure-deployment`        |
+| Spec           | `spec/<NNN>-<feature>` | `spec/<NNN>-<feature>` |
+| Implementação  | `impl/<NNN>-<feature>` | `impl/<NNN>-<feature>` |
+| Infrastructure | `infra/<component>` | `infra/<component>` |
 
-`NNN` é o número da funcionalidade (corresponde à pasta em `specs/NNN-...`).
+`NNN` é o número da funcionalidade (corresponde à pasta em
+`specs/<NNN>-<feature>/`).
 
 ### Criando uma branch de funcionalidade
 
@@ -510,14 +511,14 @@ git checkout develop
 git pull
 
 # Crie sua branch de funcionalidade
-git checkout -b spec/001-feature-name
+git checkout -b spec/<NNN>-<feature>
 
 # Trabalhe e faça commit
 git add -A
 git commit -m "feat: draft EARS requirements"
 
 # Envie para origin
-git push -u origin spec/001-payment-cycle-generation
+git push -u origin spec/<NNN>-<feature>
 ```
 
 ### Abrindo um Pull Request

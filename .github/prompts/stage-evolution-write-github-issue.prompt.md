@@ -1,7 +1,7 @@
 ---
 name: "write-github-issue"
 description: "Escreve uma GitHub issue de alta qualidade pronta para ser assumida pelo Copilot Agent na nuvem."
-argument-hint: "feature=\"Add pagination to the payment list endpoint\" context=payment reqs=REQ-015"
+argument-hint: "feature=\"<trabalho delimitado>\" context=<context> reqs=REQ-XXX"
 agent: "evolution"
 tools: ["search", "edit"]
 ---
@@ -113,5 +113,5 @@ Lembre a equipe: isto é um rascunho. Revise, ajuste o escopo se necessário, de
 ## Exemplo de Invocação
 
 ```
-/write-github-issue feature="Add pagination to the payment list endpoint" context=payment reqs=REQ-015
+/write-github-issue feature="<trabalho delimitado>" context=<context> reqs=REQ-XXX
 ```

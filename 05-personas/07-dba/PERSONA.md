@@ -88,7 +88,7 @@ Traduzir apenas o modelo Adabas necessário ao recorte para um schema relacional
 
 ## Se travar (defaults de emergência)
 
-- Não conhece o formato DDM? Abra [`../01-arqueologia/legado-sifap/adabas-ddms/BENEFICIARIO.ddm`](../../01-arqueologia/legado-sifap/adabas-ddms/BENEFICIARIO.ddm) — tem comentários explicando cada campo.
+- Não conhece o formato DDM? Abra um arquivo em [`../01-arqueologia/legado-sifap/adabas-ddms/`](../../01-arqueologia/legado-sifap/adabas-ddms/) — os comentários ajudam a entender cada campo.
 - Migração quebrou? NUNCA edite uma migração existente. Crie nova: `V5__fix_xxx.sql`.
 - Qual índice criar? Regra: "Se aparece em WHERE ou JOIN e a tabela tem >100K linhas, crie índice."
 - PostgreSQL offline? Verifique se o Docker está rodando: `docker ps | grep postgres`.

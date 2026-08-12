@@ -24,7 +24,7 @@ Peça à pessoa usuária o que estiver faltando.
 ## Processo
 
 1. **Monte o inventário de afirmações.** Para cada documento, extraia afirmações que possam ser verificadas contra o código:
- - Nomes de arquivos e pastas, como `backend/src/main/java/br/gov/sifap/payments/PaymentService.java`.
+ - Nomes de arquivos e pastas criados pelo time.
  - Rotas REST e métodos HTTP.
  - Tabelas, colunas e tipos do banco de dados.
  - Variáveis de ambiente e chaves de configuração.
@@ -36,7 +36,9 @@ Peça à pessoa usuária o que estiver faltando.
  - **Critical** — instruções que falham quando seguidas (comando incorreto, arquivo ausente, link quebrado).
  - **Major** — fatos desatualizados que induzem ao erro, mas não quebram o fluxo (versão errada, módulo renomeado).
  - **Minor** — divergência de terminologia, exemplos obsoletos.
-4. **Verifique os mapeamentos legados.** Para qualquer documento que afirme "este módulo substitui `CALCBENF.NSN`", verifique se o nome do programa existe em `01-arqueologia/legado-sifap/natural-programs/`.
+4. **Verifique os mapeamentos legados.** Para qualquer documento que afirme que um
+   módulo substitui um programa Natural, verifique a fonte citada em
+   `01-arqueologia/legado-sifap/natural-programs/`.
 5. **Cruze as ADRs.** Uma ADR com "Status: Accepted" e uma seção "Consequences" que o código não reflete é drift crítico.
 6. **Gere a lista de correções.**
 
@@ -48,16 +50,14 @@ Um relatório em markdown:
 ## Relatório de Desalinhamento da Documentação — <YYYY-MM-DD>
 
 ### Resumo
-- Arquivos auditados: 14
-- Crítico: 3 — Maior: 7 — Menor: 12
-- Arquivo mais desalinhado: `docs/runbooks/disburse-retry.md` (5 achados)
+- Arquivos auditados: <quantidade>
+- Crítico: <quantidade> — Maior: <quantidade> — Menor: <quantidade>
+- Arquivo mais desalinhado: <path, se houver>
 
 ### Crítico
 | # | Arquivo | Linha | Afirmação | Realidade | Correção |
 |---|------|------|-------|---------|-----|
-| 1 | README.md | 42 | "Rode `./mvnw spring-boot:run`" | O módulo agora é multi-módulo; precisa de `-pl backend/payments` | Substituir por `./mvnw -pl backend/payments spring-boot:run` |
-| 2 | docs/runbooks/disburse-retry.md | 18 | "POST /retry" | O endpoint é `POST /api/v1/payments/{id}/retry` | Atualizar path e exemplo |
-| 3 | specs/003/ADRs/0007-eventbus.md | 56 | "Consequência: tópicos do Service Bus" | Migrado para Event Grid no PR #482 | Abrir novo ADR substituindo o 0007 |
+| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
 
 ### Maior
 ... (tabela)
@@ -66,13 +66,12 @@ Um relatório em markdown:
 ... (tabela)
 
 ### Transversal issues
-- 3 docs reference `BeneficiaryService.findByCpf()` — method renamed to `findByDocument()`; mass-update once.
-- Java version in 4 places says `17`; project upgraded to `21` in PR #501.
+- <!-- preencher com padrões observados na auditoria -->
 
 ### Recommended workflow
-1. Open one PR per critical fix, naming the doc + line.
-2. Bundle major fixes in a single "doc-refresh" PR.
-3. Defer minor findings to a backlog issue.
+1. Abra um PR por correção crítica, citando documento e linha.
+2. Agrupe correções maiores relacionadas em um PR revisável.
+3. Registre achados menores no backlog.
 ```
 
 ## Antipadrões

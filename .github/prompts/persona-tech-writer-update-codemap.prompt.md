@@ -18,7 +18,7 @@ Peça à pessoa usuária o que estiver faltando.
 
 - O caminho raiz do repositório (este workspace).
 - Se deve atualizar no lugar (`update`) ou reconstruir (`rebuild`).
-- A tabela de proprietários das personas, normalmente definida em `pt-br/05-personas/`.
+- A tabela de proprietários das personas, quando criada pelo time.
 - Uma versão anterior de `CODEMAP.md`, se existir.
 
 ## Processo
@@ -28,12 +28,15 @@ Peça à pessoa usuária o que estiver faltando.
  - Propósito (uma frase).
  - Pontos de entrada públicos (endpoints REST, rotas de página, comandos CLI, entradas de IaC).
  - Estado persistente (tabelas, filas, blob containers).
- - Faixas de `REQ-ID` vinculadas (por exemplo, `REQ-PAY-001..024`).
- - Persona proprietária (`alex`, `sam`, `jordan`, `morgan`, `casey`).
+ - Faixas de `REQ-ID` vinculadas.
+ - Persona proprietária.
 3. **Encontre testes.** Para cada módulo, encontre o diretório de testes correspondente e crie um link para ele.
-4. **Encontre o mapeamento legado.** Quando um módulo corresponder a um programa Natural de `01-arqueologia/legado-sifap/natural-programs/`, nomeie o programa (`CALCBENF.NSN` etc.). Isso explicita a linhagem da modernização.
+4. **Encontre o mapeamento legado.** Quando um módulo corresponder a um programa
+   Natural de `01-arqueologia/legado-sifap/natural-programs/`, cite o arquivo e a
+   evidência confirmados pelo time. Isso explicita a linhagem da modernização.
 5. **Encontre dependências não óbvias.** Imports entre módulos, bibliotecas compartilhadas (`commons-*`) e serviços externos do Azure. Destaque qualquer módulo que dependa de mais de três outros, pois isso é um cheiro de design.
-6. **Ordene módulos por valor visível à pessoa usuária.** Caminhos críticos de uso primeiro (cadastro, desembolso, auditoria), módulos de suporte depois, infra por último.
+6. **Ordene módulos por valor visível à pessoa usuária.** Caminhos críticos de uso
+   primeiro, módulos de suporte depois, infraestrutura por último.
 7. **Renderize como um único arquivo markdown navegável.** Mantenha abaixo de 200 linhas. Se passar disso, divida sub-codemaps por área de serviço e crie links para eles.
 
 ## Saída
@@ -43,52 +46,45 @@ O entregável é `docs/CODEMAP.md` (ou subarquivos), com esta estrutura:
 ```markdown
 # Mapa do Código do SIFAP 2.0
 
-> Última atualização: <YYYY-MM-DD>. Donos: veja `pt-br/05-personas/`.
+> Última atualização: <YYYY-MM-DD>. Donos: <referência criada pelo time>.
 
 ## 1. Guia de leitura
-- Caminhos críticos: pagamentos, beneficiários, auditoria.
+- Caminhos críticos: <!-- preencher a partir do código -->
 - Veja `plan.md` para o racional arquitetural; veja `spec.md` para requisitos.
 
 ## 2. Serviços de backend
 
-### payments — orquestração de desembolsos
-- **Propósito**: emitir, tentar novamente e reconciliar desembolsos de beneficiários.
-- **Path**: `backend/src/main/java/br/gov/sifap/payments/`
-- **Testes**: `backend/src/test/java/br/gov/sifap/payments/`
-- **Pontos de entrada**: `POST /api/v1/payments`, `GET /api/v1/payments/{id}`, `POST /api/v1/payments/{id}/retry`
-- **Estado**: tabelas Postgres `payment`, `payment_attempt`, `disbursement_lock`. Fila Service Bus `payments-out`.
-- **REQ-IDs**: REQ-PAY-001..024
-- **Dono**: @alex
-- **Linhagem legada**: `CALCBENF.NSN`, `CALCDSCT.NSN`, `BATCHPGT.NSN`
-- **Dependências entre módulos**: `beneficiaries` (leitura), `audit` (escrita).
-
-### beneficiaries — cadastro e ciclo de vida
-- ...
+### <módulo> — <propósito confirmado>
+- **Path**: `<path criado pelo time>`
+- **Testes**: `<path de testes>`
+- **Pontos de entrada**: <!-- preencher -->
+- **Estado**: <!-- preencher a partir do schema e da configuração -->
+- **REQ-IDs**: <!-- preencher -->
+- **Dono**: <!-- preencher -->
+- **Linhagem legada**: <!-- preencher com fonte e evidência, quando aplicável -->
+- **Dependências entre módulos**: <!-- preencher -->
 
 ## 3. Rotas de frontend
 
-### /beneficiaries — listagem e detalhe
-- **Path**: `frontend/app/beneficiaries/`
-- **Testes**: `frontend/app/beneficiaries/__tests__/`
-- **REQ-IDs**: REQ-UI-007..014
-- **Dono**: @sam
-- **Consome API de**: `payments`, `beneficiaries`
-- ...
+### <rota> — <propósito confirmado>
+- **Path**: `<path criado pelo time>`
+- **Testes**: `<path de testes>`
+- **REQ-IDs**: <!-- preencher -->
+- **Dono**: <!-- preencher -->
+- **Consome API de**: <!-- preencher -->
 
 ## 4. Módulos de infraestrutura
 
-### postgres
-- **Path**: `infra/modules/postgres/`
-- **REQ-IDs**: REQ-OPS-014..018
-- **Dono**: @jordan
-- ...
+### <módulo>
+- **Path**: `<path criado pelo time>`
+- **REQ-IDs**: <!-- preencher -->
+- **Dono**: <!-- preencher -->
 
 ## 5. Bibliotecas transversais
-- `br.gov.sifap.shared.audit` — usada por pagamentos, beneficiários e programas.
-- `br.gov.sifap.shared.money` — wrappers `BigDecimal` para cálculos de ICMS.
+- <!-- preencher somente com bibliotecas existentes -->
 
 ## 6. Pontos de atenção observados
-- `beneficiaries` importa de 4 outros módulos — revisar para uma fronteira de responsabilidade mais estreita.
+- <!-- preencher somente com achados observados -->
 
 ## 7. Como atualizar este arquivo
 Rode `/update-codemap` após adicionar ou renomear qualquer módulo. Não gere automaticamente; faça curadoria.

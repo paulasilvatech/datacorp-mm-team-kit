@@ -80,7 +80,7 @@ flowchart TB
 
 - Traduzir um DDM Adabas → SQL → **Sonnet** (com Opus para o caso mais estranho).
 - Gerar DDL repetitiva → **Haiku**.
-- Decidir estratégia de particionamento para `payment` → **Opus**.
+- Decidir estratégia de particionamento para `<tabela>` → **Opus**.
 
 ### QA Engineer
 

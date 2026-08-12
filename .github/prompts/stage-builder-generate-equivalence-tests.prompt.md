@@ -1,7 +1,7 @@
 ---
 name: "generate-equivalence-tests"
 description: "Gera testes JUnit que validam se a implementação Java moderna produz as mesmas saídas que o original Natural para as mesmas entradas."
-argument-hint: "class=com.datacorp.app.payment.PaymentService method=calculateAmount"
+argument-hint: "class=<java.package>.<Service> method=<method>"
 agent: "builder"
 tools: ["search", "edit", "execute"]
 ---
@@ -121,5 +121,5 @@ void should_handle_mystery_branch() {
 ## Exemplo de Invocação
 
 ```
-/generate-equivalence-tests class=com.datacorp.app.payment.PaymentService method=calculateAmount
+/generate-equivalence-tests class=<java.package>.<Service> method=<method>
 ```

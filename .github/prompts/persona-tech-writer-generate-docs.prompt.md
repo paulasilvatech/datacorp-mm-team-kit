@@ -25,11 +25,8 @@ Peça à pessoa usuária o que estiver faltando.
 
 1. **Escolha o template correto.** README para "o que é isto e como eu rodo". Runbook para "a produção quebrou às 03:00, o que eu faço". Referência de API para "vou consumir isto a partir de outro serviço". ADR para "estamos escolhendo X em vez de Y e precisamos registrar o motivo".
 2. **Use o código como fonte, não a memória.** Abra `pom.xml`, `package.json`, `application.yml`, classes controller, especificação OpenAPI e migrações. Cite strings exatas.
-3. **Use a terminologia do SIFAP de forma consistente.**
- - "Beneficiary", não "user" (quando for domínio).
- - "Disbursement", não "payment" (quando for específico do SIFAP).
- - "Audit log", não "activity log".
- - Nomes devem corresponder ao uso brasileiro do SIFAP quando existirem; as explicações ficam em português.
+3. **Use a terminologia confirmada pelo time.** Não invente nomes de domínio,
+   módulos, endpoints ou mapeamentos legados; explicações ficam em português.
 4. **Aplique o frontmatter padrão.**
  ```yaml
  ---
@@ -41,7 +38,8 @@ Peça à pessoa usuária o que estiver faltando.
  ---
  ```
 5. **Respeite os limites de tamanho.** README ≤ 1 página (~80 linhas). Runbook ≤ 1 página por cenário. Referência de API é por endpoint. ADR ≤ 2 páginas.
-6. **Inclua verificação.** Todo comando no documento precisa ser executável. Se o documento diz `./mvnw -pl payments verify`, a pessoa revisora precisa conseguir copiar e colar.
+6. **Inclua verificação.** Todo comando no documento precisa ser executável e
+   confirmado no repositório criado pelo time.
 7. **Crie links cruzados.** README → CODEMAP, `spec.md`, runbook. Runbook → URLs de dashboard, nomes de alerta. ADR → ADRs substituídas/substitutas.
 8. **Marque com data de última revisão.** Drift começa no momento em que um documento é escrito.
 
@@ -54,88 +52,70 @@ O entregável é o arquivo de documentação na árvore de docs do projeto:
 - Referência de API → `docs/api/<service>/<endpoint-slug>.md`
 - ADR → `02-spec-moderna/ADRs/<NNNN>-<title>.md`
 
-### Template de README (módulo)
+### Estrutura de README (módulo)
 
 ````markdown
 ---
-title: "payments"
-audience: "nova pessoa contribuidora"
+title: "<module>"
+audience: "<audience>"
 last_reviewed: "<YYYY-MM-DD>"
-owner: "@alex"
-linked_reqs: [REQ-PAY-001..024]
+owner: "<owner>"
+linked_reqs: [REQ-XXX]
 ---
 
-# payments
+# <module>
 
-Desembolsar, tentar novamente e reconciliar pagamentos de beneficiários do SIFAP.
+<!-- preencher com propósito confirmado no código e na spec -->
 
 ## Início rápido
-```bash
-cd backend
-./mvnw -pl payments spring-boot:run
-```
+<!-- preencher com comando executável verificado -->
 
 ## API pública
 | Método | Path | Finalidade |
-|--------|------|---------|
-| POST | /api/v1/payments | Criar desembolso |
-| GET | /api/v1/payments/{id} | Ler desembolso |
-| POST | /api/v1/payments/{id}/retry | Tentar novamente um desembolso com falha |
+|--------|------|------------|
+| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
 
 ## Estado persistente
-- Tabelas: `payment`, `payment_attempt`, `disbursement_lock`.
-- Filas: `payments-out` (Service Bus).
+<!-- preencher somente a partir de migrações e configurações existentes -->
 
 ## Testes
-- `./mvnw -pl payments test`
-- Integration: `./mvnw -pl payments verify -Pintegration`
+<!-- preencher com comandos verificados -->
 
 ## Linhagem legada
-Substitui `CALCBENF.NSN`, `CALCDSCT.NSN`, `BATCHPGT.NSN`.
-
-## Veja também
-- `docs/CODEMAP.md`
-- `specs/003-payment-processing/spec.md`
-- `docs/runbooks/disburse-retry.md`
+<!-- preencher com arquivo.NSN e evidência, quando aplicável -->
 ````
 
-### Template de runbook
+### Estrutura de runbook
 
 ````markdown
 ---
-title: "Runbook de nova tentativa de desembolso"
-audience: "SRE de plantão"
+title: "<runbook>"
+audience: "<audience>"
 last_reviewed: "<YYYY-MM-DD>"
-owner: "@alex"
-severity_default: "SEV-2"
-linked_reqs: [REQ-PAY-014, REQ-OPS-031]
+owner: "<owner>"
+severity_default: "<severity>"
+linked_reqs: [REQ-XXX]
 ---
 
-# Nova tentativa de desembolso — desembolso do beneficiário travado
+# <título do incidente>
 
 ## Quando isto aparece
-Alerta: `pay-be-retry-stuck-15m`, dashboard `Payments > Retries`, ticket "desembolso não recebido."
+<!-- preencher com alerta ou sintoma observado -->
 
 ## Severidade
-SEV-2 se isolado a um beneficiário. SEV-1 se > 100 em 5 minutos.
+<!-- preencher com critérios aprovados pelo time -->
 
 ## Diagnosticar
-1. Verifique a contagem de `payment_attempt` para o beneficiário nos últimos 30 min.
-2. Verifique a profundidade da DLQ do Service Bus em `payments-out`.
-3. Verifique a configuração `RetryPolicy` (`payments.retry.max-attempts`).
+<!-- preencher com passos verificados -->
 
 ## Mitigar
-- Para um beneficiário: reenfileire a partir de `payment_attempt` depois de corrigir a causa.
-- Para > 100: pause novos desembolsos, drene a DLQ e reexecute.
+<!-- preencher com ação segura e aprovada -->
 
 ## Verificar
-- Linhas de `payment` transitam para o estado `SETTLED`.
-- A profundidade da DLQ retorna a 0.
+<!-- preencher com sinal de recuperação -->
 
 ## Escalar
-- @alex (engineering lead) para problemas no nível de código.
-- @jordan (DevOps) para problemas de fila ou infra.
-- @morgan (tech lead) para declaração de SEV-1.
+<!-- preencher com responsáveis definidos pelo time -->
 ````
 
 ## Antipadrões

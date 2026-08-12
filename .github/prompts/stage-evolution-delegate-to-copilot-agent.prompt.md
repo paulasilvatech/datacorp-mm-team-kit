@@ -1,7 +1,7 @@
 ---
 name: "delegate-to-copilot-agent"
 description: "Entrega uma issue ao GitHub Copilot Agent na nuvem e acompanha o PR resultante."
-argument-hint: "issue=04-evolucao/issues/add-pagination-payments.md"
+argument-hint: "issue=04-evolucao/issues/<slug>.md"
 agent: "evolution"
 tools: ["search", "edit"]
 ---

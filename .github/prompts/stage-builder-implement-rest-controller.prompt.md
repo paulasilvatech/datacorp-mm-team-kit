@@ -1,7 +1,7 @@
 ---
 name: "implement-rest-controller"
 description: "Implementa um controller Spring REST a partir de uma definição de endpoint OpenAPI, conectando-o aos services do bounded context."
-argument-hint: "endpoint=\"POST /api/v1/payments\" context=payment service=PaymentService"
+argument-hint: "endpoint=\"<METHOD /api/v1/resource>\" context=<context> service=<Service>"
 agent: "builder"
 tools: ["search", "edit", "execute"]
 ---
@@ -17,13 +17,13 @@ Depois que a camada de service para um bounded context existir, quando a equipe 
 
 ## Pré-condições
 
-- `02-spec-moderna/openapi.yaml` existe com a definição do endpoint
+- A definição OpenAPI criada pelo time contém o endpoint
 - A classe de service do bounded context existe (ou sua interface)
 - Os DTOs request/response estão definidos (ou serão gerados como records)
 
 ## Entradas que a Equipe Deve Fornecer
 
-- O endpoint a implementar (method + path de openapi.yaml)
+- O endpoint a implementar (method + path da definição OpenAPI)
 - O bounded context e package de destino
 - A classe de service para delegar
 
@@ -66,7 +66,7 @@ Arquivos Java:
 Você é o `@builder`. A equipe precisa de um controller REST para um endpoint definido na spec OpenAPI.
 
 **Passo 1 — Ler a definição OpenAPI.**
-Abra `02-spec-moderna/openapi.yaml`. Encontre o endpoint especificado. Extraia:
+Abra a definição OpenAPI indicada pela equipe. Encontre o endpoint especificado. Extraia:
 - HTTP method e path
 - Operation ID e summary
 - Request body schema (se houver)
@@ -78,17 +78,13 @@ Abra `02-spec-moderna/openapi.yaml`. Encontre o endpoint especificado. Extraia:
 Crie Java records para request e response:
 
 ```java
-public record CreatePaymentRequest(
-    @NotNull @Positive BigDecimal amount,
-    @NotNull LocalDate dueDate,
-    @Size(max = 200) String description
+public record [RequestName](
+    @NotNull [FieldType] [requiredField],
+    @Size(max = [maxLength]) String [optionalTextField]
 ) {}
 
-public record PaymentResponse(
-    Long id,
-    BigDecimal amount,
-    LocalDate dueDate,
-    String status
+public record [ResponseName](
+    [FieldType] [field]
 ) {}
 ```
 
@@ -141,5 +137,5 @@ Se a interface de service ainda não existir, gere uma interface mínima com a a
 ## Exemplo de Invocação
 
 ```
-/implement-rest-controller endpoint="POST /api/v1/payments" context=payment service=PaymentService
+/implement-rest-controller endpoint="<METHOD /api/v1/resource>" context=<context> service=<Service>
 ```

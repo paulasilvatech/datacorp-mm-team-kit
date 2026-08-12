@@ -129,7 +129,7 @@ Isso vai te poupar 30 minutos de confusão. **Três modos do Copilot:**
 | Modo | Quando usar | Exemplo |
 |---|---|---|
 | **Ask** | Quero entender algo | *"Explique este programa Natural"* |
-| **Plan** | Quero mudar código com calma | *"Adicione validação de CPF — me mostre antes de fazer"* |
+| **Plan** | Quero mudar código com calma | *"Planeje a validação de `<dado>` — me mostre antes de fazer"* |
 | **Agent** | Quero delegar uma feature inteira | Issue do Estágio 4 |
 
 ### 5c. Se você nunca abriu o Copilot Chat

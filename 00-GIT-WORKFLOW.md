@@ -25,7 +25,7 @@
 |---|---|---|
 | `main` | 🏆 **Save final** — jogo zerado, mostrado pra mãe | Versão estável, demoável |
 | `develop` | 💾 **Checkpoint da fase atual** | Versão integrada do dia |
-| `spec/001-pagamento` | 🗺 **Sua quest pessoal** salvando só pra você | Branch onde você mexe |
+| `spec/<NNN>-<feature>` | 🗺 **Sua quest pessoal** salvando só pra você | Branch onde você mexe |
 | `git commit` | 💾 **Save rápido** (local, só você vê) | Marca uma versão local |
 | `git push` | ☁️ **Backup na nuvem** (colegas podem ver) | Sobe para GitHub |
 | **Pull Request (PR)** | 👀 **Mostrar o save** para os colegas validarem | Pede review antes de mergear |
@@ -43,21 +43,21 @@ gitGraph
    commit id: "Início do dia"
    branch develop
    commit id: "Setup do time"
-   branch spec/001-ciclo-pagamento
-   checkout spec/001-ciclo-pagamento
+   branch spec/NNN-feature
+   checkout spec/NNN-feature
    commit id: "RE: EARS"
    commit id: "SA: ADR-001"
    checkout develop
-   merge spec/001-ciclo-pagamento tag: "H2 ✅"
-   branch impl/payment-service
-   checkout impl/payment-service
-   commit id: "Dev: PaymentService"
-   commit id: "DBA: V2 migration"
+   merge spec/NNN-feature tag: "H2 ✅"
+   branch impl/NNN-feature
+   checkout impl/NNN-feature
+   commit id: "Dev: feature implementation"
+   commit id: "DBA: migration"
    commit id: "QA: tests"
    checkout develop
-   merge impl/payment-service tag: "H3 ✅"
-   branch infra/terraform
-   checkout infra/terraform
+   merge impl/NNN-feature tag: "H3 ✅"
+   branch infra/component
+   checkout infra/component
    commit id: "DevOps: tf plan"
    checkout develop
    merge infra/terraform tag: "demo-ready"
@@ -71,12 +71,12 @@ gitGraph
 
 | Quem | Estágio | Prefixo de branch | Origem | Exemplo |
 |---|---|---|---|---|
-| RE + SA | 2 — Spec | `spec/<NNN>-<feature>` | `develop` | `spec/001-ciclo-pagamento` |
-| Dev + DBA | 3 — Impl | `impl/<NNN>-<feature>` | `develop` | `impl/001-payment-cycle` |
-| QA | 3 — Testes | `test/<feature>` | `develop` | `test/payment-cycle-bdd` |
-| DevOps | 4 — Infra | `infra/<componente>` | `develop` | `infra/terraform-aca` |
-| Tech Writer | Transversal | `docs/<topico>` | `develop` | `docs/runbook` |
-| Agent Mode | 4 — Delegação | `agent/<issue-NN>` | `develop` | `agent/issue-42` |
+| RE + SA | 2 — Spec | `spec/<NNN>-<feature>` | `develop` | `spec/<NNN>-<feature>` |
+| Dev + DBA | 3 — Impl | `impl/<NNN>-<feature>` | `develop` | `impl/<NNN>-<feature>` |
+| QA | 3 — Testes | `impl/<NNN>-<feature>` | `develop` | `impl/<NNN>-<feature>` |
+| DevOps | 4 — Infra | `infra/<component>` | `develop` | `infra/<component>` |
+| Tech Writer | Transversal | `docs/<topic>` | `develop` | `docs/<topic>` |
+| Agent Mode | 4 — Delegação | `agent/<issue-NN>` | `develop` | `agent/<issue-NN>` |
 
 > [!IMPORTANT]
 > O fluxo é `spec/<NNN>-<feature>` → `develop` → `main`; não existe branch

@@ -54,7 +54,7 @@
 | **09** | [`09-cheat-sheets/`](09-cheat-sheets/) | 🎴 Cartões de 1 página |
 | `docs/` | [`docs/`](docs/) | FAQ, troubleshooting, runbook, ADRs |
 | `assets/` | [`assets/`](assets/) | SVGs e diagramas |
-| `specs/` | [`specs/`](specs/) | Exemplo Spec-Kit |
+| `specs/` | [`specs/`](specs/) | Artefatos Spec-Kit criados pelo time |
 
 ---
 
@@ -74,9 +74,9 @@ flowchart LR
     MIST[mysteries-found.md]:::stage1
     REPORT[discovery-report.md]:::stage1
 
-    SPEC[specs/NNN-feature/spec.md<br/>EARS + source_legacy]:::stage2
-    PLAN[specs/NNN-feature/plan.md]:::stage2
-    TASKS[specs/NNN-feature/tasks.md]:::stage2
+    SPEC[specs/&lt;NNN&gt;-&lt;feature&gt;/spec.md<br/>EARS + source_legacy]:::stage2
+    PLAN[specs/&lt;NNN&gt;-&lt;feature&gt;/plan.md]:::stage2
+    TASKS[specs/&lt;NNN&gt;-&lt;feature&gt;/tasks.md]:::stage2
     SCOPE[scope-decisions.md<br/>apoio]:::stage2
 
     CODE[Java + Next.js]:::stage3

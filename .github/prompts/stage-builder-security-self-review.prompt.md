@@ -1,7 +1,7 @@
 ---
 name: "security-self-review"
 description: "Checklist de self-review para segurança e problemas OWASP Top 10 em uma feature recém-construída."
-argument-hint: "context=payment files=PaymentController.java,PaymentService.java,Payment.java"
+argument-hint: "context=<context> files=<Controller>.java,<Service>.java,<Entity>.java"
 agent: "builder"
 tools: ["search", "edit"]
 ---
@@ -120,5 +120,5 @@ Este relatório não bloqueia o Estágio 4 — é informacional. A equipe decide
 ## Exemplo de Invocação
 
 ```
-/security-self-review context=payment files=PaymentController.java,PaymentService.java,Payment.java
+/security-self-review context=<context> files=<Controller>.java,<Service>.java,<Entity>.java
 ```

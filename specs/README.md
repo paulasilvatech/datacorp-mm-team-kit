@@ -12,7 +12,7 @@
 >
 > **O que você terá ao final desta leitura:**
 >
-> 1. Padrão de pastas `specs/NNN-feature-name/`
+> 1. Padrão de pastas `specs/<NNN>-<feature>/`
 > 2. Arquivos obrigatórios em cada feature (spec.md, plan.md, tasks.md)
 > 3. Como o CI valida rastreabilidade
 
@@ -24,7 +24,7 @@ Cada funcionalidade tem uma pasta própria:
 
 ```text
 specs/
-└── NNN-feature-name/
+└── <NNN>-<feature>/
     ├── spec.md
     ├── plan.md
     └── tasks.md
