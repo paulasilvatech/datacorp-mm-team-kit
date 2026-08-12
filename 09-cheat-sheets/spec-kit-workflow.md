@@ -1,85 +1,75 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
 # Spec-Kit — Cartão de Referência
 
+> **Trilha:** [Kit do Time](../README.md) › [Cartões de Referência](README.md) › **Spec-Kit workflow**
 
+**O Spec-Kit é a ferramenta oficial do GitHub para Spec-Driven Development: ele força a sequência `specify → clarify → plan → tasks → implement` e impede que o time pule direto para código sem especificação.**
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../README.md) → [Cheat-sheets](README.md) → **Spec-Kit workflow**
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Requirements Engineer e Software Architect durante o Estágio 2 |
+| **Pré-requisitos** | Spec-Kit instalado (`uv tool install specify-cli`) e `specify init` executado |
+| **Tempo estimado** | 2 min de consulta; aplicação ao longo do Estágio 2 |
+| **Estágio** | Estágio 2 — Especificação (e Estágio 3 para `/speckit.implement`) |
+| **Resultado esperado** | `spec.md`, `plan.md` e `tasks.md` em `specs/<NNN>-<feature>/` |
 
-> **Para quem é isto?** Quem está no Estágio 2 e não sabe qual `/speckit.*` usar agora.
->
-> **O que você terá ao final desta leitura:**
->
-> 1. Sequência canônica: `specify` → `clarify` → `plan` → `tasks` → `analyze`
-> 2. Mapping de comando × estágio × persona
-> 3. Comandos de recovery quando o time pula uma etapa
+![Cartão 02 de 03](https://img.shields.io/badge/Cart%C3%A3o-02%20de%2003-171717?style=flat-square)
+![Tópico: Spec-Kit](https://img.shields.io/badge/T%C3%B3pico-Spec--Kit-404040?style=flat-square)
 
-![CARTÃO](https://img.shields.io/badge/CART%C3%83O-02%20de%2003-00A4EF?style=for-the-badge) ![TÓPICO](https://img.shields.io/badge/TÓPICO-Spec-Kit-1A1A1A?style=for-the-badge) ![USE QUANDO](https://img.shields.io/badge/USE%20QUANDO-n%C3%A3o%20sabe%20qual%20%2Fspeckit%20usar-737373?style=for-the-badge)
+> Repositório oficial: <https://github.com/github/spec-kit>
 
-> Repo oficial: <https://github.com/github/spec-kit>. Use o Spec-Kit oficial do
-> GitHub para especificar, planejar, quebrar tarefas e implementar features.
+---
 
-## Quando usar
+## O que é o Spec-Kit e por que ele existe
 
-Use a partir do Estágio 2, quando o time transforma descobertas do legado em uma
-funcionalidade especificada. O Spec-Kit ajuda a manter a sequência:
+O Spec-Kit (Specify CLI) é uma ferramenta de linha de comando e conjunto de slash commands para o Copilot que implementa o fluxo de Spec-Driven Development (SDD). SDD é a prática de escrever a especificação completa de uma funcionalidade — incluindo critérios de aceitação e rastreabilidade — antes de qualquer linha de código.
 
-1. Constituição do projeto
-2. Spec do que será construído
-3. Plano técnico
-4. Tasks implementáveis
-5. Implementação guiada pela spec
+**Por que isso importa no SIFAP:** cada regra de negócio do legado Natural/Adabas precisa ser rastreável do código legado ao requisito moderno. Sem o Spec-Kit, essa rastreabilidade se perde na conversa do chat. Com ele, cada requisito carrega `source_legacy:` apontando para o arquivo e linha do código original.
 
-Em termos simples: o Spec-Kit evita que o time pule direto para código. Primeiro
-ele força a pergunta "o que vamos construir?", depois "como vamos construir?",
-depois "quais tarefas executam isso?". Para o SIFAP, isso é essencial porque
-cada decisão moderna precisa preservar uma regra encontrada no Natural/Adabas ou
-deixar claro que é uma melhoria greenfield.
+---
 
-## Passo a passo rápido
+## Fluxo canônico
 
-Use esta sequência quando uma descoberta da arqueologia virar uma funcionalidade.
+```mermaid
+%%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
+flowchart LR
+    classDef step fill:#F5F5F5,stroke:#171717,color:#171717
+    classDef result fill:#FFFFFF,stroke:#171717,color:#171717,stroke-width:2px
 
-1. **Nomeie a funcionalidade.** Use `NNN-nome-da-feature`.
-2. **Crie a spec com `/speckit.specify`.** Inclua user stories, critérios de aceitação e `source_legacy:`.
-3. **Resolva dúvidas com `/speckit.clarify`.** Não siga com campos, regras ou fluxos ambíguos.
-4. **Planeje com `/speckit.plan`.** O plano deve citar módulos, contratos, dados e riscos.
-5. **Quebre em tarefas com `/speckit.tasks`.** Tarefa boa é pequena, testável e tem dono claro.
-6. **Cheque consistência com `/speckit.analyze`.** Corrija lacunas antes de implementar.
-7. **Implemente com `/speckit.implement`.** O código deve seguir `spec.md`, `plan.md` e `tasks.md`.
-
-Resultado esperado: uma pasta `specs/<NNN>-<feature>/` com os artefatos formais
-`spec.md`, `plan.md` e `tasks.md`, que explicam a funcionalidade de ponta a
-ponta, do requisito ao código. `02-spec-moderna/` guarda apenas apoio e decisões
-de escopo; não é uma segunda localização de spec.
-
-## Instalação oficial
-
-Pré-requisitos: `uv`, Python 3.11+, Git e um agente compatível como GitHub
-Copilot.
-
-```bash
-uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@vX.Y.Z
-specify version
+    P0["Constitution"]:::step --> P1["Specify"]:::step --> P2["Clarify"]:::step
+    P2 --> P3["Plan"]:::step --> P4["Tasks"]:::step --> P5["Analyze"]:::step
+    P5 --> P6["Implement"]:::result
 ```
 
-Substitua `vX.Y.Z` pela versão mais recente publicada em
-<https://github.com/github/spec-kit/releases>.
+| Momento | Comando | Entregável esperado |
+|---|---|---|
+| Antes da primeira funcionalidade | `/speckit.constitution` | `.specify/memory/constitution.md` |
+| Estágio 2 | `/speckit.specify` | `specs/<NNN>-<feature>/spec.md` |
+| Estágio 2 | `/speckit.clarify` | Perguntas resolvidas na spec |
+| Estágio 2 | `/speckit.plan` | `specs/<NNN>-<feature>/plan.md` |
+| Estágio 2 | `/speckit.tasks` | `specs/<NNN>-<feature>/tasks.md` |
+| Estágio 3 | `/speckit.analyze` | Lacunas e inconsistências antes de codar |
+| Estágio 3 | `/speckit.implement` | Código guiado por spec + plan + tasks |
 
-## Inicialização no repositório do time
+---
 
-```bash
-specify init . --integration copilot
-```
+## Passo a passo executável
 
-Isso instala templates, scripts e comandos do Spec-Kit para o GitHub Copilot. Em
-macOS/Linux, os scripts ficam em `.specify/scripts/bash/`. As features geradas
-pelos comandos vivem em `specs/<NNN>-<feature>/`.
+- [ ] **Nomear a funcionalidade.** Usar o formato `NNN-nome-da-feature`.
+- [ ] **Criar a spec com `/speckit.specify`.** Incluir user stories, critérios de aceitação e `source_legacy:`.
+- [ ] **Resolver dúvidas com `/speckit.clarify`.** Não seguir com campos, regras ou fluxos ambíguos.
+- [ ] **Gerar plano técnico com `/speckit.plan`.** O plano deve citar módulos, contratos, dados e riscos.
+- [ ] **Quebrar em tarefas com `/speckit.tasks`.** Tarefa boa é pequena, testável e tem dono claro.
+- [ ] **Checar consistência com `/speckit.analyze`.** Corrigir lacunas antes de implementar.
+- [ ] **Implementar com `/speckit.implement`.** O código deve seguir `spec.md`, `plan.md` e `tasks.md`.
+
+---
 
 ## Comandos principais no Copilot
 
 | Comando | Uso |
-| --- | --- |
+|---|---|
 | `/speckit.constitution` | Cria ou atualiza princípios e regras do projeto |
 | `/speckit.specify` | Cria a spec da funcionalidade com user stories e critérios |
 | `/speckit.plan` | Gera o plano técnico a partir da spec |
@@ -89,27 +79,30 @@ pelos comandos vivem em `specs/<NNN>-<feature>/`.
 ## Comandos opcionais úteis
 
 | Comando | Uso |
-| --- | --- |
+|---|---|
 | `/speckit.clarify` | Resolve ambiguidades antes do plano técnico |
 | `/speckit.analyze` | Analisa consistência e cobertura entre artefatos |
 | `/speckit.checklist` | Gera checklist de qualidade para a spec |
 | `/speckit.taskstoissues` | Converte tasks em GitHub Issues |
 
+---
+
 ## Os 6 padrões EARS
 
+EARS (Easy Approach to Requirements Syntax) é uma notação padronizada para escrever requisitos verificáveis. Cada padrão define uma estrutura gramatical que o Copilot reconhece e valida.
+
 | # | Padrão | Modelo | Exemplo sintático |
-| --- | --- | --- | --- |
-| 1 | Ubiquitous | O sistema deverá [ação] | O sistema deverá `<ação verificável>` |
-| 2 | Event-Driven | Quando [X], o sistema deverá [ação] | Quando `<evento>`, o sistema deverá `<ação>` |
-| 3 | State-Driven | Enquanto [X], o sistema deverá [ação] | Enquanto `<estado>`, o sistema deverá `<ação>` |
-| 4 | Optional | Onde [escolha], o sistema deverá [ação] | Onde `<opção>`, o sistema deverá `<ação>` |
-| 5 | Unwanted | O sistema não deverá [ação] | O sistema não deverá `<comportamento proibido>` |
-| 6 | Complex | Enquanto [X], quando [Y], onde [Z], o sistema deverá [ação] | Enquanto `<estado>`, quando `<evento>`, onde `<opção>`, o sistema deverá `<ação>` |
+|---|---|---|---|
+| 1 | Ubiquitous | O sistema deverá `[ação]` | O sistema deverá `<ação verificável>` |
+| 2 | Event-Driven | Quando `[X]`, o sistema deverá `[ação]` | Quando `<evento>`, o sistema deverá `<ação>` |
+| 3 | State-Driven | Enquanto `[X]`, o sistema deverá `[ação]` | Enquanto `<estado>`, o sistema deverá `<ação>` |
+| 4 | Optional | Onde `[escolha]`, o sistema deverá `[ação]` | Onde `<opção>`, o sistema deverá `<ação>` |
+| 5 | Unwanted | O sistema não deverá `[ação]` | O sistema não deverá `<comportamento proibido>` |
+| 6 | Complex | Enquanto `[X]`, quando `[Y]`, onde `[Z]`, o sistema deverá `[ação]` | Combinação dos padrões 2, 3 e 4 |
 
-## Estrutura mínima
+---
 
-Depois de confirmar uma regra no legado, use a evidência encontrada pelo próprio
-time para preencher a estrutura abaixo:
+## Estrutura mínima de requisito SIFAP
 
 ```yaml
 REQ-XXX:
@@ -119,73 +112,53 @@ REQ-XXX:
   acceptance: "<cenário verificável>"
 ```
 
-Se esse requisito não tiver `source_legacy:`, ele ainda não está pronto para
-seguir para `/speckit.plan`.
+> [!WARNING]
+> Se um requisito não tiver `source_legacy:`, ele ainda não está pronto para seguir para `/speckit.plan`. O job de CI `legacy-traceability` rejeita PRs que violam essa regra.
 
-## Fluxo recomendado no workshop
+---
 
-```mermaid
-flowchart LR
- classDef phase fill:#FFF7E0,stroke:#FFB900,color:#0A0A0A,font-size:10px
+## Instalação e inicialização
 
- P0[Constitution]:::phase --> P1[Specify]:::phase --> P2[Clarify]:::phase
- P2 --> P3[Plan]:::phase --> P4[Tasks]:::phase --> P5[Analyze]:::phase
- P5 --> P6[Implement]:::phase
+```bash
+uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@vX.Y.Z
+specify version
 ```
 
-| Momento | Comando | Entregável esperado |
-| --- | --- | --- |
-| Antes da primeira funcionalidade | `/speckit.constitution` | `.specify/memory/constitution.md` |
-| Estágio 2 | `/speckit.specify` | `specs/<NNN>-<feature>/spec.md` |
-| Estágio 2 | `/speckit.clarify` | Perguntas resolvidas na spec |
-| Estágio 2 | `/speckit.plan` | `specs/<NNN>-<feature>/plan.md` |
-| Estágio 2 | `/speckit.tasks` | `specs/<NNN>-<feature>/tasks.md` |
-| Estágio 3 | `/speckit.analyze` | Lacunas e inconsistências antes de codar |
-| Estágio 3 | `/speckit.implement` | Código guiado por spec + plan + tasks |
+Substitua `vX.Y.Z` pela versão mais recente em <https://github.com/github/spec-kit/releases>.
 
-## Como adaptar ao SIFAP legado
+```bash
+specify init . --integration copilot
+```
+
+Em macOS/Linux, os scripts ficam em `.specify/scripts/bash/`. As features geradas pelos comandos vivem em `specs/<NNN>-<feature>/`.
+
+> [!NOTE]
+> Se os comandos `/speckit.*` não aparecerem no Copilot Chat, rode `specify init . --integration copilot` novamente e recarregue o VS Code.
+
+---
+
+## Como adaptar ao SIFAP
 
 - Inclua `source_legacy:` em todo requisito que nasceu de `.NSN` ou `.ddm`.
-- Use `[GREENFIELD]` apenas quando não houver paralelo no legado e justifique.
-- Antes de `/speckit.plan`, valide com Product Owner e Software Architect.
-- Antes de `/speckit.implement`, confirme que `tasks.md` contém testes antes do
-  código quando a mudança tocar regra de negócio.
+- Use `[GREENFIELD]` apenas quando não houver paralelo no legado e justifique a decisão.
+- Antes de `/speckit.plan`, valide o escopo com Product Owner e Software Architect.
+- Antes de `/speckit.implement`, confirme que `tasks.md` contém testes antes do código quando a mudança tocar regra de negócio.
 
-## Dicas
-
-- Não use pacote `specify-cli` aleatório do PyPI; a instalação oficial vem do
-  repositório `github/spec-kit`.
-- Se `uv` não existir, instale primeiro seguindo a documentação oficial.
-- Se os comandos `/speckit.*` não aparecerem, rode `specify init . --integration
-  copilot` novamente e recarregue o VS Code.
-- Especificação é fonte de verdade. Se o código contradiz a spec, atualize a spec
-  ou corrija o código antes de seguir.
+---
 
 ## Referências
 
 - [Spec-Kit no GitHub](https://github.com/github/spec-kit)
 - [Documentação oficial](https://github.github.io/spec-kit/)
 - [Guia de instalação](https://github.com/github/spec-kit/blob/main/docs/installation.md)
-- [Spec-Driven Development](https://github.com/github/spec-kit/blob/main/spec-driven.md)
+- [Spec-Driven Development](../07-conceitos/01-spec-driven-development.md)
+
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="copilot-3-modes.md"><strong>Copilot em 3 modos</strong></a><br/>
-<sub>Quando usar Ask, Plan ou Agent — tabela situação → modo.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="model-routing.md"><strong>Roteamento de modelos</strong></a><br/>
-<sub>Quando usar Haiku, Sonnet ou Opus — matriz custo × precisão.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [Copilot em 3 modos](copilot-3-modes.md)<br/><sub>Quando usar Ask, Plan ou Agent.</sub> | [Roteamento de modelos](model-routing.md)<br/><sub>Quando usar Haiku, Sonnet ou Opus.</sub> |
 
-<sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
-
-— Paula
+<sub>[Voltar ao índice do kit](../README.md)</sub>

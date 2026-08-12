@@ -25,11 +25,13 @@ Peça à pessoa usuária o que estiver faltando.
 
 1. **Liste as pastas de serviço de nível superior.** Serviços backend em `backend/src/main/java/br/gov/sifap/<service>/`, rotas frontend em `frontend/app/<route>/`, infra em `infra/modules/<name>/` ou no layout criado pelo time.
 2. **Para cada módulo, capture cinco fatos.**
- - Propósito (uma frase).
- - Pontos de entrada públicos (endpoints REST, rotas de página, comandos CLI, entradas de IaC).
- - Estado persistente (tabelas, filas, blob containers).
- - Faixas de `REQ-ID` vinculadas.
- - Persona proprietária.
+
+- Propósito (uma frase).
+- Pontos de entrada públicos (endpoints REST, rotas de página, comandos CLI, entradas de IaC).
+- Estado persistente (tabelas, filas, blob containers).
+- Faixas de `REQ-ID` vinculadas.
+- Persona proprietária.
+
 3. **Encontre testes.** Para cada módulo, encontre o diretório de testes correspondente e crie um link para ele.
 4. **Encontre o mapeamento legado.** Quando um módulo corresponder a um programa
    Natural de `01-arqueologia/legado-sifap/natural-programs/`, cite o arquivo e a

@@ -1,23 +1,42 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
 # Decisões de Escopo — Estágio 2
 
-Este arquivo apoia a conversa do Estágio 2. Os entregáveis formais permanecem
-em `specs/<NNN>-<feature>/spec.md`, `plan.md` e `tasks.md`; não registre
-requisitos EARS completos aqui.
+> **Trilha:** [Kit do Time](../README.md) › [Estágio 2](README.md) › **Decisões de Escopo**
 
-## Feature relacionada
+**Registre aqui as decisões de recorte tomadas durante o Estágio 2: o que foi selecionado, o que foi adiado e as dúvidas em aberto.**
 
-`specs/<NNN>-<feature>/`
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Par 2 durante o Estágio 2; Pares 3 e 4 na passagem de bastão H2 |
+| **Propósito** | Apoio à conversa do estágio; não substitui os artefatos formais do Spec-Kit |
+| **Feature relacionada** | `specs/<NNN>-<feature>/` |
 
-## Decisões
+> [!NOTE]
+> Os entregáveis formais permanecem em `specs/<NNN>-<feature>/spec.md`, `plan.md` e `tasks.md`. Não registre requisitos EARS completos aqui — este arquivo registra apenas decisões de escopo e dúvidas abertas.
 
-| Decisão de escopo | Evidência ou justificativa | Impacto nos artefatos formais |
-| --- | --- | --- |
-|  |  |  |
+---
+
+## Decisões de escopo
+
+| Decisão | Evidência ou justificativa | Impacto nos artefatos formais |
+|---|---|---|
+| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+
+---
 
 ## Dúvidas abertas
 
 | Dúvida | Fonte consultada | Próximo responsável |
-| --- | --- | --- |
-|  |  |  |
+|---|---|---|
+| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+
+---
+
+### Continuar a leitura
+
+| Anterior | Próximo |
+|---|---|
+| [Guia do Estágio 2](GUIDE.md)<br/><sub>Passo a passo da especificação moderna.</sub> | [Modelo de ADR](ADR-TEMPLATE.md)<br/><sub>Registre a decisão de escopo como ADR.</sub> |
+
+<sub>[Voltar ao índice do kit](../README.md)</sub>

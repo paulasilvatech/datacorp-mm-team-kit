@@ -40,6 +40,7 @@ Use as skills em [`.github/skills/`](skills/) para workflows especializados. O C
 ## Regras de Geração de Código
 
 ### Java
+
 - Use recursos do Java 21: records para DTOs, sealed interfaces para uniões discriminadas, pattern matching, virtual threads
 - Use `Optional` corretamente — nunca retorne `null` de métodos públicos
 - `@Transactional` somente na camada de service, nunca em repositories
@@ -49,18 +50,21 @@ Use as skills em [`.github/skills/`](skills/) para workflows especializados. O C
 - Nunca exponha dados sensíveis (CPF, valores de benefício) em logs — mascare-os
 
 ### TypeScript / Next.js
+
 - `strict: true` em `tsconfig.json` — sem exceções
 - Use server actions para mutations; nunca exponha secrets em client components
 - Prefira `async/await` a cadeias `.then()`
 - Somente named exports — sem default exports em arquivos de componentes
 
 ### REST APIs
+
 - Convenção de path: `/api/v1/{resource}`
 - Use verbos HTTP corretamente (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`)
 - Retorne status codes apropriados (`201` para criação, `204` para sem conteúdo, `409` para conflito)
 - Todos os endpoints devem ter annotations OpenAPI/Swagger
 
 ### Terraform
+
 - Todo recurso deve ter `tags` incluindo `project`, `environment`, `owner`
 - Secrets somente via `azurerm_key_vault_secret` — nunca em `locals` ou `variables`
 - Um módulo por área de serviço Azure (networking, compute, database, monitoring)

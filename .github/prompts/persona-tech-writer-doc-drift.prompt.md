@@ -24,18 +24,22 @@ Peça à pessoa usuária o que estiver faltando.
 ## Processo
 
 1. **Monte o inventário de afirmações.** Para cada documento, extraia afirmações que possam ser verificadas contra o código:
- - Nomes de arquivos e pastas criados pelo time.
- - Rotas REST e métodos HTTP.
- - Tabelas, colunas e tipos do banco de dados.
- - Variáveis de ambiente e chaves de configuração.
- - Comandos de build, execução e deploy.
- - Números de versão (Java, Spring Boot, Next.js, Postgres).
- - Referências a REQ-ID.
+
+- Nomes de arquivos e pastas criados pelo time.
+- Rotas REST e métodos HTTP.
+- Tabelas, colunas e tipos do banco de dados.
+- Variáveis de ambiente e chaves de configuração.
+- Comandos de build, execução e deploy.
+- Números de versão (Java, Spring Boot, Next.js, Postgres).
+- Referências a REQ-ID.
+
 2. **Verifique cada afirmação contra a fonte.** Para rotas, verifique controllers. Para schema, verifique migrações em `db/migration/`. Para configurações, verifique `application.yml`. Para comandos, verifique `Makefile`, `package.json`, `pom.xml`, GitHub Actions.
 3. **Classifique o drift.**
- - **Critical** — instruções que falham quando seguidas (comando incorreto, arquivo ausente, link quebrado).
- - **Major** — fatos desatualizados que induzem ao erro, mas não quebram o fluxo (versão errada, módulo renomeado).
- - **Minor** — divergência de terminologia, exemplos obsoletos.
+
+- **Critical** — instruções que falham quando seguidas (comando incorreto, arquivo ausente, link quebrado).
+- **Major** — fatos desatualizados que induzem ao erro, mas não quebram o fluxo (versão errada, módulo renomeado).
+- **Minor** — divergência de terminologia, exemplos obsoletos.
+
 4. **Verifique os mapeamentos legados.** Para qualquer documento que afirme que um
    módulo substitui um programa Natural, verifique a fonte citada em
    `01-arqueologia/legado-sifap/natural-programs/`.

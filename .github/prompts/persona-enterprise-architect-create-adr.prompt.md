@@ -27,16 +27,20 @@ Peça ao usuário o que estiver faltando.
 
 1. **Escolha um título afiado.** Use um título guiado por verbo e com forma de decisão: "Integrar legado Adabas via adaptador REST" — não "Abordagem de integração" ou "Ideias sobre Adabas".
 2. **Defina o status corretamente.**
- - `Proposed` — decisão rascunhada, aguardando revisão.
- - `Accepted` — aprovada pelo fórum de arquitetura, com data.
- - `Superseded by NNNN` — substituída por outro ADR.
- - `Rejected` — considerada e rejeitada (ainda registrada — evita rediscussão futura).
+
+- `Proposed` — decisão rascunhada, aguardando revisão.
+- `Accepted` — aprovada pelo fórum de arquitetura, com data.
+- `Superseded by NNNN` — substituída por outro ADR.
+- `Rejected` — considerada e rejeitada (ainda registrada — evita rediscussão futura).
+
 3. **Escreva o contexto com honestidade.** Quais forças estão em jogo agora? Restrições (Java 21, Postgres 16, somente Azure, regulatório)? Decisões existentes (ADRs anteriores)? Conhecidos e desconhecidos?
 4. **Liste pelo menos três opções.** Inclua o status quo e uma opção "não fazer nada" se aplicável. Cada opção precisa de:
- - Descrição em uma linha.
- - Prós (máximo 3 bullets).
- - Contras (máximo 3 bullets).
- - Perfil de custo / risco em linguagem simples.
+
+- Descrição em uma linha.
+- Prós (máximo 3 bullets).
+- Contras (máximo 3 bullets).
+- Perfil de custo / risco em linguagem simples.
+
 5. **Nomeie a decisão e a justificativa.** Um parágrafo para cada. Referencie a opção escolhida pelo nome.
 6. **Capture consequências — positivas *e* negativas.** O que se torna possível? O que fica mais difícil? Quais novos riscos aparecem? Quais outras decisões agora ficam forçadas ou restringidas?
 7. **Vincule para frente e para trás.** Cite os REQ-IDs, ADRs anteriores na mesma feature e itens inegociáveis de `.specify/memory/constitution.md` dos quais essa decisão depende.

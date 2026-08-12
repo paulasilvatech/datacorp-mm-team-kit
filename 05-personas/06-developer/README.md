@@ -1,93 +1,77 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
 # Developer — Kit Copilot
 
-![PERSONA Developer](https://img.shields.io/badge/PERSONA-Developer-7FBA00?style=for-the-badge) ![MARIO 🟩 Luigi](https://img.shields.io/badge/MARIO-🟩%20Luigi-1A1A1A?style=for-the-badge) ![PAR Par 3 · Implementação](https://img.shields.io/badge/PAR-Par%203%20·%20Implementação-737373?style=for-the-badge)
+> **Trilha:** [Kit do Time](../../README.md) › [Personas](../OVERVIEW.md) › **Developer**
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../../README.md) → [Personas](../OVERVIEW.md) → **Developer**
+**Kit de referência para a persona Developer no workshop de modernização do SIFAP.**
 
-> **Para quem é isto?** Para a pessoa que vai vestir esta persona durante o workshop.
->
-> **O que você terá ao final desta leitura:**
->
-> 1. Lista de arquivos do kit (agente, prompts, skills, MCP)
-> 2. Onde os artefatos ativos vivem na `.github/` consolidada da raiz
-> 3. Boas práticas específicas desta persona
->
-> 📘 **Antes de mais nada:** abra o `PERSONA.md` desta pasta para ver missão, atributos e prompts prontos.
+![Persona](https://img.shields.io/badge/Persona-Developer-171717?style=flat-square) ![Par 3](https://img.shields.io/badge/Par-3%20%C2%B7%20Implementa%C3%A7%C3%A3o-404040?style=flat-square) ![Estágio 3](https://img.shields.io/badge/Est%C3%A1gio-3%20%C2%B7%20Implementa%C3%A7%C3%A3o-737373?style=flat-square)
 
-
-<!-- markdownlint-disable MD013 MD022 MD031 MD032 MD060 -->
-
-> Implementação, TDD, correção de bugs e ciclo entender → reproduzir → corrigir → verificar.
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Pessoa que ocupa a persona Developer no workshop |
+| **Foco** | Implementação Java 21 + Next.js 15, TDD, correção de bugs |
+| **Fase do SDLC** | Estágio 3 — Implementação; Estágio 4 — Evolução |
+| **Resultado esperado** | Backend + frontend da fatia priorizada com testes passando |
 
 Leia primeiro: [PERSONA.md](PERSONA.md).
 
-## Fase do SDLC
-Implementação, Evolução
+---
 
-## Conteúdo do kit
+## Conceito
+
+O Developer é quem transforma especificações EARS em código executável. Na modernização do SIFAP, essa persona traduz programas Natural e modelos DDM/Adabas para Java 21 com Spring Boot 3.3, JPA/Hibernate e PostgreSQL 16, além de implementar o frontend em Next.js 15 com TypeScript.
+
+Por que importa: sem o Developer, os requisitos ficam em texto. É essa persona que faz a prova de conceito virar software testado e mergeável.
+
+## Kit da persona
+
+Todos os artefatos ativos vivem na `.github/` da raiz do repositório. Esta pasta é referência; edite os arquivos em `.github/` quando precisar de manutenção.
 
 | Arquivo | Tipo | Propósito |
-|------|------|---------|
-| `PERSONA.md` | Persona | Responsabilidades, passagens, prompts e rubrica do Developer |
-| `.github/agents/implementer.agent.md` | Agent | Implementação, TDD e correção de bugs |
+|---|---|---|
+| `PERSONA.md` | Ficha | Responsabilidades, estágios, prompts e rubricas do Developer |
+| `.github/agents/implementer.agent.md` | Agente | Implementação, TDD e correção de bugs |
 | `.github/prompts/persona-developer-implement.prompt.md` | Prompt | `/implement` |
 | `.github/prompts/persona-developer-fix-bug.prompt.md` | Prompt | `/fix-bug` |
 | `.github/prompts/persona-developer-tdd.prompt.md` | Prompt | `/tdd` |
 | `.github/prompts/persona-developer-refactor.prompt.md` | Prompt | `/refactor` |
 
-## Uso no workshop
+> [!TIP]
+> Se o facilitador pedir MCP local e este kit tiver `mcp.json`, copie apenas esse arquivo para `.vscode/mcp.json`.
 
-Os artefatos deste kit já estão consolidados na `.github/` da raiz do repositório:
+## Onde os artefatos ativos vivem
 
-- Agents ativos: `.github/agents/`
-- Prompts ativos: `.github/prompts/persona-*.prompt.md`
-- Skills ativas: `.github/skills/`
-- Instructions ativas: `.github/instructions/` (quando existirem)
-
-Use esta pasta como referência da persona (ficha, boas práticas e inventário). Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá se precisar de manutenção.
-
-Se este kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
+- Agentes: `.github/agents/`
+- Prompts: `.github/prompts/persona-*.prompt.md`
+- Skills: `.github/skills/`
+- Instructions: `.github/instructions/`
 
 ## Boas práticas
-- Escreva teste antes quando o design estiver claro; escreva junto quando estiver explorando. Sempre commit com testes.
-- Um PR deve contar uma história: um assunto, pequeno o bastante para revisar em cerca de 20 minutos.
-- Refatore em commit separado da mudança de comportamento.
-- Comentários explicam o porquê; código explica o quê.
+
+- [ ] **Escrever testes antes ou junto com o código.** Quando o design estiver claro, escreva o teste primeiro. Todo commit inclui testes.
+- [ ] **Manter PRs pequenos.** Um PR por assunto, revisável em cerca de 20 minutos.
+- [ ] **Separar refatoração de mudança de comportamento.** Commits distintos para cada intenção.
+- [ ] **Comentar o porquê, não o quê.** O código descreve o que faz; o comentário explica a razão.
+
+## Exemplo aplicado ao SIFAP
+
+No Estágio 3, o Developer recebe os REQ-IDs do Requirements Engineer e a estrutura de pacotes do Software Architect. A tarefa concreta é implementar, por exemplo, o endpoint `POST /api/v1/beneficios` respeitando as regras extraídas do programa Natural `SIFAP-BEN.NSN` e escrevendo testes de integração com Testcontainers apontando para o schema gerado pelas migrações Flyway do DBA.
 
 ## Referências
-- [Clean Code - Robert C. Martin](https://www.oreilly.com/library/view/clean-code-a/9780136083238/)
-- [Refactoring - Martin Fowler](https://refactoring.com/)
-- [Test-Driven Development - Kent Beck](https://www.oreilly.com/library/view/test-driven-development/0321146530/)
+
+- [Clean Code — Robert C. Martin](https://www.oreilly.com/library/view/clean-code-a/9780136083238/)
+- [Refactoring — Martin Fowler](https://refactoring.com/)
+- [Test-Driven Development — Kent Beck](https://www.oreilly.com/library/view/test-driven-development/0321146530/)
 - [GitHub Copilot Best Practices](https://docs.github.com/en/copilot)
-
----
-
-## Navegação
-
-| Anterior | Início |
-|--------|------|
-| [Persona Kits](../README.md) | [Kit PT-BR](../../README.md) |
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="../OVERVIEW.md"><strong>OVERVIEW</strong></a><br/>
-<sub>Tabela das 10 personas.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="PERSONA.md"><strong>PERSONA.md</strong></a><br/>
-<sub>Ficha desta persona.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [Visão geral das personas](../OVERVIEW.md)<br/><sub>Tabela das 10 personas e seus pares.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Ficha completa da persona Developer.</sub> |
 
-<sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
-
+<sub>[Voltar ao índice do kit](../../README.md)</sub>

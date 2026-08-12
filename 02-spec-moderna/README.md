@@ -1,28 +1,28 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Estágio 2 — Spec Moderna
+# Estágio 2 — Especificação
 
-![ESTÁGIO 02 Spec Moderna](https://img.shields.io/badge/ESTÁGIO-02%20Spec%20Moderna-00A4EF?style=for-the-badge) ![LIDERA Par 2 (EA+SA)](https://img.shields.io/badge/LIDERA-Par%202%20%28EA+SA%29-1A1A1A?style=for-the-badge) ![ENTREGÁVEL Spec-Kit](https://img.shields.io/badge/ENTREGÁVEL-Spec--Kit-737373?style=for-the-badge)
+> **Trilha:** [Kit do Time](../README.md) › **Estágio 2 — Especificação**
 
+**Neste estágio, o Par 2 transforma as descobertas do legado em requisitos rastreáveis, plano técnico e tarefas implementáveis usando o GitHub Spec-Kit.**
 
+![Estágio 2](https://img.shields.io/badge/Est%C3%A1gio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-171717?style=flat-square) ![Lidera Par 2](https://img.shields.io/badge/Lidera-Par%202%20%28EA%2BSA%29-404040?style=flat-square) ![Entregável Spec-Kit](https://img.shields.io/badge/Entregável-Spec--Kit-737373?style=flat-square)
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../README.md) → **Estágio 2**
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Par 2 (Enterprise Architect + Software Architect) e todo o time |
+| **Pré-requisitos** | Estágio 1 concluído; passagem de bastão H1 aceita pelo PO |
+| **Tempo estimado** | 60 min (14:00–15:00) |
+| **Estágio** | Estágio 2 — Especificação |
+| **Resultado esperado** | `specs/<NNN>-<feature>/spec.md`, `plan.md` e `tasks.md` com requisitos rastreáveis |
 
-> **Para quem é isto?** Quem está chegando no estágio de spec moderna e quer a visão geral.
->
-> **O que você terá ao final desta leitura:**
->
-> 1. Saberá quem lidera (Par 2) e quem apoia
-> 2. Criará os entregáveis formais do Spec-Kit em `specs/<NNN>-<feature>/`
-> 3. Entenderá o papel de apoio e decisão de escopo desta pasta
-> 4. Encontrará o GUIDE cronometrado
+> [!IMPORTANT]
+> Os requisitos, plano e tarefas formais vivem em `specs/<NNN>-<feature>/spec.md`, `plan.md` e `tasks.md`.
+> Esta pasta guarda somente material de apoio ao Estágio 2 — templates e decisões de escopo — e não substitui os artefatos do Spec-Kit.
 
-> Os requisitos, plano e tarefas formais vivem em
-> `specs/<NNN>-<feature>/spec.md`, `plan.md` e `tasks.md`. Esta pasta guarda
-> somente apoio do Estágio 2 — templates e decisões de escopo — e não substitui
-> os artefatos do Spec-Kit.
+---
 
-## Onde isso encaixa no SDLC
+## Onde isso encaixa no fluxo do dia
 
 ![Linha do tempo do dia: pré-evento, 4 estágios e demo, com as três passagens H1, H2, H3](../assets/timeline-stages.svg)
 
@@ -30,33 +30,22 @@
 
 ![Distribuição de personas por par: visão, arquitetura, implementação, qualidade e operações](../assets/personas-team.svg)
 
-## Conteúdo
+## Conteúdo desta pasta
 
-| Arquivo                                    | Propósito                                |
-| ------------------------------------------ | ---------------------------------------- |
+| Arquivo | Propósito |
+|---|---|
 | [`GUIDE.md`](GUIDE.md) | Guia cronometrado e regra de localização dos artefatos |
-| [`scope-decisions.md`](scope-decisions.md) | Registro de recorte, adiamentos e dúvidas |
-| [`ADR-TEMPLATE.md`](ADR-TEMPLATE.md) | Apoio para decisão que bloqueie o plano |
+| [`scope-decisions.md`](scope-decisions.md) | Registro de recorte, adiamentos e dúvidas abertas |
+| [`ADR-TEMPLATE.md`](ADR-TEMPLATE.md) | Apoio para decisão arquitetural que bloqueie o plano |
+| [`templates/ADR.template.md`](templates/ADR.template.md) | Gabarito de ADR para uso via `/generate-adr` |
+| [`templates/bounded-contexts.template.md`](templates/bounded-contexts.template.md) | Gabarito de mapa de bounded contexts |
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="../01-arqueologia/README.md"><strong>Estágio 1 — Visão geral</strong></a><br/>
-<sub>Resumo da arqueologia + links para o GUIDE detalhado.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="GUIDE.md"><strong>Estágio 2 — Spec Moderna</strong></a><br/>
-<sub>14:00–15:00 · Criar spec.md, plan.md e tasks.md de uma feature fina.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [Estágio 1 — Arqueologia](../01-arqueologia/README.md)<br/><sub>Resumo da arqueologia e links para o GUIDE detalhado.</sub> | [Estágio 2 — GUIDE](GUIDE.md)<br/><sub>14:00–15:00 · Criar spec.md, plan.md e tasks.md de uma feature fina.</sub> |
 
-<sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
-
-— Paula
+<sub>[Voltar ao índice do kit](../README.md)</sub>

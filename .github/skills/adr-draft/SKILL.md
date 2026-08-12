@@ -8,6 +8,7 @@ description: "Use ao rascunhar Arquitetura Decision Records, avaliar alternativa
 # Rascunho de ADR
 
 ## Quando invocar
+
 - "Draft an ADR for choosing PostgreSQL over MongoDB."
 - "Document our decision to adopt event-driven architecture."
 - "Revisit ADR-007 - we need to supersede it."
@@ -15,6 +16,7 @@ description: "Use ao rascunhar Arquitetura Decision Records, avaliar alternativa
 ## Quando escrever um ADR
 
 Escreva um ADR quando uma decisão:
+
 - É difícil ou cara de reverter.
 - Afeta mais de um time.
 - Restringe escolhas futuras (technology lock-in).
@@ -62,16 +64,19 @@ One paragraph. "We will <decision>."
 ```
 
 ## Dicas de escrita
+
 - Escreva no tempo presente ("We use X").
 - Inclua pelo menos 2 alternativas rejeitadas.
 - Nomeie consequências que você sabe que vão doer - seu eu futuro vai agradecer.
 - Substitua, nunca delete. A história é o valor.
 
 ## Antipadrões
+
 - ADRs escritos depois do fato para justificar decisão já tomada.
 - Um ADR que agrupa 5 decisões não relacionadas.
 - Sem seção de alternativas (sinaliza que não houve análise de trade-off).
 - Status preso em "proposed" por meses.
 
 ## Gate de qualidade
+
 Rejeite qualquer ADR sem seções Context, Decision, Alternatives e Consequences.

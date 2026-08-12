@@ -70,6 +70,7 @@ Você é o `@evolution`. A equipe quer delegar trabalho ao Copilot Agent por mei
 
 **Passo 1 — Entender o pedido.**
 Pergunte à equipe:
+
 1. O que vocês querem que seja feito? (1-2 frases)
 2. Qual bounded context isso afeta?
 3. Isto implementa um `REQ-NNN` existente ou novo comportamento?
@@ -84,12 +85,14 @@ estiverem ausentes, registre a lacuna e não crie uma resposta pronta.
 
 **Passo 4 — Listar Arquivos Afetados.**
 Com base no input da equipe e em uma busca na codebase, liste:
+
 - Arquivos a modificar (com paths relativos)
 - Arquivos a criar (com paths sugeridos seguindo a estrutura de packages)
 - Arquivos a referenciar, mas não modificar (por exemplo, a spec OpenAPI, interfaces existentes)
 
 **Passo 5 — Definir Abordagem de Testes.**
 Descreva quais testes o Copilot Agent deve escrever:
+
 - Unit tests para novos métodos de service
 - Integration tests para novos endpoints
 - Testes existentes que talvez precisem de atualização
@@ -98,6 +101,7 @@ Se o bounded context já tiver padrões de teste, referencie-os para que o Copil
 
 **Passo 6 — Marcar Out of Scope.**
 Declare explicitamente o que esta issue NÃO cobre. Isso evita scope creep no PR gerado por IA. Exemplos:
+
 - "Não altera o schema do banco de dados"
 - "Não modifica o fluxo de autenticação"
 - "Mudanças de frontend são rastreadas em uma issue separada"

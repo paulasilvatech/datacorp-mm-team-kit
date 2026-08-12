@@ -1,24 +1,33 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
 # specs/
 
-![PASTA specs](https://img.shields.io/badge/PASTA-specs-00A4EF?style=for-the-badge) ![ENGINE Spec-Kit](https://img.shields.io/badge/ENGINE-Spec-Kit-1A1A1A?style=for-the-badge)
+> **Trilha:** [Kit do Time](../README.md) › **Specs**
 
+**Esta pasta guarda os artefatos do GitHub Spec-Kit: para cada funcionalidade, o time registra o que quer construir (`spec.md`), como construir (`plan.md`) e em que ordem (`tasks.md`) — antes de escrever qualquer linha de código.**
 
+![Pasta specs](https://img.shields.io/badge/Pasta-specs-171717?style=flat-square) ![Engine Spec-Kit](https://img.shields.io/badge/Engine-Spec--Kit-737373?style=flat-square) ![Estágio 2](https://img.shields.io/badge/Estágio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-A3A3A3?style=flat-square)
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../README.md) → **Specs**
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Todos os pares; Par 2 cria os artefatos no Estágio 2 |
+| **Pré-requisitos** | Feature escolhida no Estágio 2; passagem de bastão H1 concluída |
+| **Estágio** | Estágio 2 — Especificação |
+| **Resultado esperado** | Uma pasta `NNN-nome-curto` com `spec.md`, `plan.md` e `tasks.md` rastreáveis |
 
-> **Para quem é isto?** Quem está no Estágio 2 e vai criar uma estrutura de spec usando Spec-Kit.
->
-> **O que você terá ao final desta leitura:**
->
-> 1. Padrão de pastas `specs/<NNN>-<feature>/`
-> 2. Arquivos obrigatórios em cada feature (spec.md, plan.md, tasks.md)
-> 3. Como o CI valida rastreabilidade
+---
 
-Esta pasta guarda os artefatos do **GitHub Spec-Kit**. Pense nela como o diário técnico de cada funcionalidade: primeiro o time explica o que quer construir, depois planeja como construir, depois quebra em tarefas e só então implementa.
+## Conceito: Spec-Driven Development
 
-## Modelo mental
+Spec-Driven Development (SDD) é a prática de especificar completamente uma funcionalidade — requisitos, plano técnico e tarefas — antes de implementar. O GitHub Spec-Kit automatiza esse fluxo com slash commands dentro do Copilot Chat.
+
+**Por que importa:** sem especificação prévia, o código cresce sem direção rastreável. O CI do workshop verifica que cada REQ-ID tem `source_legacy:` apontando para o legado real — isso garante que o SIFAP 2.0 realmente implemente as regras do SIFAP original.
+
+**Caso de uso:** o time identifica no Estágio 1 que o programa `CALC-BENEFICIO.NSN` contém a lógica de cálculo de reajuste anual. No Estágio 2, essa lógica vira `REQ-015` no `spec.md` com `source_legacy: 01-arqueologia/legado-sifap/natural-programs/CALC-BENEFICIO.NSN`. No Estágio 3, o teste passa ou não passa — e o rastreamento fecha.
+
+---
+
+## Estrutura de pastas
 
 Cada funcionalidade tem uma pasta própria:
 
@@ -30,82 +39,101 @@ specs/
     └── tasks.md
 ```
 
-O número (`NNN`) dá ordem. O nome (`feature-name`) explica o escopo. Evite nomes genéricos como `sistema` ou `backend`.
+O número (`NNN`) dá ordem de criação. O nome (`feature-name`) descreve o escopo em termos de comportamento. Evite nomes genéricos como `sistema` ou `backend`.
 
-## Passo a passo
+---
 
-1. **Escolha uma descoberta do Estágio 1.**
-2. **Crie a pasta da funcionalidade.** Use o padrão `NNN-nome-curto`.
-3. **Execute `/speckit.specify`.** A spec deve ter user stories, EARS, critérios de aceitação e `source_legacy:`.
-4. **Execute `/speckit.clarify`.** Resolva dúvidas antes de discutir arquitetura.
-5. **Execute `/speckit.plan`.** Gere plano técnico, riscos, dados e contratos.
-6. **Execute `/speckit.tasks`.** Quebre o plano em tarefas pequenas, testáveis e rastreáveis.
-7. **Execute `/speckit.analyze`.** Corrija inconsistências antes de codar.
-8. **Execute `/speckit.implement`.** Só implemente depois que spec, plan e tasks estiverem coerentes.
+## Fluxo do Spec-Kit
 
-## Fluxo Spec-Kit
+```mermaid
+%%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
+flowchart LR
+    classDef step fill:#F5F5F5,stroke:#171717,color:#171717
+    classDef result fill:#FFFFFF,stroke:#171717,color:#171717,stroke-width:2px
 
-| Comando | Artefato | O que conferir |
-| --- | --- | --- |
+    A["/speckit.specify"]:::step --> B["/speckit.clarify"]:::step
+    B --> C["/speckit.plan"]:::step
+    C --> D["/speckit.tasks"]:::step
+    D --> E["/speckit.analyze"]:::step
+    E --> F["/speckit.implement"]:::step
+    F --> G["Código rastreado<br/>a REQ-IDs"]:::result
+```
+
+| Comando | Artefato gerado | O que conferir |
+|---|---|---|
 | `/speckit.constitution` | `.specify/memory/constitution.md` | Regras inegociáveis do projeto |
-| `/speckit.specify` | `spec.md` | REQ-IDs, EARS, acceptance e `source_legacy:` |
+| `/speckit.specify` | `spec.md` | REQ-IDs, padrão EARS, acceptance e `source_legacy:` |
 | `/speckit.clarify` | Perguntas resolvidas na spec | Ambiguidades fechadas |
-| `/speckit.plan` | `plan.md` e apoios gerados pelo Spec-Kit quando necessários | Arquitetura, dados, riscos e contratos |
+| `/speckit.plan` | `plan.md` | Arquitetura, dados, riscos e contratos |
 | `/speckit.tasks` | `tasks.md` | Ordem de execução, testes e dependências |
 | `/speckit.analyze` | Relatório de lacunas | Inconsistências resolvidas |
 | `/speckit.implement` | Código em `backend/` e `frontend/` | Implementação segue a spec |
 
+---
+
+## Passo a passo
+
+- [ ] **Escolher uma descoberta do Estágio 1.** A feature deve ter evidência no legado.
+- [ ] **Criar a pasta da funcionalidade.** Use o padrão `NNN-nome-curto` em `specs/`.
+- [ ] **Executar `/speckit.specify`.** Gere `spec.md` com user stories, EARS, critérios de aceite e `source_legacy:`.
+- [ ] **Executar `/speckit.clarify`.** Resolva dúvidas antes de planejar.
+- [ ] **Executar `/speckit.plan`.** Gere plano técnico, riscos, dados e contratos em `plan.md`.
+- [ ] **Executar `/speckit.tasks`.** Quebre o plano em tarefas pequenas, testáveis e rastreáveis em `tasks.md`.
+- [ ] **Executar `/speckit.analyze`.** Corrija inconsistências antes de implementar.
+- [ ] **Executar `/speckit.implement`.** Só implemente depois que spec, plan e tasks estiverem coerentes.
+
+---
+
 ## Convenção de branches
 
+> [!IMPORTANT]
+> O fluxo correto de branches é: `spec/<NNN>-<feature>` → `develop` → `main`. Não existe branch `stage`.
+
 - Uma branch por spec: `spec/<NNN>-<feature>` criada a partir de `develop`.
-- Depois do merge da spec, branches de implementação
-  `impl/<NNN>-<feature>` são criadas a partir de `develop`, nunca da
-  branch da spec.
-- O fluxo de integração é `spec/<NNN>-<feature>` → `develop` → `main`; não
-  existe branch `stage`.
-- Commits devem mencionar REQ-IDs quando implementarem comportamento: `Implements REQ-XXX`.
+- Depois do merge da spec, branches de implementação `impl/<NNN>-<feature>` são criadas a partir de `develop`, nunca da branch da spec.
+- Commits que implementam comportamento devem citar o REQ-ID: `Implements REQ-XXX`.
 
-## Primeira funcionalidade
+---
 
-Crie a primeira pasta somente depois de o time escolher uma funcionalidade no Estágio 2. O nome deve refletir a decisão do time e não antecipar uma solução.
-
-## Definição de Pronto da pasta `specs/`
+## Critérios de conclusão
 
 - [ ] Cada funcionalidade tem pasta `NNN-nome-curto`.
 - [ ] Todo requisito legado tem `source_legacy:` apontando para `.NSN` ou `.ddm`.
 - [ ] Todo requisito greenfield tem justificativa `[GREENFIELD]`.
-- [ ] `tasks.md` inclui testes antes de implementação para regra de negócio.
+- [ ] `tasks.md` inclui testes antes de implementação para regras de negócio.
+
+---
 
 ## Relação com `02-spec-moderna/`
 
-`02-spec-moderna/` não contém uma segunda spec. Use-o para registrar decisões de
-recorte e apoio ao Estágio 2. Requisitos EARS, plano técnico e tarefas da
-feature ficam em `specs/<NNN>-<feature>/spec.md`, `plan.md` e `tasks.md`.
+`02-spec-moderna/` não contém uma segunda spec. Use-o para registrar decisões de recorte e apoio ao Estágio 2. Requisitos EARS, plano técnico e tarefas da feature ficam em `specs/<NNN>-<feature>/spec.md`, `plan.md` e `tasks.md`.
+
+---
+
+## Erros comuns e como evitar
+
+| Sintoma | Causa | Correção |
+|---|---|---|
+| CI rejeita o PR por `source_legacy:` ausente | Requisito escrito sem consultar o legado | Releia o `.NSN` correspondente e adicione `source_legacy:` |
+| `spec.md` aprovado sem critérios de aceite | EARS escrita sem os padrões corretos | Reescreva usando um dos 5 padrões EARS |
+| `tasks.md` sem testes | Tarefas criadas sem pensar em verificação | Adicione pelo menos um teste por regra de negócio |
+| Pasta com nome genérico (`backend-features`) | Nome não reflete o comportamento | Renomeie para refletir a funcionalidade real |
+
+---
 
 ## Referências
 
 - [Cartão de referência do Spec-Kit](../09-cheat-sheets/spec-kit-workflow.md)
+- [Notação EARS](../07-conceitos/05-notacao-ears.md)
 - [Spec-Kit oficial](https://github.com/github/spec-kit)
 - [Spec-Driven Development](https://github.com/github/spec-kit/blob/main/spec-driven.md)
+
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="../09-cheat-sheets/spec-kit-workflow.md"><strong>Spec-Kit em 1 página</strong></a><br/>
-<sub>Sequência specify → clarify → plan → tasks → analyze.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="../02-spec-moderna/GUIDE.md"><strong>Estágio 2 — Spec Moderna</strong></a><br/>
-<sub>Crie a spec a partir da descoberta do time.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [Spec-Kit em 1 página](../09-cheat-sheets/spec-kit-workflow.md)<br/><sub>Sequência specify → clarify → plan → tasks → analyze.</sub> | [Estágio 2 — Especificação](../02-spec-moderna/GUIDE.md)<br/><sub>Crie a spec a partir da descoberta do time.</sub> |
 
-<sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
-
-— Paula
+<sub>[Voltar ao índice do kit](../README.md)</sub>

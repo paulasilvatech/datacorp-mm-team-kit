@@ -1,36 +1,35 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
 # Enterprise Architect — Kit Copilot
 
-![PERSONA Enterprise Architect](https://img.shields.io/badge/PERSONA-Enterprise%20Architect-00A4EF?style=for-the-badge) ![MARIO 🌟 Rosalina](https://img.shields.io/badge/MARIO-🌟%20Rosalina-1A1A1A?style=for-the-badge) ![PAR Par 2 · Arquitetura](https://img.shields.io/badge/PAR-Par%202%20·%20Arquitetura-737373?style=for-the-badge)
+> **Trilha:** [Kit do Time](../../README.md) › [Personas](../OVERVIEW.md) › **Enterprise Architect**
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../../README.md) → [Personas](../OVERVIEW.md) → **Enterprise Architect**
+**Inventário do kit Copilot para a persona Enterprise Architect.** Liste os artefatos ativos, onde vivem na `.github/` e as boas práticas específicas deste papel.
 
-> **Para quem é isto?** Para a pessoa que vai vestir esta persona durante o workshop.
->
-> **O que você terá ao final desta leitura:**
->
-> 1. Lista de arquivos do kit (agente, prompts, skills, MCP)
-> 2. Onde os artefatos ativos vivem na `.github/` consolidada da raiz
-> 3. Boas práticas específicas desta persona
->
-> 📘 **Antes de mais nada:** abra o `PERSONA.md` desta pasta para ver missão, atributos e prompts prontos.
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Pessoa que vai atuar como Enterprise Architect no workshop |
+| **Par** | 2 · Arquitetura (junto com Software Architect) |
+| **Fase do SDLC** | Arquitetura → Desenho → Segurança |
+| **Pré-requisitos** | [PERSONA.md](PERSONA.md) lido |
+| **Resultado esperado** | Kit validado, prompts acessíveis no Copilot Chat |
 
+> [!IMPORTANT]
+> Leia [PERSONA.md](PERSONA.md) antes de continuar. A ficha explica missão, passagem de bastão e rubricas de avaliação.
 
-<!-- markdownlint-disable MD013 MD022 MD031 MD032 MD060 -->
+---
 
-> `.specify/memory/constitution.md`, ADRs, revisões arquiteturais e governança de segurança.
+## Conceito
 
-Leia primeiro: [PERSONA.md](PERSONA.md).
+O Enterprise Architect enxerga o sistema dentro do seu ecossistema. No SIFAP, isso significa mapear as dependências externas — SIAFI, Banco do Brasil, INCRA, MDA — e garantir que a arquitetura-alvo respeite contratos existentes. O EA sabe onde estão os contratos, quais são frágeis e quais podem ser modificados sem disparar uma cadeia de efeitos imprevistos.
 
-## Fase do SDLC
-Arquitetura, Desenho, Segurança
+---
 
-## Conteúdo do kit
+## Kit da persona
 
-| Arquivo | Tipo | Propósito |
-|------|------|---------|
-| `PERSONA.md` | Persona | Responsabilidades, passagens, prompts e rubrica do Enterprise Architect |
+| **Artefato** | Tipo | Propósito |
+|---|---|---|
+| `PERSONA.md` | Ficha | Responsabilidades, passagem de bastão, prompts e rubrica |
 | `.github/agents/enterprise-architect.agent.md` | Agent | Arquitetura e segurança |
 | `.github/prompts/persona-enterprise-architect-create-constitution.prompt.md` | Prompt | `/create-constitution` |
 | `.github/prompts/persona-enterprise-architect-create-adr.prompt.md` | Prompt | `/create-adr` |
@@ -39,56 +38,47 @@ Arquitetura, Desenho, Segurança
 | `.github/instructions/infrastructure.instructions.md` | Instructions | Convenções de IaC |
 | `hooks.json` | Hooks | Bloqueios de edição para `.specify/memory/constitution.md` |
 
-## Uso no workshop
+---
 
-Os artefatos deste kit já estão consolidados na `.github/` da raiz do repositório:
+## Onde os artefatos vivem
 
-- Agents ativos: `.github/agents/`
-- Prompts ativos: `.github/prompts/persona-*.prompt.md`
-- Skills ativas: `.github/skills/`
-- Instructions ativas: `.github/instructions/` (quando existirem)
+Os artefatos ativos estão consolidados na `.github/` da raiz:
 
-Use esta pasta como referência da persona (ficha, boas práticas e inventário). Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá se precisar de manutenção.
+| **Tipo** | Caminho |
+|---|---|
+| Agents | `.github/agents/` |
+| Prompts | `.github/prompts/persona-*.prompt.md` |
+| Skills | `.github/skills/` |
+| Instructions | `.github/instructions/` |
 
-Se este kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
+Use esta pasta como referência. Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá quando precisar de manutenção.
+
+Se o kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
+
+---
 
 ## Boas práticas
+
 - Use C4 L1/L2 para visão executiva e L3/L4 para implementação.
 - Toda decisão arquitetural precisa de ADR com contexto, decisão e consequências.
 - Prefira arquitetura previsível e operável em produção.
 - Use os pilares do Azure Well-Architected como gates de revisão, não como checklist tardio.
 
-## Referências
-- [C4 Model - Simon Brown](https://c4model.com/)
-- [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/)
-- [ADR - Arquitetura Decision Records](https://adr.github.io/)
-- [Azure Arquitetura Center](https://learn.microsoft.com/azure/architecture/)
-
 ---
 
-## Navegação
+## Referências
 
-| Anterior | Início |
-|--------|------|
-| [Persona Kits](../README.md) | [Kit PT-BR](../../README.md) |
+- [C4 Model — Simon Brown](https://c4model.com/)
+- [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/)
+- [Architecture Decision Records](https://adr.github.io/)
+- [Azure Architecture Center](https://learn.microsoft.com/azure/architecture/)
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="../OVERVIEW.md"><strong>OVERVIEW</strong></a><br/>
-<sub>Tabela das 10 personas.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="PERSONA.md"><strong>PERSONA.md</strong></a><br/>
-<sub>Ficha desta persona.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [OVERVIEW](../OVERVIEW.md)<br/><sub>Tabela das 10 personas.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Ficha desta persona.</sub> |
 
-<sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
+<sub>[Voltar ao índice do kit](../README.md)</sub>

@@ -1,103 +1,141 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# ADR-XXX: [Título da Decisão]
+# ADR-XXX: Título da Decisão
 
-![ESTÁGIO 02 Spec](https://img.shields.io/badge/ESTÁGIO-02%20Spec-00A4EF?style=for-the-badge) ![TIPO Template](https://img.shields.io/badge/TIPO-Template-1A1A1A?style=for-the-badge) ![COPIE Para ADR-NNN.md](https://img.shields.io/badge/COPIE-Para%20ADR-NNN.md-737373?style=for-the-badge)
+> **Trilha:** [Kit do Time](../README.md) › [Estágio 2](README.md) › **ADR Template**
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../README.md) → [Estágio 2](README.md) → **ADR Template**
+> [!NOTE]
+> Este arquivo é um template de apoio. Copie para `ADR-NNN-titulo.md` e preencha. Não edite o original.
+> Use este template quando uma decisão arquitetural bloquear o `plan.md` da feature.
 
-> 📋 **Este arquivo é um TEMPLATE.** Copie para `ADR-NNN-titulo.md` e preencha. **Não edite o original.**
->
-**Data**: <!-- preencher: YYYY-MM-DD -->
-**Status**: Proposta | Aceita | Rejeitada | Substituída por ADR-YYY
-**Decisores**: [Nomes dos membros do time envolvidos]
+![Estágio 2](https://img.shields.io/badge/Est%C3%A1gio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-171717?style=flat-square) ![Tipo Template ADR](https://img.shields.io/badge/Tipo-Template%20ADR-737373?style=flat-square)
 
-## Como usar este template
+| Campo | Valor |
+|---|---|
+| **Data** | `YYYY-MM-DD` |
+| **Status** | Proposta / Aceita / Rejeitada / Substituída por ADR-YYY |
+| **Decisores** | Nomes dos membros do time envolvidos |
+| **Feature relacionada** | `specs/<NNN>-<feature>/` |
 
-Copie este arquivo para cada decisão arquitetural que valha a pena documentar. Renomeie para `ADR-001-titulo-curto.md`, `ADR-002-...`, etc. Um ADR de 1 linha não vale o esforço — se a decisão é tão pequena que cabe num commit message, talvez não precise de ADR.
+---
 
-**Regra de ouro:** sempre liste o "caminho não tomado". Sem isso, vira pura descrição de implementação, não decisão.
+## Conceito: ADR (Architecture Decision Record)
+
+Um ADR é o registro formal de uma decisão arquitetural significativa. Ele documenta o contexto que levou à decisão, as alternativas avaliadas, a opção escolhida e as consequências esperadas.
+
+**Por que importa:** decisões técnicas tomadas oralmente durante o workshop se perdem. Um ADR de duas páginas garante que qualquer revisor de PR entenda por que o sistema foi projetado de determinada forma — sem precisar perguntar à pessoa que tomou a decisão às 14h30 num dia corrido.
+
+**Regra de ouro:** sempre liste o "caminho não tomado". Sem isso, o ADR vira descrição de implementação, não registro de decisão.
+
+**Quando criar:** somente quando a decisão bloquear o `plan.md`. Se a decisão cabe em um comentário de commit, não precisa de ADR.
+
+---
 
 ## Contexto
 
 > Descreva o problema ou necessidade que motivou esta decisão.
 > Inclua restrições, requisitos e informações relevantes.
-> Seja específico — "precisamos de um banco de dados" não é suficiente.
+> Seja específico: "precisamos de um banco de dados" não é suficiente.
 
-[Escreva aqui]
+<!-- preencher -->
+
+---
 
 ## Opções Consideradas
 
-### Opção 1: [Nome]
+### Opção 1: <!-- nome -->
 
-- **Descrição**: [como funcionaria]
-- **Vantagens**: [liste]
-- **Desvantagens**: [liste]
+| Aspecto | Avaliação |
+|---|---|
+| **Descrição** | Como funcionaria |
+| **Vantagens** | Liste |
+| **Desvantagens** | Liste |
 
-### Opção 2: [Nome]
+### Opção 2: <!-- nome -->
 
-- **Descrição**: [como funcionaria]
-- **Vantagens**: [liste]
-- **Desvantagens**: [liste]
+| Aspecto | Avaliação |
+|---|---|
+| **Descrição** | Como funcionaria |
+| **Vantagens** | Liste |
+| **Desvantagens** | Liste |
 
-### Opção 3: [Nome] (opcional)
+### Opção 3: <!-- nome, opcional -->
 
-- **Descrição**: [como funcionaria]
-- **Vantagens**: [liste]
-- **Desvantagens**: [liste]
+| Aspecto | Avaliação |
+|---|---|
+| **Descrição** | Como funcionaria |
+| **Vantagens** | Liste |
+| **Desvantagens** | Liste |
+
+---
 
 ## Decisão
 
-> Declare a decisão tomada de forma clara e direta.
-**Decidimos [ação/escolha].**
+**Decidimos** <!-- ação ou escolha escolhida -->.
+
+---
 
 ## Justificativa
 
-> Explique POR QUE esta opção foi escolhida em detrimento das outras.
+> Explique por que esta opção foi escolhida em detrimento das outras.
 > Conecte com requisitos, restrições e contexto.
 
-[Escreva aqui]
+<!-- preencher -->
+
+---
 
 ## Consequências
 
 ### Positivas
 
-- [Consequência positiva 1]
-- [Consequência positiva 2]
+- <!-- consequência positiva 1 -->
 
 ### Negativas
 
-- [Consequência negativa 1 — e como mitigar]
-- [Consequência negativa 2 — e como mitigar]
+- <!-- consequência negativa 1 — e como mitigar -->
 
 ### Riscos
 
-- [Risco identificado e plano de contingência]
+- <!-- risco identificado e plano de contingência -->
+
+---
 
 ## Referências
 
-- [Link ou documento relevante]
-- [Requisito EARS relacionado: REQ-XXX]
-- [Regra de negócio relacionada: BR-XXX]
+- <!-- link ou documento relevante -->
+- Requisito EARS relacionado: `REQ-XXX`
 
+<details>
+<summary><strong>Exemplo preenchido — ADR-001: banco de dados para o SIFAP 2.0</strong></summary>
+
+| Campo | Valor |
+|---|---|
+| **Data** | 2026-05-10 |
+| **Status** | Aceita |
+| **Decisores** | Par 2 (Enterprise Architect + Software Architect) |
+| **Feature relacionada** | `specs/001-pagamento-beneficio/` |
+
+**Contexto:** O SIFAP legado usa Adabas, um banco de dados navegacional. A modernização precisa de um banco relacional compatível com JPA/Hibernate e suportado pelo time de operações.
+
+**Opções:**
+
+- PostgreSQL 16: open source, suporte a JSONB, Testcontainers disponível.
+- MySQL 8: amplo suporte, mas menor adoção em ambientes governamentais brasileiros.
+
+**Decisão:** PostgreSQL 16.
+
+**Justificativa:** Adoção consolidada em sistemas públicos, suporte nativo a tipos avançados (JSONB para campos variáveis do DDM), e integração com Testcontainers sem licença adicional.
+
+**Consequências positivas:** Testcontainers simplifica testes de integração. **Negativas:** Requer familiaridade com PostgreSQL no time de DBA.
+
+</details>
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="GUIDE.md"><strong>GUIDE do Estágio 2</strong></a><br/>
-<sub>Passo a passo do estágio.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="GUIDE.md"><strong>GUIDE do Estágio 2</strong></a><br/>
-<sub>Conduza a decisão com o time.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [GUIDE do Estágio 2](GUIDE.md)<br/><sub>Passo a passo do estágio.</sub> | [GUIDE do Estágio 2](GUIDE.md)<br/><sub>Conduza a decisão com o time.</sub> |
 
-<sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
+<sub>[Voltar ao índice do kit](../README.md)</sub>

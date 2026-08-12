@@ -1,25 +1,24 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
 # Estágio 4 — Evolução
 
-![ESTÁGIO 04 Evolução](https://img.shields.io/badge/ESTÁGIO-04%20Evolução-FFB900?style=for-the-badge) ![LIDERA Par 5 (DevOps+TW)](https://img.shields.io/badge/LIDERA-Par%205%20%28DevOps+TW%29-1A1A1A?style=for-the-badge) ![ENTREGÁVEL Agent + IaC](https://img.shields.io/badge/ENTREGÁVEL-Agent%20+%20IaC-737373?style=for-the-badge)
+> **Trilha:** [Kit do Time](../README.md) › **Estágio 4 — Evolução**
 
+**Neste estágio, o Par 5 experimenta a delegação de uma Issue pequena ao modo Agent do GitHub Copilot e registra evidência honesta do resultado.**
 
+![Estágio 4](https://img.shields.io/badge/Est%C3%A1gio-4%20%C2%B7%20Evolu%C3%A7%C3%A3o-171717?style=flat-square) ![Lidera Par 5](https://img.shields.io/badge/Lidera-Par%205%20%28DevOps%2BTW%29-404040?style=flat-square) ![Entregável Agent e IaC](https://img.shields.io/badge/Entregável-Agent%20%2B%20IaC-737373?style=flat-square)
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../README.md) → **Estágio 4**
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Par 5 (DevOps + Tech Writer) lidera; Par 3 co-lidera a revisão técnica |
+| **Pré-requisitos** | Passagem de bastão H3 recebida; protótipo funcional do Estágio 3 |
+| **Tempo estimado** | 40 min (16:10–16:50) |
+| **Estágio** | Estágio 4 — Evolução |
+| **Resultado esperado** | Issue criada, delegação ao Agent registrada, relatório de experiência preenchido |
 
-> **Para quem é isto?** Quem está chegando no estágio de evolução com Agentes e quer a visão geral.
->
-> **O que você terá ao final desta leitura:**
->
-> 1. O que é o modo Agent do Copilot
-> 2. Como escrever uma Issue que produz PR útil
-> 3. Diferença entre Ask, Plan e Agent
-> 4. Template do relatório de experiência
+---
 
-> Adicione infraestrutura como código (Terraform), pipeline CI/CD (GitHub Actions) e itere usando workflows com o modo Agent do GitHub Copilot.
-
-## Onde isso encaixa no SDLC
+## Onde isso encaixa no fluxo do dia
 
 ![Linha do tempo do dia: pré-evento, 4 estágios e demo, com as três passagens H1, H2, H3](../assets/timeline-stages.svg)
 
@@ -27,32 +26,20 @@
 
 ![Linha do tempo do dia: pré-evento, 4 estágios e demo, com as três passagens H1, H2, H3](../assets/timeline-stages.svg)
 
-## Conteúdo
+## Conteúdo desta pasta
 
-| Arquivo                                                    | Propósito                                        |
-| ---------------------------------------------------------- | ------------------------------------------------ |
-| [`GUIDE.md`](GUIDE.md)                                     | Guia passo a passo deste estágio                 |
-| [`agent-experience-report.md`](agent-experience-report.md) | Modelo de relatório de experiência com o Agent |
+| Arquivo | Propósito |
+|---|---|
+| [`GUIDE.md`](GUIDE.md) | Guia passo a passo do estágio |
+| [`agent-experience-report.md`](agent-experience-report.md) | Relatório de experiência a ser preenchido pelo time durante o estágio |
+| [`templates/agent-experience-report.template.md`](templates/agent-experience-report.template.md) | Gabarito do relatório para uso via `/final-experience-report` |
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="../03-implementacao/README.md"><strong>Estágio 3 — Visão geral</strong></a><br/>
-<sub>Resumo da implementação + estrutura do protótipo.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="GUIDE.md"><strong>Estágio 4 — Evolução</strong></a><br/>
-<sub>16:10–16:50 · Copilot Agent + Terraform + CI/CD.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [Estágio 3 — Implementação](../03-implementacao/README.md)<br/><sub>Resumo da implementação e estrutura do protótipo.</sub> | [Estágio 4 — GUIDE](GUIDE.md)<br/><sub>16:10–16:50 · Copilot Agent + Terraform + CI/CD.</sub> |
 
-<sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
-
-— Paula
+<sub>[Voltar ao índice do kit](../README.md)</sub>

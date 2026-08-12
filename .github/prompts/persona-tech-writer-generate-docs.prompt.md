@@ -28,6 +28,7 @@ Peça à pessoa usuária o que estiver faltando.
 3. **Use a terminologia confirmada pelo time.** Não invente nomes de domínio,
    módulos, endpoints ou mapeamentos legados; explicações ficam em português.
 4. **Aplique o frontmatter padrão.**
+
  ```yaml
  ---
  title: "Disburse-retry runbook"
@@ -37,6 +38,7 @@ Peça à pessoa usuária o que estiver faltando.
  linked_reqs: [REQ-XXX]
  ---
  ```
+
 5. **Respeite os limites de tamanho.** README ≤ 1 página (~80 linhas). Runbook ≤ 1 página por cenário. Referência de API é por endpoint. ADR ≤ 2 páginas.
 6. **Inclua verificação.** Todo comando no documento precisa ser executável e
    confirmado no repositório criado pelo time.

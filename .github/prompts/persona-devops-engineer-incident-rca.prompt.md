@@ -28,17 +28,21 @@ Peça ao usuário o que estiver faltando.
    não apenas o sintoma interno de infraestrutura.
 2. **Reconstrua a linha do tempo minuto a minuto.** UTC. Fonte de cada entrada: log, métrica, mensagem de chat ou lembrança humana (marque como `[recall]`).
 3. **Diferencie detecção, mitigação e resolução.**
- - `T0` — primeiro sintoma em produção.
- - `Td` — primeira detecção por automação ou humano.
- - `Tm` — mitigação (o impacto para).
- - `Tr` — resolução completa (sistema totalmente recuperado).
+
+- `T0` — primeiro sintoma em produção.
+- `Td` — primeira detecção por automação ou humano.
+- `Tm` — mitigação (o impacto para).
+- `Tr` — resolução completa (sistema totalmente recuperado).
+
 4. **Encontre fatores contribuintes, não "a" causa.** Use os "Five Whys" e depois categorize cada fator como: code, configuration, dependency, process, observability ou organizational.
 5. **Identifique o que *quase* funcionou.** Defesas que dispararam, mas não foram suficientes — alarmes que paginaram tarde, runbooks que estavam 80% certos, fallbacks que ativaram mas deram timeout. Isso é ouro para prevenção.
 6. **Proponha ações.** Para cada fator contribuinte, escreva pelo menos uma ação com:
- - Responsável (um nome, não um time).
- - Data-alvo.
- - Critérios de verificação (como saberemos que funcionou).
- - Tipo — `code`, `config`, `monitoring`, `process`, `documentation` ou `architecture`.
+
+- Responsável (um nome, não um time).
+- Data-alvo.
+- Critérios de verificação (como saberemos que funcionou).
+- Tipo — `code`, `config`, `monitoring`, `process`, `documentation` ou `architecture`.
+
 7. **Mantenha ausência de culpabilização.** Sem nomes pessoais associados a erros. "O engenheiro cometeu um erro de digitação" está errado; "O processo de deployment não detectou o erro de digitação" está certo.
 8. **Adicione um risco que você não corrigiu.** Seja honesto. Registre o que é caro demais para tratar agora e será reavaliado no próximo trimestre.
 

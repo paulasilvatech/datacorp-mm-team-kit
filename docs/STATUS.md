@@ -1,136 +1,137 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# 📊 STATUS do Dia — Dashboard de Progresso
+# STATUS do Dia — Painel de Progresso
 
-![DASHBOARD Status](https://img.shields.io/badge/DASHBOARD-Status%20do%20dia-7FBA00?style=for-the-badge) ![ATUALIZE A cada 30 min](https://img.shields.io/badge/ATUALIZE-A%20cada%2030%20min-1A1A1A?style=for-the-badge) ![DONO Technical Lead](https://img.shields.io/badge/DONO-Technical%20Lead-737373?style=for-the-badge)
+> **Trilha:** [Kit do Time](../README.md) › [Docs](README.md) › **STATUS**
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../README.md) → [Docs](README.md) → **STATUS**
+**Painel de acompanhamento em tempo real do workshop:** estado dos estágios, passagens e métricas do dia.
 
-> **Para quem é isto?** Para o líder do time atualizar e o facilitador ler de longe.
->
-> **O que você terá ao final desta leitura:** visão de 1 página do que está verde, amarelo e vermelho agora.
+![Dashboard](https://img.shields.io/badge/Painel-Status%20do%20dia-171717?style=flat-square) ![Atualização](https://img.shields.io/badge/Atualizar-a%20cada%2030%20min-737373?style=flat-square) ![Responsável](https://img.shields.io/badge/Respons%C3%A1vel-Technical%20Lead-A3A3A3?style=flat-square)
+
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Technical Lead (preenche) e facilitador (lê de longe) |
+| **Frequência de atualização** | A cada 30 minutos ou a cada transição de estágio |
+| **Resultado esperado** | Visão de uma página: o que está pronto, em progresso e bloqueado |
 
 ---
 
-## 🎯 Status global
+## Status global
 
 | Indicador | Estado | Observação |
 |---|---|---|
-| Time inteiro presente | ⚪ | Atualize: ✅ ou ⚠️ |
-| Ferramentas locais validadas em 5/5 laptops | ⚪ | — |
-| Branch `develop` protegida | ⚪ | — |
-| CI verde em `develop` | ⚪ | — |
-| Demo ensaiada | ⚪ | — |
+| Time inteiro presente | — | Atualizar: OK ou Parcial |
+| Ferramentas locais validadas em 5/5 laptops | — | — |
+| Branch `develop` protegida | — | — |
+| CI verde em `develop` | — | — |
+| Demo ensaiada | — | — |
 
 ---
 
-## 🏰 Progresso dos 4 mundos
+## Progresso dos 4 estágios
 
-| Estágio | Status | Owner | Início | DoD verde? | Notas |
+| Estágio | Status | Responsável | Início | DoD concluído? | Notas |
 |---|---|---|---|---|---|
-| 🟦 **1 — Arqueologia** | ⚪ | Todos os pares | — | ☐ | — |
-| 🟫 **2 — Spec Moderna** | ⏸ aguarda H1 | Par 2 | — | ☐ | — |
-| 🟧 **3 — Implementação** | ⏸ aguarda H2 | Pares 3 + 4 | — | ☐ | — |
-| 🏰 **4 — Evolução** | ⏸ aguarda H3 | Par 5 | — | ☐ | — |
+| **1 — Arqueologia** | Não iniciado | Todos os pares | — | Não | — |
+| **2 — Especificação** | Aguardando passagem H1 | Par 2 | — | Não | — |
+| **3 — Implementação** | Aguardando passagem H2 | Pares 3 e 4 | — | Não | — |
+| **4 — Evolução** | Aguardando passagem H3 | Par 5 | — | Não | — |
 
-**Legenda:** ⚪ não começou · 🔄 em progresso · ✅ pronto · ⚠️ atrasado · 🔴 bloqueado
+**Legenda de status:** Não iniciado · Em progresso · Concluído · Atrasado · Bloqueado
 
 ---
 
-## 🟢 Passagens (canos verdes entre mundos)
+## Passagens entre estágios
 
-| Passagem | De → Para | Quando | Status |
+| Passagem | De para | Quando ocorre | Status |
 |---|---|---|---|
-| **H1** | Par 1 → Par 2 | fim do Estágio 1 | ⚪ |
-| **H2** | Par 2 → Pares 3+4 | fim do Estágio 2 | ⚪ |
-| **H3** | Pares 3+4 → Par 5 | fim do Estágio 3 | ⚪ |
+| **H1** | Par 1 para Par 2 | Fim do Estágio 1 | Não realizada |
+| **H2** | Par 2 para Pares 3 e 4 | Fim do Estágio 2 | Não realizada |
+| **H3** | Pares 3 e 4 para Par 5 | Fim do Estágio 3 | Não realizada |
+
+> [!NOTE]
+> Cada passagem é uma conversa síncrona de 5 minutos entre o par que entrega e o par que recebe. O cronograma detalhado está em [`00-TEAM-FLOW.md`](../00-TEAM-FLOW.md).
 
 ---
 
-## 🪙 Métricas do dia (preencher conforme avança)
+## Métricas do dia
 
 | Métrica | Meta | Atual |
 |---|---|---|
 | Fontes legadas confirmadas para o recorte | Todas as REQ-IDs | — |
-| Feature formal (`spec.md`, `plan.md`, `tasks.md`) | 1 | — |
-| Decisões de escopo registradas | Sim | — |
+| Especificação formal (`spec.md`, `plan.md`, `tasks.md`) | 1 feature completa | — |
+| Decisões de escopo registradas | Ao menos 1 | — |
 | Primeiro incremento implementado | 1 | — |
-| Cobertura backend | ≥ 70% | —% |
-| Cobertura frontend | ≥ 60% | —% |
-| Issues criadas para Agent | ≥ 1 | — |
-| PRs mergeados | — | — |
+| Cobertura de testes — backend | Igual ou superior a 70% | — |
+| Cobertura de testes — frontend | Igual ou superior a 60% | — |
+| Issues criadas para Agent mode | Ao menos 1 | — |
+| PRs mergeados em `develop` | — | — |
 
 ---
 
-## 🚨 Sinais de alerta
+## Alertas ativos
 
-> Preencha quando aparecer. Líder lê em voz alta no próximo stand-up.
+> [!WARNING]
+> Preencha abaixo quando um bloqueio ou risco aparecer. O Technical Lead lê em voz alta no próximo stand-up.
 
-```
-- [ ] (vazio)
-```
+- [ ] (nenhum alerta no momento)
 
 ---
 
-## 🏆 Achievements desbloqueadas
+## Marcos atingidos
 
 Marque conforme conquistar:
 
-- [ ] 🍄 **Primeira regra BR-NNN com `Programa Fonte`** — bem-vindo à arqueologia!
-- [ ] ⭐ **Primeira EARS escrita** com `source_legacy:`
-- [ ] 📜 **Primeira decisão de escopo ligada ao plano**
-- [ ] 🚩 **CI verde no primeiro try**
-- [ ] 🦖 **Primeiro endpoint REST funcionando** via Swagger
-- [ ] 🧪 **Cobertura ≥70% backend**
-- [ ] 🎭 **Primeiro PR do Agent revisado e mergeado**
-- [ ] 🏰 **Terraform plan sem erro**
-- [ ] 👸 **DEMO RODOU** — Princesa salva!
+- [ ] **Primeira regra de negócio documentada com `Programa Fonte`** — entrada no Estágio 1 concluída.
+- [ ] **Primeira especificação EARS escrita** com campo `source_legacy:` preenchido.
+- [ ] **Primeira decisão de escopo registrada** e vinculada ao plano.
+- [ ] **CI verde no primeiro Pull Request** — pipeline de integração aprovado.
+- [ ] **Primeiro endpoint REST funcionando** e visível via Swagger.
+- [ ] **Cobertura de testes backend igual ou superior a 70%**.
+- [ ] **Primeiro Pull Request do Agent mode revisado e mergeado**.
+- [ ] **Terraform plan executado sem erros**.
+- [ ] **Demonstração final do SIFAP 2.0 executada com sucesso**.
 
 ---
 
-## 📝 Stand-ups (registre 1 frase por par a cada transição)
+## Registro dos stand-ups (uma frase por par a cada transição)
 
-### H1 (fim Estágio 1)
+### H1 — fim do Estágio 1
 
-- Par 1 · Visão: _____________________________
-- Par 2 · Arquitetura: _____________________________
-- Par 3 · Implementação: _____________________________
-- Par 4 · Qualidade: _____________________________
-- Par 5 · Operações: _____________________________
+| Par | Persona | Registro |
+|---|---|---|
+| Par 1 | Visão (PO + RE) | ___ |
+| Par 2 | Arquitetura (EA + SA) | ___ |
+| Par 3 | Implementação (TL + Dev) | ___ |
+| Par 4 | Qualidade (DBA + QA) | ___ |
+| Par 5 | Operações (DevOps + TW) | ___ |
 
-### H2 (fim Estágio 2)
+### H2 — fim do Estágio 2
 
-- Par 1: _____________________________
-- Par 2: _____________________________
-- Par 3: _____________________________
-- Par 4: _____________________________
-- Par 5: _____________________________
+| Par | Registro |
+|---|---|
+| Par 1 | ___ |
+| Par 2 | ___ |
+| Par 3 | ___ |
+| Par 4 | ___ |
+| Par 5 | ___ |
 
-### H3 (fim Estágio 3)
+### H3 — fim do Estágio 3
 
-- Par 1: _____________________________
-- Par 2: _____________________________
-- Par 3: _____________________________
-- Par 4: _____________________________
-- Par 5: _____________________________
+| Par | Registro |
+|---|---|
+| Par 1 | ___ |
+| Par 2 | ___ |
+| Par 3 | ___ |
+| Par 4 | ___ |
+| Par 5 | ___ |
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="demo-script.md"><strong>Script da Demo</strong></a><br/>
-<sub>3 minutos finais.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="CHECKLIST-LIDER.md"><strong>Checklist do Líder</strong></a><br/>
-<sub>Hora a hora.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [Script da Demo](demo-script.md)<br/><sub>Roteiro dos 3 minutos finais de demonstração.</sub> | [Checklist do Líder](CHECKLIST-LIDER.md)<br/><sub>Roteiro hora a hora para o Technical Lead.</sub> |
 
-<sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
+<sub>[Voltar ao índice do kit](../README.md)</sub>

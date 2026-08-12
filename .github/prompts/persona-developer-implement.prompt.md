@@ -41,6 +41,7 @@ Sua resposta final deve incluir, nesta ordem:
 - O diff ou conteúdo completo de cada arquivo novo/modificado.
 - Uma seção curta "O que eu NÃO alterei" listando refatorações tentadoras que você adiou.
 - Um rascunho de mensagem de commit seguindo Conventional Commits:
+
  ```
  feat(<scope>): implement REQ-XXX <short description>
 

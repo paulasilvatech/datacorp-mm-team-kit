@@ -24,11 +24,13 @@ Peça ao usuário o que estiver faltando.
 ## Processo
 
 1. **Classifique cada `REQ-ID` por camada de teste.** Use a pirâmide de testes:
- - **Unit** — funções puras, calculadoras e validadores.
- - **Integration** — adapters: repositories, filas e serviços externos.
- - **Contract** — testes consumer/provider de API (frontend ↔ backend, backend ↔ wrapper Adabas externo).
- - **End-to-end** — apenas jornadas críticas de usuário definidas pelo time.
- - **Non-functional** — performance, segurança, acessibilidade, observabilidade.
+
+- **Unit** — funções puras, calculadoras e validadores.
+- **Integration** — adapters: repositories, filas e serviços externos.
+- **Contract** — testes consumer/provider de API (frontend ↔ backend, backend ↔ wrapper Adabas externo).
+- **End-to-end** — apenas jornadas críticas de usuário definidas pelo time.
+- **Non-functional** — performance, segurança, acessibilidade, observabilidade.
+
 2. **Escolha ferramentas por camada.** JUnit 5 + AssertJ + Mockito (unit/integration backend), Testcontainers (integration), Pact (contract), Playwright (E2E), k6 (load), OWASP ZAP (security baseline), axe-core (a11y).
 3. **Defina a estratégia de dados de teste.** Dados sintéticos para happy paths, snapshots legados anonimizados para casos de borda, seeds determinísticas para testes property-based. Nenhum PII de produção em qualquer ambiente.
 4. **Mapeie testes para ambientes.** Unit/integration a cada push (CI). Contract em PR para `develop`. E2E noturno em `stage`. Performance semanal em `prod-shadow`.

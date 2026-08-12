@@ -73,6 +73,7 @@ Confirme o escopo com a equipe. É um único programa (rastrear sua call tree), 
 
 **Passo 2 — Pesquisar instruções CALLNAT.**
 Dentro do escopo, pesquise toda ocorrência de `CALLNAT`. Para cada uma, extraia:
+
 - O programa chamador (file path)
 - O nome do subprograma-alvo (o argumento string para CALLNAT)
 - O número da linha
@@ -82,6 +83,7 @@ Verifique se cada subprograma-alvo existe como arquivo na pasta `01-arqueologia/
 
 **Passo 3 — Pesquisar diretivas INCLUDE.**
 Dentro do escopo, pesquise toda instrução `INCLUDE`. Para cada uma, extraia:
+
 - O programa que inclui (file path)
 - O nome do copycode
 - O número da linha
@@ -93,6 +95,7 @@ Dentro do escopo, pesquise instruções `PERFORM`. Elas são sub-rotinas interna
 
 **Passo 5 — Pesquisar instruções de acesso a dados.**
 Dentro do escopo, pesquise: `READ`, `FIND`, `GET`, `STORE`, `UPDATE`, `DELETE`, `HISTOGRAM`. Para cada uma, extraia:
+
 - O programa que realiza o acesso
 - O DDM ou file number referenciado
 - O tipo de operação
@@ -101,6 +104,7 @@ Dentro do escopo, pesquise: `READ`, `FIND`, `GET`, `STORE`, `UPDATE`, `DELETE`, 
 
 **Passo 6 — Construir o grafo Mermaid.**
 Crie um flowchart Mermaid com:
+
 - Nós de programa (retângulos)
 - Nós DDM/data (cilindros usando a sintaxe `[(name)]`)
 - Arestas CALLNAT (setas sólidas com label "CALLNAT")

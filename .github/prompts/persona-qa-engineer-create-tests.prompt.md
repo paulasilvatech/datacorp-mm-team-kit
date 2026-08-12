@@ -24,11 +24,13 @@ Peça ao usuário o que estiver faltando.
 ## Processo
 
 1. **Decomponha a declaração EARS em casos testáveis.**
- - Ubiquitous (`O sistema deverá ...`) → 1 caminho feliz + 1 limite.
- - Event-driven (`Quando ...`) → 1 caminho feliz + 1 negativo ("o evento não aconteceu, nada deve mudar").
- - State-driven (`Enquanto ...`) → 1 caso por transição de estado (in-state, exit-state, re-entry).
- - Optional (`Onde ...`) → 1 com feature flag ligada, 1 com flag desligada.
- - Unwanted (`Se ..., então o sistema não deverá ...`) → pelo menos 2 casos negativos em limites diferentes.
+
+- Ubiquitous (`O sistema deverá ...`) → 1 caminho feliz + 1 limite.
+- Event-driven (`Quando ...`) → 1 caminho feliz + 1 negativo ("o evento não aconteceu, nada deve mudar").
+- State-driven (`Enquanto ...`) → 1 caso por transição de estado (in-state, exit-state, re-entry).
+- Optional (`Onde ...`) → 1 com feature flag ligada, 1 com flag desligada.
+- Unwanted (`Se ..., então o sistema não deverá ...`) → pelo menos 2 casos negativos em limites diferentes.
+
 2. **Escolha fixtures, não dados de produção.** Reutilize os fixtures existentes; nunca copie PII real.
 3. **Nomeie testes pelo comportamento.** `should_<expected>_when_<condition>`, não `test1`. Snake_case em descrições de teste TS, camelCase em nomes de métodos JUnit.
 4. **Use comentários Given/When/Then ou separação AAA com linhas em branco.** Revisores precisam ler o teste em 10 segundos.

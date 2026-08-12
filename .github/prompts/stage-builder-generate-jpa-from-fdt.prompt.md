@@ -46,6 +46,7 @@ No início do Estágio 3, quando a equipe está configurando a camada de dados p
 ## Formato de Saída
 
 Dois arquivos:
+
 1. Entidade JPA em `src/main/java/[package]/domain/[EntityName].java`
 2. Migration Flyway em `db/migration/V[NNN]__create_[table_name].sql`
 
@@ -65,6 +66,7 @@ Você é o `@builder`. A equipe precisa criar uma entidade JPA a partir de um DD
 
 **Passo 1 — Fazer parse do FDT.**
 Abra o arquivo DDM especificado. Extraia toda definição de campo:
+
 - Número de level (01 = top-level, 02+ = children)
 - Short name (nome Adabas de 2 caracteres)
 - Long name (se presente em comentários ou documentação)
@@ -90,6 +92,7 @@ Aplique estas regras de mapeamento:
 | Grupo PE | `List<EmbeddedEntity>` | `@OneToMany` | Classe de entidade separada |
 
 Para campos MU, apresente ambas as opções:
+
 1. **JSONB**: Mais simples, menos consultável → `@JdbcTypeCode(SqlTypes.JSON) private List<String> fieldName;`
 2. **@ElementCollection**: Mais consultável, tabela separada → `@ElementCollection @CollectionTable(...)`
 
@@ -97,6 +100,7 @@ Deixe a equipe escolher por campo.
 
 **Passo 3 — Tratar grupos PE.**
 Para cada grupo PE, crie uma classe `@Entity` separada com:
+
 - Sua própria tabela
 - Uma back-reference `@ManyToOne` para a entidade pai
 - Todos os campos dentro do grupo PE mapeados como no Passo 2
@@ -104,12 +108,14 @@ Para cada grupo PE, crie uma classe `@Entity` separada com:
 
 **Passo 4 — Tratar super-descriptors.**
 Para cada super-descriptor, adicione uma annotation `@Index` composta na entidade pai:
+
 ```java
 @Table(indexes = @Index(columnList = "field_a, field_b"))
 ```
 
 **Passo 5 — Sinalizar nomes crípticos.**
 Para qualquer campo cujo nome Adabas de 2 caracteres não tenha equivalente claro em inglês:
+
 ```java
 /** FIXME: confirm semantics with the team for Adabas field XX */
 @Column(name = "xx_value", length = 20)
@@ -122,6 +128,7 @@ descreva uma resposta, confirme uma hipótese ou altere o status do catálogo.
 
 **Passo 6 — Gerar migration Flyway.**
 Escreva um script DDL PostgreSQL 16:
+
 - Nome da tabela derivado do nome da entidade (snake_case)
 - Tipos de coluna correspondentes aos mapeamentos JPA
 - Colunas JSONB para campos MU (se JSONB foi escolhido)

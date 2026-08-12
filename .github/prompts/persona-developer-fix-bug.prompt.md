@@ -42,6 +42,7 @@ Sua resposta final deve incluir:
 - **Arquivos da correção** — a mudança mínima no código de produção, com conteúdo completo ou diff unificado.
 - **Avaliação de risco** — que outros pontos esse caminho de código toca e que regressões são plausíveis.
 - **Mensagem de commit** seguindo Conventional Commits:
+
  ```
  fix(<scope>): <short defect description> (REQ-XXX)
 

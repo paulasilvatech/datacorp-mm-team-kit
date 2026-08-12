@@ -42,6 +42,7 @@ Sua resposta final deve incluir:
 - **Resultados dos testes** — confirmação de que o mesmo conjunto de testes passa (cole o resumo).
 - **Nota de preservação de comportamento** — "API pública inalterada. Nenhuma nova cláusula throws. Nenhuma migration de DB. Nenhuma nova env var."
 - **Mensagem de commit** seguindo Conventional Commits com o tipo `refactor:`:
+
  ```
  refactor(<scope>): <short description>
 

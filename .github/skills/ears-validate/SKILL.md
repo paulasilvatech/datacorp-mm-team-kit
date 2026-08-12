@@ -8,6 +8,7 @@ description: "Use ao validar requisitos contra padrões da notação EARS. Acion
 # Validação EARS
 
 ## Quando invocar
+
 - "Revise estes requisitos quanto à conformidade EARS."
 - "Este requisito é testável?"
 - "Classifique este requisito por padrão EARS."
@@ -24,6 +25,7 @@ description: "Use ao validar requisitos contra padrões da notação EARS. Acion
 | Complex | `Enquanto <estado>, quando <gatilho>, o <sistema> deverá <resposta>.` |
 
 ## Checklist de validação
+
 - [ ] Exatamente um padrão por requisito.
 - [ ] Sujeito não ambíguo ("the system", não "it").
 - [ ] Resposta observável e testável.
@@ -34,6 +36,7 @@ description: "Use ao validar requisitos contra padrões da notação EARS. Acion
 - [ ] **Tem um `source_legacy:` não vazio apontando para `01-arqueologia/legado-sifap/natural-programs/*.NSN`, `01-arqueologia/legado-sifap/adabas-ddms/*.ddm` ou `[GREENFIELD] + justificativa`.**
 
 ## Defeitos comuns
+
 | Defeito | Exemplo | Correção |
 |---|---|---|
 | Ambíguo | "O sistema deve ser rápido." | "Quando uma pessoa usuária envia um formulário, o sistema deverá responder em até 500ms." |
@@ -42,6 +45,7 @@ description: "Use ao validar requisitos contra padrões da notação EARS. Acion
 | Passivo | "Login deverá ser suportado." | "O sistema deverá aceitar autenticação por usuário/senha." |
 
 ## Template de saída
+
 ```markdown
 ### REQ-NNN (<pattern>)
 <EARS statement>
@@ -59,4 +63,5 @@ _(ou `[GREENFIELD] <justificativa>` quando não houver paralelo legado)_
 ```
 
 ## Gate de qualidade
+
 Rejeite qualquer requisito sem **REQ-ID**, **classificação de padrão**, **critérios de aceitação** ou **`source_legacy`**. O job de CI `legacy-traceability` em `.github/workflows/spec-quality.yml` aplica isso em todo PR.

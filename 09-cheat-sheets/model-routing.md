@@ -1,135 +1,156 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
 # Roteamento de modelos Claude — Cartão de referência
 
+> **Trilha:** [Kit do Time](../README.md) › [Cartões de Referência](README.md) › **Roteamento de modelos**
 
+**Use o menor modelo que resolve sua tarefa: Haiku para geração mecânica, Sonnet para o dia a dia, Opus para decisões arquiteturais que afetam todo o projeto.**
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../README.md) → [Cheat-sheets](README.md) → **Model routing**
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Qualquer membro do time antes de enviar um prompt ao Copilot |
+| **Pré-requisitos** | Nenhum |
+| **Tempo estimado** | 2 min |
+| **Estágio** | Todos |
+| **Resultado esperado** | Escolher o modelo certo sem desperdício de tempo ou custo |
 
-> **Para quem é isto?** Quem precisa decidir entre Haiku, Sonnet ou Opus para a próxima tarefa.
->
-> **O que você terá ao final desta leitura:**
->
-> 1. Matriz custo × latência × precisão dos 3 modelos
-> 2. Recomendação por tipo de tarefa (revisão, escrita, decisão)
-> 3. Tabela por persona com modelo default
+![Cartão 03 de 03](https://img.shields.io/badge/Cart%C3%A3o-03%20de%2003-171717?style=flat-square)
+![Tópico: Roteamento de modelos](https://img.shields.io/badge/T%C3%B3pico-Roteamento%20de%20modelos-404040?style=flat-square)
 
-![CARTÃO](https://img.shields.io/badge/CART%C3%83O-03%20de%2003-7FBA00?style=for-the-badge) ![TÓPICO](https://img.shields.io/badge/TÓPICO-Roteamento%20de%20modelos-1A1A1A?style=for-the-badge) ![USE QUANDO](https://img.shields.io/badge/USE%20QUANDO-Haiku%20vs%20Sonnet%20vs%20Opus-737373?style=for-the-badge)
+---
 
-## Quando usar isso
+## Princípio: menor modelo suficiente
 
-Antes de mandar um prompt grande para o Copilot, decida o modelo. **Trocar de modelo é menos custoso do que esperar 30 segundos pelo modelo errado.**
+Modelo maior significa mais capacidade e mais latência. Trocar de modelo é menos custoso do que esperar 30 segundos pelo modelo errado.
 
-## Regra mestre
+> [!IMPORTANT]
+> Opus em tarefa mecânica é desperdício de tempo. Haiku em decisão arquitetural é risco. Escolha pelo tipo de tarefa, não pelo prestígio do modelo.
 
-> Modelo maior = mais capaz e mais lento. Use o menor que resolve seu caso. Guarde o Opus para decisões, não para produção em lote.
+---
 
-## Visual
+## Tabela de decisão rápida
+
+| Tipo de tarefa | Modelo | Quando usar |
+|---|---|---|
+| Geração mecânica, transformação simples, contexto pequeno | **Haiku 4.5** | Gerar DDL repetitivo, escrever teste unitário simples, ajustar YAML trivial |
+| Código, testes, refatoração, explicação do dia a dia | **Sonnet 4.6** | Padrão para a maioria das tarefas do workshop |
+| Decisão arquitetural, análise de impacto, trade-off | **Opus 4.6** | Escolha de padrão, definição de bounded context, análise de risco |
+
+---
+
+## Fluxo visual de decisão
 
 ```mermaid
+%%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
 flowchart TB
- classDef haiku fill:#E5F6FD,stroke:#00A4EF,color:#0A0A0A
- classDef sonnet fill:#FFF7E0,stroke:#FFB900,color:#0A0A0A
- classDef opus fill:#F25022,stroke:#B33816,color:#fff
+    classDef step fill:#F5F5F5,stroke:#171717,color:#171717
+    classDef result fill:#FFFFFF,stroke:#171717,color:#171717,stroke-width:2px
 
- Q[Que tipo de tarefa?]
- Q --> M[Mecânica<br/>geração simples<br/>contexto pequeno]:::haiku
- Q --> D[Dia a dia<br/>código, testes, refactor]:::sonnet
- Q --> A[Decisão arquitetural<br/>trade-off<br/>análise de impacto]:::opus
+    Q["Que tipo de tarefa?"]:::step
+    Q --> M["Mecânica<br/>geração simples<br/>contexto pequeno"]:::step
+    Q --> D["Dia a dia<br/>código, testes, refatoração"]:::step
+    Q --> A["Decisão arquitetural<br/>trade-off<br/>análise de impacto"]:::step
 
- M --> Haiku["Haiku 4.5<br/>Rápido · Barato"]
- D --> Sonnet["Sonnet 4.6<br/>Padrão"]
- A --> Opus["Opus 4.6<br/>Profundo · Lento"]
+    M --> Haiku["Haiku 4.5<br/>Rápido"]:::result
+    D --> Sonnet["Sonnet 4.6<br/>Padrão"]:::result
+    A --> Opus["Opus 4.6<br/>Profundo"]:::result
 ```
+
+---
 
 ## Os três modelos
 
-| Modelo         | Quando usar                                                      | Custo relativo | Velocidade |
-| -------------- | ---------------------------------------------------------------- | -------------- | ---------- |
-| **Haiku 4.5**  | Tarefa mecânica, transformação simples, contexto pequeno         | Baixo          | Rápida     |
-| **Sonnet 4.6** | Padrão do dia a dia. Código, testes, refatoração, explicação     | Médio          | Média      |
-| **Opus 4.6**   | Decisão arquitetural, análise de impacto, discussão de trade-off | Alto           | Lenta      |
+| Modelo | Custo relativo | Velocidade | Quando usar |
+|---|---|---|---|
+| **Haiku 4.5** | Baixo | Rápida | Tarefa mecânica, transformação simples, contexto pequeno |
+| **Sonnet 4.6** | Médio | Média | Padrão do dia a dia: código, testes, refatoração, explicação |
+| **Opus 4.6** | Alto | Lenta | Decisão arquitetural, análise de impacto, discussão de trade-off |
 
-## Casos comuns por persona
+---
 
-### Product Owner / Requirements Engineer
+## Roteamento por persona e situação
 
-- Escrever uma user story → **Sonnet**.
-- Refinar EARS que já estão escritas → **Haiku**.
-- Discutir se um requisito é v1 ou v2 → **Opus** (uma vez, decida, siga).
+### Product Owner e Requirements Engineer
+
+| Situação | Modelo |
+|---|---|
+| Escrever user story | Sonnet |
+| Refinar EARS já escritas | Haiku |
+| Decidir se um requisito é v1 ou v2 | Opus (uma vez; decida e siga) |
 
 ### Arquitetos (Enterprise + Software)
 
-- Desenhar C4 em Mermaid → **Sonnet**.
-- Escolher entre dois padrões (hexagonal vs. camadas) → **Opus**.
-- Gerar variação sintática de um diagrama existente → **Haiku**.
+| Situação | Modelo |
+|---|---|
+| Desenhar diagrama C4 em Mermaid | Sonnet |
+| Escolher entre padrões (hexagonal vs. camadas) | Opus |
+| Gerar variação sintática de diagrama existente | Haiku |
 
 ### Technical Lead
 
-- Revisar PR médio → **Sonnet**.
-- Decidir padrão do projeto inteiro (estilo de transação, por exemplo) → **Opus** no início; **Sonnet** depois para aplicar.
-- Responder "esse código compila?" → **Haiku**.
+| Situação | Modelo |
+|---|---|
+| Revisar PR médio | Sonnet |
+| Decidir padrão do projeto inteiro | Opus no início; Sonnet para aplicar |
+| Verificar se um trecho compila | Haiku |
 
 ### Developer
 
-- Gerar implementação de um service → **Sonnet**.
-- Escrever teste unitário simples → **Haiku**.
-- Debater a estrutura de uma classe antes de escrever → **Opus**.
+| Situação | Modelo |
+|---|---|
+| Implementar um service | Sonnet |
+| Escrever teste unitário simples | Haiku |
+| Debater estrutura de classe antes de escrever | Opus |
 
 ### DBA
 
-- Traduzir um DDM Adabas → SQL → **Sonnet** (com Opus para o caso mais estranho).
-- Gerar DDL repetitiva → **Haiku**.
-- Decidir estratégia de particionamento para `<tabela>` → **Opus**.
+| Situação | Modelo |
+|---|---|
+| Traduzir DDM Adabas para SQL | Sonnet (Opus para casos complexos) |
+| Gerar DDL repetitivo | Haiku |
+| Decidir estratégia de particionamento | Opus |
 
 ### QA Engineer
 
-- Gerar esqueleto JUnit 5 → **Haiku**.
-- Escrever teste de integração não-trivial → **Sonnet**.
-- Decidir se um cenário vale Testcontainers vs. mock → **Opus**.
+| Situação | Modelo |
+|---|---|
+| Gerar esqueleto JUnit 5 | Haiku |
+| Escrever teste de integração não-trivial | Sonnet |
+| Decidir entre Testcontainers e mock | Opus |
 
 ### DevOps Engineer
 
-- Gerar YAML padrão de GitHub Actions → **Sonnet**.
-- Ajustar comandos triviais no fluxo de trabalho → **Haiku**.
-- Decidir topologia Azure → **Opus**.
+| Situação | Modelo |
+|---|---|
+| Gerar YAML padrão de GitHub Actions | Sonnet |
+| Ajustar comandos triviais no pipeline | Haiku |
+| Decidir topologia Azure | Opus |
 
 ### Tech Writer
 
-- Revisar o estilo do README → **Haiku**.
-- Redigir um ADR → **Sonnet**.
-- Decidir a estrutura global de documentação → **Opus**, uma vez.
+| Situação | Modelo |
+|---|---|
+| Revisar estilo do README | Haiku |
+| Redigir um ADR | Sonnet |
+| Decidir estrutura global de documentação | Opus, uma vez |
+
+---
 
 ## Sinais de que você está no modelo errado
 
-- **Esperando 30 segundos por resposta trivial** → desça para modelo menor.
-- **Resposta rasa numa decisão crítica** → suba para Opus.
-- **Resposta acertou em cheio mas você queria discussão** → suba para Opus.
-- **Empilhando prompts para o Opus gerar 400 arquivos** → desça para Sonnet ou Haiku.
-
-## Dica da Paula
-
-Não trate o Opus como "o bom" e o Haiku como "o ruim". Opus em tarefa mecânica é desperdício; Haiku em decisão é risco. O modelo certo é o mais barato que não te decepciona.
+| Sintoma | Diagnóstico | Ação |
+|---|---|---|
+| Esperando 30 segundos por resposta trivial | Modelo acima do necessário | Troque para modelo menor |
+| Resposta rasa em decisão crítica | Modelo abaixo do necessário | Suba para Opus |
+| Resposta correta mas sem discussão | Modelo abaixo do necessário | Suba para Opus |
+| Empilhando prompts para gerar centenas de arquivos | Modelo errado para tarefa em lote | Troque para Sonnet ou Haiku |
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="spec-kit-workflow.md"><strong>Spec-Kit em 1 página</strong></a><br/>
-<sub>Sequência specify → clarify → plan → tasks → analyze.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="README.md"><strong>Cartões de Referência</strong></a><br/>
-<sub>3 cartões de 1 página: Copilot, Spec-Kit, modelos.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [Spec-Kit em 1 página](spec-kit-workflow.md)<br/><sub>Sequência specify — clarify — plan — tasks — analyze.</sub> | [Cartões de Referência](README.md)<br/><sub>Índice dos 3 cartões de consulta rápida.</sub> |
 
-<sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
-
-— Paula
+<sub>[Voltar ao índice do kit](../README.md)</sub>

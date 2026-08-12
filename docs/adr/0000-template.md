@@ -1,85 +1,118 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD024 MD028 MD033 MD041 -->
 
-# ADR-NNNN: <Título curto e decisivo>
+# ADR-NNNN: Título curto e decisivo
 
-![ADR Template](https://img.shields.io/badge/ADR-Template-00A4EF?style=for-the-badge) ![COPIE Para ADR-NNNN.md](https://img.shields.io/badge/COPIE-Para%20ADR-NNNN.md-1A1A1A?style=for-the-badge)
+> **Trilha:** [Kit do Time](../../README.md) › [Docs](../README.md) › [ADRs](README.md) › **Template**
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../../README.md) → [Docs](../README.md) → [ADRs](README.md) → **Template**
+> [!NOTE]
+> Este é o gabarito de ADR. Copie este arquivo para `NNNN-seu-titulo.md`, substituindo `NNNN` pelo próximo número sequencial (por exemplo, `0007`). Substitua cada bloco de instrução pelo conteúdo real da decisão.
 
-> **Para quem é isto?** Documentação transversal usada durante o workshop.
->
-> **O que você terá ao final desta leitura:** contexto adicional sobre o tópico do título.
+| Campo | Valor |
+|---|---|
+| **Status** | proposto \| aceito \| descontinuado \| substituído |
+| **Data** | YYYY-MM-DD |
+| **Autores** | Persona — Nome |
+| **Substitui** | ADR-NNNN \| N/A |
 
-
-> Substitua `NNNN` pelo próximo número sequencial (por exemplo, `0007`).
-> Substitua este bloco de citação inteiro por um resumo de 1 linha da decisão.
-
-| Campo      | Valor                                            |
-| ---------- | ------------------------------------------------ |
-| Status     | proposto \| aceito \| descontinuado \| substituído |
-| Data       | YYYY-MM-DD                                       |
-| Autores    | <Persona — Nome>                                 |
-| Substitui  | ADR-NNNN \| N/A                                  |
+---
 
 ## Contexto
 
-Qual é o problema que estamos vendo e que motiva esta decisão? Referencie o
-objetivo de negócio, a restrição legada ou a necessidade de stakeholder.
+> [!NOTE]
+> Descreva o problema que motiva esta decisão. Referencie o objetivo de negócio, a restrição legada ou a necessidade de stakeholder. Seja específico. Cite REQ-IDs ou programas em `01-arqueologia/legado-sifap/` quando relevante.
 
-Seja específico. Cite REQ-IDs ou programas em `01-arqueologia/legado-sifap/` quando relevante.
+_Preencha aqui._
+
+---
 
 ## Decisão
 
-A mudança que estamos propondo ou com a qual concordamos. Use um ou dois parágrafos.
+> [!NOTE]
+> Declare a mudança proposta em voz ativa. Use um ou dois parágrafos. Exemplos: "Vamos adotar …", "Não vamos migrar …".
 
-Declare a decisão em voz ativa: "Vamos adotar …", "Não vamos migrar …".
+_Preencha aqui._
+
+---
 
 ## Alternativas consideradas
 
-Liste pelo menos 2 alternativas. Para cada uma, explique por que foi rejeitada.
+> [!NOTE]
+> Liste pelo menos 2 alternativas. Para cada uma, explique por que foi rejeitada.
 
 | Alternativa | Por que foi rejeitada |
-| ----------- | --------------------- |
-| Opção A     | …                     |
-| Opção B     | …                     |
+|---|---|
+| Opção A | — |
+| Opção B | — |
+
+---
 
 ## Consequências
 
-O que fica mais fácil? O que fica mais difícil? Há novos riscos?
+> [!NOTE]
+> O que fica mais fácil? O que fica mais difícil? Há novos riscos?
 
-- **Mais fácil:** …
-- **Mais difícil:** …
-- **Riscos:** …
-- **Mitigações:** …
+- **Mais fácil:** —
+- **Mais difícil:** —
+- **Riscos:** —
+- **Mitigações:** —
+
+---
 
 ## Relacionado
 
-- REQ-IDs: …
-- ADRs: …
-- Arquivos-fonte: …
+- REQ-IDs: —
+- ADRs: —
+- Arquivos-fonte do legado: —
+
+---
 
 ## Referências
 
-- Cite docs, RFCs ou pesquisas que embasaram a decisão.
+> [!NOTE]
+> Cite documentos, RFCs ou pesquisas que embasaram a decisão.
 
+---
+
+<details>
+<summary><strong>Exemplo preenchido — ADR-0001: Adotar Flyway para migrations de banco</strong></summary>
+
+| Campo | Valor |
+|---|---|
+| **Status** | aceito |
+| **Data** | 2026-05-12 |
+| **Autores** | DBA — Carla Souza |
+| **Substitui** | N/A |
+
+### Contexto
+
+O SIFAP legado usa Adabas (banco não relacional). A modernização adota PostgreSQL 16. Precisamos de uma estratégia controlada de evolução de schema que permita rastrear mudanças, reverter em caso de erro e integrar ao CI. O programa `SIFAP-PAGTO.NSN` (linhas 45–78) revela que o ciclo de pagamentos mensal exige pelo menos 3 transformações de schema ao longo do tempo.
+
+### Decisão
+
+Vamos adotar Flyway como ferramenta de migrations. Cada alteração de schema será representada por um arquivo `V<N>__descricao.sql` versionado no repositório. O CI executará `mvn flyway:migrate` em cada pull request para `develop`.
+
+### Alternativas consideradas
+
+| Alternativa | Por que foi rejeitada |
+|---|---|
+| Liquibase | Formato XML mais verboso, curva de aprendizado maior para o time neste workshop |
+| Migrations manuais | Sem rastreabilidade, sem reversão automatizada, sem integração com CI |
+
+### Consequências
+
+- Mais fácil: rastreabilidade completa de mudanças de schema; CI valida antes do merge.
+- Mais difícil: arquivos de migration são imutáveis após merge; toda correção exige novo arquivo.
+- Riscos: edição acidental de migration já aplicada quebra o Flyway.
+- Mitigações: branch protection em `develop` + regra documentada em `troubleshooting.md`.
+
+</details>
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="README.md"><strong>ADRs</strong></a><br/>
-<sub>Índice de ADRs.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="../../02-spec-moderna/GUIDE.md"><strong>Spec moderna</strong></a><br/>
-<sub>Onde ADRs são usadas.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [ADRs — Índice](README.md)<br/><sub>Índice de decisões registradas.</sub> | [Spec Moderna](../../02-spec-moderna/GUIDE.md)<br/><sub>Onde ADRs são produzidos.</sub> |
 
-<sub>↑ <a href="../../README.md">Voltar ao Kit PT-BR</a></sub>
+<sub>[Voltar ao índice do kit](../../README.md)</sub>

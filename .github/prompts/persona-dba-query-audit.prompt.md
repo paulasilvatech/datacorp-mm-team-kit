@@ -25,24 +25,30 @@ Peça ao usuário o que estiver faltando.
 ## Processo
 
 1. **Faça primeiro a varredura estática.**
- - Qualquer concatenação de string com entrada do usuário → rejeite como SQL injection.
- - `SELECT *` em tabela larga → rejeite.
- - Casts implícitos (`varchar = bigint`) que desabilitam índices → corrija.
- - Funções em colunas indexadas podem impedir o uso do índice → corrija ou
+
+- Qualquer concatenação de string com entrada do usuário → rejeite como SQL injection.
+- `SELECT *` em tabela larga → rejeite.
+- Casts implícitos (`varchar = bigint`) que desabilitam índices → corrija.
+- Funções em colunas indexadas podem impedir o uso do índice → corrija ou
    adicione índice de expressão quando a evidência justificar.
+
 2. **Faça a varredura dinâmica.** Execute `EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT) ...` em snapshot de stage. Leia o plano de cima para baixo.
- - Sinalize qualquer `Seq Scan` em tabelas maiores que 10k linhas quando existir filtro.
- - Sinalize qualquer etapa `Sort` que poderia ser apoiada por índice.
- - Sinalize qualquer `Nested Loop` sobre mais de ~1k linhas externas quando um `Hash Join` seria mais barato.
- - Sinalize razão de divergência entre `rows estimated` e `rows actual` acima de 10× — as estatísticas estão obsoletas ou o formato da consulta é desfavorável.
+
+- Sinalize qualquer `Seq Scan` em tabelas maiores que 10k linhas quando existir filtro.
+- Sinalize qualquer etapa `Sort` que poderia ser apoiada por índice.
+- Sinalize qualquer `Nested Loop` sobre mais de ~1k linhas externas quando um `Hash Join` seria mais barato.
+- Sinalize razão de divergência entre `rows estimated` e `rows actual` acima de 10× — as estatísticas estão obsoletas ou o formato da consulta é desfavorável.
+
 3. **Verifique N+1.** Se a consulta for invocada a partir de JPA, procure `JOIN FETCH` ou hints de batch-size ausentes. Liste o loop pai no código da aplicação.
 4. **Verifique locks e isolamento.** `SELECT ... FOR UPDATE` em tabelas quentes exige cuidado. O isolamento padrão deve ser `READ COMMITTED`; sinalize `SERIALIZABLE` sem justificativa.
 5. **Confirme parametrização.** Todos os valores voltados ao usuário devem ser parâmetros vinculados, nunca interpolados em string. Mesmo vindos de caminhos de código "confiáveis".
 6. **Compare com os padrões do SIFAP.**
- - Todos os schemas públicos usam `snake_case`.
- - Timestamps são `TIMESTAMPTZ`.
- - Valores monetários são `NUMERIC(15,2)`, nunca `FLOAT`.
- - Colunas PII devem ter um `COMMENT` sinalizando isso.
+
+- Todos os schemas públicos usam `snake_case`.
+- Timestamps são `TIMESTAMPTZ`.
+- Valores monetários são `NUMERIC(15,2)`, nunca `FLOAT`.
+- Colunas PII devem ter um `COMMENT` sinalizando isso.
+
 7. **Escreva a correção.** Reescreva a consulta com hints de índice se necessário, adicione uma migração de índice ausente se houver justificativa.
 8. **Classifique o veredito.**
 
@@ -67,16 +73,20 @@ Um relatório Markdown com esta estrutura:
 ```
 
 ### Recomendação de índice
+
 ```sql
 -- preencher somente se a evidência de EXPLAIN justificar um índice
 ```
 
 ### EXPLAIN ANALYZE antes / depois
+
 - Antes: <!-- preencher com medição -->
 - Depois: <!-- preencher com medição -->
 
 ### Mudança obrigatória na aplicação
+
 - <!-- preencher com mudanças confirmadas na aplicação -->
+
 ```
 
 ## Antipadrões

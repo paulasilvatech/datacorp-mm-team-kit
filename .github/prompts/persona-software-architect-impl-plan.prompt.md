@@ -9,9 +9,11 @@ tools: ["search", "edit"]
 # /impl-plan
 
 ## Tarefa
+
 Estruture `specs/<NNN>-<feature>/plan.md` para sequenciar tarefas em fases, marcar trabalho paralelizável, registrar o perfil de capacidade necessário por tarefa e definir critérios de saída.
 
 ## Passos
+
 1. Leia `spec.md`, `plan.md` e `tasks.md` da feature.
 2. Agrupe tarefas em fases com base na ordem de dependências (fundação → features → hardening).
 3. Dentro de cada fase, marque tarefas como `[P]` paralelizáveis se tocarem arquivos disjuntos e não tiverem dependência de runtime.
@@ -19,12 +21,15 @@ Estruture `specs/<NNN>-<feature>/plan.md` para sequenciar tarefas em fases, marc
 5. Defina uma Definição de Pronto por fase: testes passando, docs atualizadas, code review completo.
 
 ## Saída
+
 Uma seção de `plan.md` com:
+
 - Títulos de fase, cada um com objetivo, estimativa de duração e critérios de saída
 - Tabela de tarefas por fase: `Task ID | Title | [P] | Perfil de capacidade | Est. Effort | Traces To (REQ-ID)`
 - Seção de riscos globais com mitigações
 
 ## Gate de Qualidade
+
 - [ ] Toda tarefa rastreia para pelo menos um REQ-ID
 - [ ] Tarefas `[P]` realmente tocam arquivos independentes (verificado por grep)
 - [ ] Critérios de saída de fase são mensuráveis

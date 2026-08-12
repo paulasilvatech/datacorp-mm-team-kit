@@ -28,12 +28,14 @@ Peça ao usuário o que estiver faltando.
 2. **Use OIDC para autenticação no Azure.** Nunca armazene secrets de service principal. Use `azure/login@v2` com credenciais federadas.
 3. **Fixe actions por SHA**, não por tag. (Renovate ou Dependabot podem atualizar.)
 4. **Organize os jobs por estágio.**
- - `build` — compilar e executar unit tests (Java: `./mvnw -B verify`; Node: `pnpm install --frozen-lockfile && pnpm build && pnpm test`).
- - `quality` — lint, type-check, license scan, upload de code coverage.
- - `security` — Trivy na imagem de container, OWASP Dependency Check, Gitleaks no diff.
- - `package` — build de container, push para ACR com tags `:sha-<short>` e `:latest`, gerar SBOM (`syft`), assinar com `cosign`.
- - `deploy-dev` — automático em push para `develop`, usa o ambiente GitHub `dev`.
- - `deploy-prod` — automático em push para `main`, requer duas aprovações e uma referência válida a change ticket.
+
+- `build` — compilar e executar unit tests (Java: `./mvnw -B verify`; Node: `pnpm install --frozen-lockfile && pnpm build && pnpm test`).
+- `quality` — lint, type-check, license scan, upload de code coverage.
+- `security` — Trivy na imagem de container, OWASP Dependency Check, Gitleaks no diff.
+- `package` — build de container, push para ACR com tags `:sha-<short>` e `:latest`, gerar SBOM (`syft`), assinar com `cosign`.
+- `deploy-dev` — automático em push para `develop`, usa o ambiente GitHub `dev`.
+- `deploy-prod` — automático em push para `main`, requer duas aprovações e uma referência válida a change ticket.
+
 5. **Use cache com responsabilidade.** Maven: `actions/cache@<sha>` com chave baseada no hash de `pom.xml`. Node: `pnpm/action-setup@<sha>` com cache de store embutido. Cache de camadas do Buildx para builds de container.
 6. **Defina timeouts e concorrência.** `timeout-minutes: 30` por job, `concurrency: { group: ${{ github.workflow }}-${{ github.ref }}, cancel-in-progress: true }`.
 7. **Aplique gates por regras de branch protection.** Checks obrigatórios: `build`, `quality`, `security`. Produção exige revisão de deployment.

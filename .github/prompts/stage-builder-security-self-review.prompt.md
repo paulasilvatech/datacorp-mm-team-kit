@@ -71,6 +71,7 @@ Você é o `@builder` realizando um security self-review. Isto não é uma audit
 
 **Passo 1 — Escanear hardcoded secrets.**
 Pesquise nos arquivos especificados padrões que sugiram hardcoded secrets:
+
 - Strings contendo "password", "secret", "key", "token", "api_key" (case-insensitive)
 - Strings que parecem tokens codificados em Base64 (strings alfanuméricas longas)
 - Properties ou referências a variáveis de ambiente definidas com valores literais em vez de `${ENV_VAR}`
@@ -80,6 +81,7 @@ Para cada achado: path do arquivo, número da linha, o padrão suspeito (redigid
 
 **Passo 2 — Verificar SQL injection.**
 Pesquise por:
+
 - Concatenação de strings em SQL queries (`"SELECT..." + variable`)
 - Annotations `@Query` com interpolação de string em vez de parâmetros nomeados
 - Qualquer uso de `nativeQuery = true` (sinalizar para revisão manual, não rejeitar automaticamente)
@@ -89,6 +91,7 @@ Para cada achado: arquivo, linha, padrão vulnerável, remediação (usar named 
 
 **Passo 3 — Verificar authentication e authorization.**
 Para cada endpoint `@RestController`:
+
 - Verifique se `@PreAuthorize`, `@Secured` ou method-level security está presente
 - Verifique se o controller está sob um path coberto por Spring Security filter chains
 - Sinalizar qualquer endpoint publicamente acessível sem justificativa aparente
@@ -97,6 +100,7 @@ Para cada endpoint desprotegido: arquivo, linha, método e path do endpoint, sev
 
 **Passo 4 — Verificar validação de entrada.**
 Para cada endpoint que aceita request body:
+
 - Verifique se `@Valid` está presente no parâmetro
 - Verifique se o DTO de request tem annotations Bean Validation
 - Procure qualquer campo do tipo `String` sem constraints `@Size` ou `@Pattern`
@@ -105,6 +109,7 @@ Para cada lacuna: arquivo, linha, campo sem validação, remediação.
 
 **Passo 5 — Verificar exposição de dados sensíveis.**
 Pesquise por:
+
 - Statements de logging que podem emitir campos sensíveis (passwords, tokens, personal data)
 - Respostas de erro que expõem stack traces ou detalhes internos
 - DTOs de resposta que incluem campos como `password`, `token`, `ssn`

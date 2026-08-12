@@ -79,6 +79,7 @@ Use somente comandos de leitura do GitHub CLI para recuperar os dados do PR: `gh
 
 **Passo 3 — Verificar critérios de aceitação.**
 Para cada critério de aceitação na issue original:
+
 - **Pass**: O PR implementa claramente este critério. Cite o código específico.
 - **Fail**: O PR não implementa este critério. Anote o que está faltando.
 - **Partial**: Alguns aspectos estão implementados, mas não todos. Detalhe a lacuna.
@@ -103,6 +104,7 @@ Ordene todos os findings em três categorias:
 
 **Passo 6 — Escrever recomendação.**
 Com base nos findings:
+
 - **Merge**: Nenhum item must-fix. Opcionalmente, anote itens should-fix para a equipe tratar.
 - **Merge with fixes**: Itens must-fix existem, mas são pequenos. Liste as correções específicas necessárias.
 - **Reject**: Problemas fundamentais (abordagem errada, funcionalidade central ausente, vulnerabilidade de segurança). Explique por quê e sugira próximos passos.

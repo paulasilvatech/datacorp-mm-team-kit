@@ -27,9 +27,11 @@ Peça ao usuário o que estiver faltando.
 1. **Confirme que a mudança está em `plan.md`.** A migração segue o plano, não o contrário. Se não estiver no plano, pare e encaminhe para revisão de arquitetura.
 2. **Escolha o número da versão.** Use `Vyyyymmddhhmm__short_description.sql` (convenção do Flyway).
 3. **Projete para migração online.** Padrões seguros para online:
- - Adicionar coluna nullable → backfill em lotes → adicionar constraint por último.
- - Criar índice `CONCURRENTLY` (sem `IF NOT EXISTS` — isso exige uma guarda separada).
- - Evite operações `ALTER TABLE` que exijam lock `ACCESS EXCLUSIVE` em uma tabela quente; se for inevitável, agende uma janela de manutenção.
+
+- Adicionar coluna nullable → backfill em lotes → adicionar constraint por último.
+- Criar índice `CONCURRENTLY` (sem `IF NOT EXISTS` — isso exige uma guarda separada).
+- Evite operações `ALTER TABLE` que exijam lock `ACCESS EXCLUSIVE` em uma tabela quente; se for inevitável, agende uma janela de manutenção.
+
 4. **Planeje o backfill.** Para dados não triviais, escreva um script de backfill idempotente separado que processe em lotes de 1k–10k linhas com `commit` entre lotes. Nunca faça backfill na própria migração se a tabela tiver mais de 100k linhas.
 5. **Aplique constraints depois do backfill.** Adicione `NOT NULL`, `CHECK`, foreign keys e índices únicos somente depois que os dados estiverem consistentes.
 6. **Escreva o rollback.** Toda migração de avanço vem com um `Vyyyymmddhhmm__short_description.undo.sql`. O rollback restaura o schema anterior mesmo se tiver existido estado intermediário.

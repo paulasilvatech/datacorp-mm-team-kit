@@ -26,16 +26,20 @@ Peça ao usuário o que estiver faltando.
 1. **Indexe todos os requisitos.** Para cada `REQ-ID`, capture: padrão EARS, gatilho (evento/estado/condição), ação, ator, resultado e limites quantitativos.
 2. **Faça varredura em pares dentro de cada domínio.** Agrupe REQ-IDs por domínio (`PAY-*`, `BEN-*` etc.). Compare cada par. Pares entre domínios vêm depois.
 3. **Procure as quatro contradições clássicas.**
- - **Contradição direta** — REQ-A diz "the system shall X under condition C"; REQ-B diz "the system shall not X under condition C."
- - **Conflito de limite** — REQ-A diz "respond within 200 ms"; REQ-B diz "perform 5 sequential checks each up to 80 ms" — os orçamentos não podem ser cumpridos juntos.
- - **Conflito de estado** — REQ-A permite uma ação enquanto está no estado S1; REQ-B a proíbe durante o estado sobreposto S2 ⊆ S1.
- - **Conflito de ator** — REQ-A concede permissão ao papel R1; REQ-B proíbe a mesma operação ao papel R2 onde R2 ⊇ R1.
+
+- **Contradição direta** — REQ-A diz "the system shall X under condition C"; REQ-B diz "the system shall not X under condition C."
+- **Conflito de limite** — REQ-A diz "respond within 200 ms"; REQ-B diz "perform 5 sequential checks each up to 80 ms" — os orçamentos não podem ser cumpridos juntos.
+- **Conflito de estado** — REQ-A permite uma ação enquanto está no estado S1; REQ-B a proíbe durante o estado sobreposto S2 ⊆ S1.
+- **Conflito de ator** — REQ-A concede permissão ao papel R1; REQ-B proíbe a mesma operação ao papel R2 onde R2 ⊇ R1.
+
 4. **Verifique contra a CONSTITUTION.** Qualquer requisito que viole uma regra constitucional é uma contradição com a própria constituição (normalmente regras C de segurança, dados ou compliance).
 5. **Verifique contra invariantes do legado.** Se um REQ contradiz comportamento imposto pelo SIFAP legado (documentado em `01-arqueologia/legado-sifap/legacy-docs/REGRAS-NEGOCIO-2012.md`), sinalize como risco de regressão.
 6. **Pontue a severidade.**
- - **Critical** — contradição direta, sem implementação possível que satisfaça ambos.
- - **Major** — conflito de limite ou estado resolvível apenas alterando um REQ.
- - **Minor** — divergência terminológica escondendo um acordo real.
+
+- **Critical** — contradição direta, sem implementação possível que satisfaça ambos.
+- **Major** — conflito de limite ou estado resolvível apenas alterando um REQ.
+- **Minor** — divergência terminológica escondendo um acordo real.
+
 7. **Proponha resoluções.** Para cada achado, sugira uma opção: (a) mesclar REQs, (b) dividir REQs por subcondição, (c) restringir o escopo de um REQ, (d) escalar para o product owner.
 
 ## Saída

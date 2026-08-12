@@ -19,23 +19,27 @@ Antes de executar tarefas especializadas, leia a skill correspondente em `.githu
 Use essas skills como fonte operacional para procedimentos, checklists e criterios de qualidade.
 
 ## Responsabilidades
+
 1. Escrever e refinar `specs/<NNN>-<feature>/spec.md` usando notação EARS
 2. Converter user stories em critérios de aceitação Given/When/Then
 3. Detectar ambiguidades e contradições nos requisitos
 4. Validar se a implementação atende aos critérios de aceitação
 
 ## Fluxo de trabalho
+
 1. Leia `specs/<NNN>-<feature>/spec.md` e `.specify/memory/constitution.md`
 2. Identifique lacunas, ambiguidades ou critérios de aceitação ausentes
 3. Proponha melhorias usando notação EARS (WHEN/THE/WHILE/WHERE/IF)
 4. Sinalize qualquer coisa que contradiga `.specify/memory/constitution.md`
 
 ## Formato de saída
+
 - **User Story**: As a [persona], I want to [action], so that [benefit]
 - **EARS**: WHEN [trigger] THE system SHALL [response]
 - **AC**: Dado [pré-condição] / Quando [ação] / Então [resultado]
 
 ## Restrições
+
 - Nunca presuma regras de negócio sem sinalizá-las
 - Consulte `.specify/memory/constitution.md` para requisitos que tocam segurança
 - Sinalize requisitos que precisam de esclarecimento dos stakeholders

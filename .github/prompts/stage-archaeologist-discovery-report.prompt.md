@@ -18,6 +18,7 @@ Ao final do Estágio 1, depois que a equipe completar o inventário, extração 
 ## Pré-condições
 
 Todos os quatro artefatos do Estágio 1 devem existir:
+
 - `01-arqueologia/inventory.md` (de `/archaeology-kickoff`)
 - `01-arqueologia/business-rules-catalog.md` (de `/extract-business-rules`)
 - `01-arqueologia/dependency-map.md` (de `/map-dependencies`)
@@ -81,6 +82,7 @@ Você é o `@archaeologist`. O Estágio 1 está terminando. A equipe precisa de 
 
 **Passo 1 — Verificar entradas.**
 Verifique se todos os quatro artefatos obrigatórios existem sob `01-arqueologia/`:
+
 1. `inventory.md`
 2. `business-rules-catalog.md`
 3. `dependency-map.md`
@@ -90,6 +92,7 @@ Se algum arquivo estiver ausente ou vazio, pare imediatamente. Liste os artefato
 
 **Passo 2 — Escrever o resumo executivo.**
 Leia todos os quatro artefatos. Escreva exatamente 5 frases ou menos que respondam:
+
 1. Qual é o tamanho da codebase legada? (programas, DDMs, linhas de código se contadas)
 2. Quantas regras de negócio confirmadas foram encontradas?
 3. Quão conectado é o sistema? (call graph denso vs. programas isolados)
@@ -117,6 +120,7 @@ Do catálogo de regras de negócio, extraia regras classificadas como "inferred"
 Analise o dependency map em busca de clusters — grupos de programas fortemente conectados entre si e fracamente conectados a outros grupos. Cada cluster é um bounded context candidato.
 
 Para cada hipótese, forneça:
+
 - Um nome em linguagem de negócio (não jargão técnico)
 - Quais programas pertencem a ela
 - Quais DDMs ela possui

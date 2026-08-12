@@ -1,93 +1,82 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
 # Requirements Engineer — Kit Copilot
 
-![PERSONA Requirements Engineer](https://img.shields.io/badge/PERSONA-Requirements%20Engineer-F25022?style=for-the-badge) ![MARIO 📖 Toad](https://img.shields.io/badge/MARIO-📖%20Toad-1A1A1A?style=for-the-badge) ![PAR Par 1 · Visão](https://img.shields.io/badge/PAR-Par%201%20·%20Visão-737373?style=for-the-badge)
+> **Trilha:** [Kit do Time](../../README.md) › [Personas](../OVERVIEW.md) › **Requirements Engineer**
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../../README.md) → [Personas](../OVERVIEW.md) → **Requirements Engineer**
+**Inventário do kit Copilot para a persona Requirements Engineer.** Liste os artefatos ativos, onde vivem na `.github/` e as boas práticas específicas deste papel.
 
-> **Para quem é isto?** Para a pessoa que vai vestir esta persona durante o workshop.
->
-> **O que você terá ao final desta leitura:**
->
-> 1. Lista de arquivos do kit (agente, prompts, skills, MCP)
-> 2. Onde os artefatos ativos vivem na `.github/` consolidada da raiz
-> 3. Boas práticas específicas desta persona
->
-> 📘 **Antes de mais nada:** abra o `PERSONA.md` desta pasta para ver missão, atributos e prompts prontos.
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Pessoa que vai atuar como Requirements Engineer no workshop |
+| **Par** | 1 · Visão (junto com Product Owner) |
+| **Fase do SDLC** | Requisitos → Especificação |
+| **Pré-requisitos** | [PERSONA.md](PERSONA.md) lido |
+| **Resultado esperado** | Kit validado, prompts acessíveis no Copilot Chat |
 
+> [!IMPORTANT]
+> Leia [PERSONA.md](PERSONA.md) antes de continuar. A ficha explica missão, passagem de bastão e rubricas de avaliação.
 
-<!-- markdownlint-disable MD013 MD022 MD031 MD032 MD060 -->
+---
 
-> Notação EARS, detecção de drift de especificação e análise de contradições.
+## Conceito
 
-Leia primeiro: [PERSONA.md](PERSONA.md).
+O Requirements Engineer é o papel responsável por transformar conversas e descobertas em requisitos formais e testáveis. No SIFAP, as regras de negócio estão tacitamente codificadas em Natural — sem documentação atualizada. O RE extrai essas regras, estrutura-as em notação EARS (Easy Approach to Requirements Syntax) e garante rastreabilidade do legado ao requisito moderno.
 
-## Fase do SDLC
-Requisitos, Especificação
+---
 
-## Conteúdo do kit
+## Kit da persona
 
-| Arquivo | Tipo | Propósito |
-|------|------|---------|
-| `PERSONA.md` | Persona | Responsabilidades, passagens, prompts e rubrica do Requirements Engineer |
+| **Artefato** | Tipo | Propósito |
+|---|---|---|
+| `PERSONA.md` | Ficha | Responsabilidades, passagem de bastão, prompts e rubrica |
 | `.github/agents/requirements-engineer.agent.md` | Agent | Análise de requisitos |
 | `.github/prompts/persona-requirements-engineer-spec-sync.prompt.md` | Prompt | `/spec-sync` |
 | `.github/prompts/persona-requirements-engineer-contradiction-check.prompt.md` | Prompt | `/contradiction-check` |
 | `.github/prompts/persona-requirements-engineer-ears-convert.prompt.md` | Prompt | `/ears-convert` |
 | `.github/instructions/requirements.instructions.md` | Instructions | Convenções de documentação de requisitos |
 
-## Uso no workshop
+---
 
-Os artefatos deste kit já estão consolidados na `.github/` da raiz do repositório:
+## Onde os artefatos vivem
 
-- Agents ativos: `.github/agents/`
-- Prompts ativos: `.github/prompts/persona-*.prompt.md`
-- Skills ativas: `.github/skills/`
-- Instructions ativas: `.github/instructions/` (quando existirem)
+Os artefatos ativos estão consolidados na `.github/` da raiz:
 
-Use esta pasta como referência da persona (ficha, boas práticas e inventário). Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá se precisar de manutenção.
+| **Tipo** | Caminho |
+|---|---|
+| Agents | `.github/agents/` |
+| Prompts | `.github/prompts/persona-*.prompt.md` |
+| Skills | `.github/skills/` |
+| Instructions | `.github/instructions/` |
 
-Se este kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
+Use esta pasta como referência. Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá quando precisar de manutenção.
 
-## Boas práticas
-- Use padrões EARS exclusivamente; requisitos vagos precisam ser quantificados.
-- Todo `REQ-ID` deve ser único, imutável e rastreável a pelo menos um teste e uma task.
-- Faça uma passada de contradição antes de aceitar novas specs.
-- Remova ou quantifique termos ambíguos como “adequado”, “razoável” e “amigável”.
-
-## Referências
-- [EARS Notation - Alistair Mavin](https://alistairmavin.com/ears/)
-- [IEEE 29148 - Requirements Engineering](https://www.iso.org/standard/72089.html)
-- [ISO/IEC 25010 - Quality Model](https://iso25000.com/index.php/en/iso-25000-standards/iso-25010)
-- [Writing Good Requirements - INCOSE](https://www.incose.org/)
+Se o kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
 
 ---
 
-## Navegação
+## Boas práticas
 
-| Anterior | Início |
-|--------|------|
-| [Persona Kits](../README.md) | [Kit PT-BR](../../README.md) |
+- Use padrões EARS exclusivamente; requisitos vagos precisam ser quantificados.
+- Todo `REQ-ID` deve ser único, imutável e rastreável a pelo menos um teste e uma task.
+- Faça uma passada de contradição antes de aceitar novas specs.
+- Remova ou quantifique termos ambíguos como "adequado", "razoável" e "amigável".
+
+---
+
+## Referências
+
+- [EARS Notation — Alistair Mavin](https://alistairmavin.com/ears/)
+- [IEEE 29148 — Requirements Engineering](https://www.iso.org/standard/72089.html)
+- [ISO/IEC 25010 — Quality Model](https://iso25000.com/index.php/en/iso-25000-standards/iso-25010)
+- [Writing Good Requirements — INCOSE](https://www.incose.org/)
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="../OVERVIEW.md"><strong>OVERVIEW</strong></a><br/>
-<sub>Tabela das 10 personas.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="PERSONA.md"><strong>PERSONA.md</strong></a><br/>
-<sub>Ficha desta persona.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [OVERVIEW](../OVERVIEW.md)<br/><sub>Tabela das 10 personas.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Ficha desta persona.</sub> |
 
-<sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
-
+<sub>[Voltar ao índice do kit](../README.md)</sub>

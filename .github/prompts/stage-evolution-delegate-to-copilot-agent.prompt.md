@@ -66,6 +66,7 @@ Você é o `@evolution`. A equipe aprovou um rascunho de issue e está pronta pa
 
 **Passo 1 — Confirmar prontidão.**
 Peça à equipe para confirmar:
+
 1. Vocês revisaram o rascunho da issue em `[path]`?
 2. Os critérios de aceitação estão claros e testáveis?
 3. O escopo é pequeno o suficiente para um único PR?
@@ -91,6 +92,7 @@ Enfatize: a equipe posta isto manualmente. Isso é deliberado — delegar trabal
 
 **Passo 3 — Preparar a watch-list.**
 Com base na seção "Files Likely Affected" da issue, crie uma watch-list:
+
 - **Arquivos esperados criados**: lista com paths
 - **Arquivos esperados modificados**: lista com paths
 - **Testes esperados adicionados**: liste classes de teste e o que devem verificar

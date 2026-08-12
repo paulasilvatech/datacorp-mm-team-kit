@@ -1,154 +1,158 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# 🗺 SITEMAP — Mapa Visual do Kit
+# Sitemap — Mapa Visual do Kit
 
-![NAVEGAÇÃO Sitemap](https://img.shields.io/badge/NAVEGAÇÃO-Sitemap-FFB900?style=for-the-badge) ![USE Quando se perder](https://img.shields.io/badge/USE-Quando%20se%20perder-1A1A1A?style=for-the-badge)
+> **Trilha:** [Kit do Time](README.md) › **Sitemap**
 
-> 🗺 **Você está aqui:** [Kit PT-BR](README.md) → **Sitemap**
+**Mapa de navegação completo do kit:** onde cada arquivo mora, como os artefatos fluem entre estágios e qual caminho seguir por persona.
 
-> **Para quem é isto?** Para você que se perdeu no meio do dia, ou para alguém perguntando onde está aquele arquivo.
->
-> **O que você terá ao final desta leitura:**
->
-> 1. Mapa visual de toda a estrutura do kit (numerada 00..12)
-> 2. Caminho recomendado por persona (PO/RE, EA/SA, TL/Dev, DBA/QA, DevOps/TW)
-> 3. Diagrama de **fluxo de artefatos** (quem alimenta quem)
-> 4. Tabela "onde mora cada coisa"
-
-![NAVEGAÇÃO](https://img.shields.io/badge/NAVEGA%C3%87%C3%83O-Sitemap-F25022?style=for-the-badge) ![USE Quando se perder](https://img.shields.io/badge/USE-Quando%20se%20perder-1A1A1A?style=for-the-badge)
+![Sitemap](https://img.shields.io/badge/Navega%C3%A7%C3%A3o-Sitemap-171717?style=flat-square) ![Referência rápida](https://img.shields.io/badge/Uso-Refer%C3%AAncia%20r%C3%A1pida-737373?style=flat-square)
 
 ---
 
-## 🏰 Visão de 1 imagem (universo Mario)
+## Visão geral — fluxo dos 4 estágios
 
-```
-                                                                       🏰
-🟦 MUNDO 1 ──🟢cano──> 🟫 MUNDO 2 ──🟢cano──> 🟧 MUNDO 3 ──🟢cano──> CASTELO
-01-arqueologia          02-spec-moderna        03-implementacao      04-evolucao
-@archaeologist          @architect              @builder              @evolution
-                                                                          │
-                                                                          ▼
-                                                                     👸 SIFAP 2.0
+```mermaid
+%%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
+flowchart LR
+    classDef step fill:#F5F5F5,stroke:#171717,color:#171717
+    classDef handoff fill:#FFFFFF,stroke:#525252,color:#171717
+    classDef result fill:#FFFFFF,stroke:#171717,color:#171717,stroke-width:2px
+
+    E1["Estágio 1<br/>Arqueologia<br/>@archaeologist"]:::step
+    H1["Passagem H1<br/>5 min"]:::handoff
+    E2["Estágio 2<br/>Especificação<br/>@architect"]:::step
+    H2["Passagem H2<br/>5 min"]:::handoff
+    E3["Estágio 3<br/>Implementação<br/>@builder"]:::step
+    H3["Passagem H3<br/>5 min"]:::handoff
+    E4["Estágio 4<br/>Evolução<br/>@evolution"]:::step
+    R["SIFAP 2.0<br/>em execução"]:::result
+
+    E1 --> H1 --> E2 --> H2 --> E3 --> H3 --> E4 --> R
 ```
 
 ---
 
-## 📍 Estrutura ordenada (00..12)
+## Estrutura ordenada do repositório
 
-| Prefixo | Pasta/Arquivo | Quando consultar |
+| Prefixo | Pasta / Arquivo | Quando consultar |
 |---|---|---|
-| **00** | [`README.md`](README.md) | Primeira chegada |
-| **00** | [`00-COMECE-AQUI.md`](00-COMECE-AQUI.md) | 15 min para qualquer pessoa |
-| **00** | [`00-SETUP.md`](00-SETUP.md) | Preparar laptop + Copilot |
+| **00** | [`README.md`](README.md) | Primeira chegada — visão geral do workshop |
+| **00** | [`00-COMECE-AQUI.md`](00-COMECE-AQUI.md) | Roteiro de 15 minutos para qualquer pessoa |
+| **00** | [`00-SETUP.md`](00-SETUP.md) | Preparar laptop e Copilot |
 | **00** | [`00-TEAM-FLOW.md`](00-TEAM-FLOW.md) | Cronograma canônico do dia |
 | **00** | [`00-SITEMAP.md`](00-SITEMAP.md) | Este arquivo |
 | **00** | [`00-GIT-WORKFLOW.md`](00-GIT-WORKFLOW.md) | Branches, PRs, merges |
-| **01** | [`01-arqueologia/`](01-arqueologia/) | 🟦 ESTÁGIO 1 — ler legado |
-| **01** | [`01-arqueologia/legado-sifap/`](01-arqueologia/legado-sifap/) | 15 .NSN + 4 DDMs |
-| **02** | [`02-spec-moderna/`](02-spec-moderna/) | 🟫 ESTÁGIO 2 — EARS, ADRs, C4 |
-| **03** | [`03-implementacao/`](03-implementacao/) | 🟧 ESTÁGIO 3 — Java + Next.js |
-| **04** | [`04-evolucao/`](04-evolucao/) | 🏰 ESTÁGIO 4 — Agent + Terraform |
-| **05** | [`05-personas/`](05-personas/) | 10 personas (escolha 2) |
-| **06** | [`06-agentes-de-estagio/`](06-agentes-de-estagio/) | 4 agentes Copilot |
-| **07** | [`07-conceitos/`](07-conceitos/) | 🧠 Analogias Mario, EARS, ADR |
-| **09** | [`09-cheat-sheets/`](09-cheat-sheets/) | 🎴 Cartões de 1 página |
-| `docs/` | [`docs/`](docs/) | FAQ, troubleshooting, runbook, ADRs |
+| **01** | [`01-arqueologia/`](01-arqueologia/) | Estágio 1 — ler o legado SIFAP |
+| **01** | [`01-arqueologia/legado-sifap/`](01-arqueologia/legado-sifap/) | 15 programas `.NSN` + 4 DDMs + docs históricos |
+| **02** | [`02-spec-moderna/`](02-spec-moderna/) | Estágio 2 — EARS, ADRs, C4 |
+| **03** | [`03-implementacao/`](03-implementacao/) | Estágio 3 — Java + Next.js + testes |
+| **04** | [`04-evolucao/`](04-evolucao/) | Estágio 4 — Agent mode + Terraform |
+| **05** | [`05-personas/`](05-personas/) | 10 personas (escolha 2 — seu par) |
+| **06** | [`06-agentes-de-estagio/`](06-agentes-de-estagio/) | 4 agentes Copilot (um por estágio) |
+| **07** | [`07-conceitos/`](07-conceitos/) | Conceitos fundamentais: EARS, ADR, SDD, agentes |
+| **09** | [`09-cheat-sheets/`](09-cheat-sheets/) | Cartões de referência rápida (1 página cada) |
+| `docs/` | [`docs/`](docs/) | FAQ, troubleshooting, runbook, STATUS |
 | `assets/` | [`assets/`](assets/) | SVGs e diagramas |
-| `specs/` | [`specs/`](specs/) | Artefatos Spec-Kit criados pelo time |
+| `specs/` | [`specs/`](specs/) | Artefatos Spec-Kit criados pelo time durante o workshop |
 
 ---
 
-## 🌊 Fluxo de artefatos (quem alimenta quem)
+## Conteúdo de `07-conceitos/`
+
+| Arquivo | Conteúdo |
+|---|---|
+| [`00-README.md`](07-conceitos/00-README.md) | Índice e visão geral da pasta |
+| [`01-spec-driven-development.md`](07-conceitos/01-spec-driven-development.md) | O que é Spec-Driven Development e por que usamos no workshop |
+| [`02-agentes-e-personas.md`](07-conceitos/02-agentes-e-personas.md) | Diferença entre agentes de estágio e personas individuais |
+| [`03-glossario-visual.md`](07-conceitos/03-glossario-visual.md) | Glossário com 30+ termos do domínio |
+| [`04-3-modos-do-copilot.md`](07-conceitos/04-3-modos-do-copilot.md) | Ask, Plan e Agent — quando usar cada modo |
+| [`05-notacao-ears.md`](07-conceitos/05-notacao-ears.md) | Notação EARS para requisitos sem ambiguidade |
+| [`06-architecture-decision-records.md`](07-conceitos/06-architecture-decision-records.md) | ADRs — o que são, como escrever, gabarito |
+
+---
+
+## Fluxo de artefatos entre estágios
 
 ```mermaid
+%%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
 flowchart LR
-    classDef stage1 fill:#E5F6FD,stroke:#00A4EF,color:#0A0A0A
-    classDef stage2 fill:#FFF7E0,stroke:#FFB900,color:#0A0A0A
-    classDef stage3 fill:#F1F8E3,stroke:#7FBA00,color:#0A0A0A
-    classDef stage4 fill:#FFE5DC,stroke:#F25022,color:#0A0A0A
+    classDef step fill:#F5F5F5,stroke:#171717,color:#171717
+    classDef artifact fill:#FAFAFA,stroke:#A3A3A3,color:#404040
+    classDef result fill:#FFFFFF,stroke:#171717,color:#171717,stroke-width:2px
 
-    LEGACY[📜 legado-sifap<br/>15 .NSN + 4 DDMs]:::stage1
-    GLOSS[glossary.md]:::stage1
-    BR[business-rules-catalog.md]:::stage1
-    DEPS[dependency-map.md]:::stage1
-    MIST[mysteries-found.md]:::stage1
-    REPORT[discovery-report.md]:::stage1
+    subgraph E1["Estágio 1 — Arqueologia"]
+        LEGACY["legado-sifap/<br/>15 .NSN + 4 DDMs"]:::artifact
+        GLOSS["glossary.md"]:::artifact
+        BR["business-rules-catalog.md"]:::artifact
+        DEPS["dependency-map.md"]:::artifact
+        REPORT["discovery-report.md"]:::artifact
+    end
 
-    SPEC[specs/&lt;NNN&gt;-&lt;feature&gt;/spec.md<br/>EARS + source_legacy]:::stage2
-    PLAN[specs/&lt;NNN&gt;-&lt;feature&gt;/plan.md]:::stage2
-    TASKS[specs/&lt;NNN&gt;-&lt;feature&gt;/tasks.md]:::stage2
-    SCOPE[scope-decisions.md<br/>apoio]:::stage2
+    subgraph E2["Estágio 2 — Especificação"]
+        SPEC["spec.md<br/>(EARS + source_legacy)"]:::artifact
+        PLAN["plan.md"]:::artifact
+        TASKS["tasks.md"]:::artifact
+    end
 
-    CODE[Java + Next.js]:::stage3
-    MIGS[Flyway migrations]:::stage3
-    TESTS[Tests]:::stage3
+    subgraph E3["Estágio 3 — Implementação"]
+        CODE["Java + Next.js"]:::artifact
+        MIGS["Flyway migrations"]:::artifact
+        TESTS["Testes JUnit / Vitest"]:::artifact
+    end
 
-    ISSUES[GitHub Issues p/ Agent]:::stage4
-    TF[Terraform]:::stage4
-    CI[GitHub Actions]:::stage4
+    subgraph E4["Estágio 4 — Evolução"]
+        ISSUES["GitHub Issues<br/>(para Agent mode)"]:::artifact
+        TF["Terraform"]:::artifact
+        CI["GitHub Actions"]:::artifact
+    end
 
-    LEGACY --> GLOSS & BR & DEPS & MIST
-    GLOSS & BR & DEPS & MIST --> REPORT
+    LEGACY --> GLOSS & BR & DEPS
+    GLOSS & BR & DEPS --> REPORT
     REPORT --> SPEC
     SPEC --> PLAN --> TASKS
-    SPEC --> SCOPE
     SPEC --> CODE
-    PLAN --> CODE
-    CODE --> TESTS
-    CODE --> MIGS
+    CODE --> TESTS & MIGS
     SPEC --> ISSUES
     CODE --> TF
     TESTS --> CI
 ```
 
-> **Como ler:** seta = dependência. Sem o artefato de origem, o destino não pode começar bem feito.
+> Como ler: seta = dependência. O artefato de destino depende do artefato de origem para ser criado com qualidade.
 
 ---
 
-## 🧑‍🤝‍🧑 Caminho recomendado por persona
+## Caminho recomendado por persona
 
 | Você é… | Comece por… | Depois… | Depois… |
 |---|---|---|---|
 | **Qualquer pessoa, primeira vez** | [00-COMECE-AQUI.md](00-COMECE-AQUI.md) | [00-TEAM-FLOW.md](00-TEAM-FLOW.md) | seu `PERSONA.md` |
-| **Líder do time** | [00-SETUP.md](00-SETUP.md) | [00-TEAM-FLOW.md](00-TEAM-FLOW.md) | [05-personas/OVERVIEW.md](05-personas/OVERVIEW.md) |
+| **Líder do time** | [00-SETUP.md](00-SETUP.md) | [00-TEAM-FLOW.md](00-TEAM-FLOW.md) | [docs/CHECKLIST-LIDER.md](docs/CHECKLIST-LIDER.md) |
 | **PO ou RE (Par 1)** | [05-personas/01-product-owner/PERSONA.md](05-personas/01-product-owner/PERSONA.md) | [01-arqueologia/GUIDE.md](01-arqueologia/GUIDE.md) | [02-spec-moderna/GUIDE.md](02-spec-moderna/GUIDE.md) |
 | **EA ou SA (Par 2)** | [05-personas/03-enterprise-architect/PERSONA.md](05-personas/03-enterprise-architect/PERSONA.md) | [02-spec-moderna/ADR-TEMPLATE.md](02-spec-moderna/ADR-TEMPLATE.md) | [02-spec-moderna/GUIDE.md](02-spec-moderna/GUIDE.md) |
-| **TL ou Dev (Par 3)** | [05-personas/06-developer/PERSONA.md](05-personas/06-developer/PERSONA.md) | [03-implementacao/GUIDE.md](03-implementacao/GUIDE.md) | [03-implementacao/GUIDE.md](03-implementacao/GUIDE.md) |
-| **DBA ou QA (Par 4)** | [05-personas/07-dba/PERSONA.md](05-personas/07-dba/PERSONA.md) | [03-implementacao/GUIDE.md](03-implementacao/GUIDE.md) | [03-implementacao/GUIDE.md](03-implementacao/GUIDE.md) |
-| **DevOps ou TW (Par 5)** | [05-personas/09-devops-engineer/PERSONA.md](05-personas/09-devops-engineer/PERSONA.md) | [04-evolucao/GUIDE.md](04-evolucao/GUIDE.md) | [04-evolucao/GUIDE.md](04-evolucao/GUIDE.md) |
+| **TL ou Dev (Par 3)** | [05-personas/06-developer/PERSONA.md](05-personas/06-developer/PERSONA.md) | [03-implementação/GUIDE.md](03-implementacao/GUIDE.md) | — |
+| **DBA ou QA (Par 4)** | [05-personas/07-dba/PERSONA.md](05-personas/07-dba/PERSONA.md) | [03-implementação/GUIDE.md](03-implementacao/GUIDE.md) | — |
+| **DevOps ou TW (Par 5)** | [05-personas/09-devops-engineer/PERSONA.md](05-personas/09-devops-engineer/PERSONA.md) | [04-evolucao/GUIDE.md](04-evolucao/GUIDE.md) | — |
 | **Não programa em Natural** | [01-arqueologia/legado-sifap/COMO-LER-NATURAL.md](01-arqueologia/legado-sifap/COMO-LER-NATURAL.md) | [01-arqueologia/GUIDE.md](01-arqueologia/GUIDE.md) | (sua persona) |
 | **Encontrou termo estranho** | [07-conceitos/03-glossario-visual.md](07-conceitos/03-glossario-visual.md) | (volte de onde veio) | — |
 
 ---
 
-## 🆘 Se você se perdeu
+## Se você se perdeu
 
-1. **Não sabe em qual estágio está?** → [`00-TEAM-FLOW.md`](00-TEAM-FLOW.md) §2 (cronograma)
-2. **Não sabe o que sua persona faz?** → seu [`05-personas/0X-.../PERSONA.md`](05-personas/OVERVIEW.md)
-3. **Não sabe o que entregar?** → `GUIDE.md` do estágio atual → seção "Como saber que terminou (DoD)"
-4. **Achou um termo estranho?** → [`07-conceitos/03-glossario-visual.md`](07-conceitos/03-glossario-visual.md)
-5. **Algo deu errado?** → [`docs/troubleshooting.md`](docs/troubleshooting.md)
-6. **Travou há mais de 20 min?** → Levante a mão. Regra do TEAM-FLOW §6.
+1. **Não sabe em qual estágio está?** Consulte [`00-TEAM-FLOW.md`](00-TEAM-FLOW.md) — seção de cronograma.
+2. **Não sabe o que sua persona faz?** Abra seu [`05-personas/0X-.../PERSONA.md`](05-personas/OVERVIEW.md).
+3. **Não sabe o que entregar?** Consulte o `GUIDE.md` do estágio atual e localize a seção "Como saber que terminou (DoD)".
+4. **Encontrou um termo estranho?** Consulte [`07-conceitos/03-glossario-visual.md`](07-conceitos/03-glossario-visual.md).
+5. **Algo deu errado tecnicamente?** Consulte [`docs/troubleshooting.md`](docs/troubleshooting.md).
+6. **Travou há mais de 20 minutos?** Sinalize para o facilitador. Regra descrita em [`00-TEAM-FLOW.md`](00-TEAM-FLOW.md).
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="README.md"><strong>Kit PT-BR</strong></a><br/>
-<sub>Hub deste folder.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="00-COMECE-AQUI.md"><strong>00 — Comece aqui</strong></a><br/>
-<sub>Roteiro inicial de 15 minutos.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [Kit do Time](README.md)<br/><sub>Visão geral e ponto de entrada do workshop.</sub> | [00 — Comece aqui](00-COMECE-AQUI.md)<br/><sub>Roteiro inicial de 15 minutos para qualquer pessoa.</sub> |
 
-<sub>↑ <a href="README.md">Voltar ao Kit PT-BR</a></sub>
-
-— Paula
+<sub>[Voltar ao índice do kit](README.md)</sub>
