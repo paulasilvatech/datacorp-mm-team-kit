@@ -16,7 +16,7 @@ Você produzirá um ciclo TDD completo para um único comportamento no SIFAP 2.0
 
 Peça ao usuário o que estiver faltando.
 
-- O comportamento a descobrir, em linguagem simples (por exemplo "calcular ICMS para beneficiários isentos de imposto").
+- O comportamento a descobrir, em linguagem simples.
 - O `REQ-ID` vinculado em `specs/<NNN>-<feature>/spec.md`.
 - O arquivo ou classe alvo. Se não existir, diga isso — TDD também guia o design, então criar é aceitável.
 - O framework de teste — JUnit 5 + AssertJ para Java, Vitest + Testing Library para TypeScript.
@@ -28,10 +28,10 @@ Você executa exatamente três fases. Não as compacte.
 ### Fase 1 — RED (escreva o teste que falha)
 
 1. Escolha o **caso não trivial mais simples** para o comportamento. Não o caso vazio, nem o catastrófico — o menor caso que exercita lógica real.
-2. Nomeie o teste pelo comportamento, não pelo método: `calculatesIcmsAsZeroForTaxExemptBeneficiary`, não `test1`.
+2. Nomeie o teste pelo comportamento, não pelo método: `should_<expected>_when_<condition>`, não `test1`.
 3. Use estrutura Given/When/Then ou Arrange/Act/Assert, com linhas em branco entre as seções.
 4. Execute o teste. Confirme que falha. Leia a mensagem de falha e confirme que falha pelo motivo esperado (erro de compilação, incompatibilidade de assertion — não erro de setup).
-5. Commit: `test(taxes): red — icms is zero for tax-exempt beneficiary`.
+5. Commit: `test(<scope>): red — <short behavior description>`.
 
 ### Fase 2 — GREEN (menor código para passar)
 

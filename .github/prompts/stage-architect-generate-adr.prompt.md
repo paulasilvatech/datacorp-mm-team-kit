@@ -47,7 +47,7 @@ Um arquivo Markdown em `02-spec-moderna/ADRs/adr-NNN-<slug>.md`:
 
 ```markdown
 # ADR-NNN: [Title]
-- Status: Accepted
+- Status: Proposta (até validação explícita da equipe)
 - Date: [YYYY-MM-DD]
 - Context: ...
 - Decision: ...
@@ -105,7 +105,7 @@ Não sugira um padrão. Deixe a equipe pesar os trade-offs.
 **Passo 5 — Documentar a decisão.**
 Escreva o ADR no formato MADR:
 - **Title**: ADR-NNN: [Decision Title]
-- **Status**: Accepted
+- **Status**: Proposta até a equipe validar a decisão
 - **Date**: Today's date
 - **Context**: Por que esta decisão precisou ser tomada (do Passo 1)
 - **Decision**: A opção escolhida e a razão declarada pela equipe

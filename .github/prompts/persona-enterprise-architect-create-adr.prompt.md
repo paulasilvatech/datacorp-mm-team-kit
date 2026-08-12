@@ -47,61 +47,46 @@ Peça ao usuário o que estiver faltando.
 O entregável é um único arquivo em `specs/<NNN>-<feature>/ADRs/<NNNN>-<title-slug>.md`:
 
 ```markdown
-# ADR <NNNN> — Integrar legado Adabas via adaptador REST
+# ADR <NNNN> — <título da decisão>
 
-- **Status**: Accepted
-- **Data**: 2026-04-29
-- **Aprovadores**: @morgan (technical lead), @paula (software architect), @alex (engineering)
-- **REQs vinculados**: REQ-INT-001, REQ-INT-002, REQ-INT-005
-- **ADRs vinculados**: ADR 0003 (escolheu Java 21), ADR 0006 (Postgres 16 como sistema de registro)
-- **Substitui**: —
+- **Status**: Proposed
+- **Data**: <YYYY-MM-DD>
+- **Aprovadores**: <pessoas que participarão da decisão>
+- **REQs vinculados**: REQ-XXX
+- **ADRs vinculados**: <!-- preencher, se houver -->
+- **Substitui**: <!-- preencher, se houver -->
 
 ## 1. Contexto
-O SIFAP precisa continuar lendo do banco de dados legado Adabas durante a janela de modernização (estimada em 18 meses). O código legado (programas Natural em `01-arqueologia/legado-sifap/natural-programs/`) é somente leitura. Pontes ODBC diretas foram descontinuadas pelo fornecedor e são proibidas pela InfoSec para novas integrações. A equipe tem experiência em Java + REST; ninguém na equipe escreve Natural com fluência.
+<!-- preencher com evidências, restrições e perguntas que a equipe forneceu -->
 
 ## 2. Opções consideradas
 
-### Opção A — Conexão ODBC direta a partir do Spring Boot
-- Prós: Menor latência; modelo mental JDBC familiar.
-- Contras: Descontinuada pelo fornecedor; não aprovada pela InfoSec; acopla a aplicação diretamente ao schema legado.
-- Custo/risco: Baixo custo agora, alto custo para exceção de InfoSec, risco muito alto em mudança de schema legado.
+### Opção A — <nome>
+- Prós: <!-- preencher -->
+- Contras: <!-- preencher -->
+- Custo/risco: <!-- preencher -->
 
-### Opção B — Sidecar adaptador REST (escolhida)
-- Prós: Oculta detalhes legados; pode ser substituído ou aposentado; testável; padrão aprovado pela InfoSec.
-- Contras: Salto extra adiciona ~30 ms p95; exige um deployable separado; nova superfície de SLO.
-- Custo/risco: Custo médio (um novo serviço); risco médio; substituível.
+### Opção B — <nome>
+- Prós: <!-- preencher -->
+- Contras: <!-- preencher -->
+- Custo/risco: <!-- preencher -->
 
-### Opção C — Replicar Adabas para Postgres via CDC
-- Prós: Superfície Postgres unificada para o novo sistema; nenhuma chamada runtime ao legado.
-- Contras: Modernização de 18 meses é curta demais para justificar tooling CDC; o legado ainda dirige as escritas.
-- Custo/risco: Alto custo; alto risco se o tooling CDC não corresponder à semântica do Adabas.
+### Opção C — <nome, se aplicável>
+- Prós: <!-- preencher -->
+- Contras: <!-- preencher -->
+- Custo/risco: <!-- preencher -->
 
 ## 3. Decisão
-Vamos construir um sidecar adaptador REST fino que expõe uma API JSON sobre os dados legados do Adabas. O adaptador pertence à squad de integração, é implantado no Azure Container Apps e autenticado via managed identity.
+<!-- preencher somente após decisão explícita da equipe -->
 
 ## 4. Justificativa
-A Opção B isola o legado do código novo, satisfaz a InfoSec e nos dá um caminho limpo de aposentadoria quando o sistema legado for finalmente desativado. O custo de latência é aceitável para os REQ-IDs afetados (nenhum deles está no orçamento de < 50 ms p95).
+<!-- preencher com a justificativa declarada pela equipe -->
 
 ## 5. Consequências
-
-### Positivas
-- O código novo nunca importa tipos legados.
-- O plano de aposentadoria se torna "excluir o adaptador" — limpo.
-- O adaptador pode passar por teste de carga e rate limit independentemente.
-
-### Negativas
-- Mais um deployable para operar (implicações de REQ-OPS-014).
-- Drift de schema entre o contrato do adaptador e os DDMs Adabas precisa ser detectado; nova suíte de testes de contrato obrigatória.
-- O orçamento de latência dos endpoints afetados sobe em ~30 ms p95.
-
-### Riscos
-- Se o adaptador se tornar um gargalo sob carga de pico, precisaremos escalá-lo horizontalmente — planejar capacidade agora.
-- Se a política de InfoSec mudar para proibir sidecars, precisaremos de um novo ADR.
+<!-- preencher com efeitos positivos, negativos e riscos confirmados -->
 
 ## 6. Validação
-- Orçamento de latência verificado pelo cenário k6 `legacy-read-burst`.
-- Suíte de testes de contrato `adapter-pact` roda em todo PR.
-- Uma retrospectiva está agendada no mês 3 para confirmar se as premissas continuam válidas.
+<!-- preencher com os critérios que a equipe acordar -->
 ```
 
 ## Antipadrões

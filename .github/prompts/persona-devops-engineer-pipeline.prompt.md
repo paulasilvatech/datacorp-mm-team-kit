@@ -43,7 +43,7 @@ Peça ao usuário o que estiver faltando.
 
 Sua resposta final deve incluir:
 
-- **Caminho e nome do arquivo de workflow** — por exemplo `.github/workflows/backend-payments.yml`.
+- **Caminho e nome do arquivo de workflow** — definido a partir do componente alvo.
 - **YAML completo** — pronto para colar, com comentários explicando escolhas não óbvias.
 - **Secrets e variáveis obrigatórios do GitHub** — listados com seu propósito.
 - **Configurações de branch protection** — checks obrigatórios e regras de revisores.
@@ -52,7 +52,7 @@ Sua resposta final deve incluir:
 ### Esqueleto (backend Java)
 
 ```yaml
-name: backend-payments
+name: <component>-ci
 on:
  pull_request:
  paths: ['backend/**']

@@ -26,7 +26,9 @@ Peça ao usuário o que estiver faltando.
 2. **Encontre testes por `REQ-ID`.** Use grep nas fontes de teste procurando `REQ-NNN`, `@implements REQ-NNN`, `@Tag("REQ-NNN")` ou convenções de nome como `Req014_*`. Liste cada ocorrência.
 3. **Mapeie teste → requisito.** Para cada `REQ-ID`, liste os testes que o cobrem. Marque `MISSING` se não houver nenhum, `WEAK` se houver apenas um teste de happy path, `OK` se houver happy path + pelo menos um caso de limite ou erro.
 4. **Inspecione variantes EARS em busca de casos ocultos.** Requisitos event-driven e unwanted-behavior (`If ...`) quase sempre precisam de um teste negativo. Requisitos state-driven (`While ...`) precisam de um teste de transição de estado.
-5. **Faça cross-check com o legado.** Para requisitos mapeados para um programa Natural em `01-arqueologia/legado-sifap/natural-programs/` (por exemplo `CALCBENF.NSN`), confirme que os casos de borda do legado (valores negativos, beneficiários bloqueados, rollover de fim de mês) estão cobertos.
+5. **Faça cross-check com o legado.** Para requisitos mapeados para um programa
+   Natural em `01-arqueologia/legado-sifap/natural-programs/`, confirme que os
+   casos de borda identificados pelo time estão cobertos.
 6. **Pontue por risco.** Combine probabilidade (quanto é exercitado em produção) e impacto (financeiro, regulatório, segurança) em escala 1–3 para cada um. Risco = probabilidade × impacto.
 7. **Entregue a lista priorizada de lacunas.** Maior risco primeiro. Inclua uma receita de teste de uma linha para cada lacuna, não o código do teste em si.
 
@@ -38,23 +40,22 @@ Um relatório em markdown com a seguinte estrutura:
 ## Relatório de Lacunas de Cobertura — <feature>
 
 ### Resumo
-- Requisitos no escopo: 42
-- OK: 28 — WEAK: 9 — MISSING: 5
-- Lacuna de maior risco: REQ-PAY-014 (desembolso de beneficiário suspenso)
+- Requisitos no escopo: <quantidade>
+- OK: <quantidade> — WEAK: <quantidade> — MISSING: <quantidade>
+- Lacuna de maior risco: <REQ-ID e comportamento, se houver>
 
 ### Lacunas por risco
 
 | REQ-ID | Padrão EARS | Status | Risco (P×I) | Receita |
 |--------|-------------|--------|-----------|--------|
-| REQ-PAY-014 | Unwanted | MISSING | 9 (3×3) | Adicionar teste negativo: beneficiário suspenso, tentar desembolso, esperar `BeneficiarySuspendedException`. |
-| REQ-BEN-007 | Event | WEAK | 6 (2×3) | Adicionar limite: atualização de CPF com o mesmo valor (nenhuma linha de auditoria esperada). |
+| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
 
 ### Bordas derivadas do legado ainda sem cobertura
-- `CALCBENF.NSN` faz rollover no dia 28 de fevereiro — REQ-CALC-022 não tem teste de 28/fev.
+- <!-- preencher com fonte, cenário e REQ-ID -->
 
 ### Adições de teste sugeridas
-1. `PaymentServiceTest#shouldRejectDisbursementWhenBeneficiarySuspended`
-2. `BeneficiaryAuditTest#shouldNotEmitAuditRowWhenCpfUnchanged`
+1. `<classe>#<nomeDoTeste>`
+2. `<classe>#<nomeDoTeste>`
 ```
 
 ## Anti-padrões

@@ -24,7 +24,7 @@ body:
     id: feature-name
     attributes:
       label: Feature name (kebab-case)
-      placeholder: "payment-cycle-generation"
+      placeholder: "<feature-name>"
     validations:
       required: true
 
@@ -34,8 +34,7 @@ body:
       label: Business goal
       description: What outcome does this feature enable? Tie to a SIFAP business rule
         when possible.
-      placeholder: "Allow operators to generate monthly payment cycles for active
-        beneficiaries..."
+      placeholder: "<descreva o resultado identificado pelo time>"
     validations:
       required: true
 

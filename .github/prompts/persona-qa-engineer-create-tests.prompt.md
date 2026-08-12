@@ -17,7 +17,7 @@ Você está escrevendo a classe de teste para **um `REQ-ID` específico** no SIF
 Peça ao usuário o que estiver faltando.
 
 - O `REQ-ID`, sua declaração EARS completa e seus critérios de aceitação em `specs/<NNN>-<feature>/spec.md`.
-- A classe ou componente sob teste (por exemplo `br.gov.sifap.payments.PaymentService` ou `app/beneficiaries/page.tsx`).
+- A classe ou componente sob teste.
 - O framework de teste — JUnit 5 + AssertJ + Mockito (backend) ou Vitest + Testing Library (frontend).
 - Quaisquer fixtures ou builders de teste existentes para reutilizar (`src/test/resources/fixtures/`, `__fixtures__/`).
 
@@ -29,11 +29,11 @@ Peça ao usuário o que estiver faltando.
  - State-driven (`Enquanto ...`) → 1 caso por transição de estado (in-state, exit-state, re-entry).
  - Optional (`Onde ...`) → 1 com feature flag ligada, 1 com flag desligada.
  - Unwanted (`Se ..., então o sistema não deverá ...`) → pelo menos 2 casos negativos em limites diferentes.
-2. **Escolha fixtures, não dados de produção.** Reutilize `BeneficiaryFixtures.exempt()`, nunca copie um CPF real.
-3. **Nomeie testes pelo comportamento.** `shouldRejectDisbursementWhenBeneficiarySuspended`, não `test1`. Snake_case em descrições de teste TS, camelCase em nomes de métodos JUnit.
+2. **Escolha fixtures, não dados de produção.** Reutilize os fixtures existentes; nunca copie PII real.
+3. **Nomeie testes pelo comportamento.** `should_<expected>_when_<condition>`, não `test1`. Snake_case em descrições de teste TS, camelCase em nomes de métodos JUnit.
 4. **Use comentários Given/When/Then ou separação AAA com linhas em branco.** Revisores precisam ler o teste em 10 segundos.
-5. **Use cadeias AssertJ para riqueza** (`assertThat(x).isEqualTo(y).as("REQ-PAY-014")`) — nunca `assertTrue(x.equals(y))`.
-6. **Marque com o requisito.** `@Tag("REQ-PAY-014")` no JUnit, ou `describe('REQ-PAY-014', ...)` no Vitest.
+5. **Use cadeias AssertJ para riqueza** (`assertThat(x).isEqualTo(y).as("REQ-XXX")`) — nunca `assertTrue(x.equals(y))`.
+6. **Marque com o requisito.** `@Tag("REQ-XXX")` no JUnit, ou `describe('REQ-XXX', ...)` no Vitest.
 7. **Faça mock apenas de colaboradores próprios.** Repositories sim, classes de framework não. Não faça mock de value objects ou funções puras.
 8. **Rode os testes** e confirme que todos falham com mensagens significativas (até que o código de produção seja escrito por `/implement`).
 
@@ -44,7 +44,7 @@ Sua resposta final deve incluir:
 - **Plano de testes** — uma tabela mapeando cada critério de aceitação para um nome de método de teste.
 - **Conteúdo completo do arquivo de teste** — pronto para colar no projeto.
 - **Adições de fixtures** se algum novo builder/factory for necessário (arquivo separado).
-- **Instrução de execução** — comando exato (`./mvnw test -Dtest=PaymentServiceTest`).
+- **Instrução de execução** — comando exato verificado no projeto.
 - **Mensagens de falha esperadas** — o que o usuário deve ver antes da implementação.
 
 ## Anti-padrões

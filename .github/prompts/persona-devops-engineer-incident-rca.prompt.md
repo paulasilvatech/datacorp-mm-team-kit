@@ -24,7 +24,8 @@ Peça ao usuário o que estiver faltando.
 
 ## Processo
 
-1. **Reformule o impacto em termos de cliente.** "Beneficiários não conseguiram consultar o status de desembolso por 47 minutos" está correto. "O cluster Redis perdeu quorum" é interno.
+1. **Reformule o impacto em termos de cliente.** Descreva o efeito observável,
+   não apenas o sintoma interno de infraestrutura.
 2. **Reconstrua a linha do tempo minuto a minuto.** UTC. Fonte de cada entrada: log, métrica, mensagem de chat ou lembrança humana (marque como `[recall]`).
 3. **Diferencie detecção, mitigação e resolução.**
  - `T0` — primeiro sintoma em produção.
@@ -48,10 +49,10 @@ O entregável é um arquivo Markdown com esta estrutura:
 ```markdown
 # Incidente <YYYYMMDD>-<slug>
 
-- **Severidade**: SEV-2
-- **Impacto no cliente**: Beneficiários não conseguem ver o status de desembolso por 47 minutos.
-- **Violação de SLO**: REQ-OPS-031 (disponibilidade do endpoint `/payments`, p95 < 99.9%/30d).
-- **Duração total**: 47 minutos (T0=14:03 UTC, Tr=14:50 UTC).
+- **Severidade**: <SEV>
+- **Impacto no cliente**: <!-- preencher -->
+- **Violação de SLO**: <!-- preencher: REQ-ID ou não aplicável -->
+- **Duração total**: <!-- preencher -->
 
 ## 1. Resumo
 Dois parágrafos. O que aconteceu, por quê, o que fizemos, quais mudanças.
@@ -59,34 +60,21 @@ Dois parágrafos. O que aconteceu, por quê, o que fizemos, quais mudanças.
 ## 2. Linha do tempo (UTC)
 | Horário | Fonte | Evento |
 |-------|---------------|-------|
-| 14:03 | App Insights | Latência em `/payments` sobe de 80 ms para 3.2 s p95 |
-| 14:09 | PagerDuty | Primeiro alerta: `pay-be-availability-30m` |
-| 14:14 | Slack #ops | On-call confirma recebimento |
-| 14:21 | Deploy log | Rollback acionado para a imagem backend `sha-9c4e2a` |
-| 14:38 | Slack #ops | Latência volta à linha de base |
-| 14:50 | App Insights | Estado estável confirmado por 12 min |
+| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
 
 ## 3. Fatores contribuintes
-1. **Código** — REST handler chamou `Beneficiary.findById()` duas vezes no novo middleware `audit-log` (REQ-BEN-007).
-2. **Configuração** — tamanho do connection pool inalterado em relação à linha de base; a carga dobrada no DB saturou o pool.
-3. **Observabilidade** — alerta disparou 6 minutos após o impacto (T0+6) — a meta do runbook é 2 minutos.
-4. **Processo** — estágio canary pulado porque a mudança foi marcada como "não funcional."
+<!-- preencher com fatores confirmados e suas evidências -->
 
 ## 4. O que quase funcionou
-- O alerta `pay-be-availability-30m` disparou corretamente.
-- A infraestrutura de deployment blue-green fez rollback em 7 minutos depois de iniciada.
-- A métrica de esgotamento do connection pool existia, mas não estava vinculada a um page.
+<!-- preencher com defesas observadas -->
 
 ## 5. Ações
 | # | Ação | Responsável | Tipo | Prazo | Verificação |
 |---|--------|-------|------|-----|--------------|
-| 1 | Adicionar memoization a `Beneficiary.findById` no middleware de auditoria | @alex | code | próximo sprint | Load test mostra 1 query por request |
-| 2 | Reclassificar tag "não funcional" — toda mudança passa por canary | @ops-lead | process | esta semana | PR template atualizado, CI bloqueado sem canary |
-| 3 | Gerar page em connection-pool > 80% de saturação | @sre-rotation | monitoring | esta semana | Teste sintético dispara page em até 90s |
-| 4 | Adicionar seção de runbook para sintomas de saturação de pool | @tech-writer | documentation | próximo sprint | Vinculado ao card de escalonamento on-call |
+| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
 
 ## 6. Riscos aceitos (por enquanto)
-- Autoscaling de connection pool está no roadmap da plataforma; não tratado nas ações deste incidente. Risco reavaliado em 2026-Q3.
+<!-- preencher com risco aceito, responsável e data de reavaliação -->
 ```
 
 ## Antipadrões

@@ -117,5 +117,5 @@ Gere a saída em `04-evolucao/delegations/<issue-slug>.md`. Deixe um placeholder
 ## Exemplo de Invocação
 
 ```
-/delegate-to-copilot-agent issue=04-evolucao/issues/add-pagination-payments.md
+/delegate-to-copilot-agent issue=04-evolucao/issues/<slug>.md
 ```

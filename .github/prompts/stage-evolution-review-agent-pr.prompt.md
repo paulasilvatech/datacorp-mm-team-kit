@@ -115,5 +115,5 @@ Pelo menos um finding deve ser sinalizado por PR não trivial. Se genuinamente n
 ## Exemplo de Invocação
 
 ```
-/review-agent-pr pr=42 issue=add-pagination-payments
+/review-agent-pr pr=<number> issue=<slug>
 ```

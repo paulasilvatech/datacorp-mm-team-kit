@@ -28,7 +28,8 @@ Peça ao usuário o que estiver faltando.
  - Qualquer concatenação de string com entrada do usuário → rejeite como SQL injection.
  - `SELECT *` em tabela larga → rejeite.
  - Casts implícitos (`varchar = bigint`) que desabilitam índices → corrija.
- - Funções em colunas indexadas (`lower(cpf) = ?` quando só `cpf` está indexado) → corrija ou adicione índice de expressão.
+ - Funções em colunas indexadas podem impedir o uso do índice → corrija ou
+   adicione índice de expressão quando a evidência justificar.
 2. **Faça a varredura dinâmica.** Execute `EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT) ...` em snapshot de stage. Leia o plano de cima para baixo.
  - Sinalize qualquer `Seq Scan` em tabelas maiores que 10k linhas quando existir filtro.
  - Sinalize qualquer etapa `Sort` que poderia ser apoiada por índice.
@@ -53,40 +54,29 @@ Um relatório Markdown com esta estrutura:
 ## Auditoria de Consulta — <identificador curto>
 
 ### Veredito
-**Correção obrigatória** — varredura sequencial em `payment` (1,8M linhas), e CPF comparado com cast implícito.
+<!-- preencher: Passa / Correção obrigatória / Rejeitar, com evidência -->
 
 ### Achados
 | # | Severidade | Achado | Evidência |
 |---|----------|---------|----------|
-| 1 | Crítica | Risco de SQL injection: CPF concatenado na string da query | linha 42, `PaymentRepository.java` |
-| 2 | Alta | Seq Scan em `payment` | EXPLAIN: `Seq Scan on payment (cost=0..38291) rows=1810233` |
-| 3 | Média | `lower(cpf) = ?` inutiliza `idx_payment_cpf` | EXPLAIN: filtro em lower(cpf) |
-| 4 | Baixa | `SELECT *` retorna 23 colunas quando 4 são usadas | revisão de código |
+| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
 
 ### Consulta reescrita
 ```sql
-SELECT id, beneficiary_id, amount, paid_at
-FROM payment
-WHERE beneficiary_id = :beneficiaryId
- AND paid_at >= :since
-ORDER BY paid_at DESC
-LIMIT 100;
+<!-- preencher com a consulta parametrizada confirmada -->
 ```
 
 ### Recomendação de índice
 ```sql
--- se ainda não existir
-CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_payment_beneficiary_paid_at
- ON payment (beneficiary_id, paid_at DESC);
+-- preencher somente se a evidência de EXPLAIN justificar um índice
 ```
 
 ### EXPLAIN ANALYZE antes / depois
-- Antes: 412 ms, Seq Scan, 1,8M linhas varridas, 100 retornadas.
-- Depois: 0,8 ms, Index Scan, 100 linhas varridas, 100 retornadas.
+- Antes: <!-- preencher com medição -->
+- Depois: <!-- preencher com medição -->
 
 ### Mudança obrigatória na aplicação
-- Substituir concatenação de string pelo parâmetro nomeado `:beneficiaryId`.
-- Fazer bind de `:since` como `Instant` (mapeado para `TIMESTAMPTZ`).
+- <!-- preencher com mudanças confirmadas na aplicação -->
 ```
 
 ## Antipadrões

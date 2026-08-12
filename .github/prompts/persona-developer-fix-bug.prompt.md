@@ -18,13 +18,13 @@ Peça ao usuário qualquer item que esteja faltando antes de começar.
 
 - Uma descrição do bug: comportamento observado vs esperado, passos exatos, ambiente.
 - Um stack trace, linha de log ou screenshot, se disponível.
-- O serviço ou página afetado (por exemplo `backend/payments`, `frontend/app/beneficiaries/[id]`).
+- O serviço ou página afetado.
 - O ID de requisito provavelmente relacionado (ou "desconhecido — investigue, por favor").
 
 ## Processo
 
 1. **Reproduza localmente primeiro.** Execute o cenário que falha ou escreva o menor teste que espelhe o relato. Se não conseguir reproduzir, pare e diga ao usuário o que falta.
-2. **Escreva o teste de regressão antes de qualquer mudança de código.** Nomeie-o pelo comportamento: `should_reject_payment_when_beneficiary_is_suspended`, não `testBug123`. Coloque-o no mesmo pacote do código sob teste.
+2. **Escreva o teste de regressão antes de qualquer mudança de código.** Nomeie-o pelo comportamento: `should_<expected>_when_<condition>`, não `testBug123`. Coloque-o no mesmo pacote do código sob teste.
 3. **Confirme que o teste falha pelo motivo correto.** Leia o erro de assertion. Se o teste falhar por motivos de setup, corrija o setup primeiro.
 4. **Diagnostique, não remende às cegas.** Encontre a causa raiz. Leia o código relacionado, percorra a call stack, confira a spec. Escreva 3–5 frases na resposta explicando a causa raiz antes de mostrar a correção.
 5. **Mapeie a correção para um `REQ-ID`.** Se um requisito existente cobre o comportamento correto, cite-o. Caso contrário, rascunhe um novo requisito EARS e proponha adicioná-lo via `/update-spec` — não altere comportamento silenciosamente.
@@ -43,12 +43,11 @@ Sua resposta final deve incluir:
 - **Avaliação de risco** — que outros pontos esse caminho de código toca e que regressões são plausíveis.
 - **Mensagem de commit** seguindo Conventional Commits:
  ```
- fix(payments): reject disbursement when beneficiary is suspended (REQ-PAY-014)
+ fix(<scope>): <short defect description> (REQ-XXX)
 
- Root cause: PaymentService did not check beneficiary.status before
- enqueueing the transfer. Adds guard + regression test.
+ Root cause: <causa confirmada>. Adds regression test.
 
- Refs: BUG-2026-042, REQ-PAY-014
+ Refs: BUG-<id>, REQ-XXX
  ```
 
 ## Antipadrões

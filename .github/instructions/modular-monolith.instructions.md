@@ -94,11 +94,11 @@ Onde `AddressHistory` é uma `@Entity` com sua própria tabela.
 ## Convenções Spring Boot 3.3
 
 - **Constructor injection**: Sem `@Autowired` em campos. Use `@RequiredArgsConstructor` (Lombok) ou construtores explícitos.
-- **Records para DTOs**: `public record PaymentDto(Long id, BigDecimal amount, LocalDate dueDate) {}`
-- **Validação na camada de controller**: `@Valid @RequestBody PaymentDto dto` com annotations Bean Validation no DTO.
+- **Records para DTOs**: `public record ResourceDto(Long id, String label) {}`
+- **Validação na camada de controller**: `@Valid @RequestBody ResourceDto dto` com annotations Bean Validation no DTO.
 - **@Transactional somente na camada de service**: Nunca em repositories, nunca em controllers.
-- **Optional para retornos anuláveis**: `Optional<Payment> findById(Long id)` — nunca retorne `null` de métodos públicos.
-- **Sealed interfaces para type unions**: `sealed interface PaymentStatus permits Pending, Approved, Rejected {}`
+- **Optional para retornos anuláveis**: `Optional<Resource> findById(Long id)` — nunca retorne `null` de métodos públicos.
+- **Sealed interfaces para type unions**: `sealed interface ResourceState permits StateA, StateB {}`
 
 ## Error Handling Pattern
 
