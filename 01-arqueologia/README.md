@@ -56,6 +56,8 @@ Todos os 5 pares trabalham em paralelo, cada um responsável por 3 programas Nat
 
 O código legado está em [`legado-sifap/`](legado-sifap/) (compartilhado pelo kit).
 
+Quem quiser executar o legado, em vez de apenas lê-lo, pode provisionar o lab opcional em [`infra/adabas-natural-lab/`](../infra/adabas-natural-lab/README.md): uma VM Azure com Adabas e Natural Community Edition. É trilha avançada, exige assinatura Azure própria e nenhum artefato do Estágio 1 depende dela.
+
 ---
 
 ### Continuar a leitura
