@@ -43,10 +43,15 @@ fornecer ou apontar a evidência disponível.
 Atualize somente `01-arqueologia/mysteries-found.md` com esta estrutura:
 
 ```markdown
-| Pergunta aberta | Evidência (`path:linha`) | Impacto | Hipótese (não confirmada) | Pessoa/área responsável | Status |
-| --------------- | ------------------------ | ------- | ------------------------- | ----------------------- | ------ |
-|                 |                         |         |                           |                         |        |
+| ID | Pergunta aberta | Evidência (`path:linha`) | Impacto | Hipótese (não confirmada) | Pessoa/área responsável | Status |
+| -- | --------------- | ------------------------ | ------- | ------------------------- | ----------------------- | ------ |
+|    |                 |                          |         |                           |                         |        |
 ```
+
+Em `ID`, use o identificador canônico informado pela pessoa (`SIFAP-M-01` … `SIFAP-M-20`)
+ou `BONUS` para um achado fora da lista canônica. Existem **20 mistérios canônicos, 4 por
+par** — veja `01-arqueologia/mysteries-checklist.md`. Não deduza nem atribua o ID por
+conta própria: quem lê o código decide a qual mistério a evidência corresponde.
 
 Não adicione classificações, severidade, respostas, exemplos ou recomendações.
 

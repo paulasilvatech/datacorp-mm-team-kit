@@ -68,7 +68,7 @@ A equipe sai do Estágio 1 quando consegue responder:
 - [ ] **Catálogo de programas**: Todo programa Natural listado com uma hipótese de propósito em 1 linha
 - [ ] **Mapa de dados**: Todo arquivo DDM documentado com campos-chave e relacionamentos
 - [ ] **Call graph**: Um diagrama (Mermaid ou texto) mostrando quais programas chamam quais
-- [ ] **Registro de perguntas em aberto**: Pelo menos 3 perguntas com evidência `path:linha`, impacto, hipótese não confirmada, responsável e status
+- [ ] **Registro de perguntas em aberto**: Os **4 mistérios canônicos do par** (`SIFAP-M-NN`, veja `01-arqueologia/mysteries-checklist.md`), cada um com evidência `path:linha`, impacto, hipótese não confirmada, responsável e status
 - [ ] **Rascunho de regras de negócio**: Pelo menos 5 regras de negócio declaradas em inglês simples, rastreadas até o código que as implementa
 
 ## Prompts Disponíveis
