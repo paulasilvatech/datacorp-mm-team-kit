@@ -46,7 +46,7 @@ Prompt útil no Copilot Chat (cole o conteúdo de 2–3 arquivos `.NSN` no chat 
 | 2  | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
 | 3  | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
 
-> 💡 Organize por domínio se ajudar (Cadastro, Pagamento, Desconto, Auditoria, Batch…). Adicione linhas à vontade — a meta é 30+.
+> 💡 Organize por domínio se ajudar. Adicione linhas à vontade — a meta é 30+.
 
 ---
 

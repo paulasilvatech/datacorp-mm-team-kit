@@ -8,7 +8,7 @@ description: "Use ao mapear capacidades de negócio, identificar sobreposições
 # Mapa de Capacidades
 
 ## Quando invocar
-- "Build a capability map for the payments domain."
+- "Build a capability map for the domain identified by the team."
 - "Where do two teams overlap in ownership?"
 - "Which capabilities are core, which are commodity?"
 
@@ -18,8 +18,8 @@ Uma **capability** é *o que* o negócio faz, não *como*. Capacidades são est�
 
 ## Estrutura (3 níveis)
 - **L1**: Área de negócio de nível superior (ex.: "Tax Collection", "Customer Service").
-- **L2**: Subfunções principais (ex.: "Tax Assessment", "Payment Processing").
-- **L3**: Capacidades específicas (ex.: "Calculate penalty interest", "Reconcile payments").
+- **L2**: Subfunções principais identificadas pela equipe.
+- **L3**: Capacidades específicas confirmadas pela evidência.
 
 Regra prática: 8-12 capacidades L1 para uma empresa média.
 
@@ -53,11 +53,11 @@ Regra prática: 8-12 capacidades L1 para uma empresa média.
 ```mermaid
 flowchart TD
  A[Tax Collection] --> B[Assessment]
- A --> C[Payment Processing]
+ A --> C[<Capability>]
  A --> D[Enforcement]
  B --> B1[Calculate Penalty]
  B --> B2[Audit Taxpayer]
- C --> C1[Reconcile Payments]
+ C --> C1[<Sub-capability>]
  C --> C2[Refund Issuance]
 ```
 

@@ -165,7 +165,7 @@ Exemplo concreto:
 🍄 Persona: você é Developer (Luigi)
 🟧 Agente:  time está no Mundo 3-1 (@builder)
 
-Você pergunta: "Como faço um service de pagamento?"
+Você pergunta: "Como faço um service para `<capacidade confirmada>`?"
 
 Resposta: ENQUADRADA no estilo @builder (foca em Java + Testcontainers,
 não em arqueologia ou em IaC). E sua skill de Luigi (TDD, JPA) já está

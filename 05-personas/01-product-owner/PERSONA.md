@@ -28,7 +28,7 @@
 
 ## Quem é essa pessoa
 
-Dono do "por quê". Quem mantém o time longe de construir código bonito para o problema errado. No contexto do SIFAP 2.0, o PO sabe que 2,3 milhões de beneficiários dependem do sistema, sabe que o ciclo mensal é sagrado, e carrega essa prioridade para cada decisão técnica.
+Dono do "por quê". Quem mantém o time longe de construir código bonito para o problema errado. No contexto do SIFAP 2.0, o PO conecta cada decisão técnica à evidência e às prioridades que as pessoas responsáveis confirmaram.
 
 ## Missão no workshop
 
@@ -66,7 +66,7 @@ Este workshop aplica o framework **Agentic Legacy Modernization** — uma aborda
 ## Como você se sai bem
 
 - Dizer "isso fica fora do v1" três vezes ao dia sem vacilar.
-- Conectar cada ADR a um impacto concreto no beneficiário ou no operador.
+- Conectar cada ADR a um impacto concreto na pessoa usuária ou na operação.
 - Proteger o foco do time quando alguém sugere refatorar algo que já funciona.
 - Escrever as duas issues do Estágio 4 com contexto suficiente para o Agent trabalhar sozinho.
 

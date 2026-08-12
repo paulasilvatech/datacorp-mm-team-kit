@@ -40,7 +40,7 @@ deixar claro que é uma melhoria greenfield.
 
 Use esta sequência quando uma descoberta da arqueologia virar uma funcionalidade.
 
-1. **Nomeie a funcionalidade.** Exemplo: `001-geracao-ciclo-pagamento`.
+1. **Nomeie a funcionalidade.** Use `NNN-nome-da-feature`.
 2. **Crie a spec com `/speckit.specify`.** Inclua user stories, critérios de aceitação e `source_legacy:`.
 3. **Resolva dúvidas com `/speckit.clarify`.** Não siga com campos, regras ou fluxos ambíguos.
 4. **Planeje com `/speckit.plan`.** O plano deve citar módulos, contratos, dados e riscos.

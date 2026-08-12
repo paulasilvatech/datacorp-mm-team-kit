@@ -16,7 +16,7 @@ Antes de escrever qualquer EARS, **exija uma fonte legada** para cada declaraç�
 
 Se o usuário fornecer uma declaração **sem** identificar uma fonte legada, NÃO produza uma EARS. Responda:
 
-> "Ainda não posso emitir esta EARS. Informe qual arquivo em `01-arqueologia/legado-sifap/` é a fonte (por exemplo, `01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN`) ou marque como `[GREENFIELD]` com uma justificativa em uma linha. O CI rejeita EARS sem `source_legacy`."
+> "Ainda não posso emitir esta EARS. Informe qual arquivo em `01-arqueologia/legado-sifap/` é a fonte (por exemplo, `01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSN`) ou marque como `[GREENFIELD]` com uma justificativa em uma linha. O CI rejeita EARS sem `source_legacy`."
 
 Somente depois que toda declaração tiver uma fonte aceitável, prossiga para os passos abaixo.
 

@@ -23,7 +23,7 @@ No início do Estágio 2, imediatamente após revisar o relatório de descoberta
 ## Entradas que a Equipe Deve Fornecer
 
 - Path para o relatório de descoberta
-- Quaisquer restrições ou preferências adicionais (por exemplo, "queremos manter pagamentos e inscrição separados")
+- Quaisquer restrições ou preferências adicionais da equipe
 
 ## O Que Vou Fazer
 
@@ -98,7 +98,7 @@ A equipe toma a decisão final. Se a equipe sobrescrever sua recomendação, doc
 
 **Passo 4 — Formalizar contextos aceitos.**
 Para cada bounded context aceito, escreva:
-- **Name**: Um nome em linguagem de negócio (por exemplo, "Payment Processing", não "payment-svc")
+- **Name**: Um nome em linguagem de negócio confirmado pela equipe, não um nome técnico de serviço
 - **Responsibility**: 1 parágrafo descrevendo o que este contexto possui
 - **Owned data**: Quais DDMs/tabelas pertencem exclusivamente a este contexto
 - **Public interface**: Quais operações este contexto expõe a outros contextos (assinaturas de métodos ou nomes de eventos — não implementação)

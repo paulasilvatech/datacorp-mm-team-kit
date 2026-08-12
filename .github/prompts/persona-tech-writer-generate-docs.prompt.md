@@ -34,7 +34,7 @@ Peça à pessoa usuária o que estiver faltando.
  audience: "SRE de plantão"
  last_reviewed: "2026-04-29"
  owner: "@alex"
- linked_reqs: [REQ-PAY-014, REQ-OPS-031]
+ linked_reqs: [REQ-XXX]
  ---
  ```
 5. **Respeite os limites de tamanho.** README ≤ 1 página (~80 linhas). Runbook ≤ 1 página por cenário. Referência de API é por endpoint. ADR ≤ 2 páginas.

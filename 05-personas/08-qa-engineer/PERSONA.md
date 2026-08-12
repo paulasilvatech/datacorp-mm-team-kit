@@ -28,7 +28,7 @@
 
 ## Quem é essa pessoa
 
-Quem transforma um requisito em teste executável. No SIFAP 2.0, quem garante que a regra de cálculo de pagamento sobrevive a qualquer refatoração do Estágio 3 e que o batch do ciclo mensal funciona dentro das fronteiras esperadas.
+Quem transforma um requisito em teste executável. No SIFAP 2.0, quem garante que o comportamento confirmado pelo time sobrevive a qualquer refatoração do Estágio 3 e que os fluxos priorizados funcionam dentro das fronteiras esperadas.
 
 ## Missão no workshop
 
@@ -44,9 +44,9 @@ Definir a estratégia de testes do projeto. Escrever testes críticos (não 100%
 
 | Estágio                | Você faz isso                                                                                                        | Entregável que depende de você   |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| 1. Arqueologia         | Identifica cenários críticos dos Naturals (casos de canto do ciclo mensal, rejeição BB).                             | Lista de cenários críticos       |
+| 1. Arqueologia         | Identifica cenários críticos nos programas Natural atribuídos.                                                        | Lista de cenários críticos       |
 | 2. Spec Moderna        | Valida que cada requisito EARS é testável. Propõe critérios de aceitação concretos.                                  | Critérios de teste por requisito |
-| 3. Implementação       | Escreve testes unitários e de integração para o core (cálculo de pagamento, ajuste, reconciliação). Mantém CI verde. | Suíte de testes + pipeline verde |
+| 3. Implementação       | Escreve testes unitários e de integração para os comportamentos priorizados. Mantém CI verde.                        | Suíte de testes + pipeline verde |
 | 4. Evolução com Agent | Exige que o PR do Agent venha com seus próprios testes. Valida cobertura dos cenários novos.                         | Cobertura coerente com a feature |
 
 ## Ferramentas e primitivas
@@ -64,7 +64,7 @@ Definir a estratégia de testes do projeto. Escrever testes críticos (não 100%
 
 ## Como você se sai bem
 
-- Cobertura nos caminhos que importam: cálculo de pagamento, reconciliação BB, ajustes com aprovação dupla.
+- Cobertura nos caminhos que importam, definidos pelos REQ-IDs e pela evidência.
 - Testes rápidos — a suite inteira roda em menos de dois minutos.
 - Testes que quebram no primeiro bug, não "testes que sempre passam".
 - Você diz "esse PR não vai sem teste" sem drama.
@@ -90,9 +90,9 @@ Definir a estratégia de testes do projeto. Escrever testes críticos (não 100%
 
 ## Se travar (defaults de emergência)
 
-- Não conhece JUnit 5? Copie o padrão de `CpfTest.java` — `@Test`, `@DisplayName`, asserts AssertJ.
+- Não conhece JUnit 5? Use o padrão de teste existente — `@Test`, `@DisplayName`, asserts AssertJ.
 - Testcontainers não funciona? Precisa de Docker rodando. Alternativa: unit test com Mockito.
-- Muitos cenários, pouco tempo? Foque em 3: (a) criar beneficiário, (b) gerar pagamento, (c) mudança de status. Esses são os críticos.
+- Muitos cenários, pouco tempo? Foque nos comportamentos de maior risco identificados pelo time.
 - CI vermelho? Rode `mvn test` local primeiro. Se passa local mas falha no CI, é problema de ambiente (Docker/Testcontainers).
 
 ## Dependências — Quem depende de você
