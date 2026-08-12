@@ -1,92 +1,82 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
 # Product Owner — Kit Copilot
 
-![PERSONA Product Owner](https://img.shields.io/badge/PERSONA-Product%20Owner-F25022?style=for-the-badge) ![MARIO 👸 Peach](https://img.shields.io/badge/MARIO-👸%20Peach-1A1A1A?style=for-the-badge) ![PAR Par 1 · Visão](https://img.shields.io/badge/PAR-Par%201%20·%20Visão-737373?style=for-the-badge)
+> **Trilha:** [Kit do Time](../../README.md) › [Personas](../OVERVIEW.md) › **Product Owner**
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../../README.md) → [Personas](../OVERVIEW.md) → **Product Owner**
+**Inventário do kit Copilot para a persona Product Owner.** Liste os artefatos ativos, onde vivem na `.github/` e as boas práticas específicas deste papel.
 
-> **Para quem é isto?** Para a pessoa que vai vestir esta persona durante o workshop.
->
-> **O que você terá ao final desta leitura:**
->
-> 1. Lista de arquivos do kit (agente, prompts, skills, MCP)
-> 2. Onde os artefatos ativos vivem na `.github/` consolidada da raiz
-> 3. Boas práticas específicas desta persona
->
-> 📘 **Antes de mais nada:** abra o `PERSONA.md` desta pasta para ver missão, atributos e prompts prontos.
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Pessoa que vai atuar como Product Owner no workshop |
+| **Par** | 1 · Visão (junto com Requirements Engineer) |
+| **Fase do SDLC** | Descoberta → Especificação → Aceite |
+| **Pré-requisitos** | [PERSONA.md](PERSONA.md) lido |
+| **Resultado esperado** | Kit validado, prompts acessíveis no Copilot Chat |
 
+> [!IMPORTANT]
+> Leia [PERSONA.md](PERSONA.md) antes de continuar. A ficha explica missão, passagem de bastão e rubricas de avaliação.
 
-<!-- markdownlint-disable MD013 MD022 MD031 MD032 MD060 -->
+---
 
-> Escrita de especificação, refinamento de backlog e validação de aceite usando EARS e o fluxo SDD.
+## Conceito
 
-Leia primeiro: [PERSONA.md](PERSONA.md).
+O Product Owner é o papel responsável por traduzir necessidades de negócio em escopo executável. Num processo de modernização de legado como o SIFAP, essa função é crítica: sistemas legados acumulam regras implícitas que só fazem sentido quando alguém sabe "por que" elas existem. O PO conecta cada decisão técnica à evidência de negócio.
 
-## Fase do SDLC
-Descoberta → Especificação → Aceite
+---
 
-## Conteúdo do kit
+## Kit da persona
 
-| Arquivo | Tipo | Propósito |
-|------|------|---------|
-| `PERSONA.md` | Persona | Responsabilidades, passagens, prompts e rubrica do Product Owner |
+| **Artefato** | Tipo | Propósito |
+|---|---|---|
+| `PERSONA.md` | Ficha | Responsabilidades, passagem de bastão, prompts e rubrica |
 | `.github/agents/product-owner.agent.md` | Agent | Assistente de Product Owner para spec, backlog e aceite |
-| `.github/prompts/persona-product-owner-spec.prompt.md` | Prompt | `/spec` — escreve uma seção de `specs/<NNN>-<feature>/spec.md` a partir de user stories em EARS |
+| `.github/prompts/persona-product-owner-spec.prompt.md` | Prompt | `/spec` — escreve seção de `specs/<NNN>-<feature>/spec.md` a partir de user stories em EARS |
 | `.github/prompts/persona-product-owner-update-spec.prompt.md` | Prompt | `/update-spec` — atualiza a spec quando uma feature muda |
 | `.github/prompts/persona-product-owner-acceptance-check.prompt.md` | Prompt | `/acceptance-check` — verifica se o código atende aos critérios de aceite |
 | `mcp.json` | MCP | Manifesto de servidores GitHub + Azure DevOps work items |
 
-## Uso no workshop
+---
 
-Os artefatos deste kit já estão consolidados na `.github/` da raiz do repositório:
+## Onde os artefatos vivem
 
-- Agents ativos: `.github/agents/`
-- Prompts ativos: `.github/prompts/persona-*.prompt.md`
-- Skills ativas: `.github/skills/`
-- Instructions ativas: `.github/instructions/` (quando existirem)
+Os artefatos ativos estão consolidados na `.github/` da raiz:
 
-Use esta pasta como referência da persona (ficha, boas práticas e inventário). Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá se precisar de manutenção.
+| **Tipo** | Caminho |
+|---|---|
+| Agents | `.github/agents/` |
+| Prompts | `.github/prompts/persona-*.prompt.md` |
+| Skills | `.github/skills/` |
+| Instructions | `.github/instructions/` |
 
-Se este kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
+Use esta pasta como referência. Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá quando precisar de manutenção.
 
-## Boas práticas
-- Escreva requisitos em EARS para que cada frase seja testável.
-- Mantenha cada user story ligada a um resultado mensurável.
-- Marque suposições explicitamente; suposição escondida vira bug de produção.
-- Trate `.specify/memory/constitution.md` como fonte de verdade para itens inegociáveis.
-
-## Referências
-- [EARS Notation - Alistair Mavin](https://alistairmavin.com/ears/)
-- [Spec-Driven Development (Spec-Kit)](https://github.com/github/spec-kit)
-- [User Story Mapping - Jeff Patton](https://www.jpattonassociates.com/user-story-mapping/)
-- [GitHub Copilot for PMs](https://docs.github.com/en/copilot)
+Se o kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
 
 ---
 
-## Navegação
+## Boas práticas
 
-| Anterior | Início |
-|--------|------|
-| [Persona Kits](../README.md) | [Kit PT-BR](../../README.md) |
+- Escreva requisitos em EARS para que cada frase seja testável.
+- Mantenha cada user story ligada a um resultado mensurável.
+- Marque suposições explicitamente — suposição escondida vira bug de produção.
+- Trate `.specify/memory/constitution.md` como fonte de verdade para itens inegociáveis.
+
+---
+
+## Referências
+
+- [EARS Notation — Alistair Mavin](https://alistairmavin.com/ears/)
+- [Spec-Driven Development (Spec-Kit)](https://github.com/github/spec-kit)
+- [User Story Mapping — Jeff Patton](https://www.jpattonassociates.com/user-story-mapping/)
+- [GitHub Copilot for PMs](https://docs.github.com/en/copilot)
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="../OVERVIEW.md"><strong>OVERVIEW</strong></a><br/>
-<sub>Tabela das 10 personas.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="PERSONA.md"><strong>PERSONA.md</strong></a><br/>
-<sub>Ficha desta persona.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [OVERVIEW](../OVERVIEW.md)<br/><sub>Tabela das 10 personas.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Ficha desta persona.</sub> |
 
-<sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
+<sub>[Voltar ao índice do kit](../README.md)</sub>

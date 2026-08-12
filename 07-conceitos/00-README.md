@@ -6,7 +6,7 @@
 
 **Este índice apresenta os conceitos essenciais do workshop de modernização do SIFAP — o que você vai aprender, em que ordem, quanto tempo leva e como cada conceito se conecta aos quatro estágios de trabalho.**
 
-![Secao Conceitos](https://img.shields.io/badge/Se%C3%A7%C3%A3o-07%20Conceitos-171717?style=flat-square) ![Audiencia Todos](https://img.shields.io/badge/Audi%C3%AAncia-Todos-737373?style=flat-square) ![Leia Antes do Estagio 1](https://img.shields.io/badge/Leia-Antes%20do%20Est%C3%A1gio%201-A3A3A3?style=flat-square)
+![Seção Conceitos](https://img.shields.io/badge/Se%C3%A7%C3%A3o-07%20Conceitos-171717?style=flat-square) ![Audiência Todos](https://img.shields.io/badge/Audi%C3%AAncia-Todos-737373?style=flat-square) ![Leia Antes do Estágio 1](https://img.shields.io/badge/Leia-Antes%20do%20Est%C3%A1gio%201-A3A3A3?style=flat-square)
 
 | Campo | Valor |
 |---|---|
@@ -60,7 +60,7 @@ flowchart TD
 | 02 | [Agentes e Personas](02-agentes-e-personas.md) | Persona-kit individual × agente de estágio compartilhado | Todos |
 | 03 | [Glossário Visual](03-glossario-visual.md) | 30+ termos com definição, exemplo SIFAP e referência | Todos |
 | 04 | [3 modos do Copilot](04-3-modos-do-copilot.md) | Ask · Plan · Agent — critérios e antipadrões | Todos |
-| 05 | [Notação EARS](05-notacao-ears.md) | 5 padrões EARS, REQ-ID e `source_legacy:` | Estágio 2 |
+| 05 | [Notação EARS](05-notacao-ears.md) | 6 padrões EARS (5 base + Complex), REQ-ID e `source_legacy:` | Estágio 2 |
 | 06 | [Architecture Decision Records](06-architecture-decision-records.md) | Anatomia, quando escrever e ciclo de vida de ADRs | Estágio 2 |
 
 ---

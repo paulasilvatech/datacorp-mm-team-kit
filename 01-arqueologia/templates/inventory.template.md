@@ -1,4 +1,4 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
 ---
 title: "Modelo: Inventário do Estágio 1"
@@ -10,77 +10,78 @@ status: "approved"
 tags: ["template", "inventory", "archaeology", "stage-1"]
 ---
 
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
+# Modelo: Inventário Legado — Estágio 1
 
-<!-- Como usar: execute /archaeology-kickoff para preencher isto. Ou copie para 01-arqueologia/inventory.md. -->
+> **Trilha:** [Kit do Time](../../README.md) › [Estágio 1](../README.md) › **Templates** › **inventory**
 
-# Inventário Legado — <!-- placeholder: Nome da Equipe -->
+**Gabarito de inventário do código-base legado para o Passo 1 do Estágio 1.**
 
-![TEMPLATE inventory](https://img.shields.io/badge/TEMPLATE-inventory-737373?style=for-the-badge) ![COPIE Não edite o original](https://img.shields.io/badge/COPIE-Não%20edite%20o%20original-1A1A1A?style=for-the-badge)
+> [!NOTE]
+> **Este arquivo é um gabarito.** Copie para o seu repositório de time e preencha com os dados reais. Não edite o original.
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../../README.md) → [Estágio 1](../README.md) → **Templates** → **inventory**
-
-> 📋 **Este arquivo é um TEMPLATE.** Copie para o seu repositório de time e preencha com os dados do seu time. Não edite o original.
-
+> [!TIP]
+> Faça o inventário sem abrir nenhum programa. Trabalhe apenas sobre nomes de arquivo e estrutura de pastas.
 
 **Data:** <!-- placeholder: YYYY-MM-DD -->
 **Caminho escaneado:** `01-arqueologia/legado-sifap/`
 
-## Estrutura de Pastas
+---
 
+## Estrutura de pastas
+
+```text
 <!-- placeholder: árvore de diretórios -->
+```
 
-## Contagem de Arquivos por Tipo
+---
 
-| Extensão | Contagem             | Propósito Provável      |
-| -------- | -------------------- | ----------------------- |
-| `.nat`   | <!-- placeholder --> | Programas fonte Natural |
-| `.cpy`   | <!-- placeholder --> | Copycodes               |
-| `.ddm`   | <!-- placeholder --> | Data Definition Modules |
+## Contagem de arquivos por tipo
 
-## Padrões de Convenção de Nomes
+| Extensão | Contagem | Propósito provável |
+|---|---|---|
+| `.NSN` | <!-- placeholder --> | Programas-fonte Natural |
+| `.ddm` | <!-- placeholder --> | Data Definition Modules (Adabas) |
 
-| Prefixo              | Contagem             | Hipótese             |
-| -------------------- | -------------------- | -------------------- |
+---
+
+## Padrões de convenção de nomes
+
+| Prefixo | Contagem | Hipótese de domínio |
+|---|---|---|
 | <!-- placeholder --> | <!-- placeholder --> | <!-- placeholder --> |
 
-## Itens Incomuns (Top 3)
+---
 
-| #   | Caminho do Arquivo   | O Que o Torna Incomum | Investigação Sugerida |
-| --- | -------------------- | --------------------- | --------------------- |
-| 1   | <!-- placeholder --> | <!-- placeholder -->  | <!-- placeholder -->  |
-| 2   | <!-- placeholder --> | <!-- placeholder -->  | <!-- placeholder -->  |
-| 3   | <!-- placeholder --> | <!-- placeholder -->  | <!-- placeholder -->  |
+## Itens incomuns (top 3)
 
-## Ordem de Leitura Proposta
+| # | Caminho do arquivo | O que o torna incomum | Investigação sugerida |
+|---|---|---|---|
+| 1 | <!-- placeholder --> | <!-- placeholder --> | <!-- placeholder --> |
+| 2 | <!-- placeholder --> | <!-- placeholder --> | <!-- placeholder --> |
+| 3 | <!-- placeholder --> | <!-- placeholder --> | <!-- placeholder --> |
 
-1. Arquivos DDM primeiro
+---
+
+## Ordem de leitura proposta
+
+1. Arquivos DDM primeiro.
 2. <!-- placeholder: pontos de entrada batch -->
 3. <!-- placeholder: programas mais conectados -->
 
 ---
 
-**Lembrete de Definição de Pronto:** Inventário existe, contagens precisas, 3+ padrões identificados, 3 itens incomuns sinalizados.
+## Critério de pronto
 
+- [ ] Inventário existe com contagens precisas.
+- [ ] 3 ou mais padrões de nome identificados.
+- [ ] 3 itens incomuns sinalizados.
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="../GUIDE.md"><strong>GUIDE do Estágio 1</strong></a><br/>
-<sub>Passo a passo.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="."><strong>Templates</strong></a><br/>
-<sub>Outros templates.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [GUIDE do Estágio 1](../GUIDE.md)<br/><sub>Roteiro passo a passo.</sub> | [Outros gabaritos](.) <br/><sub>Demais gabaritos do estágio.</sub> |
 
-<sub>↑ <a href="../../README.md">Voltar ao Kit PT-BR</a></sub>
-
+<sub>[Voltar ao índice do kit](../../README.md)</sub>

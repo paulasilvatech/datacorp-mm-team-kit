@@ -1,44 +1,81 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
 # @archaeologist — Estágio 1: Arqueologia
 
-![MUNDO 1 de 4](https://img.shields.io/badge/MUNDO-1%20de%204-F25022?style=for-the-badge) ![AGENTE @archaeologist](https://img.shields.io/badge/AGENTE-@archaeologist-1A1A1A?style=for-the-badge) ![ESTÁGIO 1](https://img.shields.io/badge/ESTÁGIO-1-737373?style=for-the-badge)
+> **Trilha:** [Kit do Time](../../README.md) › [Agentes de Estágio](../README.md) › **@archaeologist**
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../../README.md) → [Agentes](../README.md) → **@archaeologist**
+**O agente `@archaeologist` guia o time na leitura sistemática do código legado Natural/Adabas, extraindo regras de negócio rastreáveis e mapeando dependências para o recorte do Estágio 2.**
 
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Time inteiro durante o Estágio 1 — todos os pares em paralelo |
+| **Pré-requisitos** | Pasta `01-arqueologia/legado-sifap/` disponível no workspace |
+| **Tempo estimado** | 11:00–12:00 + 13:30–14:00 |
+| **Estágio** | Estágio 1 — Arqueologia |
+| **Resultado esperado** | Catálogo de regras com fonte, DDMs mapeados, perguntas abertas e recorte de feature definido |
 
-> **Para quem é isto?** Para o time durante o Estágio 1 — todos os 5 pares em paralelo.
->
-> **O que você terá ao final desta leitura:**
->
-> 1. Como ativar o agente `@archaeologist` no Copilot Chat
-> 2. Prompts típicos para extração de regras
-> 3. O que o agente NÃO faz (não escreve código moderno)
+![Estágio 1](https://img.shields.io/badge/Est%C3%A1gio-1%20%C2%B7%20Arqueologia-171717?style=flat-square)
+![Postura investigativa](https://img.shields.io/badge/Postura-Investigativa-404040?style=flat-square)
 
-> Use este agente quando a equipe estiver lendo o legado. Ele ajuda a observar, catalogar e perguntar melhor. Ele não reescreve código e não inventa regra de negócio.
-
-## Objetivo da etapa
-
-Transformar arquivos Natural/Adabas em evidências úteis para uma feature fina do
-Estágio 2. O objetivo é evidência rastreável, não documentação completa do
-legado.
+---
 
 ## Quando usar
 
-- **Horário:** 11:00–12:00 + 13:30–14:00.
-- **Protagonista:** Requirements Engineer.
-- **Suporte forte:** Tech Writer, Enterprise Architect e DBA.
-- **Pré-requisito:** pasta `01-arqueologia/legado-sifap/` disponível no workspace.
+Use este agente quando o time estiver lendo o código legado. O `@archaeologist` ajuda a observar, catalogar e formular perguntas. Ele não escreve código moderno nem inventa regras de negócio.
 
-## Passo a passo com o agente
+- **Protagonista:** Requirements Engineer
+- **Suporte forte:** Tech Writer, Enterprise Architect e DBA
+- **Pré-requisito hard gate:** ler os programas Natural atribuídos antes de qualquer especificação
 
-1. Abra o Copilot Chat no VS Code.
-2. Selecione o agente `@archaeologist`.
-3. Leia os três programas atribuídos ao par, sem pular fontes que possam afetar
-   o recorte.
-4. Para cada achado relevante, registre evidência com caminho e, quando
-   possível, linha.
-5. Ao final, reduza o escopo para uma feature fina antes da Passagem H1.
+---
+
+## O que o agente faz
+
+- Acompanha a leitura linha a linha de programas `.NSN` e estruturas DDM Adabas
+- Identifica entradas, processamento, saídas e regras de negócio em cada programa
+- Mapeia dependências entre programas via `CALLNAT`
+- Sugere mapeamento de campos DDM para PostgreSQL (MU, PE, DE)
+- Registra evidências com caminho e linha de referência
+- Aponta perguntas abertas sem inventar respostas
+
+---
+
+## O que o agente NÃO faz
+
+- Não lê o código legado sem que o time abra o arquivo
+- Não transforma hipótese em requisito confirmado
+- Não sugere arquitetura moderna (isso é papel do `@architect` no Estágio 2)
+- Não edita arquivos dentro de `01-arqueologia/legado-sifap/` (somente leitura)
+
+---
+
+## Entradas
+
+| Entrada | Onde encontrar |
+|---|---|
+| Programas Natural atribuídos | `01-arqueologia/legado-sifap/natural-programs/*.NSN` |
+| DDMs Adabas | `01-arqueologia/legado-sifap/adabas-ddms/*.ddm` |
+| Checklist de exploração | `01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md` |
+
+---
+
+## Saídas esperadas
+
+| Artefato | Localização |
+|---|---|
+| Catálogo de regras de negócio | `01-arqueologia/business-rules-catalog.md` |
+| Mapa de dependências (Mermaid) | Dentro do catálogo ou em arquivo separado |
+| Lista de perguntas abertas | Seção dedicada no catálogo |
+| Recorte da feature escolhida | Registrado antes da passagem de bastão às 14:00 |
+
+---
+
+## Como selecionar o agente no Copilot Chat
+
+- [ ] **Abrir o Copilot Chat** no VS Code (`Ctrl+Alt+I` / `Cmd+Alt+I`).
+- [ ] **Clicar no seletor de agentes** e selecionar `@archaeologist`.
+- [ ] **Abrir o primeiro programa Natural atribuído** no editor antes de enviar o primeiro prompt.
+- [ ] **Colar o prompt de abertura** abaixo e pressionar Enter.
 
 ```text
 Estou iniciando o Estágio 1 — Arqueologia.
@@ -47,58 +84,44 @@ Ajude o time a examinar os programas atribuídos e registrar apenas evidências
 e perguntas abertas para o recorte que escolheremos. Não infira respostas.
 ```
 
-## O que perguntar
+---
+
+## Prompts de exemplo
 
 | Situação | Prompt útil |
-| --- | --- |
+|---|---|
 | Programa Natural desconhecido | "Leia este programa comigo e separe entrada, processamento, saída e regra de negócio." |
 | DDM Adabas | "Explique estes campos, marque MU/PE/DE e sugira mapeamento PostgreSQL." |
 | Regra ambígua | "Não invente. Registre como mistério, com hipótese, evidência e impacto." |
-| CALLNAT | "Mapeie quem chama quem e gere um Mermaid simples." |
+| CALLNAT | "Mapeie quem chama quem e gere um diagrama Mermaid simples." |
 
-## Definição de Pronto
+---
 
-- [ ] Os três programas atribuídos foram lidos.
-- [ ] O catálogo tem fonte para cada regra candidata ao recorte.
-- [ ] DDMs e dependências foram consultados quando afetam a feature.
-- [ ] Perguntas abertas permanecem sem resposta inventada.
-- [ ] Relatório de descoberta pronto para a Passagem H1, às 14:00.
+## Definition of Done
 
-## Anti-padrões
+- [ ] Os programas Natural atribuídos ao par foram lidos integralmente.
+- [ ] O catálogo de regras tem `source_legacy:` (arquivo e linha) para cada regra candidata ao recorte.
+- [ ] DDMs e dependências foram consultados quando afetam a feature escolhida.
+- [ ] Perguntas abertas estão registradas sem resposta inventada.
+- [ ] Relatório de descoberta está pronto para a passagem de bastão às 14:00.
 
-| Não faça | Faça |
-| --- | --- |
-| Pedir "resuma tudo" sem abrir arquivo | Abra um arquivo e leia com o agente |
-| Transformar hipótese em requisito | Marque como mistério até haver evidência |
-| Editar o legado | Trate `01-arqueologia/legado-sifap/` como somente leitura |
-| Começar arquitetura no Estágio 1 | Guarde ideias para o `@architect` |
+---
 
-## Navegação
+## Erros comuns
 
-| Anterior | Início | Próximo |
-| --- | --- | --- |
-| [Visão dos Agent Kits](../README.md) | [Kit PT-BR](../../README.md) | [@architect](../02-architect/README.md) |
-
-— Paula
-
+| Sintoma | Causa | Correção |
+|---|---|---|
+| Copilot responde com generalizações vagas | Prompt sem arquivo aberto no editor | Abra o arquivo `.NSN` e cite o trecho específico no prompt |
+| Regra de negócio sem fonte | O time aceitou hipótese como fato | Marque o item como mistério até ter evidência no código |
+| Perda de tempo detalhando partes fora do recorte | Nenhuma decisão de escopo foi tomada | Decida a feature fina antes das 12:00 e limite a leitura a ela |
+| Edições no legado | Confusão sobre o papel desta etapa | `01-arqueologia/legado-sifap/` é somente leitura |
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="../README.md"><strong>Visão dos agentes</strong></a><br/>
-<sub>Os 4 mundos.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="../02-architect/"><strong>@architect</strong></a><br/>
-<sub>Próximo mundo: spec moderna.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [Agentes de Estágio — visão geral](../README.md)<br/><sub>Os 4 agentes, cronograma e matriz de responsabilidade.</sub> | [@architect](../02-architect/README.md)<br/><sub>Estágio 2: transformar evidências em especificação moderna.</sub> |
 
-<sub>↑ <a href="../../README.md">Voltar ao Kit PT-BR</a></sub>
+<sub>[Voltar ao índice do kit](../../README.md)</sub>

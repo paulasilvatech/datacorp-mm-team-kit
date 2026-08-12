@@ -1,4 +1,4 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
 ---
 title: "Modelo: Bounded Contexts"
@@ -10,73 +10,81 @@ status: "approved"
 tags: ["template", "bounded-contexts", "architect", "stage-2"]
 ---
 
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 <!-- Como usar: execute /carve-bounded-contexts. Clone o bloco de contexto para cada um. -->
 
 # Mapa de Bounded Contexts
 
-![TEMPLATE bounded-contexts](https://img.shields.io/badge/TEMPLATE-bounded-contexts-737373?style=for-the-badge) ![COPIE Não edite o original](https://img.shields.io/badge/COPIE-Não%20edite%20o%20original-1A1A1A?style=for-the-badge)
+![Template bounded-contexts](https://img.shields.io/badge/Template-bounded--contexts-737373?style=flat-square) ![Copie — não edite o original](https://img.shields.io/badge/Copie-n%C3%A3o%20edite%20o%20original-A3A3A3?style=flat-square)
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../../README.md) → [Estágio 2](../README.md) → **Templates** → **bounded-contexts**
+> **Trilha:** [Kit do Time](../../README.md) › [Estágio 2](../README.md) › Templates › **bounded-contexts**
 
-> 📋 **Este arquivo é um TEMPLATE.** Copie para o seu repositório de time e preencha com os dados do seu time. Não edite o original.
+> [!NOTE]
+> Este arquivo é um TEMPLATE. Copie para o repositório do seu time e preencha com os dados reais. Não edite o original.
 
+---
 
-## Avaliações de Hipóteses
+## Conceito: Bounded Context
 
-### <!-- placeholder: Nome --> — <!-- placeholder: ACEITO/REJEITADO -->
+Um bounded context é um limite explícito dentro do qual um modelo de domínio é válido e consistente. O termo vem do Domain-Driven Design (DDD) e é a base para definir os módulos de um Modular Monolith.
 
-| Critério              | Avaliação            | Evidência            |
-| --------------------- | -------------------- | -------------------- |
-| Coesão                | <!-- placeholder --> | <!-- placeholder --> |
-| Acoplamento           | <!-- placeholder --> | <!-- placeholder --> |
+**Por que importa:** no SIFAP, o módulo de pagamentos usa o termo "beneficiário" de uma forma; o módulo de fiscalização pode usar o mesmo termo com regras diferentes. Definir os bounded contexts evita que um único modelo seja distorcido para atender a todos os contextos ao mesmo tempo, o que leva a acoplamento indesejado e dificuldade de evolução.
+
+**Modular Monolith:** arquitetura onde os bounded contexts são módulos Java independentes dentro de uma única JVM. Cada módulo tem suas próprias camadas (`domain/`, `application/`, `infrastructure/`) e se comunica com os demais apenas por interfaces públicas definidas.
+
+**Strangler Fig:** padrão de migração incremental em que o sistema moderno cresce ao redor do legado, substituindo funcionalidades uma a uma. O SIFAP 2.0 não precisa substituir tudo de uma vez: cada bounded context pode ser modernizado de forma independente.
+
+---
+
+## Avaliações de hipóteses
+
+### <!-- placeholder: Nome --> — <!-- placeholder: ACEITO / REJEITADO -->
+
+| Critério | Avaliação | Evidência |
+|---|---|---|
+| Coesão | <!-- placeholder --> | <!-- placeholder --> |
+| Acoplamento | <!-- placeholder --> | <!-- placeholder --> |
 | Frequência de mudança | <!-- placeholder --> | <!-- placeholder --> |
 
-## Bounded Contexts Finais
+---
+
+## Bounded contexts finais
 
 ### <!-- placeholder: Nome do Contexto -->
 
-- **Responsabilidade:** <!-- placeholder -->
-- **Dados sob ownership:** <!-- placeholder -->
-- **Interface pública:** <!-- placeholder -->
-- **Por que é seu próprio contexto:** <!-- placeholder -->
+| Campo | Valor |
+|---|---|
+| **Responsabilidade** | <!-- placeholder --> |
+| **Dados sob ownership** | <!-- placeholder --> |
+| **Interface pública** | <!-- placeholder --> |
+| **Por que é seu próprio contexto** | <!-- placeholder --> |
 
-## Comunicação Entre Contextos
+---
 
-| De  | Para | Mecanismo | Dados |
-| --- | ---- | --------- | ----- |
+## Comunicação entre contextos
+
+| De | Para | Mecanismo | Dados |
+|---|---|---|---|
+| <!-- placeholder --> | <!-- placeholder --> | <!-- placeholder --> | <!-- placeholder --> |
 
 ```mermaid
+%%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
 flowchart LR
-    CTX1["Contexto 1"] -->|"chama"| CTX2["Contexto 2"]
-    classDef ctx fill:#0f172a,stroke:#334155,color:#e2e8f0
-    class CTX1,CTX2 ctx
+    classDef ctx fill:#F5F5F5,stroke:#171717,color:#171717
+
+    CTX1["Contexto 1"]:::ctx -->|"chama"| CTX2["Contexto 2"]:::ctx
 ```
 
 ---
 
-**Lembrete de Definição de Pronto:** Hipóteses avaliadas, rejeições documentadas, 2-5 contextos nomeados, Mermaid renderiza.
-
+> [!IMPORTANT]
+> Definição de Pronto: hipóteses avaliadas, rejeições documentadas, 2 a 5 contextos nomeados, diagrama Mermaid renderiza sem erros.
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="../GUIDE.md"><strong>GUIDE do Estágio 2</strong></a><br/>
-<sub>Passo a passo.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="ADR.template.md"><strong>ADR Template</strong></a><br/>
-<sub>Template de ADR.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [GUIDE do Estágio 2](../GUIDE.md)<br/><sub>Passo a passo.</sub> | [ADR Template](ADR.template.md)<br/><sub>Template de ADR.</sub> |
 
-<sub>↑ <a href="../../README.md">Voltar ao Kit PT-BR</a></sub>
-
+<sub>[Voltar ao índice do kit](../../README.md)</sub>

@@ -6,7 +6,7 @@
 
 **Um ADR (Architecture Decision Record) é um documento curto que registra uma decisão de arquitetura significativa: o contexto que a motivou, a decisão tomada, as alternativas consideradas e as consequências — garantindo que o raciocínio do time hoje seja compreensível para qualquer pessoa que trabalhar neste sistema no futuro.**
 
-![Conceito 06](https://img.shields.io/badge/Conceito-06-171717?style=flat-square) ![Estagio 2](https://img.shields.io/badge/Est%C3%A1gio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-737373?style=flat-square) ![Duracao 20 min](https://img.shields.io/badge/Dura%C3%A7%C3%A3o-20%20min-A3A3A3?style=flat-square)
+![Conceito 06](https://img.shields.io/badge/Conceito-06-171717?style=flat-square) ![Estágio 2](https://img.shields.io/badge/Est%C3%A1gio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-737373?style=flat-square) ![Duração 20 min](https://img.shields.io/badge/Dura%C3%A7%C3%A3o-20%20min-A3A3A3?style=flat-square)
 
 | Campo | Valor |
 |---|---|
@@ -199,7 +199,7 @@ Liste prós e contras objetivos para cada um no contexto do SIFAP."
 
 ---
 
-## Referencias
+## Referências
 
 - [Template de ADR em branco](../02-spec-moderna/ADR-TEMPLATE.md)
 - [Guia do Estágio 2](../02-spec-moderna/GUIDE.md)

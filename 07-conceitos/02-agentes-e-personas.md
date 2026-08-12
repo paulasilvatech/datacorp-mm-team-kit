@@ -6,7 +6,7 @@
 
 **O Copilot Chat opera com duas camadas de contexto simultâneas: a persona, que define o papel individual de cada participante, e o agente de estágio, que define o enquadramento coletivo do time — saber combiná-las é fundamental para obter respostas relevantes durante o workshop.**
 
-![Conceito 02](https://img.shields.io/badge/Conceito-02-171717?style=flat-square) ![Uso Todos os Estagios](https://img.shields.io/badge/Uso-Todos%20os%20est%C3%A1gios-737373?style=flat-square) ![Duracao 20 min](https://img.shields.io/badge/Dura%C3%A7%C3%A3o-20%20min-A3A3A3?style=flat-square)
+![Conceito 02](https://img.shields.io/badge/Conceito-02-171717?style=flat-square) ![Uso Todos os Estágios](https://img.shields.io/badge/Uso-Todos%20os%20est%C3%A1gios-737373?style=flat-square) ![Duração 20 min](https://img.shields.io/badge/Dura%C3%A7%C3%A3o-20%20min-A3A3A3?style=flat-square)
 
 | Campo | Valor |
 |---|---|
@@ -176,7 +176,7 @@ O time inteiro seleciona o mesmo agente de estágio no Copilot Chat no início d
 
 ---
 
-## Referencias
+## Referências
 
 - [Lista completa de personas](../05-personas/OVERVIEW.md)
 - [Agentes de estágio](../06-agentes-de-estagio/)

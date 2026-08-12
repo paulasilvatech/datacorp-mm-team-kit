@@ -1,108 +1,150 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
 # Persona — Technical Lead
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../../README.md) → [Personas](../OVERVIEW.md) → [Technical Lead](README.md) → **PERSONA**
+> **Trilha:** [Kit do Time](../../README.md) › [Personas](../OVERVIEW.md) › [Technical Lead](README.md) › **PERSONA**
 
+**Ficha completa da persona Technical Lead.** Define missão, responsabilidades por estágio, ferramentas, passagem de bastão e rubricas de avaliação.
 
-> **Para quem é isto?** Para a pessoa que vai vestir a persona **Technical Lead** no workshop. Foco: padrões, revisão, orquestração do agente.
->
-> **O que você terá ao final desta leitura:**
->
-> 1. Saberá em qual par está e qual fase do SDLC lidera
-> 2. Conhecerá a missão da persona no Dia 2
-> 3. Verá em qual estágio você lidera, apoia ou observa
-> 4. Terá 3 prompts de Copilot prontos para usar
-> 5. Saberá o default se travar ("se não souber o que fazer, faça X")
+| Campo | Valor |
+|---|---|
+| **Papel** | Technical Lead |
+| **Par** | 3 · Implementação (junto com Developer) |
+| **Estágios de atuação** | Lidera 3 (padrões, revisão) e co-lidera 4; apoia 2 |
+| **Artefatos que produz** | Padrões de implementação, revisões de PR, aplicação rodando end-to-end |
+| **Artefatos que consome** | REQ-IDs, ADRs, C4 (Par 2) |
+| **Handoff para** | Par 5 (Operações) no Estágio 3 — código rodando |
 
-![Par 3 · Implementação](https://img.shields.io/badge/PAR-Par%203%20%E2%80%A2%20Implementação-7FBA00?style=for-the-badge) ![Lidera estágio 3, 4](https://img.shields.io/badge/LIDERA%20EST%C3%81GIO-3%2C%204-1A1A1A?style=for-the-badge) ![Apoia estágio 2](https://img.shields.io/badge/APOIA-2-737373?style=for-the-badge)
+![Estágio 2](https://img.shields.io/badge/Est%C3%A1gio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-171717?style=flat-square) ![Estágio 3](https://img.shields.io/badge/Est%C3%A1gio-3%20%C2%B7%20Implementa%C3%A7%C3%A3o-404040?style=flat-square) ![Estágio 4](https://img.shields.io/badge/Est%C3%A1gio-4%20%C2%B7%20Evolu%C3%A7%C3%A3o-737373?style=flat-square)
+
+---
+
+## Conceito
+
+O Technical Lead é o elo entre a arquitetura definida no papel e o código escrito no dia a dia. Na indústria, esse papel define padrões de implementação (convenções de código, estilo de teste, estrutura de módulo), desbloqueia o time quando alguém trava num detalhe técnico e responde pela qualidade técnica das entregas.
+
+No SIFAP, o TL garante que ao final do Estágio 3 a aplicação criada pelo time realmente roda de ponta a ponta — não apenas compila. Isso inclui decisões como: qual camada recebe a anotação `@Transactional`, como erros são tratados, e como testes de integração são estruturados.
+
+**Exemplo concreto no SIFAP:** quando o Developer implementa o endpoint de consulta de benefício, o TL revisa o PR verificando se a lógica de negócio está na camada correta, se o teste cobre caminho feliz e de erro, e se não há import cruzando fronteiras de bounded context.
+
+---
 
 ## Onde você atua no SDLC
 
-![Linha do tempo do dia mostrando onde esta persona atua](../../assets/timeline-stages.svg)
+```mermaid
+%%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
+flowchart LR
+    classDef active fill:#F5F5F5,stroke:#171717,color:#171717
+    classDef support fill:#FAFAFA,stroke:#A3A3A3,color:#404040
+    classDef inactive fill:#FFFFFF,stroke:#E5E5E5,color:#A3A3A3
 
-- **Par**: 3 · Implementação (junto com Developer)
-- **Fases lideradas**: Implementação (S3) + co-lidera Evolução (S4)
-- **Recebe de**: Par 2 (Arquitetura) no H2 — REQ-IDs + ADRs + C4
-- **Faz passagem para**: Par 5 (Operações) no H3 — código rodando
+    E1["Estágio 1<br/>Arqueologia"]:::inactive --> E2["Estágio 2<br/>Especificação"]:::support
+    E2 --> E3["Estágio 3<br/>Implementação"]:::active
+    E3 --> E4["Estágio 4<br/>Evolução"]:::active
+```
 
-## Quem é essa pessoa
+- **Recebe de:** Par 2 (Arquitetura) no Estágio 2 — REQ-IDs + ADRs + C4
+- **Faz passagem de bastão para:** Par 5 (Operações) no Estágio 3 — código rodando
 
-O elo entre arquitetura e código do dia a dia. Decide padrões de implementação (convenções de código, estilo de teste, estrutura de módulo), desbloqueia o time quando alguém trava num detalhe técnico, e é responsável por garantir que ao final do Estágio 3 a aplicação criada pelo time realmente roda de ponta a ponta.
+---
 
-## Missão no workshop
+## Responsabilidades por estágio
 
-Manter velocidade de execução no Estágio 3. Escolher as batalhas técnicas que valem a pena lutar. Desbloquear rápido. Revisar PRs com rigor mas sem obstruir.
+| **Estágio** | Você faz isso | Entregável que depende de você |
+|---|---|---|
+| **1 · Arqueologia** | Participa da análise priorizando programas críticos. Estima complexidade. | Priorização baseada em esforço |
+| **2 · Especificação** | Valida que a spec cabe nos 70 minutos do Estágio 3. Sinaliza "isso não cabe". | Calibração de escopo |
+| **3 · Implementação** | Desbloqueia. Decide padrões (estilo de teste, transações, tratamento de erro). Revisa todo PR. | Aplicação rodando end-to-end |
+| **4 · Evolução** | Revisa o PR do Agent linha por linha antes do merge. | PR em qualidade de produção |
 
-## Seu papel no framework Agentic Legacy Modernization
+---
 
-- **Agentes relevantes**: Review Agent (S3), Test Gen Agent (S3)
-- **Fase do framework**: Tradução e Geração de Testes
-- **Seu papel**: garantir qualidade da tradução e coordenar implementação paralela
+## Kit da persona
 
-## Onde você aparece em cada estágio
+| **Artefato** | Finalidade |
+|---|---|
+| `.github/agents/tech-lead.agent.md` | Agente Copilot configurado para governança técnica |
+| `/setup-project` — `persona-technical-lead-setup-project.prompt.md` | Inicializa a estrutura do projeto |
+| `/routing-table` — `persona-technical-lead-routing-table.prompt.md` | Gera tabela de roteamento de modelos por tarefa |
+| `/audit-context` — `persona-technical-lead-audit-context.prompt.md` | Audita o contexto enviado ao Copilot |
 
-| Estágio                | Você faz isso                                                                                  | Entregável que depende de você |
-| ---------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------ |
-| 1. Arqueologia         | Participa da análise do legado priorizando programas críticos. Estima complexidade.            | Priorização baseada em esforço |
-| 2. Spec Moderna        | Valida que a spec cabe nos 70 minutos do Estágio 3. Sinaliza "isso não cabe".                  | Calibração de escopo           |
-| 3. Implementação       | Desbloqueia. Decide padrões (estilo de teste, transações, tratamento de erro). Revisa todo PR. | Aplicação rodando end-to-end   |
-| 4. Evolução com Agent  | Revisa o PR do Agent linha por linha antes do merge.                                           | PR em qualidade de produção    |
+---
 
 ## Ferramentas e primitivas
 
 - **Copilot Plan** para refatoração em lote com sequência clara.
 - **Copilot Chat** como pair para decisões locais de design.
 - **GitHub Spec-Kit** — suporte em `/speckit.tasks`, `/speckit.analyze` e passagem para `/speckit.implement`.
-- **Git MCP** para review de PR.
+- **Git MCP** para revisão de PR.
 
-## Cheat-sheets que você usa
+**Cheat-sheets relevantes:**
 
-- Os três cheat-sheets. Você é o mais versátil.
-- [`../09-cheat-sheets/copilot-3-modes.md`](../../09-cheat-sheets/copilot-3-modes.md) especialmente — você alterna entre os três o tempo todo.
+- [`../../09-cheat-sheets/copilot-3-modes.md`](../../09-cheat-sheets/copilot-3-modes.md) — você alterna entre os três modos o tempo todo.
+- [`../../09-cheat-sheets/spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) — `/speckit.tasks` e `/speckit.implement`.
+- [`../../09-cheat-sheets/model-routing.md`](../../09-cheat-sheets/model-routing.md) — roteamento de modelos por tipo de tarefa.
 
-## Como você se sai bem
+---
+
+## Checklist de onboarding
+
+- [ ] **Ler esta ficha.** Missão, responsabilidades e passagem de bastão.
+- [ ] **Abrir o `README.md` do kit.** Confirmar que agents e prompts aparecem no Copilot Chat.
+- [ ] **Identificar seu par.** Consultar [00-TEAM-FLOW.md](../../00-TEAM-FLOW.md).
+- [ ] **Definir 2 padrões-chave.** Antes do Estágio 3 começar, escolher convenções de transação e de teste.
+- [ ] **Anotar a passagem de bastão.** Saber o que o DevOps precisa receber ao final do Estágio 3.
+
+---
+
+## Como se sair bem neste papel
 
 - Responde uma dúvida técnica em menos de 5 minutos. Não deixa ninguém parado.
-- Reviews que movem o PR para frente, não reviews que bloqueiam.
-- Escolhe dois padrões-chave no início do Estágio 3 e defende sem negociação (ex.: "tudo transacional via `@Transactional` na camada de service").
+- Revisões que movem o PR para frente, não revisões que bloqueiam.
+- Escolhe dois padrões-chave no início do Estágio 3 e os mantém sem negociação (ex.: `@Transactional` somente na camada de service).
 - Mantém `main` verde o tempo todo.
 
-## Como você se perde
+---
 
-- Tenta escrever metade do código sozinho.
-- Bloqueia review por detalhes estéticos.
-- Muda padrões no meio do Estágio 3.
-- Não percebe um gargalo e o modo de execução local não funciona no final.
+## Erros comuns e como evitar
 
-## Se você pegou duas personas
+| **Sintoma** | Causa | Correção |
+|---|---|---|
+| Developer travado por mais de 20 minutos | TL escrevendo código em vez de desbloquear | Pare o que está fazendo e responda a dúvida |
+| PR bloqueado por detalhes estéticos | Revisão focada em estilo, não em correção | Revise critérios: comportamento correto, teste presente, sem violação de fronteira |
+| Padrão muda no meio do Estágio 3 | Decisão não foi registrada no início | Defina padrões antes de começar e documente no `CODEMAP.md` |
+| Aplicação não roda no final | Gargalo não foi identificado a tempo | Faça um teste de integração completo a cada 30 minutos |
 
-- **TL + Developer** é o par natural — você lidera e continua escrevendo código.
-- **TL + Software Architect** se o time tiver alguém cobrindo dev.
-- Evite **TL + QA** no mesmo cérebro: o papel de quem pergunta "você cobriu o teste?" é mais forte quando está com outra pessoa.
+---
 
 ## 3 exemplos de prompt
 
-1. **(Chat)** _"Revise este PR: verifique se segue as 3 camadas (domain/application/infrastructure), se o teste cobre caminho feliz + erro, e se há algum import cruzando bounded context."_
-2. **(Chat)** _"Temos 70 minutos. Ajude a comparar estas features por evidência, dependências e esforço para escolher uma feature fina; não complete requisitos ausentes."_
-3. **(Chat)** _"O modo de execução local falha com este erro: [cole]. Diagnostique a causa-raiz e proponha uma correção."_
+1. **(Chat)** "Revise este PR: verifique se segue as 3 camadas (domain/application/infrastructure), se o teste cobre caminho feliz + erro, e se há algum import cruzando bounded context."
+2. **(Chat)** "Temos 70 minutos. Ajude a comparar estas features por evidência, dependências e esforço para escolher uma feature fina; não complete requisitos ausentes."
+3. **(Chat)** "O ambiente local falha com este erro: [cole]. Diagnostique a causa-raiz e proponha uma correção."
 
-## Se travar (defaults de emergência)
+---
 
-- **Ambiente local não sobe?** Verifique: porta 5432 ocupada? versão do Java/Node correta? containers antigos interferindo? logs do backend mostram qual erro?
-- **Time lento?** Pare, redistribua: "Dev A faz o endpoint, Dev B faz a migration, QA faz o teste. Merge em 45 min."
-- **PR em conflito?** `git pull --rebase` e resolva. Não deixe a branch divergir sem alinhar com o par.
-- **Não sabe decidir um padrão?** Use a spec, os ADRs e as instruções do kit como fonte; documente a decisão no PR.
+## Se travar
 
-## Dependências — Quem depende de você
+| **Situação** | O que fazer |
+|---|---|
+| Ambiente local não sobe | Verifique: porta 5432 ocupada? Versão do Java/Node correta? Containers antigos interferindo? Logs do backend mostram qual erro? |
+| Time lento | Pare, redistribua: "Dev A faz o endpoint, Dev B faz a migration, QA faz o teste. Merge em 45 min." |
+| PR em conflito | `git pull --rebase` e resolva. Não deixe a branch divergir sem alinhar com o par |
+| Não sabe decidir um padrão | Use a spec, os ADRs e as instructions do kit como fonte; documente a decisão no PR |
 
-| Persona            | Relação           | Artefato                         |
-| ------------------ | ----------------- | -------------------------------- |
-| Software Architect | VOCÊ depende dele | Estrutura de pacotes definida    |
-| Product Owner      | VOCÊ depende dele | Escopo calibrado                 |
-| Developer          | Depende de VOCÊ   | Padrões e reviews                |
-| QA Engineer        | Depende de VOCÊ   | Pipeline verde para rodar testes |
-| DevOps Engineer    | Depende de VOCÊ   | Build estável para o pipeline    |
+---
+
+## Dependências
+
+| **Persona** | Relação | Artefato |
+|---|---|---|
+| Software Architect | Você depende dele | Estrutura de pacotes definida |
+| Product Owner | Você depende dele | Escopo calibrado |
+| Developer | Depende de você | Padrões e revisões |
+| QA Engineer | Depende de você | Pipeline verde para rodar testes |
+| DevOps Engineer | Depende de você | Build estável para o pipeline |
+
+---
 
 ## Como você é avaliado
 
@@ -114,21 +156,8 @@ Manter velocidade de execução no Estágio 3. Escolher as batalhas técnicas qu
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="../04-software-architect/PERSONA.md"><strong>Software Architect</strong></a><br/>
-<sub>Par 2 · Arquitetura · bounded contexts e módulos.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="../06-developer/PERSONA.md"><strong>Developer</strong></a><br/>
-<sub>Par 3 · Implementação · Java + Next.js + testes.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [Software Architect](../04-software-architect/PERSONA.md)<br/><sub>Par 2 · Arquitetura · bounded contexts e módulos.</sub> | [Developer](../06-developer/PERSONA.md)<br/><sub>Par 3 · Implementação · Java + Next.js + testes.</sub> |
 
-<sub>↑ <a href="../../README.md">Voltar ao Kit PT-BR</a></sub>
-
-— Paula
+<sub>[Voltar ao índice do kit](../../README.md)</sub>

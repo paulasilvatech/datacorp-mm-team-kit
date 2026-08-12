@@ -1,108 +1,98 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# 🪦 Lições Aprendidas — Erros Comuns dos Times
+# Lições Aprendidas — Erros Comuns dos Times
 
-![DOC Lessons Learned](https://img.shields.io/badge/DOC-Lessons%20Learned-FFB900?style=for-the-badge) ![USO Antes do dia 2](https://img.shields.io/badge/USO-Antes%20do%20dia%202-1A1A1A?style=for-the-badge) ![LEIA 5 min](https://img.shields.io/badge/LEIA-5%20min-737373?style=for-the-badge)
+![Tipo Referência](https://img.shields.io/badge/Tipo-Refer%C3%AAncia-171717?style=flat-square)
+![Leitura 5 min](https://img.shields.io/badge/Leitura-5%20min-737373?style=flat-square)
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../README.md) → [Docs](README.md) → **Lições aprendidas**
+> **Trilha:** [Kit do Time](../README.md) › [Docs](README.md) › **Lições aprendidas**
 
-> **Para quem é isto?** Para todo o time, especialmente o líder. Leia **antes** do workshop começar.
->
-> **O que você terá ao final desta leitura:**
->
-> 1. 10 erros que times anteriores cometeram
-> 2. Consequência observada (quanto tempo perderam)
-> 3. Como evitar — o antídoto exato
+**Registro dos 10 erros mais comuns observados em times anteriores**, com consequência e antídoto.
 
----
-
-## 🩸 Os 10 erros mais comuns
-
-### ❌ 1. "Vamos só ler o brief do cliente, não precisa olhar o legado"
-
-- **Consequência:** time escreve EARS sem `source_legacy:`. CI rejeita PR às 14:30. Time perde 1h refazendo.
-- **Antídoto:** Hard gate do Estágio 1 — facilitador valida em 13:50. Veja [`01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md).
-
-### ❌ 2. "Vou começar a codar enquanto outro escreve a spec"
-
-- **Consequência:** código não bate com EARS. Refator no fim do dia. Demo capenga.
-- **Antídoto:** Estágio 3 **só começa** depois do H2. Sem exceção. TL aborta tentativas de adiantar.
-
-### ❌ 3. PO concorda com tudo e nada vira não-escopo
-
-- **Consequência:** time tenta implementar 12 features em 3h. Termina 0.
-- **Antídoto:** PO diz NÃO 3× ao dia. Regra: *"afeta o ciclo mensal? sim → v1. Não? → backlog."*
-
-### ❌ 4. Cada pessoa pergunta ao Copilot de um jeito diferente
-
-- **Consequência:** respostas inconsistentes. Time discute com a IA em vez de fazer.
-- **Antídoto:** Time inteiro seleciona **o mesmo agente de estágio** (`@archaeologist` etc.) no Chat.
-
-### ❌ 5. "Vou pular `/speckit.clarify`, demora demais"
-
-- **Consequência:** ambiguidades viram bug no Estágio 3. 30 min de pergunta agora poupam 2h depois.
-- **Antídoto:** Cada pergunta do `clarify` = 1 bug evitado. Responda **todas**.
-
-### ❌ 6. Dev faz `git push --force` em `develop`
-
-- **Consequência:** trabalho de 2 pessoas perdido.
-- **Antídoto:** Branch protection no `develop` (Passo 4 do `00-SETUP.md`). E nunca `--force` em compartilhada.
-
-### ❌ 7. "Vou editar V1 da migration em vez de criar V2"
-
-- **Consequência:** Flyway detecta checksum mismatch, banco quebra.
-- **Antídoto:** **NUNCA edite migration antiga.** Sempre crie V<N+1>. Veja `docs/troubleshooting.md`.
-
-### ❌ 8. Time delega Issue vaga ao Copilot Agent
-
-- **Consequência:** PR vem ruim, ninguém entende, descarta. Trabalho perdido.
-- **Antídoto:** Vincule a Issue à evidência e escreva critérios de aceite verificáveis antes de delegar. Issue boa = PR bom.
-
-### ❌ 9. Rodar `terraform apply` em vez de `plan`
-
-- **Consequência:** ⚠️ recursos Azure criados de verdade → conta. Workshop **NÃO autoriza** `apply`.
-- **Antídoto:** **Só `terraform plan`.** Veja `04-evolucao/GUIDE.md`.
-
-### ❌ 10. Não ensaiar a demo
-
-- **Consequência:** time gasta os 3 minutos da demo procurando aba certa, comando que falha, PR perdido.
-- **Antídoto:** **16:50–17:00** é só ensaio. Script literal em [`demo-script.md`](demo-script.md).
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Todo o time, especialmente o Technical Lead |
+| **Quando ler** | Antes do workshop começar |
+| **Resultado esperado** | Reconhecer os padrões de falha e saber o antídoto antes de precisar dele |
 
 ---
 
-## 🎯 Os 5 reflexos que separam time bom de time excelente
+## Os 10 erros mais comuns
 
-1. 🔁 **Stand-up de 2 min** ao fim de cada estágio
-2. 💬 **PR com descrição** sempre (template no GitHub)
-3. ⚡ **Commits pequenos** com REQ-ID no message
-4. 🤝 **20-min rule:** travou? Pede ajuda. Não sofre calado.
-5. 📜 **Confiar no processo** — não tente inventar fluxo novo no meio
+### 1. "Não precisamos olhar o legado — o briefing já basta"
+
+- **Consequência:** o time escreve EARS sem `source_legacy:`. O CI rejeita o pull request às 14:30. O time perde 1 hora refazendo o trabalho.
+- **Antídoto:** Hard gate do Estágio 1 — o facilitador valida às 13:50. Veja [`01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md).
+
+### 2. "Vou começar a codar enquanto outro escreve a spec"
+
+- **Consequência:** o código não corresponde às EARS. Refatoração no final do dia. Demonstração incompleta.
+- **Antídoto:** o Estágio 3 só começa após a passagem H2. O Technical Lead interrompe tentativas de adiantar.
+
+### 3. Product Owner aprova tudo e nada vira não-escopo
+
+- **Consequência:** o time tenta implementar 12 funcionalidades em 3 horas. Termina com nenhuma.
+- **Antídoto:** o Product Owner recusa pelo menos 3 vezes ao dia. Regra de decisão: _"afeta o ciclo mensal de pagamentos? Sim → v1. Não → backlog."_
+
+### 4. Cada pessoa usa o Copilot de forma diferente
+
+- **Consequência:** respostas inconsistentes. O time debate com o assistente em vez de produzir artefatos.
+- **Antídoto:** todo o time seleciona o mesmo agente de estágio (`@archaeologist`, `@architect` etc.) no Chat.
+
+### 5. Pular `/speckit.clarify` para ganhar tempo
+
+- **Consequência:** ambiguidades tornam-se bugs no Estágio 3. 30 minutos de perguntas agora evitam 2 horas de retrabalho depois.
+- **Antídoto:** cada pergunta do `clarify` equivale a um bug evitado. Responda todas.
+
+### 6. `git push --force` em `develop`
+
+- **Consequência:** trabalho de 2 pessoas perdido sem possibilidade de recuperação simples.
+- **Antídoto:** branch protection em `develop` (Passo 4 do `00-SETUP.md`). Nunca usar `--force` em branch compartilhada.
+
+### 7. Editar uma migration antiga em vez de criar uma nova
+
+- **Consequência:** Flyway detecta incompatibilidade de checksum e o banco para de subir.
+- **Antídoto:** nunca edite um arquivo de migration já aplicado. Sempre crie `V<N+1>__descricao.sql`. Veja [`docs/troubleshooting.md`](troubleshooting.md).
+
+### 8. Delegar ao Copilot Agent uma Issue vaga
+
+- **Consequência:** o pull request gerado é inaproveitável. O trabalho é descartado.
+- **Antídoto:** vincule a Issue à evidência e escreva critérios de aceite verificáveis antes de delegar. Issue bem escrita produz pull request utilizável.
+
+### 9. Rodar `terraform apply` em vez de `plan`
+
+- **Consequência:** recursos Azure criados e cobrados imediatamente. O workshop não autoriza `apply`.
+- **Antídoto:** somente `terraform plan`. Veja [`04-evolucao/GUIDE.md`](../04-evolucao/GUIDE.md).
+
+### 10. Não ensaiar a demonstração
+
+- **Consequência:** o time gasta os 3 minutos da demonstração procurando a aba certa, o comando que falha ou o pull request perdido.
+- **Antídoto:** o intervalo 16:50–17:00 é exclusivo para ensaio. Roteiro em [`demo-script.md`](demo-script.md).
 
 ---
 
-## 🧠 A regra mestre
+## Os 5 reflexos que distinguem times bons de times excelentes
 
-> **Modernizar é arqueologia digital, não greenfield.**
-> Quem trata SIFAP como projeto novo perde 29 anos de regra de negócio.
-> Quem trata como arqueologia entrega um SIFAP 2.0 que substitui o 1.0.
+1. **Stand-up de 2 minutos** ao fim de cada estágio — todos sabem onde estão.
+2. **Pull request com descrição sempre** — use o template do GitHub.
+3. **Commits pequenos com REQ-ID** na mensagem de commit.
+4. **Regra dos 20 minutos** — travou? Peça ajuda. Não sofra em silêncio.
+5. **Confiar no processo** — não invente um fluxo diferente no meio do dia.
+
+---
+
+## A regra fundamental
+
+> **Modernizar é arqueologia digital, não projeto greenfield.**
+> Quem trata o SIFAP como sistema novo perde 29 anos de regras de negócio.
+> Quem faz a arqueologia primeiro entrega um SIFAP 2.0 que realmente substitui o 1.0.
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="CHECKLIST-LIDER.md"><strong>Checklist do Líder</strong></a><br/>
-<sub>Hora a hora do dia.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="demo-script.md"><strong>Script da Demo</strong></a><br/>
-<sub>3 minutos finais ensaiados.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [Checklist do Líder](CHECKLIST-LIDER.md)<br/><sub>Verificações hora a hora do dia.</sub> | [Script da Demo](demo-script.md)<br/><sub>Roteiro dos minutos finais.</sub> |
 
-<sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
+<sub>[Voltar ao índice do kit](../README.md)</sub>

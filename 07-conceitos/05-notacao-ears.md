@@ -4,9 +4,9 @@
 
 > **Trilha:** [Kit do Time](../README.md) › [Conceitos](00-README.md) › **Notação EARS**
 
-**EARS (Easy Approach to Requirements Syntax) é um conjunto de cinco padrões de linguagem que transforma requisitos vagos em afirmações com formato fixo, testáveis automaticamente — é a notação obrigatória para todos os requisitos do SIFAP 2.0.**
+**EARS (Easy Approach to Requirements Syntax) é um conjunto de seis padrões de linguagem que transforma requisitos vagos em afirmações com formato fixo, testáveis automaticamente — é a notação obrigatória para todos os requisitos do SIFAP 2.0.**
 
-![Conceito 05](https://img.shields.io/badge/Conceito-05-171717?style=flat-square) ![Estagio 2](https://img.shields.io/badge/Est%C3%A1gio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-737373?style=flat-square) ![Duracao 25 min](https://img.shields.io/badge/Dura%C3%A7%C3%A3o-25%20min-A3A3A3?style=flat-square)
+![Conceito 05](https://img.shields.io/badge/Conceito-05-171717?style=flat-square) ![Estágio 2](https://img.shields.io/badge/Est%C3%A1gio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-737373?style=flat-square) ![Duração 25 min](https://img.shields.io/badge/Dura%C3%A7%C3%A3o-25%20min-A3A3A3?style=flat-square)
 
 | Campo | Valor |
 |---|---|
@@ -22,7 +22,7 @@
 
 Um requisito mal escrito é a principal causa de retrabalho em projetos de modernização. Afirmações como "o sistema deve ser seguro" ou "processar dados corretamente" não especificam o que o sistema faz, quando faz, nem como verificar se fez.
 
-EARS resolve isso com cinco padrões sintáticos. Cada padrão mapeia um tipo de comportamento e resulta em uma afirmação com teste objetivo. Quando você não consegue imaginar um teste automatizado para o requisito, o requisito está vago.
+EARS resolve isso com seis padrões sintáticos. Cada padrão mapeia um tipo de comportamento e resulta em uma afirmação com teste objetivo. Quando você não consegue imaginar um teste automatizado para o requisito, o requisito está vago.
 
 ---
 
@@ -38,7 +38,7 @@ Todo requisito no workshop segue este formato em YAML:
 
 ```yaml
 REQ-NNN:
-  pattern: <ubiquitous | event-driven | state-driven | optional | unwanted>
+  pattern: <ubiquitous | event-driven | state-driven | optional | unwanted | complex>
   text: "<afirmação EARS completa>"
   source_legacy: "<caminho>.NSN#L<inicio>-L<fim>"
   acceptance:
@@ -51,9 +51,9 @@ REQ-NNN:
 
 ---
 
-## Os 5 padroes EARS
+## Os 5 padrões EARS
 
-### Padrao 1 — Ubiquitous (sempre vale)
+### Padrão 1 — Ubiquitous (sempre vale)
 
 **Quando usar:** a regra vale em qualquer momento, sem condição.
 
@@ -81,7 +81,7 @@ Problema: "auditoria completa" não é testável.
 
 ---
 
-### Padrao 2 — Event-driven (quando algo acontece)
+### Padrão 2 — Event-driven (quando algo acontece)
 
 **Quando usar:** a regra dispara em resposta a um evento específico.
 
@@ -109,7 +109,7 @@ Problema: "processar" não descreve a ação esperada.
 
 ---
 
-### Padrao 3 — State-driven (enquanto um estado persiste)
+### Padrão 3 — State-driven (enquanto um estado persiste)
 
 **Quando usar:** a regra vale enquanto o sistema ou entidade está em um estado particular.
 
@@ -131,7 +131,7 @@ REQ-078:
 
 ---
 
-### Padrao 4 — Optional (quando o usuário escolhe)
+### Padrão 4 — Optional (quando o usuário escolhe)
 
 **Quando usar:** a regra se aplica apenas se o usuário ativou uma opção ou escolheu uma configuração.
 
@@ -154,7 +154,7 @@ REQ-105:
 
 ---
 
-### Padrao 5 — Unwanted behavior (o que nao pode acontecer)
+### Padrão 5 — Unwanted behavior (o que não pode acontecer)
 
 **Quando usar:** proibições explícitas — segurança, compliance ou invariantes do sistema.
 
@@ -176,20 +176,32 @@ REQ-200:
 
 ---
 
-## Combinando padroes
+## Padrão 6 — Complex (combinacao de padrões)
 
-É possível combinar condições de estado, evento e opção em um único requisito complexo:
+O 6º padrão EARS combina condições de estado, evento e opção em um único requisito. É consistente com a nomenclatura do cheat-sheet [`09-cheat-sheets/spec-kit-workflow.md`](../09-cheat-sheets/spec-kit-workflow.md), que lista os seis padrões EARS.
 
 **Template:**
 ```
 Enquanto <estado>, quando <evento>, onde <opção>, o sistema deve <ação>.
 ```
 
-Use com moderação. Se o requisito combinar mais de dois padrões, avalie se não são dois requisitos distintos.
+**Exemplo SIFAP:**
+```yaml
+REQ-250:
+  pattern: complex
+  text: "Enquanto o beneficiário estiver com situação ATIVO, quando um novo pagamento for processado, onde a modalidade selecionada for crédito em conta, o sistema deve registrar o número da conta bancária no histórico de pagamentos."
+  source_legacy: 01-arqueologia/legado-sifap/natural-programs/CTRLPGTO.NSN#L55-L72
+  acceptance:
+    - "Pagamento de beneficiário ATIVO com modalidade crédito em conta registra conta bancária no histórico"
+    - "Pagamento de beneficiário SUSPENSO não aciona este fluxo"
+```
+
+> [!TIP]
+> Use o padrão Complex com moderação. Se o requisito combinar mais de duas condições sem perder clareza, ele é um bom candidato ao Complex. Se parecer difícil de ler, divida em dois REQ-IDs separados.
 
 ---
 
-## Fluxo de um EARS ate o teste
+## Fluxo de um EARS até o teste
 
 ```mermaid
 %%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
@@ -227,10 +239,10 @@ Se a resposta for vaga ou inexistente, o requisito está incompleto.
 
 ---
 
-## Checklist de validacao de um EARS
+## Checklist de validação de um EARS
 
 - [ ] **Identificador único.** O REQ-ID existe e segue o formato `REQ-NNN`.
-- [ ] **Padrao correto.** O padrão declarado em `pattern:` corresponde à estrutura do texto.
+- [ ] **Padrão correto.** O padrão declarado em `pattern:` corresponde à estrutura do texto.
 - [ ] **Texto sem ambiguidade.** Não contém "adequado", "eficiente", "completo", "seguro" sem definição quantitativa.
 - [ ] **`source_legacy:` preenchido.** Aponta para arquivo e linhas específicas, ou declara `[GREENFIELD]` com justificativa.
 - [ ] **Critérios de aceite verificáveis.** Cada item de `acceptance:` descreve um cenário com entrada, ação e resultado esperado.
@@ -268,7 +280,7 @@ Quais regras confirmadas do catálogo ainda não têm REQ-ID?
 
 ---
 
-## Referencias
+## Referências
 
 - [Guia do Estágio 2](../02-spec-moderna/GUIDE.md)
 - [Cheat-sheet do Spec-Kit](../09-cheat-sheets/spec-kit-workflow.md)

@@ -92,7 +92,7 @@ Identificador de uma regra de negócio extraída do legado durante o Estágio 1 
 
 ### EARS — Easy Approach to Requirements Syntax
 
-Notação padronizada para escrever requisitos sem ambiguidade. Substitui "o sistema deve ser bom" por frases com formato fixo e teste objetivo. Detalhes completos em [05 — Notação EARS](05-notacao-ears.md).
+Notação padronizada para escrever requisitos sem ambiguidade. Oferece seis padrões sintáticos (ubiquitous, event-driven, state-driven, optional, unwanted e complex) que substituem afirmações vagas por frases com formato fixo e teste objetivo. Detalhes completos em [05 — Notação EARS](05-notacao-ears.md).
 
 ### REQ-ID
 
@@ -136,7 +136,7 @@ Padrão de migração incremental: o sistema novo "abraça" o legado gradualment
 
 ---
 
-## Area: Implementacao
+## Area: Implementação
 
 ### Bean Validation
 

@@ -1,49 +1,63 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# 🎤 Roteiro neutro de demo
+# Roteiro de Demonstração
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../README.md) → [Docs](README.md) → **Roteiro de demo**
+> **Trilha:** [Kit do Time](../README.md) › [Docs](README.md) › **Roteiro de Demo**
 
-Use este roteiro como estrutura. O time define o conteúdo, a ordem e os artefatos a apresentar conforme o que tiver produzido.
+**Estrutura para a apresentação final do workshop** — o time define o conteúdo conforme o que produziu.
 
-## Preparação
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Todo o time, especialmente o Product Owner |
+| **Quando usar** | 16:50–17:30 |
+| **Tempo estimado** | 10 min de preparação + até 30 min de apresentação |
+| **Resultado esperado** | Demonstração executada sem improviso, com evidência verificável |
 
-- [ ] Definir quem conduz e quem controla o tempo.
-- [ ] Selecionar apenas evidências produzidas e verificáveis pelo time.
-- [ ] Ensaiar transições curtas entre as pessoas apresentadoras.
-- [ ] Combinar uma alternativa para cada evidência que dependa de conexão ou execução ao vivo.
+---
+
+## Preparação (16:50–17:00)
+
+- [ ] **Definir papéis** — quem conduz e quem controla o tempo.
+- [ ] **Selecionar evidências** — somente artefatos produzidos e verificáveis pelo time.
+- [ ] **Ensaiar transições** — combinar quem fala em cada momento, sem sobreposição.
+- [ ] **Preparar alternativa** — definir o que mostrar caso algum recurso ao vivo falhe.
+- [ ] **Abrir abas no navegador** — Swagger, frontend e pull request mergeado.
+
+---
 
 ## Estrutura sugerida
 
-1. **Abertura:** apresente o problema escolhido pelo time e o objetivo da demonstração.
-2. **Descobertas e decisões:** mostre os artefatos que registram evidência, hipóteses e decisões tomadas.
-3. **Trabalho realizado:** apresente uma parte do fluxo que o time escolheu demonstrar e explique como ela se conecta aos artefatos anteriores.
-4. **Validação:** mostre a evidência disponível para a verificação realizada pelo time.
-5. **Encerramento:** diga o que o time aprendeu, o que permanece em aberto e qual seria o próximo passo.
+| Bloco | Conteúdo | Tempo sugerido |
+|---|---|---|
+| **1. Abertura** | Apresente o problema escolhido pelo time e o objetivo da demonstração | 30 s |
+| **2. Descobertas e decisões** | Mostre artefatos que registram evidência, hipóteses e decisões | 60 s |
+| **3. Trabalho realizado** | Apresente uma parte do fluxo implementado e explique como se conecta aos artefatos | 60 s |
+| **4. Validação** | Mostre a evidência disponível para a verificação realizada | 30 s |
+| **5. Encerramento** | Diga o que o time aprendeu, o que está em aberto e qual seria o próximo passo | 30 s |
+
+---
 
 ## Plano alternativo
 
-Se uma apresentação ao vivo não estiver disponível, apresente o artefato ou evidência que o time preparou previamente. Explique a limitação de forma objetiva e não faça afirmações que não possam ser demonstradas.
+Se uma apresentação ao vivo não estiver disponível:
+
+- [ ] Apresente o artefato ou evidência que o time preparou previamente.
+- [ ] Explique a limitação de forma objetiva.
+- [ ] Não faça afirmações sobre funcionalidades que não possam ser demonstradas.
+
+---
 
 ## Regra de ouro
 
-> Apresente somente o que o time consegue sustentar com evidência própria. Não complete lacunas com uma narrativa pronta.
+> [!IMPORTANT]
+> Apresente somente o que o time consegue sustentar com evidência própria. Não complete lacunas com narrativa não verificável.
+
+---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="lessons-learned.md"><strong>Lições aprendidas</strong></a><br/>
-<sub>Erros comuns.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="STATUS.md"><strong>Dashboard do dia</strong></a><br/>
-<sub>Acompanhar progresso visual.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [Lições aprendidas](lessons-learned.md)<br/><sub>Erros comuns dos times.</sub> | [Dashboard do dia](STATUS.md)<br/><sub>Acompanhar progresso.</sub> |
 
-<sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
+<sub>[Voltar ao índice do kit](../README.md)</sub>

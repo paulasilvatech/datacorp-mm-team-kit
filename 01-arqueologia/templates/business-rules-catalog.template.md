@@ -1,4 +1,4 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
 ---
 title: "Modelo: Catálogo de Regras de Negócio"
@@ -10,58 +10,55 @@ status: "approved"
 tags: ["template", "business-rules", "archaeology", "stage-1"]
 ---
 
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
+# Modelo: Catálogo de Regras de Negócio
 
-<!-- Como usar: execute /extract-business-rules para cada programa. O agente anexa os resultados aqui. -->
+> **Trilha:** [Kit do Time](../../README.md) › [Estágio 1](../README.md) › **Templates** › **business-rules-catalog**
 
-# Catálogo de Regras de Negócio
+**Gabarito de tabela para registrar regras de negócio extraídas durante o Estágio 1.**
 
-![TEMPLATE business-rules-catalog](https://img.shields.io/badge/TEMPLATE-business-rules-catalog-737373?style=for-the-badge) ![COPIE Não edite o original](https://img.shields.io/badge/COPIE-Não%20edite%20o%20original-1A1A1A?style=for-the-badge)
+> [!NOTE]
+> **Este arquivo é um gabarito.** Copie para o seu repositório de time e preencha com os dados reais. Não edite o original.
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../../README.md) → [Estágio 1](../README.md) → **Templates** → **business-rules-catalog**
-
-> 📋 **Este arquivo é um TEMPLATE.** Copie para o seu repositório de time e preencha com os dados do seu time. Não edite o original.
-
+> [!TIP]
+> Para preencher: abra o programa `.NSN` atribuído ao seu par, procure por `IF` com Ctrl+F, anote a condição e a linha, e classifique como Confirmada, Inferida ou Mistério.
 
 **Equipe:** <!-- placeholder -->
 
-## Regras de <!-- placeholder: nome-do-arquivo.nat -->
+---
 
-| #   | Declaração da Regra  | Candidata EARS                     | Fonte                           | Classificação                                    | Observações          |
-| --- | -------------------- | ---------------------------------- | ------------------------------- | ------------------------------------------------ | -------------------- |
-| 1   | <!-- placeholder --> | <!-- placeholder: padrão EARS --> | <!-- placeholder: arquivo:linha --> | <!-- placeholder: Confirmada/Inferida/Mistério --> | <!-- placeholder --> |
+## Regras de `<!-- placeholder: nome-do-arquivo.NSN -->`
 
-## Resumo
+| # | Declaração da Regra | Candidata EARS | Fonte | Classificação | Observações |
+|---|---|---|---|---|---|
+| 1 | <!-- placeholder --> | <!-- placeholder: padrão EARS --> | <!-- placeholder: arquivo:linha --> | <!-- placeholder: Confirmada/Inferida/Mistério --> | <!-- placeholder --> |
 
-| Classificação | Contagem             |
-| ------------- | -------------------- |
-| Confirmada    | <!-- placeholder --> |
-| Inferida      | <!-- placeholder --> |
-| Mistério      | <!-- placeholder --> |
+> [!NOTE]
+> Duplique esta seção para cada programa `.NSN` lido pelo seu par.
 
 ---
 
-**Lembrete de Definição de Pronto:** Todo bloco condicional examinado, cada regra cita arquivo:linha, mistérios marcados.
+## Resumo
 
+| Classificação | Contagem |
+|---|---|
+| Confirmada | <!-- placeholder --> |
+| Inferida | <!-- placeholder --> |
+| Mistério | <!-- placeholder --> |
+
+---
+
+## Critério de pronto
+
+- [ ] Todo bloco condicional dos programas atribuídos foi examinado.
+- [ ] Cada regra cita `arquivo:linha`.
+- [ ] Perguntas em aberto registradas como Mistério em `mysteries-found.md`.
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="../GUIDE.md"><strong>GUIDE do Estágio 1</strong></a><br/>
-<sub>Passo a passo.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="../business-rules-catalog.md"><strong>Arquivo do time</strong></a><br/>
-<sub>Onde você preenche.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [GUIDE do Estágio 1](../GUIDE.md)<br/><sub>Roteiro passo a passo.</sub> | [Arquivo do time](../business-rules-catalog.md)<br/><sub>Onde você preenche.</sub> |
 
-<sub>↑ <a href="../../README.md">Voltar ao Kit PT-BR</a></sub>
-
+<sub>[Voltar ao índice do kit](../../README.md)</sub>

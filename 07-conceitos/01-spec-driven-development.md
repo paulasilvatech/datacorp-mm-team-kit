@@ -6,7 +6,7 @@
 
 **Spec-Driven Development (SDD) é a prática de especificar completamente o comportamento esperado antes de escrever código — e o Spec-Kit é o conjunto de comandos que estrutura esse processo no Copilot Chat.**
 
-![Conceito 01](https://img.shields.io/badge/Conceito-01-171717?style=flat-square) ![Estagio 2](https://img.shields.io/badge/Est%C3%A1gio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-737373?style=flat-square) ![Duracao 20 min](https://img.shields.io/badge/Dura%C3%A7%C3%A3o-20%20min-A3A3A3?style=flat-square)
+![Conceito 01](https://img.shields.io/badge/Conceito-01-171717?style=flat-square) ![Estágio 2](https://img.shields.io/badge/Est%C3%A1gio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-737373?style=flat-square) ![Duração 20 min](https://img.shields.io/badge/Dura%C3%A7%C3%A3o-20%20min-A3A3A3?style=flat-square)
 
 | Campo | Valor |
 |---|---|
@@ -140,7 +140,7 @@ Use o Spec-Kit sempre que o time começar uma funcionalidade nova no Estágio 2.
 
 ---
 
-## Referencias
+## Referências
 
 - [Repositório oficial do Spec-Kit](https://github.com/github/spec-kit)
 - [Cheat-sheet de comandos](../09-cheat-sheets/spec-kit-workflow.md)

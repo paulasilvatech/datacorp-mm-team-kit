@@ -6,7 +6,7 @@
 
 **O GitHub Copilot opera em três modos distintos — Ask, Plan e Agent — e escolher o modo errado para uma tarefa desperdiça tempo; este documento apresenta os critérios objetivos para selecionar o modo correto em cada situação do workshop.**
 
-![Conceito 04](https://img.shields.io/badge/Conceito-04-171717?style=flat-square) ![Uso Todos os Estagios](https://img.shields.io/badge/Uso-Todos%20os%20est%C3%A1gios-737373?style=flat-square) ![Duracao 15 min](https://img.shields.io/badge/Dura%C3%A7%C3%A3o-15%20min-A3A3A3?style=flat-square)
+![Conceito 04](https://img.shields.io/badge/Conceito-04-171717?style=flat-square) ![Uso Todos os Estágios](https://img.shields.io/badge/Uso-Todos%20os%20est%C3%A1gios-737373?style=flat-square) ![Duração 15 min](https://img.shields.io/badge/Dura%C3%A7%C3%A3o-15%20min-A3A3A3?style=flat-square)
 
 | Campo | Valor |
 |---|---|
@@ -38,7 +38,7 @@ Usar o modo errado tem consequências diretas:
 
 ---
 
-## Arvore de decisao
+## Árvore de decisão
 
 ```mermaid
 %%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
@@ -67,7 +67,7 @@ flowchart TD
 
 ## Comparativo dos tres modos
 
-| Criterio | Ask | Plan | Agent |
+| Critério | Ask | Plan | Agent |
 |---|---|---|---|
 | **O que faz** | Responde perguntas em texto | Propõe plano de mudança sem executar | Implementa autonomamente e abre PR |
 | **Autonomia** | Nenhuma | Baixa (você aprova cada passo) | Alta (executa sem intervenção) |
@@ -121,7 +121,7 @@ Mostre o script SQL e os ajustes necessários na entidade JPA."
 
 ---
 
-## Antipadroes — o que nao fazer
+## Antipadrões — o que não fazer
 
 | Antipadrao | Consequencia | Alternativa correta |
 |---|---|---|
@@ -148,7 +148,7 @@ Use estes valores para escolher o modo durante o workshop — o tempo real varia
 
 ---
 
-## Referencias
+## Referências
 
 - [Cheat-sheet de 1 página dos 3 modos](../09-cheat-sheets/copilot-3-modes.md)
 - [Agentes e Personas](02-agentes-e-personas.md)

@@ -1,79 +1,89 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
 # Relatório de Experiência com GitHub Copilot Agent
 
-![ESTÁGIO 04 Evolução](https://img.shields.io/badge/ESTÁGIO-04%20Evolução-FFB900?style=for-the-badge) ![TIPO Worksheet](https://img.shields.io/badge/TIPO-Worksheet-1A1A1A?style=for-the-badge) ![PREENCHA Durante S4](https://img.shields.io/badge/PREENCHA-Durante%20S4-737373?style=for-the-badge)
+> **Trilha:** [Kit do Time](../README.md) › [Estágio 4](README.md) › **Relatório de Experiência**
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../README.md) → [Estágio 4](README.md) → **Agent Experience Report**
+**Preencha este relatório durante o Estágio 4. Registre o que aconteceu de fato — resultados positivos e negativos têm igual valor para o aprendizado do time.**
 
-> **Para quem é isto?** Este é um **artefato preenchido pelo time** durante o Estágio 4 (Evolução).
->
-> **O que você terá ao final do estágio:**
->
-> 1. Relatório honesto da experiência com Copilot Agent
-> 2. Issues bem escritas que viraram PRs aprovados
-> 3. Lições aprendidas para o próximo time
->
-> 📘 **Guia passo a passo:** [`GUIDE.md`](GUIDE.md).
+![Estágio 4](https://img.shields.io/badge/Est%C3%A1gio-4%20%C2%B7%20Evolu%C3%A7%C3%A3o-171717?style=flat-square) ![Tipo Relatório do time](https://img.shields.io/badge/Tipo-Relat%C3%B3rio%20do%20time-737373?style=flat-square) ![Preencha durante o estágio](https://img.shields.io/badge/Preencha-durante%20o%20est%C3%A1gio-A3A3A3?style=flat-square)
 
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Time completo; Par 5 coordena o preenchimento |
+| **Pré-requisitos** | Estágio 4 em andamento ou concluído |
+| **Estágio** | Estágio 4 — Evolução |
+| **Resultado esperado** | Relato factual para retroalimentar workshops futuros |
 
-> Preencha este relatório ao final do Estágio 4.
-> Seja honesto — queremos aprender o que funciona e o que não funciona. Avaliação positiva forçada não ajuda ninguém.
-
-**Time**: [Nome do Time]
-**Data**: [YYYY-MM-DD]
-**Edição**:
-**Participantes**: [Liste os membros]
+> [!NOTE]
+> Guia passo a passo: [`GUIDE.md`](GUIDE.md). Seja honesto — avaliação positiva forçada não ajuda ninguém.
 
 ---
 
-## 1. Issues Criadas
+| Campo | Valor |
+|---|---|
+| **Time** | `<!-- preencher -->` |
+| **Data** | `<!-- YYYY-MM-DD -->` |
+| **Edição** | `<!-- preencher -->` |
+| **Participantes** | `<!-- liste os membros -->` |
+
+---
+
+## 1. Issues criadas
 
 ### Issue 1
 
-- **Título**: [Título da Issue]
-- **Link**: [URL da Issue no GitHub]
-- **Descrição resumida**: [1–2 frases]
-- **Tempo para escrever a Issue**: \_\_\_ minutos
+| Campo | Valor |
+|---|---|
+| **Título** | `<!-- preencher -->` |
+| **Link** | `<!-- URL da Issue no GitHub -->` |
+| **Descrição resumida** | `<!-- 1 a 2 frases -->` |
+| **Tempo para escrever a Issue** | `___ min` |
 
 ### Issue 2
 
-- **Título**: [Título da Issue]
-- **Link**: [URL da Issue no GitHub]
-- **Descrição resumida**: [1–2 frases]
-- **Tempo para escrever a Issue**: \_\_\_ minutos
+| Campo | Valor |
+|---|---|
+| **Título** | `<!-- preencher -->` |
+| **Link** | `<!-- URL da Issue no GitHub -->` |
+| **Descrição resumida** | `<!-- 1 a 2 frases -->` |
+| **Tempo para escrever a Issue** | `___ min` |
 
 ---
 
-## 2. PRs Gerados pelo Agent
+## 2. PRs gerados pelo Agent
 
 ### PR 1 (da Issue 1)
 
-- **Link**: [URL do PR]
-- **Tempo que o Agent levou**: \_\_\_ minutos
-- **Arquivos modificados**: \_\_\_
-- **Testes criados**: Sim / Não
-- **Precisou de ajustes manuais?**: Sim / Não
-- **Foi mergeado?**: Sim / Não
+| Campo | Valor |
+|---|---|
+| **Link** | `<!-- URL do PR -->` |
+| **Tempo que o Agent levou** | `___ min` |
+| **Arquivos modificados** | `___` |
+| **Testes criados** | Sim / Não |
+| **Precisou de ajustes manuais** | Sim / Não |
+| **Foi mergeado** | Sim / Não |
 
 ### PR 2 (da Issue 2)
 
-- **Link**: [URL do PR]
-- **Tempo que o Agent levou**: \_\_\_ minutos
-- **Arquivos modificados**: \_\_\_
-- **Testes criados**: Sim / Não
-- **Precisou de ajustes manuais?**: Sim / Não
-- **Foi mergeado?**: Sim / Não
+| Campo | Valor |
+|---|---|
+| **Link** | `<!-- URL do PR -->` |
+| **Tempo que o Agent levou** | `___ min` |
+| **Arquivos modificados** | `___` |
+| **Testes criados** | Sim / Não |
+| **Precisou de ajustes manuais** | Sim / Não |
+| **Foi mergeado** | Sim / Não |
 
 ---
 
 ## 3. O que funcionou bem
 
-> Liste o que o Agent fez bem. Exemplos: entendeu a arquitetura, criou testes bons, seguiu padrões, etc.
+> Liste o que o Agent fez bem. Exemplos: entendeu a arquitetura, criou testes adequados, seguiu padrões de nomenclatura.
 
-1. [O que funcionou]
-2.
-3.
+1. `<!-- preencher -->`
+2. `<!-- preencher -->`
+3. `<!-- preencher -->`
 
 ---
 
@@ -81,19 +91,19 @@
 
 > O que vocês não esperavam? Positivo ou negativo.
 
-1. [Surpresa]
-2.
-3.
+1. `<!-- preencher -->`
+2. `<!-- preencher -->`
+3. `<!-- preencher -->`
 
 ---
 
 ## 5. O que falhou ou decepcionou
 
-> Onde o Agent errou, não entendeu ou produziu código ruim?
+> Onde o Agent errou, não entendeu ou produziu código inadequado?
 
-1. [Falha]
-2.
-3.
+1. `<!-- preencher -->`
+2. `<!-- preencher -->`
+3. `<!-- preencher -->`
 
 ### Tipos de falha encontrados
 
@@ -104,22 +114,22 @@
 - [ ] Lógica de negócio errada
 - [ ] Faltou tratamento de erros
 - [ ] Credenciais ou dados sensíveis no código
-- [ ] Outro: \_\_\_
+- [ ] Outro: `___`
 
 ---
 
-## 6. Qualidade dos PRs (nota 1–5)
+## 6. Qualidade dos PRs (nota 1 a 5)
 
-| Critério                | Nota (1–5) | Comentário |
-| ----------------------- | ---------- | ---------- |
-| Corretude do código     |            |            |
-| Aderência à arquitetura |            |            |
-| Qualidade dos testes    |            |            |
-| Documentação gerada     |            |            |
-| Clareza do código       |            |            |
-| **Média geral**         |            |            |
+| Critério | Nota (1–5) | Comentário |
+|---|---|---|
+| Corretude do código | | |
+| Aderência à arquitetura | | |
+| Qualidade dos testes | | |
+| Documentação gerada | | |
+| Clareza do código | | |
+| **Média geral** | | |
 
-Escala: 1=Péssimo, 2=Ruim, 3=Aceitável, 4=Bom, 5=Excelente
+Escala: 1 = Inadequado, 2 = Abaixo do esperado, 3 = Aceitável, 4 = Bom, 5 = Excelente.
 
 ---
 
@@ -127,33 +137,33 @@ Escala: 1=Péssimo, 2=Ruim, 3=Aceitável, 4=Bom, 5=Excelente
 
 - [ ] Sim, para tudo — economiza muito tempo
 - [ ] Sim, para tarefas simples e bem definidas
-- [ ] Talvez, mas precisa de muita supervisão
+- [ ] Talvez, mas requer muita supervisão
 - [ ] Não, gasto mais tempo revisando do que implementando
-- [ ] Não tenho certeza ainda
+- [ ] Ainda não tenho certeza
 
-**Justificativa**: [Explique sua escolha]
-
----
-
-## 8. Recomendações para outras equipes
-
-> Se outra equipe fosse usar o Agent pela primeira vez, o que vocês diriam?
-
-1. [Dica]
-2.
-3.
+**Justificativa:** `<!-- explique a escolha -->`
 
 ---
 
-## 9. Comparação: Agent vs. Copilot Chat vs. Implementação Manual
+## 8. Recomendações para outros times
 
-| Aspecto     | Modo Agent | Copilot Chat | Manual |
-| ----------- | ---------- | ------------ | ------ |
-| Velocidade  |            |              |        |
-| Qualidade   |            |              |        |
-| Controle    |            |              |        |
-| Aprendizado |            |              |        |
-| Quando usar |            |              |        |
+> Se outro time fosse usar o Agent pela primeira vez, o que vocês diriam?
+
+1. `<!-- preencher -->`
+2. `<!-- preencher -->`
+3. `<!-- preencher -->`
+
+---
+
+## 9. Comparação: Agent vs. Copilot Chat vs. implementação manual
+
+| Aspecto | Modo Agent | Copilot Chat | Manual |
+|---|---|---|---|
+| Velocidade | | | |
+| Qualidade | | | |
+| Controle | | | |
+| Aprendizado | | | |
+| Quando usar | | | |
 
 ---
 
@@ -161,27 +171,14 @@ Escala: 1=Péssimo, 2=Ruim, 3=Aceitável, 4=Bom, 5=Excelente
 
 > Espaço para qualquer observação adicional sobre a experiência com IA generativa no desenvolvimento:
 
-[Escreva aqui]
-
+`<!-- preencher -->`
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="GUIDE.md"><strong>GUIDE do Estágio 4</strong></a><br/>
-<sub>Passo a passo do estágio.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="templates/"><strong>Templates</strong></a><br/>
-<sub>Template para preencher.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [GUIDE do Estágio 4](GUIDE.md)<br/><sub>Passo a passo do estágio.</sub> | [Template do relatório](templates/agent-experience-report.template.md)<br/><sub>Gabarito para copiar.</sub> |
 
-<sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
-
+<sub>[Voltar ao índice do kit](../README.md)</sub>

@@ -1,103 +1,127 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# @architect — Estágio 2: Spec Moderna
+# @architect — Estágio 2: Especificação
 
-![MUNDO 2 de 4](https://img.shields.io/badge/MUNDO-2%20de%204-00A4EF?style=for-the-badge) ![AGENTE @architect](https://img.shields.io/badge/AGENTE-@architect-1A1A1A?style=for-the-badge) ![ESTÁGIO 2](https://img.shields.io/badge/ESTÁGIO-2-737373?style=for-the-badge)
+> **Trilha:** [Kit do Time](../../README.md) › [Agentes de Estágio](../README.md) › **@architect**
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../../README.md) → [Agentes](../README.md) → **@architect**
+**O agente `@architect` transforma as evidências coletadas no Estágio 1 em uma especificação moderna rastreável, usando o GitHub Spec-Kit para produzir `spec.md`, `plan.md` e `tasks.md`.**
 
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Par de arquitetos (Enterprise Architect + Software Architect) durante o Estágio 2 |
+| **Pré-requisitos** | Passagem de bastão do Estágio 1 com catálogo de regras e `source_legacy:` disponíveis |
+| **Tempo estimado** | 14:00–15:00 |
+| **Estágio** | Estágio 2 — Especificação |
+| **Resultado esperado** | `spec.md`, `plan.md` e `tasks.md` em `specs/<NNN>-<feature>/`, assinados pelo Product Owner |
 
-> **Para quem é isto?** Para o Par 2 (EA+SA) durante o Estágio 2.
->
-> **O que você terá ao final desta leitura:**
->
-> 1. Como ativar o agente `@architect` no Copilot Chat
-> 2. Prompts para EARS, ADR, C4, bounded contexts
-> 3. Regra: não aceita requisito sem evidência no legado
+![Estágio 2](https://img.shields.io/badge/Est%C3%A1gio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-171717?style=flat-square)
+![Postura analítica](https://img.shields.io/badge/Postura-Anal%C3%ADtica-404040?style=flat-square)
 
-> Use este agente quando o time já tem descobertas do legado e precisa transformá-las em especificação moderna. Ele ajuda a decidir limites, escrever EARS, registrar ADRs e preparar o terreno para implementação.
-
-## Objetivo da etapa
-
-Transformar o relatório de descoberta de uma feature fina em `spec.md`,
-`plan.md` e `tasks.md` rastreáveis, usando o GitHub Spec-Kit.
+---
 
 ## Quando usar
 
-- **Horário:** 14:00–15:00.
-- **Protagonista:** Software Architect.
-- **Suporte forte:** Requirements Engineer, Enterprise Architect, Product Owner e Technical Lead.
-- **Pré-requisito:** Passagem #1 com evidências do legado e `source_legacy:` disponíveis.
+Use este agente quando o time já tem descobertas do legado e precisa transformá-las em especificação moderna. O `@architect` ajuda a delimitar bounded contexts (unidades coesas de domínio com fronteiras explícitas), escrever requisitos no padrão EARS (Easy Approach to Requirements Syntax), registrar ADRs e preparar o terreno para implementação.
 
-## Passo a passo com o agente
+- **Protagonista:** Software Architect
+- **Suporte forte:** Requirements Engineer, Enterprise Architect, Product Owner e Technical Lead
+- **Pré-requisito hard gate:** evidências do Estágio 1 com `source_legacy:` para cada regra
 
-1. Selecione o agente `@architect` no Copilot Chat.
-2. Cole o prompt de abertura abaixo.
-3. Liste as regras confirmadas e as perguntas abertas vindas do Estágio 1.
-4. Use `/speckit.specify` e `/speckit.clarify` para formalizar requisitos.
-5. Use `/speckit.plan` para gerar plano técnico, dados e contratos.
-6. Registre em `02-spec-moderna/` apenas uma decisão de escopo que bloqueie o plano.
-7. Faça o Passagem #2 para os Pares 3 e 4.
+---
+
+## O que o agente faz
+
+- Transforma regras de negócio catalogadas em requisitos EARS com `source_legacy:`
+- Compara alternativas de bounded contexts e aponta prós e contras
+- Gera ADRs com contexto, opções, decisão, consequências e riscos
+- Executa `/speckit.specify`, `/speckit.clarify` e `/speckit.plan` orientado pela spec
+- Identifica lacunas na especificação antes de seguir para implementação
+
+---
+
+## O que o agente NÃO faz
+
+- Não aceita requisito sem evidência no legado ou justificativa `[GREENFIELD]`
+- Não escreve código de implementação (isso é papel do `@builder`)
+- Não preenche campos ou fluxos ambíguos sem resolução explícita
+- Não decide escopo sem validação do Product Owner
+
+---
+
+## Entradas
+
+| Entrada | Onde encontrar |
+|---|---|
+| Catálogo de regras do Estágio 1 | `01-arqueologia/business-rules-catalog.md` |
+| Mapa de dependências | Dentro do catálogo ou arquivo Mermaid separado |
+| Perguntas abertas | Seção do catálogo |
+| Checklist de exploração do legado | `01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md` |
+
+---
+
+## Saídas esperadas
+
+| Artefato | Localização |
+|---|---|
+| Especificação da feature | `specs/<NNN>-<feature>/spec.md` |
+| Plano técnico | `specs/<NNN>-<feature>/plan.md` |
+| Lista de tarefas implementáveis | `specs/<NNN>-<feature>/tasks.md` |
+| Decisões de escopo de apoio | `02-spec-moderna/` (apenas apoio; não é segunda localização de spec) |
+
+---
+
+## Como selecionar o agente no Copilot Chat
+
+- [ ] **Abrir o Copilot Chat** no VS Code (`Ctrl+Alt+I` / `Cmd+Alt+I`).
+- [ ] **Clicar no seletor de agentes** e selecionar `@architect`.
+- [ ] **Abrir o catálogo de regras** do Estágio 1 no editor.
+- [ ] **Colar o prompt de abertura** abaixo e pressionar Enter.
 
 ```text
-Estou iniciando o Estágio 2 — Spec Moderna.
+Estou iniciando o Estágio 2 — Especificação.
 Temos relatório de descoberta, catálogo de regras, glossário, DDMs e mapa de dependências.
 Ajude a transformar a evidência confirmada em `spec.md`, `plan.md` e
 `tasks.md` de uma feature fina. Não preencha requisitos ou arquitetura sem
 fonte e registre perguntas abertas separadamente.
 ```
 
-## O que perguntar
+---
+
+## Prompts de exemplo
 
 | Situação | Prompt útil |
-| --- | --- |
+|---|---|
 | Regra de negócio bruta | "Confirme a fonte desta regra antes de propor uma EARS com `source_legacy:`." |
-| Limite de módulo incerto | "Compare 2 ou 3 bounded contexts possíveis e mostre prós/contras." |
+| Limite de bounded context incerto | "Compare 2 ou 3 bounded contexts possíveis e mostre prós/contras." |
 | Decisão arquitetural | "Gere um ADR com contexto, opções, decisão, consequências e riscos." |
 | Plano técnico | "Prepare `/speckit.plan` considerando modular monolith, JPA e PostgreSQL." |
 
-## Definição de Pronto
+---
+
+## Definition of Done
 
 - [ ] `spec.md`, `plan.md` e `tasks.md` existem em `specs/<NNN>-<feature>/`.
-- [ ] Todo requisito tem `source_legacy:` ou `[GREENFIELD]` justificado.
+- [ ] Todo requisito tem `source_legacy:` apontando para `.NSN` ou `.ddm`, ou `[GREENFIELD]` com justificativa.
 - [ ] Decisões de escopo de apoio estão em `02-spec-moderna/`.
-- [ ] Escopo assinado pelo Product Owner na Passagem H2, às 15:00.
+- [ ] Escopo revisado e assinado pelo Product Owner na passagem de bastão às 15:00.
 
-## Anti-padrões
+---
 
-| Não faça | Faça |
-| --- | --- |
-| Escrever requisito sem evidência | Exija `source_legacy:` ou justificativa greenfield |
-| Criar arquitetura bonita demais para o tempo | Prefira decisões simples, testáveis e implementáveis |
-| Misturar ADR com opinião solta | Registre opções, decisão e consequências |
-| Entregar spec sem acceptance | Todo requisito precisa ser testável |
+## Erros comuns
 
-## Navegação
-
-| Anterior | Início | Próximo |
-| --- | --- | --- |
-| [@archaeologist](../01-archaeologist/README.md) | [Kit PT-BR](../../README.md) | [@builder](../03-builder/README.md) |
-
-— Paula
-
+| Sintoma | Causa | Correção |
+|---|---|---|
+| Requisito sem `source_legacy:` | Regra inferida sem evidência no legado | Volte ao catálogo do Estágio 1 e encontre a linha de referência |
+| Arquitetura complexa demais para o tempo | Ambição além do escopo do workshop | Prefira decisões simples, testáveis e implementáveis em 1 hora |
+| ADR misturado com opinião solta | Falta de estrutura no registro | Use o template: contexto, opções, decisão, consequências |
+| Spec sem critério de aceitação | Requisito não testável | Todo requisito precisa ter ao menos um cenário verificável |
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="../01-archaeologist/"><strong>@archaeologist</strong></a><br/>
-<sub>Mundo anterior.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="../03-builder/"><strong>@builder</strong></a><br/>
-<sub>Próximo mundo: implementação.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [@archaeologist](../01-archaeologist/README.md)<br/><sub>Estágio 1: leitura do legado Natural/Adabas.</sub> | [@builder](../03-builder/README.md)<br/><sub>Estágio 3: construir a implementação rastreável.</sub> |
 
-<sub>↑ <a href="../../README.md">Voltar ao Kit PT-BR</a></sub>
+<sub>[Voltar ao índice do kit](../../README.md)</sub>

@@ -1,94 +1,79 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
 # DevOps Engineer — Kit Copilot
 
-![PERSONA Devops Engineer](https://img.shields.io/badge/PERSONA-Devops%20Engineer-1A1A1A?style=for-the-badge) ![MARIO 🍄 Captain Toad](https://img.shields.io/badge/MARIO-🍄%20Captain%20Toad-1A1A1A?style=for-the-badge) ![PAR Par 5 · Operações](https://img.shields.io/badge/PAR-Par%205%20·%20Operações-737373?style=for-the-badge)
+> **Trilha:** [Kit do Time](../../README.md) › [Personas](../OVERVIEW.md) › **DevOps Engineer**
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../../README.md) → [Personas](../OVERVIEW.md) → **Devops Engineer**
+**Kit de referência para a persona DevOps Engineer no workshop de modernização do SIFAP.**
 
-> **Para quem é isto?** Para a pessoa que vai vestir esta persona durante o workshop.
->
-> **O que você terá ao final desta leitura:**
->
-> 1. Lista de arquivos do kit (agente, prompts, skills, MCP)
-> 2. Onde os artefatos ativos vivem na `.github/` consolidada da raiz
-> 3. Boas práticas específicas desta persona
->
-> 📘 **Antes de mais nada:** abra o `PERSONA.md` desta pasta para ver missão, atributos e prompts prontos.
+![Persona](https://img.shields.io/badge/Persona-DevOps%20Engineer-171717?style=flat-square) ![Par 5](https://img.shields.io/badge/Par-5%20%C2%B7%20Opera%C3%A7%C3%B5es-404040?style=flat-square) ![Estágio 4](https://img.shields.io/badge/Est%C3%A1gio-4%20%C2%B7%20Evolu%C3%A7%C3%A3o-737373?style=flat-square)
 
-
-<!-- markdownlint-disable MD013 MD022 MD031 MD032 MD060 -->
-
-> Pipelines CI/CD, IaC, observabilidade e resposta a incidentes.
+| Campo | Valor |
+|---|---|
+| **Público-alvo** | Pessoa que ocupa a persona DevOps Engineer no workshop |
+| **Foco** | Pipelines CI/CD com GitHub Actions, infraestrutura como código com Terraform (Azure), observabilidade e resposta a incidentes |
+| **Fase do SDLC** | Transversal — Estágios 1 a 4; lidera Estágio 4 — Evolução |
+| **Resultado esperado** | Pipeline verde, build reproduzível, `terraform plan` válido e modo de execução local documentado |
 
 Leia primeiro: [PERSONA.md](PERSONA.md).
 
-## Fase do SDLC
-Transversal, Evolução, Operações
+---
 
-## Conteúdo do kit
+## Conceito
+
+O DevOps Engineer é responsável pelo caminho do código desde o commit até algo que executa de forma confiável. No workshop de modernização do SIFAP, essa persona garante que qualquer máquina do time consiga subir o ambiente local, que o GitHub Actions valide cada PR e que o Terraform descreva a topologia-alvo no Azure mesmo quando não é aplicado no dia.
+
+Por que importa: sem um pipeline confiável, o Developer não tem feedback rápido, o QA Engineer não tem ambiente estável para testes e a demonstração final arrisca falhar por problema de ambiente, não de código.
+
+## Kit da persona
+
+Todos os artefatos ativos vivem na `.github/` da raiz do repositório. Esta pasta é referência; edite os arquivos em `.github/` quando precisar de manutenção.
 
 | Arquivo | Tipo | Propósito |
-|------|------|---------|
-| `PERSONA.md` | Persona | Responsabilidades, passagens, prompts e rubrica do DevOps Engineer |
-| `.github/agents/devops-engineer.agent.md` | Agente | CI/CD, IaC, monitoramento e incidentes |
+|---|---|---|
+| `PERSONA.md` | Ficha | Responsabilidades, estágios, prompts e rubricas do DevOps Engineer |
+| `.github/agents/devops-engineer.agent.md` | Agente | CI/CD, infraestrutura como código, monitoramento e incidentes |
 | `.github/prompts/persona-devops-engineer-pipeline.prompt.md` | Prompt | `/pipeline` |
 | `.github/prompts/persona-devops-engineer-iac-module.prompt.md` | Prompt | `/iac-module` |
 | `.github/prompts/persona-devops-engineer-incident-rca.prompt.md` | Prompt | `/incident-rca` |
-| `.github/instructions/cicd.instructions.md` | Instruções | Convenções de CI/CD |
-| `.github/instructions/infrastructure.instructions.md` | Instruções | Convenções de infraestrutura |
+| `.github/instructions/cicd.instructions.md` | Instructions | Convenções de CI/CD |
+| `.github/instructions/infrastructure.instructions.md` | Instructions | Convenções de infraestrutura |
 
-## Uso no workshop
+> [!TIP]
+> Se o facilitador pedir MCP local e este kit tiver `mcp.json`, copie apenas esse arquivo para `.vscode/mcp.json`.
 
-Os artefatos deste kit já estão consolidados na `.github/` da raiz do repositório:
+## Onde os artefatos ativos vivem
 
-- Agents ativos: `.github/agents/`
-- Prompts ativos: `.github/prompts/persona-*.prompt.md`
-- Skills ativas: `.github/skills/`
-- Instructions ativas: `.github/instructions/` (quando existirem)
-
-Use esta pasta como referência da persona (ficha, boas práticas e inventário). Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá se precisar de manutenção.
-
-Se este kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
+- Agentes: `.github/agents/`
+- Prompts: `.github/prompts/persona-*.prompt.md`
+- Skills: `.github/skills/`
+- Instructions: `.github/instructions/`
 
 ## Boas práticas
-- Tudo como código: infraestrutura, configuração, políticas e runbooks.
-- Pipeline com mais de 10 minutos vira gargalo; paralelize ou reduza etapas.
-- Secrets vivem em vault, não em `.env`, variáveis soltas de CI ou código-fonte.
-- Blue/green e canary resolvem problemas diferentes; escolha pelo custo de rollback.
+
+- [ ] **Tratar tudo como código.** Infraestrutura, configuração, políticas e runbooks devem estar versionados.
+- [ ] **Manter pipelines abaixo de 10 minutos.** Pipelines mais longos se tornam gargalo; paralelizar ou eliminar etapas redundantes.
+- [ ] **Armazenar secrets exclusivamente em vault.** Nunca em `.env` versionado, variáveis soltas de CI ou código-fonte.
+- [ ] **Escolher estratégia de deploy pelo custo de rollback.** Blue/green e canary resolvem problemas diferentes.
+
+## Exemplo aplicado ao SIFAP
+
+No Estágio 3, o DevOps Engineer cria o workflow `.github/workflows/ci.yml` que executa em cada push: configura Java 21 com cache do Maven, roda `mvn test`, constrói a imagem Docker do backend e publica no registro. Paralelamente, escreve os módulos Terraform `infra/networking/` e `infra/database/` que descrevem o Azure Database for PostgreSQL e a VNet de destino. O `terraform plan` roda sem erro mesmo que o `apply` não aconteça no dia.
 
 ## Referências
+
 - [Terraform Best Practices](https://developer.hashicorp.com/terraform/language/style)
 - [GitHub Actions Hardening](https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions)
 - [Azure Verified Modules](https://azure.github.io/Azure-Verified-Modules/)
-- [The DevOps Handbook - Gene Kim et al.](https://itrevolution.com/product/the-devops-handbook-second-edition/)
-
----
-
-## Navegação
-
-| Anterior | Início |
-|--------|------|
-| [Persona Kits](../README.md) | [Kit PT-BR](../../README.md) |
+- [The DevOps Handbook — Gene Kim et al.](https://itrevolution.com/product/the-devops-handbook-second-edition/)
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="../OVERVIEW.md"><strong>OVERVIEW</strong></a><br/>
-<sub>Tabela das 10 personas.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="PERSONA.md"><strong>PERSONA.md</strong></a><br/>
-<sub>Ficha desta persona.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [Visão geral das personas](../OVERVIEW.md)<br/><sub>Tabela das 10 personas e seus pares.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Ficha completa da persona DevOps Engineer.</sub> |
 
-<sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
+<sub>[Voltar ao índice do kit](../../README.md)</sub>
 
