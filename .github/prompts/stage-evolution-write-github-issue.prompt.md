@@ -18,7 +18,7 @@ No início do Estágio 4, quando a equipe identifica trabalho que pode ser deleg
 ## Pré-condições
 
 - A equipe tem um protótipo funcional do Estágio 3
-- `02-spec-moderna/SPECIFICATION.md` existe com requisitos EARS
+- `specs/<NNN>-<feature>/spec.md` existe com requisitos EARS
 - A equipe identificou uma peça específica de trabalho para delegar
 
 ## Entradas que a Equipe Deve Fornecer
@@ -30,8 +30,7 @@ No início do Estágio 4, quando a equipe identifica trabalho que pode ser deleg
 ## O Que Vou Fazer
 
 - Estruturar a issue com 5 seções obrigatórias: Contexto, Critérios de Aceite, Arquivos Afetados, Abordagem de Testes, Fora de Escopo
-- Escrever critérios de aceitação em notação EARS quando aplicável
-- Referenciar REQ-IDs existentes ou declarar explicitamente novo comportamento
+- Referenciar REQ-IDs e critérios existentes, sem inventar EARS ou comportamento
 - Sugerir labels e assignee
 
 ## O Que NÃO Vou Fazer
@@ -79,12 +78,9 @@ Pergunte à equipe:
 **Passo 2 — Escrever a seção Contexto.**
 Descreva por que este trabalho é necessário. Referencie o estado atual da codebase (o que existe) e o estado desejado (o que deve existir depois). Faça link para a spec EARS se relevante.
 
-**Passo 3 — Escrever Critérios de Aceite.**
-Escreva 3-5 critérios específicos e testáveis. Use notação EARS quando apropriado:
-- "Quando [evento], o sistema deverá [comportamento]"
-- "O sistema deverá [comportamento sempre verdadeiro]"
-
-Cada critério deve ser verificável por teste ou checagem manual.
+**Passo 3 — Copiar Critérios de Aceite.**
+Copie os critérios verificáveis do `spec.md` para os REQ-IDs informados. Se
+estiverem ausentes, registre a lacuna e não crie uma resposta pronta.
 
 **Passo 4 — Listar Arquivos Afetados.**
 Com base no input da equipe e em uma busca na codebase, liste:

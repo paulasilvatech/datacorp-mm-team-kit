@@ -8,7 +8,7 @@
 
 > **Estágio 1 · Passo 3 (`/map-dependencies`)**
 >
-> Mapeie quem chama quem e quem lê/escreve o quê: programas `.NSN` → programas
+> Mapeie somente as dependências que explicam o recorte escolhido: programas `.NSN` → programas
 > (`CALLNAT`, `FETCH`) e programas → DDMs (`READ`, `FIND`, `STORE`, `UPDATE`, `DELETE`).
 > **Cada aresta deve ser apoiada por um `arquivo:linha` real — nada de chute.**
 > Este mapa alimenta as hipóteses de carving do [`discovery-report.md`](discovery-report.md).
@@ -16,7 +16,7 @@
 > 📘 **Guia passo a passo:** [`GUIDE.md`](GUIDE.md).
 
 **Time**: <!-- preencher -->
-**Escopo**: 15 programas em `legado-sifap/natural-programs/*.NSN` e 4 DDMs em `legado-sifap/adabas-ddms/*.ddm`
+**Escopo**: programas e DDMs que sustentam a feature escolhida
 
 ---
 
@@ -50,7 +50,7 @@ flowchart TD
 
 ---
 
-✅ **Critério de pronto:** todos os 15 programas aparecem no mapa, toda aresta cita `arquivo:linha`, hubs e código morto identificados.
+✅ **Critério de pronto:** toda aresta relevante ao recorte cita `arquivo:linha`.
 
 ---
 
@@ -65,7 +65,7 @@ flowchart TD
 </td>
 <td width="50%" valign="top" align="right">
 <sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="mysteries-found.md"><strong>Mistérios Encontrados</strong></a><br/>
+<a href="mysteries-found.md"><strong>Perguntas em Aberto</strong></a><br/>
 <sub>Passo 4.</sub>
 </td>
 </tr>

@@ -60,7 +60,7 @@ Cada pessoa escolhe **um par** (duas personas). As duas personas de um par são 
 | Par               | Foco da persona A                                      | Foco da persona B                                             |
 | ----------------- | ------------------------------------------------------ | ------------------------------------------------------------- |
 | 1 · Visão         | **PO**: escopo, valor, prioridades, roteiro do demo    | **RE**: requisitos EARS, critérios de aceitação, REQ-IDs      |
-| 2 · Arquitetura   | **EA**: C4 L1 (contexto do sistema), ADRs de topologia | **SA**: C4 L2/L3 (containers + components), bounded contexts  |
+| 2 · Arquitetura   | **EA**: dependências externas e decisões de escopo | **SA**: limites e plano técnico do recorte |
 | 3 · Implementação | **TL**: padrões, revisão de PR, orquestração do agente | **Dev**: código Java + TypeScript, testes unitários           |
 | 4 · Qualidade     | **DBA**: schema PostgreSQL, migrações Flyway           | **QA**: cenários BDD, gates de cobertura, contract tests      |
 | 5 · Operações     | **DevOps**: Terraform, GitHub Actions, secrets         | **TW**: glossário, revisão de clareza de ADR, runbook, README |
@@ -83,8 +83,8 @@ Faça rotação dentro do par a cada ~45 min para nenhuma pessoa monopolizar con
 | **10:45–11:00** | Orientação rápida do legado                | Par 1 + Par 4                          | Apresentação dos 15 programas Natural + 4 DDMs                         |
 | **11:00–12:00** | **Estágio 1** — Arqueologia (parte 1)      | Todos os 5 pares em paralelo           | Cada par com 3 programas — Reconhecimento + Extração                   |
 | **12:00–13:30** | 🍴 **ALMOÇO**                               | —                                      | —                                                                      |
-| **13:30–14:00** | **Estágio 1** — Síntese + **Passagem #1**  | **Par 1** consolida BR + escopo        | Par 5 fecha glossário, Par 2 finaliza dependency-map                   |
-| **14:00–15:00** | **Estágio 2** — Spec Moderna               | **Par 2** (EA+SA)                      | Par 1 valida escopo · Par 5 revisa ADRs · **Passagem #2** ao fim       |
+| **13:30–14:00** | **Estágio 1** — Síntese + **Passagem #1**  | **Par 1** consolida evidências + escopo | Par 5 esclarece termos; Par 2 identifica dependências do recorte |
+| **14:00–15:00** | **Estágio 2** — Spec Moderna               | **Par 2** (EA+SA)                      | Par 1 valida escopo · Par 5 revisa clareza · **Passagem #2** ao fim |
 | **15:00–16:10** | **Estágio 3** — Implementação              | **Par 3** (TL+Dev), **Par 4** (DBA+QA) | Par 5 esqueleta CI · **Passagem #3** ao fim                            |
 | **16:10–16:50** | **Estágio 4** — Evolução com Agentes       | **Par 5** (DevOps+TW)                  | **Par 3** escreve Issues e revisa PRs do Agent                         |
 | **16:50–17:00** | Buffer + preparação das demos              | Todos                                  | Cada time ensaia 30s por persona                                       |
@@ -104,7 +104,8 @@ Cada par tem trabalho concreto em todos os estágios — o quem-faz-o-quê fica 
 
 ### Como ler o mapa
 
-- **Setas são dependências bloqueantes.** Sem o Par 2 entregar os ADRs, os Pares 3 e 4 não conseguem começar o trabalho certo.
+- **Setas são dependências bloqueantes.** Sem `spec.md`, `plan.md` e `tasks.md`
+  do recorte, os Pares 3 e 4 não conseguem começar o trabalho certo.
 - **Posição vertical = tempo.** Mais alto = mais cedo no dia.
 - **Cada passagem é uma conversa de 5 minutos** entre o par que sai e o par que entra. Não vale "só leia o documento". Fale ao vivo.
 
@@ -117,10 +118,10 @@ Nenhum par fica parado. Mesmo quando não está "liderando", cada par tem trabal
 | Par                   | Estágio 1 (Arqueologia)                                          | Estágio 2 (Spec)                                                    | Estágio 3 (Implementação)                                               | Estágio 4 (Evolução)                                         |
 | --------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------ |
 | **1 · Visão**         | **Lidera.** Extrai regras; PO prioriza escopo.                   | Valida EARS; assina escopo no H2.                                   | De prontidão para esclarecer requisitos. Constrói narrativa da demonstração. | Ensaio da demonstração.                                  |
-| **2 · Arquitetura**   | Mapeia contexto do sistema (rascunho C4 L1).                     | **Lidera.** C4 L2/L3 + ADRs.                                        | De prontidão para perguntas de fronteira; revisa PRs que tocam contratos. | Valida IaC contra ADRs.                                   |
+| **2 · Arquitetura**   | Mapeia evidências e dependências relevantes ao recorte.          | **Lidera.** `spec.md`, `plan.md` e `tasks.md`; registra decisões bloqueantes. | De prontidão para perguntas de fronteira; revisa PRs que tocam contratos. | Valida IaC contra decisões existentes.                    |
 | **3 · Implementação** | Define convenções (branches, template de PR, DoD) e esqueleto alvo do protótipo. | Comenta sobre viabilidade; estima complexidade.                     | **Lidera.** Código, testes, integração.                                 | **Co-lidera.** Delegação em modo Agent, revisão de PR.       |
 | **4 · Qualidade**     | Lê DDMs, planeja mapeamento de schema.                           | Comenta sobre implicações de dados; escreve primeiros cenários BDD. | **Lidera.** Schema, migrações, cobertura de testes.                     | Gate final de cobertura; contract tests no CI.               |
-| **5 · Operações**     | Glossário, semente do runbook, esqueleto do README.              | Revisão de clareza dos ADRs; voz consistente de escrita.            | Rascunho da estrutura do pipeline CI.                                   | **Lidera.** Terraform + CI/CD completos; runbook finalizado. |
+| **5 · Operações**     | Glossário e termos que apoiem o recorte.                         | Revisão de clareza e das decisões de escopo.                         | Rascunho da estrutura do pipeline CI.                                   | **Lidera.** Uma delegação pequena; CI/IaC apenas se pertinentes. |
 
 ---
 
@@ -140,7 +141,7 @@ Entre **10:00 e 10:45**, **todo par** faz as mesmas 4 coisas. Depois começa a e
 | Par                   | Ação às 11:00                                                                                                                                                                                       |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **1 · Visão**         | PO abre [`00-TEAM-FLOW.md`](00-TEAM-FLOW.md) e o cronograma do dia; RE abre [`01-arqueologia/legado-sifap/natural-programs/`](01-arqueologia/legado-sifap/natural-programs/) e começa o catálogo de regras.       |
-| **2 · Arquitetura**   | EA abre [`01-arqueologia/legado-sifap/legacy-docs/`](01-arqueologia/legado-sifap/legacy-docs/) e começa C4 L1; SA prepara candidatos a bounded context.                                                                                       |
+| **2 · Arquitetura**   | EA abre [`01-arqueologia/legado-sifap/legacy-docs/`](01-arqueologia/legado-sifap/legacy-docs/) e registra dependências que afetem o recorte; SA prepara perguntas sobre fronteiras. |
 | **3 · Implementação** | TL define estratégia de branches, template de PR, definição de pronto e paths padrão (`backend/`, `frontend/`, `infra/` quando necessário).                                                        |
 | **4 · Qualidade**     | DBA abre [`01-arqueologia/legado-sifap/adabas-ddms/`](01-arqueologia/legado-sifap/adabas-ddms/) e começa o mapeamento de campos; QA prepara a estratégia de testes para o protótipo que será criado. |
 | **5 · Operações**     | DevOps planeja CI/IaC que o time criará no próprio repositório; TW abre o template em [`01-arqueologia/glossary.md`](01-arqueologia/glossary.md).                                                   |
@@ -182,24 +183,23 @@ Bom: _"Objetivo: validar CPF em `BeneficiaryService`. Tentei: regex + sugestão 
 **Dono:** Par 1 (Visão)
 **Receptores:** Par 2 (Arquitetura), Par 5 (Operações)
 
-| Artefato              | Caminho                                                                                | Pronto significa                                  |
-| --------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| Glossário             | [`01-arqueologia/glossary.md`](01-arqueologia/glossary.md)                             | ≥ 30 termos com definições (voz pelo Par 5)       |
-| Catálogo de regras    | [`01-arqueologia/business-rules-catalog.md`](01-arqueologia/business-rules-catalog.md) | ≥ 15 regras com referência ao programa-fonte      |
-| Mapa de dependências  | [`01-arqueologia/dependency-map.md`](01-arqueologia/dependency-map.md)                 | Diagrama Mermaid cobrindo os 15 Naturals          |
-| Mistérios encontrados | [`01-arqueologia/mysteries-found.md`](01-arqueologia/mysteries-found.md)               | ≥ 5 regras escondidas identificadas com evidência |
+| Artefato | Caminho | Pronto significa |
+| --- | --- | --- |
+| Catálogo de regras | `01-arqueologia/business-rules-catalog.md` | As regras candidatas ao recorte têm fonte `.NSN`/`.ddm` registrada. |
+| Relatório de descoberta | `01-arqueologia/discovery-report.md` | Recorte fino, evidências e dúvidas abertas para a feature escolhida. |
+| Apoios consultados | `01-arqueologia/` | Glossário, dependências e mistérios apenas quando ajudarem a explicar o recorte. |
 
 ### Passagem #2 — Spec → Código (fim do Estágio 2, ~15:00)
 
 **Dono:** Par 2 (Arquitetura)
 **Receptores:** Par 3 (Implementação), Par 4 (Qualidade)
 
-| Artefato            | Caminho                                               | Pronto significa                                |
-| ------------------- | ----------------------------------------------------- | ----------------------------------------------- |
-| Especificações EARS | [`02-spec-moderna/`](02-spec-moderna/) (via Spec-Kit) | ≥ 12 requisitos com REQ-IDs                     |
-| Diagramas C4        | `02-spec-moderna/diagrams/`                           | Níveis 1, 2, 3 em Mermaid                       |
-| ADRs                | `02-spec-moderna/ADRs/`                               | ≥ 3 ADRs (monólito modular, persistência, auth) |
-| Aprovação de escopo | Registrado no PR                                      | Par 1 (PO) aprovou escopo                       |
+| Artefato | Caminho | Pronto significa |
+| --- | --- | --- |
+| Especificação formal | `specs/<NNN>-<feature>/spec.md` | Feature fina com REQ-IDs, EARS e `source_legacy:` em cada requisito. |
+| Plano formal | `specs/<NNN>-<feature>/plan.md` | Decisões, riscos e abordagem suficientes para começar a implementar. |
+| Tarefas formais | `specs/<NNN>-<feature>/tasks.md` | Ordem de implementação e testes para a feature. |
+| Decisão de escopo | `02-spec-moderna/scope-decisions.md` | O PO confirmou o que entra e o que fica adiado. |
 
 ### Passagem #3 — Código → Ops (fim do Estágio 3, ~16:10)
 

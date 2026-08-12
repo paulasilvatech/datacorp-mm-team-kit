@@ -39,8 +39,8 @@ Todos os 5 pares trabalham em paralelo, cada um responsável por 3 programas Nat
 | [`business-rules-catalog.md`](business-rules-catalog.md)             | Catálogo de regras de negócio extraídas (`Programa Fonte` obrigatório)  |
 | [`dependency-map.md`](dependency-map.md)                             | Modelo de mapeamento de dependências do sistema                         |
 | [`discovery-report.md`](discovery-report.md)                         | Modelo de relatório de descobertas                                      |
-| [`mysteries-checklist.md`](mysteries-checklist.md)                   | Checklist de lógica escondida para os times                             |
-| [`mysteries-found.md`](mysteries-found.md)                           | Modelo para registrar mistérios descobertos                             |
+| [`mysteries-checklist.md`](mysteries-checklist.md)                   | Checklist para registrar perguntas em aberto                            |
+| [`mysteries-found.md`](mysteries-found.md)                           | Estrutura rastreável para perguntas em aberto                           |
 
 O código legado em si fica em [`../01-arqueologia/legado-sifap/`](legado-sifap/) (compartilhado pelo kit).
 

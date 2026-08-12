@@ -61,7 +61,7 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 - **O que é:** um arquivo curto em Markdown que registra **uma decisão de arquitetura** e por quê ela foi tomada.
 - **Analogia:** ata de reunião curta, mas só sobre "por que escolhemos isso".
-- **Onde aparece:** Estágio 2. Template em `02-spec-moderna/ADR-TEMPLATE.md`, exemplos em `08-exemplos/ADR-001-monolito-modular.md`.
+- **Onde aparece:** Estágio 2. Use o template em `02-spec-moderna/ADR-TEMPLATE.md`.
 
 ### Adabas
 
@@ -91,13 +91,13 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 ### Bounded Context
 
-- **O que é:** um pedaço bem delimitado do sistema com vocabulário próprio. Em SIFAP temos 4: `beneficiary`, `payment`, `audit`, `admin`.
+- **O que é:** um pedaço bem delimitado do sistema com vocabulário próprio. As fronteiras são hipóteses que o time deve validar.
 - **Analogia:** departamentos de uma empresa — RH e Contabilidade têm a palavra "salário", mas significam coisas diferentes em cada um.
 - **Onde aparece:** Estágios 2 e 3.
 
 ### BR-NNN · Business Rule (regra de negócio)
 
-- **O que é:** identificador de uma regra extraída do legado (ex.: `BR-013`).
+- **O que é:** identificador de uma regra extraída do legado (ex.: `BR-XXX`).
 - **Analogia:** número da nota fiscal — sem ele, ninguém acha de novo.
 - **Onde aparece:** Estágio 1, no `business-rules-catalog.md`.
 
@@ -117,7 +117,7 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 ### Controller
 
-- **O que é:** a classe Java que recebe requisições HTTP (`POST /api/v1/payments`) e devolve respostas.
+- **O que é:** a classe Java que recebe requisições HTTP e devolve respostas.
 - **Analogia:** recepcionista — atende e encaminha para o setor certo.
 - **Onde aparece:** Estágio 3, em `infrastructure/`.
 
@@ -139,7 +139,7 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 - **O que é:** um "saco" com campos para enviar/receber dados pela API. Sem regras, só dados.
 - **Analogia:** envelope com formulário preenchido.
-- **Onde aparece:** Estágio 3 (`PaymentRequest.java`, `BeneficiaryResponse.java`).
+- **Onde aparece:** Estágio 3, nos contratos definidos pelo time.
 
 ## E
 
@@ -206,7 +206,7 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 - **O que é:** campo do Adabas que guarda **vários valores** dentro de uma mesma linha (ex.: `TELEFONES` com 3 números).
 - **Analogia:** célula do Excel com lista dentro — coisa que SQL puro não tem.
-- **Por que importa:** todo `MU` no DDM vira uma **tabela filha** no PostgreSQL (ex.: `beneficiary_phone`).
+- **Por que importa:** o time deve decidir e documentar como preservar a multiplicidade no modelo moderno.
 - **Onde aparece:** Estágio 1, ao mapear os 4 DDMs.
 
 ## N
@@ -229,7 +229,7 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 - **O que é:** grupo de campos que se repete várias vezes dentro do mesmo registro (ex.: até 12 históricos mensais).
 - **Analogia:** sub-tabela embutida na linha — também não cabe em SQL puro.
-- **Por que importa:** todo `PE` vira tabela filha no PostgreSQL.
+- **Por que importa:** o time deve decidir e documentar como preservar as ocorrências e sua ordem no modelo moderno.
 - **Onde aparece:** Estágio 1, junto com MU.
 
 ### PR · Pull Request
@@ -254,7 +254,7 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 ### REQ-ID
 
-- **O que é:** identificador único de um requisito (ex.: `REQ-PAY-013`).
+- **O que é:** identificador único de um requisito (ex.: `REQ-XXX`).
 - **Analogia:** número da CNH — sem ele, o requisito não rastreia.
 - **Onde aparece:** Estágio 2 em diante. Todo commit do Estágio 3 cita `Implements REQ-XXX`.
 
@@ -274,7 +274,7 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 ### `source_legacy:`
 
-- **O que é:** linha obrigatória em cada REQ-ID que aponta para o arquivo legado de origem (ex.: `01-arqueologia/legado-sifap/natural-programs/CALCDSCT.NSN#L142-L148`).
+- **O que é:** linha obrigatória em cada REQ-ID que aponta para o arquivo legado de origem (ex.: `arquivo.NSN#L<início>-L<fim>`).
 - **Analogia:** nota de rodapé com fonte da informação.
 - **Onde aparece:** Estágio 2. **Se faltar, o CI rejeita o PR.**
 
@@ -326,7 +326,7 @@ Essa cadeia é a **rastreabilidade** que o CI verifica. Sempre que tiver dúvida
 <tr>
 <td width="50%" valign="top" align="left">
 <sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="README.md"><strong>Documentação transversal</strong></a><br/>
+<a href="../docs/README.md"><strong>Documentação transversal</strong></a><br/>
 <sub>glossário, sdlc-flow, persona-agent-matrix, runbook.</sub>
 </td>
 <td width="50%" valign="top" align="right">

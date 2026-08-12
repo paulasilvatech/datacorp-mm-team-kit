@@ -23,6 +23,7 @@ Use essas skills como fonte operacional para procedimentos, checklists e criteri
 Geração de testes a partir de specs, análise de cobertura e gates de qualidade.
 
 ## Restrições
-- Siga CONSTITUTION.md e SPECIFICATION.md
+- Siga `.specify/memory/constitution.md` e os artefatos da feature em
+  `specs/<NNN>-<feature>/`.
 - Use a capacidade selecionada pela pessoa usuária
 - Sinalize quando input humano for necessário

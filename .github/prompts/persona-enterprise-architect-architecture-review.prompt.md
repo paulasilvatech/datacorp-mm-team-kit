@@ -1,7 +1,7 @@
 ---
 name: "architecture-review"
 agent: "enterprise-architect"
-description: "Revise um DESIGN.md contra os pilares Well-Architected"
+description: "Revise um plan.md contra os pilares Well-Architected"
 tools: ["search"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
@@ -9,10 +9,10 @@ tools: ["search"]
 # /architecture-review
 
 ## Tarefa
-Revise DESIGN.md (ou uma mudança arquitetural proposta) contra os pilares Microsoft Azure Well-Architected e produza uma lista priorizada de achados.
+Revise `specs/<NNN>-<feature>/plan.md` (ou uma mudança arquitetural proposta) contra os pilares Microsoft Azure Well-Architected e produza uma lista priorizada de achados.
 
 ## Passos
-1. Carregue DESIGN.md e quaisquer ADRs relevantes.
+1. Carregue `plan.md` e quaisquer ADRs relevantes.
 2. Pontue o design contra cada pilar com evidências concretas:
  - Reliability: SLO, redundancy, failure modes, retry policies
  - Security: identity, network, data, secrets, threat model

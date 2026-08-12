@@ -10,7 +10,7 @@ tools: ["search", "edit"]
 
 ## Objetivo
 
-Você é o software architect gerando um **mapa de código em nível de serviço** que complementa `DESIGN.md`. Enquanto `DESIGN.md` responde "por quê", o code map responde "onde" e "o que toca o quê". Ele é lido na IDE, deve caber em dez minutos e é atualizado junto com qualquer mudança estrutural.
+Você é o software architect gerando um **mapa de código em nível de serviço** que complementa `plan.md`. Enquanto `plan.md` responde "por quê", o code map responde "onde" e "o que toca o quê". Ele é lido na IDE, deve caber em dez minutos e é atualizado junto com qualquer mudança estrutural.
 
 ## Entradas
 
@@ -18,7 +18,7 @@ Peça ao usuário o que estiver faltando.
 
 - O serviço a mapear (por exemplo `payments`, `beneficiaries`, `audit`).
 - A raiz do path (`backend/src/main/java/br/gov/sifap/<service>/`, `frontend/app/<route>/` ou outro path criado pelo time).
-- A pasta de spec vinculada (`specs/<NNN>-<feature>/SPECIFICATION.md`).
+- A pasta de spec vinculada (`specs/<NNN>-<feature>/spec.md`).
 - Se deve incluir ou excluir paths `test/`.
 - Um code map anterior para este serviço, se existir.
 
@@ -26,7 +26,7 @@ Peça ao usuário o que estiver faltando.
 
 1. **Liste pacotes e tipos principais.** Para Java, agrupe por `controller`, `service`, `domain`, `repository`, `infrastructure`, `config`. Para TypeScript, agrupe por `app/`, `components/`, `lib/`, `server/`.
 2. **Capture o papel de cada componente em uma linha.** "Orchestrates disbursement workflow," "JPA mapping for payment_attempt," "REST adapter for /api/v1/payments."
-3. **Mapeie dependências inbound e outbound.** Inbound: quem chama isto? Outbound: o que isto chama? Fique em dependências diretas; análise transitiva fica em `DESIGN.md`.
+3. **Mapeie dependências inbound e outbound.** Inbound: quem chama isto? Outbound: o que isto chama? Fique em dependências diretas; análise transitiva fica em `plan.md`.
 4. **Encontre tipos compartilhados e ports.** Interfaces em `domain/`, ports em `application/`, gateways em `infrastructure/`. Liste quais são contratos estáveis e quais são internos.
 5. **Cruze referências de REQ-IDs.** Para cada método público ou componente, encontre anotações `@implements REQ-NNN`. Liste componentes sem requisito ("no REQ-ID found") para revisão.
 6. **Encontre linhagem legada.** Observe quais programas Natural em `01-arqueologia/legado-sifap/natural-programs/` mapeiam para qual componente Java. Isso é essencial para a modernização do SIFAP.
@@ -100,12 +100,6 @@ flowchart LR
 ## 7. Como atualizar
 Rode `/codemap` após qualquer adição/renomeação/exclusão em `payments/`. Vincule este arquivo a partir de `docs/CODEMAP.md`.
 ```
-
-## Exemplo trabalhado
-
-**Entrada:** Mapear o serviço `payments` depois que `RetryOrchestrator` foi extraído de `PaymentService`.
-
-**Resposta esperada:** a estrutura acima, com o novo componente, contagem outbound atualizada para `PaymentService` (5 → 4), e uma nota resolvendo o smell sinalizado anteriormente.
 
 ## Antipadrões
 

@@ -79,7 +79,7 @@
 ### "CI rejeitou meu PR: `missing source_legacy`"
 
 - **Causa:** uma das EARS não tem a linha `source_legacy:`.
-- **Solução:** abra o `SPECIFICATION.md`, procure REQ-IDs sem `source_legacy:`, e ou (a) aponte para `01-arqueologia/legado-sifap/...#L<linha>` ou (b) marque `[GREENFIELD] <motivo>`.
+- **Solução:** abra `specs/<NNN>-<feature>/spec.md`, procure REQ-IDs sem `source_legacy:`, e ou (a) aponte para `01-arqueologia/legado-sifap/...#L<linha>` ou (b) marque `[GREENFIELD] <motivo>`.
 - 📘 Veja [`07-conceitos/05-ears-receita-de-cogumelo.md`](../07-conceitos/05-ears-receita-de-cogumelo.md).
 
 ### "`/speckit.clarify` está fazendo 12 perguntas. É muito?"
@@ -202,20 +202,19 @@ Se o Copilot Chat parar de responder por mais de 5 minutos:
 
 1. ⚠️ **NÃO espere.** O dia tem 8h, você não pode pagar 30 min ocioso.
 2. 🔄 Tente recarregar o VS Code (`Cmd+Shift+P` → *Reload Window*). Se voltar, continue.
-3. 📋 Se continuar offline, **vá para [`../08-exemplos/`](../08-exemplos/)** e copie a estrutura do artefato similar ao seu.
-4. ✍️ Adapte com sua cabeça (você tem o suficiente — os exemplos são gabarito).
+3. 📋 Se continuar offline, releia os templates e os artefatos que o seu time já produziu.
+4. ✍️ Estruture o próximo artefato a partir da evidência disponível, sem inventar dados.
 5. 📝 No PR, escreva: *"Feito manualmente em X min (Copilot offline)"* — isso ajuda no relatório de evolução do Estágio 4.
 6. 🤝 Combine com o par receptor que o PR pode ter menos refinamento que o normal.
 
 **O CI continua validando.** Você não está perdido — só sem assistente.
 
-| Artefato sem Copilot | Use como base |
+| Artefato sem Copilot | Próximo passo |
 |---|---|
-| EARS no Estágio 2 | [`../08-exemplos/SPECIFICATION-exemplo.md`](../08-exemplos/SPECIFICATION-exemplo.md) |
-| ADR no Estágio 2 | [`../08-exemplos/ADR-001-monolito-modular-exemplo.md`](../08-exemplos/ADR-001-monolito-modular-exemplo.md) |
-| Service Java no Estágio 3 | [`../08-exemplos/PaymentService-exemplo.java`](../08-exemplos/PaymentService-exemplo.java) |
-| Migration no Estágio 3 | [`../08-exemplos/V1__init_payment_module-exemplo.sql`](../08-exemplos/V1__init_payment_module-exemplo.sql) |
-| Issue para Agent no Estágio 4 | [`../08-exemplos/issue-para-agent-exemplo.md`](../08-exemplos/issue-para-agent-exemplo.md) |
+| EARS no Estágio 2 | Use as descobertas rastreáveis e o fluxo do [Spec-Kit](../09-cheat-sheets/spec-kit-workflow.md). |
+| ADR no Estágio 2 | Preencha o [template de ADR](../02-spec-moderna/ADR-TEMPLATE.md). |
+| Implementação no Estágio 3 | Releia a EARS priorizada, os DDMs e as decisões do time. |
+| Issue para Agent no Estágio 4 | Escreva contexto, critérios de aceite e rastreabilidade da mudança. |
 
 ---
 

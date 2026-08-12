@@ -32,7 +32,7 @@ Dono dos dados. No SIFAP legado isso significa entender os 4 DDMs Adabas com MU 
 
 ## Missão no workshop
 
-Traduzir o modelo Adabas para um schema relacional que funciona. Garantir migrações idempotentes (Flyway). Desenhar índices e particionamento para o ciclo mensal caber em 2 horas. Proteger a rastreabilidade (audit store).
+Traduzir apenas o modelo Adabas necessário ao recorte para um schema relacional que funciona. Garantir migrações idempotentes (Flyway) e proteger a rastreabilidade.
 
 ## Seu papel no framework Agentic Legacy Modernization
 
@@ -82,9 +82,9 @@ Traduzir o modelo Adabas para um schema relacional que funciona. Garantir migra�
 
 ## 3 prompts de exemplo
 
-1. **(Chat)** _"Leia o DDM BENEFICIARIO.ddm do Adabas e traduza para schema PostgreSQL 16. O grupo PE (periódico) de dependentes deve virar tabela separada ou JSONB? Justifique."_
-2. **(Plan)** _"Planeje uma migração Flyway V5\_\_add_indexes.sql com índices para: busca por CPF, listagem de pagamentos por ciclo+status, auditoria por tipo+data."_
-3. **(Chat)** _"Revise este schema e identifique: campos sem NOT NULL que deveriam ter, foreign keys faltantes e índices para o ciclo mensal de 3,8M pagamentos."_
+1. **(Chat)** _"Leia o DDM atribuído ao time e proponha alternativas de mapeamento relacional, com trade-offs que precisamos decidir."_
+2. **(Plan)** _"Planeje uma migração Flyway para os campos, relações e índices que a EARS priorizada exige."_
+3. **(Chat)** _"Revise este schema e identifique restrições e índices que precisam de evidência antes de serem criados."_
 
 ## Se travar (defaults de emergência)
 

@@ -57,7 +57,7 @@ Dois arquivos:
 - [ ] Grupos PE usam `@OneToMany` com uma classe de entidade separada
 - [ ] A migration Flyway é DDL PostgreSQL 16 válida
 - [ ] Nomes de campos crípticos têm comentários em inglês `// FIXME: confirm semantics`
-- [ ] Campos crípticos são adicionados ao catálogo de mistérios se ainda não estiverem lá
+- [ ] Campos crípticos são encaminhados para registro humano como perguntas em aberto quando necessário
 
 ## Corpo do Prompt
 
@@ -116,7 +116,9 @@ Para qualquer campo cujo nome Adabas de 2 caracteres não tenha equivalente clar
 private String xxValue;
 ```
 
-Se o campo ainda não estiver em `01-arqueologia/mysteries-found.md`, anote para a equipe adicionar.
+Se o campo ainda não estiver em `01-arqueologia/mysteries-found.md`, informe a equipe
+para que uma pessoa o registre como pergunta em aberto com evidência `path:linha`. Não
+descreva uma resposta, confirme uma hipótese ou altere o status do catálogo.
 
 **Passo 6 — Gerar migration Flyway.**
 Escreva um script DDL PostgreSQL 16:

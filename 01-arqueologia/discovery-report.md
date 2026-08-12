@@ -48,11 +48,11 @@
 
 ## 3. O Que É Arriscado
 
-### 3.1 Mistérios que Bloqueiam o Estágio 2
+### 3.1 Perguntas em Aberto Aguardando Validação Humana
 
-| MYS-ID | Descrição | Caminho de Resolução |
-| ------ | --------- | -------------------- |
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+| Pergunta aberta | Evidência (`path:linha`) | Impacto | Hipótese (não confirmada) | Pessoa/área responsável | Status |
+| --------------- | ------------------------ | ------- | ------------------------- | ----------------------- | ------ |
+| <!-- preencher --> | <!-- preencher: path:linha --> | <!-- preencher --> | <!-- preencher: não confirmada --> | <!-- preencher --> | <!-- preencher --> |
 
 ### 3.2 Regras com Evidência Fraca
 
@@ -87,7 +87,7 @@
 | Inventário        | [inventory.md](inventory.md)                             | <!-- preencher --> |
 | Regras de Negócio | [business-rules-catalog.md](business-rules-catalog.md)   | <!-- preencher --> |
 | Dependências      | [dependency-map.md](dependency-map.md)                   | <!-- preencher --> |
-| Mistérios         | [mysteries-found.md](mysteries-found.md)                 | <!-- preencher --> |
+| Perguntas em aberto | [mysteries-found.md](mysteries-found.md)               | <!-- preencher --> |
 | Glossário         | [glossary.md](glossary.md)                               | <!-- preencher --> |
 
 ## 6. Aprovação da Equipe

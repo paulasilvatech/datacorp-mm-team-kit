@@ -89,12 +89,6 @@ Dois parágrafos. O que aconteceu, por quê, o que fizemos, quais mudanças.
 - Autoscaling de connection pool está no roadmap da plataforma; não tratado nas ações deste incidente. Risco reavaliado em 2026-Q3.
 ```
 
-## Exemplo trabalhado
-
-**Entrada:** incidente SEV-2 de latência em `/payments` depois de um deploy da feature `audit-log`.
-
-**Esqueleto esperado da resposta:** a estrutura acima preenchida, com cinco entradas de linha do tempo, quatro fatores contribuintes, quatro ações com responsáveis nomeados e um risco aceito.
-
 ## Antipadrões
 
 - Nomear indivíduos ao lado de erros. RCAs são sobre sistemas, não pessoas.

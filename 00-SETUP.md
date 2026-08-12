@@ -510,11 +510,11 @@ git checkout develop
 git pull
 
 # Crie sua branch de funcionalidade
-git checkout -b spec/001-payment-cycle-generation
+git checkout -b spec/001-feature-name
 
 # Trabalhe e faça commit
 git add -A
-git commit -m "feat(payments): draft EARS requirements for cycle generation"
+git commit -m "feat: draft EARS requirements"
 
 # Envie para origin
 git push -u origin spec/001-payment-cycle-generation
@@ -523,11 +523,11 @@ git push -u origin spec/001-payment-cycle-generation
 ### Abrindo um Pull Request
 
 1. Depois do push, o GitHub imprime uma URL como `https://github.com/.../pull/new/spec/001-...`. Clique nela (ou cole no navegador).
-2. Título: use Conventional Commits — `feat(payments): add cycle generation spec`
+2. Título: use Conventional Commits — `feat: add feature spec`
 3. Descrição: o GitHub carrega automaticamente o template (`.github/PULL_REQUEST_TEMPLATE.md`). Preencha:
 
 - **O que mudou** (um parágrafo)
-- **REQ-IDs implementados** (por exemplo, `REQ-PAY-014, REQ-PAY-015`)
+- **REQ-IDs implementados** (por exemplo, `REQ-XXX, REQ-YYY`)
 - **Como testar** (a pessoa revisora faz pull e roda isto)
 - **Issues vinculadas** (por exemplo, `Closes #12`)
 
@@ -625,7 +625,7 @@ Cada persona tem um **ciclo diário padrão**. Rode-o quantas vezes forem necess
 ```
 1. Depois de cada merge em develop, procure drift em ADR/glossário
 2. Rode o prompt `/doc-drift` (prompt ativo: `.github/prompts/persona-tech-writer-doc-drift.prompt.md`)
-3. Atualize docs/glossary.md, docs/adr/, READMEs
+3. Atualize 01-arqueologia/glossary.md, docs/adr/ e os READMEs
 4. Abra um PR pequeno por atualização de documentação
 ```
 

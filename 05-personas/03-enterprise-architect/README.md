@@ -19,7 +19,7 @@
 
 <!-- markdownlint-disable MD013 MD022 MD031 MD032 MD060 -->
 
-> `CONSTITUTION.md`, ADRs, revisões arquiteturais e governança de segurança.
+> `.specify/memory/constitution.md`, ADRs, revisões arquiteturais e governança de segurança.
 
 Leia primeiro: [PERSONA.md](PERSONA.md).
 
@@ -37,7 +37,7 @@ Arquitetura, Desenho, Segurança
 | `.github/prompts/persona-enterprise-architect-architecture-review.prompt.md` | Prompt | `/architecture-review` |
 | `.github/instructions/security.instructions.md` | Instructions | Convenções de segurança |
 | `.github/instructions/infrastructure.instructions.md` | Instructions | Convenções de IaC |
-| `hooks.json` | Hooks | Bloqueios de edição para `CONSTITUTION.md` |
+| `hooks.json` | Hooks | Bloqueios de edição para `.specify/memory/constitution.md` |
 
 ## Uso no workshop
 
@@ -92,4 +92,3 @@ Se este kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse 
 </table>
 
 <sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
-

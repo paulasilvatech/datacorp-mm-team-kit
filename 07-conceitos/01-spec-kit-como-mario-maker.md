@@ -150,7 +150,7 @@ Postgres 16 e Testcontainers para teste de integração.
 
 | Sintoma | O que fazer |
 |---|---|
-| "Não sei o que escrever em `/speckit.specify`" | Olhe [`08-exemplos/SPECIFICATION-exemplo.md`](../08-exemplos/SPECIFICATION-exemplo.md). Copie o estilo. |
+| "Não sei o que escrever em `/speckit.specify`" | Releia a descoberta do seu time e registre apenas o que tem evidência. |
 | "O `/speckit.clarify` está fazendo 12 perguntas. É muito?" | Não. É bom. Cada pergunta evita um bug. Responda. |
 | "`/speckit.analyze` está reclamando" | Bom. **Não pule.** Resolva os apontamentos antes de implementar. |
 | "Onde fica o Spec-Kit instalado?" | `.specify/` no raiz do repo. Comandos via Copilot Chat. Veja [`09-cheat-sheets/spec-kit-workflow.md`](../09-cheat-sheets/spec-kit-workflow.md). |
@@ -161,7 +161,6 @@ Postgres 16 e Testcontainers para teste de integração.
 
 - 📜 [Repo oficial do Spec-Kit](https://github.com/github/spec-kit)
 - 🎴 [Cheat-sheet de 1 página](../09-cheat-sheets/spec-kit-workflow.md)
-- 📘 [Exemplo de SPECIFICATION pronta](../08-exemplos/SPECIFICATION-exemplo.md)
 - 🎯 [Estágio 2 — onde isso é usado](../02-spec-moderna/GUIDE.md)
 
 ---

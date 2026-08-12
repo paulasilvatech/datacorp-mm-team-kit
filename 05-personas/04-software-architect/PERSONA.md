@@ -22,9 +22,9 @@
 ![Linha do tempo do dia mostrando onde esta persona atua](../../assets/timeline-stages.svg)
 
 - **Par**: 2 · Arquitetura (junto com Enterprise Architect)
-- **Fases lideradas**: Especificação (S2) — C4 L2/L3 + ADRs + Implementação (S3) — revisão estrutural
-- **Recebe de**: Enterprise Architect (C4 L1) e Requirements Engineer (REQ-IDs)
-- **Faz passagem para**: Par 3 (Implementação) no H2 — estrutura de pacotes pronta
+- **Fases lideradas**: Especificação (S2) — plano técnico do recorte + Implementação (S3) — revisão estrutural
+- **Recebe de**: Enterprise Architect (evidências de dependência) e Requirements Engineer (REQ-IDs)
+- **Faz passagem para**: Par 3 (Implementação) no H2 — `plan.md` e primeira tarefa claros
 
 ## Quem é essa pessoa
 
@@ -32,7 +32,7 @@ Dono da estrutura interna do sistema. Decide como módulos são organizados, ond
 
 ## Missão no workshop
 
-Produzir C4 Níveis 2 e 3 coerentes com a spec. Definir os bounded contexts do SIFAP 2.0 (Beneficiary, Agreement, Payment, Adjustment, Cycle, Audit) e o padrão de comunicação entre eles. Garantir que o código do Estágio 3 respeite as fronteiras desenhadas.
+Produzir somente o plano técnico necessário à feature escolhida. Definir limites e comunicação quando a evidência os exigir e garantir que o código do Estágio 3 respeite as decisões registradas.
 
 ## Seu papel no framework Agentic Legacy Modernization
 
@@ -44,8 +44,8 @@ Produzir C4 Níveis 2 e 3 coerentes com a spec. Definir os bounded contexts do S
 
 | Estágio                | Você faz isso                                                                                                      | Entregável que depende de você                            |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
-| 1. Arqueologia         | Identifica conceitos recorrentes nos Naturals e começa a propor bounded contexts candidatos.                       | Lista inicial de módulos/contextos                        |
-| 2. Spec Moderna        | Desenha C4 Nível 2 e Nível 3 para pelo menos dois contextos. Escreve o ADR de Modular Monolith.                    | Diagramas C4 + ADRs 1 e 2                                 |
+| 1. Arqueologia         | Identifica conceitos recorrentes e dependências relevantes ao recorte. | Evidências para discutir limites |
+| 2. Spec Moderna        | Escreve o plano técnico da feature e registra decisão apenas quando bloquear a tarefa. | `plan.md` e decisão de apoio, se necessária |
 | 3. Implementação       | Estabelece a estrutura inicial do projeto Spring (pacotes, camadas). Revisa PRs que cruzam fronteiras de contexto. | `pom.xml` + layout de módulos + review de PRs estruturais |
 | 4. Evolução com Agent  | Valida que o PR do Agent respeita as fronteiras. Rejeita merges que quebrem modularidade.                          | Modularidade preservada                                   |
 
@@ -64,7 +64,7 @@ Produzir C4 Níveis 2 e 3 coerentes com a spec. Definir os bounded contexts do S
 ## Como você se sai bem
 
 - O layout de pacotes reflete os bounded contexts, não as camadas técnicas.
-- Seus ADRs são curtos, específicos, e citam a referência do `03-spec-sifap-moderno/` quando relevante.
+- Seus ADRs são curtos, específicos, e citam a feature correspondente em `specs/<NNN>-<feature>/` quando relevante.
 - O Modular Monolith permanece monolito no deploy mas modular no código.
 - Você redesenha fronteiras quando preciso, em vez de "pedir perdão depois".
 
@@ -82,14 +82,14 @@ Produzir C4 Níveis 2 e 3 coerentes com a spec. Definir os bounded contexts do S
 
 ## 3 exemplos de prompt
 
-1. **(Chat)** _"Com base nestes requisitos EARS, proponha os bounded contexts do SIFAP 2.0. Para cada contexto liste: entidades, serviços expostos e dependências de outros contextos."_
+1. **(Chat)** _"Com base nestes requisitos EARS, proponha hipóteses de fronteiras de contexto. Para cada hipótese liste evidências, entidades e dependências."_
 2. **(Plan)** _"No projeto Spring Boot, planeje a estrutura de pacotes para um novo bounded context 'notification' seguindo o padrão dos existentes (domain/application/infrastructure)."_
 3. **(Chat)** _"Revise este PR e identifique imports que cruzam fronteiras de bounded context. Para cada violação, sugira como isolar."_
 
 ## Se travar (defaults de emergência)
 
-- **Bounded contexts confusos?** Comece com 4: Beneficiary, Payment, Audit, Admin. É o que o protótipo já usa.
-- **Diagrama C4 L2 travado?** Use o exemplo de [`../02-spec-moderna/GUIDE.md`](../../02-spec-moderna/GUIDE.md) como ponto de partida.
+- **Bounded contexts confusos?** Comece pelas evidências de coesão, acoplamento e frequência de mudança; não presuma fronteiras.
+- **Fronteira travada?** Volte à evidência legada e registre a dúvida; não crie um diagrama como substituto de confirmação.
 - **Time organizado por camadas em vez de contextos?** Não refatore agora — documente no ADR e corrija se sobrar tempo.
 - **Dúvida se algo é domain ou application?** "Se é regra de negócio pura, é domain. Se orquestra, é application."
 
@@ -97,14 +97,14 @@ Produzir C4 Níveis 2 e 3 coerentes com a spec. Definir os bounded contexts do S
 
 | Persona              | Relação           | Artefato                                      |
 | -------------------- | ----------------- | --------------------------------------------- |
-| Enterprise Architect | VOCÊ depende dele | C4 L1 para desenhar L2/L3                     |
+| Enterprise Architect | VOCÊ depende dele | Evidências de dependência para o plano técnico |
 | Developer            | Depende de VOCÊ   | Estrutura de pacotes para implementar         |
 | Technical Lead       | Depende de VOCÊ   | Padrões de módulo para enforcement            |
 | DBA                  | Depende de VOCÊ   | Fronteiras de contexto para o modelo de dados |
 
 ## Como você é avaliado
 
-- **Rubrica A2 (Spec):** C4 L2/L3 coerente com requisitos.
+- **Rubrica A2 (Spec):** plano técnico coerente com requisitos e evidências.
 - **Rubrica A3 (Integridade Técnica):** bounded contexts respeitados no código.
 - Critério: "Nenhum import cruza fronteira de contexto sem justificativa."
 ---

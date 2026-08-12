@@ -3,8 +3,8 @@
     "preToolUse": [
       {
         "trigger": "edit_file",
-        "description": "Block CONSTITUTION.md edits without approval",
-        "command": "if echo $TOOL_FILE | grep -q CONSTITUTION.md; then echo DENY: requires human approval; exit 1; fi"
+        "description": "Block Spec-Kit constitution edits without approval",
+        "command": "if echo $TOOL_FILE | grep -q .specify/memory/constitution.md; then echo DENY: requires human approval; exit 1; fi"
       }
     ],
     "postToolUse": []

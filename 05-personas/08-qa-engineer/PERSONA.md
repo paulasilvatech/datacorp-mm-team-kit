@@ -84,9 +84,9 @@ Definir a estratégia de testes do projeto. Escrever testes críticos (não 100%
 
 ## 3 prompts de exemplo
 
-1. **(Chat)** _"Para o requisito EARS 'When um ciclo é gerado, crie pagamentos para ACTIVE': gere 5 cenários de teste cobrindo happy path, sem ativos, beneficiário suspenso, valor zero e erro de banco."_
-2. **(Plan)** _"No PaymentCycleServiceTest.java, planeje testes de integração com Testcontainers que: insiram um beneficiário, criem um ciclo, gerem pagamentos e verifiquem valores."_
-3. **(Chat)** _"Analise a cobertura atual de testes e identifique os 3 caminhos mais críticos sem testes. Priorize por impacto no beneficiário."_
+1. **(Chat)** _"Para esta EARS, gere cenários de teste que cubram comportamento principal, limites e falhas relevantes."_
+2. **(Plan)** _"Para a classe da funcionalidade priorizada, planeje testes de integração com os dados e as verificações necessários."_
+3. **(Chat)** _"Analise a cobertura atual e identifique os caminhos de maior risco sem teste. Priorize usando a evidência do time."_
 
 ## Se travar (defaults de emergência)
 

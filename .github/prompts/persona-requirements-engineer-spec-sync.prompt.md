@@ -1,7 +1,7 @@
 ---
 name: "spec-sync"
 agent: "requirements-engineer"
-description: "Sincronize SPECIFICATION.md com o codebase atual"
+description: "Sincronize spec.md com o codebase atual"
 tools: ["search"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
@@ -9,14 +9,14 @@ tools: ["search"]
 # /spec-sync
 
 ## Tarefa
-Detecte drift entre SPECIFICATION.md e a implementação. Produza um relatório de sincronização e uma proposta de atualização da spec.
+Detecte drift entre `specs/<NNN>-<feature>/spec.md` e a implementação. Produza um relatório de sincronização e uma proposta de atualização da spec.
 
 ## Passos
-1. Faça parse dos REQ-IDs de SPECIFICATION.md.
+1. Faça parse dos REQ-IDs de `spec.md`.
 2. Use grep no codebase para referências a REQ-ID (em comentários, nomes de testes, mensagens de commit).
 3. Para cada REQ-ID: classifique como Implemented (tem código + teste), Partial (apenas código), Orphaned (sem código), Undocumented (o código referencia um REQ-ID desconhecido).
 4. Para drift comportamental: escolha 3 fluxos representativos, compare a spec com o caminho real do código.
-5. Proponha adições/atualizações em SPECIFICATION.md para quaisquer itens Undocumented encontrados.
+5. Proponha adições/atualizações em `spec.md` para quaisquer itens Undocumented encontrados.
 
 ## Saída
 - Tabela de drift: `REQ-ID | Status | Evidência (arquivo:linha) | Ação`
@@ -27,4 +27,4 @@ Detecte drift entre SPECIFICATION.md e a implementação. Produza um relatório 
 - [ ] Todo REQ-ID na spec está classificado
 - [ ] Todo achado Undocumented tem um REQ-ID proposto e uma declaração EARS
 - [ ] Evidência cita arquivo:linha exato
-- [ ] O patch proposto compila contra a estrutura atual de SPECIFICATION.md
+- [ ] O patch proposto compila contra a estrutura atual de `spec.md`

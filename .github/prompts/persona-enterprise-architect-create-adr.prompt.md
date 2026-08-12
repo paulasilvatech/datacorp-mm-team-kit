@@ -39,7 +39,7 @@ Peça ao usuário o que estiver faltando.
  - Perfil de custo / risco em linguagem simples.
 5. **Nomeie a decisão e a justificativa.** Um parágrafo para cada. Referencie a opção escolhida pelo nome.
 6. **Capture consequências — positivas *e* negativas.** O que se torna possível? O que fica mais difícil? Quais novos riscos aparecem? Quais outras decisões agora ficam forçadas ou restringidas?
-7. **Vincule para frente e para trás.** Cite os REQ-IDs, ADRs anteriores na mesma feature e itens inegociáveis de CONSTITUTION.md dos quais essa decisão depende.
+7. **Vincule para frente e para trás.** Cite os REQ-IDs, ADRs anteriores na mesma feature e itens inegociáveis de `.specify/memory/constitution.md` dos quais essa decisão depende.
 8. **Registre a data e os signatários.** Data do fórum de arquitetura. Nomes dos aprovadores (technical lead, software architect, donos de persona afetados).
 
 ## Saída
@@ -103,12 +103,6 @@ A Opção B isola o legado do código novo, satisfaz a InfoSec e nos dá um cami
 - Suíte de testes de contrato `adapter-pact` roda em todo PR.
 - Uma retrospectiva está agendada no mês 3 para confirmar se as premissas continuam válidas.
 ```
-
-## Exemplo trabalhado
-
-**Entrada:** Decisão sobre stack de observabilidade — Application Insights vs Grafana Cloud vs in-house Prometheus.
-
-**Resposta esperada:** um ADR seguindo o template, com três opções, um caminho escolhido, perfil calibrado de custo/risco e consequências nomeando instrumentação de SLO, roteamento de alertas e treinamento de operadores.
 
 ## Antipadrões
 

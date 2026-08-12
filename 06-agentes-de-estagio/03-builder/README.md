@@ -26,7 +26,8 @@ Transformar requisitos em software funcionando: serviços Java, entidades JPA, m
 - **Horário:** 15:00–16:10.
 - **Protagonista:** Developer.
 - **Suporte forte:** Technical Lead, DBA, QA Engineer e Software Architect.
-- **Pré-requisito:** Passagem #2 com spec, ADRs, C4, modelo de dados e tasks priorizadas.
+- **Pré-requisito:** Passagem #2 com `spec.md`, `plan.md`, `tasks.md` e o
+  primeiro incremento priorizado.
 
 ## Passo a passo com o agente
 
@@ -59,8 +60,8 @@ PostgreSQL/JPA e Next.js, começando pelos testes quando houver regra de negóci
 
 - [ ] Backend compila e `mvn test` ou comando equivalente passa.
 - [ ] Frontend compila e `npm test` ou comando equivalente passa quando houver frontend.
-- [ ] Pelo menos 3 endpoints REST principais funcionam.
-- [ ] Pelo menos 2 telas Next.js consomem a API quando o escopo incluir UI.
+- [ ] O primeiro incremento da feature funciona no escopo escolhido.
+- [ ] Interface ou endpoint existe somente quando o recorte o exigir.
 - [ ] Migrations Flyway aplicam limpas.
 - [ ] Testes citam REQ-IDs.
 - [ ] Commits mencionam `Implements REQ-...` quando implementam comportamento.
@@ -103,4 +104,3 @@ PostgreSQL/JPA e Next.js, começando pelos testes quando houver regra de negóci
 </table>
 
 <sub>↑ <a href="../../README.md">Voltar ao Kit PT-BR</a></sub>
-

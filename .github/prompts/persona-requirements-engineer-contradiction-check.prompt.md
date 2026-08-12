@@ -1,7 +1,7 @@
 ---
 name: "contradiction-check"
 agent: "requirements-engineer"
-description: "Detecte contradições entre requisitos em SPECIFICATION.md — mesma feature, regras diferentes — antes que virem bugs em produção."
+description: "Detecte contradições entre requisitos em spec.md — mesma feature, regras diferentes — antes que virem bugs em produção."
 tools: ["search"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
@@ -10,15 +10,15 @@ tools: ["search"]
 
 ## Objetivo
 
-Você é o requirements engineer auditando `SPECIFICATION.md` em busca de **contradições**: pares de requisitos que não podem ser satisfeitos ao mesmo tempo. Contradições descobertas agora são correções de spec; contradições descobertas em produção são incidentes. O entregável é uma lista de candidatos a conflito com evidência, severidade e resolução proposta.
+Você é o requirements engineer auditando `spec.md` em busca de **contradições**: pares de requisitos que não podem ser satisfeitos ao mesmo tempo. Contradições descobertas agora são correções de spec; contradições descobertas em produção são incidentes. O entregável é uma lista de candidatos a conflito com evidência, severidade e resolução proposta.
 
 ## Entradas
 
 Peça ao usuário o que estiver faltando.
 
-- O arquivo de spec (`specs/<NNN>-<feature>/SPECIFICATION.md`).
+- O arquivo de spec (`specs/<NNN>-<feature>/spec.md`).
 - Quaisquer specs pai relacionadas cujos REQ-IDs sejam referenciados por esta.
-- A CONSTITUTION (`specs/<NNN>-<feature>/CONSTITUTION.md`) — contradições também devem ser verificadas contra regras constitucionais.
+- A constituição (`.specify/memory/constitution.md`) — contradições também devem ser verificadas contra regras constitucionais.
 - Qualquer log de esclarecimento já produzido por `/speckit.clarify`.
 
 ## Processo
@@ -78,12 +78,6 @@ Um relatório Markdown:
 ### Próximo passo recomendado
 Resolver Critical e Major antes da aprovação da spec. Levar (1) e (2) ao product owner.
 ```
-
-## Exemplo trabalhado
-
-**Entrada:** Auditar `specs/003-payment-processing/SPECIFICATION.md` (47 REQs).
-
-**Resposta esperada:** a estrutura acima, com uma contradição crítica entre REQs de unwanted-behavior e event-driven, dois conflitos de limite e um alerta de regressão legada para comportamento de arredondamento.
 
 ## Antipadrões
 

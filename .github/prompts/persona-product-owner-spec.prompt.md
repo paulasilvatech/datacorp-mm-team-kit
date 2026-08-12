@@ -1,7 +1,7 @@
 ---
 name: "spec"
 agent: "product-owner"
-description: "Escreva uma seção de SPECIFICATION.md a partir de user stories usando notação EARS com rastreabilidade obrigatória ao legado. Use para novas features."
+description: "Escreva uma seção de spec.md a partir de user stories usando notação EARS com rastreabilidade obrigatória ao legado. Use para novas features."
 tools: ["search", "edit"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
@@ -19,7 +19,7 @@ Todo requisito que você emitir deve incluir uma linha `source_legacy:`:
 Se o usuário não identificou uma fonte legada para uma declaração de entrada, **recuse-se a escrever a EARS**. Pergunte qual arquivo em `01-arqueologia/legado-sifap/` é a fonte, ou exija um marcador `[GREENFIELD]` explícito. O CI rejeita specs sem `source_legacy` e a rubrica reduz a avaliação para Precario.
 
 ## Passos
-1. Leia CONSTITUTION.md para entender restrições de segurança
+1. Leia `.specify/memory/constitution.md` para entender restrições de segurança
 2. Leia o(s) arquivo(s) citado(s) em `01-arqueologia/legado-sifap/` antes de rascunhar qualquer EARS
 3. Identifique premissas não declaradas no requisito
 4. Liste restrições (performance, segurança, compatibilidade)
@@ -48,6 +48,6 @@ REQ-<DOMAIN>-NNN:
 ## Gate de Qualidade
 - [ ] Todo requisito é testável
 - [ ] **Todo requisito tem um `source_legacy:` não vazio**
-- [ ] Nenhuma contradição com CONSTITUTION.md
+- [ ] Nenhuma contradição com `.specify/memory/constitution.md`
 - [ ] Todas as premissas estão explicitamente declaradas
 - [ ] Fora de escopo claramente definido

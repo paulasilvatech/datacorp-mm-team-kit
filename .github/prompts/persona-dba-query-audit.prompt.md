@@ -89,12 +89,6 @@ CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_payment_beneficiary_paid_at
 - Fazer bind de `:since` como `Instant` (mapeado para `TIMESTAMPTZ`).
 ```
 
-## Exemplo trabalhado
-
-**Entrada:** Consulta que retorna pagamentos recentes de um beneficiário, chamada de `PaymentRepository.findRecent()`, endpoint quente (~150 RPS).
-
-**Veredito esperado:** correção obrigatória. A auditoria segue o template acima e termina com uma nota de um parágrafo dizendo que a migração `db/migration/V202604300945__idx_payment_beneficiary_paid_at.sql` deve ser enviada junto com a mudança da aplicação.
-
 ## Antipadrões
 
 - Aprovar uma consulta porque "é rápida em dev" — dev tem 1k linhas, prod tem milhões.

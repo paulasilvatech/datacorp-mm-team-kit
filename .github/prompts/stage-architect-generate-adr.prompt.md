@@ -85,7 +85,7 @@ Se a equipe fornecer apenas 1 opção, pergunte: "Quais alternativas vocês cons
 
 **Passo 2 — Coletar contexto.**
 Pesquise os artefatos da equipe em busca de contexto relevante:
-- Verifique `02-spec-moderna/SPECIFICATION.md` para requisitos que restringem esta decisão
+- Verifique `specs/<NNN>-<feature>/spec.md` para requisitos que restringem esta decisão
 - Verifique `02-spec-moderna/bounded-contexts.md` para fronteiras de módulo que afetam a escolha
 - Verifique `01-arqueologia/discovery-report.md` para padrões legados que informam os trade-offs
 

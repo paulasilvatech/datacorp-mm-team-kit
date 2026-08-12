@@ -51,11 +51,10 @@
 
 | Métrica | Meta | Atual |
 |---|---|---|
-| Termos no glossário | ≥ 30 | — |
-| Regras BR-NNN documentadas | ≥ 15 | — |
-| REQ-IDs em EARS | ≥ 12 | — |
-| ADRs aprovadas | ≥ 3 | — |
-| Endpoints REST funcionais | ≥ 3 | — |
+| Fontes legadas confirmadas para o recorte | Todas as REQ-IDs | — |
+| Feature formal (`spec.md`, `plan.md`, `tasks.md`) | 1 | — |
+| Decisões de escopo registradas | Sim | — |
+| Primeiro incremento implementado | 1 | — |
 | Cobertura backend | ≥ 70% | —% |
 | Cobertura frontend | ≥ 60% | —% |
 | Issues criadas para Agent | ≥ 1 | — |
@@ -79,7 +78,7 @@ Marque conforme conquistar:
 
 - [ ] 🍄 **Primeira regra BR-NNN com `Programa Fonte`** — bem-vindo à arqueologia!
 - [ ] ⭐ **Primeira EARS escrita** com `source_legacy:`
-- [ ] 📜 **3 ADRs aprovadas** pelo time
+- [ ] 📜 **Primeira decisão de escopo ligada ao plano**
 - [ ] 🚩 **CI verde no primeiro try**
 - [ ] 🦖 **Primeiro endpoint REST funcionando** via Swagger
 - [ ] 🧪 **Cobertura ≥70% backend**

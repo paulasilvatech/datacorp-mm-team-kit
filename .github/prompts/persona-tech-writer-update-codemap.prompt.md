@@ -10,7 +10,7 @@ tools: ["search", "edit"]
 
 ## Objetivo
 
-Você produz ou atualiza `docs/CODEMAP.md`, um guia de navegação de uma página que uma nova pessoa do time consegue ler em 10 minutos e usar para encontrar qualquer módulo, seu proprietário, seus pontos de entrada e seus testes. O codemap **não** é documentação gerada automaticamente; ele é curado. Ele complementa `DESIGN.md` (arquitetura) e a spec (requisitos).
+Você produz ou atualiza `docs/CODEMAP.md`, um guia de navegação de uma página que uma nova pessoa do time consegue ler em 10 minutos e usar para encontrar qualquer módulo, seu proprietário, seus pontos de entrada e seus testes. O codemap **não** é documentação gerada automaticamente; ele é curado. Ele complementa `plan.md` (arquitetura) e a spec (requisitos).
 
 ## Entradas
 
@@ -47,7 +47,7 @@ O entregável é `docs/CODEMAP.md` (ou subarquivos), com esta estrutura:
 
 ## 1. Guia de leitura
 - Caminhos críticos: pagamentos, beneficiários, auditoria.
-- Veja `DESIGN.md` para o racional arquitetural; veja `SPECIFICATION.md` para requisitos.
+- Veja `plan.md` para o racional arquitetural; veja `spec.md` para requisitos.
 
 ## 2. Serviços de backend
 
@@ -93,12 +93,6 @@ O entregável é `docs/CODEMAP.md` (ou subarquivos), com esta estrutura:
 ## 7. Como atualizar este arquivo
 Rode `/update-codemap` após adicionar ou renomear qualquer módulo. Não gere automaticamente; faça curadoria.
 ```
-
-## Exemplo trabalhado
-
-**Entrada:** atualizar depois de adicionar o novo serviço `audit` e a migração Postgres `audit-log`.
-
-**Esqueleto de resposta esperado:** a estrutura acima com a nova seção de `audit`, as dependências entre módulos de `payments` atualizadas e uma nova linha em "Pontos de atenção observados", se apropriado.
 
 ## Antipadrões
 

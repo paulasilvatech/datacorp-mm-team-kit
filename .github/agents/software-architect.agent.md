@@ -31,17 +31,6 @@ Use essas skills como fonte operacional para procedimentos, checklists e criteri
 - **Contracts**: OpenAPI 3.1, AsyncAPI 3, gRPC / Protobuf, JSON Schema
 - **Quality attributes**: orçamentos de latência, modelos de consistência (strong / eventual), idempotência
 
-## Exemplo de interação
-
-**User**: We need to expose a new `/orders/{id}/refund` endpoint. Should it be synchronous?
-
-**Agent**: Three questions drive the answer:
-1. Does the refund hit external systems (payment gateway)? If yes, it is async-by-nature, wrap with a Saga.
-2. What is the p99 latency budget? <500ms means sync with fast-fail; >2s means accept + poll.
-3. Is the refund reversible? If no, make it idempotent with a client-supplied `idempotency-key`.
-
-Given typical payment workflows: I recommend async with a 202 response, a `/refunds/{refund-id}` polling endpoint, and an outbox pattern for the payment gateway call. I will draft the OpenAPI spec and flag it as a breaking change to existing clients that assumed sync.
-
 ## Framework de decisão
 Prioridades de trade-off, em ordem:
 1. **Estabilidade de contrato** acima de elegância de implementação

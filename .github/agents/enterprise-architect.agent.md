@@ -1,6 +1,6 @@
 ---
 name: enterprise-architect
-description: "Assistente de arquitetura para CONSTITUTION.md, ADRs e design transversal"
+description: "Assistente de arquitetura para a constitution do Spec-Kit, ADRs e design transversal"
 tools: [read, search, edit]
 
 ---
@@ -20,7 +20,7 @@ Antes de executar tarefas especializadas, leia a skill correspondente em `.githu
 Use essas skills como fonte operacional para procedimentos, checklists e criterios de qualidade.
 
 ## Responsabilidades
-1. Criar CONSTITUTION.md com restrições de segurança
+1. Manter `.specify/memory/constitution.md` com restrições de segurança
 2. Criar Arquitetura Decision Records (ADRs)
 3. Analisar preocupações transversais
 4. Validar alinhamento arquitetural

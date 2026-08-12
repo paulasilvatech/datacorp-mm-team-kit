@@ -2,7 +2,7 @@
 
 # specs/
 
-![PASTA specs](https://img.shields.io/badge/PASTA-specs-00A4EF?style=for-the-badge) ![ENGINE Spec-Kit](https://img.shields.io/badge/ENGINE-Spec-Kit-1A1A1A?style=for-the-badge) ![EXEMPLO 001-example-feature](https://img.shields.io/badge/EXEMPLO-001-example-feature-737373?style=for-the-badge)
+![PASTA specs](https://img.shields.io/badge/PASTA-specs-00A4EF?style=for-the-badge) ![ENGINE Spec-Kit](https://img.shields.io/badge/ENGINE-Spec-Kit-1A1A1A?style=for-the-badge)
 
 
 
@@ -24,22 +24,18 @@ Cada funcionalidade tem uma pasta própria:
 
 ```text
 specs/
-└── 001-geracao-ciclo-pagamento/
+└── NNN-feature-name/
     ├── spec.md
     ├── plan.md
-    ├── research.md
-    ├── data-model.md
-    ├── contracts/
-    ├── quickstart.md
     └── tasks.md
 ```
 
-O número (`001`) dá ordem. O nome (`geracao-ciclo-pagamento`) explica o escopo. Evite nomes genéricos como `sifap` ou `backend`.
+O número (`NNN`) dá ordem. O nome (`feature-name`) explica o escopo. Evite nomes genéricos como `sistema` ou `backend`.
 
 ## Passo a passo
 
-1. **Escolha uma descoberta do Estágio 1.** Exemplo: regra de pagamento encontrada em `01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN`.
-2. **Crie ou renomeie a pasta da funcionalidade.** Use o padrão `NNN-nome-curto`.
+1. **Escolha uma descoberta do Estágio 1.**
+2. **Crie a pasta da funcionalidade.** Use o padrão `NNN-nome-curto`.
 3. **Execute `/speckit.specify`.** A spec deve ter user stories, EARS, critérios de aceitação e `source_legacy:`.
 4. **Execute `/speckit.clarify`.** Resolva dúvidas antes de discutir arquitetura.
 5. **Execute `/speckit.plan`.** Gere plano técnico, riscos, dados e contratos.
@@ -54,7 +50,7 @@ O número (`001`) dá ordem. O nome (`geracao-ciclo-pagamento`) explica o escopo
 | `/speckit.constitution` | `.specify/memory/constitution.md` | Regras inegociáveis do projeto |
 | `/speckit.specify` | `spec.md` | REQ-IDs, EARS, acceptance e `source_legacy:` |
 | `/speckit.clarify` | Perguntas resolvidas na spec | Ambiguidades fechadas |
-| `/speckit.plan` | `plan.md`, `research.md`, `data-model.md`, `contracts/`, `quickstart.md` | Arquitetura, dados, riscos e contratos |
+| `/speckit.plan` | `plan.md` e apoios gerados pelo Spec-Kit quando necessários | Arquitetura, dados, riscos e contratos |
 | `/speckit.tasks` | `tasks.md` | Ordem de execução, testes e dependências |
 | `/speckit.analyze` | Relatório de lacunas | Inconsistências resolvidas |
 | `/speckit.implement` | Código em `backend/` e `frontend/` | Implementação segue a spec |
@@ -62,16 +58,16 @@ O número (`001`) dá ordem. O nome (`geracao-ciclo-pagamento`) explica o escopo
 ## Convenção de branches
 
 - Uma branch por spec: `spec/<NNN>-<feature-name>` criada a partir de `develop`.
-- Branches de implementação: `impl/<NNN>-<feature-name>` criadas a partir da branch da spec.
-- Commits devem mencionar REQ-IDs quando implementarem comportamento: `Implements REQ-PAY-001`.
+- Depois do merge da spec, branches de implementação
+  `impl/<NNN>-<feature-name>` são criadas a partir de `develop`, nunca da
+  branch da spec.
+- O fluxo de integração é `spec/<NNN>-<feature>` → `develop` → `main`; não
+  existe branch `stage`.
+- Commits devem mencionar REQ-IDs quando implementarem comportamento: `Implements REQ-XXX`.
 
-## Funcionalidade inicial
+## Primeira funcionalidade
 
-A pasta [001-example-feature](001-example-feature/) é um marcador didático. Renomeie ou substitua quando o time escolher a primeira funcionalidade no Estágio 2.
-
-```bash
-mv specs/001-example-feature specs/001-geracao-ciclo-pagamento
-```
+Crie a primeira pasta somente depois de o time escolher uma funcionalidade no Estágio 2. O nome deve refletir a decisão do time e não antecipar uma solução.
 
 ## Definição de Pronto da pasta `specs/`
 
@@ -79,7 +75,12 @@ mv specs/001-example-feature specs/001-geracao-ciclo-pagamento
 - [ ] Todo requisito legado tem `source_legacy:` apontando para `.NSN` ou `.ddm`.
 - [ ] Todo requisito greenfield tem justificativa `[GREENFIELD]`.
 - [ ] `tasks.md` inclui testes antes de implementação para regra de negócio.
-- [ ] `quickstart.md` permite validar manualmente o comportamento principal.
+
+## Relação com `02-spec-moderna/`
+
+`02-spec-moderna/` não contém uma segunda spec. Use-o para registrar decisões de
+recorte e apoio ao Estágio 2. Requisitos EARS, plano técnico e tarefas da
+feature ficam em `specs/<NNN>-<feature>/spec.md`, `plan.md` e `tasks.md`.
 
 ## Referências
 
@@ -99,8 +100,8 @@ mv specs/001-example-feature specs/001-geracao-ciclo-pagamento
 </td>
 <td width="50%" valign="top" align="right">
 <sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="001-example-feature/README.md"><strong>Exemplo: 001-example-feature</strong></a><br/>
-<sub>Como uma feature fica estruturada em specs/.</sub>
+<a href="../02-spec-moderna/GUIDE.md"><strong>Estágio 2 — Spec Moderna</strong></a><br/>
+<sub>Crie a spec a partir da descoberta do time.</sub>
 </td>
 </tr>
 </table>

@@ -16,7 +16,7 @@ Você é um QA lead escrevendo a estratégia de testes para uma feature do SIFAP
 
 Peça ao usuário o que estiver faltando.
 
-- A pasta da feature (`specs/<NNN>-<feature>/`) com `SPECIFICATION.md` e `DESIGN.md` já aprovados.
+- A pasta da feature (`specs/<NNN>-<feature>/`) com `spec.md` e `plan.md` já aprovados.
 - O perfil de risco: financeiro (`high`), regulatório (`high`), batch (`medium`), somente leitura (`low`).
 - Restrições: orçamento de tempo, minutos de CI paralelo, ambientes disponíveis (`local`, `dev`, `stage`, `prod-shadow`).
 - Quaisquer requisitos não funcionais com limites mensuráveis (latência p95, throughput, RPO/RTO).
@@ -84,12 +84,6 @@ local → dev (CI) → stage (nightly E2E) → prod-shadow (perf + chaos)
 ## 8. Schedule
 Sprint 1: unit + integration scaffolding. Sprint 2: contract + E2E. Sprint 3: perf + security.
 ```
-
-## Exemplo trabalhado
-
-**Entrada:** Feature `003-payment-processing`, risco financeiro alto, 24 REQ-IDs, cronograma de quatro semanas.
-
-**Saída esperada:** o markdown acima, preenchido com os 24 REQ-IDs agrupados por camada, três cenários de perf nomeados (desembolso único, batch de 10k, tempestade de retries) e um registro de riscos de 6 linhas.
 
 ## Anti-padrões
 

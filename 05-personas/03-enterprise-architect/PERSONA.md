@@ -22,7 +22,7 @@
 ![Linha do tempo do dia mostrando onde esta persona atua](../../assets/timeline-stages.svg)
 
 - **Par**: 2 · Arquitetura (junto com Software Architect)
-- **Fases lideradas**: Especificação (S2) — C4 L1 + ADRs de topologia
+- **Fases lideradas**: Especificação (S2) — decisões de contexto e topologia necessárias ao recorte
 - **Recebe de**: Par 1 (Visão) no H1 — catálogo de regras e escopo
 - **Faz passagem para**: Par 3 (Implementação) e Par 4 (Qualidade) no H2; Par 5 (Operações) para Terraform
 
@@ -44,8 +44,8 @@ Garantir que o SIFAP 2.0 não quebre o mundo ao redor. Desenhar o mapa de depend
 
 | Estágio                | Você faz isso                                                                                                            | Entregável que depende de você             |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
-| 1. Arqueologia         | Constrói mapa de dependências e integrações (C4 nível 1 — sistema em contexto). Identifica contratos externos.           | Diagrama C4 L1 + inventário de integrações |
-| 2. Spec Moderna        | Define decisões de topologia (onde o sistema vive na cloud, quem é cliente de quem, quais APIs são síncronas e por quê). | ADRs de topologia e integração (1–2)       |
+| 1. Arqueologia         | Identifica dependências e contratos externos que afetem o recorte. | Evidência de integração relevante |
+| 2. Spec Moderna        | Registra somente decisões de topologia que bloqueiem o plano. | Decisão de escopo ou ADR de apoio, quando necessário |
 | 3. Implementação       | Valida que a implementação respeita os contratos desenhados. Ajuda DevOps com Terraform de alto nível.                   | Validação do layout deployado              |
 | 4. Evolução com Agent  | Avalia se as issues do Estágio 4 têm implicações arquiteturais que precisam de revisão prévia.                           | Avaliação de impacto                       |
 
@@ -77,27 +77,27 @@ Garantir que o SIFAP 2.0 não quebre o mundo ao redor. Desenhar o mapa de depend
 
 ## Se você pegou duas personas
 
-- **EA + Software Architect** é a combinação mais comum em time pequeno. Você cuida do C4 L1; seu par cuida dos níveis 2 e 3.
+- **EA + Software Architect** é a combinação mais comum em time pequeno. Vocês decidem juntos apenas as fronteiras que a feature fina exige.
 - **EA + Technical Lead** também funciona se quiser envolvimento mais hands-on.
 
 ## 3 exemplos de prompt
 
-1. **(Chat)** _"Crie um diagrama C4 Nível 1 em Mermaid para o SIFAP 2.0 mostrando: 3 tipos de usuário, o sistema central, e 4 sistemas externos (SIAFI, Receita Federal, Banco do Brasil, CadÚnico)."_
-2. **(Chat)** _"Se o SIAFI ficar offline por 2 horas durante o ciclo mensal de pagamento, qual o impacto? Proponha 3 estratégias de fallback e recomende uma."_
-3. **(Chat)** _"Compare estas 3 opções de integração com o Banco do Brasil: batch CNAB, REST síncrono, mensageria assíncrona. Escreva um ADR recomendando uma."_
+1. **(Chat)** _"Crie um diagrama C4 Nível 1 com os atores e sistemas externos confirmados pelo time."_
+2. **(Chat)** _"Para esta dependência externa, quais riscos de indisponibilidade precisamos avaliar? Proponha alternativas e seus trade-offs."_
+3. **(Chat)** _"Compare as opções de integração que o time levantou e estruture uma ADR sem antecipar a decisão."_
 
 ## Se travar (defaults de emergência)
 
 - **Não conhece C4?** Use um Mermaid flowchart simples: caixas = sistemas, setas = integrações. Rotule as setas.
 - **Queimou tempo em C4 Nível 3?** Pare. Nível 1 + Nível 2 são suficientes. Times raramente precisam de L3.
-- **Não conhece Mermaid?** Pergunte ao Copilot: _"Crie um diagrama C4 nível 1 em Mermaid para um sistema de pagamento que integra com SIAFI e Banco do Brasil."_
+- **Não conhece Mermaid?** Pergunte ao Copilot: _"Crie um diagrama C4 nível 1 em Mermaid a partir destes atores e integrações confirmados."_
 - **Discordância com o Software Architect?** Escreva um ADR com as duas opções e peça votação ao time.
 
 ## Dependências — Quem depende de você
 
 | Persona               | Relação                    | Artefato                  |
 | --------------------- | -------------------------- | ------------------------- |
-| Software Architect    | Depende de VOCÊ            | C4 L1 para desenhar L2/L3 |
+| Software Architect    | Depende de VOCÊ            | Dependências e decisões que afetem o recorte |
 | DevOps Engineer       | Depende de VOCÊ            | Topologia para Terraform  |
 | Developer             | Depende de VOCÊ (indireto) | Contratos de integração   |
 | Requirements Engineer | VOCÊ depende dele          | Requisitos de integração  |
@@ -106,7 +106,7 @@ Garantir que o SIFAP 2.0 não quebre o mundo ao redor. Desenhar o mapa de depend
 
 - **Rubrica A1 (Arqueologia):** mapa de dependências legível por não-técnicos.
 - **Rubrica A2 (Coerência de Spec):** ADRs nomeiam o "caminho não tomado".
-- Critério: "C4 L1 entendido em 30 segundos por qualquer pessoa do time."
+- Critério: "As decisões de escopo e dependências relevantes são rastreáveis."
 ---
 
 ### Continuar a leitura

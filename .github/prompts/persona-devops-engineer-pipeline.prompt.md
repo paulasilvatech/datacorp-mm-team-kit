@@ -82,22 +82,6 @@ jobs:
  # ... quality, security, package, deploy-* jobs
 ```
 
-## Exemplo trabalhado
-
-**Entrada:** novo pipeline para o serviço backend `payments`, implantando em Azure Container Apps via ACR.
-
-**Esqueleto esperado da resposta:**
-
-> Workflow `backend-payments.yml` com 6 jobs (`build`, `quality`, `security`, `package`, `deploy-dev`, `deploy-prod`).
->
-> OIDC federado para o app do Entra ID `sp-sifap-cicd`, com escopo na subscription `sub-sifap-prod`.
->
-> Secrets obrigatórios: `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`, `AZURE_CLIENT_ID`, `ACR_NAME`. Sem senhas.
->
-> Branch protection: `build`, `quality`, `security` obrigatórios em todos os PRs para `develop`. Produção exige dois revisores do time `release-managers` e um change ticket vinculado no corpo do PR.
->
-> Promoção: PR → develop (auto-deploy `dev`) → PR para `main` (2 aprovadores).
-
 ## Antipadrões
 
 - Armazenar secrets do Azure diretamente em GitHub Secrets quando OIDC funciona. OIDC é o padrão.

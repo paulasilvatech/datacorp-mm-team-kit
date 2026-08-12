@@ -23,15 +23,12 @@ Organize código por capacidade de negócio, não por camada técnica:
 
 ```
 src/main/java/com/example/app/
-├── payment/                    # Bounded context: Payment
-│   ├── PaymentController.java  # REST endpoint
-│   ├── PaymentService.java     # Business logic
-│   ├── PaymentRepository.java  # Data access
-│   ├── Payment.java            # JPA entity
-│   └── PaymentDto.java         # DTO (Java record)
-├── enrollment/                 # Bounded context: Enrollment
-│   ├── EnrollmentController.java
-│   ├── ...
+├── <feature>/                  # Bounded context definido pelo time
+│   ├── <Feature>Controller.java
+│   ├── <Feature>Service.java
+│   ├── <Feature>Repository.java
+│   ├── <Feature>.java
+│   └── <Feature>Dto.java
 ├── shared/                     # Shared kernel
 │   ├── audit/                  # Transversal: audit trail
 │   └── exception/              # Transversal: error handling

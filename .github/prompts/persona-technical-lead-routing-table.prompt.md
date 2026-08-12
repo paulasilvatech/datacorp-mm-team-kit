@@ -12,7 +12,7 @@ tools: ["search"]
 Produza uma tabela de roteamento que mapeia tarefas do SDLC para o perfil de capacidade necessário e explica o trade-off custo/qualidade, sem fixar uma capacidade ou fornecedor.
 
 ## Passos
-1. Leia TASKS.md (ou o backlog) e categorize cada tarefa como: Descoberta, Design, Implementação, Refactor, Review, Mechanical.
+1. Leia `specs/<NNN>-<feature>/tasks.md` (ou o backlog) e categorize cada tarefa como: Descoberta, Design, Implementação, Refactor, Review, Mechanical.
 2. Para cada categoria, recomende um perfil:
  - Descoberta / design ambíguo: raciocínio aprofundado.
  - Implementação / code review: implementação.

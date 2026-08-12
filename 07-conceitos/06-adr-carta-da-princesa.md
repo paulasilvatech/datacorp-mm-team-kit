@@ -38,38 +38,29 @@ Resultado: Mario, 200 anos depois, **entende a decisão** sem precisar perguntar
 ## 📜 Anatomia de uma ADR (template)
 
 ```markdown
-# ADR-001: Monólito modular (não microsserviços)
+# ADR-XXX: [Título da decisão]
 
-**Status:** Aceita
-**Data:** 2026-04-15
-**Autores:** Enterprise Architect + Software Architect
+**Status:** [Proposta | Aceita | Rejeitada | Superada]
+**Data:** [YYYY-MM-DD]
+**Autores:** [pessoas decisoras]
 
 ## Contexto
 
-Estamos modernizando o SIFAP (29 anos em Natural/Adabas). Temos 8 horas.
-4 bounded contexts identificados: beneficiary, payment, audit, admin.
-Time não tem experiência operacional com microsserviços.
+<!-- descreva a evidência, as restrições e a decisão que precisa ser tomada -->
 
 ## Decisão
 
-Vamos construir um **monólito modular** em Spring Boot 3.3, com cada
-bounded context num módulo Maven separado e enforcement de fronteira via
-ArchUnit.
+<!-- registre a decisão do time em uma frase -->
 
 ## Alternativas consideradas
 
-- **Microsserviços**: rejeitado — complexidade operacional alta para o
-  prazo. Adiar para v2.
-- **Monólito tradicional sem fronteiras**: rejeitado — perdemos a chance
-  de extrair microsserviços depois.
+- **[Alternativa 1]**: <!-- trade-offs e motivo de aceitar ou rejeitar -->
+- **[Alternativa 2]**: <!-- trade-offs e motivo de aceitar ou rejeitar -->
 
 ## Consequências
 
-- ✅ Deploy unificado (uma imagem Docker)
-- ✅ Refactor entre módulos é seguro (compilação detecta)
-- ✅ Caminho aberto para microsserviços depois (basta separar módulos)
-- ❌ Não dá para escalar payment independente de beneficiary
-- ❌ Falha de payment derruba o app todo
+- <!-- consequência positiva -->
+- <!-- consequência negativa ou risco -->
 ```
 
 ---
@@ -138,9 +129,9 @@ A maioria das ADRs ruins é ruim por uma de **5 razões**. Evite todas:
 
 ---
 
-## 🍄 Exemplo concreto: ADR do nosso SIFAP
+## 🍄 Comece pelo template
 
-Veja [`08-exemplos/ADR-001-monolito-modular-exemplo.md`](../08-exemplos/ADR-001-monolito-modular-exemplo.md) para uma ADR completa pronta. Use como template — copie a estrutura, troque a decisão.
+Use o [template de ADR](../02-spec-moderna/ADR-TEMPLATE.md) para registrar o contexto, as alternativas que o time considerou e a decisão tomada.
 
 ---
 
@@ -193,7 +184,6 @@ Antes de mergear sua ADR, confira:
 
 ## 🔗 Para se aprofundar
 
-- 📘 [Exemplo completo: ADR-001 Monólito Modular](../08-exemplos/ADR-001-monolito-modular-exemplo.md)
 - 📋 [Template em branco](../02-spec-moderna/ADR-TEMPLATE.md)
 - 🎯 [Estágio 2 GUIDE](../02-spec-moderna/GUIDE.md) — onde isso é usado
 - 🌐 [adr.github.io](https://adr.github.io) — site oficial do padrão ADR

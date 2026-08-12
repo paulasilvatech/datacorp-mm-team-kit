@@ -93,11 +93,10 @@ Tech Writer é a persona mais transversal do time — você participa de todos o
 
 | Hora | O que você está fazendo | Entregável visível |
 |---|---|---|
-| **13:00–13:30** | Lê comentários e cabeçalhos dos 15 `.NSN` em paralelo com Par 5 (programas de Consulta/Relatório) | Primeiras 10 entradas do `glossary.md` |
-| **13:30–14:30** | Consolida glossário com termos vindos de **todos os pares** (peça contribuições a cada 20 min) | Glossário ≥30 termos com `Fonte:` em cada um |
-| **14:00–15:30** | Formata os ADRs do Par 2 usando `02-spec-moderna/ADR-TEMPLATE.md`; revisa terminologia da spec | ADRs sem `TODO`, terminologia consistente |
-| **15:30–16:00** | Escreve o `README.md` do projeto evoluído — o que é, como rodar, endpoints | README real (não placeholder) |
-| **15:00–16:10** | Acompanha Estágio 3 do lado do Par 5; documenta endpoints novos no `docs/` conforme aparecem | `docs/api-endpoints.md` evoluindo |
+| **11:00–12:00** | Lê os programas atribuídos ao Par 5 e registra termos que apoiem o recorte | Evidências e termos relevantes |
+| **13:30–14:00** | Consolida somente o vocabulário e as decisões necessários para a H1 | Apoio à feature fina |
+| **14:00–15:00** | Revisa a clareza de `spec.md`, `plan.md` e `tasks.md`; registra decisão de escopo necessária | Artefatos formais consistentes |
+| **15:00–16:10** | Documenta endpoints e comandos que o protótipo realmente criou | Documentação factual, quando aplicável |
 | **16:10–16:50** | Observa o Agent trabalhando, escreve `agent-experience-report.md` em tempo real | Relatório honesto preenchido até o fim do dia |
 
 > **Regra:** se em 30 minutos você "não tem nada para documentar", pergunte ao par líder do estágio: _"O que você decidiu nos últimos 30 minutos que ainda não está escrito?"_. Quase sempre tem coisa.

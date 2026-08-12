@@ -19,7 +19,9 @@
 
 ## Objetivo da etapa
 
-Transformar arquivos Natural/Adabas em evidências úteis para o Estágio 2: glossário, regras de negócio, mapa de dependências, DDMs compreendidos e mistérios registrados.
+Transformar arquivos Natural/Adabas em evidências úteis para uma feature fina do
+Estágio 2. O objetivo é evidência rastreável, não documentação completa do
+legado.
 
 ## Quando usar
 
@@ -32,17 +34,17 @@ Transformar arquivos Natural/Adabas em evidências úteis para o Estágio 2: glo
 
 1. Abra o Copilot Chat no VS Code.
 2. Selecione o agente `@archaeologist`.
-3. Cole o prompt de abertura abaixo.
-4. Leia um programa por vez. Não pule arquivos porque parecem simples.
-5. Para cada achado, registre evidência com caminho e, quando possível, linha.
-6. Ao final, confira a Definição de Pronto antes do Passagem #1.
+3. Leia os três programas atribuídos ao par, sem pular fontes que possam afetar
+   o recorte.
+4. Para cada achado relevante, registre evidência com caminho e, quando
+   possível, linha.
+5. Ao final, reduza o escopo para uma feature fina antes da Passagem H1.
 
 ```text
 Estou iniciando o Estágio 1 — Arqueologia.
 Temos código Natural/Adabas em 01-arqueologia/legado-sifap/.
-Ajude o time a explorar sistematicamente: programas, DDMs, CALLNATs,
-regras de negócio, mistérios e riscos de migração.
-Comece me dizendo qual arquivo abrir primeiro e que perguntas fazer.
+Ajude o time a examinar os programas atribuídos e registrar apenas evidências
+e perguntas abertas para o recorte que escolheremos. Não infira respostas.
 ```
 
 ## O que perguntar
@@ -56,12 +58,11 @@ Comece me dizendo qual arquivo abrir primeiro e que perguntas fazer.
 
 ## Definição de Pronto
 
-- [ ] Glossário com pelo menos 30 termos relevantes.
-- [ ] Catálogo de regras com programa-fonte preenchido.
-- [ ] Mapa de dependências cobrindo os programas lidos.
-- [ ] DDMs principais com campos, tipos e observações de modelagem.
-- [ ] Pelo menos 5 mistérios documentados com evidência.
-- [ ] Relatório de descoberta pronto para o Passagem #1 (~14:30).
+- [ ] Os três programas atribuídos foram lidos.
+- [ ] O catálogo tem fonte para cada regra candidata ao recorte.
+- [ ] DDMs e dependências foram consultados quando afetam a feature.
+- [ ] Perguntas abertas permanecem sem resposta inventada.
+- [ ] Relatório de descoberta pronto para a Passagem H1, às 14:00.
 
 ## Anti-padrões
 
@@ -101,4 +102,3 @@ Comece me dizendo qual arquivo abrir primeiro e que perguntas fazer.
 </table>
 
 <sub>↑ <a href="../../README.md">Voltar ao Kit PT-BR</a></sub>
-

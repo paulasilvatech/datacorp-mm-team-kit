@@ -51,7 +51,6 @@
 | **05** | [`05-personas/`](05-personas/) | 10 personas (escolha 2) |
 | **06** | [`06-agentes-de-estagio/`](06-agentes-de-estagio/) | 4 agentes Copilot |
 | **07** | [`07-conceitos/`](07-conceitos/) | 🧠 Analogias Mario, EARS, ADR |
-| **08** | [`08-exemplos/`](08-exemplos/) | 📘 Artefatos prontos |
 | **09** | [`09-cheat-sheets/`](09-cheat-sheets/) | 🎴 Cartões de 1 página |
 | `docs/` | [`docs/`](docs/) | FAQ, troubleshooting, runbook, ADRs |
 | `assets/` | [`assets/`](assets/) | SVGs e diagramas |
@@ -75,9 +74,10 @@ flowchart LR
     MIST[mysteries-found.md]:::stage1
     REPORT[discovery-report.md]:::stage1
 
-    SPEC[SPECIFICATION.md<br/>EARS + source_legacy]:::stage2
-    ADR[ADRs]:::stage2
-    C4[Diagramas C4]:::stage2
+    SPEC[specs/NNN-feature/spec.md<br/>EARS + source_legacy]:::stage2
+    PLAN[specs/NNN-feature/plan.md]:::stage2
+    TASKS[specs/NNN-feature/tasks.md]:::stage2
+    SCOPE[scope-decisions.md<br/>apoio]:::stage2
 
     CODE[Java + Next.js]:::stage3
     MIGS[Flyway migrations]:::stage3
@@ -90,9 +90,10 @@ flowchart LR
     LEGACY --> GLOSS & BR & DEPS & MIST
     GLOSS & BR & DEPS & MIST --> REPORT
     REPORT --> SPEC
-    SPEC --> ADR & C4
+    SPEC --> PLAN --> TASKS
+    SPEC --> SCOPE
     SPEC --> CODE
-    ADR --> CODE
+    PLAN --> CODE
     CODE --> TESTS
     CODE --> MIGS
     SPEC --> ISSUES
@@ -111,10 +112,10 @@ flowchart LR
 | **Qualquer pessoa, primeira vez** | [00-COMECE-AQUI.md](00-COMECE-AQUI.md) | [00-TEAM-FLOW.md](00-TEAM-FLOW.md) | seu `PERSONA.md` |
 | **Líder do time** | [00-SETUP.md](00-SETUP.md) | [00-TEAM-FLOW.md](00-TEAM-FLOW.md) | [05-personas/OVERVIEW.md](05-personas/OVERVIEW.md) |
 | **PO ou RE (Par 1)** | [05-personas/01-product-owner/PERSONA.md](05-personas/01-product-owner/PERSONA.md) | [01-arqueologia/GUIDE.md](01-arqueologia/GUIDE.md) | [02-spec-moderna/GUIDE.md](02-spec-moderna/GUIDE.md) |
-| **EA ou SA (Par 2)** | [05-personas/03-enterprise-architect/PERSONA.md](05-personas/03-enterprise-architect/PERSONA.md) | [08-exemplos/ADR-001-monolito-modular-exemplo.md](08-exemplos/ADR-001-monolito-modular-exemplo.md) | [02-spec-moderna/GUIDE.md](02-spec-moderna/GUIDE.md) |
-| **TL ou Dev (Par 3)** | [05-personas/06-developer/PERSONA.md](05-personas/06-developer/PERSONA.md) | [08-exemplos/PaymentService-exemplo.java](08-exemplos/PaymentService-exemplo.java) | [03-implementacao/GUIDE.md](03-implementacao/GUIDE.md) |
-| **DBA ou QA (Par 4)** | [05-personas/07-dba/PERSONA.md](05-personas/07-dba/PERSONA.md) | [08-exemplos/V1__init_payment_module-exemplo.sql](08-exemplos/V1__init_payment_module-exemplo.sql) | [03-implementacao/GUIDE.md](03-implementacao/GUIDE.md) |
-| **DevOps ou TW (Par 5)** | [05-personas/09-devops-engineer/PERSONA.md](05-personas/09-devops-engineer/PERSONA.md) | [08-exemplos/issue-para-agent-exemplo.md](08-exemplos/issue-para-agent-exemplo.md) | [04-evolucao/GUIDE.md](04-evolucao/GUIDE.md) |
+| **EA ou SA (Par 2)** | [05-personas/03-enterprise-architect/PERSONA.md](05-personas/03-enterprise-architect/PERSONA.md) | [02-spec-moderna/ADR-TEMPLATE.md](02-spec-moderna/ADR-TEMPLATE.md) | [02-spec-moderna/GUIDE.md](02-spec-moderna/GUIDE.md) |
+| **TL ou Dev (Par 3)** | [05-personas/06-developer/PERSONA.md](05-personas/06-developer/PERSONA.md) | [03-implementacao/GUIDE.md](03-implementacao/GUIDE.md) | [03-implementacao/GUIDE.md](03-implementacao/GUIDE.md) |
+| **DBA ou QA (Par 4)** | [05-personas/07-dba/PERSONA.md](05-personas/07-dba/PERSONA.md) | [03-implementacao/GUIDE.md](03-implementacao/GUIDE.md) | [03-implementacao/GUIDE.md](03-implementacao/GUIDE.md) |
+| **DevOps ou TW (Par 5)** | [05-personas/09-devops-engineer/PERSONA.md](05-personas/09-devops-engineer/PERSONA.md) | [04-evolucao/GUIDE.md](04-evolucao/GUIDE.md) | [04-evolucao/GUIDE.md](04-evolucao/GUIDE.md) |
 | **Não programa em Natural** | [01-arqueologia/legado-sifap/COMO-LER-NATURAL.md](01-arqueologia/legado-sifap/COMO-LER-NATURAL.md) | [01-arqueologia/GUIDE.md](01-arqueologia/GUIDE.md) | (sua persona) |
 | **Encontrou termo estranho** | [07-conceitos/03-glossario-visual.md](07-conceitos/03-glossario-visual.md) | (volte de onde veio) | — |
 

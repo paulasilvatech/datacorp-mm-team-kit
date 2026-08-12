@@ -32,8 +32,8 @@ Essa regra existe porque a edição anterior do workshop produziu specs que perd
 - IF [condition] THEN THE system SHALL [behavior]
 
 ## Fluxo de trabalho
-1. Leia CONSTITUTION.md para entender restrições
-2. Leia SPECIFICATION.md para entender o estado atual
+1. Leia `.specify/memory/constitution.md` para entender restrições
+2. Leia `specs/<NNN>-<feature>/spec.md` para entender o estado atual
 3. **Leia o(s) arquivo(s) legados citados em `01-arqueologia/legado-sifap/` antes de rascunhar qualquer EARS**
 4. Analise a nova entrada
 5. Formalize em EARS com AC Given/When/Then **e uma linha `source_legacy:`**

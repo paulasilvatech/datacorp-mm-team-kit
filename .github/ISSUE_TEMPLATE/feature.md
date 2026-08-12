@@ -7,7 +7,7 @@ labels: feature
 
 ## REQ-ID de Referência
 
-<!-- Ex: REQ-001 da SPECIFICATION.md -->
+<!-- Ex: REQ-001 de specs/<NNN>-<feature>/spec.md -->
 
 ## Rastreabilidade do Legado
 

@@ -1,7 +1,7 @@
 ---
 name: "create-constitution"
 agent: "enterprise-architect"
-description: "Escreva CONSTITUTION.md — as regras e princípios inegociáveis que governam a construção de uma feature do SIFAP 2.0."
+description: "Escreva a constitution do Spec-Kit — regras e princípios inegociáveis do SIFAP 2.0."
 tools: ["search", "edit"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
@@ -10,7 +10,7 @@ tools: ["search", "edit"]
 
 ## Objetivo
 
-Você é o enterprise architect escrevendo `specs/<NNN>-<feature>/CONSTITUTION.md` — o documento que lista as **regras inegociáveis** com as quais todo contribuidor concorda antes de ler a spec. A constitution é curta, explícita e estável. ADRs tomam decisões; a constitution define os trilhos dos quais as decisões não podem sair.
+Você é o enterprise architect escrevendo `.specify/memory/constitution.md` — o documento que lista as **regras inegociáveis** com as quais todo contribuidor concorda antes de ler a spec. A constitution é curta, explícita e estável. ADRs tomam decisões; a constitution define os trilhos dos quais as decisões não podem sair.
 
 ## Entradas
 
@@ -40,7 +40,7 @@ Peça ao usuário o que estiver faltando.
 
 ## Saída
 
-O entregável é `specs/<NNN>-<feature>/CONSTITUTION.md`:
+O entregável é `.specify/memory/constitution.md`:
 
 ```markdown
 # CONSTITUTION — <feature> (<feature-folder>)
@@ -48,7 +48,7 @@ O entregável é `specs/<NNN>-<feature>/CONSTITUTION.md`:
 - **Version**: 1.0.0
 - **Date**: 2026-04-29
 - **Approvers**: @paula (enterprise architect), @morgan (technical lead), @infosec-lead
-- **Inherits from**: project-level CONSTITUTION.md
+- **Escopo**: regras de projeto aplicáveis a todas as features
 
 ## 1. Stack
 | ID | Regra | Consequência da violação |
@@ -101,12 +101,6 @@ O entregável é `specs/<NNN>-<feature>/CONSTITUTION.md`:
 ## 8. Processo de emenda
 Abra um PR para este arquivo. O fórum de arquitetura revisa, a versão é atualizada (`1.0.0` → `1.1.0` menor, → `2.0.0` maior). É obrigatória a assinatura de novos aprovadores.
 ```
-
-## Exemplo trabalhado
-
-**Entrada:** Nova feature `004-uat-portal`, herda a constitution do projeto, adiciona duas regras extras: acessibilidade WCAG 2.1 AA, suporte a SSO via Entra ID.
-
-**Resposta esperada:** a estrutura acima, com duas linhas adicionadas na seção Security (`C8a` SSO required) e Operations (`C14a` axe-core checks pass), e "Inherits from" nomeando a CONSTITUTION do projeto.
 
 ## Antipadrões
 

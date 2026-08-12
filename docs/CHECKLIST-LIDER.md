@@ -41,12 +41,12 @@
 - [ ] **11:00** — Time inteiro selecionou `@archaeologist` no Chat
 - [ ] **11:10** — Cada par sabe quais 3 programas Natural vai ler
 - [ ] **11:30** — Stand-up de 2 min: cada par diz 1 frase do que descobriu
-- [ ] **11:45** — Glossário em `glossary.md` tem ≥15 termos
+- [ ] **11:45** — Cada par registrou evidência e dúvidas dos programas atribuídos
 
 ### 🕐 13:30–14:00 · Estágio 1 — Síntese + Passagem H1
 
-- [ ] **13:35** — Time consolidou catálogo BR (≥15 regras com `Programa Fonte`)
-- [ ] **13:45** — Mistérios documentados (≥5)
+- [ ] **13:35** — Catálogo contém fontes das regras candidatas ao recorte
+- [ ] **13:45** — PO escolheu uma feature fina e registrou adiamentos
 - [ ] **13:50** — Facilitador validou `LEGACY-EXPLORATION-CHECKLIST.md`
 - [ ] **14:00** — **Passagem H1**: Par 1 entrega `discovery-report.md` ao Par 2
 
@@ -55,9 +55,9 @@
 ### 🕑 14:00–15:00 · Estágio 2 — Spec Moderna
 
 - [ ] **14:05** — Time selecionou `@architect`
-- [ ] **14:30** — PO aprovou escopo (3–8 features na v1)
-- [ ] **14:45** — Pelo menos 1 ADR rascunhada
-- [ ] **15:00** — **Passagem H2**: spec EARS + ADRs entregues aos Pares 3+4
+- [ ] **14:30** — PO aprovou uma feature fina
+- [ ] **14:45** — `spec.md`, `plan.md` e `tasks.md` estão na pasta da feature
+- [ ] **15:00** — **Passagem H2**: artefatos formais entregues aos Pares 3+4
 
 > 🚨 **Sinal vermelho:** REQ-ID sem `source_legacy:` → bloqueia o PR. Cheque cada um.
 
@@ -75,8 +75,8 @@
 
 - [ ] **16:15** — Time selecionou `@evolution`
 - [ ] **16:20** — Pelo menos 1 Issue bem escrita para o Copilot Agent
-- [ ] **16:35** — PR do Agent revisado e mergeado (ou ajustes solicitados)
-- [ ] **16:45** — `terraform plan` rodando sem erro
+- [ ] **16:35** — PR disponível revisado; sem PR, próximo passo registrado
+- [ ] **16:45** — Situação de CI/IaC registrada, sem criar infraestrutura por meta
 - [ ] **16:50** — `agent-experience-report.md` preenchido
 
 ### 🕔 16:50–17:00 · Preparação da demo

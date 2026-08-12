@@ -57,8 +57,8 @@ Os artefatos ativos de todas as personas vivem consolidados na `.github/` da rai
 | --- | --- | --- |
 | 01 | [Product Owner](./01-product-owner/PERSONA.md) | Prioridade, escopo, valor e narrativa do demo |
 | 02 | [Requirements Engineer](./02-requirements-engineer/PERSONA.md) | Requisitos EARS, critérios de aceitação e rastreabilidade |
-| 03 | [Enterprise Architect](./03-enterprise-architect/PERSONA.md) | C4 L1, topologia e decisões de sistema |
-| 04 | [Software Architect](./04-software-architect/PERSONA.md) | C4 L2/L3, bounded contexts e ADRs |
+| 03 | [Enterprise Architect](./03-enterprise-architect/PERSONA.md) | Dependências externas e decisões de escopo |
+| 04 | [Software Architect](./04-software-architect/PERSONA.md) | Plano técnico, limites de módulos e ADRs quando necessários |
 | 05 | [Technical Lead](./05-technical-lead/PERSONA.md) | Padrões, coordenação técnica e review |
 | 06 | [Developer](./06-developer/PERSONA.md) | Código Java/TypeScript, testes e integração |
 | 07 | [DBA](./07-dba/PERSONA.md) | Modelo PostgreSQL, migrações e mapeamento DDM |

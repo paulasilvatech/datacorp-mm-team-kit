@@ -32,7 +32,7 @@ Descoberta → Especificação → Aceite
 |------|------|---------|
 | `PERSONA.md` | Persona | Responsabilidades, passagens, prompts e rubrica do Product Owner |
 | `.github/agents/product-owner.agent.md` | Agent | Assistente de Product Owner para spec, backlog e aceite |
-| `.github/prompts/persona-product-owner-spec.prompt.md` | Prompt | `/spec` — escreve uma seção de `SPECIFICATION.md` a partir de user stories em EARS |
+| `.github/prompts/persona-product-owner-spec.prompt.md` | Prompt | `/spec` — escreve uma seção de `specs/<NNN>-<feature>/spec.md` a partir de user stories em EARS |
 | `.github/prompts/persona-product-owner-update-spec.prompt.md` | Prompt | `/update-spec` — atualiza a spec quando uma feature muda |
 | `.github/prompts/persona-product-owner-acceptance-check.prompt.md` | Prompt | `/acceptance-check` — verifica se o código atende aos critérios de aceite |
 | `mcp.json` | MCP | Manifesto de servidores GitHub + Azure DevOps work items |
@@ -54,7 +54,7 @@ Se este kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse 
 - Escreva requisitos em EARS para que cada frase seja testável.
 - Mantenha cada user story ligada a um resultado mensurável.
 - Marque suposições explicitamente; suposição escondida vira bug de produção.
-- Trate `CONSTITUTION.md` como fonte de verdade para itens inegociáveis.
+- Trate `.specify/memory/constitution.md` como fonte de verdade para itens inegociáveis.
 
 ## Referências
 - [EARS Notation - Alistair Mavin](https://alistairmavin.com/ears/)
@@ -90,4 +90,3 @@ Se este kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse 
 </table>
 
 <sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
-

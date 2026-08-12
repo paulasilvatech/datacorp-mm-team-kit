@@ -45,10 +45,11 @@ tags: ["template", "discovery-report", "archaeology", "stage-1"]
 
 ## O Que É Arriscado
 
-### Mistérios que Bloqueiam o Estágio 2
+### Perguntas em Aberto Aguardando Validação Humana
 
-| MYS-ID | Descrição | Caminho de Resolução |
-| ------ | --------- | -------------------- |
+| Pergunta aberta | Evidência (`path:linha`) | Impacto | Hipótese (não confirmada) | Pessoa/área responsável | Status |
+| --------------- | ------------------------ | ------- | ------------------------- | ----------------------- | ------ |
+| <!-- placeholder --> | <!-- placeholder: path:linha --> | <!-- placeholder --> | <!-- placeholder: não confirmada --> | <!-- placeholder --> | <!-- placeholder --> |
 
 ### Regras com Evidência Fraca
 
@@ -69,7 +70,7 @@ tags: ["template", "discovery-report", "archaeology", "stage-1"]
 | Inventário        | `inventory.md`<!-- arquivo válido após copiar para 01-arqueologia/ --> | <!-- placeholder --> |
 | Regras de Negócio | [business-rules-catalog.md](../business-rules-catalog.md)              | <!-- placeholder --> |
 | Dependências      | [dependency-map.md](../dependency-map.md)                              | <!-- placeholder --> |
-| Mistérios         | [mysteries-found.md](../mysteries-found.md)                            | <!-- placeholder --> |
+| Perguntas em aberto | [mysteries-found.md](../mysteries-found.md)                           | <!-- placeholder --> |
 
 ## Aprovação da Equipe
 
@@ -101,4 +102,3 @@ tags: ["template", "discovery-report", "archaeology", "stage-1"]
 </table>
 
 <sub>↑ <a href="../../README.md">Voltar ao Kit PT-BR</a></sub>
-

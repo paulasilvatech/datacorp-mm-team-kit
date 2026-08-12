@@ -20,14 +20,15 @@
 ## 1. A Regra Dura
 
 ```
-Todo REQ-ID no seu SPECIFICATION.md PRECISA ter uma linha `source_legacy` que
-aponte para um dos seguintes:
- - um programa .NSN específico em 01-arqueologia/legado-sifap/natural-programs/ (idealmente com faixa de linhas)
- - um arquivo .ddm específico em 01-arqueologia/legado-sifap/adabas-ddms/
- - a string literal [GREENFIELD] com justificativa de 1 linha
+Todo REQ-ID em `specs/<NNN>-<feature>/spec.md` PRECISA ter uma linha
+`source_legacy:` que aponte para um dos seguintes:
+ - um programa `.NSN` específico em `01-arqueologia/legado-sifap/natural-programs/` (idealmente com faixa de linhas)
+ - um arquivo `.ddm` específico em `01-arqueologia/legado-sifap/adabas-ddms/`
+ - `[GREENFIELD]` com justificativa de uma linha
 ```
 
-O CI rejeita PRs para `develop` se algum REQ-ID estiver sem a linha `source_legacy`. Facilitadores verificam por amostragem no H2 (Passagem #2, ~16:00).
+O CI rejeita PRs para `develop` se algum REQ-ID estiver sem a linha `source_legacy:`.
+Facilitadores verificam por amostragem na H2, às 15:00.
 
 ---
 
@@ -45,15 +46,17 @@ Cada par fica com 3 programas. **Nenhum programa pode ficar sem leitor.**
 
 ### Checklist por programa (marque em `01-arqueologia/business-rules-catalog.md`)
 
-Para cada programa do seu par, preencha estes 5 campos:
+Para cada programa do seu par, registre notas de leitura suficientes para
+confirmar que ele foi examinado:
 
 - [ ] Nome do programa + autor + ano da última modificação
 - [ ] Inputs (quais DDMs ele lê)
 - [ ] Outputs (quais DDMs ele escreve)
 - [ ] Outros programas que ele chama (cadeia de CALLNAT)
-- [ ] **Pelo menos 1 regra de negócio extraída como linha em `business-rules-catalog.md`** com `Programa Fonte` e idealmente faixa de linhas
+- [ ] Evidência de uma regra candidata ao recorte, quando o programa a contiver,
+      em `business-rules-catalog.md` com `Programa Fonte` e faixa de linhas
 
-`Programa Fonte` vazio = linha inválida.
+Uma linha sem `Programa Fonte` não pode fundamentar uma EARS.
 
 ---
 
@@ -63,29 +66,35 @@ O Par 4 (DBA + QA) lidera. Todos os outros pares contribuem com revisão.
 
 | DDM                   | Dono  | Artefato-alvo em PostgreSQL |
 | --------------------- | ----- | --------------------------- |
-| `BENEFICIARIO.ddm`    | Par 4 | Tabela `beneficiary`        |
-| `PAGAMENTO.ddm`       | Par 4 | Tabela `payment`            |
-| `PROGRAMA-SOCIAL.ddm` | Par 4 | Tabela `social_program`     |
-| `AUDITORIA.ddm`       | Par 4 | Tabela `audit_event`        |
+| `BENEFICIARIO.ddm`    | Par 4 | <!-- definir a partir da evidência --> |
+| `PAGAMENTO.ddm`       | Par 4 | <!-- definir a partir da evidência --> |
+| `PROGRAMA-SOCIAL.ddm` | Par 4 | <!-- definir a partir da evidência --> |
+| `AUDITORIA.ddm`       | Par 4 | <!-- definir a partir da evidência --> |
 
-Para cada DDM:
-
-- [ ] Listou cada campo com tipo (A/N/D/etc.) e tamanho
-- [ ] Marcou explicitamente os campos `MU` (multi-valor) e `PE` (grupo periódico)
-- [ ] Propôs mapeamento PostgreSQL (tipo da coluna, nulabilidade, tabela de relação para MU/PE)
-- [ ] Identificou pelo menos 1 anti-padrão (desnormalização, constantes mágicas, …)
+Consulte os DDMs necessários para a feature escolhida. O mapeamento completo
+para PostgreSQL pertence ao plano e à implementação; não é pré-requisito para
+iniciar a spec.
 
 ---
 
-## 4. Caça aos Mistérios — Cota Mínima
+## 4. Registro de Perguntas em Aberto
 
-Existem **10 regras de negócio escondidas**, **3 easter eggs** e **4 inconsistências** plantadas no código legado. Veja [`mysteries-checklist.md`](mysteries-checklist.md) para a lista da caça (sem respostas).
+Use [`mysteries-checklist.md`](mysteries-checklist.md) para registrar perguntas em
+aberto sem antecipar respostas. O catálogo é um registro de incertezas, não um
+gabarito ou uma fonte de regras.
 
-**Cota para passar pelo portão:** pelo menos **5 mistérios** documentados em `mysteries-found.md` com:
+Registre em `mysteries-found.md` apenas as perguntas que afetarem o recorte. Cada
+registro deve ter:
 
-- O mistério em si (uma frase)
-- Onde foi encontrado (arquivo + faixa de linhas)
-- Por que importa (impacto se não preservado)
+- Pergunta aberta
+- Evidência (`path:linha`)
+- Impacto
+- Hipótese explicitamente não confirmada
+- Pessoa ou área responsável
+- Status
+
+Uma pergunta só pode ser encerrada ou usada como base de regra/requisito após validação
+humana explícita apoiada pela evidência registrada.
 
 ---
 
@@ -93,40 +102,21 @@ Existem **10 regras de negócio escondidas**, **3 easter eggs** e **4 inconsist�
 
 Por volta de 13h50 um facilitador vai checar o trabalho do seu par contra esta matriz. Não dá para passar para o Estágio 2 com linha vermelha.
 
-| Artefato                      | Caminho                                    | Critério do portão                                             |
-| ----------------------------- | ------------------------------------------ | -------------------------------------------------------------- |
-| Glossário                     | `01-arqueologia/glossary.md`               | ≥ 30 termos, cada um com `legacy source` se veio do código     |
-| Catálogo de regras de negócio | `01-arqueologia/business-rules-catalog.md` | ≥ 15 regras, **100% com `Programa Fonte` não-vazio**           |
-| Mapa de dependências          | `01-arqueologia/dependency-map.md`         | Grafo Mermaid cobrindo todos os 15 programas .NSN (sem órfãos) |
-| Mistérios encontrados         | `01-arqueologia/mysteries-found.md`        | ≥ 5 mistérios com evidência arquivo+linha                      |
-| Relatório de descoberta       | `01-arqueologia/discovery-report.md`       | Todas as seções preenchidas (sem placeholders)                 |
+| Verificação | Critério do portão |
+| --- | --- |
+| Leitura atribuída | Cada par confirmou a leitura dos três programas que recebeu. |
+| Catálogo de regras | Cada regra candidata ao recorte tem `Programa Fonte` não vazio. |
+| Recorte | O relatório de descoberta identifica uma feature pequena e o que foi adiado. |
+| Perguntas abertas | Incertezas relevantes foram registradas sem virar requisitos. |
 
 ---
 
-## 6. Trecho de Formato Obrigatório (leve para o Estágio 2)
+## 6. Formato obrigatório no Estágio 2
 
-Quando começar a escrever EARS no Estágio 2, **todo requisito precisa seguir este formato**:
-
-```yaml
-REQ-PAY-001:
- pattern: event-driven
- text: "Quando um ciclo de pagamento é gerado, o SIFAP deve criar registros de pagamento
- para todo beneficiário com status ACTIVE."
- source_legacy: 01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN#L120-L168
- acceptance: "10 beneficiários ativos + 2 suspensos produzem 10 registros de pagamento."
-```
-
-Caso greenfield (sem paralelo no legado):
-
-```yaml
-REQ-AUTH-001:
-  pattern: ubiquitous
-  text: "O SIFAP deve autenticar usuários via OAuth2 com tokens JWT."
-  source_legacy: "[GREENFIELD] O legado usava autenticação por sessão de terminal; a API moderna precisa de autenticação por token."
-  acceptance: "Requisições não autenticadas retornam 401."
-```
-
-> Spec sem linha `source_legacy` = inválida. Os validadores de traceabilidade no CI bloqueiam.
+Escreva EARS somente em `specs/<NNN>-<feature>/spec.md`, usando o Spec-Kit.
+Cada REQ-ID precisa de padrão EARS, critérios Given/When/Then e
+`source_legacy:`. Não preencha requisito algum até a equipe confirmar a fonte
+ou a justificativa greenfield.
 
 ---
 
@@ -159,4 +149,3 @@ REQ-AUTH-001:
 </table>
 
 <sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
-

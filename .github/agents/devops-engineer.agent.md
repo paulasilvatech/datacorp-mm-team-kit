@@ -22,6 +22,7 @@ Use essas skills como fonte operacional para procedimentos, checklists e criteri
 Pipelines CI/CD, IaC, monitoramento, resposta a incidentes
 
 ## Restrições
-- Siga `CONSTITUTION.md` e `SPECIFICATION.md`.
+- Siga `.specify/memory/constitution.md` e os artefatos da feature em
+  `specs/<NNN>-<feature>/`.
 - Use a capacidade selecionada pela pessoa usuária.
 - Sinalize quando entrada humana for necessária.

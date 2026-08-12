@@ -19,7 +19,8 @@
 
 ## Objetivo da etapa
 
-Transformar o relatório de descoberta em uma spec implementável: requisitos rastreáveis, bounded contexts, diagramas C4, ADRs e plano técnico alinhado ao GitHub Spec-Kit.
+Transformar o relatório de descoberta de uma feature fina em `spec.md`,
+`plan.md` e `tasks.md` rastreáveis, usando o GitHub Spec-Kit.
 
 ## Quando usar
 
@@ -32,36 +33,35 @@ Transformar o relatório de descoberta em uma spec implementável: requisitos ra
 
 1. Selecione o agente `@architect` no Copilot Chat.
 2. Cole o prompt de abertura abaixo.
-3. Liste as regras e mistérios vindos do Estágio 1.
+3. Liste as regras confirmadas e as perguntas abertas vindas do Estágio 1.
 4. Use `/speckit.specify` e `/speckit.clarify` para formalizar requisitos.
 5. Use `/speckit.plan` para gerar plano técnico, dados e contratos.
-6. Registre decisões importantes em ADRs.
+6. Registre em `02-spec-moderna/` apenas uma decisão de escopo que bloqueie o plano.
 7. Faça o Passagem #2 para os Pares 3 e 4.
 
 ```text
 Estou iniciando o Estágio 2 — Spec Moderna.
 Temos relatório de descoberta, catálogo de regras, glossário, DDMs e mapa de dependências.
-Ajude a transformar isso em requisitos EARS com source_legacy, bounded contexts,
-C4, ADRs e plano técnico para Java 21 + Spring Boot + PostgreSQL + Next.js.
+Ajude a transformar a evidência confirmada em `spec.md`, `plan.md` e
+`tasks.md` de uma feature fina. Não preencha requisitos ou arquitetura sem
+fonte e registre perguntas abertas separadamente.
 ```
 
 ## O que perguntar
 
 | Situação | Prompt útil |
 | --- | --- |
-| Regra de negócio bruta | "Converta esta regra em EARS com REQ-ID, acceptance e source_legacy." |
+| Regra de negócio bruta | "Confirme a fonte desta regra antes de propor uma EARS com `source_legacy:`." |
 | Limite de módulo incerto | "Compare 2 ou 3 bounded contexts possíveis e mostre prós/contras." |
 | Decisão arquitetural | "Gere um ADR com contexto, opções, decisão, consequências e riscos." |
 | Plano técnico | "Prepare `/speckit.plan` considerando modular monolith, JPA e PostgreSQL." |
 
 ## Definição de Pronto
 
-- [ ] Pelo menos 12 requisitos EARS com REQ-IDs.
-- [ ] 100% dos requisitos com `source_legacy:` ou `[GREENFIELD]` justificado.
-- [ ] C4 L1/L2/L3 ou equivalente Mermaid para orientar implementação.
-- [ ] ADRs principais: modular monolith, persistência e autenticação.
-- [ ] `spec.md`, `plan.md` e `tasks.md` preparados ou em progresso no fluxo Spec-Kit.
-- [ ] Escopo assinado pelo Product Owner no Passagem #2 (~16:00).
+- [ ] `spec.md`, `plan.md` e `tasks.md` existem em `specs/<NNN>-<feature>/`.
+- [ ] Todo requisito tem `source_legacy:` ou `[GREENFIELD]` justificado.
+- [ ] Decisões de escopo de apoio estão em `02-spec-moderna/`.
+- [ ] Escopo assinado pelo Product Owner na Passagem H2, às 15:00.
 
 ## Anti-padrões
 
@@ -101,4 +101,3 @@ C4, ADRs e plano técnico para Java 21 + Spring Boot + PostgreSQL + Next.js.
 </table>
 
 <sub>↑ <a href="../../README.md">Voltar ao Kit PT-BR</a></sub>
-

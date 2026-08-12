@@ -12,7 +12,7 @@
 >
 > 1. Backend Java + Spring Boot rodando com Testcontainers
 > 2. Frontend Next.js usável com Server Components
-> 3. Migração Flyway aplicada (mesmo padrão do `V1__init_payment_module-exemplo.sql`)
+> 3. Migração Flyway aplicada
 > 4. Cobertura de testes ≥70%
 > 5. Cada commit cita `Implements REQ-XXX`
 
@@ -25,8 +25,8 @@
 > 🧭 **Antes de entrar neste estágio** (1 minuto de leitura):
 >
 > - **JPA, Flyway, Testcontainers, Server Component, Bean Validation, Swagger** — siglas novas? [`../07-conceitos/03-glossario-visual.md`](../07-conceitos/03-glossario-visual.md).
-> - **Service Java pronto como referência:** [`../08-exemplos/PaymentService-exemplo.java`](../08-exemplos/PaymentService-exemplo.java) (implementa REQ-PAY-001/002 com rastreabilidade).
-> - **Migração Flyway bem feita** (com PE → tabela filha): [`../08-exemplos/V1__init_payment_module-exemplo.sql`](../08-exemplos/V1__init_payment_module-exemplo.sql).
+> - **Antes de implementar:** releia a EARS e as decisões que o seu time produziu no Estágio 2.
+> - **Antes de modelar dados:** verifique os DDMs e a rastreabilidade levantada pelo seu time no Estágio 1.
 > - **Quando usar Plan vs Agent?** [`../09-cheat-sheets/copilot-3-modes.md`](../09-cheat-sheets/copilot-3-modes.md). Para features pequenas, Plan; Agent fica para o Estágio 4.
 > - **Travou no setup?** Vá direto à seção `Troubleshooting` mais abaixo.
 
@@ -37,8 +37,8 @@
 >
 > - [ ] Estágio 2 terminou (Passagem H2 aceita pelo PO)
 > - [ ] Você selecionou **`@builder`** no Copilot Chat
-> - [ ] `SPECIFICATION.md` tem REQ-IDs com `source_legacy:` válido
-> - [ ] ADRs principais aprovadas (≥3 ADRs)
+> - [ ] `specs/<NNN>-<feature>/spec.md` tem REQ-IDs com `source_legacy:` válido
+> - [ ] `specs/<NNN>-<feature>/plan.md` contém as decisões necessárias para a primeira tarefa
 > - [ ] O time definiu os paths iniciais do protótipo (`backend/`, `frontend/` e, se necessário, `infra/`)
 > - [ ] Branch `impl/...` criada a partir de `develop` atualizada
 
@@ -90,51 +90,25 @@ mkdir -p backend frontend
 - Frontend: `cd frontend && npm test` ou o comando equivalente definido pelo time deve passar assim que o esqueleto existir.
 - Swagger e frontend local entram no runbook depois que o time criar esses pontos de execução.
 
-### 3. Credenciais padrão
+### 3. Teste a API no Swagger
 
-| Usuário     | Senha        | Perfil   | O que pode fazer                              |
-| ----------- | ------------ | -------- | --------------------------------------------- |
-| `admin`     | `client2026` | ADMIN    | Tudo: gerir usuários, configurações           |
-| `operator1` | `client2026` | OPERATOR | Cadastrar beneficiários, registrar pagamentos |
-| `auditor1`  | `client2026` | AUDITOR  | Consultar, gerar relatórios, auditar          |
-
-### 4. Teste a API no Swagger
-
-Abra http://localhost:8080/swagger-ui.html e teste:
-
-1. `POST /api/v1/auth/login` com `{"username": "admin", "password": "client2026"}`
-2. Copie o token JWT retornado
-3. Clique em "Authorize" no Swagger e cole o token
-4. Teste os endpoints de beneficiário e pagamento
+Use a autenticação e os contratos configurados pelo próprio time. Exercite apenas
+os fluxos que foram implementados e documente a evidência da validação.
 
 ---
 
 ## Estrutura do Backend
 
-O backend segue uma arquitetura **modular monolith** com 4 módulos e 3 camadas cada:
+O backend segue a arquitetura que o time documentou, com módulos por funcionalidade
+e três camadas cada:
 
 ```
 src/main/java/br/gov/client/sifap/
 │
-├── beneficiary/ # Módulo: Beneficiários
-│ ├── domain/ # Entidades e regras de negócio
-│ ├── application/ # Services e DTOs
-│ └── infrastructure/ # Controllers, Repositories, JPA Entities
-│
-├── payment/ # Módulo: Pagamentos
-│ ├── domain/
-│ ├── application/
-│ └── infrastructure/
-│
-├── audit/ # Módulo: Auditoria
-│ ├── domain/
-│ ├── application/
-│ └── infrastructure/
-│
-└── admin/ # Módulo: Administração
- ├── domain/
- ├── application/
- └── infrastructure/
+└── <feature>/
+    ├── domain/
+    ├── application/
+    └── infrastructure/
 ```
 
 ### Camadas (de dentro para fora)
@@ -153,63 +127,16 @@ A camada `domain` **nunca** importa classes de `infrastructure`. O fluxo é semp
 
 ## Passo a passo: adicionar uma feature
 
-Siga estes 5 passos para cada peça de funcionalidade:
+Siga estes passos para cada funcionalidade priorizada:
 
-### Passo 1: crie ou atualize a entidade de domínio
-
-```java
-// src/.../payment/domain/PaymentStatus.java
-public enum PaymentStatus {
- PENDING, APPROVED, REJECTED, CANCELLED
-}
-```
-
-### Passo 2: crie o service
-
-```java
-// src/.../payment/application/PaymentService.java
-@Service
-public class PaymentService {
- // Injete o repositório, implemente a lógica
-}
-```
-
-### Passo 3: crie o controller
-
-```java
-// src/.../payment/infrastructure/PaymentController.java
-@RestController
-@RequestMapping("/api/v1/payments")
-public class PaymentController {
- // Injete o service, exponha os endpoints
-}
-```
-
-### Passo 4: crie a migração de banco
-
-```sql
--- src/main/resources/db/migration/V2__add_payment_status.sql
-ALTER TABLE payments ADD COLUMN status VARCHAR(20) DEFAULT 'PENDING';
-```
+1. Releia a EARS, a evidência legada e as decisões que o time registrou.
+2. Modele o comportamento no contexto e nas camadas que o time definiu.
+3. Crie as mudanças de dados necessárias em uma nova migração.
+4. Exponha somente os contratos que a EARS exige.
+5. Escreva e execute testes para os critérios de aceite definidos pelo time.
 
 > [!CAUTION]
 > **Use Flyway. Nunca modifique migrações existentes.** Sempre crie novas (`V2__`, `V3__`, etc.). Editar uma migração antiga corrompe o histórico de schema e quebra deploys.
-
-### Passo 5: escreva os testes
-
-```java
-// src/test/.../payment/application/PaymentServiceTest.java
-@SpringBootTest
-class PaymentServiceTest {
- @Test
- @DisplayName("REQ-PAY-XXX: descrição do cenário")
- void shouldCalculatePaymentCorrectly() {
- // Arrange, Act, Assert
- }
-}
-```
-
----
 
 ## Fluxo com Copilot Plan
 
@@ -218,9 +145,8 @@ Para implementar features rapidamente:
 1. **Selecione os arquivos relevantes** no VS Code (Ctrl+click)
 2. **Abra o Copilot em modo Plan**
 3. **Descreva a mudança** em linguagem natural e peça um plano antes da execução:
-   > "Adicione um endpoint PUT /api/v1/beneficiaries/{id}/status que permita
-   > mudar o status do beneficiário. Valide que a transição é válida
-   > (ACTIVE -> SUSPENDED é permitido, INACTIVE -> ACTIVE não é). Crie o teste."
+   > "Planeje a implementação da EARS `REQ-XXX`. Liste os arquivos envolvidos,
+   > os riscos e os testes necessários. Não implemente ainda."
 4. **Revise o plano e o diff** antes de aceitar — verifique que segue a arquitetura
 5. **Rode os testes** para confirmar
 
@@ -268,15 +194,10 @@ O frontend usa **Next.js 15 com App Router** e **Server Components**:
 
 ```
 src/app/
-├── layout.tsx # Layout raiz
-├── page.tsx # Página inicial
-├── (auth)/
-│ └── login/page.tsx # Login
-└── (dashboard)/
- ├── beneficiaries/ # CRUD de beneficiários
- ├── payments/ # CRUD de pagamentos
- ├── audit/ # Logs de auditoria
- └── admin/ # Gestão de usuários
+├── layout.tsx
+├── page.tsx
+└── <feature>/
+    └── page.tsx
 ```
 
 ### Padrão Server Components
@@ -290,35 +211,19 @@ src/app/
 
 Para cada feature que você implementa, mantenha rastreabilidade com a spec:
 
-| Requisito EARS                                                                    | Código                           | Teste                                        |
-| --------------------------------------------------------------------------------- | -------------------------------- | -------------------------------------------- |
-| REQ-BEN-01: "O SIFAP deve validar CPF com módulo 11"                              | `Cpf.java` (domain)              | `CpfTest.java` — 11 testes                   |
-| REQ-PAY-03: "Quando um ciclo for gerado, criar pagamentos para beneficiários ACTIVE" | `PaymentCycleService.generate()` | `PaymentCycleServiceTest.generate_openCycle` |
-| REQ-AUD-01: "Quando uma entidade for alterada, gravar um registro de auditoria"    | `AuditService.record()`          | `SifapApplicationIntegrationTest`            |
+| Requisito EARS | Código | Teste |
+| --- | --- | --- |
+| `REQ-XXX` | <!-- preencher --> | <!-- preencher --> |
 
 Quando adicionar uma feature, documente no commit: `Implements REQ-XXX`. Isso fecha o ciclo spec → código → teste.
 
 ---
 
-## Exemplo concreto: implementando REQ-PAY-DSCT-01
+## Como manter rastreabilidade
 
-Suponha que o Estágio 2 produziu este REQ-ID:
-
-```yaml
-REQ-PAY-DSCT-01:
-  pattern: unwanted
-  text: "O SIFAP não deve permitir que descontos não judiciais excedam 30% do valor bruto."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/CALCDSCT.NSN#L142-L148
-```
-
-Sua implementação no Estágio 3:
-
-1. **Service**: adicione método `calculateTotalDeductions` em `PaymentService.java`.
-2. **Teste**: 3 cenários (não-judicial 35% → trunca; judicial 50% → aceita; mix 45% → aceita).
-3. **Commit**: `feat(payment): cap non-judicial deductions at 30% — Implements REQ-PAY-DSCT-01`.
-4. **PR**: link para a REQ-ID no corpo do PR.
-
-Pronto. Rastreabilidade fechada.
+Associe cada mudança à EARS que a motivou, registre os testes que a verificam e
+inclua o REQ-ID no commit e no PR. A implementação e os cenários devem vir da
+evidência do próprio time.
 
 ---
 
@@ -332,7 +237,7 @@ Pronto. Rastreabilidade fechada.
 | Editar uma migração Flyway antiga                                    | NUNCA. Sempre nova migração (V5**, V6**...)                   |
 | Criar endpoint sem `@Valid` no DTO                                   | Bean Validation no controller. Sempre                         |
 | Misturar lógica de domínio no controller                             | Controller chama service. Lógica fica em service ou domain    |
-| Importar classes de `payment.infrastructure` em `beneficiary.domain` | Bounded contexts não se cruzam                                |
+| Importar classes de infraestrutura entre contextos                  | Preserve as fronteiras que o time definiu                      |
 | Commit sem `Implements REQ-XXX`                                      | Rastreabilidade é o que valida o trabalho do estágio anterior |
 
 </details>
@@ -347,7 +252,7 @@ Pronto. Rastreabilidade fechada.
 | Ambiente local não sobe             | Verifique Java 21, Node, variáveis de ambiente e portas 5432/8080/3000 livres                                      |
 | Backend não conecta no PostgreSQL   | Verifique a URL configurada e se o Postgres escolhido pelo time está em execução                                   |
 | Frontend mostra "Failed to load"    | O backend está rodando? Teste: `curl http://localhost:8080/actuator/health`                                         |
-| Login retorna "Invalid credentials" | Use: admin / client2026. Verifique que V4\_\_auth.sql rodou (Flyway)                                                |
+| Login retorna erro de credencial     | Verifique a configuração local e a migração de autenticação criada pelo time                                        |
 | Teste falha com Testcontainers      | Docker Desktop precisa estar rodando. Alternativa: unit test com Mockito                                            |
 | Migração falha no startup           | NUNCA edite uma migração existente. Crie uma nova (V5**, V6**...)                                                   |
 | `mvn test-compile` erro de import   | Verifique que o pacote segue a estrutura: domain/ → application/ → infrastructure/                                  |
@@ -361,14 +266,13 @@ Pronto. Rastreabilidade fechada.
 
 Ao final do Estágio 3, seu time deve ter:
 
-- [ ] Backend funcionando com pelo menos 2 endpoints novos implementados
-- [ ] Frontend com pelo menos 1 tela nova ou melhoria significativa
-- [ ] Testes passando: `./mvnw test` sem falhas
+- [ ] Fluxo priorizado pelo time está implementado e documentado
+- [ ] Interface necessária para esse fluxo está disponível
+- [ ] Testes definidos pelo time passam
 - [ ] Modo de execução local documentado no próprio protótipo — qualquer revisor consegue subir
-- [ ] Swagger UI mostrando todos os endpoints documentados
-- [ ] Pelo menos 1 regra de negócio do Estágio 1 implementada e testada
+- [ ] Contratos expostos estão documentados
+- [ ] Regra priorizada do Estágio 1 está implementada e testada
 - [ ] Todos os commits têm `Implements REQ-XXX` no message
-- [ ] Cobertura de testes: backend ≥ 70%, frontend ≥ 60% de linhas
 
 ## Próximo passo
 

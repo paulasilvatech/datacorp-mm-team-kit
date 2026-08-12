@@ -45,7 +45,7 @@ Manter velocidade de execução no Estágio 3. Escolher as batalhas técnicas qu
 | Estágio                | Você faz isso                                                                                  | Entregável que depende de você |
 | ---------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------ |
 | 1. Arqueologia         | Participa da análise do legado priorizando programas críticos. Estima complexidade.            | Priorização baseada em esforço |
-| 2. Spec Moderna        | Valida que a spec é realista nas 3 horas do Estágio 3. Sinaliza "isso não cabe".               | Calibração de escopo           |
+| 2. Spec Moderna        | Valida que a spec cabe nos 70 minutos do Estágio 3. Sinaliza "isso não cabe".                  | Calibração de escopo           |
 | 3. Implementação       | Desbloqueia. Decide padrões (estilo de teste, transações, tratamento de erro). Revisa todo PR. | Aplicação rodando end-to-end   |
 | 4. Evolução com Agent  | Revisa o PR do Agent linha por linha antes do merge.                                           | PR em qualidade de produção    |
 
@@ -84,14 +84,14 @@ Manter velocidade de execução no Estágio 3. Escolher as batalhas técnicas qu
 ## 3 exemplos de prompt
 
 1. **(Chat)** _"Revise este PR: verifique se segue as 3 camadas (domain/application/infrastructure), se o teste cobre caminho feliz + erro, e se há algum import cruzando bounded context."_
-2. **(Chat)** _"Temos 3 devs e 3 horas. Features pendentes: [lista]. Crie um plano distribuindo entre devs considerando dependências e complexidade."_
+2. **(Chat)** _"Temos 70 minutos. Ajude a comparar estas features por evidência, dependências e esforço para escolher uma feature fina; não complete requisitos ausentes."_
 3. **(Chat)** _"O modo de execução local falha com este erro: [cole]. Diagnostique a causa-raiz e proponha uma correção."_
 
 ## Se travar (defaults de emergência)
 
 - **Ambiente local não sobe?** Verifique: porta 5432 ocupada? versão do Java/Node correta? containers antigos interferindo? logs do backend mostram qual erro?
 - **Time lento?** Pare, redistribua: "Dev A faz o endpoint, Dev B faz a migration, QA faz o teste. Merge em 45 min."
-- **PR em conflito?** `git pull --rebase` e resolva. Não deixe branch divergir por mais de 2 horas.
+- **PR em conflito?** `git pull --rebase` e resolva. Não deixe a branch divergir sem alinhar com o par.
 - **Não sabe decidir um padrão?** Use a spec, os ADRs e as instruções do kit como fonte; documente a decisão no PR.
 
 ## Dependências — Quem depende de você

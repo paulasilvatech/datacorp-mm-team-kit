@@ -53,25 +53,26 @@ Um agente único teria instruções conflitantes: no Estágio 1 ele precisa ser 
 4. **Use os prompts do stage.** Eles transformam conversa em artefato.
 5. **Pare no gate.** Só avance quando a Definição de Pronto da etapa estiver cumprida.
 
-## Exemplo concreto
+## Estrutura de interação
 
-Durante o Estágio 2, o Requirements Engineer quer escrever requisitos, mas quem coordena a etapa é o Software Architect com `@architect`.
+Durante o Estágio 2, o Requirements Engineer pode levar uma descoberta confirmada
+ao Software Architect, que coordena a etapa com `@architect`.
 
 ```text
 @architect
-Temos esta regra extraída de BATCHPGT.NSN:
-"Quando o ciclo mensal roda, pagamentos são gerados apenas para beneficiários ativos."
-Ajude a transformar em EARS com REQ-ID, critérios de aceite e source_legacy.
+Temos esta regra extraída do legado:
+"<regra confirmada>"
+Ajude a estruturá-la em EARS com REQ-ID, critérios de aceite e source_legacy.
 ```
 
-O agente ajuda a transformar a descoberta em algo implementável:
+O artefato deve registrar somente a evidência do time:
 
 ```yaml
-REQ-PAY-001:
-  pattern: event-driven
-  text: "Quando um ciclo de pagamento for gerado, o SIFAP deverá criar registros de pagamento para todo beneficiário com status ACTIVE."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN#L120-L168
-  acceptance: "10 ativos + 2 suspensos produzem 10 registros de pagamento."
+REQ-XXX:
+  pattern: <padrão EARS>
+  text: "<requisito>"
+  source_legacy: <arquivo:linhas ou [GREENFIELD] + justificativa>
+  acceptance: "<cenário verificável>"
 ```
 
 ## Regra no-silver-platter
@@ -128,4 +129,3 @@ Você entendeu o modelo quando consegue explicar estas três frases para outra p
 </table>
 
 <sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
-

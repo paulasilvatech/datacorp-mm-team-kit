@@ -1,7 +1,7 @@
 ---
 name: "coverage-gaps"
 agent: "qa-engineer"
-description: "Encontre REQ-IDs sem testes, casos de borda ausentes e lacunas entre os critérios de aceitação de SPECIFICATION.md e a suíte de testes."
+description: "Encontre REQ-IDs sem testes, casos de borda ausentes e lacunas entre os critérios de aceitação de spec.md e a suíte de testes."
 tools: ["search", "execute"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
@@ -22,7 +22,7 @@ Peça ao usuário o que estiver faltando.
 
 ## Processo
 
-1. **Monte o inventário de requisitos.** Parseie `SPECIFICATION.md` e extraia cada `REQ-ID` junto com seu padrão EARS e seus critérios de aceitação.
+1. **Monte o inventário de requisitos.** Parseie `spec.md` e extraia cada `REQ-ID` junto com seu padrão EARS e seus critérios de aceitação.
 2. **Encontre testes por `REQ-ID`.** Use grep nas fontes de teste procurando `REQ-NNN`, `@implements REQ-NNN`, `@Tag("REQ-NNN")` ou convenções de nome como `Req014_*`. Liste cada ocorrência.
 3. **Mapeie teste → requisito.** Para cada `REQ-ID`, liste os testes que o cobrem. Marque `MISSING` se não houver nenhum, `WEAK` se houver apenas um teste de happy path, `OK` se houver happy path + pelo menos um caso de limite ou erro.
 4. **Inspecione variantes EARS em busca de casos ocultos.** Requisitos event-driven e unwanted-behavior (`If ...`) quase sempre precisam de um teste negativo. Requisitos state-driven (`While ...`) precisam de um teste de transição de estado.
@@ -56,21 +56,6 @@ Um relatório em markdown com a seguinte estrutura:
 1. `PaymentServiceTest#shouldRejectDisbursementWhenBeneficiarySuspended`
 2. `BeneficiaryAuditTest#shouldNotEmitAuditRowWhenCpfUnchanged`
 ```
-
-## Exemplo trabalhado
-
-**Entrada:** "Audite `specs/003-payment-processing/` em relação a `backend/src/.../payments/`."
-
-**Esqueleto de saída esperado:**
-
-> 18 REQ-IDs no escopo. 11 OK, 4 WEAK, 3 MISSING.
->
-> Ausentes: REQ-PAY-014 (beneficiário suspenso), REQ-PAY-019 (valor negativo), REQ-PAY-021 (arredondamento de moeda para centavos).
->
-> Principais receitas:
-> 1. Teste de desembolso com valor negativo (boundary).
-> 2. Teste de desembolso para beneficiário suspenso (unwanted-behavior EARS).
-> 3. Teste de arredondamento de centavos, comparando com fixtures legadas de `CALCBENF.NSN`.
 
 ## Anti-padrões
 

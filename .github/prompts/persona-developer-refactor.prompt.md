@@ -18,7 +18,7 @@ Peça ao usuário qualquer item que esteja faltando.
 
 - O arquivo, pacote ou componente alvo (por exemplo `backend/src/main/java/br/gov/sifap/payments/PaymentService.java`).
 - A motivação: code smell observado (long method, duplicação, primitive obsession, feature envy etc.).
-- Quaisquer restrições de `DESIGN.md` ou ADRs que limitem seus movimentos (por exemplo "controllers devem permanecer finos").
+- Quaisquer restrições de `plan.md` ou ADRs que limitem seus movimentos (por exemplo "controllers devem permanecer finos").
 - A cobertura de testes atual da área (execute um relatório de cobertura se desconhecida).
 
 ## Processo
@@ -50,20 +50,6 @@ Sua resposta final deve incluir:
 
  Refs: REQ-PAY-014 (annotation moved to DisbursementCalculator.calculate)
  ```
-
-## Exemplo trabalhado
-
-**Entrada:** "`PaymentService` tem mais de 400 linhas e mistura orquestração com cálculo."
-
-**Estrutura esperada da resposta:**
-
-> Smell: Large Class — `PaymentService` tem 14 métodos ao longo de 412 linhas, com duas responsabilidades não relacionadas (orquestração de repositórios vs matemática de desembolso).
->
-> Refatoração: Extract Class — mover os quatro métodos de cálculo puro para um novo `DisbursementCalculator`. `PaymentService` colabora com ele via injeção por construtor.
->
-> Preservação de comportamento: todos os 38 testes existentes em `PaymentServiceTest` continuam passando sem modificação. Nenhuma assinatura de método público muda. Nenhum DB ou configuração foi tocado.
->
-> Arquivos: `PaymentService.java` (modificado), `DisbursementCalculator.java` (novo), `DisbursementCalculatorTest.java` (novo — 11 testes movidos).
 
 ## Antipadrões
 

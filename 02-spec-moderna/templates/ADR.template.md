@@ -25,7 +25,7 @@ tags: ["template", "adr", "architect", "stage-2"]
 
 ## Status
 
-Aceita
+<!-- placeholder: Proposta | Aceita | Rejeitada | Substituída -->
 
 ## Data
 
@@ -83,11 +83,10 @@ Aceita
 </td>
 <td width="50%" valign="top" align="right">
 <sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="../../08-exemplos/ADR-001-monolito-modular-exemplo.md"><strong>Exemplo ADR</strong></a><br/>
-<sub>ADR completa pronta.</sub>
+<a href="../GUIDE.md"><strong>GUIDE do Estágio 2</strong></a><br/>
+<sub>Conduza a decisão com o time.</sub>
 </td>
 </tr>
 </table>
 
 <sub>↑ <a href="../../README.md">Voltar ao Kit PT-BR</a></sub>
-

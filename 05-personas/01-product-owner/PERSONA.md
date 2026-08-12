@@ -84,15 +84,15 @@ Este workshop aplica o framework **Agentic Legacy Modernization** — uma aborda
 
 ## 3 exemplos de prompt
 
-1. **(Chat)** _"Analise o programa CALCBENF.NSN do SIFAP legado e liste as 5 regras de negócio com maior impacto no beneficiário. Para cada uma, diga se deve ser migrada, descartada ou evoluída."_
+1. **(Chat)** _"Analise os programas atribuídos ao nosso par e liste as regras confirmadas. Para cada uma, proponha uma decisão de escopo com justificativa."_
 2. **(Chat)** _"Revise estas 3 user stories e reescreva como GitHub issues no formato que o Copilot Agent consome. Inclua contexto, requisitos funcionais como checklist e critérios de aceitação."_
-3. **(Chat)** _"O time quer implementar 8 funcionalidades em 3 horas. Com base em complexidade, ajude-me a cortar para as 3 mais críticas para o ciclo mensal de pagamento."_
+3. **(Chat)** _"O time quer implementar mais funcionalidades do que o tempo permite. Ajude-me a priorizar usando impacto, risco e evidência disponível."_
 
 ## Se travar (defaults de emergência)
 
-- **Travou na priorização?** Aplique a regra: "Afeta o ciclo mensal de pagamento? → v1. Não? → backlog."
+- **Travou na priorização?** Compare impacto, risco, dependências e tempo disponível; registre a decisão.
 - **Não sabe escrever uma issue?** Copie o template de [`../04-evolucao/GUIDE.md`](../../04-evolucao/GUIDE.md) e adapte.
-- **O time quer tudo no escopo?** Diga: "Temos 3 horas de implementação; escolham 3 funcionalidades."
+- **O time quer tudo no escopo?** Diga: "Temos 70 minutos de implementação; escolham uma feature fina."
 - **Pergunta de negócio sem resposta?** Documente como premissa e siga.
 
 ## Dependências — Quem depende de você

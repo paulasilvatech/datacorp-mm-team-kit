@@ -21,7 +21,7 @@ Esta pasta pertence à persona **Tech Writer**, mas recebe contribuições de to
 
 1. **Antes de começar o dia**, leia [sdlc-flow-guide.md](sdlc-flow-guide.md) para entender o mapa completo.
 2. **Quando escolher suas personas**, leia [persona-agent-matrix.md](persona-agent-matrix.md) para saber quando você protagoniza, apoia ou observa.
-3. **Durante o Estágio 1**, atualize [glossary.md](glossary.md) e registre termos com fonte no legado.
+3. **Durante o Estágio 1**, atualize o [glossário do Estágio 1](../01-arqueologia/glossary.md) e registre termos com fonte no legado.
 4. **Durante decisões técnicas**, crie ADRs em [adr/](adr/).
 5. **No final**, revise [runbook.md](runbook.md) para que outra pessoa consiga rodar e operar o sistema.
 
@@ -30,7 +30,7 @@ Esta pasta pertence à persona **Tech Writer**, mas recebe contribuições de to
 | Caminho                      | Finalidade                                                                             |
 | ---------------------------- | -------------------------------------------------------------------------------------- |
 | [`adr/`](adr/)               | Registros de decisão de arquitetura (um arquivo por decisão)                           |
-| [`glossary.md`](glossary.md) | Glossário de domínio — preenchido durante o Estágio 1 (Arqueologia)                    |
+| [`../01-arqueologia/glossary.md`](../01-arqueologia/glossary.md) | Glossário de domínio — preenchido durante o Estágio 1 (Arqueologia) |
 | [`4-agents-explained.md`](4-agents-explained.md) | Explicação didática dos 4 agentes de etapa e sua relação com persona-kits |
 | [`persona-agent-matrix.md`](persona-agent-matrix.md) | Matriz de quem protagoniza, apoia ou observa em cada etapa |
 | [`sdlc-flow-guide.md`](sdlc-flow-guide.md) | Fluxo completo do dia, passagens, prompts e entregáveis |
@@ -71,7 +71,7 @@ Esta pasta pertence à persona **Tech Writer**, mas recebe contribuições de to
 </td>
 <td width="50%" valign="top" align="right">
 <sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="glossario-visual.md"><strong>Glossário Visual</strong></a><br/>
+<a href="../07-conceitos/03-glossario-visual.md"><strong>Glossário Visual</strong></a><br/>
 <sub>30+ termos técnicos com analogia em 3 linhas.</sub>
 </td>
 </tr>

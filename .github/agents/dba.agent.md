@@ -22,6 +22,7 @@ Use essas skills como fonte operacional para procedimentos, checklists e criteri
 Migrações, otimização de consultas e auditoria contra SQL injection.
 
 ## Restrições
-- Siga `CONSTITUTION.md` e `SPECIFICATION.md`.
+- Siga `.specify/memory/constitution.md` e os artefatos da feature em
+  `specs/<NNN>-<feature>/`.
 - Use a capacidade selecionada pela pessoa usuária.
 - Sinalize quando for necessária entrada humana.

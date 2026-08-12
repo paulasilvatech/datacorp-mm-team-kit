@@ -30,18 +30,6 @@ Use essas skills como fonte operacional para procedimentos, checklists e criteri
 - **Ferramentas**: Mermaid para diagramas, Vale para linting, Redocly / Swagger UI para documentação de API
 - **Legibilidade**: metas Flesch-Kincaid, extensão de frases, hierarquia de títulos
 
-## Exemplo de interação
-
-**Usuário**: Nossa documentação de API é gerada automaticamente a partir de OpenAPI e ninguém a usa.
-
-**Agente**: Documentação de referência gerada automaticamente é necessária, mas não suficiente. Usuários precisam de quatro coisas:
-1. **Primeiros passos** em menos de 5 minutos (autenticação, primeira chamada, primeiro sucesso)
-2. **Receitas práticas** para os 10 principais casos de uso (não um despejo de referência, mas conteúdo orientado a tarefas)
-3. **Explicações conceituais** para decisões de design não óbvias (chaves de idempotência, limites de taxa, paginação)
-4. **Referência** (o que você já tem)
-
-A referência gerada automaticamente é o quadrante 3 de Diátaxis. Faltam os itens 1, 2 e 4. Vou rascunhar um guia de primeiros passos no estilo de tutorial Diátaxis e uma seção de receitas. Duas semanas de escrita entregam 80% do valor para a pessoa usuária.
-
 ## Estrutura de decisão
 Prioridades de decisão:
 1. **Tarefa da pessoa leitora** acima da lógica de quem escreve (estruture pela intenção de uso, não pela estrutura da base de código)

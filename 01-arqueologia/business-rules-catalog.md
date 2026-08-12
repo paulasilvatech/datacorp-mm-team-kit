@@ -12,8 +12,9 @@
 > Cada regra cita o programa-fonte com faixa de linhas (`arquivo.NSN:Lstart-Lend`) e é
 > classificada como **Confirmada** (cruza com a documentação histórica em
 > `legado-sifap/legacy-docs/`), **Inferida** (somente do código) ou
-> **Mistério** (lógica clara, mas intenção/origem desconhecida → registre também em
-> [`mysteries-found.md`](mysteries-found.md)).
+> **Mistério** (pergunta em aberto → registre também em
+> [`mysteries-found.md`](mysteries-found.md) com evidência `path:linha`, hipótese não
+> confirmada, responsável e status).
 >
 > 📘 **Guia passo a passo:** [`GUIDE.md`](GUIDE.md).
 
@@ -41,7 +42,7 @@
 
 ---
 
-✅ **Critério de pronto:** todo bloco condicional dos programas atribuídos examinado, cada regra cita `arquivo:linha`, mistérios marcados e replicados em `mysteries-found.md`.
+✅ **Critério de pronto:** todo bloco condicional dos programas atribuídos examinado, cada regra cita `arquivo:linha`, e toda pergunta em aberto é registrada em `mysteries-found.md` sem conclusão pelo agente.
 
 ---
 

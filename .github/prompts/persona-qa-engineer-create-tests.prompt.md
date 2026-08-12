@@ -16,7 +16,7 @@ Você está escrevendo a classe de teste para **um `REQ-ID` específico** no SIF
 
 Peça ao usuário o que estiver faltando.
 
-- O `REQ-ID`, sua declaração EARS completa e seus critérios de aceitação em `SPECIFICATION.md`.
+- O `REQ-ID`, sua declaração EARS completa e seus critérios de aceitação em `specs/<NNN>-<feature>/spec.md`.
 - A classe ou componente sob teste (por exemplo `br.gov.sifap.payments.PaymentService` ou `app/beneficiaries/page.tsx`).
 - O framework de teste — JUnit 5 + AssertJ + Mockito (backend) ou Vitest + Testing Library (frontend).
 - Quaisquer fixtures ou builders de teste existentes para reutilizar (`src/test/resources/fixtures/`, `__fixtures__/`).
@@ -46,48 +46,6 @@ Sua resposta final deve incluir:
 - **Adições de fixtures** se algum novo builder/factory for necessário (arquivo separado).
 - **Instrução de execução** — comando exato (`./mvnw test -Dtest=PaymentServiceTest`).
 - **Mensagens de falha esperadas** — o que o usuário deve ver antes da implementação.
-
-## Exemplo trabalhado
-
-**Entrada:** `REQ-PAY-014` — "Se um beneficiário estiver suspenso, então o sistema não deverá desembolsar." Classe sob teste: `PaymentService`.
-
-**Esqueleto de resposta esperado:**
-
-> Plano:
->
-> | Critério de aceitação | Método de teste |
-> |----------------------|-------------|
-> | Beneficiário suspenso causa recusa | `shouldRejectDisbursementWhenBeneficiarySuspended` |
-> | Beneficiário ativo ainda recebe desembolso (regressão) | `shouldDisburseWhenBeneficiaryActive` |
-> | Limite: `status=PENDING` não é "suspended" | `shouldDisburseWhenBeneficiaryPending` |
->
-> Arquivo: `backend/src/test/java/br/gov/sifap/payments/PaymentServiceTest.java`
->
-> ```java
-> @Tag("REQ-PAY-014")
-> class PaymentServiceTest {
-> private final BeneficiaryRepository repo = mock(BeneficiaryRepository.class);
-> private final TransferGateway gateway = mock(TransferGateway.class);
-> private final PaymentService service = new PaymentService(repo, gateway);
->
-> @Test
-> void shouldRejectDisbursementWhenBeneficiarySuspended() {
-> // given
-> var suspended = BeneficiaryFixtures.suspended("12345678900");
-> when(repo.findById(suspended.id())).thenReturn(Optional.of(suspended));
->
-> // when / then
-> assertThatThrownBy(() -> service.disburse(suspended.id(), Money.of("100.00")))
-> .isInstanceOf(BeneficiarySuspendedException.class)
-> .as("REQ-PAY-014");
-> verifyNoInteractions(gateway);
-> }
-> // ... two more tests ...
-> }
-> ```
->
-> Execução: `./mvnw test -Dtest=PaymentServiceTest`
-> Esperado: 3 testes falham com `Expected BeneficiarySuspendedException but ...` até `/implement` construir o código de produção.
 
 ## Anti-padrões
 

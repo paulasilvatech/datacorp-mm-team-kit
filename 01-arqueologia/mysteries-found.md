@@ -1,65 +1,31 @@
 <!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
 
-# Mistérios Encontrados — SIFAP Legado
-
-![ESTÁGIO 01 Arqueologia](https://img.shields.io/badge/ESTÁGIO-01%20Arqueologia-F25022?style=for-the-badge) ![TIPO Worksheet](https://img.shields.io/badge/TIPO-Worksheet-1A1A1A?style=for-the-badge) ![PREENCHA Durante S1](https://img.shields.io/badge/PREENCHA-Durante%20S1-737373?style=for-the-badge)
+# Registro de Perguntas em Aberto — Estágio 1
 
 > 🗺 **Você está aqui:** [Kit PT-BR](../README.md) → [Estágio 1](README.md) → **mysteries-found**
 
-> **Estágio 1 · `/catalog-mysteries`**
->
-> Um **mistério** é lógica clara no código cuja intenção ou origem ninguém consegue explicar:
-> constantes mágicas, casos especiais sem justificativa, divergências entre código e documentação.
-> Use o [`mysteries-checklist.md`](mysteries-checklist.md) como guia de caça — há mistérios
-> plantados no legado esperando para serem encontrados.
->
-> 📘 **Guia passo a passo:** [`GUIDE.md`](GUIDE.md).
+> **HARD GATE E RASTREABILIDADE:** uma pergunta não vira regra de negócio, requisito ou
+> conclusão enquanto não houver validação humana explícita e evidência preservada em
+> `path:linha`. O registro não é uma resposta nem substitui essa validação.
 
-**Time**: <!-- preencher -->
+## Registro
 
----
+| Pergunta aberta | Evidência (`path:linha`) | Impacto | Hipótese (não confirmada) | Pessoa/área responsável | Status |
+| --------------- | ------------------------ | ------- | ------------------------- | ----------------------- | ------ |
+| <!-- preencher --> | <!-- preencher: path:linha --> | <!-- preencher --> | <!-- preencher: não confirmada --> | <!-- preencher --> | <!-- preencher: aberta / aguardando validação humana / encerrada após validação humana --> |
 
-## Resumo
+## Regras de integridade
 
-| Classificação                    | Contagem             |
-| -------------------------------- | -------------------- |
-| Bloqueia o Estágio 2 (Crítico)   | <!-- preencher --> |
-| Precisa de investigação (Alto)   | <!-- preencher --> |
-| Precisa de facilitador (Médio)   | <!-- preencher --> |
-| Estacionado para depois (Baixo)  | <!-- preencher --> |
-
-## Mistérios
-
-| ID      | Descrição            | Fonte                | Classificação        | Severidade           | Ação Sugerida        |
-| ------- | -------------------- | -------------------- | -------------------- | -------------------- | -------------------- |
-| MYS-001 | <!-- preencher --> | <!-- preencher: arquivo:linha --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
-
-## Log de Resolução
-
-| ID  | Resolução | Resolvido Por | Data |
-| --- | --------- | ------------- | ---- |
-
----
-
-✅ **Critério de pronto:** todo marcador de mistério catalogado, IDs únicos, classificados por severidade, bloqueadores do Estágio 2 listados primeiro.
-
----
+- Registre somente perguntas abertas; não escreva uma resposta no catálogo.
+- Mantenha a evidência no formato `path:linha` para preservar a rastreabilidade.
+- Marque toda hipótese explicitamente como **não confirmada**.
+- Somente uma pessoa responsável pode fornecer a validação humana e alterar o status.
+- A ausência de evidência humana mantém a pergunta aberta.
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="mysteries-checklist.md"><strong>Checklist de Mistérios</strong></a><br/>
-<sub>O guia de caça.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="discovery-report.md"><strong>Relatório de Descoberta</strong></a><br/>
-<sub>Consolidação final.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+| -------- | ------- |
+| [Checklist de perguntas em aberto](mysteries-checklist.md) | [Relatório de descoberta](discovery-report.md) |
 
 <sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>

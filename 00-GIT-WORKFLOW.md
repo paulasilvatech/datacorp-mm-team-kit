@@ -69,18 +69,23 @@ gitGraph
 
 ## 🏷 Como nomear sua branch (convenção por persona)
 
-| Quem | Estágio | Prefixo de branch | Exemplo |
-|---|---|---|---|
-| RE + SA | 2 — Spec | `spec/<NNN>-<feature>` | `spec/001-ciclo-pagamento` |
-| Dev + DBA | 3 — Impl | `impl/<modulo>-<feature>` | `impl/payment-cycle` |
-| QA | 3 — Testes | `test/<feature>` | `test/payment-cycle-bdd` |
-| DevOps | 4 — Infra | `infra/<componente>` | `infra/terraform-aca` |
-| Tech Writer | Transversal | `docs/<topico>` | `docs/runbook` |
-| Agent Mode | 4 — Delegação | `agent/<issue-NN>` | `agent/issue-42` |
+| Quem | Estágio | Prefixo de branch | Origem | Exemplo |
+|---|---|---|---|---|
+| RE + SA | 2 — Spec | `spec/<NNN>-<feature>` | `develop` | `spec/001-ciclo-pagamento` |
+| Dev + DBA | 3 — Impl | `impl/<NNN>-<feature>` | `develop` | `impl/001-payment-cycle` |
+| QA | 3 — Testes | `test/<feature>` | `develop` | `test/payment-cycle-bdd` |
+| DevOps | 4 — Infra | `infra/<componente>` | `develop` | `infra/terraform-aca` |
+| Tech Writer | Transversal | `docs/<topico>` | `develop` | `docs/runbook` |
+| Agent Mode | 4 — Delegação | `agent/<issue-NN>` | `develop` | `agent/issue-42` |
+
+> [!IMPORTANT]
+> O fluxo é `spec/<NNN>-<feature>` → `develop` → `main`; não existe branch
+> `stage`. Depois que a spec for integrada, toda branch `impl/<NNN>-<feature>`
+> também nasce de `develop`, nunca da branch `spec/*`.
 
 > [!TIP]
 > **Padrão de commit message:** sempre cite o REQ-ID ou Issue.
-> Exemplo: `Implements REQ-PAY-001: gera ciclo mensal de pagamentos`.
+> Exemplo: `Implements REQ-XXX: descreve o comportamento`.
 
 ---
 
@@ -90,15 +95,15 @@ gitGraph
 
 ```bash
 git checkout develop && git pull        # atualiza o checkpoint
-git checkout -b spec/001-ciclo-pagamento  # cria sua quest
+git checkout -b spec/001-feature-name  # cria sua quest
 ```
 
 ### Passo 2 · Trabalhar (save rápido a cada peça)
 
 ```bash
 git add .
-git commit -m "Implements REQ-PAY-001: ciclo mensal"
-git push -u origin spec/001-ciclo-pagamento   # backup na nuvem
+git commit -m "Implements REQ-XXX: comportamento"
+git push -u origin spec/001-feature-name   # backup na nuvem
 ```
 
 > [!NOTE]
@@ -109,16 +114,16 @@ git push -u origin spec/001-ciclo-pagamento   # backup na nuvem
 ```bash
 gh pr create \
   --base develop \
-  --head spec/001-ciclo-pagamento \
-  --title "spec/001: ciclo de pagamento" \
-  --body "Implementa REQ-PAY-001/002/003.
+  --head spec/001-feature-name \
+  --title "spec/001: feature name" \
+  --body "Implementa REQ-XXX.
 
   ## O que muda
-  - Spec EARS (3 REQ-IDs)
-  - ADR-002 sobre transações
+  - Spec EARS
+  - Decisões registradas pelo time
 
   ## Source legacy
-  - 01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN#L120-L168
+  - <arquivo legado:linhas>
 
   ## Como testar
   - Veja seção 'acceptance' de cada REQ-ID"
@@ -156,7 +161,7 @@ Só o líder do time faz este merge. É o save oficial do dia.
 >
 > 1. 🚫 **Nunca commit direto em `main`.** Sempre via PR.
 > 2. 🚫 **Nunca `git push --force` em branch compartilhada.** Use `--force-with-lease` se realmente precisar.
-> 3. ✅ **Commit message sempre cita REQ-ID:** `Implements REQ-PAY-01: ...`.
+> 3. ✅ **Commit message sempre cita REQ-ID:** `Implements REQ-XXX: ...`.
 > 4. ✅ **CI vermelho não merga.** Corrija primeiro.
 > 5. ✅ **PR sem descrição não merga.** Descreva *o que* e *por quê*.
 
@@ -170,28 +175,28 @@ Copie e cole, adaptando o REQ-ID e a descrição.
 
 ```bash
 # Nova feature implementando REQ-ID
-git commit -m "feat: Implements REQ-PAY-001 (ciclo mensal de pagamento)"
+git commit -m "feat: Implements REQ-XXX (comportamento)"
 
 # Correção de bug
-git commit -m "fix: corrige cálculo de desconto judicial em CALCDSCT (REQ-PAY-DSCT-01)"
+git commit -m "fix: corrige comportamento de REQ-XXX"
 
 # Documentação
-git commit -m "docs: ADR-002 sobre transações Spring"
+git commit -m "docs: registra ADR-XXXX"
 
 # Testes
-git commit -m "test: cobertura de aceitação para REQ-BEN-03 (validação CPF)"
+git commit -m "test: cobre critérios de REQ-XXX"
 
 # Migração de banco
-git commit -m "db: V2__add_payment_status (REQ-PAY-04)"
+git commit -m "db: V2__feature_change (REQ-XXX)"
 
 # Refactor sem mudança de comportamento
-git commit -m "refactor: extrai PaymentValidator (mantém REQ-PAY-001)"
+git commit -m "refactor: extrai componente (mantém REQ-XXX)"
 
 # Configuração / build / CI
 git commit -m "chore: adiciona spec-quality.yml workflow"
 
 # Agent Mode (Estágio 4)
-git commit -m "agent: PR #42 — implementa notificação por email (REQ-PAY-NOTIF-01)"
+git commit -m "agent: PR #42 — implementa REQ-XXX"
 ```
 
 ### Regras para mensagens

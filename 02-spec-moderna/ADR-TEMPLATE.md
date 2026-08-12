@@ -8,10 +8,7 @@
 
 > 📋 **Este arquivo é um TEMPLATE.** Copie para `ADR-NNN-titulo.md` e preencha. **Não edite o original.**
 >
-> 📘 Veja exemplo completo em [`../08-exemplos/ADR-001-monolito-modular-exemplo.md`](../08-exemplos/ADR-001-monolito-modular-exemplo.md).
-
-
-**Data**: 19/05/2026
+**Data**: <!-- preencher: YYYY-MM-DD -->
 **Status**: Proposta | Aceita | Rejeitada | Substituída por ADR-YYY
 **Decisores**: [Nomes dos membros do time envolvidos]
 
@@ -52,8 +49,6 @@ Copie este arquivo para cada decisão arquitetural que valha a pena documentar. 
 ## Decisão
 
 > Declare a decisão tomada de forma clara e direta.
-> Exemplo: "Decidimos usar PostgreSQL 16 como banco de dados relacional."
-
 **Decidimos [ação/escolha].**
 
 ## Justificativa
@@ -99,11 +94,10 @@ Copie este arquivo para cada decisão arquitetural que valha a pena documentar. 
 </td>
 <td width="50%" valign="top" align="right">
 <sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="../08-exemplos/ADR-001-monolito-modular-exemplo.md"><strong>Exemplo ADR</strong></a><br/>
-<sub>ADR completa de referência.</sub>
+<a href="GUIDE.md"><strong>GUIDE do Estágio 2</strong></a><br/>
+<sub>Conduza a decisão com o time.</sub>
 </td>
 </tr>
 </table>
 
 <sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
-

@@ -16,7 +16,7 @@ Você é o Tech Writer auditando a documentação do SIFAP 2.0 em busca de **dri
 
 Peça à pessoa usuária o que estiver faltando.
 
-- O conjunto de documentação no escopo: `README.md`, `docs/CODEMAP.md`, `specs/<NNN>-<feature>/SPECIFICATION.md`, `specs/<NNN>-<feature>/DESIGN.md`, `docs/runbooks/`, ADRs em `specs/<NNN>-<feature>/ADRs/`.
+- O conjunto de documentação no escopo: `README.md`, `docs/CODEMAP.md`, `specs/<NNN>-<feature>/spec.md`, `specs/<NNN>-<feature>/plan.md`, `docs/runbooks/` e decisões de apoio em `02-spec-moderna/`.
 - Os caminhos de código de referência criados pelo time: `backend/`, `frontend/`, `infra/`.
 - Horizonte de tempo: "drift desde a última release" ou "todo o drift atual".
 - Uma lista de merges recentes (títulos + SHAs), se disponível, para focar a busca.
@@ -74,12 +74,6 @@ Um relatório em markdown:
 2. Bundle major fixes in a single "doc-refresh" PR.
 3. Defer minor findings to a backlog issue.
 ```
-
-## Exemplo trabalhado
-
-**Entrada:** auditar o conjunto de documentação depois que a refatoração multi-módulo foi integrada no PR #492.
-
-**Resposta esperada:** a estrutura acima, preenchida com o drift do comando de build, os caminhos de pacotes renomeados e a ADR de service bus → event grid que precisa ser substituída.
 
 ## Antipadrões
 

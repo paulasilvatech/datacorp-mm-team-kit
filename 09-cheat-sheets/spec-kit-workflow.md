@@ -48,8 +48,10 @@ Use esta sequência quando uma descoberta da arqueologia virar uma funcionalidad
 6. **Cheque consistência com `/speckit.analyze`.** Corrija lacunas antes de implementar.
 7. **Implemente com `/speckit.implement`.** O código deve seguir `spec.md`, `plan.md` e `tasks.md`.
 
-Resultado esperado: uma pasta `specs/<feature>/` com artefatos que explicam a
-funcionalidade de ponta a ponta, do requisito ao código.
+Resultado esperado: uma pasta `specs/<NNN>-<feature>/` com os artefatos formais
+`spec.md`, `plan.md` e `tasks.md`, que explicam a funcionalidade de ponta a
+ponta, do requisito ao código. `02-spec-moderna/` guarda apenas apoio e decisões
+de escopo; não é uma segunda localização de spec.
 
 ## Instalação oficial
 
@@ -95,37 +97,26 @@ pelos comandos vivem em `specs/<numero-nome-da-feature>/`.
 
 ## Os 6 padrões EARS
 
-| # | Padrão | Modelo | Exemplo SIFAP |
+| # | Padrão | Modelo | Exemplo sintático |
 | --- | --- | --- | --- |
-| 1 | Ubiquitous | O sistema deverá [ação] | O SIFAP deverá registrar uma entrada de auditoria em toda alteração |
-| 2 | Event-Driven | Quando [X], o sistema deverá [ação] | Quando um ciclo for gerado, criar pagamentos para beneficiários ativos |
-| 3 | State-Driven | Enquanto [X], o sistema deverá [ação] | Enquanto estiver pendente, permitir cancelamento |
-| 4 | Optional | Onde [escolha], o sistema deverá [ação] | Onde o usuário exportar, gerar CSV em UTF-8 |
-| 5 | Unwanted | O sistema não deverá [ação] | O sistema não deverá permitir DELETE no log de auditoria |
-| 6 | Complex | Enquanto [X], quando [Y], onde [Z], o sistema deverá [ação] | Enquanto estiver ativo, quando dezembro fechar, calcular o 13º benefício |
+| 1 | Ubiquitous | O sistema deverá [ação] | O sistema deverá `<ação verificável>` |
+| 2 | Event-Driven | Quando [X], o sistema deverá [ação] | Quando `<evento>`, o sistema deverá `<ação>` |
+| 3 | State-Driven | Enquanto [X], o sistema deverá [ação] | Enquanto `<estado>`, o sistema deverá `<ação>` |
+| 4 | Optional | Onde [escolha], o sistema deverá [ação] | Onde `<opção>`, o sistema deverá `<ação>` |
+| 5 | Unwanted | O sistema não deverá [ação] | O sistema não deverá `<comportamento proibido>` |
+| 6 | Complex | Enquanto [X], quando [Y], onde [Z], o sistema deverá [ação] | Enquanto `<estado>`, quando `<evento>`, onde `<opção>`, o sistema deverá `<ação>` |
 
-## Exemplo mínimo no SIFAP
+## Estrutura mínima
 
-Depois que o Par 1 encontra uma regra em `BATCHPGT.NSN`, o Requirements Engineer
-pode abrir o Copilot no modo Ask e escrever:
-
-```text
-/speckit.specify
-Funcionalidade: geração de ciclo de pagamento mensal.
-Regra legado: quando o ciclo mensal é gerado, o SIFAP cria pagamentos apenas
-para beneficiários ativos.
-source_legacy: 01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN#L120-L168
-Critério: 10 beneficiários ativos + 2 suspensos produzem 10 pagamentos.
-```
-
-O resultado esperado em `spec.md` é uma regra rastreável, por exemplo:
+Depois de confirmar uma regra no legado, use a evidência encontrada pelo próprio
+time para preencher a estrutura abaixo:
 
 ```yaml
-REQ-PAY-001:
-  pattern: event-driven
-  text: "Quando um ciclo de pagamento for gerado, o SIFAP deverá criar registros de pagamento para todo beneficiário com status ACTIVE."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN#L120-L168
-  acceptance: "10 ativos + 2 suspensos produzem 10 registros de pagamento."
+REQ-XXX:
+  pattern: <padrão EARS>
+  text: "<requisito>"
+  source_legacy: <arquivo:linhas ou [GREENFIELD] + justificativa>
+  acceptance: "<cenário verificável>"
 ```
 
 Se esse requisito não tiver `source_legacy:`, ele ainda não está pronto para
@@ -145,10 +136,10 @@ flowchart LR
 | Momento | Comando | Entregável esperado |
 | --- | --- | --- |
 | Antes da primeira funcionalidade | `/speckit.constitution` | `.specify/memory/constitution.md` |
-| Estágio 2 | `/speckit.specify` | `specs/<feature>/spec.md` |
+| Estágio 2 | `/speckit.specify` | `specs/<NNN>-<feature>/spec.md` |
 | Estágio 2 | `/speckit.clarify` | Perguntas resolvidas na spec |
-| Estágio 2 | `/speckit.plan` | `specs/<feature>/plan.md` |
-| Estágio 3 | `/speckit.tasks` | `specs/<feature>/tasks.md` |
+| Estágio 2 | `/speckit.plan` | `specs/<NNN>-<feature>/plan.md` |
+| Estágio 2 | `/speckit.tasks` | `specs/<NNN>-<feature>/tasks.md` |
 | Estágio 3 | `/speckit.analyze` | Lacunas e inconsistências antes de codar |
 | Estágio 3 | `/speckit.implement` | Código guiado por spec + plan + tasks |
 

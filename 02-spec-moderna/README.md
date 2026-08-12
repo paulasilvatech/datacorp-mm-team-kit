@@ -2,7 +2,7 @@
 
 # Estágio 2 — Spec Moderna
 
-![ESTÁGIO 02 Spec Moderna](https://img.shields.io/badge/ESTÁGIO-02%20Spec%20Moderna-00A4EF?style=for-the-badge) ![LIDERA Par 2 (EA+SA)](https://img.shields.io/badge/LIDERA-Par%202%20%28EA+SA%29-1A1A1A?style=for-the-badge) ![ENTREGÁVEL EARS + ADRs](https://img.shields.io/badge/ENTREGÁVEL-EARS%20+%20ADRs-737373?style=for-the-badge)
+![ESTÁGIO 02 Spec Moderna](https://img.shields.io/badge/ESTÁGIO-02%20Spec%20Moderna-00A4EF?style=for-the-badge) ![LIDERA Par 2 (EA+SA)](https://img.shields.io/badge/LIDERA-Par%202%20%28EA+SA%29-1A1A1A?style=for-the-badge) ![ENTREGÁVEL Spec-Kit](https://img.shields.io/badge/ENTREGÁVEL-Spec--Kit-737373?style=for-the-badge)
 
 
 
@@ -13,11 +13,14 @@
 > **O que você terá ao final desta leitura:**
 >
 > 1. Saberá quem lidera (Par 2) e quem apoia
-> 2. Verá quais entregáveis: EARS + ADRs + C4 L1/L2
-> 3. Encontrará o template ADR e exemplos preenchidos
-> 4. Link direto para o GUIDE detalhado
+> 2. Criará os entregáveis formais do Spec-Kit em `specs/<NNN>-<feature>/`
+> 3. Entenderá o papel de apoio e decisão de escopo desta pasta
+> 4. Encontrará o GUIDE cronometrado
 
-> Escreva a especificação modernizada do SIFAP usando notação EARS, crie Arquitetura Decision Records (ADRs) e defina as fronteiras de escopo.
+> Os requisitos, plano e tarefas formais vivem em
+> `specs/<NNN>-<feature>/spec.md`, `plan.md` e `tasks.md`. Esta pasta guarda
+> somente apoio do Estágio 2 — templates e decisões de escopo — e não substitui
+> os artefatos do Spec-Kit.
 
 ## Onde isso encaixa no SDLC
 
@@ -31,9 +34,9 @@
 
 | Arquivo                                    | Propósito                                |
 | ------------------------------------------ | ---------------------------------------- |
-| [`GUIDE.md`](GUIDE.md)                     | Guia passo a passo deste estágio         |
-| [`ADR-TEMPLATE.md`](ADR-TEMPLATE.md)       | Modelo de Registro de Decisão Arquitetural |
-| [`scope-decisions.md`](scope-decisions.md) | Modelo de decisões de escopo           |
+| [`GUIDE.md`](GUIDE.md) | Guia cronometrado e regra de localização dos artefatos |
+| [`scope-decisions.md`](scope-decisions.md) | Registro de recorte, adiamentos e dúvidas |
+| [`ADR-TEMPLATE.md`](ADR-TEMPLATE.md) | Apoio para decisão que bloqueie o plano |
 
 ---
 
@@ -49,7 +52,7 @@
 <td width="50%" valign="top" align="right">
 <sub><strong>PRÓXIMO →</strong></sub><br/>
 <a href="GUIDE.md"><strong>Estágio 2 — Spec Moderna</strong></a><br/>
-<sub>14:00–15:00 · Escrever EARS, ADRs e diagramas C4.</sub>
+<sub>14:00–15:00 · Criar spec.md, plan.md e tasks.md de uma feature fina.</sub>
 </td>
 </tr>
 </table>

@@ -19,7 +19,9 @@
 
 ## Objetivo da etapa
 
-Operacionalizar o que foi construído: criar issues claras para o modo Agent, revisar PRs gerados por IA, preparar pipeline, organizar Terraform e documentar como rodar e evoluir o sistema.
+Experimentar uma delegação pequena e registrar seu resultado com honestidade.
+Pipeline, Terraform e documentação só entram se já forem pertinentes ao
+recorte e couberem no intervalo.
 
 ## Quando usar
 
@@ -32,17 +34,16 @@ Operacionalizar o que foi construído: criar issues claras para o modo Agent, re
 
 1. Selecione o agente `@evolution` no Copilot Chat.
 2. Cole o prompt de abertura abaixo.
-3. Transforme pendências em GitHub Issues pequenas e revisáveis.
-4. Use o modo Agent somente para tasks com critérios de aceite claros.
-5. Revise o PR como se fosse de uma pessoa do time.
-6. Atualize CI/CD, Terraform e runbook.
-7. Feche com relatório de experiência do Agent.
+3. Transforme uma pendência em GitHub Issue pequena e revisável.
+4. Use o modo Agent somente com REQ-IDs e critérios já presentes em `spec.md`.
+5. Revise um PR se ele estiver disponível; caso contrário, registre o estado.
+6. Feche com relatório de experiência do Agent.
 
 ```text
 Estou iniciando o Estágio 4 — Evolução.
 Temos um protótipo com backend, frontend e testes.
-Ajude a criar issues para Copilot Agent, revisar PRs, preparar CI/CD,
-organizar Terraform e escrever o runbook final do SIFAP 2.0.
+Ajude a revisar uma Issue pequena para o Copilot Agent e a registrar o
+resultado da delegação. Não invente requisitos, arquitetura ou critérios.
 ```
 
 ## O que perguntar
@@ -57,11 +58,9 @@ organizar Terraform e escrever o runbook final do SIFAP 2.0.
 
 ## Definição de Pronto
 
-- [ ] Pelo menos 2 issues prontas para o modo Agent ou backlog pós-workshop.
-- [ ] PRs gerados por IA revisados com critérios humanos.
-- [ ] Workflow CI/CD documentado ou criado.
-- [ ] Terraform validado ou pendências registradas.
-- [ ] Runbook atualizado com comandos de execução e troubleshooting.
+- [ ] Uma Issue pequena foi criada ou ficou como rascunho revisável.
+- [ ] Um PR disponível recebeu revisão humana; sem PR, há um próximo passo.
+- [ ] Situação de CI/IaC foi registrada, sem criar infraestrutura por meta.
 - [ ] Relatório de experiência do Agent preenchido.
 
 ## Anti-padrões
@@ -102,4 +101,3 @@ organizar Terraform e escrever o runbook final do SIFAP 2.0.
 </table>
 
 <sub>↑ <a href="../../README.md">Voltar ao Kit PT-BR</a></sub>
-

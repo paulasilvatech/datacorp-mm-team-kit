@@ -13,7 +13,7 @@ Agregue todos os artefatos do Estágio 1 em um único relatório de descoberta q
 
 ## Quando Invocar
 
-Ao final do Estágio 1, depois que a equipe completar o inventário, extração de regras de negócio, mapeamento de dependências e catálogo de mistérios.
+Ao final do Estágio 1, depois que a equipe completar o inventário, extração de regras de negócio, mapeamento de dependências e registro de perguntas em aberto.
 
 ## Pré-condições
 
@@ -36,7 +36,7 @@ Se qualquer artefato estiver ausente ou vazio, o agente recusará gerar o relat�
 - Escrever um resumo executivo (máximo de 5 frases) cobrindo o que foi encontrado
 - Organizar findings em categorias "confirmado" e "arriscado"
 - Propor 3-5 hipóteses de recorte de bounded context com base em clusters de dependências
-- Cruzar mistérios com regras de negócio para identificar lacunas de maior risco
+- Listar perguntas em aberto ao lado de lacunas de maior risco, sem interpretá-las
 
 ## O Que NÃO Vou Fazer
 
@@ -57,7 +57,7 @@ Um arquivo Markdown em `01-arqueologia/discovery-report.md`:
 ### Dependências (arestas verificadas)
 ### Estruturas de Dados (DDMs documentados)
 ## O Que Traz Risco
-### Mistérios que Bloqueiam o Estágio 2
+### Perguntas em Aberto Aguardando Validação Humana
 ### Regras com Evidência Fraca
 ## Hipóteses de Recorte Recomendadas
 ### Hipótese 1: [Nome] — [racional de 1 linha]
@@ -71,7 +71,7 @@ Um arquivo Markdown em `01-arqueologia/discovery-report.md`:
 - [ ] O relatório existe e tem menos de 3 páginas quando impresso
 - [ ] O resumo executivo tem exatamente 5 frases ou menos
 - [ ] Toda afirmação na seção "O Que Sabemos" referencia um artefato-fonte por path relativo
-- [ ] Mistérios que bloqueiam o Estágio 2 estão listados com destaque com seus MYS-IDs
+- [ ] Perguntas em aberto sem validação humana estão listadas com sua evidência `path:linha` e status
 - [ ] 3-5 hipóteses de recorte são propostas, cada uma com nome e racional de 1 linha
 - [ ] Hipóteses são explicitamente rotuladas como hipóteses, não decisões
 
@@ -93,7 +93,7 @@ Leia todos os quatro artefatos. Escreva exatamente 5 frases ou menos que respond
 1. Qual é o tamanho da codebase legada? (programas, DDMs, linhas de código se contadas)
 2. Quantas regras de negócio confirmadas foram encontradas?
 3. Quão conectado é o sistema? (call graph denso vs. programas isolados)
-4. Qual é o maior risco ao entrar no Estágio 2? (o mistério mais crítico)
+4. Qual é o maior risco ao entrar no Estágio 2? (a pergunta em aberto com maior impacto registrado)
 5. Qual é o nível de confiança da equipe para a modernização? (alto/médio/baixo, com base em evidências)
 
 **Passo 3 — Construir a seção "O Que Sabemos".**
@@ -106,7 +106,10 @@ Do inventário, resuma as estruturas DDM documentadas.
 Toda afirmação deve citar seu artefato-fonte: `[Veja business-rules-catalog.md, Regra #3](../../01-arqueologia/business-rules-catalog.md)`.
 
 **Passo 4 — Construir a seção "O Que Traz Risco".**
-Do catálogo de mistérios, extraia todos os mistérios classificados como "blocks-stage-2". Liste-os com seus MYS-IDs, descrições e caminhos de resolução sugeridos.
+Do catálogo de perguntas em aberto, extraia somente as linhas cujo status não registre
+validação humana. Preserve pergunta, evidência `path:linha`, impacto, hipótese não
+confirmada, responsável e status. Não acrescente resposta, caminho de resolução ou
+interpretação.
 
 Do catálogo de regras de negócio, extraia regras classificadas como "inferred" (somente código, sem suporte documental). Elas não estão confirmadas — carregam risco se usadas como base para requisitos.
 

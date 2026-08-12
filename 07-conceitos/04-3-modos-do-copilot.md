@@ -65,17 +65,17 @@ Este é o resumo de 1 página. A explicação detalhada com exemplos por persona
 
 ```text
 # 💬 Ask — explorar
-"Explique linha por linha o que CALCDSCT.NSN faz. Foque em decisões de
+"Explique linha por linha o que <programa.NSN> faz. Foque em decisões de
 negócio, ignore IO."
 
 # 🗺 Plan — mudar com cuidado
-"Plan: adicionar validação de CPF (módulo 11) ao BeneficiaryService.
+"Plan: implementar a EARS <REQ-XXX>.
 Liste arquivos a tocar, ordem das mudanças, e os testes a criar.
 NÃO implemente ainda."
 
 # 🦖 Agent — delegar
-[Crie GitHub Issue completa primeiro — formato em
-08-exemplos/issue-para-agent-exemplo.md — depois dispare o Agent]
+[Crie uma GitHub Issue completa com contexto, critérios de aceite e
+rastreabilidade antes de disparar o Agent]
 ```
 
 ---

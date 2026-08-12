@@ -56,7 +56,7 @@
 ### ❌ 8. Time delega Issue vaga ao Copilot Agent
 
 - **Consequência:** PR vem ruim, ninguém entende, descarta. Trabalho perdido.
-- **Antídoto:** Use o template em [`08-exemplos/issue-para-agent-exemplo.md`](../08-exemplos/issue-para-agent-exemplo.md). Issue boa = PR bom.
+- **Antídoto:** Vincule a Issue à evidência e escreva critérios de aceite verificáveis antes de delegar. Issue boa = PR bom.
 
 ### ❌ 9. Rodar `terraform apply` em vez de `plan`
 

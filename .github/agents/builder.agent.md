@@ -49,7 +49,8 @@ Padrões genéricos de implementação para modernização Natural/Adabas-para-J
 ## O Que Este Agente NÃO Sabe
 
 - Quais entidades, services ou controllers específicos o sistema da equipe precisa
-- O que dizem os requisitos EARS da equipe (a equipe deve fornecer seu SPECIFICATION.md)
+- O que dizem os requisitos EARS da equipe (a equipe deve fornecer
+  `specs/<NNN>-<feature>/spec.md`)
 - O que o código legado faz em detalhe (a equipe deve fornecer contexto dos Estágios 1-2)
 - Quais casos de teste são apropriados para as regras de negócio específicas da equipe
 

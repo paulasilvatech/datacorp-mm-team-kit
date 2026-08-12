@@ -132,7 +132,7 @@ Cada um destes erros é equivalente a "cair no buraco":
 | Selecionar agente errado para o mundo | Conversa fica fora de contexto | Confirme com o time antes do estágio |
 | Ignorar inventário (persona-kit) | Você ataca de mãos vazias | Leia seus 2 `PERSONA.md`, selecione seu agente e teste um slash command |
 | Pular um mundo inteiro | Game over no fim do dia (demo fracassa) | Cumpra a DoD de cada estágio |
-| Delegar Issue vaga ao Agent | PR vem ruim, retrabalho dobro | Veja [`08-exemplos/issue-para-agent-exemplo.md`](../08-exemplos/issue-para-agent-exemplo.md) |
+| Delegar Issue vaga ao Agent | PR vem ruim, retrabalho dobro | Escreva contexto, critérios de aceite e rastreabilidade antes de delegar |
 
 ---
 

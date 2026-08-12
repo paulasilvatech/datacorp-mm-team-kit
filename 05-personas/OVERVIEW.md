@@ -29,15 +29,15 @@
 | # | Persona | Par | Lidera estágio | Apoia em | Ferramenta principal | Default se travar |
 |---|---|---|---|---|---|---|
 | 01 | [Product Owner](01-product-owner/PERSONA.md) | 1 · Visão | 1 (priorização), 2 (sign-off de escopo) | 3, 4 | Copilot Ask + spec.prompt | "Temos 3h de código — escolham 3 features" |
-| 02 | [Requirements Engineer](02-requirements-engineer/PERSONA.md) | 1 · Visão | 2 (EARS) | 1 | `/ears-convert` + Spec-Kit | Copia do `08-exemplos/SPECIFICATION-exemplo.md` |
-| 03 | [Enterprise Architect](03-enterprise-architect/PERSONA.md) | 2 · Arquitetura | 2 (C4 + ADRs estruturais) | 4 | Mermaid + ADR template | Usa o ADR-001 do `08-exemplos/` |
-| 04 | [Software Architect](04-software-architect/PERSONA.md) | 2 · Arquitetura | 2 (bounded contexts, módulos) | 3 | `/codemap` + impl-plan | Reusa monolito modular já decidido |
-| 05 | [Technical Lead](05-technical-lead/PERSONA.md) | 3 · Implementação | 3 (padrões, revisão) | 4 (4), 2 | Plan mode + audit-context | Copia `PaymentService-exemplo.java` como template |
+| 02 | [Requirements Engineer](02-requirements-engineer/PERSONA.md) | 1 · Visão | 2 (EARS) | 1 | `/ears-convert` + Spec-Kit | Rastreia cada requisito à evidência |
+| 03 | [Enterprise Architect](03-enterprise-architect/PERSONA.md) | 2 · Arquitetura | 2 (C4 + ADRs estruturais) | 4 | Mermaid + ADR template | Registra alternativas no template |
+| 04 | [Software Architect](04-software-architect/PERSONA.md) | 2 · Arquitetura | 2 (bounded contexts, módulos) | 3 | `/codemap` + impl-plan | Valida hipóteses com o time |
+| 05 | [Technical Lead](05-technical-lead/PERSONA.md) | 3 · Implementação | 3 (padrões, revisão) | 4 (4), 2 | Plan mode + audit-context | Implementa a EARS priorizada |
 | 06 | [Developer](06-developer/PERSONA.md) | 3 · Implementação | 3 (código) | 4 | Plan mode + `/tdd` | Toca apenas 1 endpoint completo, com teste |
-| 07 | [DBA](07-dba/PERSONA.md) | 4 · Qualidade | 3 (migrações Flyway) | 3 | `/migration` + query-audit | Copia `V1__init_payment_module-exemplo.sql` |
+| 07 | [DBA](07-dba/PERSONA.md) | 4 · Qualidade | 3 (migrações Flyway) | 3 | `/migration` + query-audit | Deriva o modelo dos DDMs |
 | 08 | [QA Engineer](08-qa-engineer/PERSONA.md) | 4 · Qualidade | 3 (testes BDD) | 3 | Test-strategy skill | Escreve 1 teste de aceitação por REQ-ID crítica |
 | 09 | [DevOps Engineer](09-devops-engineer/PERSONA.md) | 5 · Operações | 4 (Terraform + CI/CD) | transversal | `/iac-module` + `/pipeline` | `terraform plan` apenas, nunca `apply` |
-| 10 | [Tech Writer](10-tech-writer/PERSONA.md) | 5 · Operações | 4 (relatório do Agent) | transversal (1, 2, 3) | Markdown skills + Copilot Ask | Copia template em `08-exemplos/` |
+| 10 | [Tech Writer](10-tech-writer/PERSONA.md) | 5 · Operações | 4 (relatório do Agent) | transversal (1, 2, 3) | Markdown skills + Copilot Ask | Consolida decisões do time |
 
 ## Quem lidera cada estágio
 
@@ -68,13 +68,13 @@
 
 Cada `PERSONA.md` tem uma seção "Se travar (defaults de emergência)". Aqui está o resumo de **uma linha** por persona:
 
-- **PO:** *"Temos 3 horas de código; escolham 3 funcionalidades."*
-- **RE:** Copie de `08-exemplos/SPECIFICATION-exemplo.md` e adapte.
-- **EA:** Copie ADR-001 de `08-exemplos/` e troque a decisão.
-- **SA:** Use o monolito modular já decidido — não invente.
+- **PO:** *"Temos 70 minutos de implementação; escolham uma feature fina."*
+- **RE:** Rastreie cada EARS à evidência e registre lacunas para clarificação.
+- **EA:** Use o template ADR para documentar alternativas e a decisão do time.
+- **SA:** Formule hipóteses de arquitetura e valide-as com o time.
 - **TL:** Aborte refatoração sem teste; revise PRs do par.
 - **Dev:** 1 endpoint completo > 5 quebrados. Testcontainers obrigatório.
-- **DBA:** Use `V1__init_payment_module-exemplo.sql` como base. Nunca edite migration antiga.
+- **DBA:** Modele a partir dos DDMs e nunca edite migration antiga.
 - **QA:** 1 teste por REQ-ID crítica. Caminho feliz + caminho de erro.
 - **DevOps:** `terraform plan` só. `apply` em workshop = ❌.
 - **TW:** Pergunte ao par líder: *"O que você decidiu nos últimos 30 min que ainda não está escrito?"*

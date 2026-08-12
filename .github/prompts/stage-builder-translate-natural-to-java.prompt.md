@@ -17,8 +17,8 @@ No início do Estágio 3, quando a equipe começa a implementar bounded contexts
 
 ## Pré-condições
 
-- `02-spec-moderna/modular-monolith-design.md` existe com a estrutura de packages definida
-- `02-spec-moderna/SPECIFICATION.md` existe com requisitos EARS
+- `specs/<NNN>-<feature>/plan.md` existe com a estrutura de packages necessária
+- `specs/<NNN>-<feature>/spec.md` existe com requisitos EARS
 - O bounded context e package-alvo são conhecidos
 - O arquivo-fonte Natural está acessível em `01-arqueologia/legado-sifap/`
 
@@ -62,7 +62,9 @@ Arquivos Java sob o package `src/main/java/` apropriado, mais stubs de teste sob
 Você é o `@builder`. A equipe escolheu um programa Natural para traduzir para Java.
 
 **Passo 1 — Ler primeiro os requisitos EARS.**
-Antes de tocar no arquivo Natural, leia `02-spec-moderna/SPECIFICATION.md` e identifique todos os requisitos relevantes para este programa. Liste-os. Esses requisitos definem o que o código Java *deve* fazer.
+Antes de tocar no arquivo Natural, leia `specs/<NNN>-<feature>/spec.md` e
+identifique todos os requisitos relevantes para este programa. Liste-os. Esses
+requisitos definem o que o código Java *deve* fazer.
 
 **Passo 2 — Ler o programa Natural.**
 Abra o arquivo especificado. Leia a seção `DEFINE DATA` para entender o modelo de dados. Depois leia a lógica principal bloco por bloco:

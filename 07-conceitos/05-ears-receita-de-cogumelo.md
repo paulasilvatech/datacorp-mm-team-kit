@@ -101,9 +101,9 @@ EARS tem **6 formatos prontos**. Você escolhe o que combina com sua regra.
 
 > **Enquanto [condição], quando [evento], onde [opcional], o [sistema] deve [ação].**
 
-| 🍄 Mario | 🏛 SIFAP |
+| 🍄 Mario | 🏛 Estrutura |
 |---|---|
-| Enquanto Mario for grande, quando ele agachar num cano verde com seta para baixo, onde o jogador apertar baixo por 1 segundo, ele deve entrar no cano. | Enquanto o beneficiário for ACTIVE, quando o ciclo for gerado em dezembro, onde o programa for "Bolsa Família", o SIFAP deve aplicar bônus de 13º. |
+| Enquanto Mario for grande, quando ele agachar num cano verde com seta para baixo, onde o jogador apertar baixo por 1 segundo, ele deve entrar no cano. | Enquanto `<estado>`, quando `<evento>`, onde `<opção>`, o sistema deve `<ação>`. |
 
 > ✅ Use para regras com **várias condições combinadas** (raro, mas existe).
 
@@ -114,15 +114,12 @@ EARS tem **6 formatos prontos**. Você escolhe o que combina com sua regra.
 Toda EARS no nosso workshop carrega **uma moeda numerada** — o `source_legacy:`. Sem ela, a moeda não vale ponto (o CI rejeita).
 
 ```yaml
-REQ-PAY-DSCT-01:
+REQ-XXX:
   pattern: unwanted
-  text: "O SIFAP não deve permitir que o total de descontos não-judiciais
-         exceda 30% do valor bruto."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/CALCDSCT.NSN#L142-L148  # 🪙 moeda numerada
+  text: "O sistema não deve permitir <comportamento proibido>."
+  source_legacy: arquivo.NSN#L<início>-L<fim>
   acceptance:
-    - "Desconto não judicial de 35% é truncado para 30%"
-    - "Desconto judicial de 50% é aceito integralmente"
-    - "Mistura de jud (20%) + não-jud (25%) = 45% aceito"
+    - "<cenário verificável>"
 ```
 
 ### Casos especiais
@@ -145,9 +142,9 @@ Se não souber responder, **a EARS está vaga**.
 
 | ❌ EARS vaga | ✅ EARS testável |
 |---|---|
-| O sistema deve ser seguro | O SIFAP deve mascarar CPF em logs no formato `XXX.XXX.NNN-NN` |
-| Pagamentos devem ser processados | Quando um ciclo for gerado, o SIFAP deve criar registros de pagamento para todos os beneficiários ACTIVE |
-| Auditoria completa | Quando qualquer entidade for alterada, o SIFAP deve gravar evento de auditoria com `before_json` e `after_json` |
+| O sistema deve ser seguro | Quando um dado sensível for registrado, o sistema deve aplicar a política definida pelo time |
+| Processar dados | Quando ocorrer `<evento>`, o sistema deve executar `<ação verificável>` |
+| Auditoria completa | Quando `<entidade>` for alterada, o sistema deve registrar `<evidência>` |
 
 ---
 
@@ -155,18 +152,17 @@ Se não souber responder, **a EARS está vaga**.
 
 ```text
 # Converter regra do catálogo BR em EARS
-/ears-convert BR-013: descontos têm teto de 30% exceto judiciais.
-Use legado-sifap/natural-programs/CALCDSCT.NSN#L142-L148 como source_legacy.
+/ears-convert BR-XXX: <regra confirmada pelo time>.
+Use <arquivo.NSN#L<início>-L<fim>> como source_legacy.
 
 # Validar uma EARS já escrita
 "@architect, esta EARS é testável? Como você testaria?
 
-REQ-PAY-001: Quando um beneficiário é cadastrado, o SIFAP deve validar
-o CPF usando módulo 11."
+REQ-XXX: <requisito escrito pelo time>."
 
 # Buscar lacunas no SPECIFICATION
 "/speckit.analyze
-Estamos com 12 REQ-IDs. Quais cenários do CALCBENF.NSN não estão cobertos?"
+Quais cenários das fontes rastreadas ainda não estão cobertos?"
 ```
 
 ---
@@ -184,7 +180,6 @@ Estamos com 12 REQ-IDs. Quais cenários do CALCBENF.NSN não estão cobertos?"
 
 ## 🔗 Para se aprofundar
 
-- 📘 [Exemplo de SPECIFICATION pronta](../08-exemplos/SPECIFICATION-exemplo.md) — 8 REQ-IDs reais com source_legacy
 - 🎯 [Estágio 2 GUIDE](../02-spec-moderna/GUIDE.md)
 - 🎴 [Spec-Kit cheat-sheet](../09-cheat-sheets/spec-kit-workflow.md)
 - 🔬 [LEGACY-EXPLORATION-CHECKLIST](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md) — onde a regra do `source_legacy:` é validada

@@ -85,14 +85,14 @@ Transformar spec em código rodando. Usar o Copilot deliberadamente — Ask para
 
 ## 3 prompts de exemplo
 
-1. **(Chat)** _"Explique o programa CALCDSCT.NSN do SIFAP legado e identifique a regra de teto de desconto. Depois me ajude a implementar o equivalente em Java seguindo o padrão do `PaymentService` existente."_
-2. **(Plan)** _"Selecione BeneficiaryEntity.java, BeneficiaryService.java e BeneficiaryController.java. Planeje a adição de um campo 'email' ao beneficiário: entity, service, controller, migration e teste."_
+1. **(Chat)** _"Explique o trecho legado que o time selecionou e identifique somente os comportamentos confirmados. Depois proponha perguntas antes de implementá-los em Java."_
+2. **(Plan)** _"Selecione os arquivos da funcionalidade priorizada. Planeje a mudança em domínio, aplicação, infraestrutura, dados e testes."_
 3. **(Agent)** _"Implemente a feature descrita nesta Issue: [cole a issue]. Respeite a arquitetura de 3 camadas e inclua testes."_
 
 ## Se travar (defaults de emergência)
 
 - Código não compila? `mvn test-compile` para ver o erro exato. Geralmente é um import faltando.
-- Não conhece a estrutura de pacotes? Olhe `beneficiary/` como referência: domain/ → application/ → infrastructure/.
+- Não conhece a estrutura de pacotes? Consulte a estrutura definida pelo time: domain/ → application/ → infrastructure/.
 - Copilot gerando código ruim? Mude de Ask para Plan — selecione os arquivos relevantes e descreva a mudança.
 - Teste falhando? Leia a mensagem de erro. Se for NPE, provavelmente falta um mock. Se for assertion, o valor esperado está errado.
 

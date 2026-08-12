@@ -42,7 +42,7 @@ Peça à pessoa usuária o que estiver faltando.
  ```
 5. **Respeite os limites de tamanho.** README ≤ 1 página (~80 linhas). Runbook ≤ 1 página por cenário. Referência de API é por endpoint. ADR ≤ 2 páginas.
 6. **Inclua verificação.** Todo comando no documento precisa ser executável. Se o documento diz `./mvnw -pl payments verify`, a pessoa revisora precisa conseguir copiar e colar.
-7. **Crie links cruzados.** README → CODEMAP, SPECIFICATION, runbook. Runbook → URLs de dashboard, nomes de alerta. ADR → ADRs substituídas/substitutas.
+7. **Crie links cruzados.** README → CODEMAP, `spec.md`, runbook. Runbook → URLs de dashboard, nomes de alerta. ADR → ADRs substituídas/substitutas.
 8. **Marque com data de última revisão.** Drift começa no momento em que um documento é escrito.
 
 ## Saída
@@ -52,7 +52,7 @@ O entregável é o arquivo de documentação na árvore de docs do projeto:
 - README → `<module-folder>/README.md`
 - Runbook → `docs/runbooks/<short-slug>.md`
 - Referência de API → `docs/api/<service>/<endpoint-slug>.md`
-- ADR → `specs/<NNN>-<feature>/ADRs/<NNNN>-<title>.md`
+- ADR → `02-spec-moderna/ADRs/<NNNN>-<title>.md`
 
 ### Template de README (módulo)
 
@@ -95,7 +95,7 @@ Substitui `CALCBENF.NSN`, `CALCDSCT.NSN`, `BATCHPGT.NSN`.
 
 ## Veja também
 - `docs/CODEMAP.md`
-- `specs/003-payment-processing/SPECIFICATION.md`
+- `specs/003-payment-processing/spec.md`
 - `docs/runbooks/disburse-retry.md`
 ````
 
@@ -137,12 +137,6 @@ SEV-2 se isolado a um beneficiário. SEV-1 se > 100 em 5 minutos.
 - @jordan (DevOps) para problemas de fila ou infra.
 - @morgan (tech lead) para declaração de SEV-1.
 ````
-
-## Exemplo trabalhado
-
-**Entrada:** gerar um README para o novo módulo backend `audit`.
-
-**Resposta esperada:** README preenchido com os endpoints de auditoria, a tabela `audit_log`, a linhagem legada para `BATCHCON.NSN` e links para seus testes e para a seção de especificação `REQ-AUDIT-*`.
 
 ## Antipadrões
 

@@ -17,7 +17,7 @@ Você produzirá um ciclo TDD completo para um único comportamento no SIFAP 2.0
 Peça ao usuário o que estiver faltando.
 
 - O comportamento a descobrir, em linguagem simples (por exemplo "calcular ICMS para beneficiários isentos de imposto").
-- O `REQ-ID` vinculado em `SPECIFICATION.md`.
+- O `REQ-ID` vinculado em `specs/<NNN>-<feature>/spec.md`.
 - O arquivo ou classe alvo. Se não existir, diga isso — TDD também guia o design, então criar é aceitável.
 - O framework de teste — JUnit 5 + AssertJ para Java, Vitest + Testing Library para TypeScript.
 
@@ -55,22 +55,6 @@ Sua resposta final deve incluir:
 - **O arquivo de teste** — conteúdo completo.
 - **O código de produção** — conteúdo completo após a fase de refatoração.
 - **Dica do próximo ciclo** — que teste você escreveria em seguida (limite, erro, segunda variação). Não o implemente.
-
-## Exemplo trabalhado
-
-**Entrada:** Comportamento — "ICMS é zero quando o beneficiário está marcado como isento de imposto." REQ-TAX-009.
-
-**Estrutura esperada da resposta:**
-
-> Comportamento: `TaxCalculator.icms(beneficiary, amount)` retorna `BigDecimal.ZERO` quando `beneficiary.isTaxExempt()` é true.
->
-> Commit RED: adicionou `TaxCalculatorTest#calculatesIcmsAsZeroForTaxExemptBeneficiary`. Falhou com `NullPointerException` (a classe não existia).
->
-> Commit GREEN: criou `TaxCalculator` com um método `icms` de uma linha retornando `ZERO`. O teste passa. Suíte completa verde (47 testes).
->
-> Commit REFACTOR: extraiu a interface `ExemptionPolicy` — antecipa variantes de isenção estadual e federal sem implementá-las ainda.
->
-> Dica do próximo ciclo: escreva um teste para um beneficiário não isento com uma alíquota de ICMS diferente de zero. Isso forçará `icms` a realmente olhar para `amount`.
 
 ## Antipadrões
 

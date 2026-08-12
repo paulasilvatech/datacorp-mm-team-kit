@@ -1,7 +1,7 @@
 ---
 name: "fix-bug"
 agent: "implementer"
-description: "Reproduza, isole e corrija um defeito com um teste de regressão, preservando SPECIFICATION.md como fonte da verdade."
+description: "Reproduza, isole e corrija um defeito com um teste de regressão, preservando spec.md como fonte da verdade."
 tools: ["search", "edit", "execute"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
@@ -50,22 +50,6 @@ Sua resposta final deve incluir:
 
  Refs: BUG-2026-042, REQ-PAY-014
  ```
-
-## Exemplo trabalhado
-
-**Entrada:** "Desembolsos ainda são enviados para beneficiários suspensos. Reproduzido em stage."
-
-**Estrutura esperada da resposta:**
-
-> Causa raiz: `PaymentService.disburse()` consulta `beneficiary_repository.findById()`, mas nunca inspeciona `beneficiary.status`. O programa Natural legado `CALCBENF.NSN` tinha essa verificação inline; ela se perdeu na tradução.
->
-> Requisito vinculado: REQ-PAY-014 ("Se um beneficiário estiver suspenso, então o sistema não deve desembolsar").
->
-> Testes adicionados: `PaymentServiceTest#shouldRejectDisbursementWhenBeneficiarySuspended`, `PaymentServiceTest#shouldDisburseWhenBeneficiaryActive`.
->
-> Correção: guarda de 4 linhas em `PaymentService.disburse()`, lança `BeneficiarySuspendedException`.
->
-> Risco: A mesma omissão pode existir em `BatchPaymentJob`. Acompanhamento registrado em T-099.
 
 ## Antipadrões
 

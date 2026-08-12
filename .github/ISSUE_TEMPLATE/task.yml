@@ -9,7 +9,7 @@ body:
     attributes:
       value: |
         > Use this template for one implementation task at a time.
-        > Tasks come from `specs/<NNN>-<feature>/TASKS.md`.
+        > Tasks come from `specs/<NNN>-<feature>/tasks.md`.
 
   - type: input
     id: task-id
@@ -32,7 +32,7 @@ body:
     attributes:
       label: REQ-IDs implemented
       description: Comma-separated list of all requirement IDs this task satisfies.
-      placeholder: "REQ-PAY-014, REQ-PAY-015"
+      placeholder: "REQ-XXX, REQ-YYY"
     validations:
       required: true
 
@@ -40,11 +40,11 @@ body:
     id: acceptance-criteria
     attributes:
       label: Acceptance criteria (from the spec)
-      description: Copy from `SPECIFICATION.md` so the implementer doesn't need to
+      description: Copy from `spec.md` so the implementer doesn't need to
         switch files.
       placeholder: |
-        - When a payment cycle is created with status `OPEN`, the system shall ...
-        - If a beneficiary's status is `SUSPENDED`, the system shall NOT include them ...
+        - When <event>, the system shall <verifiable behavior>.
+        - If <condition>, the system shall NOT <prohibited behavior>.
     validations:
       required: true
 
@@ -78,8 +78,8 @@ body:
     attributes:
       label: Depends on
       placeholder: |
-        - T-005 (Beneficiary entity must exist)
-        - ADR-0003 (Persistence strategy decided)
+        - T-XXX (prerequisite task)
+        - ADR-XXXX (relevant decision)
 
   - type: textarea
     id: definition-of-done
@@ -89,7 +89,7 @@ body:
         - [ ] At least one test per acceptance criterion (red → green → refactor)
         - [ ] All public methods that satisfy a `REQ-ID` have `@implements REQ-NNN` Javadoc
         - [ ] CI is green (build, lint, type-check, tests, coverage)
-        - [ ] The corresponding box in `TASKS.md` is checked
+        - [ ] The corresponding box in `tasks.md` is checked
         - [ ] PR title uses Conventional Commits and links this issue
         - [ ] At least one persona-pair review on the PR
     validations:

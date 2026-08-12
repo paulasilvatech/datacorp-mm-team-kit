@@ -41,7 +41,7 @@ Padrões genéricos de arquitetura para modernização Natural/Adabas-para-Java:
 - **Estrutura de Modular Monolith**: Package-by-feature (não por camada), cada módulo possui seu domínio, repository e service; comunicação cross-module via interfaces ou domain events
 - **Recorte de bounded context**: Identificar aggregates a partir do modelo de dados legado, desenhar fronteiras onde a propriedade dos dados é clara, definir anti-corruption layers nas fronteiras
 - **Mapeamento Adabas-para-JPA**: campos MU (multiple-value) → `@ElementCollection` ou coluna JSONB; PE (periodic groups) → `@OneToMany` com uma entidade embedded; super-descriptors → annotations `@Index` compostas
-- **Níveis do modelo C4**: Level 1 (System Context), Level 2 (Containers), Level 3 (Components), Level 4 (Code) — a equipe deve produzir pelo menos Levels 1-3
+- **Níveis do modelo C4**: Level 1 (System Context), Level 2 (Containers), Level 3 (Components), Level 4 (Code) — use somente o nível que esclarecer uma decisão do recorte
 - **Estrutura de ADR**: Title, Status (proposed/accepted/deprecated), Context, Decision, Consequences
 - **Padrão Strangler Fig**: Roteie requests por uma facade; novos módulos lidam com novas requests, o legado lida com o restante; migre incrementalmente
 - **Convenções de módulos Spring Boot 3.3**: projeto Maven multi-module, `spring-boot-starter-*` por módulo, shared kernel para tipos cross-cutting
@@ -59,12 +59,10 @@ Todas as decisões arquiteturais devem ser fundamentadas nas descobertas da equi
 
 A equipe sai do Estágio 2 quando tiver:
 
-- [ ] **SPECIFICATION.md**: Pelo menos 10 requisitos EARS com IDs `REQ-NNN`, cada um com critérios de aceitação
-- [ ] **Mapa de bounded context**: Um diagrama Mermaid mostrando 2-4 bounded contexts com seus relacionamentos
-- [ ] **Diagramas C4**: Pelo menos diagramas de System Context (L1) e Container (L2)
-- [ ] **ADRs**: Pelo menos 3 Arquitetura Decision Records (por exemplo, estratégia de mapeamento de banco, justificativa de fronteira de módulo, abordagem de autenticação)
-- [ ] **Rascunho do modelo de dados**: Esboço entity-relationship mostrando como estruturas Adabas legadas mapeiam para entidades JPA
-- [ ] **Esboço de contrato de API**: Pelo menos 3 endpoints REST com method, path e propósito definidos
+- [ ] **`spec.md`**: requisitos EARS do recorte, cada um com `source_legacy:` e critérios de aceitação
+- [ ] **`plan.md`**: decisões, riscos e design suficientes para a primeira tarefa
+- [ ] **`tasks.md`**: trabalho implementável com testes de regra de negócio
+- [ ] **Escopo**: o PO confirmou o que foi escolhido e o que foi adiado
 
 ## Prompts Disponíveis
 
@@ -90,7 +88,7 @@ Este agente trabalha **junto** com o Spec-Kit no Estágio 2. O fluxo recomendado
 1. **`/speckit.specify`** — rascunhe o escopo da feature com requisitos EARS e linhas `source_legacy`.
 2. **@architect** — recorte bounded contexts e tome decisões estruturais (`/carve-bounded-contexts`, `/generate-adr`).
 3. **`/speckit.clarify`** — resolva requisitos ambíguos antes do design começar.
-4. **`/speckit.plan`** — gere `plan.md`, notas de pesquisa, modelo de dados, contratos e quickstart.
+4. **`/speckit.plan`** — gere `plan.md` e os apoios necessários ao recorte.
 5. **@architect** — projete o Modular Monolith (`/design-modular-monolith`).
 6. **`/speckit.tasks`** e **`/speckit.analyze`** — produza tarefas de implementação e verifique consistência antes de avançar para o Estágio 3.
 

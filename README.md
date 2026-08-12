@@ -71,7 +71,6 @@
 ├── 📁 05-personas/                    🧑‍🤝‍🧑 10 personas (escolha 2 = seu par)
 ├── 📁 06-agentes-de-estagio/          🌍 4 agentes Copilot (1 por mundo)
 ├── 📁 07-conceitos/                   🧠 analogias Mario (Lego/RPG/EARS)
-├── 📁 08-exemplos/                    📘 artefatos completos prontos
 ├── 📁 09-cheat-sheets/                🎴 3 cartões de 1 página
 │
 ├── 📁 docs/                           📚 FAQ, troubleshooting, runbook, ADRs
@@ -137,7 +136,7 @@ Cada par trabalha em **sua própria branch**, abre **Pull Request** para `develo
 
 ```
 spec/<NNN>-...        ← Estágio 2 (RE+SA)
-impl/<modulo>-...     ← Estágio 3 (Dev+DBA)
+impl/<NNN>-<feature> ← Estágio 3 (Dev+DBA; criada a partir de `develop`)
 test/<feature>        ← Estágio 3 (QA)
 infra/<componente>    ← Estágio 4 (DevOps)
 docs/<topico>         ← Transversal (TW)

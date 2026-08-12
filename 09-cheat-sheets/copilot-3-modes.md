@@ -68,9 +68,9 @@ flowchart LR
 
 **Frases que funcionam:**
 
-- _"Planeje a criação dos módulos `beneficiary`, `agreement`, `payment` com estrutura padrão de pacote Spring Boot."_
-- _"Liste os testes necessários para cada método público de `PaymentService` antes de implementar."_
-- _"Planeje o rename de `Convenio` para `Agreement` no projeto inteiro e a ordem segura das mudanças."_
+- _"Planeje a criação do módulo `<feature>` com a estrutura de pacote acordada pelo time."_
+- _"Liste os testes necessários para cada método público de `<Service>` antes de implementar."_
+- _"Planeje o rename de `<termo-legado>` para `<termo-moderno>` no projeto inteiro e a ordem segura das mudanças."_
 - _"Revise as migrações Flyway existentes e proponha uma sequência para adicionar rollback documentado."_
 
 **Erros comuns:**

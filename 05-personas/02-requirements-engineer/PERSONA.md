@@ -84,14 +84,14 @@ Converter o que foi descoberto no Estágio 1 em requisitos formais e testáveis 
 
 1. **(Chat)** _"Leia esta regra do SIFAP legado e converta para notação EARS: [cole a regra]. Identifique qual dos 6 padrões EARS se aplica e explique por quê."_
 2. **(Chat)** _"Analise estes 5 requisitos EARS e encontre: (a) ambiguidades que precisam de decisão do PO, (b) dependências entre eles, (c) requisitos conflitantes."_
-3. **(Plan)** _"No SPECIFICATION.md, planeje requisitos EARS para o módulo de auditoria com base nas regras BR-008 a BR-012 do catálogo. Use os padrões Event e Unwanted Behavior."_
+3. **(Plan)** _"No `spec.md`, planeje EARS para as regras confirmadas no catálogo. Escolha o padrão EARS a partir do comportamento observado."_
 
 ## Se travar (defaults de emergência)
 
 - **Não conhece EARS?** Abra [`../02-spec-moderna/GUIDE.md`](../../02-spec-moderna/GUIDE.md) seção "Notação EARS" — 6 padrões com exemplo.
 - **Requisito ambíguo?** Escreva duas interpretações e pergunte ao PO qual é a correta.
-- **Muitas regras, pouco tempo?** Foque em regras de CÁLCULO e VALIDAÇÃO (são as mais críticas para pagamento).
-- **Spec-Kit não funciona?** Escreva EARS manualmente em SPECIFICATION.md — o formato é texto puro.
+- **Muitas regras, pouco tempo?** Priorize regras pelo risco e pelo impacto que o time registrou.
+- **Spec-Kit não funciona?** Restaure a ferramenta antes de criar artefatos formais; eles pertencem a `specs/<NNN>-<feature>/spec.md`.
 
 ## Dependências — Quem depende de você
 
