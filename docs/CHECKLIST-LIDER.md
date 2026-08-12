@@ -47,7 +47,7 @@
 - [ ] **11:45** — Cada par registrou evidências e dúvidas dos programas atribuídos.
 
 > [!TIP]
-> **Mistérios — o denominador é 20** (4 por par). Use o [gabarito do facilitador](FACILITADOR-GABARITO-MISTERIOS.md) para dar dicas progressivas e pontuar. Nunca projete o gabarito em tela. Dica não tira ponto; par travado por mais de 40 minutos, sim — dê a dica.
+> **Mistérios — o denominador é 20** (4 por par). O gabarito com as respostas **não vive neste repositório** (ele é público) — é distribuído aos facilitadores por canal privado. Nunca projete o gabarito em tela. Dica não tira ponto; par travado por mais de 40 minutos, sim — dê a dica.
 
 ### 13:30–14:00 · Estágio 1 — Síntese e Passagem H1
 
