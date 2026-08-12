@@ -20,9 +20,22 @@
 
 ## Registro
 
-| Pergunta aberta | Evidência (`path:linha`) | Impacto | Hipótese (não confirmada) | Pessoa/área responsável | Status |
-|---|---|---|---|---|---|
-| <!-- preencher --> | <!-- preencher: path:linha --> | <!-- preencher --> | <!-- preencher: não confirmada --> | <!-- preencher --> | <!-- preencher: aberta / aguardando validação humana / encerrada após validação humana --> |
+Uma linha por mistério. Preencha o **ID canônico** do seu par (`SIFAP-M-01` … `SIFAP-M-20` — veja o [checklist](mysteries-checklist.md)) ou `BONUS` para achados fora da lista.
+
+| ID | Pergunta aberta | Evidência (`path:linha`) | Impacto | Hipótese (não confirmada) | Pessoa/área responsável | Status |
+|---|---|---|---|---|---|---|
+| `SIFAP-M-__` | <!-- preencher: uma pergunta de verdade, com ponto de interrogação --> | <!-- preencher: path:linha --> | <!-- preencher: o que quebra na migração para Java --> | <!-- preencher: não confirmada --> | <!-- preencher --> | <!-- preencher: aberta / aguardando validação humana / encerrada após validação humana --> |
+| `SIFAP-M-__` | <!-- preencher --> | <!-- preencher: path:linha --> | <!-- preencher --> | <!-- preencher: não confirmada --> | <!-- preencher --> | <!-- preencher --> |
+| `SIFAP-M-__` | <!-- preencher --> | <!-- preencher: path:linha --> | <!-- preencher --> | <!-- preencher: não confirmada --> | <!-- preencher --> | <!-- preencher --> |
+| `SIFAP-M-__` | <!-- preencher --> | <!-- preencher: path:linha --> | <!-- preencher --> | <!-- preencher: não confirmada --> | <!-- preencher --> | <!-- preencher --> |
+
+### Achados adicionais (bônus)
+
+Achados legítimos fora dos 20 canônicos. Contam no debrief, **não** alteram o denominador e **não** substituem um canônico faltante.
+
+| ID | Pergunta aberta | Evidência (`path:linha`) | Impacto | Hipótese (não confirmada) | Pessoa/área responsável | Status |
+|---|---|---|---|---|---|---|
+| `BONUS` | <!-- preencher --> | <!-- preencher: path:linha --> | <!-- preencher --> | <!-- preencher: não confirmada --> | <!-- preencher --> | <!-- preencher --> |
 
 ---
 

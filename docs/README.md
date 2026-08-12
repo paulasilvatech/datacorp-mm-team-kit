@@ -34,6 +34,7 @@
 | [`sdlc-flow-guide.md`](sdlc-flow-guide.md) | Fluxo completo do dia, passagens e entregáveis |
 | `api.md` _(criado pelo time)_ | Visão geral da OpenAPI e resumo dos endpoints |
 | [`runbook.md`](runbook.md) | Como executar o sistema localmente, em CI e no Azure |
+| [`FACILITADOR-GABARITO-MISTERIOS.md`](FACILITADOR-GABARITO-MISTERIOS.md) | ⚠️ **Somente facilitador** — gabarito dos 20 mistérios canônicos, dicas progressivas e rubrica. Não distribuir às duplas |
 
 ## Convenções
 

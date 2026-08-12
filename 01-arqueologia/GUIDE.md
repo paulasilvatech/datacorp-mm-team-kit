@@ -65,6 +65,9 @@ Use os [templates](templates/) como apoio. Para cada regra candidata ao recorte,
 
 `business-rules-catalog.md` é a entrada para a spec formal; use o [template do catálogo](templates/business-rules-catalog.template.md) caso o arquivo ainda não exista. O glossário, mapa de dependências e registro de mistérios podem ser enriquecidos se ajudarem o recorte, mas não bloqueiam a passagem por metas numéricas.
 
+> [!IMPORTANT]
+> **Exceção — os mistérios têm denominador fixo.** O SIFAP esconde **20 mistérios canônicos**, **4 por par**. Esse é o único alvo numérico do Estágio 1, e existe porque sem ele cada par relatava uma quantidade diferente lendo o mesmo material. Consulte [`mysteries-checklist.md`](mysteries-checklist.md) para os IDs do seu par e registre em [`mysteries-found.md`](mysteries-found.md). Achados fora da lista são bônus e não alteram o denominador.
+
 ---
 
 ## Passagem de bastão (handoff) H1

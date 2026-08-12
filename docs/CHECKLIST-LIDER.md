@@ -42,12 +42,17 @@
 
 - [ ] **11:00** — Time inteiro selecionou `@archaeologist` no Chat.
 - [ ] **11:10** — Cada par sabe quais 3 programas Natural vai ler.
+- [ ] **11:10** — Cada par sabe **quais 4 mistérios canônicos** são os seus (`SIFAP-M-NN`, veja [`mysteries-checklist.md`](../01-arqueologia/mysteries-checklist.md)).
 - [ ] **11:30** — Stand-up de 2 minutos: cada par diz 1 frase do que descobriu.
 - [ ] **11:45** — Cada par registrou evidências e dúvidas dos programas atribuídos.
+
+> [!TIP]
+> **Mistérios — o denominador é 20** (4 por par). Use o [gabarito do facilitador](FACILITADOR-GABARITO-MISTERIOS.md) para dar dicas progressivas e pontuar. Nunca projete o gabarito em tela. Dica não tira ponto; par travado por mais de 40 minutos, sim — dê a dica.
 
 ### 13:30–14:00 · Estágio 1 — Síntese e Passagem H1
 
 - [ ] **13:35** — Catálogo contém fontes das regras candidatas ao recorte.
+- [ ] **13:40** — Placar de mistérios consolidado: **≥16/20** e nenhum par abaixo de 2/4.
 - [ ] **13:45** — Product Owner escolheu uma feature fina e registrou adiamentos.
 - [ ] **13:50** — Facilitador validou `LEGACY-EXPLORATION-CHECKLIST.md`.
 - [ ] **14:00** — **Passagem H1**: Par 1 entrega `discovery-report.md` ao Par 2.

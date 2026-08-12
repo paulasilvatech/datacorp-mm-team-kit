@@ -38,13 +38,18 @@ O CI rejeita PRs para `develop` se algum `REQ-ID` estiver sem a linha `source_le
 
 Cada par fica com 3 programas. Nenhum programa pode ficar sem leitor.
 
-| Par | Programas para ler | Por que |
-|---|---|---|
-| **1 · Visão** (PO + RE) | `CADBENEF.NSN`, `CADDEPEND.NSN`, `CADPROG.NSN` | Lógica de cadastro — entidades centrais que viram sujeitos das EARS. |
-| **2 · Arquitetura** (EA + SA) | `BATCHPGT.NSN`, `BATCHREL.NSN`, `BATCHCON.NSN` | Fluxos batch revelam fronteiras de módulo (bounded contexts). |
-| **3 · Implementação** (TL + Dev) | `CALCBENF.NSN`, `CALCCORR.NSN`, `CALCDSCT.NSN` | Cálculos são onde o código moderno vai morar; a equipe precisa reproduzi-los. |
-| **4 · Qualidade** (DBA + QA) | `VALBENEF.NSN`, `VALDOCS.NSN`, `VALELEG.NSN` | Validações viram testes; o DBA também mapeia campos dos DDMs. |
-| **5 · Operações** (DevOps + TW) | `CONSBENF.NSN`, `RELPGT.NSN`, `RELAUDIT.NSN` | Caminhos de leitura alimentam o glossário e o runbook. |
+| Par | Programas para ler | Mistérios | Por que |
+|---|---|---|---|
+| **1 · Visão** (PO + RE) | `CADBENEF.NSN`, `CADDEPEND.NSN`, `CADPROG.NSN` | `SIFAP-M-01` … `M-04` | Lógica de cadastro — entidades centrais que viram sujeitos das EARS. |
+| **2 · Arquitetura** (EA + SA) | `BATCHPGT.NSN`, `BATCHREL.NSN`, `BATCHCON.NSN` | `SIFAP-M-05` … `M-08` | Fluxos batch revelam fronteiras de módulo (bounded contexts). |
+| **3 · Implementação** (TL + Dev) | `CALCBENF.NSN`, `CALCCORR.NSN`, `CALCDSCT.NSN`\* | `SIFAP-M-09` … `M-12` | Cálculos são onde o código moderno vai morar; a equipe precisa reproduzi-los. |
+| **4 · Qualidade** (DBA + QA) | `VALBENEF.NSN`, `VALDOCS.NSN`, `VALELEG.NSN` | `SIFAP-M-13` … `M-16` | Validações viram testes; o DBA também mapeia campos dos DDMs. |
+| **5 · Operações** (DevOps + TW) | `CONSBENF.NSN`, `RELPGT.NSN`, `RELAUDIT.NSN` | `SIFAP-M-17` … `M-20` | Caminhos de leitura alimentam o glossário e o runbook. |
+
+\* `CALCDSCT.NSN` é **leitura de apoio** para o Par 3: nenhum mistério canônico vive nele. Ainda assim vale a pergunta de por que ele existe e quem o chama.
+
+> [!IMPORTANT]
+> **São 20 mistérios canônicos, 4 por par** — este é o único alvo numérico do Estágio 1. Os IDs e as áreas estão em [`mysteries-checklist.md`](mysteries-checklist.md); o registro vai em [`mysteries-found.md`](mysteries-found.md). Achados fora da lista contam como bônus e **não** alteram o denominador.
 
 ### Checklist por programa
 
