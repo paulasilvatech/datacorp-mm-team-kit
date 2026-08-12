@@ -107,7 +107,7 @@ No Copilot, todo turno você escolhe um dos 3 modos. **Trocar de modo é grátis
        ↓
 Você usa Ask 💬:
    "@architect, qual a melhor ordem para escrever EARS
-    desse catálogo BR-001 a BR-015?"
+    das regras confirmadas neste catálogo?"
        ↓
 [@architect responde — enquadramento de arquiteta]
        ↓

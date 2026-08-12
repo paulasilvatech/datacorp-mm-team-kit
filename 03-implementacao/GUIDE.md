@@ -40,7 +40,7 @@
 > - [ ] `specs/<NNN>-<feature>/spec.md` tem REQ-IDs com `source_legacy:` válido
 > - [ ] `specs/<NNN>-<feature>/plan.md` contém as decisões necessárias para a primeira tarefa
 > - [ ] O time definiu os paths iniciais do protótipo (`backend/`, `frontend/` e, se necessário, `infra/`)
-> - [ ] Branch `impl/...` criada a partir de `develop` atualizada
+> - [ ] Branch `impl/<NNN>-<feature>` criada a partir de `develop` atualizada
 
 ## Quem trabalha aqui
 

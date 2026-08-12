@@ -23,7 +23,7 @@ body:
     id: adr-title
     attributes:
       label: Title
-      placeholder: "Use modular monolith over microservices for SIFAP 2.0"
+      placeholder: "<short decision title>"
     validations:
       required: true
 
@@ -32,9 +32,7 @@ body:
     attributes:
       label: Context
       description: What is the issue we're seeing that motivates this decision?
-      placeholder: |
-        SIFAP 2.0 must replace a monolithic Natural/Adabas system that has 15
-        tightly-coupled business modules. The team needs to decide whether to...
+      placeholder: "<evidence, constraints, and decision to make>"
     validations:
       required: true
 
@@ -43,7 +41,7 @@ body:
     attributes:
       label: Decision
       description: The change we are proposing or have agreed to make.
-      placeholder: "We will adopt a modular monolith using Spring Boot..."
+      placeholder: "<decision made explicitly by the team>"
     validations:
       required: true
 
@@ -52,8 +50,8 @@ body:
     attributes:
       label: Alternatives considered
       placeholder: |
-        - Microservices per bounded context — rejected because team is small (10 people)
-        - Continue Natural — rejected per Stage 1 archaeology findings
+        - <alternative A> — <trade-off>
+        - <alternative B> — <trade-off>
     validations:
       required: true
 
@@ -63,9 +61,9 @@ body:
       label: Consequences
       description: What becomes easier? What becomes harder? Any risks?
       placeholder: |
-        Easier: shared transaction context; single deployable
-        Harder: enforcing module boundaries; risk of "big ball of mud"
-        Mitigation: enforce package-level ArchUnit tests
+        Easier: <effect>
+        Harder: <effect>
+        Mitigation: <action>
     validations:
       required: true
 

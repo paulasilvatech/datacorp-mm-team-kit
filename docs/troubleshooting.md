@@ -30,7 +30,7 @@
 ### "Faltando Java/Node/Maven"
 
 - **Causa:** ferramentas locais ainda não instaladas.
-- **Solução:** instale as versões da tabela em [`00-SETUP.md` Passo 1](../00-SETUP.md#-passo-1) e valide com `java -version`, `node --version` e `git --version`.
+- **Solução:** instale as versões da tabela em [`00-SETUP.md` — Passo 1](../00-SETUP.md#-passo-1--verifique-se-seu-laptop-tem-os-pré-requisitos) e valide com `java -version`, `node --version` e `git --version`.
 
 ### "git: command not found" no terminal do VS Code (Mac)
 

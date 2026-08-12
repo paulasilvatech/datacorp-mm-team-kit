@@ -15,7 +15,7 @@
 > 2. Spec-Kit oficial + GitHub Copilot funcionando no VS Code
 > 3. Cada pessoa com suas 2 personas lidas e Ask/Plan/Agent validados
 > 4. Estratégia de branches definida (`spec/*`, `impl/*`)
-> 5. Smoke test passando antes das 10:00 do dia 2
+> 5. Smoke test validado até 10:30 do dia 2
 
 > **Vocês são 5 pessoas. Cada pessoa usa 2 personas. Vocês têm um dia de trabalho.** Este guia leva vocês de "ainda não temos nada" até "repositório criado pelo template, Copilot funcionando, todas as personas prontas" em **45 minutos**.
 >
@@ -39,7 +39,7 @@
 - [🎯 Passo 10 — Use o fluxo Spec-Kit (todos)](#-passo-10--use-o-fluxo-spec-kit-todos)
 - [🌿 Passo 11 — Entenda a estratégia de branches](#-passo-11--entenda-a-estratégia-de-branches)
 - [🔄 Passo 12 — Fluxo diário por persona](#-passo-12--fluxo-diário-por-persona)
-- [🚦 Passo 13 — Rode o teste de fumaça (time inteiro, às 10:30)](#-passo-13--rode-o-teste-de-fumaça-time-inteiro-às-0930)
+- [🚦 Passo 13 — Rode o teste de fumaça (time inteiro, às 10:30)](#-passo-13--rode-o-teste-de-fumaça-time-inteiro-às-1030)
 - [🆘 Solução de problemas](#-solução-de-problemas)
 
 ---
@@ -552,7 +552,7 @@ Cada persona tem um **ciclo diário padrão**. Rode-o quantas vezes forem necess
 3. Rode /speckit.clarify e valide com personas stakeholder (PO + EA)
 4. Rode /speckit.plan com a stack do workshop e as escolhas arquiteturais
 5. Rode /speckit.tasks depois que o plano for aprovado
-6. Abra um PR na branch spec/NNN-feature-name
+6. Abra um PR na branch `spec/<NNN>-<feature>`
 7. Faça passagem para Software Architect (gate LGTM)
 ```
 
@@ -560,7 +560,7 @@ Cada persona tem um **ciclo diário padrão**. Rode-o quantas vezes forem necess
 
 ```
 1. Faça pull do develop mais recente
-2. git checkout spec/NNN-feature-name (leia a spec EARS)
+2. git checkout spec/NNN-feature (leia a spec EARS)
 3. Rode /speckit.plan → produz plan.md, research.md e contracts
 4. Adicione ADRs em docs/adr/ para decisões não triviais
 5. Abra um PR — revise a seção de design do PR da spec
@@ -581,7 +581,7 @@ Cada persona tem um **ciclo diário padrão**. Rode-o quantas vezes forem necess
 
 ```
 1. Escolha uma issue de tarefa (T-NNN) no board do time
-2. git checkout -b impl/NNN-task-name (a partir de develop)
+2. git checkout -b impl/NNN-feature (a partir de develop)
 3. No Copilot, rode `/implement` (prompt ativo: `.github/prompts/persona-developer-implement.prompt.md`)
 4. Testes primeiro (vermelho), código (verde), refatoração
 5. Rode o gate local definido pelo protótipo (`./mvnw verify`, `npm test`, `npm run lint` ou equivalente)
@@ -593,7 +593,7 @@ Cada persona tem um **ciclo diário padrão**. Rode-o quantas vezes forem necess
 
 ```
 1. Escolha uma tarefa de schema/migração
-2. git checkout -b impl/NNN-migration-name
+2. git checkout -b impl/NNN-feature
 3. Adicione a migração Flyway em backend/src/main/resources/db/migration/
 4. Rode o prompt `/migration` (prompt ativo: `.github/prompts/persona-dba-migration.prompt.md`)
 5. Teste localmente contra o Postgres definido pelo time ou via Testcontainers

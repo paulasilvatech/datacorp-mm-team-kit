@@ -69,7 +69,7 @@ R: Bom. Resolva antes de implementar. Cada apontamento = uma hora a menos de ret
 R: NÃO. Sempre via PR. Veja [`00-GIT-WORKFLOW.md`](../00-GIT-WORKFLOW.md) regra #1.
 
 **Q: Qual prefixo de branch usar?**
-R: `spec/<NNN>-...` no Estágio 2, `impl/...` no Estágio 3, `infra/...` no Estágio 4. Tabela completa em [`00-GIT-WORKFLOW.md`](../00-GIT-WORKFLOW.md).
+R: `spec/<NNN>-<feature>` no Estágio 2 e `impl/<NNN>-<feature>` no Estágio 3; ambas nascem de `develop`. A infraestrutura usa `infra/<component>`. Tabela completa em [`00-GIT-WORKFLOW.md`](../00-GIT-WORKFLOW.md).
 
 **Q: Como meu PR é aprovado?**
 R: CI verde + 1 review do par downstream. Par 1 → Par 2 → Par 3 → Par 4 → Par 5 → Par 1.

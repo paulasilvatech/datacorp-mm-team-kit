@@ -114,9 +114,9 @@ Você tem **duas personas**. Leia o `PERSONA.md` de cada uma:
 
 Leia apenas:
 
-- A seção **"O que você vai conseguir em 3 horas"** (5 artefatos)
+- A seção **"Roteiro cronometrado"** (entregas do Estágio 1)
 - A tabela **"Quem lê o quê"** (quais 3 programas Natural seu par lê)
-- A seção **"Hora 1 — Reconhecimento"** (o que vocês fazem entre 13:00 e 14:00)
+- O roteiro de **11:00–12:00 + 13:30–14:00** (o que seu par faz no Estágio 1)
 
 Pronto. Você sabe o que vai fazer no Estágio 1.
 

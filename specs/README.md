@@ -57,9 +57,9 @@ O número (`NNN`) dá ordem. O nome (`feature-name`) explica o escopo. Evite nom
 
 ## Convenção de branches
 
-- Uma branch por spec: `spec/<NNN>-<feature-name>` criada a partir de `develop`.
+- Uma branch por spec: `spec/<NNN>-<feature>` criada a partir de `develop`.
 - Depois do merge da spec, branches de implementação
-  `impl/<NNN>-<feature-name>` são criadas a partir de `develop`, nunca da
+  `impl/<NNN>-<feature>` são criadas a partir de `develop`, nunca da
   branch da spec.
 - O fluxo de integração é `spec/<NNN>-<feature>` → `develop` → `main`; não
   existe branch `stage`.

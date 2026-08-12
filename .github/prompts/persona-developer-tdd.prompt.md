@@ -37,14 +37,14 @@ Você executa exatamente três fases. Não as compacte.
 
 6. Escreva a **menor quantidade de código de produção** que faça o teste passar. "Fake it till you make it" é permitido: retornar um valor fixo é aceitável no primeiro ciclo.
 7. Execute o teste único. Confirme verde. Execute a suíte completa. Confirme que continua verde.
-8. Commit: `feat(taxes): green — implement REQ-TAX-009 (minimal)`.
+8. Commit: `feat(<scope>): green — implement REQ-XXX (minimal)`.
 
 ### Fase 3 — REFACTOR (melhore com tudo verde)
 
 9. Procure duplicação, nomes que mentem, primitive obsession. Aplique uma pequena manobra de Fowler (Extract Method, Inline Variable, Rename).
 10. Execute todos os testes após cada micro-passo. Eles devem permanecer verdes.
 11. Pare quando o design estiver bom o suficiente para o próximo ciclo, não perfeito.
-12. Commit: `refactor(taxes): extract ExemptionPolicy from TaxCalculator`.
+12. Commit: `refactor(<scope>): <short description>`.
 
 ## Saída
 

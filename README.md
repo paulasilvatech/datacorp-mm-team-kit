@@ -135,9 +135,9 @@ O kit traz **duas camadas** que cobrem eixos diferentes (papel × estágio). Use
 Cada par trabalha em **sua própria branch**, abre **Pull Request** para `develop`, recebe **review do par downstream**, mergeia. Ao fim do dia, líder mergeia `develop → main`.
 
 ```
-spec/<NNN>-...        ← Estágio 2 (RE+SA)
+spec/<NNN>-<feature> ← Estágio 2 (RE+SA)
 impl/<NNN>-<feature> ← Estágio 3 (Dev+DBA; criada a partir de `develop`)
-test/<feature>        ← Estágio 3 (QA)
+impl/<NNN>-<feature> ← Estágio 3 (QA, na branch da feature)
 infra/<componente>    ← Estágio 4 (DevOps)
 docs/<topico>         ← Transversal (TW)
 agent/<issue-NN>      ← Estágio 4 (Copilot Agent)

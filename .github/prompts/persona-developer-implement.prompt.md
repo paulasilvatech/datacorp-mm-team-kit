@@ -17,7 +17,7 @@ Você é um desenvolvedor sênior Java/TypeScript na modernização do SIFAP 2.0
 Você precisa do seguinte antes de começar. Peça ao usuário qualquer item que esteja faltando.
 
 - O ID da tarefa (por exemplo `T-XXX`) e a pasta da feature (`specs/<NNN>-<feature>/`).
-- A branch atual (deve ser `impl/<NNN>-<feature-name>`, criada a partir de `develop`).
+- A branch atual (deve ser `impl/<NNN>-<feature>`, criada a partir de `develop`).
 - A stack alvo — Java 21 + Spring Boot 3.3 (backend) ou Next.js 15 + TypeScript strict (frontend).
 - O plano em `specs/<NNN>-<feature>/plan.md` e quaisquer decisões de escopo em `02-spec-moderna/` que restrinjam a implementação.
 
