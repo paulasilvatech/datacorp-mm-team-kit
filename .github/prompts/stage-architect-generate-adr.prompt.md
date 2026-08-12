@@ -77,6 +77,7 @@ Você é o `@architect`. A equipe precisa documentar uma decisão arquitetural.
 
 **Passo 1 — Clarificar a decisão.**
 Peça à equipe que declare:
+
 1. Sobre o que é a decisão? (1 frase)
 2. Por que ela precisa ser tomada agora? (contexto)
 3. Quais opções estão na mesa? (mínimo 2)
@@ -85,12 +86,14 @@ Se a equipe fornecer apenas 1 opção, pergunte: "Quais alternativas vocês cons
 
 **Passo 2 — Coletar contexto.**
 Pesquise os artefatos da equipe em busca de contexto relevante:
+
 - Verifique `specs/<NNN>-<feature>/spec.md` para requisitos que restringem esta decisão
 - Verifique `02-spec-moderna/bounded-contexts.md` para fronteiras de módulo que afetam a escolha
 - Verifique `01-arqueologia/discovery-report.md` para padrões legados que informam os trade-offs
 
 **Passo 3 — Analisar cada opção.**
 Para cada opção, escreva:
+
 - **Description**: O que esta opção significa na prática (1-2 frases)
 - **Pros**: Benefícios específicos ao contexto da equipe (não vantagens genéricas)
 - **Cons**: Desvantagens específicas ao contexto da equipe
@@ -104,6 +107,7 @@ Não sugira um padrão. Deixe a equipe pesar os trade-offs.
 
 **Passo 5 — Documentar a decisão.**
 Escreva o ADR no formato MADR:
+
 - **Title**: ADR-NNN: [Decision Title]
 - **Status**: Proposta até a equipe validar a decisão
 - **Date**: Today's date

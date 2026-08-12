@@ -9,6 +9,7 @@ tools: ["search"]
 # /acceptance-check
 
 ## Passos
+
 1. Leia a seção relevante de `specs/<NNN>-<feature>/spec.md`
 2. Extraia todos os critérios Given/When/Then
 3. Busque no codebase implementações correspondentes
@@ -16,6 +17,7 @@ tools: ["search"]
 5. Produza um relatório de conformidade
 
 ## Saída
+
 | Critério | Implementado | Testado | Status |
 |-----------|-------------|--------|--------|
 | [text] | Sim/Não | Sim/Não | Passa/Falha/Lacuna |

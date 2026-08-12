@@ -172,7 +172,7 @@ Se você nunca abriu VS Code, Docker ou Copilot, este roteiro literal coloca voc
 |---:|---|---|
 | **00** | Abrir o terminal e rodar `cd ~/Code/workshop-team-XX` | Aparece o nome do repositório no prompt |
 | **02** | `code .` para abrir o VS Code | VS Code abriu mostrando a lista de pastas (`00-…`, `01-…`) |
-| **04** | Abrir terminal integrado (`Ctrl+\``) e rodar `git status` | Branch e estado do repositório aparecem sem erro |
+| **04** | Abrir terminal integrado (`Ctrl+\``) e rodar`git status` | Branch e estado do repositório aparecem sem erro |
 | **08** | Validar ferramentas: `java -version`, `node --version`, `git --version` | Cada comando imprime uma versão |
 | **13** | Validar Docker (sem subir nada ainda): `docker --version` | O comando imprime uma versão do Docker |
 | **18** | Validar Spec-Kit: `specify version` | O comando imprime uma versão do Specify CLI |

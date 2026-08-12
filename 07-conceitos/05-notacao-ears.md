@@ -58,11 +58,13 @@ REQ-NNN:
 **Quando usar:** a regra vale em qualquer momento, sem condição.
 
 **Template:**
+
 ```
 O sistema deve <ação>.
 ```
 
 **Exemplo SIFAP:**
+
 ```yaml
 REQ-001:
   pattern: ubiquitous
@@ -74,9 +76,11 @@ REQ-001:
 ```
 
 **Exemplo ruim:**
+
 ```
 O sistema deve ter auditoria completa.
 ```
+
 Problema: "auditoria completa" não é testável.
 
 ---
@@ -86,11 +90,13 @@ Problema: "auditoria completa" não é testável.
 **Quando usar:** a regra dispara em resposta a um evento específico.
 
 **Template:**
+
 ```
 Quando <evento>, o sistema deve <ação>.
 ```
 
 **Exemplo SIFAP:**
+
 ```yaml
 REQ-042:
   pattern: event-driven
@@ -102,9 +108,11 @@ REQ-042:
 ```
 
 **Exemplo ruim:**
+
 ```
 Quando houver pagamento, processar.
 ```
+
 Problema: "processar" não descreve a ação esperada.
 
 ---
@@ -114,11 +122,13 @@ Problema: "processar" não descreve a ação esperada.
 **Quando usar:** a regra vale enquanto o sistema ou entidade está em um estado particular.
 
 **Template:**
+
 ```
 Enquanto <condição de estado>, o sistema deve <ação>.
 ```
 
 **Exemplo SIFAP:**
+
 ```yaml
 REQ-078:
   pattern: state-driven
@@ -136,11 +146,13 @@ REQ-078:
 **Quando usar:** a regra se aplica apenas se o usuário ativou uma opção ou escolheu uma configuração.
 
 **Template:**
+
 ```
 Onde <opção selecionada>, o sistema deve <ação>.
 ```
 
 **Exemplo SIFAP:**
+
 ```yaml
 REQ-105:
   pattern: optional
@@ -159,11 +171,13 @@ REQ-105:
 **Quando usar:** proibições explícitas — segurança, compliance ou invariantes do sistema.
 
 **Template:**
+
 ```
 O sistema não deve <comportamento proibido>.
 ```
 
 **Exemplo SIFAP:**
+
 ```yaml
 REQ-200:
   pattern: unwanted
@@ -181,11 +195,13 @@ REQ-200:
 O 6º padrão EARS combina condições de estado, evento e opção em um único requisito. É consistente com a nomenclatura do cheat-sheet [`09-cheat-sheets/spec-kit-workflow.md`](../09-cheat-sheets/spec-kit-workflow.md), que lista os seis padrões EARS.
 
 **Template:**
+
 ```
 Enquanto <estado>, quando <evento>, onde <opção>, o sistema deve <ação>.
 ```
 
 **Exemplo SIFAP:**
+
 ```yaml
 REQ-250:
   pattern: complex

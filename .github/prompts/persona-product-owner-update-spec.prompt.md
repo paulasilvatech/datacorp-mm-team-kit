@@ -9,6 +9,7 @@ tools: ["search", "edit"]
 # /update-spec
 
 ## Passos
+
 1. Leia `specs/<NNN>-<feature>/spec.md`
 2. Leia `.specify/memory/constitution.md` para entender restrições
 3. Identifique a seção a atualizar
@@ -17,6 +18,7 @@ tools: ["search", "edit"]
 6. Atualize a versão no frontmatter
 
 ## Gate de Qualidade
+
 - [ ] Novos requisitos têm critérios de aceitação
 - [ ] Nenhum requisito existente foi removido acidentalmente
 - [ ] Restrições de `.specify/memory/constitution.md` respeitadas

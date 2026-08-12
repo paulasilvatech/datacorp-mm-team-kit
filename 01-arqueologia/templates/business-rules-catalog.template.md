@@ -1,6 +1,7 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
 ---
+
 title: "Modelo: Catálogo de Regras de Negócio"
 description: "Esqueleto de tabela para regras de negócio extraídas via /extract-business-rules"
 author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at Microsoft"

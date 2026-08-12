@@ -75,4 +75,3 @@ No Estágio 3, o Developer recebe os REQ-IDs do Requirements Engineer e a estrut
 | [Visão geral das personas](../OVERVIEW.md)<br/><sub>Tabela das 10 personas e seus pares.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Ficha completa da persona Developer.</sub> |
 
 <sub>[Voltar ao índice do kit](../../README.md)</sub>
-

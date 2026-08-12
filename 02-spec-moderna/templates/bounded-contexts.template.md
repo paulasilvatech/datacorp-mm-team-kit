@@ -1,6 +1,7 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
 ---
+
 title: "Modelo: Bounded Contexts"
 description: "Esqueleto para definições de bounded contexts via /carve-bounded-contexts"
 author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at Microsoft"

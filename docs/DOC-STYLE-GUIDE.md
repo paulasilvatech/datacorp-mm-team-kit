@@ -155,6 +155,7 @@ flowchart LR
 ```
 
 Regras Mermaid:
+
 - Sempre incluir o bloco `%%{init: ...}%%` acima (copiar literal).
 - Nunca usar cores saturadas (azul, laranja, verde, vermelho, amarelo).
 - Rótulos entre aspas duplas: `A["Texto"]`. Quebra de linha com `<br/>`.
@@ -261,6 +262,7 @@ Cada conceito novo deve ter, nesta ordem:
 5. **Erro comum** — o que costuma dar errado.
 
 Diretrizes de escrita:
+
 - Voz ativa, segunda pessoa ("você faz", "abra o arquivo").
 - Frases curtas. Um parágrafo = uma ideia.
 - Termos técnicos em inglês são mantidos (`bounded context`, `pull request`),

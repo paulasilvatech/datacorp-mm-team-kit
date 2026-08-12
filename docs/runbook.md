@@ -124,4 +124,3 @@ Use o formato de escalonamento de 3 linhas descrito em [`00-TEAM-FLOW.md §4`](.
 | [FAQ](FAQ.md)<br/><sub>Perguntas frequentes.</sub> | [Troubleshooting](troubleshooting.md)<br/><sub>Erros comuns e soluções.</sub> |
 
 <sub>[Voltar ao índice do kit](README.md)</sub>
-

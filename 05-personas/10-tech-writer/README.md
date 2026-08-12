@@ -74,4 +74,3 @@ No Estágio 1, o Tech Writer documenta os termos `MU` (campo de múltiplo valor)
 | [Visão geral das personas](../OVERVIEW.md)<br/><sub>Tabela das 10 personas e seus pares.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Ficha completa da persona Tech Writer.</sub> |
 
 <sub>[Voltar ao índice do kit](../../README.md)</sub>
-

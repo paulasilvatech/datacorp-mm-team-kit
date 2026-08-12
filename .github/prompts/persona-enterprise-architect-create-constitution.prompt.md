@@ -25,12 +25,14 @@ Peça ao usuário o que estiver faltando.
 
 1. **Herde e adapte.** Comece pela constitution em nível de projeto e aperte ou relaxe apenas para esta feature, com justificativa explícita.
 2. **Agrupe regras por categoria.**
- - **Stack** — language, framework, runtime versions.
- - **Security** — identity, secrets, network, encryption, OWASP baseline.
- - **Data** — PII handling, retention, residency, encryption at rest.
- - **Operations** — observability, deployment, environments, SLOs.
- - **Process** — branching, code review, testing thresholds, ADR cadence.
- - **Compliance** — LGPD, regulatory, audit logging.
+
+- **Stack** — language, framework, runtime versions.
+- **Security** — identity, secrets, network, encryption, OWASP baseline.
+- **Data** — PII handling, retention, residency, encryption at rest.
+- **Operations** — observability, deployment, environments, SLOs.
+- **Process** — branching, code review, testing thresholds, ADR cadence.
+- **Compliance** — LGPD, regulatory, audit logging.
+
 3. **Torne toda regra testável.** "Use Java 21" é testável (`mvnw --version`); "use modern Java" não é.
 4. **Numere as regras.** `C1`, `C2` ... para que revisores possam citá-las.
 5. **Declare a consequência de quebrar uma regra.** "Build fails," "PR rejected," "InfoSec exception required" — não silêncio.

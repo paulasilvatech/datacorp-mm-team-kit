@@ -68,6 +68,7 @@ requisitos definem o que o código Java *deve* fazer.
 
 **Passo 2 — Ler o programa Natural.**
 Abra o arquivo especificado. Leia a seção `DEFINE DATA` para entender o modelo de dados. Depois leia a lógica principal bloco por bloco:
+
 - Para cada `IF...THEN...ELSE...END-IF`, identifique a decisão de negócio
 - Para cada `READ` ou `FIND`, identifique o padrão de acesso a dados
 - Para cada `CALLNAT`, anote a dependência (mas não traduza o alvo — isso é uma invocação separada)
@@ -75,13 +76,16 @@ Abra o arquivo especificado. Leia a seção `DEFINE DATA` para entender o modelo
 
 **Passo 3 — Mapear blocos para requisitos.**
 Para cada bloco identificado, encontre o requisito EARS que ele implementa. Se um bloco não tiver requisito correspondente, marque como orphan logic:
+
 ```java
 // ORPHAN: [natural-file.NSN:L42-58] - No matching REQ. Team decision required: keep, modify, or remove?
 ```
+
 Pergunte à equipe o que fazer com orphan logic antes de prosseguir.
 
 **Passo 4 — Traduzir para Java.**
 Para cada bloco com requisito correspondente, escreva o equivalente Java:
+
 - Variáveis `DEFINE DATA LOCAL` → parâmetros de método ou variáveis locais com tipos adequados
 - `IF...THEN...ELSE` → expressões Java `if/else` ou `switch` (pattern matching do Java 21 quando apropriado)
 - `READ LOGICAL BY` → Spring Data JPA `findBy*` method
@@ -91,6 +95,7 @@ Para cada bloco com requisito correspondente, escreva o equivalente Java:
 - Operações de string → métodos Java `String`, anotando diferenças de charset
 
 Use idiomas Java 21:
+
 - Records para DTOs e value objects
 - Sealed interfaces para uniões discriminadas quando o domínio exigir
 - `Optional` para retornos anuláveis
@@ -100,6 +105,7 @@ Use idiomas Java 21:
 
 **Passo 5 — Gerar Javadoc.**
 Todo método público recebe Javadoc que inclui:
+
 ```java
 /**
  * [Descrição de negócio].
@@ -111,6 +117,7 @@ Todo método público recebe Javadoc que inclui:
 
 **Passo 6 — Criar stubs de teste.**
 Para cada método público, gere um stub de teste em `src/test/java/`:
+
 ```java
 @Test
 void should_[expected]_when_[condition]() {

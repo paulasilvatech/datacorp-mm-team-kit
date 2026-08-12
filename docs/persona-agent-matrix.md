@@ -118,4 +118,3 @@
 | [4 Agentes Explicados](4-agents-explained.md)<br/><sub>Por que são 4 agentes.</sub> | [Fluxo SDLC](sdlc-flow-guide.md)<br/><sub>Contratos entre pares.</sub> |
 
 <sub>[Voltar ao índice do kit](../README.md)</sub>
-

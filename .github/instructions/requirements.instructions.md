@@ -8,6 +8,7 @@ applyTo: "docs/**/*.md,specs/**/*.md,02-spec-moderna/**/*.md"
 # Convenções de Documentação de Requisitos
 
 ## Formato
+
 - Notação EARS para requisitos formais
 - Given/When/Then para critérios de aceitação
 - Numeração sequencial dentro de features

@@ -75,4 +75,3 @@ No Estágio 2, o QA Engineer valida que cada EARS do `spec.md` tem critério de 
 | [Visão geral das personas](../OVERVIEW.md)<br/><sub>Tabela das 10 personas e seus pares.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Ficha completa da persona QA Engineer.</sub> |
 
 <sub>[Voltar ao índice do kit](../../README.md)</sub>
-

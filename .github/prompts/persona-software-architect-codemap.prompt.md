@@ -32,10 +32,12 @@ Peça ao usuário o que estiver faltando.
 5. **Cruze referências de REQ-IDs.** Para cada método público ou componente, encontre anotações `@implements REQ-NNN`. Liste componentes sem requisito ("no REQ-ID found") para revisão.
 6. **Encontre linhagem legada.** Observe quais programas Natural em `01-arqueologia/legado-sifap/natural-programs/` mapeiam para qual componente Java. Isso é essencial para a modernização do SIFAP.
 7. **Exponha architecture smells.**
- - Classes de service chamando controllers (direção errada).
- - Domain dependendo de infrastructure (direção errada).
- - Componentes com > 5 deps outbound (god class).
- - Componentes sem deps inbound (dead code).
+
+- Classes de service chamando controllers (direção errada).
+- Domain dependendo de infrastructure (direção errada).
+- Componentes com > 5 deps outbound (god class).
+- Componentes sem deps inbound (dead code).
+
 8. **Renderize como Mermaid + tabela.** Mermaid para leitura visual, tabela para facilidade de grep.
 
 ## Saída
@@ -76,18 +78,23 @@ flowchart LR
 | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
 
 ## 4. Estado persistente
+
 - <!-- preencher a partir do código e das migrações criados pelo time -->
 
 ## 5. Linhagem legada
+
 | Componente Java | Substitui |
 |----------------|----------|
 | <!-- preencher --> | <!-- preencher: programa.NSN e evidência --> |
 
 ## 6. Smells observados
+
 - <!-- preencher somente com achados observados no código -->
 
 ## 7. Como atualizar
+
 Rode `/codemap` após qualquer adição, renomeação ou exclusão no serviço. Vincule este arquivo a partir de `docs/CODEMAP.md`.
+
 ```
 
 ## Antipadrões

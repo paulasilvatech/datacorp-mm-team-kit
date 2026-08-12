@@ -9,7 +9,9 @@ tools: ["search"]
 # /ears-convert
 
 ## Pré-checagem dura (workshop SIFAP)
+
 Antes de escrever qualquer EARS, **exija uma fonte legada** para cada declaração de entrada. Fontes aceitáveis:
+
 - um arquivo em `01-arqueologia/legado-sifap/natural-programs/*.NSN` (preferido, com intervalo de linhas)
 - um arquivo em `01-arqueologia/legado-sifap/adabas-ddms/*.ddm`
 - o marcador literal `[GREENFIELD]` com uma justificativa em uma linha
@@ -21,22 +23,27 @@ Se o usuário fornecer uma declaração **sem** identificar uma fonte legada, N�
 Somente depois que toda declaração tiver uma fonte aceitável, prossiga para os passos abaixo.
 
 ## Tarefa
+
 Converter uma lista de requisitos informais para notação EARS, classificar cada um por padrão, anexar a fonte legada e sinalizar qualquer coisa que não possa ser expressa em EARS.
 
 ## Passos
+
 1. Para cada declaração de entrada, identifique o padrão: Ubiquitous, Event-driven, State-driven, Optional, Unwanted ou Complex.
 2. Reescreva a declaração usando o template EARS correto:
- - Ubiquitous: `O sistema deverá ...`
- - Event-driven: `QUANDO <gatilho> o sistema deverá ...`
- - State-driven: `ENQUANTO <estado> o sistema deverá ...`
- - Optional: `ONDE <feature> estiver incluída o sistema deverá ...`
- - Unwanted: `SE <indesejado> ENTÃO o sistema deverá ...`
- - Complex: combine os padrões acima com `AND / OR` dentro da cláusula de gatilho.
+
+- Ubiquitous: `O sistema deverá ...`
+- Event-driven: `QUANDO <gatilho> o sistema deverá ...`
+- State-driven: `ENQUANTO <estado> o sistema deverá ...`
+- Optional: `ONDE <feature> estiver incluída o sistema deverá ...`
+- Unwanted: `SE <indesejado> ENTÃO o sistema deverá ...`
+- Complex: combine os padrões acima com `AND / OR` dentro da cláusula de gatilho.
+
 3. Atribua um REQ-ID no formato `REQ-<DOMAIN>-NNN`.
 4. Anexe a linha `source_legacy:` fornecida pelo usuário (não invente).
 5. Se um requisito não puder se tornar testável (vago, contraditório ou sem métrica), sinalize como `NEEDS-CLARIFICATION` com a ambiguidade específica.
 
 ## Saída
+
 Para cada requisito, emita o bloco YAML abaixo (não uma tabela plana) para que o job de CI `legacy-traceability` possa processá-lo:
 
 ```yaml
@@ -49,6 +56,7 @@ REQ-<DOMAIN>-NNN:
 ```
 
 ## Gate de Qualidade
+
 - [ ] 100% das declarações de entrada processadas
 - [ ] **Todo REQ-ID emitido tem uma linha `source_legacy:` não vazia**
 - [ ] Nenhuma declaração EARS contém palavras como "appropriate", "reasonable", "fast" sem uma métrica

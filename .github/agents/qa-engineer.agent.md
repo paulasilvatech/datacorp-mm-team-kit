@@ -20,9 +20,11 @@ Antes de executar tarefas especializadas, leia a skill correspondente em `.githu
 Use essas skills como fonte operacional para procedimentos, checklists e criterios de qualidade.
 
 ## Descrição
+
 Geração de testes a partir de specs, análise de cobertura e gates de qualidade.
 
 ## Restrições
+
 - Siga `.specify/memory/constitution.md` e os artefatos da feature em
   `specs/<NNN>-<feature>/`.
 - Use a capacidade selecionada pela pessoa usuária

@@ -8,5 +8,7 @@ applyTo: "frontend/app/**,frontend/components/**,frontend/src/app/**,frontend/sr
 # Convenções de Frontend
 
 ## Components: funcionais com hooks, testes colocalizados
+
 ## State: `useState` local, Server Components para dados, Context apenas para estado client compartilhado
+
 ## A11y: aria labels, keyboard nav, contraste WCAG 2.1 AA

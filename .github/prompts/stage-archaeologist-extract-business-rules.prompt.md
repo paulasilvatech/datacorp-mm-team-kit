@@ -74,6 +74,7 @@ Abra o arquivo especificado. Leia a seção `DEFINE DATA` primeiro. Liste toda v
 
 **Passo 2 — Identificar blocos condicionais.**
 Escaneie o programa para cada instância de:
+
 - `IF ... THEN ... [ELSE ...] END-IF`
 - `DECIDE ON FIRST/EVERY VALUE OF`
 - `AT BREAK OF`
@@ -83,12 +84,14 @@ Para cada bloco, registre: linha inicial, linha final, expressão de condição,
 
 **Passo 3 — Formular regras candidatas.**
 Para cada bloco condicional, escreva uma declaração de regra de negócio em linguagem clara. Siga este padrão:
+
 - Comece com a condição: "Quando [condição]..." ou "Se [condição]..."
 - Declare a ação: "...o sistema deve [ação]"
 - Inclua o branch else se existir: "Caso contrário, o sistema deve [ação alternativa]"
 
 **Passo 4 — Tentar classificação EARS.**
 Para cada regra, proponha qual padrão EARS ela corresponde:
+
 - **Ubiquitous**: Sempre verdadeiro, sem trigger → "O sistema deverá..."
 - **Event-driven**: Acionado por um evento → "Quando [evento], o sistema deverá..."
 - **State-driven**: Ativo enquanto está em um estado → "Enquanto [estado], o sistema deverá..."
@@ -100,6 +103,7 @@ Se a equipe forneceu paths de documentação, pesquise nesses arquivos palavras-
 
 **Passo 6 — Sinalizar mistérios.**
 Para qualquer bloco condicional em que:
+
 - Os nomes de variáveis são crípticos e a intenção da condição não está clara
 - Os valores literais não têm significado óbvio (magic numbers)
 - A lógica parece contraditória ou redundante

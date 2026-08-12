@@ -155,4 +155,3 @@ Use o Spec-Kit sempre que o time começar uma funcionalidade nova no Estágio 2.
 | [Índice de Conceitos](00-README.md)<br/><sub>O que você vai aprender e em que ordem.</sub> | [Agentes e Personas](02-agentes-e-personas.md)<br/><sub>As duas camadas de contexto no Copilot Chat.</sub> |
 
 <sub>[Voltar ao índice do kit](../README.md)</sub>
-

@@ -47,6 +47,7 @@ Depois que a camada de service para um bounded context existir, quando a equipe 
 ## Formato de Saída
 
 Arquivos Java:
+
 1. Controller em `src/main/java/[package]/api/[Name]Controller.java`
 2. DTOs request/response em `src/main/java/[package]/api/dto/[Name]Request.java` e `[Name]Response.java`
 3. Global exception handler em `src/main/java/[package]/shared/exception/GlobalExceptionHandler.java` (se não existir)
@@ -67,6 +68,7 @@ Você é o `@builder`. A equipe precisa de um controller REST para um endpoint d
 
 **Passo 1 — Ler a definição OpenAPI.**
 Abra a definição OpenAPI indicada pela equipe. Encontre o endpoint especificado. Extraia:
+
 - HTTP method e path
 - Operation ID e summary
 - Request body schema (se houver)
@@ -122,6 +124,7 @@ public class [Name]Controller {
 
 **Passo 4 — Garantir que existe tratamento de erro.**
 Verifique se `GlobalExceptionHandler` existe no package shared. Se não, gere-o com handlers para:
+
 - `MethodArgumentNotValidException` → 400 com detalhes de validação
 - `EntityNotFoundException` → 404
 - `IllegalStateException` → 409 (conflict)

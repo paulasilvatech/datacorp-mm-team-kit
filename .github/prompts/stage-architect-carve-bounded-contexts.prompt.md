@@ -88,6 +88,7 @@ Apresente cada avaliação como scorecard: High/Medium/Low para cada critério.
 
 **Passo 3 — Apresentar à equipe para decisão.**
 Para cada hipótese, apresente:
+
 - O scorecard
 - Uma recomendação (aceitar, rejeitar ou mesclar com outra hipótese)
 - O raciocínio
@@ -98,6 +99,7 @@ A equipe toma a decisão final. Se a equipe sobrescrever sua recomendação, doc
 
 **Passo 4 — Formalizar contextos aceitos.**
 Para cada bounded context aceito, escreva:
+
 - **Name**: Um nome em linguagem de negócio confirmado pela equipe, não um nome técnico de serviço
 - **Responsibility**: 1 parágrafo descrevendo o que este contexto possui
 - **Owned data**: Quais DDMs/tabelas pertencem exclusivamente a este contexto
@@ -106,6 +108,7 @@ Para cada bounded context aceito, escreva:
 
 **Passo 5 — Definir comunicação inter-context.**
 Para cada par de contextos que precisa se comunicar, especifique:
+
 - A direção (A chama B, ou bidirecional)
 - O mecanismo: chamada de método in-process via interface, domain event ou tipo de shared kernel
 - Os dados trocados (somente IDs? DTOs completos? Events?)

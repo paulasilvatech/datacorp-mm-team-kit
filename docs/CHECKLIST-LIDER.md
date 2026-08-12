@@ -100,7 +100,7 @@
 
 ## As 3 perguntas que o Technical Lead faz a cada 30 minutos
 
-```
+```text
 1. Alguém está bloqueado há mais de 20 minutos?
 2. O CI está verde?
 3. A próxima passagem (H1/H2/H3) está no horário?

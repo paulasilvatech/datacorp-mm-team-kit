@@ -26,12 +26,15 @@ Peça ao usuário o que estiver faltando.
 1. **Leia a constituição e os módulos existentes.** Abra `.specify/memory/constitution.md` para ver os itens não negociáveis (managed identity, Key Vault para secrets, sem IPs públicos etc.) e os módulos existentes para copiar padrões.
 2. **Escolha uma versão de provider com suporte da Microsoft.** Use `azurerm ~> 4.x` e fixe via `required_providers`. Referencie [Azure Verified Modules](https://aka.ms/avm) quando aplicável.
 3. **Escreva o esqueleto do módulo.** No mínimo cinco arquivos:
- - `main.tf` — apenas resources, sem bloco `provider`.
- - `variables.tf` — cada entrada tipada e documentada, com blocos `validation` onde intervalos importarem.
- - `outputs.tf` — IDs, nomes e FQDNs de que os chamadores precisam, nunca secrets.
- - `versions.tf` — `terraform` e `required_providers`.
- - `README.md` — propósito, entradas, saídas e exemplo de uso.
+
+- `main.tf` — apenas resources, sem bloco `provider`.
+- `variables.tf` — cada entrada tipada e documentada, com blocos `validation` onde intervalos importarem.
+- `outputs.tf` — IDs, nomes e FQDNs de que os chamadores precisam, nunca secrets.
+- `versions.tf` — `terraform` e `required_providers`.
+- `README.md` — propósito, entradas, saídas e exemplo de uso.
+
 4. **Aplique as tags padrão do SIFAP** a todo recurso taggable:
+
  ```hcl
  tags = merge(var.tags, {
  project = "sifap"
@@ -41,11 +44,13 @@ Peça ao usuário o que estiver faltando.
  managed_by = "terraform"
  })
  ```
+
 5. **Disciplina de secrets.** Nada de secrets em variables, nada de secrets em outputs, nada de secrets em state files quando pudermos evitar. Connection strings vêm de data sources `azurerm_key_vault_secret` ou são retornadas como URIs que chamadores podem resolver em runtime.
 6. **Disciplina de identidade.** Use managed identities `system-assigned` ou `user-assigned`; nunca credenciais de service principal no código.
 7. **Disciplina de rede.** Nada de `public_network_access_enabled = true` sem uma exceção em `.specify/memory/constitution.md`. Private endpoints por padrão.
 8. **Adicione uma pasta `examples/`.** Um `examples/basic/main.tf` mínimo que consome o módulo — usado por `tflint` e pelos revisores.
 9. **Valide localmente.** Rode:
+
  ```
  terraform fmt -check -recursive
  terraform init -backend=false
@@ -53,6 +58,7 @@ Peça ao usuário o que estiver faltando.
  tflint --recursive
  checkov -d . --soft-fail false
  ```
+
  Todos devem passar.
 
 ## Saída

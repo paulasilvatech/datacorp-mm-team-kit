@@ -74,4 +74,3 @@ No Estágio 1, o DBA lê o DDM `SIFAP-BEN.ddm` e mapeia os campos MU de benefici
 | [Visão geral das personas](../OVERVIEW.md)<br/><sub>Tabela das 10 personas e seus pares.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Ficha completa da persona DBA.</sub> |
 
 <sub>[Voltar ao índice do kit](../../README.md)</sub>
-

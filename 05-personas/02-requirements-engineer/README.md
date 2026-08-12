@@ -80,4 +80,3 @@ Se o kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arq
 | [OVERVIEW](../OVERVIEW.md)<br/><sub>Tabela das 10 personas.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Ficha desta persona.</sub> |
 
 <sub>[Voltar ao índice do kit](../README.md)</sub>
-

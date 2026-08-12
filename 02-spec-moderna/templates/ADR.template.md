@@ -1,6 +1,7 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
 ---
+
 title: "Modelo: Registro de Decisão Arquitetural"
 description: "Esqueleto de ADR em formato MADR para /generate-adr"
 author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at Microsoft"

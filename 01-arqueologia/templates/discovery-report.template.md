@@ -1,6 +1,7 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
 ---
+
 title: "Modelo: Relatório de Descoberta"
 description: "Esqueleto de relatório para o passagem do Estágio 1 via /discovery-report"
 author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at Microsoft"

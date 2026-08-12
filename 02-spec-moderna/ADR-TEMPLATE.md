@@ -118,6 +118,7 @@ Um ADR é o registro formal de uma decisão arquitetural significativa. Ele docu
 **Contexto:** O SIFAP legado usa Adabas, um banco de dados navegacional. A modernização precisa de um banco relacional compatível com JPA/Hibernate e suportado pelo time de operações.
 
 **Opções:**
+
 - PostgreSQL 16: open source, suporte a JSONB, Testcontainers disponível.
 - MySQL 8: amplo suporte, mas menor adoção em ambientes governamentais brasileiros.
 

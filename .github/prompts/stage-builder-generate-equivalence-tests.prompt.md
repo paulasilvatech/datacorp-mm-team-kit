@@ -63,11 +63,13 @@ Leia o Javadoc no método Java especificado. Extraia a referência do arquivo Na
 
 **Passo 2 — Identificar branches no código Natural.**
 Para o intervalo de linhas referenciado, liste todo branch condicional:
+
 - Cada `IF...THEN...ELSE` cria 2+ caminhos
 - Cada valor `DECIDE ON` cria N caminhos
 - Cada `AT BREAK` cria um caminho de control-break
 
 Para cada branch, anote:
+
 - A condição (o que aciona este caminho)
 - A ação/saída esperada
 - Os valores de entrada que acionariam este caminho (derivados da condição)
@@ -92,17 +94,20 @@ void should_produce_equivalent_output(Type param1, Type param2, Type expected) {
 ```
 
 Adicione testes adicionais para:
+
 - **Boundary values**: min/max para campos numéricos, strings vazias, strings de um caractere
 - **Entradas null/empty**: o que acontece quando parâmetros opcionais são null?
 - **Precisão de packed decimal**: verifique se cálculos `BigDecimal` correspondem à aritmética packed decimal do Natural
 
 **Passo 4 — Tratar edge cases.**
 Se o código Natural tiver um branch que depende de estado de dados (por exemplo, "if record exists"), gere testes separados com respostas de repository mockadas:
+
 - Registro existe → comportamento esperado
 - Registro não existe → erro/alternativa esperada
 
 **Passo 5 — Rodar os testes.**
 Execute a suíte de testes usando a ferramenta `runTests`. Reporte:
+
 - Total de testes: N
 - Passaram: N
 - Falharam: N (com detalhes para cada falha)
@@ -110,6 +115,7 @@ Execute a suíte de testes usando a ferramenta `runTests`. Reporte:
 
 **Passo 6 — Documentar branches descobertos.**
 Se qualquer branch identificado não tiver teste (por lógica pouco clara ou contexto ausente), documente-o:
+
 ```java
 @Test
 @Disabled("MYSTERY: Branch em [nat-file:L73] — condição pouco clara, não é possível derivar saída esperada")

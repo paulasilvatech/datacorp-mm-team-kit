@@ -8,6 +8,7 @@ description: "Use ao mapear capacidades de negócio, identificar sobreposições
 # Mapa de Capacidades
 
 ## Quando invocar
+
 - "Build a capability map for the domain identified by the team."
 - "Where do two teams overlap in ownership?"
 - "Which capabilities are core, which are commodity?"
@@ -17,6 +18,7 @@ description: "Use ao mapear capacidades de negócio, identificar sobreposições
 Uma **capability** é *o que* o negócio faz, não *como*. Capacidades são estáveis (escala de décadas); aplicações e processos são voláteis.
 
 ## Estrutura (3 níveis)
+
 - **L1**: Área de negócio de nível superior (ex.: "Tax Collection", "Customer Service").
 - **L2**: Subfunções principais identificadas pela equipe.
 - **L3**: Capacidades específicas confirmadas pela evidência.
@@ -24,19 +26,25 @@ Uma **capability** é *o que* o negócio faz, não *como*. Capacidades são est�
 Regra prática: 8-12 capacidades L1 para uma empresa média.
 
 ## Passos
+
 1. **Comece pelos resultados**, não pelo organograma. "What does this business do for its customers?"
 2. **Decomponha de cima para baixo** até L3 (pare quando uma capacidade mapear para um único dono responsável).
 3. **Marque cada capacidade**:
- - **Core**: diferencia, construir internamente.
- - **Supporting**: necessária, comprar ou configurar.
- - **Commodity**: indiferenciada, terceirizar ou usar SaaS.
+
+- **Core**: diferencia, construir internamente.
+- **Supporting**: necessária, comprar ou configurar.
+- **Commodity**: indiferenciada, terceirizar ou usar SaaS.
+
 4. **Sobreponha sistemas**: quais aplicações realizam cada capacidade L3. Procure:
- - Duplicidades (dois sistemas fazendo a mesma coisa)
- - Lacunas (capacidade sem dono)
- - Monólitos (um sistema cobrindo muitos L1s)
+
+- Duplicidades (dois sistemas fazendo a mesma coisa)
+- Lacunas (capacidade sem dono)
+- Monólitos (um sistema cobrindo muitos L1s)
+
 5. **Sobreponha investimento**: para onde o dinheiro está indo vs. onde está a diferenciação?
 
 ## Template de saída
+
 ```markdown
 ## Capability Map - <Domain>
 
@@ -50,6 +58,7 @@ Regra prática: 8-12 capacidades L1 para uma empresa média.
 ```
 
 ## Exemplo Mermaid
+
 ```mermaid
 flowchart TD
  A[Tax Collection] --> B[Assessment]
@@ -62,4 +71,5 @@ flowchart TD
 ```
 
 ## Gate de qualidade
+
 Toda capacidade L3 deve ter exatamente um dono responsável e uma tag Core/Supporting/Commodity.

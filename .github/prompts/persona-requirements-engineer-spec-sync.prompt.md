@@ -9,9 +9,11 @@ tools: ["search"]
 # /spec-sync
 
 ## Tarefa
+
 Detecte drift entre `specs/<NNN>-<feature>/spec.md` e a implementação. Produza um relatório de sincronização e uma proposta de atualização da spec.
 
 ## Passos
+
 1. Faça parse dos REQ-IDs de `spec.md`.
 2. Use grep no codebase para referências a REQ-ID (em comentários, nomes de testes, mensagens de commit).
 3. Para cada REQ-ID: classifique como Implemented (tem código + teste), Partial (apenas código), Orphaned (sem código), Undocumented (o código referencia um REQ-ID desconhecido).
@@ -19,11 +21,13 @@ Detecte drift entre `specs/<NNN>-<feature>/spec.md` e a implementação. Produza
 5. Proponha adições/atualizações em `spec.md` para quaisquer itens Undocumented encontrados.
 
 ## Saída
+
 - Tabela de drift: `REQ-ID | Status | Evidência (arquivo:linha) | Ação`
 - Patch proposto da spec em bloco diff cercado por crases
 - Resumo "Top 3 drifts by risk"
 
 ## Gate de Qualidade
+
 - [ ] Todo REQ-ID na spec está classificado
 - [ ] Todo achado Undocumented tem um REQ-ID proposto e uma declaração EARS
 - [ ] Evidência cita arquivo:linha exato

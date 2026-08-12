@@ -1,4 +1,4 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
+<!-- markdownlint-disable MD013 MD024 MD028 MD033 MD041 -->
 
 # ADR-NNNN: Título curto e decisivo
 
@@ -83,22 +83,22 @@ _Preencha aqui._
 | **Autores** | DBA — Carla Souza |
 | **Substitui** | N/A |
 
-**Contexto**
+### Contexto
 
 O SIFAP legado usa Adabas (banco não relacional). A modernização adota PostgreSQL 16. Precisamos de uma estratégia controlada de evolução de schema que permita rastrear mudanças, reverter em caso de erro e integrar ao CI. O programa `SIFAP-PAGTO.NSN` (linhas 45–78) revela que o ciclo de pagamentos mensal exige pelo menos 3 transformações de schema ao longo do tempo.
 
-**Decisão**
+### Decisão
 
 Vamos adotar Flyway como ferramenta de migrations. Cada alteração de schema será representada por um arquivo `V<N>__descricao.sql` versionado no repositório. O CI executará `mvn flyway:migrate` em cada pull request para `develop`.
 
-**Alternativas consideradas**
+### Alternativas consideradas
 
 | Alternativa | Por que foi rejeitada |
 |---|---|
 | Liquibase | Formato XML mais verboso, curva de aprendizado maior para o time neste workshop |
 | Migrations manuais | Sem rastreabilidade, sem reversão automatizada, sem integração com CI |
 
-**Consequências**
+### Consequências
 
 - Mais fácil: rastreabilidade completa de mudanças de schema; CI valida antes do merge.
 - Mais difícil: arquivos de migration são imutáveis após merge; toda correção exige novo arquivo.

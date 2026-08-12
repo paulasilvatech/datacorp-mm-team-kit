@@ -1,6 +1,7 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
 ---
+
 title: "Modelo: Inventário do Estágio 1"
 description: "Esqueleto para o inventário do codebase legado produzido por /archaeology-kickoff"
 author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at Microsoft"

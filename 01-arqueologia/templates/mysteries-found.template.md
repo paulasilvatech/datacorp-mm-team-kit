@@ -1,6 +1,7 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
 ---
+
 title: "Modelo: Registro de Perguntas em Aberto"
 description: "Estrutura neutra para registrar perguntas em aberto via /catalog-mysteries"
 author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at Microsoft"
