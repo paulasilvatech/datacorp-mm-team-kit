@@ -1,340 +1,229 @@
-<!-- markdownlint-disable MD012 MD013 MD022 MD025 MD026 MD028 MD029 MD031 MD033 MD034 MD038 MD040 MD051 MD060 -->
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Glossário Visual — Jargão Decodificado
+# Glossário — Jargão do Workshop Decodificado
 
-![CONCEITO Glossário](https://img.shields.io/badge/CONCEITO-Glossário-00A4EF?style=for-the-badge) ![TERMOS 30+](https://img.shields.io/badge/TERMOS-30+-1A1A1A?style=for-the-badge) ![USE Quando ver jargão](https://img.shields.io/badge/USE-Quando%20ver%20jargão-737373?style=for-the-badge)
+> **Trilha:** [Kit do Time](../README.md) › [Conceitos](00-README.md) › **Glossário Visual**
 
+**Referência de 30+ termos técnicos usados no workshop SIFAP, organizados por área, com definição de uma frase, exemplo do domínio e link para leitura aprofundada.**
 
-> 🗺 **Você está aqui:** [Kit PT-BR](../README.md) → [Conceitos](00-README.md) → **Glossário Visual**
+![Glossario](https://img.shields.io/badge/Gloss%C3%A1rio-30%2B%20termos-171717?style=flat-square) ![Consulta A qualquer momento](https://img.shields.io/badge/Consulta-A%20qualquer%20momento-737373?style=flat-square)
 
-> **Para quem é isto?** Para qualquer pessoa do time (especialmente PO, Tech Writer, analistas e quem não programa há um tempo) que vai cruzar com estes termos hoje. Cada verbete tem **três linhas só**: o que é, uma analogia do dia-a-dia, e onde aparece no workshop.
->
-> **Como usar:** abra esta página em uma aba à parte e volte aqui sempre que tropeçar em uma sigla. Você não precisa decorar nada — só precisa saber onde olhar.
-
-## Mapa rápido por estágio
-
-| Você está no… | Vai cruzar com (mínimo) |
+| Campo | Valor |
 |---|---|
-| Estágio 1 (Arqueologia) | Natural, NSN, DDM, Adabas, MU, PE, BR-NNN, glossário, mistério |
-| Estágio 2 (Spec Moderna) | EARS, REQ-ID, source_legacy, ADR, C4, bounded context, greenfield, Spec-Kit |
-| Estágio 3 (Implementação) | JPA, Flyway, migração, Testcontainers, controller, service, repository, Bean Validation, Server Component, Swagger |
-| Estágio 4 (Evolução) | Agent, Issue, PR, Terraform, IaC, CI/CD, Actions, ACR, Key Vault |
+| **Público-alvo** | Qualquer pessoa do time, especialmente Product Owner, Tech Writer e analistas |
+| **Como usar** | Mantenha esta aba aberta durante o workshop. Não é necessário decorar — consulte ao encontrar um termo desconhecido. |
 
 ---
 
-## 🌍 Tabela de equivalência (EN ↔ PT-BR ↔ Super Mario)
+## Mapa por estágio
 
-Para quem precisa traduzir entre inglês técnico, português do workshop e a analogia Mario:
+| Estágio | Termos que aparecem com frequência |
+|---|---|
+| Estágio 1 — Arqueologia | Natural, NSN, DDM, Adabas, MU, PE, BR-NNN |
+| Estágio 2 — Especificação | EARS, REQ-ID, source_legacy, ADR, C4, bounded context, greenfield, Spec-Kit |
+| Estágio 3 — Implementação | JPA, Flyway, migração, Testcontainers, controller, service, repository, Bean Validation, Server Component, Swagger |
+| Estágio 4 — Evolução | Agent, Issue, PR, Terraform, IaC, CI/CD, Actions |
 
-| 🇬🇧 Inglês | 🇧🇷 PT-BR | 🍄 Mario |
+---
+
+## Tabela de equivalência (EN › PT-BR)
+
+| Inglês | Português do workshop | Contexto de uso |
 |---|---|---|
-| handoff | passagem | cano verde 🟢 |
-| stakeholder | parte interessada | NPC importante (Princesa, Toad) |
-| backlog | lista de pendências | quests não aceitas ainda |
-| commit | versão local | save rápido 💾 |
-| push | enviar para nuvem | backup na nuvem ☁️ |
-| pull request (PR) | proposta de mudança | mostrar save pros colegas 👀 |
-| merge | unir branches | save oficial no servidor |
-| rebase | reorganizar histórico | mudar a ordem dos saves |
-| code review | revisão de código | colega olhando seu save |
-| CI green | testes passaram | estrela de invencibilidade ⭐ |
-| CI red | testes falharam | Goomba na cara 🟫 |
-| breaking change | mudança incompatível | troca de mundo (1 → 2) |
-| rollback | reverter | voltar para o checkpoint |
-| feature flag | botão liga/desliga | bloco com `?` |
-| deployment | publicar versão | conquistar o castelo 🏰 |
-| production | ambiente real | jogo de verdade |
-| staging | ambiente de teste | warp zone |
-| sandbox | ambiente isolado | sala de treino |
-| bug | defeito | Goomba no caminho |
-| hotfix | correção urgente | cogumelo 1-up |
-| refactor | reescrever sem mudar comportamento | reorganizar inventário |
-| technical debt | dívida técnica | corações faltando |
-| smoke test | teste de fumaça | "joga 1 nível para ver se ligou" |
-| spike | investigação curta | explorar um cano novo |
+| handoff | passagem de bastão | Transição entre estágios |
+| stakeholder | parte interessada | Personas Product Owner e Requirements Engineer |
+| backlog | lista de pendências | Gerenciamento de tarefas no GitHub Projects |
+| commit | versão registrada | Controle de versão Git |
+| push | envio para o repositório remoto | Git — compartilhar mudanças com o time |
+| pull request (PR) | proposta de mudança | Revisão de código antes do merge |
+| merge | integrar branch | Incorporar mudanças na branch principal |
+| code review | revisão de código | Revisão de PR antes do merge |
+| CI green | pipeline de CI aprovado | Todos os testes passaram |
+| CI red | pipeline de CI com falha | Pelo menos um teste ou verificação falhou |
+| breaking change | mudança incompatível | Alteração que quebra contratos de API existentes |
+| rollback | reverter para versão anterior | Desfazer deploy com problema |
+| feature flag | chave liga/desliga de funcionalidade | Ativar feature sem redeploy |
+| deployment | publicação de versão | Disponibilizar versão em ambiente |
+| production | ambiente de produção real | Ambiente dos usuários finais |
+| staging | ambiente de homologação | Validação antes da produção |
+| sandbox | ambiente isolado de experimentos | Testes sem risco ao sistema real |
+| bug | defeito de software | Comportamento incorreto identificado |
+| hotfix | correção urgente | Correção aplicada diretamente em produção |
+| refactor | reestruturar sem alterar comportamento | Melhorar código preservando funcionalidade |
+| technical debt | dívida técnica | Atalhos tomados que precisarão ser corrigidos |
+| smoke test | teste de sanidade mínimo | Verificação rápida de que o sistema funciona |
+| spike | investigação técnica curta | Explorar solução antes de comprometer com ela |
 
 ---
 
-## A
-
-### ADR · Architecture Decision Record
-
-- **O que é:** um arquivo curto em Markdown que registra **uma decisão de arquitetura** e por quê ela foi tomada.
-- **Analogia:** ata de reunião curta, mas só sobre "por que escolhemos isso".
-- **Onde aparece:** Estágio 2. Use o template em `02-spec-moderna/ADR-TEMPLATE.md`.
+## Area: Legado
 
 ### Adabas
 
-- **O que é:** o banco de dados do mainframe onde o SIFAP guarda dados há 29 anos.
-- **Analogia:** o "Excel gigante" do governo, mas com regras especiais (ver MU e PE).
-- **Onde aparece:** Estágio 1, ao olhar os arquivos `.ddm` em `01-arqueologia/legado-sifap/adabas-ddms/`.
+Banco de dados do mainframe onde o SIFAP armazena dados há 29 anos. Difere de bancos relacionais convencionais por suportar campos de valor múltiplo (MU) e grupos periódicos (PE). Os arquivos de definição são os DDMs. Aparece no Estágio 1 ao inspecionar `01-arqueologia/legado-sifap/adabas-ddms/`.
 
-### Agent (Copilot Agent / modo Agent)
+### DDM — Data Definition Module
 
-- **O que é:** terceiro modo do GitHub Copilot. Você escreve uma **Issue bem detalhada**, ele lê o código, implementa e abre um PR sozinho.
-- **Analogia:** estagiário muito rápido e literal — faz exatamente o que você pediu, sem perguntar.
-- **Onde aparece:** Estágio 4 (`04-evolucao/GUIDE.md`).
+Arquivo `.ddm` do Adabas que descreve a estrutura de um "arquivo" (equivalente a uma tabela): campos, tipos, tamanhos e ocorrências. Exemplo SIFAP: `BENEFICIARIO.ddm` define os campos do cadastro de beneficiários. Localização: `01-arqueologia/legado-sifap/adabas-ddms/`.
 
-### Ask (modo Ask do Copilot)
+### MU — Multiple-Value field
 
-- **O que é:** primeiro modo do Copilot. Você pergunta, ele responde no chat.
-- **Analogia:** Google interno do seu código.
-- **Onde aparece:** todos os estágios. Cheat-sheet: `09-cheat-sheets/copilot-3-modes.md`.
+Campo do Adabas que armazena múltiplos valores dentro de um único registro — por exemplo, um campo `TELEFONES` com até cinco números. O equivalente SQL seria uma tabela filha com chave estrangeira. O time deve documentar em ADR como preservar essa multiplicidade no modelo moderno.
 
-## B
+### Natural (linguagem de programação)
 
-### Bean Validation
-
-- **O que é:** anotações Java (`@NotNull`, `@Email`, `@Size`) que validam dados de entrada automaticamente.
-- **Analogia:** porteiro do prédio — barra os dados ruins antes deles entrarem.
-- **Onde aparece:** Estágio 3, nos DTOs dos controllers.
-
-### Bounded Context
-
-- **O que é:** um pedaço bem delimitado do sistema com vocabulário próprio. As fronteiras são hipóteses que o time deve validar.
-- **Analogia:** departamentos de uma empresa — RH e Contabilidade têm a palavra "salário", mas significam coisas diferentes em cada um.
-- **Onde aparece:** Estágios 2 e 3.
-
-### BR-NNN · Business Rule (regra de negócio)
-
-- **O que é:** identificador de uma regra extraída do legado (ex.: `BR-XXX`).
-- **Analogia:** número da nota fiscal — sem ele, ninguém acha de novo.
-- **Onde aparece:** Estágio 1, no `business-rules-catalog.md`.
-
-## C
-
-### C4 (modelo C4)
-
-- **O que é:** forma de desenhar arquitetura em 4 níveis de zoom: **Contexto** (L1), **Containers** (L2), **Componentes** (L3) e **Código** (L4).
-- **Analogia:** Google Maps do sistema — você pode ver o país, a cidade, o quarteirão ou a casa.
-- **Onde aparece:** Estágio 2. Usamos apenas L1 e L2.
-
-### CI/CD · Integração e Entrega Contínuas
-
-- **O que é:** automação que roda testes a cada commit (CI) e faz deploy automático (CD).
-- **Analogia:** linha de montagem que testa cada peça antes da próxima estação.
-- **Onde aparece:** Estágio 4, em `.github/workflows/`.
-
-### Controller
-
-- **O que é:** a classe Java que recebe requisições HTTP e devolve respostas.
-- **Analogia:** recepcionista — atende e encaminha para o setor certo.
-- **Onde aparece:** Estágio 3, em `infrastructure/`.
-
-## D
-
-### DDM · Data Definition Module
-
-- **O que é:** arquivo `.ddm` do Adabas que descreve a estrutura de uma "tabela" (campos, tipos, tamanhos).
-- **Analogia:** o schema do Excel — quais colunas existem, de que tipo, com que tamanho.
-- **Onde aparece:** Estágio 1, em `01-arqueologia/legado-sifap/adabas-ddms/`.
-
-### DoD · Definition of Done
-
-- **O que é:** lista de checkboxes que provam que uma etapa terminou de verdade.
-- **Analogia:** checklist do piloto antes de decolar.
-- **Onde aparece:** final de cada `GUIDE.md`.
-
-### DTO · Data Transfer Object
-
-- **O que é:** um "saco" com campos para enviar/receber dados pela API. Sem regras, só dados.
-- **Analogia:** envelope com formulário preenchido.
-- **Onde aparece:** Estágio 3, nos contratos definidos pelo time.
-
-## E
-
-### EARS · Easy Approach to Requirements Syntax
-
-- **O que é:** forma padrão de escrever requisitos sem ambiguidade, usando 6 padrões (sempre, evento, estado, opcional, proibido, combinado).
-- **Analogia:** receita de bolo — tem ingrediente, ordem e tempo. Sem chute.
-- **Onde aparece:** Estágio 2. Padrões detalhados em `02-spec-moderna/GUIDE.md§EARS`.
-- **Exemplo bom:** *"Quando `<evento confirmado>` ocorrer, o sistema deve `<ação verificável>`."*
-- **Exemplo ruim:** *"O sistema deve ser seguro."* (não é testável)
-
-## F
-
-### Flyway
-
-- **O que é:** ferramenta que aplica scripts SQL versionados no banco (`V1__init.sql`, `V2__add_status.sql`).
-- **Analogia:** controle de versão do banco — você nunca edita uma migração antiga, sempre cria uma nova.
-- **Onde aparece:** Estágio 3, em `src/main/resources/db/migration/`.
-
-## G
-
-### Greenfield
-
-- **O que é:** requisito que **não vem do legado** — é funcionalidade nova de verdade.
-- **Analogia:** terreno baldio para construir do zero.
-- **Onde aparece:** Estágio 2. Quando uma REQ-ID é greenfield, escrevemos `source_legacy: "[GREENFIELD] <motivo>"`.
-
-## I
-
-### IaC · Infrastructure as Code
-
-- **O que é:** descrever servidores, bancos e redes em arquivos de texto (Terraform) em vez de criar tudo na mão no portal Azure.
-- **Analogia:** receita do bolo da infraestrutura — qualquer pessoa pode refazer o mesmo bolo.
-- **Onde aparece:** Estágio 4, em `infra/` quando o time criar IaC.
-
-### Issue (GitHub Issue)
-
-- **O que é:** um ticket no GitHub descrevendo o que precisa ser feito.
-- **Analogia:** post-it gigante anexado ao código.
-- **Onde aparece:** Estágio 4 — você escreve Issues que o Agent vai implementar.
-
-## J
-
-### JPA · Java Persistence API
-
-- **O que é:** padrão Java para mapear classes em tabelas do banco. Você marca a classe com `@Entity` e o banco entende.
-- **Analogia:** tradutor entre o mundo de objetos do Java e o mundo de tabelas do PostgreSQL.
-- **Onde aparece:** Estágio 3, nas entidades criadas pelo time.
-
-### JWT · JSON Web Token
-
-- **O que é:** "passe" criptografado que o backend dá ao usuário após login. Você envia em cada requisição.
-- **Analogia:** pulseirinha de festa — provou quem é uma vez, agora basta mostrar a pulseira.
-- **Onde aparece:** Estágio 3, na autenticação via Swagger.
-
-## M
-
-### Migração (database migration)
-
-- **O que é:** script SQL versionado que muda o schema do banco (criar tabela, adicionar coluna).
-- **Onde aparece:** Estágio 3, gerenciado pelo Flyway.
-
-### MU · Multiple-Value field (Adabas)
-
-- **O que é:** campo do Adabas que guarda **vários valores** dentro de uma mesma linha (ex.: `TELEFONES` com 3 números).
-- **Analogia:** célula do Excel com lista dentro — coisa que SQL puro não tem.
-- **Por que importa:** o time deve decidir e documentar como preservar a multiplicidade no modelo moderno.
-- **Onde aparece:** Estágio 1, ao mapear os 4 DDMs.
-
-## N
-
-### Natural (linguagem)
-
-- **O que é:** linguagem de programação dos anos 80 usada com Adabas no mainframe. Nossos arquivos `.NSN` são programas Natural.
-- **Analogia:** parente distante do COBOL — verboso, com `IF`/`END-IF`, sem orientação a objeto.
-- **Onde aparece:** Estágio 1. Guia de leitura para não-programadores: `01-arqueologia/legado-sifap/COMO-LER-NATURAL.md`.
+Linguagem dos anos 1980 usada com Adabas. Os programas SIFAP estão em arquivos `.NSN`. Sintaxe imperativa com `IF`/`END-IF`, `FOR`/`END-FOR`, sem orientação a objeto. Guia de leitura: [`01-arqueologia/legado-sifap/COMO-LER-NATURAL.md`](../01-arqueologia/legado-sifap/COMO-LER-NATURAL.md).
 
 ### NSN (arquivo `.NSN`)
 
-- **O que é:** extensão dos programas Natural.
-- **Analogia:** equivalente a `.py` (Python) ou `.java` (Java), mas para Natural.
-- **Onde aparece:** Estágio 1, em `01-arqueologia/legado-sifap/natural-programs/` (temos 15).
+Extensão dos programas Natural. Equivalente a `.java` ou `.py`, mas para Natural. O SIFAP tem 15 programas `.NSN` em `01-arqueologia/legado-sifap/natural-programs/`.
 
-## P
+### PE — Periodic Group
 
-### PE · Periodic Group (Adabas)
+Grupo de campos do Adabas que se repete múltiplas vezes dentro do mesmo registro — por exemplo, até 12 históricos mensais de pagamento. Mais complexo que MU por envolver vários campos correlacionados por ocorrência. O mapeamento para o modelo relacional moderno requer decisão documentada em ADR.
 
-- **O que é:** grupo de campos que se repete várias vezes dentro do mesmo registro (ex.: até 12 históricos mensais).
-- **Analogia:** sub-tabela embutida na linha — também não cabe em SQL puro.
-- **Por que importa:** o time deve decidir e documentar como preservar as ocorrências e sua ordem no modelo moderno.
-- **Onde aparece:** Estágio 1, junto com MU.
+### BR-NNN — Business Rule
 
-### PR · Pull Request
-
-- **O que é:** pedido de incorporar mudanças de uma branch na branch principal (`main`).
-- **Analogia:** pedir aprovação de um desenho antes de pintar a parede.
-- **Onde aparece:** todos os estágios. Estágio 4: o Agent abre PRs sozinho.
-
-### Plan (modo Plan do Copilot)
-
-- **O que é:** segundo modo do Copilot. Você descreve uma mudança, ele propõe um **plano** com os arquivos a tocar — antes de fazer.
-- **Analogia:** orçamento antes da reforma.
-- **Onde aparece:** Estágios 2, 3, 4. Cheat-sheet: `09-cheat-sheets/copilot-3-modes.md`.
-
-## R
-
-### Repository (Spring Data)
-
-- **O que é:** interface Java que dá métodos prontos pra ler/gravar dados (`findById`, `save`, `deleteAll`).
-- **Analogia:** garçom — você pede `findById(42)` e ele traz da cozinha (banco).
-- **Onde aparece:** Estágio 3, em `infrastructure/`.
-
-### REQ-ID
-
-- **O que é:** identificador único de um requisito (ex.: `REQ-XXX`).
-- **Analogia:** número da CNH — sem ele, o requisito não rastreia.
-- **Onde aparece:** Estágio 2 em diante. Todo commit do Estágio 3 cita `Implements REQ-XXX`.
-
-## S
-
-### Server Component (Next.js)
-
-- **O que é:** componente React que **roda no servidor** — sem JavaScript no navegador do usuário.
-- **Analogia:** página HTML clássica gerada no servidor, mas escrita em estilo React moderno.
-- **Onde aparece:** Estágio 3, no frontend Next.js.
-
-### Service
-
-- **O que é:** classe Java com a **lógica de negócio**. Fica entre Controller e Repository.
-- **Analogia:** cérebro da operação — recebe pedido do recepcionista (controller) e decide o que fazer.
-- **Onde aparece:** Estágio 3, em `application/`.
-
-### `source_legacy:`
-
-- **O que é:** linha obrigatória em cada REQ-ID que aponta para o arquivo legado de origem (ex.: `arquivo.NSN#L<início>-L<fim>`).
-- **Analogia:** nota de rodapé com fonte da informação.
-- **Onde aparece:** Estágio 2. **Se faltar, o CI rejeita o PR.**
-
-### Spec-Kit
-
-- **O que é:** ferramenta oficial do GitHub para Spec-Driven Development. Instala comandos `/speckit.specify`, `/speckit.clarify`, `/speckit.plan`, etc.
-- **Analogia:** roteiro guiado — do "tenho uma ideia" até "tenho tarefas claras".
-- **Onde aparece:** Estágio 2. Cheat-sheet: `09-cheat-sheets/spec-kit-workflow.md`.
-
-### Swagger UI
-
-- **O que é:** página web automática que documenta e testa endpoints da API.
-- **Analogia:** menu interativo do restaurante — você lê o cardápio e pede direto na página.
-- **Onde aparece:** Estágio 3, em `http://localhost:8080/swagger-ui.html`.
-
-## T
-
-### Terraform
-
-- **O que é:** ferramenta de IaC que descreve infraestrutura Azure em arquivos `.tf`.
-- **Analogia:** receita escrita da nuvem — `terraform apply` cria tudo.
-- **Onde aparece:** Estágio 4, em `infra/` quando o time criar IaC. **No workshop só rodamos `terraform plan` — nada de `apply` real.**
-
-### Testcontainers
-
-- **O que é:** biblioteca Java que sobe um **PostgreSQL real em Docker** durante os testes — não usa mock.
-- **Analogia:** simulador de voo real, não videogame.
-- **Onde aparece:** Estágio 3. Exige Docker rodando.
-
-## V
-
-### `.NSN`
-
-→ ver **NSN**.
+Identificador de uma regra de negócio extraída do legado durante o Estágio 1 (exemplo: `BR-042`). Usado no catálogo `business-rules-catalog.md`. Sem esse identificador, a regra não pode ser rastreada até o requisito que a implementa.
 
 ---
 
-## Atalhos visuais
+## Area: Requisitos
+
+### EARS — Easy Approach to Requirements Syntax
+
+Notação padronizada para escrever requisitos sem ambiguidade. Substitui "o sistema deve ser bom" por frases com formato fixo e teste objetivo. Detalhes completos em [05 — Notação EARS](05-notacao-ears.md).
+
+### REQ-ID
+
+Identificador único de um requisito (exemplo: `REQ-042`). Todo commit do Estágio 3 que implementa um requisito deve citar `Implements REQ-042` na mensagem. Sem REQ-ID, não há rastreabilidade.
+
+### `source_legacy:`
+
+Campo obrigatório em cada REQ-ID que aponta para o trecho do legado de origem. Formato: `01-arqueologia/legado-sifap/natural-programs/CALCPGTO.NSN#L120-L198`. Se a funcionalidade é nova, usar `[GREENFIELD] <justificativa>`. Ausência causa rejeição pelo CI.
+
+### Greenfield
+
+Requisito que não tem correspondência no legado — funcionalidade genuinamente nova. Deve ser documentado com `source_legacy: "[GREENFIELD] <motivo>"` e justificado junto ao Product Owner.
+
+### Spec-Kit
+
+Ferramenta oficial do GitHub para Spec-Driven Development. Expõe os comandos `/speckit.specify`, `/speckit.clarify`, `/speckit.plan`, `/speckit.tasks`, `/speckit.analyze` e `/speckit.implement` no Copilot Chat. Detalhes em [01 — Spec-Driven Development](01-spec-driven-development.md).
+
+---
+
+## Area: Arquitetura
+
+### ADR — Architecture Decision Record
+
+Arquivo Markdown curto que registra uma decisão de arquitetura: o contexto, a decisão tomada, as alternativas consideradas e as consequências. Garante que decisões tomadas hoje sejam compreendidas pelos membros futuros do time. Template em `02-spec-moderna/ADR-TEMPLATE.md`. Detalhes em [06 — Architecture Decision Records](06-architecture-decision-records.md).
+
+### Bounded Context
+
+Segmento bem delimitado do sistema com vocabulário e regras próprios. No SIFAP, "beneficiário" significa coisas diferentes no contexto de Cadastro, Cálculo e Fiscalização. As fronteiras são hipóteses que o time valida e documenta em ADR. Aparece nos Estágios 2 e 3.
+
+### C4 (modelo C4)
+
+Abordagem para documentar arquitetura em quatro níveis de zoom: Contexto do sistema (L1), Containers (L2), Componentes (L3) e Código (L4). No workshop, usamos apenas L1 e L2. Aparece no Estágio 2 como entregável do Enterprise Architect.
+
+### Modular Monolith
+
+Padrão arquitetural adotado neste workshop: um único processo deployável dividido em módulos internos com fronteiras bem definidas. Escolhido em vez de microsserviços por adequação ao prazo do workshop. Documentado no ADR-001.
+
+### Strangler Fig
+
+Padrão de migração incremental: o sistema novo "abraça" o legado gradualmente, substituindo funcionalidade por funcionalidade, sem big-bang. Aplicável quando o workshop produz apenas parte do SIFAP 2.0.
+
+---
+
+## Area: Implementacao
+
+### Bean Validation
+
+Anotações Java (`@NotNull`, `@Email`, `@Size`, `@Pattern`) que validam dados de entrada automaticamente na camada de controller. Impede que dados inválidos cheguem à lógica de negócio.
+
+### Controller
+
+Classe Java que recebe requisições HTTP e devolve respostas. Responsabilidades: receber, validar entrada com `@Valid`, delegar ao service e retornar status HTTP correto. Localização no código: `infrastructure/`.
+
+### DTO — Data Transfer Object
+
+Estrutura Java com campos para transportar dados pela API — sem lógica de negócio. No SIFAP, um `BeneficiarioDTO` carrega os dados necessários para criar ou atualizar um beneficiário sem expor a entidade JPA diretamente.
+
+### Flyway
+
+Ferramenta de migração de banco de dados. Aplica scripts SQL versionados na ordem correta (`V1__init.sql`, `V2__add_coluna.sql`). Uma vez executado, um script nunca é alterado — novas mudanças exigem novo script. Localização: `src/main/resources/db/migration/`.
+
+### JPA — Java Persistence API
+
+Padrão Java para mapear classes em tabelas do banco de dados. Uma classe anotada com `@Entity` corresponde a uma tabela; campos anotados com `@Column` correspondem a colunas. Hibernate é a implementação usada neste workshop.
+
+### JWT — JSON Web Token
+
+Token criptografado que o backend emite após autenticação bem-sucedida. O cliente envia o JWT em cada requisição subsequente no cabeçalho `Authorization`. Usado para autenticar chamadas à API sem manter sessão no servidor.
+
+### Repository (Spring Data)
+
+Interface Java que provê métodos prontos para leitura e escrita no banco (`findById`, `save`, `deleteAll`, `findByStatus`). Implementado automaticamente pelo Spring Data JPA. Localização: `infrastructure/`.
+
+### Server Component (Next.js)
+
+Componente React executado no servidor, sem JavaScript no navegador do usuário. Ideal para buscar dados e renderizar HTML estático. Componentes que precisam de interatividade do usuário devem ser Client Components explicitamente marcados com `"use client"`.
+
+### Service
+
+Classe Java que contém a lógica de negócio. Fica entre o Controller (que recebe a requisição) e o Repository (que acessa o banco). Toda transação de banco deve ser gerenciada na camada de service com `@Transactional`. Localização: `application/`.
+
+### Swagger UI
+
+Interface web gerada automaticamente pelo SpringDoc que documenta e permite testar os endpoints da API. Disponível em `http://localhost:8080/swagger-ui.html` durante o desenvolvimento local.
+
+### Testcontainers
+
+Biblioteca Java que inicializa um container Docker com PostgreSQL real durante a execução dos testes. Elimina mocks de banco e garante que os testes de integração refletem o comportamento real do sistema. Requer Docker em execução.
+
+---
+
+## Area: Operacoes
+
+### CI/CD — Integração e Entrega Contínuas
+
+CI (Continuous Integration): execução automática de testes a cada commit. CD (Continuous Delivery): deploy automático após CI aprovado. No workshop, configurado em `.github/workflows/`. Pipeline de CI aprovado é pré-requisito para merge em `main`.
+
+### DoD — Definition of Done
+
+Lista de critérios verificáveis que provam que um entregável está completo. Cada `GUIDE.md` de estágio termina com a DoD do estágio. Não basta terminar o código — a DoD deve estar toda marcada.
+
+### IaC — Infrastructure as Code
+
+Prática de descrever servidores, bancos e redes em arquivos de código (Terraform) em vez de configurar manualmente no portal Azure. Garante reproducibilidade e auditabilidade da infraestrutura. No workshop, os arquivos `.tf` ficam em `infra/` quando o time os criar no Estágio 4.
+
+### Issue (GitHub Issue)
+
+Ticket no GitHub descrevendo uma tarefa, funcionalidade ou defeito. No Estágio 4, Issues bem escritas (com contexto, critérios de aceite e rastreabilidade) são delegadas ao modo Agent do Copilot para geração automática de PR.
+
+### PR — Pull Request
+
+Solicitação para incorporar mudanças de uma branch na branch principal. Todo PR requer pelo menos uma revisão entre pares antes do merge em `main`. O CI deve estar verde antes do merge.
+
+### Terraform
+
+Ferramenta de IaC que descreve infraestrutura Azure em arquivos `.tf`. O comando `terraform plan` mostra o que seria criado sem executar nada; `terraform apply` cria de fato. No workshop, execute apenas `terraform plan` durante as demonstrações — nada de `apply` real sem aprovação.
+
+---
+
+## Cadeia de rastreabilidade
 
 ![Cadeia de rastreabilidade: legado .NSN/.ddm vira BR-NNN, depois REQ-ID em EARS, depois código Java, teste com Testcontainers, e PR no GitHub](../assets/traceability-chain.svg)
 
-Essa cadeia é a **rastreabilidade** que o CI verifica. Sempre que tiver dúvida do que está fazendo, volte ao elo anterior.
+Esta cadeia é o que o CI verifica em cada PR. Sempre que estiver em dúvida sobre o que está fazendo, volte ao elo anterior da cadeia.
 
 ---
 
 ### Continuar a leitura
 
-<table width="100%">
-<tr>
-<td width="50%" valign="top" align="left">
-<sub><strong>← ANTERIOR</strong></sub><br/>
-<a href="../docs/README.md"><strong>Documentação transversal</strong></a><br/>
-<sub>glossário, sdlc-flow, persona-agent-matrix, runbook.</sub>
-</td>
-<td width="50%" valign="top" align="right">
-<sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="../01-arqueologia/legado-sifap/COMO-LER-NATURAL.md"><strong>Como Ler Natural</strong></a><br/>
-<sub>Extrair regras de .NSN sem saber a sintaxe.</sub>
-</td>
-</tr>
-</table>
+| Anterior | Próximo |
+|---|---|
+| [Agentes e Personas](02-agentes-e-personas.md)<br/><sub>As duas camadas de contexto no Copilot Chat.</sub> | [3 modos do Copilot](04-3-modos-do-copilot.md)<br/><sub>Ask, Plan e Agent — critérios objetivos de escolha.</sub> |
 
-<sub>↑ <a href="../README.md">Voltar ao Kit PT-BR</a></sub>
+<sub>[Voltar ao índice do kit](../README.md)</sub>
