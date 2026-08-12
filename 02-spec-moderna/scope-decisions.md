@@ -30,3 +30,13 @@
 | Dúvida | Fonte consultada | Próximo responsável |
 |---|---|---|
 | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+
+---
+
+### Continuar a leitura
+
+| Anterior | Próximo |
+|---|---|
+| [Guia do Estágio 2](GUIDE.md)<br/><sub>Passo a passo da especificação moderna.</sub> | [Modelo de ADR](ADR-TEMPLATE.md)<br/><sub>Registre a decisão de escopo como ADR.</sub> |
+
+<sub>[Voltar ao índice do kit](../README.md)</sub>
