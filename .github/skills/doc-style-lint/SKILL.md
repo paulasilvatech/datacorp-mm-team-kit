@@ -71,6 +71,13 @@ Replace:
 4. **Test every code example**.
 5. **Ask**: would a new hire understand this on day 1?
 
+## Antipatterns
+
+- Reviewing without running automated linters first.
+- Prioritizing style over substance.
+- Rewriting the author's voice instead of refining it.
+- Ignoring accessibility (alternative text, heading levels, link text).
+
 ## Output template
 
 ```markdown
@@ -90,13 +97,6 @@ Replace:
 | 02 | Troubleshooting | "guys" | Replace with "team" |
 | 03 | API reference | "simply call" | Remove "simply" |
 ```
-
-## Antipatterns
-
-- Reviewing without running automated linters first.
-- Prioritizing style over substance.
-- Rewriting the author's voice instead of refining it.
-- Ignoring accessibility (alternative text, heading levels, link text).
 
 ## Quality gate
 

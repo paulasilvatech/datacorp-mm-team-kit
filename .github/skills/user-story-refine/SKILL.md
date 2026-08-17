@@ -38,6 +38,13 @@ Use these when a story is too large to finish in one iteration:
 | Happy vs edge | Core path first, then edge cases | Valid input before rejected input |
 | Research spike | Split off the unknown as a timeboxed spike | Prototype the integration first |
 
+## Antipatterns
+
+- Stories written as tasks ("Add a button").
+- Acceptance criteria that describe UI instead of behavior.
+- Horizontal splits ("backend story" + "frontend story" for the same feature).
+- Missing REQ-ID link.
+
 ## Output template
 
 ```markdown
@@ -54,13 +61,6 @@ Use these when a story is too large to finish in one iteration:
 **Effort**: S / M / L
 **Dependencies**: US-NNN (if any)
 ```
-
-## Antipatterns
-
-- Stories written as tasks ("Add a button").
-- Acceptance criteria that describe UI instead of behavior.
-- Horizontal splits ("backend story" + "frontend story" for the same feature).
-- Missing REQ-ID link.
 
 ## Quality gate
 

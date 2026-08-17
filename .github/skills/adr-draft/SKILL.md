@@ -21,6 +21,20 @@ Write an ADR when a decision:
 
 Do not write an ADR for a local refactor or a reversible configuration change.
 
+## Writing tips
+
+- Write in the present tense ("We use X").
+- Include at least 2 rejected alternatives.
+- Name consequences that you know will be painful. Your future self will thank you.
+- Supersede, never delete. The history provides value.
+
+## Antipatterns
+
+- ADRs written after the fact to justify a decision already made.
+- One ADR that groups 5 unrelated decisions.
+- No alternatives section, which signals that no trade-off analysis occurred.
+- Status stuck at "proposed" for months.
+
 ## Output template
 
 Save the ADR to `docs/adr/NNNN-<slug>.md`. The repo's canonical template is [`docs/adr/0000-template.md`](../../../docs/adr/0000-template.md); the condensed shape is:
@@ -61,20 +75,6 @@ One paragraph. "We will <decision>."
 - Source 1
 - Source 2
 ```
-
-## Writing tips
-
-- Write in the present tense ("We use X").
-- Include at least 2 rejected alternatives.
-- Name consequences that you know will be painful. Your future self will thank you.
-- Supersede, never delete. The history provides value.
-
-## Antipatterns
-
-- ADRs written after the fact to justify a decision already made.
-- One ADR that groups 5 unrelated decisions.
-- No alternatives section, which signals that no trade-off analysis occurred.
-- Status stuck at "proposed" for months.
 
 ## Quality gate
 

@@ -24,6 +24,13 @@ Measure the team's shared understanding, expose knowledge concentrated in one pe
 
 If the answers differ significantly, the team has a context gap.
 
+## Antipatterns
+
+- "Onboarding is just our READMEs." (Insufficient because READMEs omit tacit knowledge.)
+- A week 1 plan with no coding or system operation.
+- No mention of invariants or failure modes.
+- Knowledge held only by senior engineers, with no documentation trail.
+
 ## Output template
 
 ### 1. Shared architecture map (1 page)
@@ -50,13 +57,6 @@ Any row with a bus factor of 1 for a high-criticality module requires a P0 actio
 - Day 3: shadow the on-call rotation.
 - Day 4: take a "starter" ticket with paired review.
 - Day 5: hold a retrospective with the tech lead. What is still unclear?
-
-## Antipatterns
-
-- "Onboarding is just our READMEs." (Insufficient because READMEs omit tacit knowledge.)
-- A week 1 plan with no coding or system operation.
-- No mention of invariants or failure modes.
-- Knowledge held only by senior engineers, with no documentation trail.
 
 ## Quality gate
 
