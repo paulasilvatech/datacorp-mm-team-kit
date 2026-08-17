@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 240" font-family="Inter, system-ui, sans-serif">
   <rect width="1200" height="240" fill="#F7F7F5"/>
 
-  <text x="60" y="40" fill="#737373" font-family="JetBrains Mono, monospace" font-size="12" font-weight="500" letter-spacing="1.9">DIA 2 · INSTALAR SEU PERSONA KIT</text>
-  <text x="60" y="76" fill="#1A1A1A" font-size="28" font-weight="500" letter-spacing="-0.4">5 passos · ~10 minutos</text>
+  <text x="60" y="40" fill="#737373" font-family="JetBrains Mono, monospace" font-size="12" font-weight="500" letter-spacing="1.9">DAY 2 · INSTALL YOUR PERSONA KIT</text>
+  <text x="60" y="76" fill="#1A1A1A" font-size="28" font-weight="500" letter-spacing="-0.4">5 Steps · ~10 Minutes</text>
 
   <!-- 5 steps along horizontal axis -->
   <!-- box 200 wide, gap 24, 5*200 + 4*24 = 1096, start x=52 -->
@@ -10,41 +10,41 @@
   <g transform="translate(52, 130)">
     <rect width="200" height="100" fill="#FFFFFF" stroke="#E5E5E0" stroke-width="1"/>
     <rect x="0" y="0" width="200" height="4" fill="#F25022"/>
-    <text x="16" y="34" fill="#B33816" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PASSO 01</text>
-    <text x="16" y="62" fill="#1A1A1A" font-size="16" font-weight="500">Leia</text>
-    <text x="16" y="80" fill="#737373" font-size="13">PERSONA.md do kit</text>
+    <text x="16" y="34" fill="#B33816" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">STEP 01</text>
+    <text x="16" y="62" fill="#1A1A1A" font-size="16" font-weight="500">Read</text>
+    <text x="16" y="80" fill="#737373" font-size="13">the kit's PERSONA.md</text>
   </g>
 
   <g transform="translate(276, 130)">
     <rect width="200" height="100" fill="#FFFFFF" stroke="#E5E5E0" stroke-width="1"/>
     <rect x="0" y="0" width="200" height="4" fill="#FFB900"/>
-    <text x="16" y="34" fill="#B88500" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PASSO 02</text>
-    <text x="16" y="62" fill="#1A1A1A" font-size="16" font-weight="500">Revise</text>
-    <text x="16" y="80" fill="#737373" font-size="13">o README do kit</text>
+    <text x="16" y="34" fill="#B88500" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">STEP 02</text>
+    <text x="16" y="62" fill="#1A1A1A" font-size="16" font-weight="500">Review</text>
+    <text x="16" y="80" fill="#737373" font-size="13">the kit README</text>
   </g>
 
   <g transform="translate(500, 130)">
     <rect width="200" height="100" fill="#FFFFFF" stroke="#E5E5E0" stroke-width="1"/>
     <rect x="0" y="0" width="200" height="4" fill="#7FBA00"/>
-    <text x="16" y="34" fill="#5A8500" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PASSO 03</text>
-    <text x="16" y="62" fill="#1A1A1A" font-size="16" font-weight="500">Copie</text>
-    <text x="16" y="80" fill="#737373" font-size="13">.github/* do mesmo kit</text>
+    <text x="16" y="34" fill="#5A8500" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">STEP 03</text>
+    <text x="16" y="62" fill="#1A1A1A" font-size="16" font-weight="500">Copy</text>
+    <text x="16" y="80" fill="#737373" font-size="13">.github/* from that kit</text>
   </g>
 
   <g transform="translate(724, 130)">
     <rect width="200" height="100" fill="#FFFFFF" stroke="#E5E5E0" stroke-width="1"/>
     <rect x="0" y="0" width="200" height="4" fill="#00A4EF"/>
-    <text x="16" y="34" fill="#0076AC" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PASSO 04</text>
-    <text x="16" y="62" fill="#1A1A1A" font-size="16" font-weight="500">Copie</text>
-    <text x="16" y="80" fill="#737373" font-size="13">mcp.json se existir</text>
+    <text x="16" y="34" fill="#0076AC" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">STEP 04</text>
+    <text x="16" y="62" fill="#1A1A1A" font-size="16" font-weight="500">Copy</text>
+    <text x="16" y="80" fill="#737373" font-size="13">mcp.json if present</text>
   </g>
 
   <g transform="translate(948, 130)">
     <rect width="200" height="100" fill="#FFFFFF" stroke="#E5E5E0" stroke-width="1"/>
     <rect x="0" y="0" width="200" height="4" fill="#1A1A1A"/>
-    <text x="16" y="34" fill="#1A1A1A" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PASSO 05</text>
-    <text x="16" y="62" fill="#1A1A1A" font-size="16" font-weight="500">Recarregue</text>
-    <text x="16" y="80" fill="#737373" font-size="13">o Copilot Chat</text>
+    <text x="16" y="34" fill="#1A1A1A" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">STEP 05</text>
+    <text x="16" y="62" fill="#1A1A1A" font-size="16" font-weight="500">Reload</text>
+    <text x="16" y="80" fill="#737373" font-size="13">Copilot Chat</text>
   </g>
 
   <!-- Arrows -->

@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" font-family="Inter, system-ui, sans-serif">
   <rect width="1200" height="480" fill="#F7F7F5"/>
 
-  <text x="60" y="60" fill="#737373" font-family="JetBrains Mono, monospace" font-size="16" font-weight="500" letter-spacing="1.9">DIA 2 · QUEM DEPENDE DE QUEM</text>
-  <text x="60" y="110" fill="#1A1A1A" font-size="42" font-weight="500" letter-spacing="-0.8">Cadeia de dependências</text>
-  <text x="60" y="148" fill="#737373" font-size="20">A saída de uma persona vira entrada da próxima — sem isso, o dia trava.</text>
+  <text x="60" y="60" fill="#737373" font-family="JetBrains Mono, monospace" font-size="16" font-weight="500" letter-spacing="1.9">DAY 2 · WHO DEPENDS ON WHOM</text>
+  <text x="60" y="110" fill="#1A1A1A" font-size="42" font-weight="500" letter-spacing="-0.8">Dependency Chain</text>
+  <text x="60" y="148" fill="#737373" font-size="20">One persona's output feeds the next — without it, the day stalls.</text>
 
   <!-- 7-node horizontal chain -->
   <!-- Node width 140, gap 20, total 7*140 + 6*20 = 1100, start x = 50 -->
@@ -12,77 +12,77 @@
   <g transform="translate(50, 200)">
     <rect width="140" height="180" fill="#FFFFFF" stroke="#E5E5E0" stroke-width="1"/>
     <rect x="0" y="0" width="140" height="4" fill="#F25022"/>
-    <text x="16" y="40" fill="#B33816" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PAR 1 · VISÃO</text>
+    <text x="16" y="40" fill="#B33816" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PAIR 1 · VISION</text>
     <text x="16" y="78" fill="#1A1A1A" font-size="22" font-weight="500">PO</text>
-    <text x="16" y="115" fill="#737373" font-size="13">Valida escopo</text>
-    <text x="16" y="133" fill="#737373" font-size="13">e prioridades</text>
-    <text x="16" y="165" fill="#737373" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="0.5">→ ENTRADA: BR-NNN</text>
+    <text x="16" y="115" fill="#737373" font-size="13">Validates scope</text>
+    <text x="16" y="133" fill="#737373" font-size="13">and priorities</text>
+    <text x="16" y="165" fill="#737373" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="0.5">→ INPUT: BR-NNN</text>
   </g>
 
   <!-- Node 2: RE -->
   <g transform="translate(210, 200)">
     <rect width="140" height="180" fill="#FFFFFF" stroke="#E5E5E0" stroke-width="1"/>
     <rect x="0" y="0" width="140" height="4" fill="#F25022"/>
-    <text x="16" y="40" fill="#B33816" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PAR 1 · VISÃO</text>
+    <text x="16" y="40" fill="#B33816" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PAIR 1 · VISION</text>
     <text x="16" y="78" fill="#1A1A1A" font-size="22" font-weight="500">RE</text>
-    <text x="16" y="115" fill="#737373" font-size="13">Escreve EARS</text>
-    <text x="16" y="133" fill="#737373" font-size="13">com source_legacy</text>
-    <text x="16" y="165" fill="#737373" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="0.5">→ SAÍDA: REQ-ID</text>
+    <text x="16" y="115" fill="#737373" font-size="13">Writes EARS</text>
+    <text x="16" y="133" fill="#737373" font-size="13">with source_legacy</text>
+    <text x="16" y="165" fill="#737373" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="0.5">→ OUTPUT: REQ-ID</text>
   </g>
 
   <!-- Node 3: SA -->
   <g transform="translate(370, 200)">
     <rect width="140" height="180" fill="#FFFFFF" stroke="#E5E5E0" stroke-width="1"/>
     <rect x="0" y="0" width="140" height="4" fill="#FFB900"/>
-    <text x="16" y="40" fill="#B88500" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PAR 2 · ARQUIT.</text>
+    <text x="16" y="40" fill="#B88500" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PAIR 2 · ARCH.</text>
     <text x="16" y="78" fill="#1A1A1A" font-size="22" font-weight="500">SA</text>
-    <text x="16" y="115" fill="#737373" font-size="13">Desenha módulos</text>
-    <text x="16" y="133" fill="#737373" font-size="13">e contratos</text>
-    <text x="16" y="165" fill="#737373" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="0.5">→ SAÍDA: ADR + C4</text>
+    <text x="16" y="115" fill="#737373" font-size="13">Designs modules</text>
+    <text x="16" y="133" fill="#737373" font-size="13">and contracts</text>
+    <text x="16" y="165" fill="#737373" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="0.5">→ OUTPUT: ADR + C4</text>
   </g>
 
   <!-- Node 4: TL -->
   <g transform="translate(530, 200)">
     <rect width="140" height="180" fill="#FFFFFF" stroke="#E5E5E0" stroke-width="1"/>
     <rect x="0" y="0" width="140" height="4" fill="#7FBA00"/>
-    <text x="16" y="40" fill="#5A8500" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PAR 3 · IMPL.</text>
+    <text x="16" y="40" fill="#5A8500" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PAIR 3 · DEV.</text>
     <text x="16" y="78" fill="#1A1A1A" font-size="22" font-weight="500">TL</text>
-    <text x="16" y="115" fill="#737373" font-size="13">Planeja sprint</text>
-    <text x="16" y="133" fill="#737373" font-size="13">e revisa PRs</text>
-    <text x="16" y="165" fill="#737373" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="0.5">→ DELEGA AO DEV</text>
+    <text x="16" y="115" fill="#737373" font-size="13">Plans sprint</text>
+    <text x="16" y="133" fill="#737373" font-size="13">and reviews PRs</text>
+    <text x="16" y="165" fill="#737373" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="0.5">→ DELEGATES TO DEV</text>
   </g>
 
   <!-- Node 5: Dev -->
   <g transform="translate(690, 200)">
     <rect width="140" height="180" fill="#FFFFFF" stroke="#E5E5E0" stroke-width="1"/>
     <rect x="0" y="0" width="140" height="4" fill="#7FBA00"/>
-    <text x="16" y="40" fill="#5A8500" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PAR 3 · IMPL.</text>
+    <text x="16" y="40" fill="#5A8500" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PAIR 3 · DEV.</text>
     <text x="16" y="78" fill="#1A1A1A" font-size="22" font-weight="500">Dev</text>
-    <text x="16" y="115" fill="#737373" font-size="13">Codifica em</text>
+    <text x="16" y="115" fill="#737373" font-size="13">Builds with</text>
     <text x="16" y="133" fill="#737373" font-size="13">Java + Next.js</text>
-    <text x="16" y="165" fill="#737373" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="0.5">→ SAÍDA: CÓDIGO</text>
+    <text x="16" y="165" fill="#737373" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="0.5">→ OUTPUT: CODE</text>
   </g>
 
   <!-- Node 6: DBA+QA group -->
   <g transform="translate(850, 200)">
     <rect width="140" height="180" fill="#FFFFFF" stroke="#E5E5E0" stroke-width="1"/>
     <rect x="0" y="0" width="140" height="4" fill="#00A4EF"/>
-    <text x="16" y="40" fill="#0076AC" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PAR 4 · QUALID.</text>
+    <text x="16" y="40" fill="#0076AC" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PAIR 4 · QUALITY</text>
     <text x="16" y="78" fill="#1A1A1A" font-size="22" font-weight="500">DBA · QA</text>
     <text x="16" y="115" fill="#737373" font-size="13">Migrations +</text>
-    <text x="16" y="133" fill="#737373" font-size="13">testes BDD</text>
-    <text x="16" y="165" fill="#737373" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.5">→ V1 + TESTES BDD</text>
+    <text x="16" y="133" fill="#737373" font-size="13">BDD tests</text>
+    <text x="16" y="165" fill="#737373" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.5">→ V1 + BDD TESTS</text>
   </g>
 
   <!-- Node 7: DevOps+TW group -->
   <g transform="translate(1010, 200)">
     <rect width="140" height="180" fill="#FFFFFF" stroke="#E5E5E0" stroke-width="1"/>
     <rect x="0" y="0" width="140" height="4" fill="#1A1A1A"/>
-    <text x="16" y="40" fill="#1A1A1A" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PAR 5 · OPS</text>
+    <text x="16" y="40" fill="#1A1A1A" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.2">PAIR 5 · OPS</text>
     <text x="16" y="78" fill="#1A1A1A" font-size="20" font-weight="500">DevOps · TW</text>
     <text x="16" y="115" fill="#737373" font-size="13">Pipeline + IaC</text>
     <text x="16" y="133" fill="#737373" font-size="13">+ runbook</text>
-    <text x="16" y="165" fill="#737373" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="0.5">→ ENTREGA: DEPLOY</text>
+    <text x="16" y="165" fill="#737373" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="0.5">→ DELIVERS: DEPLOY</text>
   </g>
 
   <!-- Arrows between nodes (subtle, at y=290) -->
@@ -101,5 +101,5 @@
   </defs>
 
   <!-- Footer caption -->
-  <text x="60" y="438" fill="#737373" font-size="14">Cada persona depende da SAÍDA da anterior. Se uma trava, todas as seguintes travam.</text>
+  <text x="60" y="438" fill="#737373" font-size="14">Each persona depends on the previous OUTPUT. If one stalls, all following personas stall.</text>
 </svg>

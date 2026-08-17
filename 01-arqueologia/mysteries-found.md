@@ -1,58 +1,58 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Registro de Perguntas em Aberto — Estágio 1
+# Open Questions Record — Stage 1
 
-> **Trilha:** [Kit do Time](../README.md) › [Estágio 1](README.md) › **Perguntas em Aberto**
+> **Track:** [Team Kit](../README.md) › [Stage 1](README.md) › **Open Questions**
 
-**Registro rastreável de incertezas do Estágio 1.** Cada entrada documenta uma pergunta sem resposta, com evidência, hipótese marcada como não confirmada e responsável pela validação.
+**Traceable record of Stage 1 uncertainties.** Each entry documents an unanswered question with evidence, a hypothesis marked as unconfirmed, and a validation owner.
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Todos os pares |
-| **Pré-requisitos** | Leitura dos programas atribuídos |
-| **Estágio** | Estágio 1 — Arqueologia |
-| **Resultado esperado** | Perguntas sem conclusão, com evidência e responsável identificado |
+| **Target audience** | All pairs |
+| **Prerequisites** | Read the assigned programs |
+| **Stage** | Stage 1 — Archaeology |
+| **Expected outcome** | Questions without conclusions, with evidence and an identified owner |
 
 > [!IMPORTANT]
-> Uma pergunta não vira regra de negócio, requisito ou conclusão enquanto não houver validação humana explícita e evidência preservada em `path:linha`. O registro não é uma resposta nem substitui essa validação.
+> A question does not become a business rule, requirement, or conclusion until it has explicit human validation and evidence preserved as `path:line`. This record is not an answer and does not replace that validation.
 
 ---
 
-## Registro
+## Record
 
-Uma linha por mistério. Preencha o **ID canônico** do seu par (`SIFAP-M-01` … `SIFAP-M-20` — veja o [checklist](mysteries-checklist.md)) ou `BONUS` para achados fora da lista.
+Use one row per mystery. Enter your pair's **canonical ID** (`SIFAP-M-01` … `SIFAP-M-20`—see the [checklist](mysteries-checklist.md)) or `BONUS` for findings outside the list.
 
-| ID | Pergunta aberta | Evidência (`path:linha`) | Impacto | Hipótese (não confirmada) | Pessoa/área responsável | Status |
+| ID | Open question | Evidence (`path:line`) | Impact | Hypothesis (unconfirmed) | Responsible person/area | Status |
 |---|---|---|---|---|---|---|
-| `SIFAP-M-__` | <!-- preencher: uma pergunta de verdade, com ponto de interrogação --> | <!-- preencher: path:linha --> | <!-- preencher: o que quebra na migração para Java --> | <!-- preencher: não confirmada --> | <!-- preencher --> | <!-- preencher: aberta / aguardando validação humana / encerrada após validação humana --> |
-| `SIFAP-M-__` | <!-- preencher --> | <!-- preencher: path:linha --> | <!-- preencher --> | <!-- preencher: não confirmada --> | <!-- preencher --> | <!-- preencher --> |
-| `SIFAP-M-__` | <!-- preencher --> | <!-- preencher: path:linha --> | <!-- preencher --> | <!-- preencher: não confirmada --> | <!-- preencher --> | <!-- preencher --> |
-| `SIFAP-M-__` | <!-- preencher --> | <!-- preencher: path:linha --> | <!-- preencher --> | <!-- preencher: não confirmada --> | <!-- preencher --> | <!-- preencher --> |
+| `SIFAP-M-__` | <!-- fill in: a real question ending with a question mark --> | <!-- fill in: path:line --> | <!-- fill in: what breaks in the Java migration --> | <!-- fill in: unconfirmed --> | <!-- fill in --> | <!-- fill in: open / awaiting human validation / closed after human validation --> |
+| `SIFAP-M-__` | <!-- fill in --> | <!-- fill in: path:line --> | <!-- fill in --> | <!-- fill in: unconfirmed --> | <!-- fill in --> | <!-- fill in --> |
+| `SIFAP-M-__` | <!-- fill in --> | <!-- fill in: path:line --> | <!-- fill in --> | <!-- fill in: unconfirmed --> | <!-- fill in --> | <!-- fill in --> |
+| `SIFAP-M-__` | <!-- fill in --> | <!-- fill in: path:line --> | <!-- fill in --> | <!-- fill in: unconfirmed --> | <!-- fill in --> | <!-- fill in --> |
 
-### Achados adicionais (bônus)
+### Additional findings (bonus)
 
-Achados legítimos fora dos 20 canônicos. Contam no debrief, **não** alteram o denominador e **não** substituem um canônico faltante.
+Legitimate findings outside the 20 canonical mysteries. They count in the debrief, **do not** change the denominator, and **do not** replace a missing canonical mystery.
 
-| ID | Pergunta aberta | Evidência (`path:linha`) | Impacto | Hipótese (não confirmada) | Pessoa/área responsável | Status |
+| ID | Open question | Evidence (`path:line`) | Impact | Hypothesis (unconfirmed) | Responsible person/area | Status |
 |---|---|---|---|---|---|---|
-| `BONUS` | <!-- preencher --> | <!-- preencher: path:linha --> | <!-- preencher --> | <!-- preencher: não confirmada --> | <!-- preencher --> | <!-- preencher --> |
+| `BONUS` | <!-- fill in --> | <!-- fill in: path:line --> | <!-- fill in --> | <!-- fill in: unconfirmed --> | <!-- fill in --> | <!-- fill in --> |
 
 ---
 
-## Regras de integridade
+## Integrity rules
 
-- Registre somente perguntas abertas; não escreva uma resposta no catálogo.
-- Mantenha a evidência no formato `path:linha` para preservar a rastreabilidade.
-- Marque toda hipótese explicitamente como **não confirmada**.
-- Somente a pessoa responsável pode fornecer a validação humana e alterar o status.
-- A ausência de evidência humana mantém a pergunta aberta.
+- Record only open questions; do not write an answer in the catalog.
+- Keep evidence in `path:line` format to preserve traceability.
+- Mark every hypothesis explicitly as **unconfirmed**.
+- Only the responsible person may provide human validation and change the status.
+- Without human evidence, the question remains open.
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [Checklist de perguntas em aberto](mysteries-checklist.md)<br/><sub>Verificação de rastreabilidade.</sub> | [Relatório de descoberta](discovery-report.md)<br/><sub>Consolidação final do estágio.</sub> |
+| [Open Questions Checklist](mysteries-checklist.md)<br/><sub>Traceability verification.</sub> | [Discovery Report](discovery-report.md)<br/><sub>Final consolidation for the stage.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

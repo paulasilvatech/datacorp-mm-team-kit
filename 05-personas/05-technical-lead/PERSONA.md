@@ -2,34 +2,34 @@
 
 # Persona — Technical Lead
 
-> **Trilha:** [Kit do Time](../../README.md) › [Personas](../OVERVIEW.md) › [Technical Lead](README.md) › **PERSONA**
+> **Trail:** [Team Kit](../../README.md) › [Personas](../OVERVIEW.md) › [Technical Lead](README.md) › **PERSONA**
 
-**Ficha completa da persona Technical Lead.** Define missão, responsabilidades por estágio, ferramentas, passagem de bastão e rubricas de avaliação.
+**Complete profile for the Technical Lead persona.** Defines the mission, responsibilities by stage, tools, handoff, and evaluation rubrics.
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Papel** | Technical Lead |
-| **Par** | 3 · Implementação (junto com Developer) |
-| **Estágios de atuação** | Lidera 3 (padrões, revisão) e co-lidera 4; apoia 2 |
-| **Artefatos que produz** | Padrões de implementação, revisões de PR, aplicação rodando end-to-end |
-| **Artefatos que consome** | REQ-IDs, ADRs, C4 (Par 2) |
-| **Handoff para** | Par 5 (Operações) no Estágio 3 — código rodando |
+| **Role** | Technical Lead |
+| **Pair** | 3 · Implementation (with the Developer) |
+| **Active stages** | Leads 3 (standards, review) and co-leads 4; supports 2 |
+| **Artifacts produced** | Implementation standards, PR reviews, application running end to end |
+| **Artifacts consumed** | REQ-IDs, ADRs, C4 (Pair 2) |
+| **Handoff to** | Pair 5 (Operations) in Stage 3 — running code |
 
-![Estágio 2](https://img.shields.io/badge/Est%C3%A1gio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-171717?style=flat-square) ![Estágio 3](https://img.shields.io/badge/Est%C3%A1gio-3%20%C2%B7%20Implementa%C3%A7%C3%A3o-404040?style=flat-square) ![Estágio 4](https://img.shields.io/badge/Est%C3%A1gio-4%20%C2%B7%20Evolu%C3%A7%C3%A3o-737373?style=flat-square)
-
----
-
-## Conceito
-
-O Technical Lead é o elo entre a arquitetura definida no papel e o código escrito no dia a dia. Na indústria, esse papel define padrões de implementação (convenções de código, estilo de teste, estrutura de módulo), desbloqueia o time quando alguém trava num detalhe técnico e responde pela qualidade técnica das entregas.
-
-No SIFAP, o TL garante que ao final do Estágio 3 a aplicação criada pelo time realmente roda de ponta a ponta — não apenas compila. Isso inclui decisões como: qual camada recebe a anotação `@Transactional`, como erros são tratados, e como testes de integração são estruturados.
-
-**Exemplo concreto no SIFAP:** quando o Developer implementa o endpoint de consulta de benefício, o TL revisa o PR verificando se a lógica de negócio está na camada correta, se o teste cobre caminho feliz e de erro, e se não há import cruzando fronteiras de bounded context.
+![Stage 2](https://img.shields.io/badge/Est%C3%A1gio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-171717?style=flat-square) ![Stage 3](https://img.shields.io/badge/Est%C3%A1gio-3%20%C2%B7%20Implementa%C3%A7%C3%A3o-404040?style=flat-square) ![Stage 4](https://img.shields.io/badge/Est%C3%A1gio-4%20%C2%B7%20Evolu%C3%A7%C3%A3o-737373?style=flat-square)
 
 ---
 
-## Onde você atua no SDLC
+## Concept
+
+The Technical Lead connects the architecture defined on paper to the code written every day. In the industry, this role defines implementation standards (coding conventions, test style, module structure), unblocks the team when someone gets stuck on a technical detail, and is accountable for the technical quality of deliveries.
+
+In SIFAP (Payment Inspection and Administration System), the TL ensures that the application created by the team actually runs end to end by the end of Stage 3 — not merely compiles. This includes decisions such as which layer receives the `@Transactional` annotation, how errors are handled, and how integration tests are structured.
+
+**Concrete SIFAP example:** when the Developer implements the benefit lookup endpoint, the TL reviews the PR to verify that business logic is in the correct layer, the test covers success and error paths, and no import crosses a bounded-context boundary.
+
+---
+
+## Where you work in the SDLC
 
 ```mermaid
 %%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
@@ -38,126 +38,126 @@ flowchart LR
     classDef support fill:#FAFAFA,stroke:#A3A3A3,color:#404040
     classDef inactive fill:#FFFFFF,stroke:#E5E5E5,color:#A3A3A3
 
-    E1["Estágio 1<br/>Arqueologia"]:::inactive --> E2["Estágio 2<br/>Especificação"]:::support
-    E2 --> E3["Estágio 3<br/>Implementação"]:::active
-    E3 --> E4["Estágio 4<br/>Evolução"]:::active
+    E1["Stage 1<br/>Archaeology"]:::inactive --> E2["Stage 2<br/>Specification"]:::support
+    E2 --> E3["Stage 3<br/>Implementation"]:::active
+    E3 --> E4["Stage 4<br/>Evolution"]:::active
 ```
 
-- **Recebe de:** Par 2 (Arquitetura) no Estágio 2 — REQ-IDs + ADRs + C4
-- **Faz passagem de bastão para:** Par 5 (Operações) no Estágio 3 — código rodando
+- **Receives from:** Pair 2 (Architecture) in Stage 2 — REQ-IDs + ADRs + C4
+- **Hands off to:** Pair 5 (Operations) in Stage 3 — running code
 
 ---
 
-## Responsabilidades por estágio
+## Responsibilities by stage
 
-| **Estágio** | Você faz isso | Entregável que depende de você |
+| **Stage** | What you do | Deliverable that depends on you |
 |---|---|---|
-| **1 · Arqueologia** | Participa da análise priorizando programas críticos. Estima complexidade. | Priorização baseada em esforço |
-| **2 · Especificação** | Valida que a spec cabe nos 70 minutos do Estágio 3. Sinaliza "isso não cabe". | Calibração de escopo |
-| **3 · Implementação** | Desbloqueia. Decide padrões (estilo de teste, transações, tratamento de erro). Revisa todo PR. | Aplicação rodando end-to-end |
-| **4 · Evolução** | Revisa o PR do Agent linha por linha antes do merge. | PR em qualidade de produção |
+| **1 · Archaeology** | Participate in the analysis by prioritizing critical programs. Estimate complexity. | Effort-based prioritization |
+| **2 · Specification** | Validate that the specification fits within Stage 3's 70 minutes. Flag "this does not fit." | Scope calibration |
+| **3 · Implementation** | Unblock. Decide standards (test style, transactions, error handling). Review every PR. | Application running end to end |
+| **4 · Evolution** | Review the Agent's PR line by line before merging. | Production-quality PR |
 
 ---
 
-## Kit da persona
+## Persona kit
 
-| **Artefato** | Finalidade |
+| **Artifact** | Purpose |
 |---|---|
-| `.github/agents/tech-lead.agent.md` | Agente Copilot configurado para governança técnica |
-| `/setup-project` — `persona-technical-lead-setup-project.prompt.md` | Inicializa a estrutura do projeto |
-| `/routing-table` — `persona-technical-lead-routing-table.prompt.md` | Gera tabela de roteamento de modelos por tarefa |
-| `/audit-context` — `persona-technical-lead-audit-context.prompt.md` | Audita o contexto enviado ao Copilot |
+| `.github/agents/tech-lead.agent.md` | Copilot agent configured for technical governance |
+| `/setup-project` — `persona-technical-lead-setup-project.prompt.md` | Initializes the project structure |
+| `/routing-table` — `persona-technical-lead-routing-table.prompt.md` | Generates a model-routing table by task |
+| `/audit-context` — `persona-technical-lead-audit-context.prompt.md` | Audits the context sent to Copilot |
 
 ---
 
-## Ferramentas e primitivas
+## Tools and primitives
 
-- **Copilot Plan** para refatoração em lote com sequência clara.
-- **Copilot Chat** como pair para decisões locais de design.
-- **GitHub Spec-Kit** — suporte em `/speckit.tasks`, `/speckit.analyze` e passagem para `/speckit.implement`.
-- **Git MCP** para revisão de PR.
+- **Copilot Plan** for batch refactoring with a clear sequence.
+- **Copilot Chat** as a pair for local design decisions.
+- **GitHub Spec-Kit** — support in `/speckit.tasks`, `/speckit.analyze`, and the handoff to `/speckit.implement`.
+- **Git MCP** for PR review.
 
-**Cheat-sheets relevantes:**
+**Relevant cheat sheets:**
 
-- [`../../09-cheat-sheets/copilot-3-modes.md`](../../09-cheat-sheets/copilot-3-modes.md) — você alterna entre os três modos o tempo todo.
-- [`../../09-cheat-sheets/spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) — `/speckit.tasks` e `/speckit.implement`.
-- [`../../09-cheat-sheets/model-routing.md`](../../09-cheat-sheets/model-routing.md) — roteamento de modelos por tipo de tarefa.
-
----
-
-## Checklist de onboarding
-
-- [ ] **Ler esta ficha.** Missão, responsabilidades e passagem de bastão.
-- [ ] **Abrir o `README.md` do kit.** Confirmar que agents e prompts aparecem no Copilot Chat.
-- [ ] **Identificar seu par.** Consultar [00-TEAM-FLOW.md](../../00-TEAM-FLOW.md).
-- [ ] **Definir 2 padrões-chave.** Antes do Estágio 3 começar, escolher convenções de transação e de teste.
-- [ ] **Anotar a passagem de bastão.** Saber o que o DevOps precisa receber ao final do Estágio 3.
+- [`../../09-cheat-sheets/copilot-3-modes.md`](../../09-cheat-sheets/copilot-3-modes.md) — you switch among all three modes constantly.
+- [`../../09-cheat-sheets/spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) — `/speckit.tasks` and `/speckit.implement`.
+- [`../../09-cheat-sheets/model-routing.md`](../../09-cheat-sheets/model-routing.md) — model routing by task type.
 
 ---
 
-## Como se sair bem neste papel
+## Onboarding checklist
 
-- Responde uma dúvida técnica em menos de 5 minutos. Não deixa ninguém parado.
-- Revisões que movem o PR para frente, não revisões que bloqueiam.
-- Escolhe dois padrões-chave no início do Estágio 3 e os mantém sem negociação (ex.: `@Transactional` somente na camada de service).
-- Mantém `main` verde o tempo todo.
+- [ ] **Read this profile.** Mission, responsibilities, and handoff.
+- [ ] **Open the kit `README.md`.** Confirm that agents and prompts appear in Copilot Chat.
+- [ ] **Identify your pair.** See [00-TEAM-FLOW.md](../../00-TEAM-FLOW.md).
+- [ ] **Define 2 key standards.** Before Stage 3 begins, choose transaction and testing conventions.
+- [ ] **Note the handoff.** Know what DevOps must receive at the end of Stage 3.
 
 ---
 
-## Erros comuns e como evitar
+## How to succeed in this role
 
-| **Sintoma** | Causa | Correção |
+- Answer a technical question in less than 5 minutes. Do not leave anyone idle.
+- Write reviews that move the PR forward, not reviews that block it.
+- Choose two key standards at the start of Stage 3 and keep them non-negotiable (for example, `@Transactional` only in the service layer).
+- Keep `main` green at all times.
+
+---
+
+## Common mistakes and how to avoid them
+
+| **Symptom** | Cause | Correction |
 |---|---|---|
-| Developer travado por mais de 20 minutos | TL escrevendo código em vez de desbloquear | Pare o que está fazendo e responda a dúvida |
-| PR bloqueado por detalhes estéticos | Revisão focada em estilo, não em correção | Revise critérios: comportamento correto, teste presente, sem violação de fronteira |
-| Padrão muda no meio do Estágio 3 | Decisão não foi registrada no início | Defina padrões antes de começar e documente no `CODEMAP.md` |
-| Aplicação não roda no final | Gargalo não foi identificado a tempo | Faça um teste de integração completo a cada 30 minutos |
+| Developer blocked for more than 20 minutes | TL writing code instead of unblocking | Stop what you are doing and answer the question |
+| PR blocked by aesthetic details | Review focused on style, not correctness | Review the criteria: correct behavior, test present, no boundary violation |
+| Standard changes midway through Stage 3 | Decision was not recorded at the start | Define standards before starting and document them in `CODEMAP.md` |
+| Application does not run at the end | Bottleneck was not identified in time | Run a complete integration test every 30 minutes |
 
 ---
 
-## 3 exemplos de prompt
+## 3 prompt examples
 
-1. **(Chat)** "Revise este PR: verifique se segue as 3 camadas (domain/application/infrastructure), se o teste cobre caminho feliz + erro, e se há algum import cruzando bounded context."
-2. **(Chat)** "Temos 70 minutos. Ajude a comparar estas features por evidência, dependências e esforço para escolher uma feature fina; não complete requisitos ausentes."
-3. **(Chat)** "O ambiente local falha com este erro: [cole]. Diagnostique a causa-raiz e proponha uma correção."
+1. **(Chat)** "Review this PR: verify that it follows the 3 layers (domain/application/infrastructure), the test covers success + error paths, and no import crosses a bounded context."
+2. **(Chat)** "We have 70 minutes. Help compare these features by evidence, dependencies, and effort to choose one thin feature; do not fill in missing requirements."
+3. **(Chat)** "The local environment fails with this error: [paste]. Diagnose the root cause and propose a fix."
 
 ---
 
-## Se travar
+## If you get stuck
 
-| **Situação** | O que fazer |
+| **Situation** | What to do |
 |---|---|
-| Ambiente local não sobe | Verifique: porta 5432 ocupada? Versão do Java/Node correta? Containers antigos interferindo? Logs do backend mostram qual erro? |
-| Time lento | Pare, redistribua: "Dev A faz o endpoint, Dev B faz a migration, QA faz o teste. Merge em 45 min." |
-| PR em conflito | `git pull --rebase` e resolva. Não deixe a branch divergir sem alinhar com o par |
-| Não sabe decidir um padrão | Use a spec, os ADRs e as instructions do kit como fonte; documente a decisão no PR |
+| Local environment does not start | Check: is port 5432 occupied? Are the Java/Node versions correct? Are old containers interfering? Which error appears in backend logs? |
+| Team is slow | Stop and redistribute: "Dev A handles the endpoint, Dev B handles the migration, QA handles the test. Merge in 45 minutes." |
+| PR has conflicts | `git pull --rebase` and resolve them. Do not let the branch diverge without aligning with your pair |
+| Unsure how to choose a standard | Use the specification, ADRs, and kit instructions as sources; document the decision in the PR |
 
 ---
 
-## Dependências
+## Dependencies
 
-| **Persona** | Relação | Artefato |
+| **Persona** | Relationship | Artifact |
 |---|---|---|
-| Software Architect | Você depende dele | Estrutura de pacotes definida |
-| Product Owner | Você depende dele | Escopo calibrado |
-| Developer | Depende de você | Padrões e revisões |
-| QA Engineer | Depende de você | Pipeline verde para rodar testes |
-| DevOps Engineer | Depende de você | Build estável para o pipeline |
+| Software Architect | You depend on them | Defined package structure |
+| Product Owner | You depend on them | Calibrated scope |
+| Developer | Depends on you | Standards and reviews |
+| QA Engineer | Depends on you | Green pipeline for running tests |
+| DevOps Engineer | Depends on you | Stable build for the pipeline |
 
 ---
 
-## Como você é avaliado
+## How you are evaluated
 
-- **Rubrica A3 (Integridade Técnica):** a aplicação criada pelo time roda localmente e no CI.
-- **Rubrica A6 (Colaboração):** ninguém travado por mais de 20 minutos.
-- Critério: "`main` verde o tempo todo, PRs revisados em menos de 15 minutos."
+- **Rubric A3 (Technical Integrity):** the application created by the team runs locally and in CI.
+- **Rubric A6 (Collaboration):** no one is blocked for more than 20 minutes.
+- Criterion: "`main` green at all times, PRs reviewed in less than 15 minutes."
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [Software Architect](../04-software-architect/PERSONA.md)<br/><sub>Par 2 · Arquitetura · bounded contexts e módulos.</sub> | [Developer](../06-developer/PERSONA.md)<br/><sub>Par 3 · Implementação · Java + Next.js + testes.</sub> |
+| [Software Architect](../04-software-architect/PERSONA.md)<br/><sub>Pair 2 · Architecture · bounded contexts and modules.</sub> | [Developer](../06-developer/PERSONA.md)<br/><sub>Pair 3 · Implementation · Java + Next.js + tests.</sub> |
 
-<sub>[Voltar ao índice do kit](../../README.md)</sub>
+<sub>[Back to the kit index](../../README.md)</sub>

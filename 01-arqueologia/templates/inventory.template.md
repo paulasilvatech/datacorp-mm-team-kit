@@ -2,8 +2,8 @@
 
 ---
 
-title: "Modelo: Inventário do Estágio 1"
-description: "Esqueleto para o inventário do codebase legado produzido por /archaeology-kickoff"
+title: "Template: Stage 1 Inventory"
+description: "Skeleton for the legacy codebase inventory produced by /archaeology-kickoff"
 author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at Microsoft"
 date: "2026-04-29"
 version: "1.0.0"
@@ -11,51 +11,51 @@ status: "approved"
 tags: ["template", "inventory", "archaeology", "stage-1"]
 ---
 
-# Modelo: Inventário Legado — Estágio 1
+# Template: Legacy Inventory — Stage 1
 
-> **Trilha:** [Kit do Time](../../README.md) › [Estágio 1](../README.md) › **Templates** › **inventory**
+> **Track:** [Team Kit](../../README.md) › [Stage 1](../README.md) › **Templates** › **inventory**
 
-**Gabarito de inventário do código-base legado para o Passo 1 do Estágio 1.**
+**Legacy codebase inventory template for Stage 1, Step 1.**
 
 > [!NOTE]
-> **Este arquivo é um gabarito.** Copie para o seu repositório de time e preencha com os dados reais. Não edite o original.
+> **This file is a template.** Copy it to your team repository and complete it with real data. Do not edit the original.
 
 > [!TIP]
-> Faça o inventário sem abrir nenhum programa. Trabalhe apenas sobre nomes de arquivo e estrutura de pastas.
+> Build the inventory without opening any program. Work only from file names and folder structure.
 
-**Data:** <!-- placeholder: YYYY-MM-DD -->
-**Caminho escaneado:** `01-arqueologia/legado-sifap/`
+**Date:** <!-- placeholder: YYYY-MM-DD -->
+**Scanned path:** `01-arqueologia/legado-sifap/`
 
 ---
 
-## Estrutura de pastas
+## Folder structure
 
 ```text
-<!-- placeholder: árvore de diretórios -->
+<!-- placeholder: directory tree -->
 ```
 
 ---
 
-## Contagem de arquivos por tipo
+## File count by type
 
-| Extensão | Contagem | Propósito provável |
+| Extension | Count | Likely purpose |
 |---|---|---|
-| `.NSN` | <!-- placeholder --> | Programas-fonte Natural |
+| `.NSN` | <!-- placeholder --> | Natural source programs |
 | `.ddm` | <!-- placeholder --> | Data Definition Modules (Adabas) |
 
 ---
 
-## Padrões de convenção de nomes
+## Naming convention patterns
 
-| Prefixo | Contagem | Hipótese de domínio |
+| Prefix | Count | Domain hypothesis |
 |---|---|---|
 | <!-- placeholder --> | <!-- placeholder --> | <!-- placeholder --> |
 
 ---
 
-## Itens incomuns (top 3)
+## Unusual items (top 3)
 
-| # | Caminho do arquivo | O que o torna incomum | Investigação sugerida |
+| # | File path | What makes it unusual | Suggested investigation |
 |---|---|---|---|
 | 1 | <!-- placeholder --> | <!-- placeholder --> | <!-- placeholder --> |
 | 2 | <!-- placeholder --> | <!-- placeholder --> | <!-- placeholder --> |
@@ -63,26 +63,26 @@ tags: ["template", "inventory", "archaeology", "stage-1"]
 
 ---
 
-## Ordem de leitura proposta
+## Proposed reading order
 
-1. Arquivos DDM primeiro.
-2. <!-- placeholder: pontos de entrada batch -->
-3. <!-- placeholder: programas mais conectados -->
-
----
-
-## Critério de pronto
-
-- [ ] Inventário existe com contagens precisas.
-- [ ] 3 ou mais padrões de nome identificados.
-- [ ] 3 itens incomuns sinalizados.
+1. DDM files first.
+2. <!-- placeholder: batch entry points -->
+3. <!-- placeholder: most connected programs -->
 
 ---
 
-### Continuar a leitura
+## Definition of done
 
-| Anterior | Próximo |
+- [ ] The inventory exists with accurate counts.
+- [ ] 3 or more naming patterns identified.
+- [ ] 3 unusual items flagged.
+
+---
+
+### Continue reading
+
+| Previous | Next |
 |---|---|
-| [GUIDE do Estágio 1](../GUIDE.md)<br/><sub>Roteiro passo a passo.</sub> | [Outros gabaritos](.) <br/><sub>Demais gabaritos do estágio.</sub> |
+| [Stage 1 GUIDE](../GUIDE.md)<br/><sub>Step-by-step schedule.</sub> | [Other templates](.) <br/><sub>Other stage templates.</sub> |
 
-<sub>[Voltar ao índice do kit](../../README.md)</sub>
+<sub>[Back to the kit index](../../README.md)</sub>

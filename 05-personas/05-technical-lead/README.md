@@ -1,70 +1,70 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Technical Lead — Kit Copilot
+# Technical Lead — Copilot Kit
 
-> **Trilha:** [Kit do Time](../../README.md) › [Personas](../OVERVIEW.md) › **Technical Lead**
+> **Trail:** [Team Kit](../../README.md) › [Personas](../OVERVIEW.md) › **Technical Lead**
 
-**Inventário do kit Copilot para a persona Technical Lead.** Liste os artefatos ativos, onde vivem na `.github/` e as boas práticas específicas deste papel.
+**Inventory of the Copilot kit for the Technical Lead persona.** Lists the active artifacts, where they live under `.github/`, and best practices specific to this role.
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Pessoa que vai atuar como Technical Lead no workshop |
-| **Par** | 3 · Implementação (junto com Developer) |
-| **Fase do SDLC** | Todas as fases (coordenação técnica) |
-| **Pré-requisitos** | [PERSONA.md](PERSONA.md) lido |
-| **Resultado esperado** | Kit validado, prompts acessíveis no Copilot Chat |
+| **Target audience** | Person acting as Technical Lead in the workshop |
+| **Pair** | 3 · Implementation (with the Developer) |
+| **SDLC phase** | All phases (technical coordination) |
+| **Prerequisites** | [PERSONA.md](PERSONA.md) read |
+| **Expected outcome** | Kit validated, prompts accessible in Copilot Chat |
 
 > [!IMPORTANT]
-> Leia [PERSONA.md](PERSONA.md) antes de continuar. A ficha explica missão, passagem de bastão e rubricas de avaliação.
+> Read [PERSONA.md](PERSONA.md) before continuing. The profile explains the mission, handoff, and evaluation rubrics.
 
 ---
 
-## Conceito
+## Concept
 
-O Technical Lead é o elo entre arquitetura e código do dia a dia. Define padrões de implementação, desbloqueia o time quando alguém trava num detalhe técnico e garante que ao final do Estágio 3 a aplicação criada pelo time realmente roda de ponta a ponta. No SIFAP, o TL é responsável por manter a velocidade de execução sem comprometer a qualidade — escolhendo quais batalhas técnicas valem a pena travar.
+The Technical Lead connects architecture to everyday code. This role defines implementation standards, unblocks the team when someone gets stuck on a technical detail, and ensures that the application created by the team actually runs end to end by the end of Stage 3. In SIFAP (Payment Inspection and Administration System), the TL maintains execution speed without compromising quality by choosing which technical battles are worth fighting.
 
 ---
 
-## Kit da persona
+## Persona kit
 
-| **Artefato** | Tipo | Propósito |
+| **Artifact** | Type | Purpose |
 |---|---|---|
-| `PERSONA.md` | Ficha | Responsabilidades, passagem de bastão, prompts e rubrica |
-| `.github/agents/tech-lead.agent.md` | Agent | Governança técnica |
+| `PERSONA.md` | Profile | Responsibilities, handoff, prompts, and rubric |
+| `.github/agents/tech-lead.agent.md` | Agent | Technical governance |
 | `.github/prompts/persona-technical-lead-setup-project.prompt.md` | Prompt | `/setup-project` |
 | `.github/prompts/persona-technical-lead-routing-table.prompt.md` | Prompt | `/routing-table` |
 | `.github/prompts/persona-technical-lead-audit-context.prompt.md` | Prompt | `/audit-context` |
-| `hooks.json` | Hooks | Escopo, lint e testes |
+| `hooks.json` | Hooks | Scope, linting, and tests |
 
 ---
 
-## Onde os artefatos vivem
+## Where the artifacts live
 
-Os artefatos ativos estão consolidados na `.github/` da raiz:
+The active artifacts are consolidated under the root `.github/` directory:
 
-| **Tipo** | Caminho |
+| **Type** | Path |
 |---|---|
 | Agents | `.github/agents/` |
 | Prompts | `.github/prompts/persona-*.prompt.md` |
 | Skills | `.github/skills/` |
 | Instructions | `.github/instructions/` |
 
-Use esta pasta como referência. Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá quando precisar de manutenção.
+Use this directory as the reference. Active files live only under the root `.github/` directory — edit them there when maintenance is needed.
 
-Se o kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
-
----
-
-## Boas práticas
-
-- Bloqueie mudanças ruins, não pessoas; revise o PR e proteja o tempo de quem revisa.
-- `CODEMAP.md` é memória de trabalho do time; se está desatualizado, o time trabalha sem visibilidade.
-- Roteamento de modelo importa: Opus para descoberta, Sonnet para implementação, Haiku para transformações mecânicas.
-- Custo por feature é métrica de engenharia; acompanhe junto com cobertura.
+If the kit includes `mcp.json` and the facilitator requests local MCP, copy only that file to `.vscode/mcp.json`.
 
 ---
 
-## Referências
+## Best practices
+
+- Block bad changes, not people; review the PR and protect reviewers' time.
+- `CODEMAP.md` is the team's working memory; if it is outdated, the team works without visibility.
+- Model routing matters: Opus for discovery, Sonnet for implementation, Haiku for mechanical transformations.
+- Cost per feature is an engineering metric; track it alongside coverage.
+
+---
+
+## References
 
 - [Staff Engineer — Will Larson](https://staffeng.com/)
 - [The Manager's Path — Camille Fournier](https://www.oreilly.com/library/view/the-managers-path/9781491973882/)
@@ -73,10 +73,10 @@ Se o kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arq
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [OVERVIEW](../OVERVIEW.md)<br/><sub>Tabela das 10 personas.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Ficha desta persona.</sub> |
+| [OVERVIEW](../OVERVIEW.md)<br/><sub>Table of the 10 personas.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Profile for this persona.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

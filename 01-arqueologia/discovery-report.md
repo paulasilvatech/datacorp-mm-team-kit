@@ -1,124 +1,124 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Relatório de Descoberta — Estágio 1: Arqueologia Digital
+# Discovery Report — Stage 1: Digital Archaeology
 
-> **Trilha:** [Kit do Time](../README.md) › [Estágio 1](README.md) › **Relatório de Descoberta**
+> **Track:** [Team Kit](../README.md) › [Stage 1](README.md) › **Discovery Report**
 
-**Artefato preenchido pelo time ao final do Estágio 1.** Consolida as descobertas da arqueologia e é o principal insumo para o Estágio 2.
+**Artifact completed by the team at the end of Stage 1.** Consolidates the archaeology findings and is the primary input for Stage 2.
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Todos os pares — consolidação ao final do Estágio 1 |
-| **Pré-requisitos** | Catálogo de regras, mapa de dependências e glossário preenchidos |
-| **Estágio** | Estágio 1 — Arqueologia |
-| **Resultado esperado** | Documento em até 3 páginas com sumário, hipóteses de carving e artefatos-fonte |
+| **Target audience** | All pairs—consolidation at the end of Stage 1 |
+| **Prerequisites** | Completed rules catalog, dependency map, and glossary |
+| **Stage** | Stage 1 — Archaeology |
+| **Expected outcome** | Document of up to 3 pages with a summary, carving hypotheses, and source artifacts |
 
 > [!IMPORTANT]
-> Este documento consolida todas as descobertas do Estágio 1. Preencha cada seção com as conclusões do time. Sem ele, a especificação do Estágio 2 não tem base de evidência.
+> This document consolidates all Stage 1 findings. Complete each section with the team's conclusions. Without it, the Stage 2 specification has no evidence base.
 
 > [!NOTE]
-> Guia passo a passo: [`GUIDE.md`](GUIDE.md).
+> Step-by-step guide: [`GUIDE.md`](GUIDE.md).
 
-**Time**: <!-- preencher -->
-**Data**: <!-- preencher: YYYY-MM-DD -->
-**Edição**: <!-- preencher -->
-**Participantes**: <!-- preencher: 5 pares cobrindo 10 personas -->
-
----
-
-## 1. Sumário executivo
-
-<!-- preencher: máximo de 5 frases — o que é o SIFAP, o que ele faz, qual o estado do código -->
+**Team**: <!-- fill in -->
+**Date**: <!-- fill in: YYYY-MM-DD -->
+**Edition**: <!-- fill in -->
+**Participants**: <!-- fill in: 5 pairs covering 10 personas -->
 
 ---
 
-## 2. O que sabemos (confirmado)
+## 1. Executive summary
 
-### 2.1 Regras de negócio
-
-<!-- preencher: regras confirmadas com candidatas EARS — referencie business-rules-catalog.md -->
-
-### 2.2 Dependências
-
-<!-- preencher: contagens de arestas do mapa de dependências — referencie dependency-map.md -->
-
-### 2.3 Estruturas de dados
-
-<!-- preencher: resumo dos DDMs Adabas analisados pelo time -->
+<!-- fill in: maximum 5 sentences—what SIFAP, the Payment Inspection and Administration System, is; what it does; and the state of the code -->
 
 ---
 
-## 3. O que é arriscado
+## 2. What we know (confirmed)
 
-### 3.1 Perguntas em aberto aguardando validação humana
+### 2.1 Business rules
 
-| Pergunta aberta | Evidência (`path:linha`) | Impacto | Hipótese (não confirmada) | Pessoa/área responsável | Status |
+<!-- fill in: confirmed rules with EARS candidates—reference business-rules-catalog.md -->
+
+### 2.2 Dependencies
+
+<!-- fill in: edge counts from the dependency map—reference dependency-map.md -->
+
+### 2.3 Data structures
+
+<!-- fill in: summary of the Adabas DDMs analyzed by the team -->
+
+---
+
+## 3. What is risky
+
+### 3.1 Open questions awaiting human validation
+
+| Open question | Evidence (`path:line`) | Impact | Hypothesis (unconfirmed) | Responsible person/area | Status |
 |---|---|---|---|---|---|
-| <!-- preencher --> | <!-- preencher: path:linha --> | <!-- preencher --> | <!-- preencher: não confirmada --> | <!-- preencher --> | <!-- preencher --> |
+| <!-- fill in --> | <!-- fill in: path:line --> | <!-- fill in --> | <!-- fill in: unconfirmed --> | <!-- fill in --> | <!-- fill in --> |
 
-### 3.2 Regras com evidência fraca
+### 3.2 Rules with weak evidence
 
-<!-- preencher: regras classificadas como "Inferida" que precisam de validação -->
+<!-- fill in: rules classified as "Inferred" that require validation -->
 
 ---
 
-## 4. Hipóteses de carving recomendadas
+## 4. Recommended carving hypotheses
 
 > [!NOTE]
-> Liste 3 a 5 hipóteses de bounded contexts para o arquiteto avaliar no Estágio 2.
+> List 3 to 5 bounded-context hypotheses for the architect to evaluate in Stage 2.
 
-### Hipótese 1: <!-- preencher: nome de negócio -->
+### Hypothesis 1: <!-- fill in: business name -->
 
-- Programas: <!-- preencher -->
-- DDMs: <!-- preencher -->
-- Racional: <!-- preencher -->
+- Programs: <!-- fill in -->
+- DDMs: <!-- fill in -->
+- Rationale: <!-- fill in -->
 
-### Hipótese 2: <!-- preencher -->
+### Hypothesis 2: <!-- fill in -->
 
-- Programas: <!-- preencher -->
-- DDMs: <!-- preencher -->
-- Racional: <!-- preencher -->
+- Programs: <!-- fill in -->
+- DDMs: <!-- fill in -->
+- Rationale: <!-- fill in -->
 
-### Hipótese 3: <!-- preencher -->
+### Hypothesis 3: <!-- fill in -->
 
-- Programas: <!-- preencher -->
-- DDMs: <!-- preencher -->
-- Racional: <!-- preencher -->
+- Programs: <!-- fill in -->
+- DDMs: <!-- fill in -->
+- Rationale: <!-- fill in -->
 
 ---
 
-## 5. Artefatos-fonte
+## 5. Source artifacts
 
-| Artefato | Caminho | Status |
+| Artifact | Path | Status |
 |---|---|---|
-| Inventário | [inventory.md](inventory.md) | <!-- preencher --> |
-| Regras de Negócio | [business-rules-catalog.md](business-rules-catalog.md) | <!-- preencher --> |
-| Dependências | [dependency-map.md](dependency-map.md) | <!-- preencher --> |
-| Perguntas em aberto | [mysteries-found.md](mysteries-found.md) | <!-- preencher --> |
-| Glossário | [glossary.md](glossary.md) | <!-- preencher --> |
+| Inventory | [inventory.md](inventory.md) | <!-- fill in --> |
+| Business Rules | [business-rules-catalog.md](business-rules-catalog.md) | <!-- fill in --> |
+| Dependencies | [dependency-map.md](dependency-map.md) | <!-- fill in --> |
+| Open questions | [mysteries-found.md](mysteries-found.md) | <!-- fill in --> |
+| Glossary | [glossary.md](glossary.md) | <!-- fill in --> |
 
 ---
 
-## 6. Aprovação da equipe
+## 6. Team approval
 
-- Revisado por: <!-- preencher -->
-- Confiança: <!-- preencher: Alta / Média / Baixa -->
-
----
-
-## Critério de pronto
-
-- [ ] Sumário com no máximo 5 frases.
-- [ ] 3 a 5 hipóteses de carving documentadas.
-- [ ] Todos os artefatos-fonte com status preenchido.
-- [ ] Documento em até 3 páginas.
+- Reviewed by: <!-- fill in -->
+- Confidence: <!-- fill in: High / Medium / Low -->
 
 ---
 
-### Continuar a leitura
+## Definition of done
 
-| Anterior | Próximo |
+- [ ] Summary with no more than 5 sentences.
+- [ ] 3 to 5 carving hypotheses documented.
+- [ ] All source artifacts have a completed status.
+- [ ] Document is no longer than 3 pages.
+
+---
+
+### Continue reading
+
+| Previous | Next |
 |---|---|
-| [GUIDE do Estágio 1](GUIDE.md)<br/><sub>Roteiro passo a passo.</sub> | [Estágio 2 — Spec Moderna](../02-spec-moderna/README.md)<br/><sub>Passagem de bastão H1 e início das EARS.</sub> |
+| [Stage 1 GUIDE](GUIDE.md)<br/><sub>Step-by-step schedule.</sub> | [Stage 2 — Modern Spec](../02-spec-moderna/README.md)<br/><sub>H1 handoff and start of EARS.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

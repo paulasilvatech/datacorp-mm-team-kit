@@ -2,8 +2,8 @@
 
 ---
 
-title: "Modelo: Registro de Perguntas em Aberto"
-description: "Estrutura neutra para registrar perguntas em aberto via /catalog-mysteries"
+title: "Template: Open Questions Record"
+description: "Neutral structure for recording open questions through /catalog-mysteries"
 author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at Microsoft"
 date: "2026-04-29"
 version: "1.0.0"
@@ -11,41 +11,41 @@ status: "approved"
 tags: ["template", "mysteries", "archaeology", "stage-1"]
 ---
 
-# Modelo: Registro de Perguntas em Aberto — Estágio 1
+# Template: Open Questions Record — Stage 1
 
-> **Trilha:** [Kit do Time](../../README.md) › [Estágio 1](../README.md) › **Templates** › **mysteries-found**
+> **Track:** [Team Kit](../../README.md) › [Stage 1](../README.md) › **Templates** › **mysteries-found**
 
-**Gabarito de registro de incertezas para o Estágio 1.**
+**Uncertainty record template for Stage 1.**
 
 > [!IMPORTANT]
-> **Portão de rastreabilidade.** Não converta uma pergunta em conclusão, regra ou requisito sem validação humana explícita e evidência em `path:linha`.
+> **Traceability gate.** Do not turn a question into a conclusion, rule, or requirement without explicit human validation and `path:line` evidence.
 
 > [!NOTE]
-> **Este arquivo é um gabarito.** Copie para o seu repositório de time e preencha com os dados reais. Não edite o original.
+> **This file is a template.** Copy it to your team repository and complete it with real data. Do not edit the original.
 
 ---
 
-## Registro
+## Record
 
-| Pergunta aberta | Evidência (`path:linha`) | Impacto | Hipótese (não confirmada) | Pessoa/área responsável | Status |
+| Open question | Evidence (`path:line`) | Impact | Hypothesis (unconfirmed) | Responsible person/area | Status |
 |---|---|---|---|---|---|
-| <!-- preencher --> | <!-- preencher: path:linha --> | <!-- preencher --> | <!-- preencher: não confirmada --> | <!-- preencher --> | <!-- preencher: aberta / aguardando validação humana / encerrada após validação humana --> |
+| <!-- fill in --> | <!-- fill in: path:line --> | <!-- fill in --> | <!-- fill in: unconfirmed --> | <!-- fill in --> | <!-- fill in: open / awaiting human validation / closed after human validation --> |
 
 ---
 
-## Critério de pronto
+## Definition of done
 
-- [ ] Cada pergunta registrada sem resposta ou conclusão.
-- [ ] Evidência no formato `path:linha`.
-- [ ] Hipótese marcada como não confirmada.
-- [ ] Responsável identificado.
+- [ ] Every question is recorded without an answer or conclusion.
+- [ ] Evidence uses the `path:line` format.
+- [ ] The hypothesis is marked as unconfirmed.
+- [ ] An owner is identified.
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [GUIDE do Estágio 1](../GUIDE.md)<br/><sub>Roteiro passo a passo.</sub> | [Arquivo do time](../mysteries-found.md)<br/><sub>Onde você preenche.</sub> |
+| [Stage 1 GUIDE](../GUIDE.md)<br/><sub>Step-by-step schedule.</sub> | [Team file](../mysteries-found.md)<br/><sub>Where you complete it.</sub> |
 
-<sub>[Voltar ao índice do kit](../../README.md)</sub>
+<sub>[Back to the kit index](../../README.md)</sub>

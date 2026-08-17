@@ -1,223 +1,223 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Notação EARS — Requisitos sem Ambiguidade
+# EARS Notation — Unambiguous Requirements
 
-> **Trilha:** [Kit do Time](../README.md) › [Conceitos](00-README.md) › **Notação EARS**
+> **Path:** [Team Kit](../README.md) › [Concepts](00-README.md) › **EARS Notation**
 
-**EARS (Easy Approach to Requirements Syntax) é um conjunto de seis padrões de linguagem que transforma requisitos vagos em afirmações com formato fixo, testáveis automaticamente — é a notação obrigatória para todos os requisitos do SIFAP 2.0.**
+**EARS (Easy Approach to Requirements Syntax) is a set of six language patterns that transforms vague requirements into fixed-format statements that can be tested automatically. It is the mandatory notation for all SIFAP 2.0 requirements.**
 
-![Conceito 05](https://img.shields.io/badge/Conceito-05-171717?style=flat-square) ![Estágio 2](https://img.shields.io/badge/Est%C3%A1gio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-737373?style=flat-square) ![Duração 25 min](https://img.shields.io/badge/Dura%C3%A7%C3%A3o-25%20min-A3A3A3?style=flat-square)
+![Concept 05](https://img.shields.io/badge/Concept-05-171717?style=flat-square) ![Stage 2](https://img.shields.io/badge/Stage-2%20%C2%B7%20Specification-737373?style=flat-square) ![Duration 25 min](https://img.shields.io/badge/Duration-25%20min-A3A3A3?style=flat-square)
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Requirements Engineer, Software Architect, Product Owner |
-| **Pré-requisitos** | Ter lido os programas `.NSN` atribuídos; [Spec-Driven Development](01-spec-driven-development.md) |
-| **Tempo estimado** | 25 minutos |
-| **Estágio** | Estágio 2 — Especificação |
-| **Resultado esperado** | Escrever requisitos EARS válidos com REQ-ID e `source_legacy:` |
+| **Target audience** | Requirements Engineer, Software Architect, Product Owner |
+| **Prerequisites** | Read the assigned `.NSN` programs and [Spec-Driven Development](01-spec-driven-development.md) |
+| **Estimated time** | 25 minutes |
+| **Stage** | Stage 2 — Specification |
+| **Expected outcome** | Write valid EARS requirements with a REQ-ID and `source_legacy:` |
 
 ---
 
-## Conceito
+## Concept
 
-Um requisito mal escrito é a principal causa de retrabalho em projetos de modernização. Afirmações como "o sistema deve ser seguro" ou "processar dados corretamente" não especificam o que o sistema faz, quando faz, nem como verificar se fez.
+A poorly written requirement is the leading cause of rework in modernization projects. Statements such as "the system must be secure" or "process data correctly" do not specify what the system does, when it does it, or how to verify the outcome.
 
-EARS resolve isso com seis padrões sintáticos. Cada padrão mapeia um tipo de comportamento e resulta em uma afirmação com teste objetivo. Quando você não consegue imaginar um teste automatizado para o requisito, o requisito está vago.
-
----
-
-## Por que importa no SIFAP
-
-O SIFAP tem 29 anos de regras implícitas distribuídas em 15 programas `.NSN` e 4 DDMs. Sem EARS, cada membro do time interpreta as regras de forma diferente. Com EARS, a regra extraída de `CALCPGTO.NSN` linha 142 se torna uma afirmação única, com teste associado e rastreada ao código legado que a originou.
+EARS solves this problem with six syntax patterns. Each pattern maps to a type of behavior and produces a statement with an objective test. If you cannot imagine an automated test for a requirement, the requirement is vague.
 
 ---
 
-## Estrutura base de um requisito
+## Why it matters in SIFAP
 
-Todo requisito no workshop segue este formato em YAML:
+SIFAP contains 29 years of implicit rules distributed across 15 `.NSN` programs and four DDMs. Without EARS, each team member interprets the rules differently. With EARS, the rule extracted from line 142 of `CALCPGTO.NSN` becomes a single statement with an associated test and traceability to the legacy code that originated it.
+
+---
+
+## Basic requirement structure
+
+Every workshop requirement uses this YAML format:
 
 ```yaml
 REQ-NNN:
   pattern: <ubiquitous | event-driven | state-driven | optional | unwanted | complex>
-  text: "<afirmação EARS completa>"
-  source_legacy: "<caminho>.NSN#L<inicio>-L<fim>"
+  text: "<complete EARS statement>"
+  source_legacy: "<path>.NSN#L<start>-L<end>"
   acceptance:
-    - "<critério verificável 1>"
-    - "<critério verificável 2>"
+    - "<verifiable criterion 1>"
+    - "<verifiable criterion 2>"
 ```
 
 > [!CAUTION]
-> O campo `source_legacy:` é obrigatório em todos os requisitos. O job de CI `legacy-traceability` rejeita PRs que contenham REQ-IDs sem esse campo.
+> The `source_legacy:` field is mandatory in every requirement. The `legacy-traceability` CI job rejects PRs containing REQ-IDs without this field.
 
 ---
 
-## Os 5 padrões EARS
+## The 5 EARS patterns
 
-### Padrão 1 — Ubiquitous (sempre vale)
+### Pattern 1 — Ubiquitous (always applies)
 
-**Quando usar:** a regra vale em qualquer momento, sem condição.
+**When to use:** The rule applies at all times without a condition.
 
 **Template:**
 
 ```
-O sistema deve <ação>.
+The system shall <action>.
 ```
 
-**Exemplo SIFAP:**
+**SIFAP example:**
 
 ```yaml
 REQ-001:
   pattern: ubiquitous
-  text: "O sistema deve registrar data e hora de cada alteração em registros de beneficiários."
+  text: "The system shall record the date and time of every change to beneficiary records."
   source_legacy: 01-arqueologia/legado-sifap/natural-programs/CADBENEF.NSP#L45-L52
   acceptance:
-    - "Todo registro de beneficiário alterado contém timestamp de modificação"
-    - "O timestamp usa fuso horário UTC"
+    - "Every modified beneficiary record contains a modification timestamp"
+    - "The timestamp uses the UTC time zone"
 ```
 
-**Exemplo ruim:**
+**Poor example:**
 
 ```
-O sistema deve ter auditoria completa.
+The system shall provide complete auditing.
 ```
 
-Problema: "auditoria completa" não é testável.
+Problem: "complete auditing" is not testable.
 
 ---
 
-### Padrão 2 — Event-driven (quando algo acontece)
+### Pattern 2 — Event-driven (when something happens)
 
-**Quando usar:** a regra dispara em resposta a um evento específico.
+**When to use:** The rule is triggered by a specific event.
 
 **Template:**
 
 ```
-Quando <evento>, o sistema deve <ação>.
+When <event>, the system shall <action>.
 ```
 
-**Exemplo SIFAP:**
+**SIFAP example:**
 
 ```yaml
 REQ-042:
   pattern: event-driven
-  text: "Quando um pagamento de benefício for processado, o sistema deve calcular o valor líquido descontando as contribuições vigentes."
+  text: "When a benefit payment is processed, the system shall calculate the net amount by deducting the current contributions."
   source_legacy: 01-arqueologia/legado-sifap/natural-programs/CALCPGTO.NSN#L120-L198
   acceptance:
-    - "Dado beneficiário com bruto R$ 1.000,00 e alíquota 11%, o líquido calculado é R$ 890,00"
-    - "Resultado é registrado na tabela pagamentos com status CALCULADO"
+    - "Given a beneficiary with a gross amount of $1,000.00 and an 11% contribution rate, the calculated net amount is $890.00"
+    - "The result is recorded in the payments table with CALCULATED status"
 ```
 
-**Exemplo ruim:**
+**Poor example:**
 
 ```
-Quando houver pagamento, processar.
+When there is a payment, process it.
 ```
 
-Problema: "processar" não descreve a ação esperada.
+Problem: "process" does not describe the expected action.
 
 ---
 
-### Padrão 3 — State-driven (enquanto um estado persiste)
+### Pattern 3 — State-driven (while a state persists)
 
-**Quando usar:** a regra vale enquanto o sistema ou entidade está em um estado particular.
+**When to use:** The rule applies while the system or entity is in a particular state.
 
 **Template:**
 
 ```
-Enquanto <condição de estado>, o sistema deve <ação>.
+While <state condition>, the system shall <action>.
 ```
 
-**Exemplo SIFAP:**
+**SIFAP example:**
 
 ```yaml
 REQ-078:
   pattern: state-driven
-  text: "Enquanto o beneficiário estiver com situação SUSPENSO, o sistema deve bloquear o processamento de novos pagamentos para aquele beneficiário."
+  text: "While the beneficiary has SUSPENDED status, the system shall block the processing of new payments for that beneficiary."
   source_legacy: 01-arqueologia/legado-sifap/natural-programs/CTRLPGTO.NSN#L33-L41
   acceptance:
-    - "Tentativa de processar pagamento para beneficiário SUSPENSO retorna erro BENEFICIARIO_SUSPENSO"
-    - "Nenhum registro de pagamento é criado para beneficiário SUSPENSO"
+    - "An attempt to process a payment for a SUSPENDED beneficiary returns the BENEFICIARY_SUSPENDED error"
+    - "No payment record is created for a SUSPENDED beneficiary"
 ```
 
 ---
 
-### Padrão 4 — Optional (quando o usuário escolhe)
+### Pattern 4 — Optional (when the user chooses)
 
-**Quando usar:** a regra se aplica apenas se o usuário ativou uma opção ou escolheu uma configuração.
+**When to use:** The rule applies only when the user has enabled an option or selected a configuration.
 
 **Template:**
 
 ```
-Onde <opção selecionada>, o sistema deve <ação>.
+Where <selected option>, the system shall <action>.
 ```
 
-**Exemplo SIFAP:**
+**SIFAP example:**
 
 ```yaml
 REQ-105:
   pattern: optional
-  text: "Onde o operador selecionar exportação em formato CSV, o sistema deve gerar o arquivo com cabeçalho na primeira linha e codificação UTF-8."
+  text: "Where the operator selects CSV export, the system shall generate the file with a header in the first row and UTF-8 encoding."
   source_legacy: 01-arqueologia/legado-sifap/natural-programs/EXPRELAT.NSN#L201-L215
   acceptance:
-    - "Arquivo gerado tem extensão .csv"
-    - "Primeira linha contém os nomes das colunas"
-    - "Conteúdo está em UTF-8"
+    - "The generated file has a .csv extension"
+    - "The first row contains the column names"
+    - "The content uses UTF-8 encoding"
 ```
 
 ---
 
-### Padrão 5 — Unwanted behavior (o que não pode acontecer)
+### Pattern 5 — Unwanted behavior (what must not happen)
 
-**Quando usar:** proibições explícitas — segurança, compliance ou invariantes do sistema.
+**When to use:** Explicit prohibitions, including security, compliance, or system invariants.
 
 **Template:**
 
 ```
-O sistema não deve <comportamento proibido>.
+The system shall not <prohibited behavior>.
 ```
 
-**Exemplo SIFAP:**
+**SIFAP example:**
 
 ```yaml
 REQ-200:
   pattern: unwanted
-  text: "O sistema não deve expor o CPF completo do beneficiário em respostas de API — deve exibir apenas os quatro últimos dígitos."
+  text: "The system shall not expose a beneficiary's complete tax ID in API responses—it shall display only the last four digits."
   source_legacy: 01-arqueologia/legado-sifap/natural-programs/CADBENEF.NSP#L88-L90
   acceptance:
-    - "Endpoint GET /api/v1/beneficiarios/{id} retorna CPF no formato ***.***.***-XX"
-    - "Logs de aplicação não registram CPF em nenhuma circunstância"
+    - "Endpoint GET /api/v1/beneficiarios/{id} returns the tax ID in the format ***.***.***-XX"
+    - "Application logs never record the tax ID"
 ```
 
 ---
 
-## Padrão 6 — Complex (combinacao de padrões)
+## Pattern 6 — Complex (combination of patterns)
 
-O 6º padrão EARS combina condições de estado, evento e opção em um único requisito. É consistente com a nomenclatura do cheat-sheet [`09-cheat-sheets/spec-kit-workflow.md`](../09-cheat-sheets/spec-kit-workflow.md), que lista os seis padrões EARS.
+The sixth EARS pattern combines state, event, and option conditions in a single requirement. It is consistent with the terminology in [`09-cheat-sheets/spec-kit-workflow.md`](../09-cheat-sheets/spec-kit-workflow.md), which lists all six EARS patterns.
 
 **Template:**
 
 ```
-Enquanto <estado>, quando <evento>, onde <opção>, o sistema deve <ação>.
+While <state>, when <event>, where <option>, the system shall <action>.
 ```
 
-**Exemplo SIFAP:**
+**SIFAP example:**
 
 ```yaml
 REQ-250:
   pattern: complex
-  text: "Enquanto o beneficiário estiver com situação ATIVO, quando um novo pagamento for processado, onde a modalidade selecionada for crédito em conta, o sistema deve registrar o número da conta bancária no histórico de pagamentos."
+  text: "While the beneficiary has ACTIVE status, when a new payment is processed, where the selected method is account credit, the system shall record the bank account number in the payment history."
   source_legacy: 01-arqueologia/legado-sifap/natural-programs/CTRLPGTO.NSN#L55-L72
   acceptance:
-    - "Pagamento de beneficiário ATIVO com modalidade crédito em conta registra conta bancária no histórico"
-    - "Pagamento de beneficiário SUSPENSO não aciona este fluxo"
+    - "An ACTIVE beneficiary payment using account credit records the bank account in the history"
+    - "A payment for a SUSPENDED beneficiary does not trigger this flow"
 ```
 
 > [!TIP]
-> Use o padrão Complex com moderação. Se o requisito combinar mais de duas condições sem perder clareza, ele é um bom candidato ao Complex. Se parecer difícil de ler, divida em dois REQ-IDs separados.
+> Use the Complex pattern sparingly. If a requirement combines no more than two conditions without losing clarity, Complex may be appropriate. If it is difficult to read, split it into two REQ-IDs.
 
 ---
 
-## Fluxo de um EARS até o teste
+## From an EARS requirement to a test
 
 ```mermaid
 %%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
@@ -226,88 +226,88 @@ flowchart LR
     classDef gate fill:#FFFFFF,stroke:#171717,color:#171717,stroke-width:2px
     classDef muted fill:#FAFAFA,stroke:#A3A3A3,color:#404040
 
-    A["Regra no legado<br/><sub>.NSN ou .ddm</sub>"]:::muted
+    A["Legacy rule<br/><sub>.NSN or .ddm</sub>"]:::muted
     B["BR-NNN<br/><sub>business-rules-catalog.md</sub>"]:::step
-    C["REQ-NNN (EARS)<br/><sub>padrão + texto + source_legacy</sub>"]:::step
-    D["Critérios de aceite<br/><sub>acceptance: [...]</sub>"]:::step
-    E["Teste automatizado<br/><sub>JUnit 5 + Testcontainers</sub>"]:::step
-    F["CI verde<br/><sub>legacy-traceability aprovado</sub>"]:::gate
+    C["REQ-NNN (EARS)<br/><sub>pattern + text + source_legacy</sub>"]:::step
+    D["Acceptance criteria<br/><sub>acceptance: [...]</sub>"]:::step
+    E["Automated test<br/><sub>JUnit 5 + Testcontainers</sub>"]:::step
+    F["Green CI<br/><sub>legacy-traceability passed</sub>"]:::gate
 
     A --> B --> C --> D --> E --> F
 ```
 
 ---
 
-## Teste do espelho
+## The mirror test
 
-Antes de considerar uma EARS pronta, pergunte:
+Before considering an EARS requirement complete, ask:
 
-> "Como eu testaria isso automaticamente?"
+> "How would I test this automatically?"
 
-Se a resposta for vaga ou inexistente, o requisito está incompleto.
+If the answer is vague or nonexistent, the requirement is incomplete.
 
-| Requisito vago | Requisito testável |
+| Vague requirement | Testable requirement |
 |---|---|
-| O sistema deve ser seguro | O sistema não deve expor CPF completo em respostas de API |
-| Processar dados | Quando pagamento for processado, calcular valor líquido conforme fórmula X |
-| Auditoria completa | Quando beneficiário for alterado, registrar operador, data e valores anterior e novo |
-| Funcionar bem | Quando solicitação for recebida, responder em até 2 segundos sob carga normal |
+| The system shall be secure | The system shall not expose a complete tax ID in API responses |
+| Process data | When a payment is processed, calculate the net amount according to formula X |
+| Complete auditing | When a beneficiary is changed, record the operator, date, previous values, and new values |
+| Work well | When a request is received, respond within two seconds under normal load |
 
 ---
 
-## Checklist de validação de um EARS
+## EARS validation checklist
 
-- [ ] **Identificador único.** O REQ-ID existe e segue o formato `REQ-NNN`.
-- [ ] **Padrão correto.** O padrão declarado em `pattern:` corresponde à estrutura do texto.
-- [ ] **Texto sem ambiguidade.** Não contém "adequado", "eficiente", "completo", "seguro" sem definição quantitativa.
-- [ ] **`source_legacy:` preenchido.** Aponta para arquivo e linhas específicas, ou declara `[GREENFIELD]` com justificativa.
-- [ ] **Critérios de aceite verificáveis.** Cada item de `acceptance:` descreve um cenário com entrada, ação e resultado esperado.
-- [ ] **Teste imaginável.** É possível descrever um teste automatizado para cada critério de aceite.
-- [ ] **Tamanho adequado.** Se o requisito cobre mais de um comportamento distinto, divida em dois REQ-IDs.
+- [ ] **Unique identifier.** The REQ-ID exists and follows the `REQ-NNN` format.
+- [ ] **Correct pattern.** The pattern declared in `pattern:` matches the text structure.
+- [ ] **Unambiguous text.** It does not use "appropriate," "efficient," "complete," or "secure" without a quantitative definition.
+- [ ] **Completed `source_legacy:`.** It points to a specific file and lines or declares `[GREENFIELD]` with a justification.
+- [ ] **Verifiable acceptance criteria.** Every `acceptance:` item describes a scenario with input, action, and expected result.
+- [ ] **Test can be imagined.** An automated test can be described for every acceptance criterion.
+- [ ] **Appropriate size.** If the requirement covers more than one distinct behavior, split it into two REQ-IDs.
 
 ---
 
-## Erros comuns e como evitar
+## Common mistakes and how to avoid them
 
-| Sintoma | Causa | Correcao |
+| Symptom | Cause | Correction |
 |---|---|---|
-| Não sabe qual padrão usar | Regra ainda não foi categorizada | Comece por event-driven (`Quando…`) — cobre 60% dos casos |
-| `source_legacy:` não encontrado | Requisito escrito de memória | Volte ao `.NSN` e localize o trecho. Sem evidência, não há requisito. |
-| Requisito ocupa 3 parágrafos | São dois ou mais requisitos distintos | Divida. Um REQ-ID = um comportamento atômico. |
-| Time não chega a consenso sobre o texto | Ambiguidade no legado | Execute `/speckit.clarify` e registre a decisão em ADR. |
+| Unsure which pattern to use | The rule has not yet been categorized | Start with event-driven (`When…`)—it covers 60% of cases |
+| Cannot find `source_legacy:` | Requirement written from memory | Return to the `.NSN` and locate the section. Without evidence, there is no requirement. |
+| Requirement is three paragraphs long | It contains two or more distinct requirements | Split it. One REQ-ID = one atomic behavior. |
+| Team cannot agree on the text | Ambiguity in the legacy system | Run `/speckit.clarify` and record the decision in an ADR. |
 
 ---
 
-## Prompts uteis no Copilot Chat
+## Useful prompts in Copilot Chat
 
 ```text
-# Converter regra do catálogo em EARS
-/ears-convert BR-042: <texto da regra confirmada pelo time>.
-Use CALCPGTO.NSN#L120-L198 como source_legacy.
+# Convert a catalog rule to EARS
+/ears-convert BR-042: <text of the rule confirmed by the team>.
+Use CALCPGTO.NSN#L120-L198 as source_legacy.
 
-# Validar uma EARS escrita
-"@architect, esta EARS é testável? Como você escreveria o teste?
-REQ-042: <texto do requisito>"
+# Validate a written EARS requirement
+"@architect, is this EARS requirement testable? How would you write the test?
+REQ-042: <requirement text>"
 
-# Identificar lacunas de cobertura
+# Identify coverage gaps
 /speckit.analyze
-Quais regras confirmadas do catálogo ainda não têm REQ-ID?
+Which confirmed catalog rules do not yet have a REQ-ID?
 ```
 
 ---
 
-## Referências
+## References
 
-- [Guia do Estágio 2](../02-spec-moderna/GUIDE.md)
-- [Cheat-sheet do Spec-Kit](../09-cheat-sheets/spec-kit-workflow.md)
+- [Stage 2 Guide](../02-spec-moderna/GUIDE.md)
+- [Spec-Kit cheat sheet](../09-cheat-sheets/spec-kit-workflow.md)
 - [LEGACY-EXPLORATION-CHECKLIST](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md)
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [3 modos do Copilot](04-3-modos-do-copilot.md)<br/><sub>Ask, Plan e Agent — critérios de escolha.</sub> | [Architecture Decision Records](06-architecture-decision-records.md)<br/><sub>Como registrar decisões para o time futuro.</sub> |
+| [Copilot's 3 Modes](04-3-modos-do-copilot.md)<br/><sub>Ask, Plan, and Agent—selection criteria.</sub> | [Architecture Decision Records](06-architecture-decision-records.md)<br/><sub>How to record decisions for the future team.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>
