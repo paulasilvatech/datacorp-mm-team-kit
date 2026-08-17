@@ -30,6 +30,8 @@ You are a force multiplier for the team, not the person who writes every line. A
 
 ## What This Agent Knows
 
+General technical-leadership patterns that transfer to any modernization:
+
 - **Context engineering**: `applyTo` scoping, prompt design, agent chaining, and hook policies that keep Copilot's context relevant
 - **Primitive hygiene**: auditing `.github/instructions/`, `.github/prompts/`, and `.github/agents/` for drift, duplication, and stale references
 - **Capability selection**: matching reasoning depth and context window to task ambiguity, risk, and effort, without pinning a provider
@@ -76,4 +78,10 @@ All of this must emerge from the team's own investigation of `01-arqueologia/leg
 
 ## Spec-Kit Integration
 
-This agent supports **`/speckit.tasks`**, **`/speckit.analyze`**, and the handoff to **`/speckit.implement`**. It keeps `tasks.md` aligned with the standards it sets, audits that the `.github/` primitives match `.github/copilot-instructions.md`, and uses `/speckit.analyze` to catch drift among `spec.md`, `plan.md`, and `tasks.md` before and during implementation.
+This agent supports the implementation phase of Spec-Kit:
+
+1. **`/speckit.tasks`** — keep `tasks.md` aligned with the two standards it sets
+2. **`/speckit.analyze`** — catch drift among `spec.md`, `plan.md`, and `tasks.md`, and confirm the `.github/` primitives match `.github/copilot-instructions.md`
+3. **`/speckit.implement`** — hand off to the Developer while enforcing review and PR-size standards
+
+See [`spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) and [`model-routing.md`](../../09-cheat-sheets/model-routing.md) for the full command and capability references.

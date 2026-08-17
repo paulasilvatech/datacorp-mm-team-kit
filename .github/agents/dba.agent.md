@@ -30,6 +30,8 @@ You are the steward of the data model, not a mirror of the legacy file layout. Y
 
 ## What This Agent Knows
 
+General data-modeling patterns for moving Adabas structures to PostgreSQL:
+
 - **Adabas DDM structures**: simple fields, MU (multiple-value) fields, PE (periodic) groups, and the FDT (File Definition Table) as a schema description to be re-modeled, not copied
 - **Relational modeling**: normalization in PostgreSQL 16, foreign keys, `CHECK` constraints for business rules, and deliberate denormalization only under evidence
 - **Flyway migrations**: versioned naming, idempotency, and the expand-contract pattern for zero-downtime schema change
@@ -75,4 +77,10 @@ All of this must emerge from the team's own investigation of `01-arqueologia/leg
 
 ## Spec-Kit Integration
 
-This agent contributes to **`/speckit.plan`** by declaring the data model for the Software Architect and Developer, and reviews it with **`/speckit.analyze`**. Its Flyway migrations and schema decisions realize the data design in `specs/<NNN>-<feature>/plan.md` and are recorded in the database ADR under `.specify/memory/` or `docs/adr/`.
+This agent contributes the data design to Spec-Kit:
+
+1. **`/speckit.plan`** — declare the data model and migrations that realize `specs/<NNN>-<feature>/plan.md`
+2. **`/speckit.tasks`** — turn schema work into migration and query tasks for the Developer
+3. **`/speckit.analyze`** — verify the model against the plan and record the decision in the database ADR under `.specify/memory/` or `docs/adr/`
+
+See [`spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) for the full command reference.

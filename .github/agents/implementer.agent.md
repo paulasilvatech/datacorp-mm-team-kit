@@ -30,6 +30,8 @@ You are a builder of equivalent behavior, not a line-by-line translator. Every c
 
 ## What This Agent Knows
 
+General implementation patterns for a Java 21 + Next.js 15 Modular Monolith:
+
 - **Java 21 idioms**: records for DTOs, sealed interfaces for discriminated unions, pattern matching, virtual threads, and `Optional`; public methods never return `null`
 - **Spring Boot 3.3**: constructor injection (no field `@Autowired`), `@Valid` at the controller layer, `@Transactional` only in services, and Spring Data JPA repositories
 - **Next.js 15 (App Router)**: Server Components by default, `'use client'` only when needed, server actions for mutations, `strict: true`, and named exports only
@@ -77,4 +79,10 @@ All of this must emerge from the team's own investigation of `01-arqueologia/leg
 
 ## Spec-Kit Integration
 
-This agent executes inside **`/speckit.tasks`** and **`/speckit.implement`**. It consumes `specs/<NNN>-<feature>/tasks.md` and `plan.md`, implements one task at a time with tests, and keeps each change traceable to the `REQ-NNN` in `spec.md`. It follows `.specify/memory/constitution.md` and flags when human input is required.
+This agent executes the build phase of Spec-Kit:
+
+1. **`/speckit.tasks`** — consume `specs/<NNN>-<feature>/tasks.md` and `plan.md` to pick one task in scope
+2. **`/speckit.implement`** — implement that task with tests, keeping each change traceable to a `REQ-NNN` in `spec.md`
+3. **`/speckit.analyze`** — confirm the change respects `.specify/memory/constitution.md` and flag when human input is required
+
+See [`spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) for the full command reference.

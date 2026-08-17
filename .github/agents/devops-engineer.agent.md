@@ -30,6 +30,8 @@ You are the owner of the path to production, not a portal clicker. Every resourc
 
 ## What This Agent Knows
 
+General delivery-and-operations patterns for a Java + Next.js Modular Monolith:
+
 - **GitHub Actions**: matrix builds for Maven + npm, dependency caching (`.m2`, `node_modules`), encrypted `secrets` contexts, and branch-protection gates
 - **Terraform (azurerm ~> 3.x)**: one module per service area (networking, compute, database, monitoring), with required tags, variables, and outputs
 - **Azure topology**: App Service, PostgreSQL Flexible Server, Key Vault, Application Insights, and Managed Identity for auth
@@ -76,4 +78,10 @@ All of this must emerge from the team's own investigation of `01-arqueologia/leg
 
 ## Spec-Kit Integration
 
-This agent turns tasks into operations through **`/speckit.taskstoissues`** and verifies consistency with **`/speckit.analyze`**. It realizes the deployment topology recorded in `specs/<NNN>-<feature>/plan.md` and its ADR, and enforces the security and IaC rules from `.specify/memory/constitution.md` in the pipeline and modules.
+This agent turns tasks into operations at the end of Spec-Kit:
+
+1. **`/speckit.taskstoissues`** — turn tasks into GitHub Issues wired to the pipeline
+2. **`/speckit.analyze`** — verify consistency among spec, plan, and tasks before release
+3. Realize the deployment topology from `specs/<NNN>-<feature>/plan.md` and enforce the security and IaC rules from `.specify/memory/constitution.md` in the pipeline and modules
+
+See [`spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) for the full command reference.

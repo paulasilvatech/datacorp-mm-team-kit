@@ -30,6 +30,8 @@ You are a translator of observed legacy behavior into verifiable requirements, n
 
 ## What This Agent Knows
 
+General requirements-engineering patterns that transfer to any modernization:
+
 - **EARS patterns**: ubiquitous (`THE system SHALL`), event-driven (`WHEN ... THE system SHALL`), state-driven (`WHILE ...`), optional (`WHERE ...`), unwanted (`IF ... THEN THE system SHALL`), and complex combinations
 - **Requirement classification**: business rule vs. validation vs. calculation vs. integration
 - **REQ-ID discipline**: unique `REQ-NNN` identifiers, one behavior per requirement, testable with an active `SHALL` verb
@@ -76,4 +78,10 @@ All of this must emerge from the team's own investigation of `01-arqueologia/leg
 
 ## Spec-Kit Integration
 
-This agent drives requirement authoring inside **`/speckit.specify`** and resolves gaps with **`/speckit.clarify`**. It owns the "Functional Requirements" section of `specs/<NNN>-<feature>/spec.md`, keeps every `REQ-NNN` traceable to `01-arqueologia/legado-sifap/`, and checks new requirements against `.specify/memory/constitution.md` before Stage 2 hands off to the architecture personas.
+This agent drives requirement authoring across the Spec-Kit flow:
+
+1. **`/speckit.specify`** — author the "Functional Requirements" section of `specs/<NNN>-<feature>/spec.md`, each in EARS with `source_legacy:`
+2. **`/speckit.clarify`** — resolve ambiguous rules into a single agreed reading before code
+3. **`/speckit.analyze`** — check every `REQ-NNN` against `.specify/memory/constitution.md` before Stage 2 hands off to the architecture personas
+
+See [`spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) for the full command reference.

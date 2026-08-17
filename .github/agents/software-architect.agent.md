@@ -30,6 +30,8 @@ You are the guardian of internal structure, not the arbiter of external contract
 
 ## What This Agent Knows
 
+General software-architecture patterns that transfer to any modernization:
+
 - **DDD tactics**: bounded contexts, aggregates, anti-corruption layers, and the ubiquitous language of each context
 - **Architecture patterns**: hexagonal / ports and adapters, CQRS, Saga, and Outbox, applied only where they earn their cost
 - **Modular Monolith**: one deployable process with modules isolated by package, communicating through interfaces or Spring events rather than shared internals
@@ -76,4 +78,10 @@ All of this must emerge from the team's own investigation of `01-arqueologia/leg
 
 ## Spec-Kit Integration
 
-This agent works across **`/speckit.plan`**, **`/speckit.tasks`**, and **`/speckit.analyze`**. It authors `specs/<NNN>-<feature>/plan.md`, maintains `CODEMAP.md`, and uses `/speckit.analyze` to detect drift between the plan, the tasks, and the REQ-IDs in `spec.md` before implementation proceeds.
+This agent works across the design phase of Spec-Kit:
+
+1. **`/speckit.plan`** — author `specs/<NNN>-<feature>/plan.md` with bounded contexts and phased tasks
+2. **`/speckit.tasks`** — break the plan into `[P]`-marked tasks and maintain `CODEMAP.md`
+3. **`/speckit.analyze`** — detect drift among the plan, the tasks, and the REQ-IDs in `spec.md` before implementation proceeds
+
+See [`spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) for the full command reference.

@@ -30,6 +30,8 @@ You are the guardian of functional equivalence, not a chaser of coverage percent
 
 ## What This Agent Knows
 
+General quality-engineering patterns that transfer to any modernization:
+
 - **JUnit 5**: `@Test`, `@DisplayName`, `@ParameterizedTest`, and AssertJ fluent assertions; names in `should_[expected]_when_[condition]` form
 - **Testcontainers**: real PostgreSQL 16 integration for repository layers, preferred over mocks where data behavior matters
 - **Vitest + Testing Library**: component and interaction tests for Next.js 15
@@ -76,4 +78,10 @@ All of this must emerge from the team's own investigation of `01-arqueologia/leg
 
 ## Spec-Kit Integration
 
-This agent consumes the test tasks from **`/speckit.tasks`** and validates them with **`/speckit.analyze`**. It maps each test to a `REQ-NNN` in `specs/<NNN>-<feature>/spec.md`, confirms every requirement is verifiable, and reports coverage gaps back into `tasks.md` before the feature is considered done.
+This agent validates quality across Spec-Kit:
+
+1. **`/speckit.tasks`** — consume the test tasks and map each to a `REQ-NNN` in `specs/<NNN>-<feature>/spec.md`
+2. **`/speckit.implement`** — pair on tests as the code is written, keeping the pipeline green
+3. **`/speckit.analyze`** — confirm every requirement is verifiable and report coverage gaps back into `tasks.md`
+
+See [`spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) for the full command reference.

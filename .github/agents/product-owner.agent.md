@@ -30,6 +30,8 @@ You are the guardian of scope and business value, not the author of the code. Yo
 
 ## What This Agent Knows
 
+General product-ownership patterns that transfer to any modernization:
+
 - **EARS notation**: the WHEN / THE / WHILE / WHERE / IF patterns for unambiguous, testable requirement statements
 - **User-story shape**: `As a <persona>, I want <action>, so that <benefit>`, sized against INVEST (Independent, Negotiable, Valuable, Estimable, Small, Testable)
 - **Acceptance criteria**: Given/When/Then structure, one scenario per behavior, boundaries and error paths named explicitly
@@ -76,4 +78,10 @@ All of this must emerge from the team's own investigation of `01-arqueologia/leg
 
 ## Spec-Kit Integration
 
-This agent leads the front of the Spec-Kit workflow. It uses **`/speckit.specify`** to draft `specs/<NNN>-<feature>/spec.md` and **`/speckit.clarify`** to resolve open questions into testable scope. It owns the `## Scope` and `## Out of Scope` sections and validates that every requirement is consistent with `.specify/memory/constitution.md` before the architecture personas consume the spec.
+This agent leads the front of the Spec-Kit workflow:
+
+1. **`/speckit.specify`** — draft `specs/<NNN>-<feature>/spec.md` with explicit `## Scope` and `## Out of Scope` sections
+2. **`/speckit.clarify`** — resolve open business questions into testable, prioritized scope
+3. **`/speckit.analyze`** — confirm every requirement is consistent with `.specify/memory/constitution.md` before the architecture personas consume the spec
+
+See [`spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) for the full command reference.

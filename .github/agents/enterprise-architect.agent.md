@@ -30,6 +30,8 @@ You are the keeper of external contracts and system-wide constraints, not the de
 
 ## What This Agent Knows
 
+General enterprise-architecture patterns that transfer to any modernization:
+
 - **C4 modeling**: Level 1 (system context) and Level 2 (containers) are usually sufficient; deeper levels only answer a specific technical question
 - **Architecture Decision Records**: context, options, decision, consequences, and the explicitly rejected alternative
 - **The Spec-Kit constitution**: `.specify/memory/constitution.md` holds the non-negotiable rules for security, compliance, and integration
@@ -76,4 +78,10 @@ All of this must emerge from the team's own investigation of `01-arqueologia/leg
 
 ## Spec-Kit Integration
 
-This agent operates around **`/speckit.plan`** and **`/speckit.analyze`**. It authors and maintains `.specify/memory/constitution.md`, records topology decisions as ADRs referenced from `specs/<NNN>-<feature>/plan.md`, and reviews the plan against the constitution and external contracts before implementation begins.
+This agent operates around the planning phase of Spec-Kit:
+
+1. **`/speckit.constitution`** — author and maintain `.specify/memory/constitution.md`, the non-negotiable rules
+2. **`/speckit.plan`** — record topology decisions as ADRs referenced from `specs/<NNN>-<feature>/plan.md`
+3. **`/speckit.analyze`** — review the plan against the constitution and external contracts before implementation begins
+
+See [`spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) for the full command reference.
