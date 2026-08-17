@@ -62,29 +62,29 @@ flowchart LR
 
 ```text
 workspace/
-├── README.md                       <- you are here
-├── 00-START-HERE.md               <- 15 min for anyone
-├── 00-SETUP.md                     <- set up laptop + Copilot
-├── 00-TEAM-FLOW.md                 <- canonical schedule for the day
-├── 00-SITEMAP.md                   <- visual map of the kit
-├── 00-GIT-WORKFLOW.md              <- branches, PRs, merges
+├── README.md                            <- you are here
+├── 00-START-HERE.md                     <- 15 min for anyone
+├── 00-SETUP.md                          <- set up laptop + Copilot
+├── 00-TEAM-FLOW.md                      <- canonical schedule for the day
+├── 00-SITEMAP.md                        <- visual map of the kit
+├── 00-GIT-WORKFLOW.md                   <- branches, PRs, merges
 │
-├── 01-archaeology/                 STAGE 1 - read legacy SIFAP
-│   ├── GUIDE.md                    (stage walkthrough)
+├── 01-archaeology/                      STAGE 1 - read legacy SIFAP
+│   ├── GUIDE.md                         (stage walkthrough)
 │   ├── LEGACY-EXPLORATION-CHECKLIST.md  (required gate before Stage 2)
-│   └── legacy-sifap/               (15 .NSN + 4 DDMs + historical docs)
-├── 02-modern-spec/                STAGE 2 - write EARS, ADRs, C4
-├── 03-implementation/               STAGE 3 - Java + Next.js + tests
-├── 04-evolution/                    STAGE 4 - Agent mode + Terraform
+│   └── legacy-sifap/                    (24 Natural members + 4 DDMs + 1 FDT)
+├── 02-modern-spec/                      STAGE 2 - write EARS, ADRs, C4
+├── 03-implementation/                   STAGE 3 - Java + Next.js + tests
+├── 04-evolution/                        STAGE 4 - Agent mode + Terraform
 │
-├── 05-personas/                    10 personas (pick 2 = your pair)
-├── 06-stage-agents/          4 Copilot agents (1 per stage)
-├── 07-concepts/                   core concepts (EARS, ADR, SDD, agents)
-├── 09-cheat-sheets/                3 quick reference cards
+├── 05-personas/                         10 personas (pick 2 = your pair)
+├── 06-stage-agents/                     4 Copilot agents (1 per stage)
+├── 07-concepts/                         core concepts (EARS, ADR, SDD, agents)
+├── 09-cheat-sheets/                     3 quick reference cards
 │
-├── docs/                           FAQ, troubleshooting, runbook, ADRs
-├── assets/                         SVGs and diagrams
-└── specs/                          Spec-Kit artifacts created by the team
+├── docs/                                FAQ, troubleshooting, runbook, ADRs
+├── assets/                              SVGs and diagrams
+└── specs/                               Spec-Kit artifacts created by the team
 ```
 
 ---
@@ -246,7 +246,7 @@ Every document here follows five principles:
 | **Spec-Kit** | Official GitHub toolkit for specification-driven development; it creates `spec.md`, `plan.md`, and `tasks.md` for each feature |
 | **Persona-kit** | Set of Copilot artifacts (agents, prompts, skills) that configures a persona for the workshop |
 | **Agent-kit** | Copilot agent for the current stage; each stage has a dedicated agent (`@archaeologist`, `@architect`, `@builder`, `@evolution`) |
-| **source_legacy** | Required field in each EARS requirement that points to the source `.NSN` or `.ddm` file; CI checks it |
+| **source_legacy** | Required field in each EARS requirement that points to the source `.NSP`/`.NSN` or `.ddm` file; CI checks it |
 | **Bounded context** | Domain boundary that groups concepts with a coherent meaning (for example: Payment, Benefit, Inspection in SIFAP) |
 | **CI green** | State in which the continuous integration pipeline passes all checks; required before merging a Pull Request |
 

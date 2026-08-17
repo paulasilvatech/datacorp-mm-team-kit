@@ -107,7 +107,7 @@ RECOMMEND_VERB_RE = re.compile(
     r"\b(use|uses|using|used|try|tries|trying|install|installs|installing|"
     r"adopt|adopts|adopting|switch|switching|migrate|migrating|recommend|"
     r"recommends|recommended|recommending|prefer|prefers|choose|choosing|"
-    r"pick|picking|run|running)\b",
+    r"pick|picking|run|running|open|opens|opening)\b",
     re.IGNORECASE,
 )
 NEGATION_RE = re.compile(
@@ -505,11 +505,69 @@ def check_hooks(hook_files: list[str], subdir_hook_files: list[str], reporter: R
 # --- Markdown structure and links ------------------------------------------
 
 H1_RE = re.compile(r"^ {0,3}#(?:[ \t].*)?$")
-FENCE_RE = re.compile(r"^ {0,3}(`{3,}|~{3,})")
+FENCE_RE = re.compile(r"^( {0,3})(`{3,}|~{3,})(.*)$")
 INLINE_CODE_RE = re.compile(r"`[^`]*`")
 LINK_RE = re.compile(r"!?\[[^\]]*\]\(\s*([^)]*?)\s*\)")
 REF_DEF_RE = re.compile(r"^\s*\[[^\]]+\]:\s*(\S+)")
 URI_SCHEME_RE = re.compile(r"^[A-Za-z][A-Za-z0-9+.\-]*:")
+
+
+def fence_mask(lines: list[str]) -> list[bool]:
+    """Mark fenced-code lines (CommonMark-correct).
+
+    A closing fence must repeat the opening character, be at least as long, and
+    carry no info string. This prevents an inner ```lang fence (which has an
+    info string) from being mistaken for the close of an outer ``` block.
+    """
+    mask = [False] * len(lines)
+    in_fence = False
+    fence_char = ""
+    fence_len = 0
+    for i, line in enumerate(lines):
+        match = FENCE_RE.match(line)
+        if not in_fence:
+            if match:
+                in_fence = True
+                fence_char = match.group(2)[0]
+                fence_len = len(match.group(2))
+                mask[i] = True
+        else:
+            mask[i] = True
+            if (
+                match
+                and match.group(2)[0] == fence_char
+                and len(match.group(2)) >= fence_len
+                and match.group(3).strip() == ""
+            ):
+                in_fence = False
+                fence_char = ""
+                fence_len = 0
+    return mask
+
+
+def frontmatter_end(lines: list[str]) -> int:
+    """Index of the first line after the YAML frontmatter, or 0 if there is none."""
+    if not lines or lines[0].strip() != "---":
+        return 0
+    for i in range(1, len(lines)):
+        if lines[i].strip() == "---":
+            return i + 1
+    return 0
+
+
+def iter_prose(rel: str):
+    """Yield (lineno, text) for prose lines only.
+
+    Fenced-code lines are skipped and inline-code spans are stripped, so
+    content-policy checks flag active/prose occurrences of a banned pattern
+    rather than examples quoted inside code (documentation of the rule itself).
+    """
+    lines = read_text(rel).split("\n")
+    mask = fence_mask(lines)
+    for i, line in enumerate(lines):
+        if mask[i]:
+            continue
+        yield i + 1, INLINE_CODE_RE.sub("", line)
 
 
 def check_markdown_structure(rel: str, reporter: Reporter) -> None:
@@ -519,28 +577,14 @@ def check_markdown_structure(rel: str, reporter: Reporter) -> None:
     elif data.endswith(b"\n\n"):
         reporter.error("markdown-structure", rel, None, "file has more than one trailing newline")
 
-    text = data.decode("utf-8", "replace")
-    lines = text.split("\n")
-    start = 0
-    if lines and lines[0].strip() == "---":
-        for i in range(1, len(lines)):
-            if lines[i].strip() == "---":
-                start = i + 1
-                break
-    in_fence = False
-    fence_char = ""
-    h1_lines: list[int] = []
-    for offset, line in enumerate(lines[start:], start=start):
-        fence = FENCE_RE.match(line)
-        if fence:
-            marker = fence.group(1)[0]
-            if not in_fence:
-                in_fence, fence_char = True, marker
-            elif marker == fence_char:
-                in_fence, fence_char = False, ""
-            continue
-        if not in_fence and H1_RE.match(line):
-            h1_lines.append(offset + 1)
+    lines = data.decode("utf-8", "replace").split("\n")
+    mask = fence_mask(lines)
+    start = frontmatter_end(lines)
+    h1_lines = [
+        offset + 1
+        for offset in range(start, len(lines))
+        if not mask[offset] and H1_RE.match(lines[offset])
+    ]
     if len(h1_lines) == 0:
         reporter.error("markdown-structure", rel, None, "file has no H1 heading (expected exactly one)")
     elif len(h1_lines) > 1:
@@ -552,20 +596,11 @@ def check_markdown_structure(rel: str, reporter: Reporter) -> None:
 
 
 def check_markdown_links(rel: str, reporter: Reporter) -> None:
-    text = read_text(rel)
+    lines = read_text(rel).split("\n")
+    mask = fence_mask(lines)
     base_dir = (REPO_ROOT / rel).parent
-    in_fence = False
-    fence_char = ""
-    for lineno, raw in enumerate(text.split("\n"), start=1):
-        fence = FENCE_RE.match(raw)
-        if fence:
-            marker = fence.group(1)[0]
-            if not in_fence:
-                in_fence, fence_char = True, marker
-            elif marker == fence_char:
-                in_fence, fence_char = False, ""
-            continue
-        if in_fence:
+    for lineno, raw in enumerate(lines, start=1):
+        if mask[lineno - 1]:
             continue
         line = INLINE_CODE_RE.sub("", raw)
         targets = list(LINK_RE.findall(line))
@@ -611,7 +646,7 @@ def check_pragmas(markdown_files: list[str], reporter: Reporter) -> None:
     for rel in markdown_files:
         if rel in PRAGMA_ALLOWED_FILES or rel in POLICY_EXEMPT_FILES:
             continue
-        for lineno, line in enumerate(read_text(rel).split("\n"), start=1):
+        for lineno, line in iter_prose(rel):
             if PRAGMA_RE.search(line):
                 reporter.error(
                     "policy-pragma", rel, lineno,
@@ -624,7 +659,8 @@ def check_hackathon(text_files: list[str], reporter: Reporter) -> None:
     for rel in text_files:
         if rel in HACKATHON_EXEMPT_FILES:
             continue
-        for lineno, line in enumerate(read_text(rel).split("\n"), start=1):
+        source = iter_prose(rel) if rel.lower().endswith(".md") else _iter_all_lines(rel)
+        for lineno, line in source:
             if HACKATHON_RE.search(line):
                 reporter.error(
                     "policy-hackathon", rel, lineno,
@@ -636,7 +672,8 @@ def check_stale_paths(text_files: list[str], reporter: Reporter) -> None:
     for rel in text_files:
         if rel in POLICY_EXEMPT_FILES:
             continue
-        for lineno, line in enumerate(read_text(rel).split("\n"), start=1):
+        source = iter_prose(rel) if rel.lower().endswith(".md") else _iter_all_lines(rel)
+        for lineno, line in source:
             match = STALE_RE.search(line)
             if match:
                 reporter.error(
@@ -646,22 +683,19 @@ def check_stale_paths(text_files: list[str], reporter: Reporter) -> None:
                 )
 
 
+def _iter_all_lines(rel: str):
+    for lineno, line in enumerate(read_text(rel).split("\n"), start=1):
+        yield lineno, line
+
+
 def check_competing_tools(markdown_files: list[str], reporter: Reporter) -> None:
     for rel in markdown_files:
         if rel in POLICY_EXEMPT_FILES:
             continue
-        in_fence = False
-        fence_char = ""
-        for lineno, raw in enumerate(read_text(rel).split("\n"), start=1):
-            fence = FENCE_RE.match(raw)
-            if fence:
-                marker = fence.group(1)[0]
-                if not in_fence:
-                    in_fence, fence_char = True, marker
-                elif marker == fence_char:
-                    in_fence, fence_char = False, ""
-                continue
-            if in_fence:
+        lines = read_text(rel).split("\n")
+        mask = fence_mask(lines)
+        for lineno, raw in enumerate(lines, start=1):
+            if mask[lineno - 1]:
                 continue
             _scan_competing_line(rel, lineno, raw, reporter)
 

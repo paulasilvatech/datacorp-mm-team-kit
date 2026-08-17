@@ -18,10 +18,10 @@ no Super Mario analogies, and with Mermaid diagrams in neutral tones
 | R1 | **Zero emojis.** Remove all emoji/pictographic characters from headings, tables, lists, callouts, ASCII blocks, and body text. Replace them with words, gray badges, or nothing. |
 | R2 | **Zero Super Mario / Nintendo analogies.** Remove Mario, Luigi, Peach, Daisy, Rosalina, Toad, Yoshi, Koopa, Goomba, Bowser, princess, castle, mushroom, power-up, world 1-1, green pipe, invincibility star, mana, XP, "raid", "game over", "boss", and "co-op". See §2 for replacement vocabulary. |
 | R3 | **"hackathon"/"hackaton" → "workshop".** This includes example directory names (`hackathon-team-XX` → `workshop-team-XX`), headings, and body text. |
-| R4 | **Do not modify anything inside `.github/`.** Links *pointing to* `.github/...` remain valid and must be preserved. |
+| R4 | **This guide governs `docs/` and the numbered stage folders — not `.github/`.** Copilot primitives under `.github/` follow their own structural standard (agent, prompt, instruction, and skill templates); a documentation pass must not restructure them as prose. Links *pointing to* `.github/...` remain valid and must be preserved. |
 | R5 | **Do not invent new factual content.** Preserve 100% of the existing technical information, commands, paths, REQ-IDs, file names, and data tables. Changes concern form, educational quality, and organization—not facts. |
 | R6 | **Do not break links.** When renaming a file, update every link that points to it. Relative paths must remain correct. |
-| R7 | Write in **Brazilian Portuguese**, with an educational and instructive tone (see §6). |
+| R7 | Write in **English**, with an educational and instructive tone (see §6). This applies to documentation, Copilot primitives under `.github/`, code, and comments alike. |
 
 ---
 
@@ -252,8 +252,8 @@ Each new concept must include, in this order:
 
 1. **Definition**—what it is, in one objective sentence.
 2. **Why it matters**—which problem it solves in this workshop.
-3. **How it applies to SIFAP**—a concrete domain example (`.NSN` programs,
-   DDMs, payments, benefits, inspections).
+3. **How it applies to SIFAP**—a concrete domain example (`.NSP` programs,
+   `.NSN` subprograms, `.ddm` DDMs, payments, benefits, inspections).
 4. **Use case**—a real situation in which the reader will use it.
 5. **Common error**—what usually goes wrong.
 
@@ -261,8 +261,9 @@ Writing guidelines:
 
 - Use active voice and the second person ("you do," "open the file").
 - Keep sentences short. One paragraph = one idea.
-- Keep technical terms in English (`bounded context`, `pull request`),
-  but explain them on first occurrence.
+- Explain domain and architecture terms (`bounded context`, `pull request`,
+  `packed decimal`) on first occurrence — the reader is new to at least one
+  side of the legacy-to-modern divide.
 - No forced humor, game jargon, or hype. Be professional and welcoming.
 - Never use "simply," "just," or "it is easy."
 
