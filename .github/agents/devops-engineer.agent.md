@@ -34,9 +34,11 @@ General delivery-and-operations patterns for a Java + Next.js Modular Monolith:
 
 - **GitHub Actions**: matrix builds for Maven + npm, dependency caching (`.m2`, `node_modules`), encrypted `secrets` contexts, and branch-protection gates
 - **Terraform (azurerm ~> 3.x)**: one module per service area (networking, compute, database, monitoring), with required tags, variables, and outputs
+- **Terraform module discipline**: standard `main.tf` / `variables.tf` / `outputs.tf` / `versions.tf` layout, pinned provider and module versions (Azure Verified Modules where they fit), remote state with locking, `terraform plan` reviewed before `apply`, and drift detection in CI
+- **IaC security scanning**: `tfsec` or `checkov` in the pipeline, least-privilege identities with no wildcard permissions, and the subscription id sourced from `ARM_SUBSCRIPTION_ID` rather than hardcoded in the provider block
 - **Azure topology**: App Service, PostgreSQL Flexible Server, Key Vault, Application Insights, and Managed Identity for auth
 - **Containers**: multi-stage Docker builds, dependency-cached layers, slim runtime images, and health checks
-- **Observability**: structured JSON logs, `/actuator/health`, and basic metrics wired in during implementation, not deferred
+- **Observability**: structured JSON logs, `/actuator/health`, and basic metrics wired in during implementation, not deferred; DORA delivery signals (deployment frequency, lead time, change-failure rate, MTTR) track pipeline health
 - **Incident response**: blameless root-cause analysis with a timeline, contributing factors, and prioritized, verifiable actions
 - **Secret management**: Key Vault, CI environment variables, and `.gitignore` hygiene for `.env`
 - **OIDC over long-lived keys**: cloud auth from CI uses short-lived federated credentials rather than stored secrets

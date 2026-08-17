@@ -1,6 +1,6 @@
 ---
 name: add-educational-comments
-description: 'Add educational comments to the file specified, or prompt asking for file to comment if one is not provided.'
+description: "Add clear, level-appropriate educational comments to an existing source file so it becomes a learning resource, preserving structure, encoding, and build correctness. Use when the user asks to explain, annotate, or add teaching comments to a specific code file in any language; if no file is given, prompt for one."
 ---
 
 # Add Educational Comments

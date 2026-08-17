@@ -30,7 +30,7 @@ Step 5: Generate deployment result diagram (03_arch_diagram_result.html)
 
 ---
 
-### Step 1: Verify Prerequisites
+## Step 1: Verify Prerequisites
 
 ```powershell
 # Verify az CLI installation and login
@@ -48,7 +48,7 @@ az group create --name "<RG_NAME>" --location "<LOCATION>"  # Location confirmed
 
 → Proceed to next step after confirming success
 
-### Step 2: Validate → What-if Validation — 🚨 Mandatory
+## Step 2: Validate → What-if Validation — 🚨 Mandatory
 
 **Do not skip this step. Always execute it no matter how urgently the user requests deployment.**
 
@@ -136,7 +136,7 @@ ask_user({
 - Automatically switch to deployment without asking the user on timeout
 - Skip what-if for reasons like "deployment is faster"
 
-### Step 3: Preview Diagram Based on What-if Results — 🚨 Mandatory
+## Step 3: Preview Diagram Based on What-if Results — 🚨 Mandatory
 
 **Do not skip this step. Always generate the preview diagram when What-if succeeds.**
 
@@ -158,7 +158,7 @@ Deploy these resources? (Yes/No)
 
 Proceed to Step 4 when the user confirms. **Do not proceed to deployment without the preview diagram.**
 
-### Step 4: Actual Deployment
+## Step 4: Actual Deployment
 
 Execute only when the user has reviewed the preview diagram and What-if results and approved the deployment.
 **Use the same parameter passing method used in What-if.**
@@ -192,7 +192,7 @@ az deployment group show `
   -o table
 ```
 
-### Handling Deployment Failures
+## Handling Deployment Failures
 
 When deployment fails, some resources may remain in a 'Failed' state. Redeploying in this state causes errors like `AccountIsNotSucceeded`.
 
@@ -241,7 +241,7 @@ ask_user({
 - **Solution: Change the Key Vault name** and redeploy (e.g., add timestamp to `uniqueString()` seed)
 - Explain the situation to the user and guide them on the name change
 
-### Step 5: Deployment Complete — Generate Diagram from Actual Resources and Report
+## Step 5: Deployment Complete — Generate Diagram from Actual Resources and Report
 
 Once deployment is complete, query the actually deployed resources and generate the final architecture diagram.
 
@@ -288,7 +288,7 @@ az group delete --name <RG_NAME> --yes --no-wait
 
 ---
 
-### Handling Architecture Change Requests After Deployment
+## Handling Architecture Change Requests After Deployment
 
 **When the user requests resource additions/changes/deletions after deployment is complete, do NOT go directly to Bicep/deployment.**
 Always return to Phase 1 and update the architecture first.

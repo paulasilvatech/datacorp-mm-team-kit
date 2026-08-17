@@ -28,13 +28,13 @@ npm init -y --init-type module
 npm install @github/copilot-sdk tsx
 ```
 
-### Python
+### Python — Installation
 
 ```bash
 pip install github-copilot-sdk
 ```
 
-### Go
+### Go — Installation
 
 ```bash
 mkdir copilot-demo && cd copilot-demo
@@ -42,7 +42,7 @@ go mod init copilot-demo
 go get github.com/github/copilot-sdk/go
 ```
 
-### .NET
+### .NET — Installation
 
 ```bash
 dotnet new console -n CopilotDemo && cd CopilotDemo
@@ -51,7 +51,7 @@ dotnet add package GitHub.Copilot.SDK
 
 ## Quick Start
 
-### TypeScript
+### TypeScript — Quick Start
 
 ```typescript
 import { CopilotClient, approveAll } from "@github/copilot-sdk";
@@ -71,7 +71,7 @@ process.exit(0);
 
 Run: `npx tsx index.ts`
 
-### Python
+### Python — Quick Start
 
 ```python
 import asyncio
@@ -93,7 +93,7 @@ async def main():
 asyncio.run(main())
 ```
 
-### Go
+### Go — Quick Start
 
 ```go
 package main
@@ -152,7 +152,7 @@ Run: `dotnet run`
 
 Enable real-time output for better UX:
 
-### TypeScript
+### TypeScript — Streaming Responses
 
 ```typescript
 import { CopilotClient, approveAll, SessionEvent } from "@github/copilot-sdk";
@@ -179,7 +179,7 @@ await client.stop();
 process.exit(0);
 ```
 
-### Python
+### Python — Streaming Responses
 
 ```python
 import asyncio
@@ -211,7 +211,7 @@ async def main():
 asyncio.run(main())
 ```
 
-### Go
+### Go — Streaming Responses
 
 ```go
 session, err := client.CreateSession(&copilot.SessionConfig{
@@ -232,7 +232,7 @@ session.On(func(event copilot.SessionEvent) {
 _, err = session.SendAndWait(copilot.MessageOptions{Prompt: "Tell me a short joke"}, 0)
 ```
 
-### .NET
+### .NET — Streaming Responses
 
 ```csharp
 await using var session = await client.CreateSessionAsync(new SessionConfig
@@ -356,7 +356,7 @@ async def main():
 asyncio.run(main())
 ```
 
-### Go
+### Go — Custom Tools
 
 ```go
 type WeatherParams struct {
@@ -435,7 +435,7 @@ Copilot decides when to call your tool based on the user's question and your too
 
 Build a complete interactive assistant:
 
-### TypeScript
+### TypeScript — Interactive CLI Assistant
 
 ```typescript
 import { CopilotClient, approveAll, defineTool, SessionEvent } from "@github/copilot-sdk";
@@ -498,7 +498,7 @@ const prompt = () => {
 prompt();
 ```
 
-### Python
+### Python — Interactive CLI Assistant
 
 ```python
 import asyncio
@@ -562,7 +562,7 @@ asyncio.run(main())
 
 Connect to MCP (Model Context Protocol) servers for pre-built tools. Connect to GitHub's MCP server for repository, issue, and PR access:
 
-### TypeScript
+### TypeScript — MCP Server Integration
 
 ```typescript
 const session = await client.createSession({
@@ -577,7 +577,7 @@ const session = await client.createSession({
 });
 ```
 
-### Python
+### Python — MCP Server Integration
 
 ```python
 session = await client.create_session({
@@ -592,7 +592,7 @@ session = await client.create_session({
 })
 ```
 
-### Go
+### Go — MCP Server Integration
 
 ```go
 session, _ := client.CreateSession(&copilot.SessionConfig{
@@ -607,7 +607,7 @@ session, _ := client.CreateSession(&copilot.SessionConfig{
 })
 ```
 
-### .NET
+### .NET — MCP Server Integration
 
 ```csharp
 await using var session = await client.CreateSessionAsync(new SessionConfig
@@ -629,7 +629,7 @@ await using var session = await client.CreateSessionAsync(new SessionConfig
 
 Define specialized AI personas for specific tasks:
 
-### TypeScript
+### TypeScript — Custom Agents
 
 ```typescript
 const session = await client.createSession({
@@ -644,7 +644,7 @@ const session = await client.createSession({
 });
 ```
 
-### Python
+### Python — Custom Agents
 
 ```python
 session = await client.create_session({
@@ -663,7 +663,7 @@ session = await client.create_session({
 
 Customize the AI's behavior and personality:
 
-### TypeScript
+### TypeScript — System Message
 
 ```typescript
 const session = await client.createSession({
@@ -675,7 +675,7 @@ const session = await client.createSession({
 });
 ```
 
-### Python
+### Python — System Message
 
 ```python
 session = await client.create_session({
@@ -699,7 +699,7 @@ copilot --server --port 4321
 
 ### Connect SDK to External Server
 
-#### TypeScript
+#### TypeScript — Connect SDK to External Server
 
 ```typescript
 const client = new CopilotClient({
@@ -712,7 +712,7 @@ const session = await client.createSession({
 });
 ```
 
-#### Python
+#### Python — Connect SDK to External Server
 
 ```python
 client = CopilotClient({
@@ -726,7 +726,7 @@ session = await client.create_session({
 })
 ```
 
-#### Go
+#### Go — Connect SDK to External Server
 
 ```go
 client := copilot.NewClient(&copilot.ClientOptions{
@@ -743,7 +743,7 @@ session, _ := client.CreateSession(&copilot.SessionConfig{
 })
 ```
 
-#### .NET
+#### .NET — Connect SDK to External Server
 
 ```csharp
 using var client = new CopilotClient(new CopilotClientOptions

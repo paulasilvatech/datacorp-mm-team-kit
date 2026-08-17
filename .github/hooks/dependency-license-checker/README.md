@@ -26,10 +26,11 @@ AI coding agents may add new dependencies during a session without considering l
 
 ## Installation
 
-1. Copy the hook folder to your repository:
+1. Copy the hook config file and its script folder into your repository's `.github/hooks/` directory:
 
    ```bash
-   cp -r hooks/dependency-license-checker .github/hooks/
+   cp .github/hooks/dependency-license-checker.json  your-repo/.github/hooks/
+   cp -r .github/hooks/dependency-license-checker    your-repo/.github/hooks/
    ```
 
 2. Ensure the script is executable:
@@ -49,7 +50,7 @@ AI coding agents may add new dependencies during a session without considering l
 
 ## Configuration
 
-The hook is configured in `hooks.json` to run on the `sessionEnd` event:
+The hook is configured in `.github/hooks/dependency-license-checker.json` to run on the `sessionEnd` event:
 
 ```json
 {
@@ -202,7 +203,7 @@ This hook pairs well with:
 To temporarily disable the checker:
 
 - Set `SKIP_LICENSE_CHECK=true` in the hook environment
-- Or remove the `sessionEnd` entry from `hooks.json`
+- Or remove the `sessionEnd` entry from `.github/hooks/dependency-license-checker.json`
 
 ## Limitations
 

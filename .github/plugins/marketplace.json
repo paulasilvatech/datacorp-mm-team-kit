@@ -1,0 +1,8 @@
+{
+  "name": "dmmtk-test",
+  "owner": { "name": "test" },
+  "metadata": { "description": "probe", "version": "0.0.1" },
+  "plugins": [
+    { "name": "scratch-test", "source": "_scratch_test", "version": "0.0.1", "description": "probe" }
+  ]
+}

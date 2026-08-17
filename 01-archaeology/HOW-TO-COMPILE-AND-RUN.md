@@ -121,7 +121,7 @@ flowchart LR
     LIB["Natural library<br/>SIFAPPRD — source"]:::step
     OBJ["Cataloged object<br/>executable code"]:::step
     EXEC["Execution<br/>online or batch"]:::result
-    DDM["DDM<br/>BENEFICIARIO"]:::alt
+    DDM["DDM<br/>BENEFICIARY"]:::alt
     FILE["Adabas file<br/>FNR 150"]:::alt
 
     SRC -->|"load — section 4"| LIB
@@ -256,11 +256,11 @@ Reversing this order produces a DDM that compiles and a program that fails on it
 
 | File | What it is | How to use it |
 |---|---|---|
-| [`FDT-150-BENEFICIARIO.txt`](legacy-sifap/adabas-ddms/FDT-150-BENEFICIARIO.txt) | `ADAREP` output for the physical FDT of file 150 | Ready specification for defining file 150 |
-| [`BENEFICIARIO.ddm`](legacy-sifap/adabas-ddms/BENEFICIARIO.ddm) | `LISTDDM` listing—DBID 057, FNR 150 | Source for the long names in DDM 150 |
-| [`PROGRAMA-SOCIAL.ddm`](legacy-sifap/adabas-ddms/PROGRAMA-SOCIAL.ddm) | `LISTDDM` listing—DBID 057, FNR 151 | Specification for file **and** DDM 151 |
-| [`PAGAMENTO.ddm`](legacy-sifap/adabas-ddms/PAGAMENTO.ddm) | `LISTDDM` listing—DBID 057, FNR 152 | Specification for file **and** DDM 152 |
-| [`AUDITORIA.ddm`](legacy-sifap/adabas-ddms/AUDITORIA.ddm) | `LISTDDM` listing—DBID 057, FNR 153 | Specification for file **and** DDM 153 |
+| [`FDT-150-BENEFICIARY.txt`](legacy-sifap/adabas-ddms/FDT-150-BENEFICIARY.txt) | `ADAREP` output for the physical FDT of file 150 | Ready specification for defining file 150 |
+| [`BENEFICIARY.ddm`](legacy-sifap/adabas-ddms/BENEFICIARY.ddm) | `LISTDDM` listing—DBID 057, FNR 150 | Source for the long names in DDM 150 |
+| [`SOCIAL-PROGRAM.ddm`](legacy-sifap/adabas-ddms/SOCIAL-PROGRAM.ddm) | `LISTDDM` listing—DBID 057, FNR 151 | Specification for file **and** DDM 151 |
+| [`PAYMENT.ddm`](legacy-sifap/adabas-ddms/PAYMENT.ddm) | `LISTDDM` listing—DBID 057, FNR 152 | Specification for file **and** DDM 152 |
+| [`AUDIT.ddm`](legacy-sifap/adabas-ddms/AUDIT.ddm) | `LISTDDM` listing—DBID 057, FNR 153 | Specification for file **and** DDM 153 |
 
 Only file 150 has a published FDT. For 151, 152, and 153, the FDT must be **derived from the DDM listing**, which provides all necessary columns.
 
@@ -272,8 +272,8 @@ The mapping between columns is documented in [`adabas-ddms/README.md`](legacy-si
 |---|---|---|
 | `DB`—short name | Field name | `AB` |
 | `F` = `A` | Format `A` | `AB NUM-CPF A 11` → FDT `AB 11 A` |
-| `F` = `N` | Format `U` (unpacked) | `AF DT-NASCIMENTO N 8` → FDT `AF 8 U` |
-| `F` = `P` | Format `P` (packed) | `CH VLR-RENDA-FAMILIAR P 9,2` → FDT `CH 5 P` |
+| `F` = `N` | Format `U` (unpacked) | `AF DT-BIRTH N 8` → FDT `AF 8 U` |
+| `F` = `P` | Format `P` (packed) | `CH AMT-FAMILY-INCOME P 9,2` → FDT `CH 5 P` |
 | `S` = `N` | `NU` option | Null suppression |
 | `S` = `F` | `FI` option | Fixed storage |
 | `D` = `D` / `U` | `DE` / `DE,UQ` option | Descriptor, unique descriptor |
@@ -281,7 +281,7 @@ The mapping between columns is documented in [`adabas-ddms/README.md`](legacy-si
 | `S` row with `/*` | Sub-, super-, or hyperdescriptor | `S2 = BG(1-2), CE(1-1)` |
 
 > [!WARNING]
-> **Converting packed-field length is a trap.** In the DDM, `VLR-RENDA-FAMILIAR` appears as `P 9,2`; in the FDT for the same field, `CH` occupies **5 bytes**. Logical and physical lengths are not the same number. Confirm the conversion rule in the Adabas documentation before defining files 151 through 153—an incorrect FDT length causes a `VIEW OF` compilation error or silent truncation at runtime.
+> **Converting packed-field length is a trap.** In the DDM, `AMT-FAMILY-INCOME` appears as `P 9,2`; in the FDT for the same field, `CH` occupies **5 bytes**. Logical and physical lengths are not the same number. Confirm the conversion rule in the Adabas documentation before defining files 151 through 153—an incorrect FDT length causes a `VIEW OF` compilation error or silent truncation at runtime.
 
 ### 5.4. Defining files in Adabas
 
@@ -292,7 +292,7 @@ Decide the following before running anything:
 
 - [ ] **DBID.** The lab uses `12`, and `cloud-init.yaml` maps `12=adatcp://adabas-db:60001` for Natural. Keeping `12` is the path of least resistance; using `57` requires changing the Natural container mapping.
 - [ ] **FNRs.** Keep `150`, `151`, `152`, and `153`. The numbers appear in comments throughout the programs (`ARQ 150`, `ARQ 153`) and in both JCLs; changing them breaks cross-reading with the corpus.
-- [ ] **Descriptors.** Mark as a descriptor **every** field the corpus uses in `FIND ... WITH` or `READ ... BY`. Verifiable examples: `NUM-CPF` and `NUM-NIS` in file 150; `NUM-PAGAMENTO` and superdescriptor `SUPER-CPF-COMPET` (`S1 = AB(1-11), AE(1-6)`) in file 152; `NUM-AUDITORIA` in 153.
+- [ ] **Descriptors.** Mark as a descriptor **every** field the corpus uses in `FIND ... WITH` or `READ ... BY`. Verifiable examples: `NUM-CPF` and `NUM-NIS` in file 150; `NUM-PAYMENT` and superdescriptor `SUPER-CPF-PERIOD` (`S1 = AB(1-11), AE(1-6)`) in file 152; `NUM-AUDIT` in 153.
 - [ ] **Volume.** Start empty. Do not try to reproduce the volumes described in the DDMs.
 
 ### 5.5. Creating the DDMs in Natural
@@ -302,9 +302,9 @@ The repository's `.ddm` files are **output from the `LISTDDM` utility**: printed
 The DDM must be created inside Natural—using the `SYSDDM` utility in a Natural session or NaturalONE's DDM editor. The most economical route is to **generate the DDM from the already defined Adabas file**: the utility reads the FDT and creates entries with short names, and you complete the long names using the corpus listing as a dictionary. The exact name of this generation function varies by version—confirm it in the documentation before looking for it in the menu.
 
 - [ ] **Generate the DDM** from the corresponding FNR.
-- [ ] **Complete the long names** exactly as shown in the listing: `AB` → `NUM-CPF`, `CH` → `VLR-RENDA-FAMILIAR`, and so on. A different long name breaks every corpus `VIEW OF`.
+- [ ] **Complete the long names** exactly as shown in the listing: `AB` → `NUM-CPF`, `CH` → `AMT-FAMILY-INCOME`, and so on. A different long name breaks every corpus `VIEW OF`.
 - [ ] **Check format and length** field by field against the listing.
-- [ ] **Repeat for all four DDMs**: `BENEFICIARIO`, `PROGRAMA-SOCIAL`, `PAGAMENTO`, `AUDITORIA`.
+- [ ] **Repeat for all four DDMs**: `BENEFICIARY`, `SOCIAL-PROGRAM`, `PAYMENT`, `AUDIT`.
 
 ---
 
@@ -349,13 +349,13 @@ Three notes about this block:
 
 | Dependency | How it appears in `CADBENEF.NSP` | Type |
 |---|---|---|
-| `BENEFICIARIO` | `1 BENEFICIARIO-V VIEW OF BENEFICIARIO` | DDM / FNR 150 |
-| `AUDITORIA` | `1 AUDITORIA-V VIEW OF AUDITORIA` | DDM / FNR 153 |
+| `BENEFICIARY` | `1 BENEFICIARY-V VIEW OF BENEFICIARY` | DDM / FNR 150 |
+| `AUDIT` | `1 AUDIT-V VIEW OF AUDIT` | DDM / FNR 153 |
 | `PDAVALID` | `LOCAL USING PDAVALID` | PDA |
 | `SUBVALCP` | `CALLNAT 'SUBVALCP' ...` | Subprogram |
 | `SUBVALNI` | `CALLNAT 'SUBVALNI' ...` | Subprogram |
 | `VALBENEF` | `CALLNAT 'VALBENEF' ...` | Subprogram |
-| `CCAUDIT` | `INCLUDE CCAUDIT` + `PERFORM GRAVA-AUDITORIA` | Copycode |
+| `CCAUDIT` | `INCLUDE CCAUDIT` + `PERFORM WRITE-AUDIT` | Copycode |
 
 The compilation order follows from the table: both DDMs, then `PDAVALID`, then the `CCVALCPF` and `CCAUDIT` sources, then `SUBVALCP`, `SUBVALNI`, and `VALBENEF`, and only then `STOW CADBENEF`.
 
@@ -403,7 +403,7 @@ INPUT USING MAP 'CONSBENF-M01'
 *
 * TELA ALTERNATIVA SEM MAP
 IF *ERROR-NR NE 0
-  INPUT 'SIFAP - CONSULTA BENEFICIARIO' /
+  INPUT 'SIFAP - CONSULTA BENEFICIARY' /
 ```
 
 Whether the missing map appears during compilation or only at runtime depends on how your Natural version resolves map references. This guide does not claim either behavior—verify it in the environment and record the result.
@@ -424,7 +424,7 @@ A batch program has no terminal. It receives commands and data through Natural's
 | `PARM='...DBID=57,FNR=150'` | Session parameters | Lab DBID and equivalent parameters |
 | `CMPRT01` / `CMPRT02` in `SIFAPJ02` | Logical printers from `DEFINE PRINTER` | Assigned print destinations |
 
-The third `CMSYNIN` line (`202601`) is the accounting period read by the program's `INPUT #COMPETENCIA`. This is how input is supplied to a Natural batch: each line in the stack answers an `INPUT`, in order.
+The third `CMSYNIN` line (`202601`) is the accounting period read by the program's `INPUT #PERIOD`. This is how input is supplied to a Natural batch: each line in the stack answers an `INPUT`, in order.
 
 > [!NOTE]
 > **Batch invocation on Linux: to be confirmed.** The logical names `CMSYNIN`, `CMPRINT`, and `CMOBJIN` also exist in Natural for open systems, but how they are assigned (environment variables, profile parameters, or input redirection) depends on the version and image configuration. Confirm this in the Natural for Linux documentation before assembling the command.
@@ -456,11 +456,11 @@ The same pattern applies to `SIFAPJ02` reports: `BATCHREL` and `RELPGT` use `DEF
 
 With all four Adabas files created and empty, `BATCHPGT` follows this path:
 
-1. `READ (1) PAGAMENTO-V BY NUM-PAGAMENTO DESCENDING` returns nothing—the sequence seed remains zero.
-2. `READ BENEFICIARIO-V BY NUM-CPF` does not enter the loop—no beneficiary exists.
+1. `READ (1) PAYMENT-V BY NUM-PAYMENT DESCENDING` returns nothing—the sequence seed remains zero.
+2. `READ BENEFICIARY-V BY NUM-CPF` does not enter the loop—no beneficiary exists.
 3. The summary prints with all counters at zero.
-4. `PERFORM GRAVA-AUDITORIA` writes **one** record to file 153.
-5. `IF #QTD-GERADOS = 0` is true, and the program runs `TERMINATE 8`.
+4. `PERFORM WRITE-AUDIT` writes **one** record to file 153.
+5. `IF #QTY-GENERATED = 0` is true, and the program runs `TERMINATE 8`.
 
 Return code 8 is documented in `SIFAPJ01.jcl`: `RC=8 - COMPETENCIA JA PROCESSADA - NADA A FAZER` (period already processed—nothing to do). **Reaching RC 8 with an empty database is a successful result**: it proves the program compiled, the session reached Adabas, reads worked, and the audit trail write worked.
 
@@ -484,7 +484,7 @@ The corpus was written for a workshop. It references files, work files, maps, an
 | `WRITE WORK FILE n` fails | Work file is not assigned in the environment | Use the driver in section 7.3. Do not edit the legacy program |
 | Logical printer has no destination | `DEFINE PRINTER (n) OUTPUT 'CMPRTnn'` without an assignment | `SIFAPJ02.jcl` documents `NAT1500` as the production consequence |
 | Counters are zero and `TERMINATE 8` occurs | Empty database | **Expected** result on the first run. See section 7.4 |
-| Beneficiaries are read and all ignored | No active social program in file 151 | `BATCHPGT` requires `SIT-PROGRAMA = 'A'` to generate a payment |
+| Beneficiaries are read and all ignored | No active social program in file 151 | `BATCHPGT` requires `STAT-PROGRAM = 'A'` to generate a payment |
 | Strange screen behavior with `SET CONTROL` and `REINPUT ... MARK` | Constructs designed for a 3270 terminal | A Linux terminal does not faithfully reproduce mainframe behavior |
 | Error cites `#L-`, `#PV-`, or `#PC-` | Corresponding LDA or PDA was not loaded | `#L-` comes from `LDASIFAP`, `#PV-` from `PDAVALID`, and `#PC-` from `PDACALC` |
 

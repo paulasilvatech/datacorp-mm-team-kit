@@ -1,6 +1,6 @@
 ---
-description: 'Guidelines for creating high-quality Agent Skills for GitHub Copilot'
-applyTo: '**/skills/**/SKILL.md'
+description: "Use when authoring GitHub Copilot Agent Skills — SKILL.md structure, frontmatter, progressive disclosure, and packaging."
+applyTo: ".github/skills/**/SKILL.md"
 ---
 
 # Agent Skills File Guidelines

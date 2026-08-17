@@ -1,178 +1,98 @@
 ---
-description: 'This workflow guides you through a systematic approach to identify missing features, prioritize them, and create detailed specifications for implementation.'
+name: "gen-specs-as-issues"
+description: "Identify gaps between the SIFAP legacy behavior and the modern spec, prioritize them, and open EARS-backed GitHub issues with legacy traceability."
+argument-hint: "area=<focus-area> repo=<owner/name>"
+agent: "agent"
+tools: ["read", "search", "edit", "execute"]
 ---
+# /gen-specs-as-issues
 
-# Product Manager Assistant: Feature Identification and Specification
+## What This Does
 
-This workflow guides you through a systematic approach to identify missing features, prioritize them, and create detailed specifications for implementation.
+Systematically finds missing or under-specified behavior for the SIFAP 2.0 modernization, prioritizes it, and turns the top items into detailed GitHub issues. Each issue is written as an EARS specification with a unique REQ-ID and a mandatory `source_legacy:` line, so the work stays traceable from legacy code to modern requirement.
 
-## 1. Project Understanding Phase
+## When to Use
 
-- Review the project structure to understand its organization
-- Read the README.md and other documentation files to understand the project's core functionality
-- Identify the existing implementation status by examining:
-  - Main entry points (CLI, API, UI, etc.)
-  - Core modules and their functionality
-  - Tests to understand expected behavior
-  - Any placeholder implementations
+During Stage 2 (specification) or Stage 4 (evolution), when the team needs to convert observed gaps into a prioritized, trackable backlog of specifications.
 
-**Guiding Questions:**
+## Preconditions
 
-- What is the primary purpose of this project?
-- What user problems does it solve?
-- What patterns exist in the current implementation?
-- Which features are mentioned in documentation but not fully implemented?
+- The pair has read the relevant legacy programs — the HARD GATE in [`LEGACY-EXPLORATION-CHECKLIST.md`](../../01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md).
+- The archaeology artifacts exist (`01-archaeology/business-rules-catalog.md`, `inventory.md`).
+- A target GitHub repository is identified. Do not assume `backend/` or `frontend/` exist — they are created from scratch in Stage 3.
 
-## 2. Gap Analysis Phase
+## Inputs the Team Must Provide
 
-- Compare the documented capabilities ONLY against the actual implementation
-- Identify "placeholder" code that lacks real functionality
-- Look for features mentioned in documentation but missing robust implementation
-- Consider the user journey and identify broken or missing steps
-- Focus on core functionality first (not nice-to-have features)
+- `area` — the focus area or bounded context to analyze (optional; defaults to the whole project).
+- `repo` — the `owner/name` of the GitHub repository where issues are created.
+- Ask the user for anything that is missing.
 
-**Output Creation:**
+## Steps
 
-- Create a list of potential missing features (5-7 items)
-- For each feature, note:
-  - Current implementation status
-  - References in documentation
-  - Impact on user experience if missing
+### 1. Understand the current state
 
-## 3. Prioritization Phase
+- Read the modern spec in `02-modern-spec/` and `specs/`, the archaeology artifacts in `01-archaeology/`, and any documentation under `docs/`.
+- Read the confirmed rules in [`business-rules-catalog.md`](../../01-archaeology/business-rules-catalog.md) with their legacy source ranges.
+- Separate what is already specified from what the legacy system does but the modern spec does not yet cover.
 
-- Apply a score to each identified gap:
+### 2. Run a gap analysis
 
-**Scoring Matrix (1-5 scale):**
+- Compare confirmed legacy behavior against the modern spec only — never invent behavior from memory.
+- List 5–7 candidate gaps. For each, note its legacy source (file and line range), current status, and the user impact if it stays missing.
 
-- User Impact: How many users benefit?
-- Strategic Alignment: Fits core mission?
-- Implementation Feasibility: Technical complexity?
-- Resource Requirements: Development effort needed?
-- Risk Level: Potential negative impacts?
+### 3. Prioritize
 
-**Priority = (User Impact × Strategic Alignment) / (Implementation Effort × Risk Level)**
+- Score each gap from 1–5 on User Impact, Strategic Alignment, Implementation Feasibility, Effort, and Risk.
+- Rank with `Priority = (User Impact × Strategic Alignment) / (Effort × Risk)` and select the top 3.
 
-**Output Creation:**
+### 4. Write each specification in EARS
 
-- Present the top 3 highest-priority missing features based on the scoring
-- For each, provide:
-  - Feature name
-  - Current status
-  - Impact if not implemented
-  - Dependencies on other features
+- Phrase every requirement with one EARS pattern and `SHALL` (see [`requirements.instructions.md`](../instructions/requirements.instructions.md) and the [`ears-validate`](../skills/ears-validate/SKILL.md) skill).
+- Assign a unique `REQ-NNN` (or `REQ-AREA-NNN`) ID and a `source_legacy:` line pointing at a real file under `01-archaeology/legacy-sifap/natural-programs/` or `adabas-ddms/`, or `[GREENFIELD] <justification>`.
+- Add Given/When/Then acceptance criteria, each tied to the REQ-ID.
 
-## 4. Specification Development Phase
+### 5. Create the GitHub issues
 
-- For each prioritized feature, develop a detailed but practical specification:
-  - Begin with the philosophical approach: simplicity over complexity
-  - Focus on MVP functionality first
-  - Consider the developer experience
-  - Keep the specification implementation-friendly
+- Create one issue per prioritized specification with the `gh` CLI (GitHub is the kit's source of truth), plus a parent/EPIC issue when the work needs coordination.
+- Label appropriately (for example, `enhancement`, `spec`) and record `blocks`/`blocked by` relationships.
+- Name the branch the work will land on: `spec/<NNN>-<feature>` (see [`00-GIT-WORKFLOW.md`](../../00-GIT-WORKFLOW.md)).
 
-**For Each Feature Specification:**
+### 6. Review
 
-1. **Overview & Scope**
-   - What problem does it solve?
-   - What's included and what's explicitly excluded?
+- Summarize the created issues, their dependencies, and a suggested implementation order.
 
-2. **Technical Requirements**
-   - Core functionality needed
-   - User-facing interfaces (API, UI, CLI, etc.)
-   - Integration points with existing code
+## Issue Body Template
 
-3. **Implementation Plan**
-   - Key modules/files to create or modify
-   - Simple code examples showing the approach
-   - Clear data structures and interfaces
+```markdown
+## REQ-NNN — <short title>
 
-4. **Acceptance Criteria**
-   - How will we know when it's done?
-   - What specific functionality must work?
-   - What tests should pass?
+WHEN <trigger>, the system SHALL <response>.
 
-## 5. GitHub Issue Creation Phase
+- source_legacy: 01-archaeology/legacy-sifap/natural-programs/<PROGRAM>.NSP#L<start>-L<end>
+- acceptance:
+  - AC-NNN.1: Given <context>, When <action>, Then <outcome>.
 
-- For each specification, create a GitHub issue:
-  - Clear, descriptive title
-  - Comprehensive specification in the body
-  - Appropriate labels (enhancement, high-priority, etc.)
-  - Explicitly mention MVP philosophy where relevant
+### Scope
+What is included and what is explicitly excluded.
 
-**Issue Template Structure:**
+### Priority
+Justification from the scoring matrix.
 
-# [Feature Name]
+### Dependencies
+- Blocks: <issues>
+- Blocked by: <issues>
+```
 
-## Overview
+## Definition of Done
 
-[Brief description of the feature and its purpose]
+- [ ] Every gap is backed by a real legacy source (or an explicit `[GREENFIELD]` justification).
+- [ ] Every issue states one EARS requirement with a unique REQ-ID and a valid `source_legacy:` line.
+- [ ] Every requirement has at least one Given/When/Then acceptance criterion.
+- [ ] Issues are prioritized, labeled, and linked by dependency.
+- [ ] No behavior is asserted that the team has not read in the legacy code.
 
-## Scope
+## Invocation Example
 
-[What's included and what's explicitly excluded]
-
-## Technical Requirements
-
-[Specific technical needs and constraints]
-
-## Implementation Plan
-
-[Step-by-step approach with simple code examples]
-
-## Acceptance Criteria
-
-[Clear list of requirements to consider the feature complete]
-
-## Priority
-
-[Justification for prioritization]
-
-## Dependencies
-
-- **Blocks:** [List of issues blocked by this one]
-- **Blocked by:** [List of issues this one depends on]
-
-## Implementation Size
-
-- **Estimated effort:** [Small/Medium/Large]
-- **Sub-issues:** [Links to sub-issues if this is a parent issue]
-
-## 5.5 Work Distribution Optimization
-
-- **Independence Analysis**
-  - Review each specification to identify truly independent components
-  - Refactor specifications to maximize independent work streams
-  - Create clear boundaries between interdependent components
-
-- **Dependency Mapping**
-  - For features with unavoidable dependencies, establish clear issue hierarchies
-  - Create parent issues for the overall feature with sub-issues for components
-  - Explicitly document "blocked by" and "blocks" relationships
-
-- **Workload Balancing**
-  - Break down large specifications into smaller, manageable sub-issues
-  - Ensure each sub-issue represents 1-3 days of development work
-  - Include sub-issue specific acceptance criteria
-
-**Implementation Guidelines:**
-
-- Use GitHub issue linking syntax to create explicit relationships
-- Add labels to indicate dependency status (e.g., "blocked", "prerequisite")
-- Include estimated complexity/effort for each issue to aid sprint planning
-
-## 6. Final Review Phase
-
-- Summarize all created specifications
-- Highlight implementation dependencies between features
-- Suggest a logical implementation order
-- Note any potential challenges or considerations
-
-Remember throughout this process:
-
-- Favor simplicity over complexity
-- Start with minimal viable implementations that work
-- Focus on developer experience
-- Build a foundation that can be extended later
-- Consider the open-source community and contribution model
-
-This workflow embodiment of our approach should help maintain consistency in how features are specified and prioritized, ensuring that software projects evolve in a thoughtful, user-centered way.
+```text
+/gen-specs-as-issues area=payments repo=my-org/sifap-2
+```

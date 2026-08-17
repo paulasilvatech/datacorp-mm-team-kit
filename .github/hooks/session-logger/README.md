@@ -16,6 +16,8 @@ This hook provides detailed logging of Copilot coding agent activity:
 - User prompt submission events
 - Configurable log levels
 
+The hook binds to three events in `.github/hooks/session-logger.json`: `sessionStart`, `sessionEnd`, and `userPromptSubmitted`.
+
 ## Features
 
 - **Session Tracking**: Log session start and end events
@@ -25,10 +27,11 @@ This hook provides detailed logging of Copilot coding agent activity:
 
 ## Installation
 
-1. Copy this hook folder to your repository's `.github/hooks/` directory:
+1. Copy the hook config file and its script folder into your repository's `.github/hooks/` directory:
 
    ```bash
-   cp -r hooks/session-logger .github/hooks/
+   cp .github/hooks/session-logger.json  your-repo/.github/hooks/
+   cp -r .github/hooks/session-logger    your-repo/.github/hooks/
    ```
 
 2. Create the logs directory:

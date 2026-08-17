@@ -1,6 +1,6 @@
 ---
 name: comment-code-generate-a-tutorial
-description: 'Transform this Python script into a polished, beginner-friendly project by refactoring the code, adding clear instructional comments, and generating a complete markdown tutorial.'
+description: "Refactor a Python script to PEP 8, add beginner-friendly instructional comments, and generate a complete README.md tutorial (overview, setup, how it works, example usage). Use when the user wants to turn a Python script into a polished, teachable project or produce a step-by-step walkthrough for it."
 ---
 
 Transform this Python script into a polished, beginner-friendly project by refactoring the code, adding clear instructional comments, and generating a complete markdown tutorial.

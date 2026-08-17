@@ -31,10 +31,11 @@ AI coding agents generate and modify code rapidly, which increases the risk of h
 
 ## Installation
 
-1. Copy the hook folder to your repository:
+1. Copy the hook config file and its script folder into your repository's `.github/hooks/` directory:
 
    ```bash
-   cp -r hooks/secrets-scanner .github/hooks/
+   cp .github/hooks/secrets-scanner.json  your-repo/.github/hooks/
+   cp -r .github/hooks/secrets-scanner    your-repo/.github/hooks/
    ```
 
 2. Ensure the script is executable:
@@ -54,7 +55,7 @@ AI coding agents generate and modify code rapidly, which increases the risk of h
 
 ## Configuration
 
-The hook is configured in `hooks.json` to run on the `sessionEnd` event:
+The hook is configured in `.github/hooks/secrets-scanner.json` to run on the `sessionEnd` event:
 
 ```json
 {
@@ -192,7 +193,7 @@ Set `SCAN_MODE=block` to prevent auto-commit when secrets are detected.
 To temporarily disable the scanner:
 
 - Set `SKIP_SECRETS_SCAN=true` in the hook environment
-- Or remove the `sessionEnd` entry from `hooks.json`
+- Or remove the `sessionEnd` entry from `.github/hooks/secrets-scanner.json`
 
 ## Limitations
 

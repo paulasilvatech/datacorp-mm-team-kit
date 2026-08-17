@@ -21,7 +21,7 @@ AI coding agents can autonomously execute shell commands, file operations, and d
 
 ## Features
 
-- **Two guard modes**: `block` (exit non-zero to prevent execution) or `warn` (log only)
+- **Two guard modes**: `block` (emit a `permissionDecision: deny` object on stdout so Copilot denies the tool call) or `warn` (log only)
 - **Safer alternatives**: Every blocked pattern includes a suggestion for a safer command
 - **Allowlist support**: Skip specific patterns via `TOOL_GUARD_ALLOWLIST`
 - **Structured logging**: JSON Lines output for integration with monitoring tools
@@ -30,16 +30,17 @@ AI coding agents can autonomously execute shell commands, file operations, and d
 
 ## Installation
 
-1. Copy the hook folder to your repository:
+1. Copy the hook config file and its script folder into your repository's `.github/hooks/` directory:
 
    ```bash
-   cp -r hooks/tool-guardian your-repo/hooks/
+   cp .github/hooks/tool-guardian.json  your-repo/.github/hooks/
+   cp -r .github/hooks/tool-guardian    your-repo/.github/hooks/
    ```
 
 2. Ensure the script is executable:
 
    ```bash
-   chmod +x hooks/tool-guardian/guard-tool.sh
+   chmod +x .github/hooks/tool-guardian/guard-tool.sh
    ```
 
 3. Create the logs directory and add it to `.gitignore`:
@@ -53,7 +54,7 @@ AI coding agents can autonomously execute shell commands, file operations, and d
 
 ## Configuration
 
-The hook is configured in `hooks.json` to run on the `preToolUse` event:
+The hook is configured in `.github/hooks/tool-guardian.json` to run on the `preToolUse` event:
 
 ```json
 {
@@ -62,7 +63,7 @@ The hook is configured in `hooks.json` to run on the `preToolUse` event:
     "preToolUse": [
       {
         "type": "command",
-        "bash": "hooks/tool-guardian/guard-tool.sh",
+        "bash": ".github/hooks/tool-guardian/guard-tool.sh",
         "cwd": ".",
         "env": {
           "GUARD_MODE": "block"
@@ -89,10 +90,10 @@ The hook is configured in `hooks.json` to run on the `preToolUse` event:
 2. Extracts `toolName` and `toolInput` fields (via `jq` if available, regex fallback otherwise)
 3. Checks the combined text against the allowlist — if matched, skips all scanning
 4. Scans combined text against ~20 regex threat patterns across 6 severity categories
-5. Reports findings with category, severity, matched text, and a safer alternative
+5. Reports findings (category, severity, matched text, safer alternative) as human-readable diagnostics on **stderr**
 6. Writes a structured JSON log entry for audit purposes
-7. In `block` mode, exits non-zero to prevent the tool from executing
-8. In `warn` mode, logs the threat and allows execution to proceed
+7. In `block` mode, writes the official decision object `{"permissionDecision":"deny","permissionDecisionReason":"..."}` to **stdout**, so Copilot denies the tool call
+8. In `warn` mode, logs the threat and writes nothing to stdout, so execution proceeds through the normal permission flow
 
 ## Threat Categories
 
@@ -107,18 +108,28 @@ The hook is configured in `hooks.json` to run on the `preToolUse` event:
 
 ## Examples
 
-### Safe command (exit 0)
+### Safe command (no decision emitted)
 
 ```bash
-echo '{"toolName":"bash","toolInput":"git status"}' | bash hooks/tool-guardian/guard-tool.sh
+echo '{"toolName":"bash","toolInput":"git status"}' | bash .github/hooks/tool-guardian/guard-tool.sh
 ```
 
-### Blocked command (exit 1)
+stdout is empty, so the tool call proceeds through the normal permission flow.
+
+### Blocked command (deny decision on stdout)
 
 ```bash
 echo '{"toolName":"bash","toolInput":"git push --force origin main"}' | \
-  GUARD_MODE=block bash hooks/tool-guardian/guard-tool.sh
+  GUARD_MODE=block bash .github/hooks/tool-guardian/guard-tool.sh
 ```
+
+stdout — the only stream Copilot parses — is exactly one JSON object:
+
+```json
+{"permissionDecision":"deny","permissionDecisionReason":"Tool Guardian blocked 1 dangerous operation(s) in 'bash': [destructive_git_ops/critical] 'git push --force origin main' — Use 'git push --force-with-lease' or push to a feature branch;"}
+```
+
+The human-readable table below is written to **stderr**, not stdout:
 
 ```
 🛡️  Tool Guardian: 1 threat(s) detected in 'bash' invocation
@@ -131,18 +142,18 @@ echo '{"toolName":"bash","toolInput":"git push --force origin main"}' | \
    Set GUARD_MODE=warn to log without blocking.
 ```
 
-### Warn mode (exit 0, threat logged)
+### Warn mode (threat logged, no decision emitted)
 
 ```bash
 echo '{"toolName":"bash","toolInput":"rm -rf /"}' | \
-  GUARD_MODE=warn bash hooks/tool-guardian/guard-tool.sh
+  GUARD_MODE=warn bash .github/hooks/tool-guardian/guard-tool.sh
 ```
 
-### Allowlisted command (exit 0)
+### Allowlisted command (no decision emitted)
 
 ```bash
 echo '{"toolName":"bash","toolInput":"git push --force origin main"}' | \
-  TOOL_GUARD_ALLOWLIST="git push --force" bash hooks/tool-guardian/guard-tool.sh
+  TOOL_GUARD_ALLOWLIST="git push --force" bash .github/hooks/tool-guardian/guard-tool.sh
 ```
 
 ## Log Format
@@ -173,7 +184,7 @@ Guard events are written to `.github/logs/copilot/tool-guardian/guard.log` in JS
 To temporarily disable the guardian:
 
 - Set `SKIP_TOOL_GUARD=true` in the hook environment
-- Or remove the `preToolUse` entry from `hooks.json`
+- Or remove the `preToolUse` entry from `.github/hooks/tool-guardian.json`
 
 ## Limitations
 

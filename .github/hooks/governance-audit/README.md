@@ -38,10 +38,11 @@ This hook provides governance controls for Copilot coding agent sessions:
 
 ## Installation
 
-1. Copy the hook folder to your repository:
+1. Copy the hook config file and its script folder into your repository's `.github/hooks/` directory:
 
    ```bash
-   cp -r hooks/governance-audit .github/hooks/
+   cp .github/hooks/governance-audit.json  your-repo/.github/hooks/
+   cp -r .github/hooks/governance-audit    your-repo/.github/hooks/
    ```
 
 2. Ensure scripts are executable:
@@ -61,7 +62,7 @@ This hook provides governance controls for Copilot coding agent sessions:
 
 ## Configuration
 
-Set environment variables in `hooks.json`:
+The hook binds three scripts in `.github/hooks/governance-audit.json` — one each for the `sessionStart`, `sessionEnd`, and `userPromptSubmitted` events. Set environment variables per entry:
 
 ```json
 {

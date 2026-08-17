@@ -1,19 +1,28 @@
 ---
-mode: agent
-description: 'Generate a Playwright test based on a scenario using Playwright MCP'
-tools: ['changes', 'codebase', 'editFiles', 'fetch', 'findTestFiles', 'problems', 'runCommands', 'runTasks', 'runTests', 'search', 'searchResults', 'terminalLastCommand', 'terminalSelection', 'testFailure', 'playwright']
-model: 'Claude Sonnet 4'
+name: "playwright-generate-test"
+description: "Generate a Playwright end-to-end test from a scenario using Playwright MCP, deferring the procedure to the playwright-generate-test skill."
+argument-hint: "scenario=\"<user flow to test>\""
+agent: "agent"
+tools: ["read", "search", "edit", "execute"]
 ---
+# /playwright-generate-test
 
-# Test Generation with Playwright MCP
+## What This Does
 
-Your goal is to generate a Playwright test based on the provided scenario after completing all prescribed steps.
+Explores a described user flow step by step with Playwright MCP, then emits a passing `@playwright/test` TypeScript test. The full procedure lives in the [`playwright-generate-test`](../skills/playwright-generate-test/SKILL.md) skill; this prompt is a thin wrapper that defers to it.
 
-## Specific Instructions
+## When to Use
 
-- You are given a scenario, and you need to generate a playwright test for it. If the user does not provide a scenario, you will ask them to provide one.
-- DO NOT generate test code prematurely or based solely on the scenario without completing all prescribed steps.
-- DO run steps one by one using the tools provided by the Playwright MCP.
-- Only after all steps are completed, emit a Playwright TypeScript test that uses `@playwright/test` based on message history
-- Save generated test file in the tests directory
-- Execute the test file and iterate until the test passes
+During Stage 3/4, when the team wants an end-to-end regression test for a user-facing flow in the Next.js 15 frontend.
+
+## Steps
+
+1. Provide the scenario to test (ask for one if it is missing).
+2. Follow the [`playwright-generate-test`](../skills/playwright-generate-test/SKILL.md) skill: run the steps one by one with Playwright MCP before writing any code.
+3. Honor the kit constraints below.
+
+## Kit Constraints
+
+- Target the **Next.js 15 (App Router)** frontend written in **TypeScript 5 (strict)**.
+- Save the generated spec in the frontend's `tests/` directory and run it until it passes.
+- Component and unit tests still use **Vitest + Testing Library**; reserve Playwright for end-to-end coverage.

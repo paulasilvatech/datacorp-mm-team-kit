@@ -84,7 +84,7 @@ resource "azurerm_storage_account" "state" {
   min_tls_version           = "TLS1_2"
   # Belt and braces against a container accidentally flipped to public.
   allow_nested_items_to_be_public = false
-  enable_https_traffic_only       = true
+  https_traffic_only_enabled      = true
   # State blobs are read and written by CI over the public endpoint; the firewall below
   # narrows that when var.allowed_ip_rules is set.
   public_network_access_enabled = true

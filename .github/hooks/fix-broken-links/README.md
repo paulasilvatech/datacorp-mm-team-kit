@@ -47,10 +47,11 @@ The hook has two modes:
 
 ## Installation
 
-1. Copy the hook folder to your repository:
+1. Copy the hook config file and its script folder into your repository's `.github/hooks/` directory:
 
    ```bash
-   cp -r hooks/fix-broken-links .github/hooks/
+   cp .github/hooks/fix-broken-links.json  your-repo/.github/hooks/
+   cp -r .github/hooks/fix-broken-links    your-repo/.github/hooks/
    ```
 
 2. Make the script executable:
@@ -63,7 +64,7 @@ The hook has two modes:
 
 ## Configuration
 
-The hook is configured in `hooks.json` to run on the `postToolUse` event:
+The hook is configured in `.github/hooks/fix-broken-links.json` to run on the `postToolUse` event:
 
 ```json
 {
@@ -159,11 +160,12 @@ hook stops after the broken-link list — the menu above is skipped.
 ## File Structure
 
 ```
-.github/hooks/fix-broken-links/
-├── hooks.json      GitHub Copilot hook configuration
-├── link-fix.sh     Bash hook implementation
-├── link-fix.ps1    PowerShell 7+ port
-└── README.md       This file
+.github/hooks/
+├── fix-broken-links.json     GitHub Copilot hook configuration (auto-discovered)
+└── fix-broken-links/
+    ├── link-fix.sh           Bash hook implementation
+    ├── link-fix.ps1          PowerShell 7+ port
+    └── README.md             This file
 ```
 
 ## Limitations

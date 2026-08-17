@@ -7,6 +7,8 @@ description: 'Performs comprehensive preflight validation of Bicep deployments t
 
 This skill validates Bicep deployments before execution, supporting both Azure CLI (`az`) and Azure Developer CLI (`azd`) workflows.
 
+> **Kit scope:** This kit's IaC is **Terraform (Azure provider `~> 3.x`)**. Bicep/ARM are **out of scope** for the kit's deliverables; use this preflight only when a project genuinely uses Bicep/ARM. For Terraform, use `terraform validate` / `terraform plan` and the `terraform-azurerm-set-diff-analyzer` skill instead.
+
 ## When to Use This Skill
 
 - Before deploying infrastructure to Azure

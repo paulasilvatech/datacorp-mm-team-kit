@@ -121,7 +121,7 @@ restClient
   .isEqualTo(200);  // Specific code
 ```
 
-### Headers
+### Response Headers
 
 ```java
 restClient
@@ -162,7 +162,7 @@ restClient
 
 ## Request Configuration
 
-### Headers
+### Request Headers
 
 ```java
 restClient

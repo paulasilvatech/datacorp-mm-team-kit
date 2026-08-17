@@ -29,9 +29,11 @@ echo "📦 Auto-committing changes from Copilot session..."
 git add -A
 
 # Create timestamped commit
+# NOTE: pre-commit / commit-msg hooks are intentionally NOT bypassed (no
+# --no-verify) so repo secret scanners and other guards can block a bad commit.
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
-git commit -m "auto-commit: $TIMESTAMP" --no-verify 2>/dev/null || {
-  echo "⚠️  Commit failed"
+git commit -m "auto-commit: $TIMESTAMP" 2>/dev/null || {
+  echo "⚠️  Commit failed (or blocked by a pre-commit hook)"
   exit 0
 }
 

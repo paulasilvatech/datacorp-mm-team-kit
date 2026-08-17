@@ -1,6 +1,6 @@
 ---
 name: azure-well-architected-review
-description: 'Perform an Azure Well-Architected Framework review of the current workload IaC and architecture, generating findings and GitHub issues for improvements.'
+description: "Run an Azure Well-Architected Framework review across the five pillars against a workload's IaC (Terraform, Bicep, or ARM) and deployed resources, then open GitHub issues for the findings. Use when the user asks for a WAF review, an architecture assessment, or a reliability, security, cost, performance, or operational-excellence audit of an Azure workload."
 ---
 
 # Azure Well-Architected Review

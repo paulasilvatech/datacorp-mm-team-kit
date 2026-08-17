@@ -19,7 +19,7 @@ Microsoft.CognitiveServices/accounts (kind: 'AIServices')
 └── /deployments       — Model deployments (GPT-4o, embedding, etc.)
 ```
 
-### Bicep Core Structure
+### Bicep Core Structure — 1. Microsoft Foundry (CognitiveServices)
 
 ```bicep
 // Foundry resource
@@ -73,7 +73,7 @@ resource deployment 'Microsoft.CognitiveServices/accounts/deployments@<fetch>' =
 
 ## 2. Azure AI Search
 
-### Bicep Core Structure
+### Bicep Core Structure — 2. Azure AI Search
 
 ```bicep
 resource search 'Microsoft.Search/searchServices@<fetch>' = {
@@ -89,7 +89,7 @@ resource search 'Microsoft.Search/searchServices@<fetch>' = {
 }
 ```
 
-### Design Notes
+### Design Notes — 2. Azure AI Search
 
 - PE support: Basic SKU or higher (verify latest constraints in MS Docs)
 - Semantic Ranker: Activated via `semanticSearch` property (`disabled` | `free` | `standard`) — verify per-SKU support in MS Docs
@@ -100,7 +100,7 @@ resource search 'Microsoft.Search/searchServices@<fetch>' = {
 
 ## 3. ADLS Gen2 (Storage Account)
 
-### Bicep Core Structure
+### Bicep Core Structure — 3. ADLS Gen2 (Storage Account)
 
 ```bicep
 resource storage 'Microsoft.Storage/storageAccounts@<fetch>' = {
@@ -124,7 +124,7 @@ resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@<f
 }
 ```
 
-### Design Notes
+### Design Notes — 3. ADLS Gen2 (Storage Account)
 
 - `isHnsEnabled` cannot be changed after creation → Resource must be recreated if omitted
 - PE: May need both `blob` and `dfs` PEs depending on use case
@@ -134,7 +134,7 @@ resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@<f
 
 ## 4. Microsoft Fabric
 
-### Bicep Core Structure
+### Bicep Core Structure — 4. Microsoft Fabric
 
 ```bicep
 resource fabric 'Microsoft.Fabric/capacities@<fetch>' = {
@@ -149,7 +149,7 @@ resource fabric 'Microsoft.Fabric/capacities@<fetch>' = {
 }
 ```
 
-### Design Notes
+### Design Notes — 4. Microsoft Fabric
 
 - Only Capacity can be provisioned via Bicep
 - Workspace, Lakehouse, Warehouse, etc. must be created manually in the portal
@@ -168,7 +168,7 @@ When Fabric is added during conversation, the following items must be confirmed 
 
 ## 5. Azure Data Factory
 
-### Bicep Core Structure
+### Bicep Core Structure — 5. Azure Data Factory
 
 ```bicep
 resource adf 'Microsoft.DataFactory/factories@<fetch>' = {
@@ -181,7 +181,7 @@ resource adf 'Microsoft.DataFactory/factories@<fetch>' = {
 }
 ```
 
-### Design Notes
+### Design Notes — 5. Azure Data Factory
 
 - Self-hosted Integration Runtime requires manual setup outside Bicep
 - Primarily used for on-premises data ingestion scenarios
@@ -200,7 +200,7 @@ Decision Rule:
     └─ Only when the user explicitly requests it
 ```
 
-### Bicep Core Structure
+### Bicep Core Structure — 6. AML / AI Hub (MachineLearningServices)
 
 ```bicep
 resource hub 'Microsoft.MachineLearningServices/workspaces@<fetch>' = {

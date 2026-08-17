@@ -1,6 +1,6 @@
 ---
 name: create-spring-boot-java-project
-description: 'Create Spring Boot Java Project Skeleton'
+description: "Scaffold a Spring Boot (Java 21) project skeleton via start.spring.io with Maven, springdoc-openapi, and ArchUnit, ready to run with Docker Compose. Use when the user wants to bootstrap a new Spring Boot backend or generate a starter project. Aligns to the kit's Java 21 + Spring Boot 3.3 stack."
 ---
 
 # Create Spring Boot Java project prompt
@@ -30,7 +30,7 @@ java -version
 ```shell
 curl https://start.spring.io/starter.zip \
   -d artifactId=${input:projectName:demo-java} \
-  -d bootVersion=3.4.5 \
+  -d bootVersion=3.3.5 \
   -d dependencies=lombok,configuration-processor,web,data-jpa,postgresql,data-redis,data-mongodb,validation,cache,testcontainers \
   -d javaVersion=21 \
   -d packageName=com.example \

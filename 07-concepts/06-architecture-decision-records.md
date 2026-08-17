@@ -121,7 +121,7 @@ The following is a realistic ADR that the team could write in Stage 2 for a data
 
 ## Context
 
-The HISTORICO_PAGAMENTOS.ddm DDM defines a periodic group (PE) with up to
+The HISTORICO_PAYMENTS.ddm DDM defines a periodic group (PE) with up to
 12 monthly occurrences within each beneficiary record.
 The PostgreSQL 16 relational model does not support periodic groups natively.
 We must decide how to preserve the occurrences and their order in the modern model.

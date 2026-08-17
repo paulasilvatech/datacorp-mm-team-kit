@@ -14,8 +14,8 @@ On the `preToolUse` event the hook receives the tool invocation as JSON on stdin
 
 ## Behavior contract
 
-- **Blocks (exit 1)** only on a confident negative from the oracle.
-- **Fails open (exit 0)** when the free daily quota is spent, the API is unreachable, or the payload is unusable. It never blocks on these.
+- **Blocks (emits a `permissionDecision: deny` object on stdout)** only on a confident negative from the oracle.
+- **Fails open (empty stdout, allow)** when the free daily quota is spent, the API is unreachable, or the payload is unusable. It never blocks on these.
 - Python: skips standard library modules and relative imports. JS/TS: skips relative paths, absolute paths, and node builtins; `@scope/name` handled.
 - Answers are cached at `~/.cache/attester-import-check/cache.json` (exists 30 days, negatives 1 day) so repeated edits do not burn the free quota.
 - Allowlist import names that differ from their registry package (`yaml`, `PIL`, `cv2`) via `.attester-allowlist` in the workspace root, one per line.
@@ -26,16 +26,17 @@ The check uses the free keyless tier: 25 calls per day per client IP, no account
 
 ## Installation
 
-1. Copy the hook folder to your repository:
+1. Copy the hook config file and its script folder into your repository's `.github/hooks/` directory:
 
    ```bash
-   cp -r hooks/attester-import-check your-repo/hooks/
+   cp .github/hooks/attester-import-check.json  your-repo/.github/hooks/
+   cp -r .github/hooks/attester-import-check    your-repo/.github/hooks/
    ```
 
 2. Ensure the script is executable:
 
    ```bash
-   chmod +x hooks/attester-import-check/check-imports.py
+   chmod +x .github/hooks/attester-import-check/check-imports.py
    ```
 
 3. Commit the hook configuration to your repository's default branch.
@@ -44,7 +45,7 @@ The script is Python 3.10+ standard library only. No pip install step.
 
 ## Configuration
 
-The hook is configured in `hooks.json` to run on the `preToolUse` event:
+The hook is configured in `.github/hooks/attester-import-check.json` to run on the `preToolUse` event:
 
 ```json
 {
@@ -53,7 +54,7 @@ The hook is configured in `hooks.json` to run on the `preToolUse` event:
     "preToolUse": [
       {
         "type": "command",
-        "bash": "hooks/attester-import-check/check-imports.py",
+        "bash": ".github/hooks/attester-import-check/check-imports.py",
         "cwd": ".",
         "env": {
           "ATTESTER_MODE": "block"
@@ -75,25 +76,35 @@ The hook is configured in `hooks.json` to run on the `preToolUse` event:
 
 ## Examples
 
-### Hallucinated package (exit 1, blocked)
+### Hallucinated package (blocked)
 
 ```bash
 echo '{"toolName":"write_file","toolInput":{"path":"main.py","content":"import requestsx_fantasy_helper"}}' | \
-  python3 hooks/attester-import-check/check-imports.py
+  python3 .github/hooks/attester-import-check/check-imports.py
 ```
+
+stdout — the decision object Copilot parses:
+
+```json
+{"permissionDecision": "deny", "permissionDecisionReason": "attester-import-check blocked hallucinated dependency import(s): 'requestsx_fantasy_helper' does not exist on PyPI. Remove or fix the import, or add the name to .attester-allowlist if this is a false positive."}
+```
+
+A matching human-readable line is written to **stderr**:
 
 ```
 attester-import-check: 'requestsx_fantasy_helper' does not exist on PyPI (attester.dev oracle). Remove or fix the import, or add the name to .attester-allowlist if this is a false positive.
 ```
 
-### Real package (exit 0)
+### Real package (allowed)
 
 ```bash
 echo '{"toolName":"write_file","toolInput":{"path":"main.py","content":"import requests"}}' | \
-  python3 hooks/attester-import-check/check-imports.py
+  python3 .github/hooks/attester-import-check/check-imports.py
 ```
 
-### Quota exhausted (exit 0, allowed with warning)
+stdout is empty, so the write proceeds.
+
+### Quota exhausted (allowed with warning)
 
 ```
 attester-import-check: attester quota exhausted, unchecked

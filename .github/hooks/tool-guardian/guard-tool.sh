@@ -151,16 +151,24 @@ done
 
 # ---------------------------------------------------------------------------
 # Output and logging
+#
+# preToolUse contract: stdout must carry exactly one JSON decision object, or
+# nothing. Human-readable diagnostics therefore go to stderr, and the audit
+# trail goes to the log file. Only a `block` decision writes to stdout, using
+# the official shape: {"permissionDecision":"deny","permissionDecisionReason":...}.
 # ---------------------------------------------------------------------------
 if [[ $THREAT_COUNT -gt 0 ]]; then
-  echo ""
-  echo "🛡️  Tool Guardian: $THREAT_COUNT threat(s) detected in '$TOOL_NAME' invocation"
-  echo ""
-  printf "  %-24s %-10s %-40s %s\n" "CATEGORY" "SEVERITY" "MATCH" "SUGGESTION"
-  printf "  %-24s %-10s %-40s %s\n" "--------" "--------" "-----" "----------"
+  {
+    echo ""
+    echo "🛡️  Tool Guardian: $THREAT_COUNT threat(s) detected in '$TOOL_NAME' invocation"
+    echo ""
+    printf "  %-24s %-10s %-40s %s\n" "CATEGORY" "SEVERITY" "MATCH" "SUGGESTION"
+    printf "  %-24s %-10s %-40s %s\n" "--------" "--------" "-----" "----------"
+  } >&2
 
-  # Build JSON findings array
+  # Build a JSON findings array (audit log) and a human-readable deny reason.
   FINDINGS_JSON="["
+  REASON="Tool Guardian blocked $THREAT_COUNT dangerous operation(s) in '$TOOL_NAME':"
   FIRST=true
   for threat in "${THREATS[@]}"; do
     IFS=$'\t' read -r category severity match suggestion <<< "$threat"
@@ -170,28 +178,30 @@ if [[ $THREAT_COUNT -gt 0 ]]; then
     if [[ ${#match} -gt 38 ]]; then
       display_match="${match:0:35}..."
     fi
-    printf "  %-24s %-10s %-40s %s\n" "$category" "$severity" "$display_match" "$suggestion"
+    printf "  %-24s %-10s %-40s %s\n" "$category" "$severity" "$display_match" "$suggestion" >&2
 
     if [[ "$FIRST" != "true" ]]; then
       FINDINGS_JSON+=","
     fi
     FIRST=false
     FINDINGS_JSON+="{\"category\":\"$(json_escape "$category")\",\"severity\":\"$(json_escape "$severity")\",\"match\":\"$(json_escape "$match")\",\"suggestion\":\"$(json_escape "$suggestion")\"}"
+    REASON+=" [$category/$severity] '$match' — $suggestion;"
   done
   FINDINGS_JSON+="]"
 
-  echo ""
+  echo "" >&2
 
   # Write structured log entry
   printf '{"timestamp":"%s","event":"threats_detected","mode":"%s","tool":"%s","threat_count":%d,"threats":%s}\n' \
     "$TIMESTAMP" "$MODE" "$(json_escape "$TOOL_NAME")" "$THREAT_COUNT" "$FINDINGS_JSON" >> "$LOG_FILE"
 
   if [[ "$MODE" == "block" ]]; then
-    echo "🚫 Operation blocked: resolve the threats above or adjust TOOL_GUARD_ALLOWLIST."
-    echo "   Set GUARD_MODE=warn to log without blocking."
-    exit 1
+    echo "🚫 Operation blocked: resolve the threats above or adjust TOOL_GUARD_ALLOWLIST." >&2
+    echo "   Set GUARD_MODE=warn to log without blocking." >&2
+    # Official preToolUse decision: deny. Exactly one JSON object on stdout.
+    printf '{"permissionDecision":"deny","permissionDecisionReason":"%s"}\n' "$(json_escape "$REASON")"
   else
-    echo "⚠️  Threats logged in warn mode. Set GUARD_MODE=block to prevent dangerous operations."
+    echo "⚠️  Threats logged in warn mode. Set GUARD_MODE=block to prevent dangerous operations." >&2
   fi
 else
   # Log clean result

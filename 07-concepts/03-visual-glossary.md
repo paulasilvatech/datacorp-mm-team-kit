@@ -62,7 +62,7 @@ The mainframe database where SIFAP (Payment Inspection and Administration System
 
 ### DDM — Data Definition Module
 
-An Adabas `.ddm` file that describes the structure of a "file" (equivalent to a table): fields, types, sizes, and occurrences. SIFAP example: `BENEFICIARIO.ddm` defines the fields in the beneficiary registry. Location: `01-archaeology/legacy-sifap/adabas-ddms/`.
+An Adabas `.ddm` file that describes the structure of a "file" (equivalent to a table): fields, types, sizes, and occurrences. SIFAP example: `BENEFICIARY.ddm` defines the fields in the beneficiary registry. Location: `01-archaeology/legacy-sifap/adabas-ddms/`.
 
 ### MU — Multiple-Value field
 

@@ -1,13 +1,13 @@
 ---
 name: postgresql-optimization
-description: 'PostgreSQL-specific development assistant focusing on unique PostgreSQL features, advanced data types, and PostgreSQL-exclusive capabilities. Covers JSONB operations, array types, custom types, range/geometric types, full-text search, window functions, and PostgreSQL extensions ecosystem.'
+description: "Author and optimize PostgreSQL using its advanced features — JSONB, array/range/geometric types, custom types, full-text search, window functions, indexing, and the extensions ecosystem. Use when the user wants to write, tune, or speed up PostgreSQL queries, schema, or performance. To review existing PostgreSQL code, use postgresql-code-review."
 ---
 
 # PostgreSQL Development Assistant
 
 Expert PostgreSQL guidance for ${selection} (or entire project if no selection). Focus on PostgreSQL-specific features, optimization patterns, and advanced capabilities.
 
-## � PostgreSQL-Specific Features
+## PostgreSQL-Specific Features
 
 ### JSONB Operations
 
@@ -98,7 +98,7 @@ WHERE search_vector @@ plainto_tsquery('postgresql')
 ORDER BY rank DESC;
 ```
 
-## � PostgreSQL Performance Tuning
+## PostgreSQL Performance Tuning
 
 ### Query Optimization
 
@@ -149,7 +149,7 @@ FROM pg_settings
 WHERE name IN ('shared_buffers', 'work_mem', 'maintenance_work_mem');
 ```
 
-## �️ PostgreSQL Advanced Data Types
+## PostgreSQL Advanced Data Types
 
 ### Custom Types & Domains
 

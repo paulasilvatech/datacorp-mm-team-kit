@@ -1,6 +1,6 @@
 ---
 name: az-cost-optimize
-description: 'Analyze Azure resources used in the app (IaC files and/or resources in a target rg) and optimize costs - creating GitHub issues for identified optimizations.'
+description: "Analyze Terraform/Bicep IaC and deployed Azure resources to find cost-optimization opportunities, then open individual GitHub issues plus a coordinating EPIC. Use when the user wants to reduce or optimize Azure spend for an existing workload, right-size resources, or track cost savings as GitHub issues. For raw price lookups or estimates, use azure-pricing instead."
 ---
 
 # Azure Cost Optimize
@@ -52,7 +52,7 @@ This workflow analyzes Infrastructure-as-Code (IaC) files and Azure resources to
      - ... and so on for other resource types
 
 2. **IaC Detection**:
-   - Use `file_search` to scan for IaC files: "**/*.bicep", "**/*.tf", "**/main.json", "**/*template*.json"
+   - Use `file_search` to scan for IaC files: "**/*.tf", "**/*.bicep", "**/main.json", "**/*template*.json" (this kit's IaC is Terraform, so `.tf` is primary)
    - Parse resource definitions to understand intended configurations
    - Compare against discovered resources to identify discrepancies
    - Note presence of IaC files for implementation recommendations later on
@@ -216,10 +216,10 @@ This workflow analyzes Infrastructure-as-Code (IaC) files and Azure resources to
    **IaC Files Detected**: [Yes/No - based on file_search results]
    
    ```bash
-   # If IaC files found: Show IaC modifications + deployment
-   # File: infrastructure/bicep/modules/app-service.bicep
-   # Change: sku.name: 'S3' → 'B2'
-   az deployment group create --resource-group [rg] --template-file infrastructure/bicep/main.bicep
+   # If IaC files found: Show IaC modifications + apply
+   # File: infra/app_service.tf
+   # Change: sku_name = "S3"  ->  sku_name = "B2"
+   terraform -chdir=infra apply
    
    # If no IaC files: Direct Azure CLI commands + warning
    # ⚠️ No IaC files found. If they exist elsewhere, modify those instead.

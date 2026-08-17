@@ -1,6 +1,6 @@
 ---
 name: java-mcp-server-generator
-description: 'Generate a complete Model Context Protocol server project in Java using the official MCP Java SDK with reactive streams and optional Spring Boot integration.'
+description: "Generate a complete Model Context Protocol (MCP) server project in Java using the official MCP Java SDK, with Maven or Gradle and optional Spring Boot integration. Use when the user wants to create, scaffold, or bootstrap a Java-based MCP server that exposes tools, resources, or prompts."
 ---
 
 # Java MCP Server Generator

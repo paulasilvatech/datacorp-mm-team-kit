@@ -4,9 +4,12 @@
 Reads the tool invocation as JSON on stdin ({"toolName", "toolInput"}),
 extracts package imports from the code being introduced, and checks each
 name against the attester.dev existence oracle (free keyless tier, 25
-calls/day per client IP). Exits 1 to block on a confident "does not exist".
-Quota exhaustion, offline, and payload problems fail open (exit 0): a guard
-that blocks the wrong operation is worse than one that misses one.
+calls/day per client IP). On a confident "does not exist" it writes the
+official preToolUse decision to stdout:
+{"permissionDecision": "deny", "permissionDecisionReason": "..."}.
+Quota exhaustion, offline, and payload problems fail open (empty stdout,
+exit 0): a guard that blocks the wrong operation is worse than one that
+misses one.
 
 Stdlib only. Answers are cached at ~/.cache/attester-import-check/cache.json
 (exists 30 days, negatives 1 day) so repeated edits do not burn quota.
@@ -231,8 +234,24 @@ def main() -> int:
             msg += f" Closest real name: {', '.join(adjacent)}."
         msg += " Remove or fix the import, or add the name to .attester-allowlist if this is a false positive."
         print(msg, file=sys.stderr)
+
     if findings and not warn_only:
-        return 1
+        # Official preToolUse decision on stdout: deny (exactly one JSON object).
+        reason = " ".join(
+            f"'{package}' does not exist on "
+            f"{'PyPI' if ecosystem == 'pypi' else 'npm'}"
+            + (f" (closest real name: {', '.join(adjacent)})" if adjacent else "")
+            for package, ecosystem, adjacent in findings
+        )
+        decision = {
+            "permissionDecision": "deny",
+            "permissionDecisionReason": (
+                f"attester-import-check blocked hallucinated dependency import(s): {reason}. "
+                "Remove or fix the import, or add the name to .attester-allowlist "
+                "if this is a false positive."
+            ),
+        }
+        print(json.dumps(decision))
     return 0
 
 

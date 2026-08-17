@@ -133,7 +133,7 @@ REQ-078:
   text: "While the beneficiary has SUSPENDED status, the system shall block the processing of new payments for that beneficiary."
   source_legacy: 01-archaeology/legacy-sifap/natural-programs/CTRLPGTO.NSN#L33-L41
   acceptance:
-    - "An attempt to process a payment for a SUSPENDED beneficiary returns the BENEFICIARIO_SUSPENSO error"
+    - "An attempt to process a payment for a SUSPENDED beneficiary returns the BENEFICIARY_SUSPENSO error"
     - "No payment record is created for a SUSPENDED beneficiary"
 ```
 

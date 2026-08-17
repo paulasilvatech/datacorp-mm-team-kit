@@ -1,25 +1,28 @@
 ---
-description: 'Transform this Python script into a polished, beginner-friendly project by refactoring the code, adding clear instructional comments, and generating a complete markdown tutorial.'
+name: "comment-code-generate-a-tutorial"
+description: "Refactor a source file, add beginner-friendly instructional comments, and generate a README tutorial, deferring the workflow to the comment-code-generate-a-tutorial skill."
+argument-hint: "file=<path-to-source>"
+agent: "agent"
+tools: ["read", "edit", "search"]
 ---
+# /comment-code-generate-a-tutorial
 
-Transform this Python script into a polished, beginner-friendly project by refactoring the code, adding clear instructional comments, and generating a complete markdown tutorial.
+## What This Does
 
-1. **Refactor the code**  
-   - Apply standard Python best practices  
-   - Ensure code follows the PEP 8 style guide  
-   - Rename unclear variables and functions if needed for clarity
+Turns a single source file into a polished, teaching-oriented example: it refactors for clarity, adds instructional comments that explain the reasoning, and produces a `README.md` tutorial. The full workflow lives in the [`comment-code-generate-a-tutorial`](../skills/comment-code-generate-a-tutorial/SKILL.md) skill; this prompt is a thin wrapper that defers to it.
 
-1. **Add comments throughout the code**  
-   - Use a beginner-friendly, instructional tone  
-   - Explain what each part of the code is doing and why it's important  
-   - Focus on the logic and reasoning, not just syntax  
-   - Avoid redundant or superficial comments
+## When to Use
 
-1. **Generate a tutorial as a `README.md` file**  
-   Include the following sections:
-   - **Project Overview:** What the script does and why it's useful  
-   - **Setup Instructions:** Prerequisites, dependencies, and how to run the script  
-   - **How It Works:** A breakdown of the code logic based on the comments  
-   - **Example Usage:** A code snippet showing how to use it  
-   - **Sample Output:** (Optional) Include if the script returns visible results  
-   - Use clear, readable Markdown formatting
+When preparing a walkthrough or teaching artifact for the workshop — for example, explaining a translated module to the rest of the team.
+
+## Steps
+
+1. Provide the path to the source file to document.
+2. Follow the [`comment-code-generate-a-tutorial`](../skills/comment-code-generate-a-tutorial/SKILL.md) skill end to end.
+3. Honor the kit constraints below.
+
+## Kit Constraints
+
+- The skill uses Python for its example; in this kit apply the same approach to the target stack — **Java 21** (backend) or **TypeScript** on **Next.js 15** (frontend) — and follow the matching style guide (PEP 8 only when the file really is Python).
+- Write all comments and tutorial prose in **English**.
+- Never expose sensitive data (CPF, benefit amounts) in examples or sample output — mask it.

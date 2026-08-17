@@ -1,6 +1,6 @@
 ---
 name: azure-resource-health-diagnose
-description: 'Analyze Azure resource health, diagnose issues from logs and telemetry, and create a remediation plan for identified problems.'
+description: "Diagnose the health of a specific Azure resource from its logs, metrics, and telemetry, then produce a remediation plan. Use when the user reports that a deployed Azure resource is failing, degraded, throttling, or unhealthy, or asks to troubleshoot or investigate one. Requires the resource to be deployed and emitting telemetry."
 ---
 
 # Azure Resource Health & Issue Diagnosis

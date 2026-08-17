@@ -1,6 +1,6 @@
 ---
 name: context-map
-description: 'Generate a map of all files relevant to a task before making changes'
+description: "Produce a map of the files relevant to a task — files to modify, dependencies, related tests, reference patterns, and risks — before any code is written. Use when the user wants to scope impact, plan changes, or understand which files a task touches before implementing."
 ---
 
 # Context Map

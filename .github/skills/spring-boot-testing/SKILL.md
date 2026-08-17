@@ -1,18 +1,18 @@
 ---
 name: spring-boot-testing
-description: Expert Spring Boot 4 testing specialist that selects the best Spring Boot testing techniques for your situation with Junit 6 and AssertJ.
+description: "Select the right Spring Boot test technique for a scenario — test slices (@WebMvcTest, @DataJpaTest, @RestClientTest, @JsonTest, @SpringBootTest), Testcontainers, Mockito, and AssertJ. Use when writing or reviewing Spring Boot integration or slice tests. Targets the kit's Spring Boot 3.3 + JUnit 5; newer 3.4+/4.0 APIs (MockMvcTester, @MockitoBean, RestTestClient) are noted as out of scope for the kit."
 ---
 
 # Spring Boot Testing
 
-This skill provides expert guide for testing Spring Boot 4 applications with modern patterns and best practices.
+This skill helps you choose the right Spring Boot testing technique for a scenario. It targets the kit's **Spring Boot 3.3 + JUnit 5 + Testcontainers** stack; a few newer APIs from Spring Boot 3.4+/4.0 are shown for reference only and clearly marked as **out of scope for the kit**.
 
 ## Core Principles
 
 1. **Test Pyramid**: Unit (fast) > Slice (focused) > Integration (complete)
 2. **Right Tool**: Use the narrowest slice that gives you confidence
 3. **AssertJ Style**: Fluent, readable assertions over verbose matchers
-4. **Modern APIs**: Prefer MockMvcTester and RestTestClient over legacy alternatives
+4. **Kit stack**: On Spring Boot 3.3 use classic MockMvc and `@MockBean`; the newer MockMvcTester / `@MockitoBean` / RestTestClient APIs (3.4+/4.0) are out of scope
 
 ## Which Test Slice?
 
@@ -60,7 +60,7 @@ This skill provides expert guide for testing Spring Boot 4 applications with mod
 
 ```
 Testing a controller endpoint?
-  Yes → @WebMvcTest with MockMvcTester
+  Yes → @WebMvcTest with classic MockMvc (MockMvcTester requires Spring Boot 3.4+)
 
 Testing repository queries?
   Yes → @DataJpaTest with Testcontainers (real DB)
@@ -78,13 +78,17 @@ Need full integration test?
   Yes → @SpringBootTest with minimal context config
 ```
 
-## Spring Boot 4 Highlights
+## Newer APIs — Out of Scope for the Kit (Spring Boot 3.4+/4.0)
 
-- **RestTestClient**: Modern alternative to TestRestTemplate
-- **@MockitoBean**: Replaces @MockBean (deprecated)
-- **MockMvcTester**: AssertJ-style assertions for web tests
-- **Modular starters**: Technology-specific test starters
-- **Context pausing**: Automatic pausing of cached contexts (Spring Framework 7)
+The kit is fixed at **Spring Boot 3.3 + JUnit 5**. The following newer APIs are listed for
+awareness only — do not adopt them in the kit's code:
+
+- **MockMvcTester**: AssertJ-style MockMvc assertions (Spring Boot 3.4+). On 3.3, use classic MockMvc.
+- **@MockitoBean**: replaces `@MockBean` (Spring Boot 3.4+). On 3.3, use `@MockBean`.
+- **RestTestClient**: alternative to `TestRestTemplate` (Spring Boot 4.0). On 3.3, use `TestRestTemplate` or `RestClient`.
+- **Modular test starters** and **context pausing** (Spring Boot 4.0 / Spring Framework 7).
+
+Consult [references/sb4-migration.md](references/sb4-migration.md) only if the project actually upgrades beyond 3.3.
 
 ## Testing Best Practices
 
@@ -166,7 +170,10 @@ Use Jacoco maven plugin for coverage reporting and tracking.
 3. Error handling (exceptions, edge cases)
 4. Integration points (external APIs, databases)
 
-## Dependencies (Spring Boot 4)
+## Dependencies (Spring Boot 3.3)
+
+`spring-boot-starter-test` already bundles JUnit 5, Mockito, AssertJ, and MockMvc. Add the
+Testcontainers support module to run `@DataJpaTest` / `@SpringBootTest` against a real PostgreSQL 16.
 
 ```xml
 <dependency>
@@ -175,17 +182,15 @@ Use Jacoco maven plugin for coverage reporting and tracking.
   <scope>test</scope>
 </dependency>
 
-<!-- For WebMvc tests -->
-<dependency>
-  <groupId>org.springframework.boot</groupId>
-  <artifactId>spring-boot-starter-webmvc-test</artifactId>
-  <scope>test</scope>
-</dependency>
-
-<!-- For Testcontainers -->
+<!-- Testcontainers support (real PostgreSQL for @DataJpaTest / @SpringBootTest) -->
 <dependency>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-testcontainers</artifactId>
+  <scope>test</scope>
+</dependency>
+<dependency>
+  <groupId>org.testcontainers</groupId>
+  <artifactId>postgresql</artifactId>
   <scope>test</scope>
 </dependency>
 ```

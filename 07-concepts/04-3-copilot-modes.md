@@ -86,7 +86,7 @@ Focus on business decisions. Ignore I/O routines."
 ```
 
 ```text
-"@archaeologist, which fields in BENEFICIARIO.ddm
+"@archaeologist, which fields in BENEFICIARY.ddm
 are mandatory, and which are multiple-value fields (MU)?"
 ```
 

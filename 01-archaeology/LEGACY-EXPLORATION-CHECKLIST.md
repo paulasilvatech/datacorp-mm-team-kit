@@ -70,10 +70,10 @@ Pair 4 (DBA + QA) leads. All other pairs contribute reviews.
 
 | DDM | Owner | Target artifact in PostgreSQL |
 |---|---|---|
-| `BENEFICIARIO.ddm` | Pair 4 | <!-- define from evidence --> |
-| `PAGAMENTO.ddm` | Pair 4 | <!-- define from evidence --> |
-| `PROGRAMA-SOCIAL.ddm` | Pair 4 | <!-- define from evidence --> |
-| `AUDITORIA.ddm` | Pair 4 | <!-- define from evidence --> |
+| `BENEFICIARY.ddm` | Pair 4 | <!-- define from evidence --> |
+| `PAYMENT.ddm` | Pair 4 | <!-- define from evidence --> |
+| `SOCIAL-PROGRAM.ddm` | Pair 4 | <!-- define from evidence --> |
+| `AUDIT.ddm` | Pair 4 | <!-- define from evidence --> |
 
 Review the DDMs needed for the selected feature. Complete PostgreSQL mapping belongs in planning and implementation; it is not a prerequisite for starting the spec.
 

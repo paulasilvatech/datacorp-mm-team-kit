@@ -1,6 +1,6 @@
 ---
 name: playwright-generate-test
-description: 'Generate a Playwright test based on a scenario using Playwright MCP'
+description: "Generate a Playwright end-to-end test in TypeScript from a described scenario by driving the Playwright MCP step by step, then run it until it passes. Use when the user asks to create or record a browser/E2E test with Playwright for a web flow."
 ---
 
 # Test Generation with Playwright MCP

@@ -16,9 +16,10 @@ description: >
 
 A pipeline that designs Azure infrastructure using natural language, or analyzes existing resources to visualize architecture and proceed through modification and deployment.
 
+> **Kit scope:** This kit's IaC is **Terraform (Azure provider `~> 3.x`)**. This skill emits **Bicep**, which is **out of scope** for the kit's deliverables — use it for exploration, diagrams, or reference only, and re-express any adopted architecture as Terraform under `infra/` (which the team creates in Stage 3).
+
 The diagram engine is **embedded within the skill** (`scripts/` folder).
-No `pip install` needed — it directly uses the bundled Python scripts
-to generate interactive HTML diagrams with 605+ official Azure icons.
+No `pip install` needed — the bundled Python scripts generate interactive HTML diagrams with 605+ official Azure icons. The engine entry point is [`scripts/cli.py`](scripts/cli.py), which imports [`scripts/generator.py`](scripts/generator.py) (HTML/SVG rendering) and [`scripts/icons.py`](scripts/icons.py) (official Azure icon data).
 Ready to use immediately without network access or package installation.
 
 ## Automatic User Language Detection

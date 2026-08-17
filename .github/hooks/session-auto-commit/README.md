@@ -26,10 +26,11 @@ This hook runs at the end of each Copilot coding agent session and automatically
 
 ## Installation
 
-1. Copy this hook folder to your repository's `.github/hooks/` directory:
+1. Copy the hook config file and its script folder into your repository's `.github/hooks/` directory:
 
    ```bash
-   cp -r hooks/session-auto-commit .github/hooks/
+   cp .github/hooks/session-auto-commit.json  your-repo/.github/hooks/
+   cp -r .github/hooks/session-auto-commit    your-repo/.github/hooks/
    ```
 
 2. Ensure the script is executable:
@@ -42,7 +43,7 @@ This hook runs at the end of each Copilot coding agent session and automatically
 
 ## Configuration
 
-The hook is configured in `hooks.json` to run on the `sessionEnd` event:
+The hook is configured in `.github/hooks/session-auto-commit.json` to run on the `sessionEnd` event:
 
 ```json
 {
@@ -52,6 +53,7 @@ The hook is configured in `hooks.json` to run on the `sessionEnd` event:
       {
         "type": "command",
         "bash": ".github/hooks/session-auto-commit/auto-commit.sh",
+        "cwd": ".",
         "timeoutSec": 30
       }
     ]
@@ -82,12 +84,12 @@ You can customize the hook by modifying `auto-commit.sh`:
 
 To temporarily disable auto-commits:
 
-1. Remove or comment out the `sessionEnd` hook in `hooks.json`
+1. Remove or comment out the `sessionEnd` hook in `.github/hooks/session-auto-commit.json`
 2. Or set an environment variable: `export SKIP_AUTO_COMMIT=true`
 
 ## Notes
 
-- The hook uses `--no-verify` to avoid triggering pre-commit hooks
+- The hook runs pre-commit and commit-msg hooks (it does **not** use `--no-verify`), so repo secret scanners and other guards can block a risky commit
 - Failed pushes won't block session termination
 - Requires appropriate git credentials configured
 - Works with both Copilot coding agent and GitHub Copilot CLI
