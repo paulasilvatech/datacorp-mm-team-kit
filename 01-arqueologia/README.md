@@ -53,10 +53,11 @@ Todos os 5 pares trabalham em paralelo, cada um responsável por 3 programas Nat
 | [`discovery-report.md`](discovery-report.md) | Relatório de descoberta — consolida as evidências do estágio. |
 | [`mysteries-checklist.md`](mysteries-checklist.md) | Checklist de rastreabilidade para perguntas em aberto. |
 | [`mysteries-found.md`](mysteries-found.md) | Registro detalhado de perguntas em aberto com evidência e responsável. |
+| [`COMO-COMPILAR-E-EXECUTAR.md`](COMO-COMPILAR-E-EXECUTAR.md) | **Trilha opcional.** Como compilar e executar o corpus legado em um ambiente Adabas/Natural real. Não é pré-requisito de nenhum estágio. |
 
 O código legado está em [`legado-sifap/`](legado-sifap/) (compartilhado pelo kit).
 
-Quem quiser executar o legado, em vez de apenas lê-lo, pode provisionar o lab opcional em [`infra/adabas-natural-lab/`](../infra/adabas-natural-lab/README.md): uma VM Azure com Adabas e Natural Community Edition. É trilha avançada, exige assinatura Azure própria e nenhum artefato do Estágio 1 depende dela.
+Quem quiser executar o legado, em vez de apenas lê-lo, pode provisionar o lab opcional em [`infra/adabas-natural-lab/`](../infra/adabas-natural-lab/README.md): uma VM Azure com Adabas e Natural Community Edition. O percurso do corpus até um programa rodando — carga dos fontes, criação dos arquivos Adabas, compilação e execução — está em [`COMO-COMPILAR-E-EXECUTAR.md`](COMO-COMPILAR-E-EXECUTAR.md). É trilha avançada, exige assinatura Azure própria e nenhum artefato do Estágio 1 depende dela.
 
 ---
 

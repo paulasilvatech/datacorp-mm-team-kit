@@ -9,7 +9,7 @@
 | Campo | Valor |
 |---|---|
 | **Público-alvo** | DevOps, DBA, Tech Lead ou quem quiser validar empiricamente uma regra do legado |
-| **Pré-requisitos** | Lab de [`infra/adabas-natural-lab/`](../infra/adabas-natural-lab/) provisionado e acessível; leitura de [`COMO-LER-NATURAL.md`](legado-sifap/COMO-LER-NATURAL.md) |
+| **Pré-requisitos** | Lab de [`infra/adabas-natural-lab/`](../infra/adabas-natural-lab/README.md) provisionado e acessível; leitura de [`COMO-LER-NATURAL.md`](legado-sifap/COMO-LER-NATURAL.md) |
 | **Tempo estimado** | 2 a 4 horas, fora do cronograma do dia |
 | **Estágio** | Estágio 1 — Arqueologia (trilha opcional) |
 | **Resultado esperado** | Pelo menos um membro do corpus compilado sem erro e um programa executado no lab |
@@ -158,7 +158,7 @@ Inventário verificado de [`legado-sifap/`](legado-sifap/):
 
 ## 3. O ambiente de execução
 
-Este guia começa de onde o módulo Terraform termina: **o lab já está no ar**. Deploy, conexão e destruição são responsabilidade de [`infra/adabas-natural-lab/`](../infra/adabas-natural-lab/) e do README daquele módulo. Não repita aqueles passos aqui.
+Este guia começa de onde o módulo Terraform termina: **o lab já está no ar**. Deploy, conexão e destruição são responsabilidade de [`infra/adabas-natural-lab/README.md`](../infra/adabas-natural-lab/README.md). Não repita aqueles passos aqui.
 
 O que o lab entrega, conforme `main.tf`, `variables.tf` e `cloud-init.yaml` daquele módulo:
 
@@ -180,6 +180,8 @@ O que o lab entrega, conforme `main.tf`, `variables.tf` e `cloud-init.yaml` daqu
 
 > [!NOTE]
 > O DBID do lab é `12`. Os quatro DDMs do corpus declaram `DBID: 057`. Isso não é um conflito real: DBID é configuração de ambiente, e o corpus documenta o ambiente de produção de origem. A seção 5 trata da escolha.
+
+Antes de qualquer passo desta página, confirme que o bootstrap da VM terminou — o download das imagens leva vários minutos após o `terraform apply` retornar. O output `bootstrap_log_command` do módulo imprime o comando de acompanhamento do log.
 
 ---
 
@@ -207,7 +209,7 @@ ls /opt/sifap/corpus/natural-programs
 - [ ] **Confirmar que o contêiner enxerga os arquivos.**
 
 ```bash
-docker exec natural-ce ls /corpus/natural-programs
+sudo docker exec natural-ce ls /corpus/natural-programs
 ```
 
 O ponto de montagem `/opt/sifap/corpus:/corpus:ro` é definido no `docker-compose.yml` gerado pelo `cloud-init.yaml` do lab. O contêiner vê o conteúdo em modo somente leitura — o que é exatamente o desejado para material de referência.
@@ -236,7 +238,7 @@ Abrir uma sessão Natural no contêiner e criar cada membro pelo editor, colando
 > **Copiar os arquivos `.NSP` diretamente para dentro do diretório FUSER não é um procedimento verificado neste guia.** A estrutura interna da área FUSER depende da versão e da configuração do Natural, e uma cópia manual pode gerar membros que o Natural não reconhece — ou corromper a biblioteca. Antes de tentar, confirme o layout esperado na documentação da sua versão do Natural para Linux. O Caminho A não tem essa incerteza.
 
 > [!NOTE]
-> **Comando de abertura da sessão Natural no contêiner: a confirmar.** O ponto de entrada exato da imagem `softwareag/natural-ce` (nome do executável, wrapper de terminal, variáveis de ambiente exigidas) não está documentado neste repositório. Verifique com `docker exec -it natural-ce /bin/bash` seguido de inspeção do diretório de instalação, ou na documentação da imagem. Não presuma um nome de comando.
+> **Comando de abertura da sessão Natural no contêiner: a confirmar.** O ponto de entrada exato da imagem `softwareag/natural-ce` (nome do executável, wrapper de terminal, variáveis de ambiente exigidas) não está documentado neste repositório. Verifique com `sudo docker exec -it natural-ce /bin/bash` seguido de inspeção do diretório de instalação, ou na documentação da imagem. Não presuma um nome de comando.
 
 ---
 
@@ -286,7 +288,7 @@ A correspondência entre as colunas está documentada em [`adabas-ddms/README.md
 ### 5.4. Definir os arquivos no Adabas
 
 > [!NOTE]
-> **Nomes e sintaxe exatos dos utilitários: a confirmar no ambiente.** O Adabas para Linux distribui utilitários de linha de comando para definição de arquivo, compressão e carga de dados, e a edição comunitária também expõe uma administração REST na porta 8190. Este guia **não** dita a linha de comando exata porque ela varia por versão e porque a Community Edition pode expor um subconjunto. Consulte a documentação oficial da Software AG e a ajuda dos utilitários dentro do contêiner (`docker exec -it adabas-db <utilitário> --help`) antes de executar qualquer carga.
+> **Nomes e sintaxe exatos dos utilitários: a confirmar no ambiente.** O Adabas para Linux distribui utilitários de linha de comando para definição de arquivo, compressão e carga de dados, e a edição comunitária também expõe uma administração REST na porta 8190. Este guia **não** dita a linha de comando exata porque ela varia por versão e porque a Community Edition pode expor um subconjunto. Consulte a documentação oficial da Software AG e a ajuda dos utilitários dentro do contêiner (`sudo docker exec -it adabas-db <utilitário> --help`) antes de executar qualquer carga.
 
 O que você precisa decidir antes de rodar qualquer coisa:
 
@@ -518,7 +520,7 @@ Este guia separa o que foi conferido do que continua em aberto. Um comando errad
 | Inventário do corpus: 12 `.NSP`, 5 `.NSN`, 2 `.NSA`, 1 `.NSL`, 2 `.NSC`, 2 `.jcl`, 4 `.ddm`, 1 FDT, 0 `.NSM`, 0 registros de dados | **Verificado** neste repositório |
 | DBID 057 e FNRs 150 a 153 nos DDMs; biblioteca `SIFAPPRD` nos JCLs; `CONSBENF` referencia o map `CONSBENF-M01`; `BATCHPGT` usa work files 1 e 2 e termina com `TERMINATE 8` sem dados | **Verificado** nos fontes citados |
 | Lab: DBID 12, portas 22, 2700, 60001 e 8190, montagem `/opt/sifap/corpus` → `/corpus`, contêineres `adabas-db` e `natural-ce` | **Verificado** em `main.tf`, `variables.tf` e `cloud-init.yaml` |
-| Semântica de `LOGON`, `SAVE`, `CATALOG`, `STOW`, `RUN`, `FIN`; distinção entre fonte e objeto cataloged; ordem de compilação por dependência | **Conhecimento padrão da linguagem.** Confirme contra a documentação da sua versão se algo divergir |
+| Semântica de `LOGON`, `SAVE`, `CATALOG`, `STOW`, `RUN`, `FIN`; distinção entre fonte e objeto cataloged; ordem de compilação por dependência; correspondência entre `NAT3nnn` e response codes do Adabas | **Conhecimento padrão da linguagem.** Confirme contra a documentação da sua versão se algo divergir |
 | Parâmetros posicionais do `CATALL` em forma de comando direto | **A confirmar** na documentação de utilitários do Natural |
 | Parâmetro de tipo de objeto do comando `EDIT` ao criar um membro novo pelo terminal | **A confirmar** na documentação do Natural |
 | Nome e sintaxe dos utilitários Adabas de definição de arquivo, compressão e carga na Community Edition | **A confirmar** na documentação da Software AG e na ajuda dos utilitários do contêiner |
@@ -536,7 +538,7 @@ Este guia separa o que foi conferido do que continua em aberto. Um comando errad
 - [`legado-sifap/COMO-LER-NATURAL.md`](legado-sifap/COMO-LER-NATURAL.md) — leitura de programas Natural sem conhecer a linguagem.
 - [`legado-sifap/natural-programs/README.md`](legado-sifap/natural-programs/README.md) — inventário dos 15 programas atribuídos e dos 9 membros de apoio.
 - [`legado-sifap/adabas-ddms/README.md`](legado-sifap/adabas-ddms/README.md) — como ler uma listagem de DDM e a diferença entre DDM e FDT.
-- [`infra/adabas-natural-lab/`](../infra/adabas-natural-lab/) — provisionamento do lab Adabas + Natural Community Edition no Azure.
+- [`infra/adabas-natural-lab/README.md`](../infra/adabas-natural-lab/README.md) — provisionamento do lab Adabas + Natural Community Edition no Azure.
 - [`LEGACY-EXPLORATION-CHECKLIST.md`](LEGACY-EXPLORATION-CHECKLIST.md) — o portão real do Estágio 1, que não exige execução.
 - Documentação oficial da Software AG para Natural, Natural Development Server, NaturalONE e Adabas — fonte obrigatória para toda sintaxe marcada como "a confirmar" na seção 10.
 
