@@ -7,92 +7,81 @@ tools: ["read", "search", "edit", "execute"]
 ---
 # /gen-specs-as-issues
 
-## What This Does
+## Objective
 
-Systematically finds missing or under-specified behavior for the SIFAP 2.0 modernization, prioritizes it, and turns the top items into detailed GitHub issues. Each issue is written as an EARS specification with a unique REQ-ID and a mandatory `source_legacy:` line, so the work stays traceable from legacy code to modern requirement.
+Find missing or under-specified behavior for the SIFAP 2.0 modernization, prioritize it, and turn the top items into detailed GitHub issues. Each issue is an EARS specification with a unique REQ-ID and a mandatory `source_legacy:` line, so every requirement stays traceable from legacy Natural/Adabas code to the modern system.
 
-## When to Use
+> [!IMPORTANT]
+> The `legacy-traceability` CI job rejects any requirement without a `source_legacy:` line. Every issue this command opens must cite a legacy artifact or be justified as `[GREENFIELD]`.
+
+## When to Invoke
 
 During Stage 2 (specification) or Stage 4 (evolution), when the team needs to convert observed gaps into a prioritized, trackable backlog of specifications.
 
 ## Preconditions
 
-- The pair has read the relevant legacy programs — the HARD GATE in [`LEGACY-EXPLORATION-CHECKLIST.md`](../../01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md).
-- The archaeology artifacts exist (`01-archaeology/business-rules-catalog.md`, `inventory.md`).
-- A target GitHub repository is identified. Do not assume `backend/` or `frontend/` exist — they are created from scratch in Stage 3.
+- The pair has read the relevant legacy programs — the HARD GATE in [`LEGACY-EXPLORATION-CHECKLIST.md`](../../01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md)
+- The modern specification under `02-modern-spec/` (and any `specs/`) is available to compare against
+- The team is authenticated to the target GitHub repository
 
 ## Inputs the Team Must Provide
 
-- `area` — the focus area or bounded context to analyze (optional; defaults to the whole project).
-- `repo` — the `owner/name` of the GitHub repository where issues are created.
+- `area` — the focus area or bounded context to analyze (for example, payment inspection)
+- `repo` — the `owner/name` of the GitHub repository for the issues
+- The legacy programs relevant to the area, under `01-archaeology/legacy-sifap/`
 - Ask the user for anything that is missing.
 
-## Steps
+## What I Will Do
 
-### 1. Understand the current state
+- Compare legacy behavior in the focus area against the modern spec and list the gaps
+- Score each gap by impact and risk, and select the top items to file
+- Write each issue as an EARS requirement following [`requirements.instructions.md`](../instructions/requirements.instructions.md)
+- Assign a unique REQ-ID and a `source_legacy:` line, then open the issues via the `gh` CLI
 
-- Read the modern spec in `02-modern-spec/` and `specs/`, the archaeology artifacts in `01-archaeology/`, and any documentation under `docs/`.
-- Read the confirmed rules in [`business-rules-catalog.md`](../../01-archaeology/business-rules-catalog.md) with their legacy source ranges.
-- Separate what is already specified from what the legacy system does but the modern spec does not yet cover.
+## What I Will NOT Do
 
-### 2. Run a gap analysis
+- Write a requirement without a `source_legacy:` line (or an explicit `[GREENFIELD]` justification)
+- Invent behavior that is absent from both the legacy system and the modern spec
+- Open issues before the team confirms the prioritized list
+- Assign a `spec/` branch to implementation work — these are Stage-2 spec issues on `spec/<NNN>-<feature>`
 
-- Compare confirmed legacy behavior against the modern spec only — never invent behavior from memory.
-- List 5–7 candidate gaps. For each, note its legacy source (file and line range), current status, and the user impact if it stays missing.
-
-### 3. Prioritize
-
-- Score each gap from 1–5 on User Impact, Strategic Alignment, Implementation Feasibility, Effort, and Risk.
-- Rank with `Priority = (User Impact × Strategic Alignment) / (Effort × Risk)` and select the top 3.
-
-### 4. Write each specification in EARS
-
-- Phrase every requirement with one EARS pattern and `SHALL` (see [`requirements.instructions.md`](../instructions/requirements.instructions.md) and the [`ears-validate`](../skills/ears-validate/SKILL.md) skill).
-- Assign a unique `REQ-NNN` (or `REQ-AREA-NNN`) ID and a `source_legacy:` line pointing at a real file under `01-archaeology/legacy-sifap/natural-programs/` or `adabas-ddms/`, or `[GREENFIELD] <justification>`.
-- Add Given/When/Then acceptance criteria, each tied to the REQ-ID.
-
-### 5. Create the GitHub issues
-
-- Create one issue per prioritized specification with the `gh` CLI (GitHub is the kit's source of truth), plus a parent/EPIC issue when the work needs coordination.
-- Label appropriately (for example, `enhancement`, `spec`) and record `blocks`/`blocked by` relationships.
-- Name the branch the work will land on: `spec/<NNN>-<feature>` (see [`00-GIT-WORKFLOW.md`](../../00-GIT-WORKFLOW.md)).
-
-### 6. Review
-
-- Summarize the created issues, their dependencies, and a suggested implementation order.
-
-## Issue Body Template
+## Output Format
 
 ```markdown
-## REQ-NNN — <short title>
+### Gap analysis — <area>
+Gaps found: 6 · Selected to file: 3
 
-WHEN <trigger>, the system SHALL <response>.
-
-- source_legacy: 01-archaeology/legacy-sifap/natural-programs/<PROGRAM>.NSP#L<start>-L<end>
-- acceptance:
-  - AC-NNN.1: Given <context>, When <action>, Then <outcome>.
-
-### Scope
-What is included and what is explicitly excluded.
-
-### Priority
-Justification from the scoring matrix.
-
-### Dependencies
-- Blocks: <issues>
-- Blocked by: <issues>
+### Issues to create
+- [SPEC][REQ-014] When a payment exceeds the daily limit, the system shall flag it for review
+  source_legacy: 01-archaeology/legacy-sifap/natural-programs/SIFAP-P.NSP
+  branch: spec/014-daily-limit-review
 ```
 
 ## Definition of Done
 
-- [ ] Every gap is backed by a real legacy source (or an explicit `[GREENFIELD]` justification).
-- [ ] Every issue states one EARS requirement with a unique REQ-ID and a valid `source_legacy:` line.
-- [ ] Every requirement has at least one Given/When/Then acceptance criterion.
-- [ ] Issues are prioritized, labeled, and linked by dependency.
-- [ ] No behavior is asserted that the team has not read in the legacy code.
+- [ ] Each selected gap is written in EARS notation with a unique REQ-ID
+- [ ] Each issue carries a `source_legacy:` line (or a `[GREENFIELD]` justification)
+- [ ] Each issue names a `spec/<NNN>-<feature>` branch
+- [ ] Issues are created via `gh` only after the team confirms the list
+
+## Prompt Body
+
+You produce a prioritized, traceable specification backlog. The EARS notation and REQ-ID rules live in [`requirements.instructions.md`](../instructions/requirements.instructions.md); use the [`ears-validate`](../skills/ears-validate/SKILL.md) skill to check each statement before you file it.
+
+**Step 1 — Establish the baseline.**
+Read the legacy programs for `area` under `01-archaeology/legacy-sifap/` and the modern spec under `02-modern-spec/`. Confirm the reading gate in the [checklist](../../01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md) is met.
+
+**Step 2 — Find and score gaps.**
+List behavior present in the legacy system but missing or vague in the modern spec. Score by impact and risk; select the top items.
+
+**Step 3 — Write EARS requirements.**
+For each selected gap, write an EARS statement, assign the next REQ-ID, and add the `source_legacy:` line pointing at the legacy artifact. Validate with [`ears-validate`](../skills/ears-validate/SKILL.md).
+
+**Step 4 — Confirm, then file.**
+Present the list with proposed `spec/<NNN>-<feature>` branches. After approval, open the issues with `gh`.
 
 ## Invocation Example
 
-```text
-/gen-specs-as-issues area=payments repo=my-org/sifap-2
+```
+/gen-specs-as-issues area="payment inspection" repo=my-org/sifap-2
 ```

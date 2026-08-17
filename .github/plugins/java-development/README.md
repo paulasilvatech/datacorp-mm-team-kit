@@ -1,29 +1,25 @@
-# Java Development Plugin
+# java-development
 
-Comprehensive collection of prompts and instructions for Java development including Spring Boot, Quarkus, testing, documentation, and best practices.
+Spring Boot scaffolding, Javadoc, JUnit 5, and Spring Boot best-practice skills.
 
-## Installation
+## What this plugin bundles
 
-```bash
-# Using Copilot CLI
-copilot plugin install java-development@awesome-copilot
-```
+Java 21 + Spring Boot 3.3 is the kit's backend stack.
 
-## What's Included
+| Component | Type | Location |
+|-----------|------|----------|
+| `create-spring-boot-java-project` | Skill | [`.github/skills/create-spring-boot-java-project/`](../../skills/create-spring-boot-java-project/) |
+| `java-docs` | Skill | [`.github/skills/java-docs/`](../../skills/java-docs/) |
+| `java-junit` | Skill | [`.github/skills/java-junit/`](../../skills/java-junit/) |
+| `java-springboot` | Skill | [`.github/skills/java-springboot/`](../../skills/java-springboot/) |
 
-### Commands (Slash Commands)
+All four upstream references resolve, so nothing was dropped.
 
-| Command | Description |
-|---------|-------------|
-| `/java-development:java-docs` | Ensure that Java types are documented with Javadoc comments and follow best practices for documentation. |
-| `/java-development:java-junit` | Get best practices for JUnit 5 unit testing, including data-driven tests |
-| `/java-development:java-springboot` | Get best practices for developing applications with Spring Boot. |
-| `/java-development:create-spring-boot-java-project` | Create Spring Boot Java Project Skeleton |
+## How it is enabled
 
-## Source
-
-This plugin is part of [Awesome Copilot](https://github.com/github/awesome-copilot), a community-driven collection of GitHub Copilot extensions.
-
-## License
-
-MIT
+Content under `.github/skills/` is discovered natively by Copilot in this
+repository, so these skills work here without any plugin install. The plugin
+layer packages them as a named bundle in the local `datacorp-mm-team-kit`
+marketplace ([`marketplace.json`](../marketplace.json)) and is declared in
+[`.github/copilot/settings.json`](../../copilot/settings.json). See the
+[plugins index](../README.md) for the mechanism and its limitations.

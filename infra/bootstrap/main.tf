@@ -66,6 +66,14 @@ resource "random_string" "account_suffix" {
   numeric = true
 }
 
+# ACCEPTED RISK: trivy AVD-AZU-0012 wants network rules with default_action = "Deny".
+# GitHub-hosted runners have no stable egress IP, so a default-Deny firewall with an empty
+# allow-list would lock CI out of its own state on the first plan. The compensating controls
+# are stronger than an IP list: shared keys are disabled so no credential exists to steal,
+# every caller authenticates as itself through Entra, and the container is private. Set
+# var.allowed_ip_rules to switch this to default-Deny when you run plans from fixed
+# addresses (self-hosted runners or an office range).
+#trivy:ignore:AVD-AZU-0012
 resource "azurerm_storage_account" "state" {
   name                = "${var.project}tfstate${random_string.account_suffix.result}"
   resource_group_name = azurerm_resource_group.state.name

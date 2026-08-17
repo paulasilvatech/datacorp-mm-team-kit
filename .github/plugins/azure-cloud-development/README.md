@@ -1,39 +1,34 @@
-# Azure & Cloud Development Plugin
+# azure-cloud-development
 
-Comprehensive Azure cloud development tools including Infrastructure as Code, serverless functions, architecture patterns, and cost optimization for building scalable cloud applications.
+Azure cloud development skills: cost optimization, pricing, and resource health.
 
-## Installation
+## What this plugin bundles
 
-```bash
-# Using Copilot CLI
-copilot plugin install azure-cloud-development@awesome-copilot
-```
+The manifest references skills that live at the repository level under
+`.github/skills/`. They are maintained once there and shared across the kit.
 
-## What's Included
+| Component | Type | Location |
+|-----------|------|----------|
+| `az-cost-optimize` | Skill | [`.github/skills/az-cost-optimize/`](../../skills/az-cost-optimize/) |
+| `azure-pricing` | Skill | [`.github/skills/azure-pricing/`](../../skills/azure-pricing/) |
+| `azure-resource-health-diagnose` | Skill | [`.github/skills/azure-resource-health-diagnose/`](../../skills/azure-resource-health-diagnose/) |
 
-### Commands (Slash Commands)
+## Upstream references not included
 
-| Command | Description |
-|---------|-------------|
-| `/azure-cloud-development:azure-resource-health-diagnose` | Analyze Azure resource health, diagnose issues from logs and telemetry, and create a remediation plan for identified problems. |
-| `/azure-cloud-development:az-cost-optimize` | Analyze Azure resources used in the app (IaC files and/or resources in a target rg) and optimize costs - creating GitHub issues for identified optimizations. |
+The upstream `azure-cloud-development` plugin also listed the items below. They
+are not present in this kit's consolidated `.github/skills/` and
+`.github/agents/`, so the manifest omits them:
 
-### Agents
+- `import-infrastructure-as-code` (skill)
+- `azure-logic-apps-expert`, `azure-principal-architect`, `azure-saas-architect`,
+  `azure-verified-modules-bicep`, `azure-verified-modules-terraform`,
+  `terraform-azure-implement`, `terraform-azure-planning` (agents)
 
-| Agent | Description |
-|-------|-------------|
-| `azure-principal-architect` | Provide expert Azure Principal Architect guidance using Azure Well-Architected Framework principles and Microsoft best practices. |
-| `azure-saas-architect` | Provide expert Azure SaaS Architect guidance focusing on multitenant applications using Azure Well-Architected SaaS principles and Microsoft best practices. |
-| `azure-logic-apps-expert` | Expert guidance for Azure Logic Apps development focusing on workflow design, integration patterns, and JSON-based Workflow Definition Language. |
-| `azure-verified-modules-bicep` | Create, update, or review Azure IaC in Bicep using Azure Verified Modules (AVM). |
-| `azure-verified-modules-terraform` | Create, update, or review Azure IaC in Terraform using Azure Verified Modules (AVM). |
-| `terraform-azure-planning` | Act as implementation planner for your Azure Terraform Infrastructure as Code task. |
-| `terraform-azure-implement` | Act as an Azure Terraform Infrastructure as Code coding specialist that creates and reviews Terraform for Azure resources. |
+## How it is enabled
 
-## Source
-
-This plugin is part of [Awesome Copilot](https://github.com/github/awesome-copilot), a community-driven collection of GitHub Copilot extensions.
-
-## License
-
-MIT
+Content under `.github/skills/` is discovered natively by Copilot in this
+repository, so these skills work here without any plugin install. The plugin
+layer packages them as a named bundle in the local `datacorp-mm-team-kit`
+marketplace ([`marketplace.json`](../marketplace.json)) and is declared in
+[`.github/copilot/settings.json`](../../copilot/settings.json). See the
+[plugins index](../README.md) for the mechanism and its limitations.

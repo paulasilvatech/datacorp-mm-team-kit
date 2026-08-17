@@ -1,36 +1,34 @@
-# Database & Data Management Plugin
+# database-data-management
 
-Database administration, SQL optimization, and data management tools for PostgreSQL, SQL Server, and general database development best practices.
+PostgreSQL code review and optimization skills.
 
-## Installation
+## What this plugin bundles
 
-```bash
-# Using Copilot CLI
-copilot plugin install database-data-management@awesome-copilot
-```
+| Component | Type | Location |
+|-----------|------|----------|
+| `postgresql-code-review` | Skill | [`.github/skills/postgresql-code-review/`](../../skills/postgresql-code-review/) |
+| `postgresql-optimization` | Skill | [`.github/skills/postgresql-optimization/`](../../skills/postgresql-optimization/) |
 
-## What's Included
+PostgreSQL 16 is the kit's target database, so only the PostgreSQL skills are
+bundled.
 
-### Commands (Slash Commands)
+## Related kit content
 
-| Command | Description |
-|---------|-------------|
-| `/database-data-management:sql-optimization` | Universal SQL performance optimization assistant for comprehensive query tuning, indexing strategies, and database performance analysis across all SQL databases (MySQL, PostgreSQL, SQL Server, Oracle). Provides execution plan analysis, pagination optimization, batch operations, and performance monitoring guidance. |
-| `/database-data-management:sql-code-review` | Universal SQL code review assistant that performs comprehensive security, maintainability, and code quality analysis across all SQL databases (MySQL, PostgreSQL, SQL Server, Oracle). Focuses on SQL injection prevention, access control, code standards, and anti-pattern detection. Complements SQL optimization prompt for complete development coverage. |
-| `/database-data-management:postgresql-optimization` | PostgreSQL-specific development assistant focusing on unique PostgreSQL features, advanced data types, and PostgreSQL-exclusive capabilities. Covers JSONB operations, array types, custom types, range/geometric types, full-text search, window functions, and PostgreSQL extensions ecosystem. |
-| `/database-data-management:postgresql-code-review` | PostgreSQL-specific code review assistant focusing on PostgreSQL best practices, anti-patterns, and unique quality standards. Covers JSONB operations, array usage, custom types, schema design, function optimization, and PostgreSQL-exclusive security features like Row Level Security (RLS). |
+The workshop maintains a [`dba`](../../agents/dba.agent.md) persona agent and a
+[`query-optimization`](../../skills/query-optimization/) skill. These are the
+kit's own artifacts, not one-to-one renames of the upstream `postgresql-dba` or
+`sql-optimization` items, so they are not referenced here as substitutes.
 
-### Agents
+## Upstream references not included
 
-| Agent | Description |
-|-------|-------------|
-| `postgresql-dba` | Work with PostgreSQL databases using the PostgreSQL extension. |
-| `ms-sql-dba` | Work with Microsoft SQL Server databases using the MS SQL extension. |
+- `sql-code-review`, `sql-optimization` (skills) — not present in this kit.
+- `ms-sql-dba`, `postgresql-dba` (agents) — not present in this kit.
 
-## Source
+## How it is enabled
 
-This plugin is part of [Awesome Copilot](https://github.com/github/awesome-copilot), a community-driven collection of GitHub Copilot extensions.
-
-## License
-
-MIT
+Content under `.github/skills/` is discovered natively by Copilot in this
+repository, so these skills work here without any plugin install. The plugin
+layer packages them as a named bundle in the local `datacorp-mm-team-kit`
+marketplace ([`marketplace.json`](../marketplace.json)) and is declared in
+[`.github/copilot/settings.json`](../../copilot/settings.json). See the
+[plugins index](../README.md) for the mechanism and its limitations.

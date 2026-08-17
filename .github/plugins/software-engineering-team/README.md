@@ -1,32 +1,33 @@
-# Software Engineering Team Plugin
+# software-engineering-team
 
-7 specialized agents covering the full software development lifecycle from UX design and architecture to security and DevOps.
+UX/UI designer agent from the software engineering team set.
 
-## Installation
+## What this plugin bundles
 
-```bash
-# Using Copilot CLI
-copilot plugin install software-engineering-team@awesome-copilot
-```
+| Component | Type | Location |
+|-----------|------|----------|
+| `se-ux-ui-designer` | Agent | [`.github/agents/se-ux-ui-designer.agent.md`](../../agents/se-ux-ui-designer.agent.md) |
 
-## What's Included
+## Related kit content
 
-### Agents
+The workshop ships its own persona and stage agents under
+[`.github/agents/`](../../agents/) (for example `software-architect`,
+`product-owner`, `tech-writer`, `qa-engineer`). They cover the roles the
+upstream `se-*` agents addressed, so those upstream agents are not referenced
+here as substitutes.
 
-| Agent | Description |
-|-------|-------------|
-| `se-ux-ui-designer` | Jobs-to-be-Done analysis, user journey mapping, and UX research artifacts for Figma and design workflows |
-| `se-technical-writer` | Technical writing specialist for creating developer documentation, technical blogs, tutorials, and educational content |
-| `se-gitops-ci-specialist` | DevOps specialist for CI/CD pipelines, deployment debugging, and GitOps workflows focused on making deployments boring and reliable |
-| `se-product-manager-advisor` | Product management guidance for creating GitHub issues, aligning business value with user needs, and making data-driven product decisions |
-| `se-responsible-ai-code` | Responsible AI specialist ensuring AI works for everyone through bias prevention, accessibility compliance, ethical development, and inclusive design |
-| `se-system-architecture-reviewer` | System architecture review specialist with Well-Architected frameworks, design validation, and scalability analysis for AI and distributed systems |
-| `se-security-reviewer` | Security-focused code review specialist with OWASP Top 10, Zero Trust, LLM security, and enterprise security standards |
+## Upstream references not included
 
-## Source
+- `se-gitops-ci-specialist`, `se-product-manager-advisor`,
+  `se-responsible-ai-code`, `se-security-reviewer`,
+  `se-system-architecture-reviewer`, `se-technical-writer` (agents) — not
+  present in this kit.
 
-This plugin is part of [Awesome Copilot](https://github.com/github/awesome-copilot), a community-driven collection of GitHub Copilot extensions.
+## How it is enabled
 
-## License
-
-MIT
+Content under `.github/agents/` is discovered natively by Copilot in this
+repository, so this agent works here without any plugin install. The plugin
+layer packages it as a named bundle in the local `datacorp-mm-team-kit`
+marketplace ([`marketplace.json`](../marketplace.json)) and is declared in
+[`.github/copilot/settings.json`](../../copilot/settings.json). See the
+[plugins index](../README.md) for the mechanism and its limitations.

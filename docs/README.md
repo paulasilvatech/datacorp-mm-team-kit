@@ -19,6 +19,7 @@
 - [ ] **When choosing your personas** — read [persona-agent-matrix.md](persona-agent-matrix.md) to learn when you lead, support, or observe.
 - [ ] **During Stage 1** — update the [Stage 1 glossary](../01-archaeology/glossary.md) and record terms with a legacy source.
 - [ ] **For every technical decision** — create an ADR in [adr/](adr/).
+- [ ] **When an agent or harness mistake recurs** — record it in the [failure register](failures/README.md) with the check that catches it.
 - [ ] **At the end of the day** — review [runbook.md](runbook.md) so another person can run and operate the system.
 
 ## Structure
@@ -26,6 +27,7 @@
 | Path | Purpose |
 |---|---|
 | [`adr/`](adr/) | Architecture decision records (one file per decision) |
+| [`failures/`](failures/) | Agent failure register — known agent/harness mistakes and the guardrail for each |
 | [`../01-archaeology/glossary.md`](../01-archaeology/glossary.md) | Domain glossary — completed during Stage 1 |
 | [`4-agents-explained.md`](4-agents-explained.md) | Explanation of the four stage agents and their relationship to persona kits |
 | [`persona-agent-matrix.md`](persona-agent-matrix.md) | Matrix showing who leads, supports, or observes at each stage |

@@ -1,34 +1,25 @@
-# Frontend Web Development Plugin
+# frontend-web-dev
 
-Essential prompts, instructions, and chat modes for modern frontend web development including React, Angular, Vue, TypeScript, and CSS frameworks.
+React frontend agent and Playwright test-generation skill.
 
-## Installation
+## What this plugin bundles
 
-```bash
-# Using Copilot CLI
-copilot plugin install frontend-web-dev@awesome-copilot
-```
+| Component | Type | Location |
+|-----------|------|----------|
+| `expert-react-frontend-engineer` | Agent | [`.github/agents/expert-react-frontend-engineer.agent.md`](../../agents/expert-react-frontend-engineer.agent.md) |
+| `playwright-generate-test` | Skill | [`.github/skills/playwright-generate-test/`](../../skills/playwright-generate-test/) |
 
-## What's Included
+## Upstream references not included
 
-### Commands (Slash Commands)
+- `playwright-explore-website` (skill) — not present in this kit.
+- `electron-angular-native` (agent) — not present in this kit.
 
-| Command | Description |
-|---------|-------------|
-| `/frontend-web-dev:playwright-explore-website` | Website exploration for testing using Playwright MCP |
-| `/frontend-web-dev:playwright-generate-test` | Generate a Playwright test based on a scenario using Playwright MCP |
+## How it is enabled
 
-### Agents
-
-| Agent | Description |
-|-------|-------------|
-| `expert-react-frontend-engineer` | Expert React 19.2 frontend engineer specializing in modern hooks, Server Components, Actions, TypeScript, and performance optimization |
-| `electron-angular-native` | Code Review Mode tailored for Electron app with Node.js backend (main), Angular frontend (render), and native integration layer (e.g., AppleScript, shell, or native tooling). Services in other repos are not reviewed here. |
-
-## Source
-
-This plugin is part of [Awesome Copilot](https://github.com/github/awesome-copilot), a community-driven collection of GitHub Copilot extensions.
-
-## License
-
-MIT
+Content under `.github/skills/` and `.github/agents/` is discovered natively by
+Copilot in this repository, so these components work here without any plugin
+install. The plugin layer packages them as a named bundle in the local
+`datacorp-mm-team-kit` marketplace ([`marketplace.json`](../marketplace.json))
+and is declared in
+[`.github/copilot/settings.json`](../../copilot/settings.json). See the
+[plugins index](../README.md) for the mechanism and its limitations.

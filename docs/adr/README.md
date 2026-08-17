@@ -33,6 +33,7 @@ Do not write an ADR for variable names, formatting configuration, or minor libra
 | ADR | Title | Status | Date |
 |---|---|---|---|
 | 0000 | [Template](0000-template.md) | template | 2026-04-29 |
+| 0001 | [Agent instructions single source of truth](0001-agent-instructions-single-source-of-truth.md) | accepted | 2026-08-17 |
 
 > [!NOTE]
 > Add new ADRs to this table as they are created, first with status `proposed` and then `accepted` after team agreement.

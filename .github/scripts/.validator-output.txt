@@ -1,0 +1,17 @@
+::error file=.github/ISSUE_TEMPLATE/bug.md::[markdown-structure] .github/ISSUE_TEMPLATE/bug.md - file has no H1 heading (expected exactly one)
+::error file=.github/ISSUE_TEMPLATE/feature.md::[markdown-structure] .github/ISSUE_TEMPLATE/feature.md - file has no H1 heading (expected exactly one)
+::error file=.github/skills/az-cost-optimize/SKILL.md,line=219::[markdown-structure] .github/skills/az-cost-optimize/SKILL.md:219 - file has 6 H1 headings (expected exactly one); extra H1 at line 219
+::error file=.github/skills/azure-deployment-preflight/references/REPORT-TEMPLATE.md,line=176::[markdown-structure] .github/skills/azure-deployment-preflight/references/REPORT-TEMPLATE.md:176 - file has 2 H1 headings (expected exactly one); extra H1 at line 176
+::error file=.github/skills/azure-pricing/SKILL.md,line=142::[markdown-structure] .github/skills/azure-pricing/SKILL.md:142 - file has 2 H1 headings (expected exactly one); extra H1 at line 142
+::error file=.github/skills/azure-resource-health-diagnose/SKILL.md,line=261::[markdown-structure] .github/skills/azure-resource-health-diagnose/SKILL.md:261 - file has 4 H1 headings (expected exactly one); extra H1 at line 261
+::error file=.github/skills/azure-role-selector/SKILL.md::[markdown-structure] .github/skills/azure-role-selector/SKILL.md - file has no H1 heading (expected exactly one)
+::error file=.github/skills/comment-code-generate-a-tutorial/SKILL.md::[markdown-structure] .github/skills/comment-code-generate-a-tutorial/SKILL.md - file has no H1 heading (expected exactly one)
+
+========================================================================
+Copilot primitive validation summary
+========================================================================
+  markdown-structure         8 error(s)    0 warning(s)
+------------------------------------------------------------------------
+  TOTAL                      8 error(s)    0 warning(s)
+========================================================================
+Scanned: agents=17 prompts=59 instructions=15 skills=43 hooks=8 github-markdown=221

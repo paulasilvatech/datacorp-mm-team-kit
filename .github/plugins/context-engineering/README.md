@@ -1,34 +1,32 @@
-# Context Engineering Plugin
+# context-engineering
 
-Tools and techniques for maximizing GitHub Copilot effectiveness through better context management. Includes guidelines for structuring code, an agent for planning multi-file changes, and prompts for context-aware development.
+Context mapping for maximizing GitHub Copilot effectiveness.
 
-## Installation
+## What this plugin bundles
 
-```bash
-# Using Copilot CLI
-copilot plugin install context-engineering@awesome-copilot
-```
+| Component | Type | Location |
+|-----------|------|----------|
+| `context-map` | Skill | [`.github/skills/context-map/`](../../skills/context-map/) |
 
-## What's Included
+## Related kit content
 
-### Commands (Slash Commands)
+The workshop also maintains
+[`.github/skills/context-audit/`](../../skills/context-audit/) and
+[`.github/skills/refactor-safely/`](../../skills/refactor-safely/), which are the
+kit's own equivalents of the upstream `what-context-needed` and `refactor-plan`
+skills.
 
-| Command | Description |
-|---------|-------------|
-| `/context-engineering:context-map` | Generate a map of all files relevant to a task before making changes |
-| `/context-engineering:what-context-needed` | Ask Copilot what files it needs to see before answering a question |
-| `/context-engineering:refactor-plan` | Plan a multi-file refactor with proper sequencing and rollback steps |
+## Upstream references not included
 
-### Agents
+- `refactor-plan`, `what-context-needed` (skills) — the kit uses
+  `refactor-safely` and `context-audit` instead.
+- `context-architect` (agent) — not present in this kit.
 
-| Agent | Description |
-|-------|-------------|
-| `context-architect` | An agent that helps plan and execute multi-file changes by identifying relevant context and dependencies |
+## How it is enabled
 
-## Source
-
-This plugin is part of [Awesome Copilot](https://github.com/github/awesome-copilot), a community-driven collection of GitHub Copilot extensions.
-
-## License
-
-MIT
+Content under `.github/skills/` is discovered natively by Copilot in this
+repository, so this skill works here without any plugin install. The plugin
+layer packages it as a named bundle in the local `datacorp-mm-team-kit`
+marketplace ([`marketplace.json`](../marketplace.json)) and is declared in
+[`.github/copilot/settings.json`](../../copilot/settings.json). See the
+[plugins index](../README.md) for the mechanism and its limitations.

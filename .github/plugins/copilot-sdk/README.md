@@ -1,26 +1,18 @@
-# Copilot SDK Plugin
+# copilot-sdk
 
-Build applications with the GitHub Copilot SDK across multiple programming languages. Includes comprehensive instructions for C#, Go, Node.js/TypeScript, and Python to help you create AI-powered applications.
+Build agentic applications with the GitHub Copilot SDK.
 
-## Installation
+## What this plugin bundles
 
-```bash
-# Using Copilot CLI
-copilot plugin install copilot-sdk@awesome-copilot
-```
+| Component | Type | Location |
+|-----------|------|----------|
+| `copilot-sdk` | Skill | [`.github/skills/copilot-sdk/`](../../skills/copilot-sdk/) |
 
-## What's Included
+## How it is enabled
 
-### Skills
-
-| Skill | Description |
-|-------|-------------|
-| `SKILL.md` | Build agentic applications with GitHub Copilot SDK. Use when embedding AI agents in apps, creating custom tools, implementing streaming responses, managing sessions, connecting to MCP servers, or creating custom agents. Triggers on Copilot SDK, GitHub SDK, agentic app, embed Copilot, programmable agent, MCP server, custom agent. |
-
-## Source
-
-This plugin is part of [Awesome Copilot](https://github.com/github/awesome-copilot), a community-driven collection of GitHub Copilot extensions.
-
-## License
-
-MIT
+Content under `.github/skills/` is discovered natively by Copilot in this
+repository, so this skill works here without any plugin install. The plugin
+layer packages it as a named bundle in the local `datacorp-mm-team-kit`
+marketplace ([`marketplace.json`](../marketplace.json)) and is declared in
+[`.github/copilot/settings.json`](../../copilot/settings.json). See the
+[plugins index](../README.md) for the mechanism and its limitations.

@@ -1,17 +1,23 @@
-# Chromium Control Canvas Plugin
+# chromium-control-canvas
 
-Opens a real Chromium window you can navigate and interact with from a Copilot canvas control panel and agent actions.
+Interactive Chromium control canvas.
 
-## Installation
+## What this plugin bundles
 
-``bash
-copilot plugin install chromium-control-canvas@awesome-copilot
-``
+This is a **catalog-only** entry. The upstream plugin shipped a CLI *extension*
+payload (an `extensions/` component), which is not vendored in this kit. The
+manifest (`plugin.json`) carries metadata only.
 
-## Source
+## Upstream references not included
 
-This plugin is part of [Awesome Copilot](https://github.com/github/awesome-copilot).
+- `chromium-control-canvas` (CLI extension) — no `extensions/` payload is
+  committed in this kit.
 
-## License
+## How it is enabled
 
-MIT
+Plugins are declared in
+[`.github/copilot/settings.json`](../../copilot/settings.json) through the local
+`datacorp-mm-team-kit` marketplace
+([`marketplace.json`](../marketplace.json)). This entry has no components, so it
+is listed in the marketplace catalog but is not enabled. See the
+[plugins index](../README.md) for the mechanism and its limitations.

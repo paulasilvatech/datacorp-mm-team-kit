@@ -1,25 +1,28 @@
-# Arch Plugin
+# arch
 
-Architecture and modernization toolkit for locally-cloned repositories. It produces a single, cited architecture document from the code on disk, and generates a phased modernization plan that automatically runs Documentation mode first when no architecture document exists yet.
+Architecture and modernization toolkit.
 
-## Installation
+## What this plugin bundles
 
-```bash
-copilot plugin install arch@awesome-copilot
-```
+This is a **catalog-only** entry. The upstream `arch` plugin referenced a
+`doc-and-modernize` skill that is not part of this kit, so no components are
+vendored here. The manifest (`plugin.json`) carries metadata only.
 
-## What's Included
+## Related kit content
 
-### Skills
+The workshop maintains its own modernization skill,
+[`.github/skills/code-modernization/`](../../skills/code-modernization/), which
+is discovered natively by Copilot in this repository.
 
-- **`doc-and-modernize`** — Two complementary workflows for a locally-cloned repository, in one skill (installed via this plugin it surfaces as `arch:doc-and-modernize`):
-  - **Documentation mode** — Produce one comprehensive, verifiable architecture document for a repository you already have checked out locally. Works local-first (prefers the local checkout, treating remote/API lookups as a flagged last resort), cites every claim to a file + line, flags unverified facts, resolves contradictions, and deep-dives the most complex subsystems. Ideal for onboarding docs and system-design maps.
-  - **Modernization mode** — Generate a phased modernization plan for a legacy codebase. If a current architecture document exists it builds on it; otherwise it first runs the Documentation mode workflow to produce one, then continues to the plan. Produces per-feature migration docs, tech-stack recommendations with ADRs, and an adaptive, safety-laddered phased implementation plan.
+## Upstream references not included
 
-## Source
+- `doc-and-modernize` (skill) — not present in this kit.
 
-This plugin is part of [Awesome Copilot](https://github.com/github/awesome-copilot).
+## How it is enabled
 
-## License
-
-MIT
+Plugins are declared in
+[`.github/copilot/settings.json`](../../copilot/settings.json) through the local
+`datacorp-mm-team-kit` marketplace
+([`marketplace.json`](../marketplace.json)). This entry has no components, so it
+is listed in the marketplace catalog but is not enabled. See the
+[plugins index](../README.md) for the mechanism and its limitations.

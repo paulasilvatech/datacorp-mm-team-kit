@@ -1,39 +1,34 @@
-# Testing & Test Automation Plugin
+# testing-automation
 
-Comprehensive collection for writing tests, test automation, and test-driven development including unit tests, integration tests, and end-to-end testing strategies.
+JUnit 5 and Playwright test-generation skills.
 
-## Installation
+## What this plugin bundles
 
-```bash
-# Using Copilot CLI
-copilot plugin install testing-automation@awesome-copilot
-```
+| Component | Type | Location |
+|-----------|------|----------|
+| `java-junit` | Skill | [`.github/skills/java-junit/`](../../skills/java-junit/) |
+| `playwright-generate-test` | Skill | [`.github/skills/playwright-generate-test/`](../../skills/playwright-generate-test/) |
 
-## What's Included
+## Related kit content
 
-### Commands (Slash Commands)
+The workshop maintains testing skills such as
+[`tdd-workflow`](../../skills/tdd-workflow/),
+[`test-strategy`](../../skills/test-strategy/), and
+[`spring-boot-testing`](../../skills/spring-boot-testing/), which cover the
+roles of the upstream `tdd-*` agents.
 
-| Command | Description |
-|---------|-------------|
-| `/testing-automation:playwright-explore-website` | Website exploration for testing using Playwright MCP |
-| `/testing-automation:playwright-generate-test` | Generate a Playwright test based on a scenario using Playwright MCP |
-| `/testing-automation:csharp-nunit` | Get best practices for NUnit unit testing, including data-driven tests |
-| `/testing-automation:java-junit` | Get best practices for JUnit 5 unit testing, including data-driven tests |
-| `/testing-automation:ai-prompt-engineering-safety-review` | Comprehensive AI prompt engineering safety review and improvement prompt. Analyzes prompts for safety, bias, security vulnerabilities, and effectiveness while providing detailed improvement recommendations with extensive frameworks, testing methodologies, and educational content. |
+## Upstream references not included
 
-### Agents
+- `ai-prompt-engineering-safety-review`, `csharp-nunit`,
+  `playwright-explore-website` (skills) — not present in this kit.
+- `playwright-tester`, `tdd-red`, `tdd-green`, `tdd-refactor` (agents) — not
+  present in this kit.
 
-| Agent | Description |
-|-------|-------------|
-| `tdd-red` | Guide test-first development by writing failing tests that describe desired behaviour from GitHub issue context before implementation exists. |
-| `tdd-green` | Implement minimal code to satisfy GitHub issue requirements and make failing tests pass without over-engineering. |
-| `tdd-refactor` | Improve code quality, apply security best practices, and enhance design whilst maintaining green tests and GitHub issue compliance. |
-| `playwright-tester` | Testing mode for Playwright tests |
+## How it is enabled
 
-## Source
-
-This plugin is part of [Awesome Copilot](https://github.com/github/awesome-copilot), a community-driven collection of GitHub Copilot extensions.
-
-## License
-
-MIT
+Content under `.github/skills/` is discovered natively by Copilot in this
+repository, so these skills work here without any plugin install. The plugin
+layer packages them as a named bundle in the local `datacorp-mm-team-kit`
+marketplace ([`marketplace.json`](../marketplace.json)) and is declared in
+[`.github/copilot/settings.json`](../../copilot/settings.json). See the
+[plugins index](../README.md) for the mechanism and its limitations.

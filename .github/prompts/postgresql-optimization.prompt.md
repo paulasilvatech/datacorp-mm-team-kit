@@ -7,22 +7,82 @@ tools: ["read", "search", "execute"]
 ---
 # /postgresql-optimization
 
-## What This Does
+## Objective
 
-Provides PostgreSQL-specific optimization: reading `EXPLAIN (ANALYZE, BUFFERS)`, index strategy (GIN/GiST/partial/covering), JSONB and array patterns, window functions, and maintenance. The full workflow lives in the [`postgresql-optimization`](../skills/postgresql-optimization/SKILL.md) skill; this prompt is a thin wrapper that defers to it so the guidance is not duplicated and cannot drift.
+Optimize a slow PostgreSQL query, index, or schema using PostgreSQL-specific features, backing every recommendation with a measured `EXPLAIN ANALYZE`. The full workflow lives in the [`postgresql-optimization`](../skills/postgresql-optimization/SKILL.md) skill; this prompt applies it to the SIFAP 2.0 database (PostgreSQL 16 via JPA/Hibernate) without restating it.
 
-## When to Use
+> [!IMPORTANT]
+> No recommendation ships without a before/after `EXPLAIN ANALYZE`; a plan is evidence, not an opinion.
 
-During Stage 3/4, when a query is slow or a schema needs tuning for the SIFAP 2.0 database.
+## When to Invoke
 
-## Steps
+During Stage 3/4, when a query is slow, a report times out, or a schema needs tuning against realistic row counts.
 
-1. Provide the query or schema to optimize.
-2. Follow the [`postgresql-optimization`](../skills/postgresql-optimization/SKILL.md) workflow.
-3. Honor the kit constraints below.
+## Preconditions
 
-## Kit Constraints
+- The query or schema to optimize is available
+- A staging snapshot with realistic row counts is reachable to run `EXPLAIN ANALYZE`
+- The existing indexes on the involved tables can be listed
+- The target is PostgreSQL 16
 
-- The target database is **PostgreSQL 16**, accessed through **JPA/Hibernate**; keep entity mappings and queries in sync.
-- Base every recommendation on a measured `EXPLAIN ANALYZE`, and make index changes online-safe (`CREATE INDEX CONCURRENTLY`) through a rollback-safe migration.
-- Parameterize all queries — never concatenate user input.
+## Inputs the Team Must Provide
+
+- `selection` — the query or schema to optimize
+- The involved tables, their indexes, and realistic row counts
+- Ask the user for anything that is missing.
+
+## What I Will Do
+
+- Apply the optimization workflow in the [`postgresql-optimization`](../skills/postgresql-optimization/SKILL.md) skill to the selection
+- Read `EXPLAIN (ANALYZE, BUFFERS)` top to bottom and identify the dominant cost
+- Recommend the right index type (GIN/GiST/partial/covering) or query rewrite with evidence
+- Express index changes as online-safe, rollback-safe migrations
+
+## What I Will NOT Do
+
+- Recommend an index without weighing its write cost, or add one for every query
+- Trust `EXPLAIN` without `ANALYZE`, or optimize against dev-sized data
+- Concatenate user input into SQL, or drift the JPA mapping out of sync
+- Apply a blocking `CREATE INDEX` on a hot table (I use `CONCURRENTLY`)
+
+## Output Format
+
+```markdown
+### Bottleneck
+Seq Scan on `payment` (4.0M rows) for a selective status filter.
+
+### Recommendation
+CREATE INDEX CONCURRENTLY idx_payment_status ON payment (status) WHERE status <> 'CLOSED';
+
+### EXPLAIN ANALYZE
+Before: Seq Scan, 820 ms. After: Index Scan, 4 ms.
+```
+
+## Definition of Done
+
+- [ ] The dominant bottleneck is named with plan evidence
+- [ ] The recommendation is backed by a before/after `EXPLAIN ANALYZE`
+- [ ] Any index is online-safe (`CONCURRENTLY`) in a rollback-safe migration
+- [ ] Queries stay parameterized and consistent with the JPA mapping
+
+## Prompt Body
+
+The [`postgresql-optimization`](../skills/postgresql-optimization/SKILL.md) skill owns the diagnostic workflow, index heuristics, and PostgreSQL feature set — read it, then apply it to the selection.
+
+**Step 1 — Measure.**
+Run `EXPLAIN (ANALYZE, BUFFERS)` on a staging snapshot and read the plan top to bottom.
+
+**Step 2 — Apply the skill.**
+Use the skill to choose the fix: index type, query rewrite, JSONB/array operator, window function, or partitioning.
+
+**Step 3 — Respect the kit rules.**
+Target PostgreSQL 16, keep the JPA mapping in sync, and deliver index changes as `CONCURRENTLY` migrations under `db/migration/`.
+
+**Step 4 — Prove it.**
+Re-run `EXPLAIN ANALYZE` and paste the before/after timings.
+
+## Invocation Example
+
+```
+/postgresql-optimization selection="SELECT * FROM payment WHERE status = 'OPEN'"
+```

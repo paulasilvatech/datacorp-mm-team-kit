@@ -7,26 +7,80 @@ tools: ["read", "edit", "search", "execute"]
 ---
 # /create-spring-boot-java-project
 
-## What This Does
+## Objective
 
-Generates a fresh Spring Boot backend skeleton from start.spring.io and wires up the baseline configuration. The step-by-step mechanics live in the [`create-spring-boot-java-project`](../skills/create-spring-boot-java-project/SKILL.md) skill; this prompt is a thin wrapper that defers to it and pins every choice to this kit's fixed stack, so the two never drift.
+Scaffold a fresh Spring Boot backend skeleton for SIFAP 2.0 and wire its baseline configuration, pinned to the kit's fixed stack (Java 21 + Spring Boot 3.3 + PostgreSQL 16). The step-by-step mechanics live in the [`create-spring-boot-java-project`](../skills/create-spring-boot-java-project/SKILL.md) skill; this prompt applies them without restating them and overrides the skill's generic defaults.
 
-## When to Use
+> [!IMPORTANT]
+> `backend/` does not exist yet — this command creates it from scratch in Stage 3. Do not assume an inherited prototype.
 
-At the start of Stage 3, when the team creates the `backend/` module from scratch. `backend/` does not exist yet — this command bootstraps it.
+## When to Invoke
 
-## Steps
+At the start of Stage 3, when the team creates the `backend/` module for the first time.
 
-1. Provide the artifact/project name.
-2. Follow the [`create-spring-boot-java-project`](../skills/create-spring-boot-java-project/SKILL.md) skill.
-3. Apply the kit overrides below in place of the skill's generic defaults.
-4. Run `./mvnw clean test` (Testcontainers) to confirm the skeleton builds.
+## Preconditions
 
-## Kit Constraints (override the generic skill)
+- Java 21, Docker, and Docker Compose are installed
+- The team agreed on the artifact name and base package
+- No `backend/` module exists yet
 
-- **Target stack:** Java 21 + Spring Boot **3.3.x** (not 3.4.x) + JPA/Hibernate + **PostgreSQL 16**. Use the starters `web, data-jpa, postgresql, validation, testcontainers` (add `configuration-processor`, `lombok`, and `actuator` as needed).
-- **No Redis and no MongoDB** — they are not part of the fixed backend stack. Drop `data-redis` and `data-mongodb` and their configuration blocks.
-- **Scaffold into `backend/`**, not the repository root, under a package the team agrees on (for example, `com.sifap.<context>`).
-- **Docker Compose is optional** — create it only if the team needs local parity in Stage 3/4, and include **only PostgreSQL 16** (no Redis or Mongo services).
-- Add `springdoc-openapi-starter-webmvc-ui` so every endpoint can carry OpenAPI annotations.
-- Never commit secrets — keep credentials in environment variables (Azure Key Vault with Managed Identity in deployed environments).
+## Inputs the Team Must Provide
+
+- `projectName` — the Maven `artifactId` for the new module
+- The base package (for example, `com.sifap.<context>`)
+- Ask the user for anything that is missing.
+
+## What I Will Do
+
+- Follow the scaffolding steps in the [`create-spring-boot-java-project`](../skills/create-spring-boot-java-project/SKILL.md) skill
+- Override its defaults for this kit: Spring Boot 3.3.x, PostgreSQL 16, no Redis, no MongoDB
+- Generate into `backend/` with starters `web, data-jpa, postgresql, validation, testcontainers` plus `springdoc-openapi-starter-webmvc-ui`
+- Run `./mvnw clean test` to confirm the skeleton builds
+
+## What I Will NOT Do
+
+- Add `data-redis` or `data-mongodb`, or their configuration blocks
+- Scaffold into the repository root, or use Spring Boot 3.4.x
+- Create Docker Compose services other than PostgreSQL 16
+- Commit secrets (credentials live in environment variables / Azure Key Vault)
+
+## Output Format
+
+```markdown
+### Created
+- `backend/` Spring Boot 3.3 skeleton (Java 21, PostgreSQL 16)
+- Dependencies: web, data-jpa, postgresql, validation, testcontainers, springdoc
+- `docker-compose.yaml` (PostgreSQL 16 only) — optional
+
+### Build
+`./mvnw clean test` → BUILD SUCCESS
+```
+
+## Definition of Done
+
+- [ ] `backend/` contains a Spring Boot 3.3 skeleton on Java 21
+- [ ] Dependencies are the kit set; no Redis or MongoDB is present
+- [ ] Any Docker Compose contains only PostgreSQL 16
+- [ ] `./mvnw clean test` passes and no secret is committed
+
+## Prompt Body
+
+The [`create-spring-boot-java-project`](../skills/create-spring-boot-java-project/SKILL.md) skill owns the start.spring.io download and configuration steps — read it, then apply it with the kit overrides below.
+
+**Step 1 — Confirm inputs.**
+Fix the `artifactId` and base package with the team; verify Java 21 is available.
+
+**Step 2 — Apply the skill.**
+Generate the project per the skill, then narrow the dependency set to the kit stack and drop Redis/MongoDB.
+
+**Step 3 — Respect the kit rules.**
+Target Spring Boot 3.3.x and PostgreSQL 16, scaffold into `backend/`, and keep Docker Compose (if any) to PostgreSQL 16 only.
+
+**Step 4 — Verify.**
+Run `./mvnw clean test` and confirm a green build before handing off.
+
+## Invocation Example
+
+```
+/create-spring-boot-java-project projectName=sifap-backend
+```
