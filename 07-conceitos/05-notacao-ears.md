@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # EARS Notation — Unambiguous Requirements
 
 > **Path:** [Team Kit](../README.md) › [Concepts](00-README.md) › **EARS Notation**
@@ -103,8 +101,8 @@ REQ-042:
   text: "When a benefit payment is processed, the system shall calculate the net amount by deducting the current contributions."
   source_legacy: 01-arqueologia/legado-sifap/natural-programs/CALCPGTO.NSN#L120-L198
   acceptance:
-    - "Given a beneficiary with a gross amount of $1,000.00 and an 11% contribution rate, the calculated net amount is $890.00"
-    - "The result is recorded in the payments table with CALCULATED status"
+    - "Given a beneficiary with a gross amount of R$ 1,000.00 and an 11% contribution rate, the calculated net amount is R$ 890.00"
+    - "The result is recorded in the pagamentos table with CALCULATED status"
 ```
 
 **Poor example:**
@@ -135,7 +133,7 @@ REQ-078:
   text: "While the beneficiary has SUSPENDED status, the system shall block the processing of new payments for that beneficiary."
   source_legacy: 01-arqueologia/legado-sifap/natural-programs/CTRLPGTO.NSN#L33-L41
   acceptance:
-    - "An attempt to process a payment for a SUSPENDED beneficiary returns the BENEFICIARY_SUSPENDED error"
+    - "An attempt to process a payment for a SUSPENDED beneficiary returns the BENEFICIARIO_SUSPENSO error"
     - "No payment record is created for a SUSPENDED beneficiary"
 ```
 

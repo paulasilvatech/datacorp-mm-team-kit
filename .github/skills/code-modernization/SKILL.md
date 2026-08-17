@@ -1,16 +1,17 @@
 ---
-name: code-modernization
-description: "Guide legacy code modernization with a disciplined GitHub Copilot workflow: brief, assess, map, extract business rules, reimagine architecture, transform modules, and harden with tests and security review. Use for COBOL, JCL, legacy Java, .NET, C++, classic ASP, monolith modernization, behavior-preserving rewrite, business-rule extraction, modernization assessment, or legacy-to-modern transformation."
-source: "code-modernization-plugin, adapted for GitHub Copilot"
-source_url: "local:.github/plugins/code-modernization-plugin"
-license: "Apache-2.0"
-imported_date: "2026-06-18"
-last_sync: "2026-06-18"
+name: "code-modernization"
+description: "Use when modernizing a legacy system with a disciplined, behavior-preserving workflow. Triggers include \"modernize\", \"legacy code\", \"COBOL\", \"business-rule extraction\", and \"behavior-preserving rewrite\"."
 ---
-
-# Code Modernization
+# Code modernization
 
 Use this skill to guide behavior-preserving modernization of legacy systems. The workflow is intentionally staged so the team understands the system before transforming it.
+
+## When to invoke
+
+- "Plan the modernization of this legacy module."
+- "Assess this codebase before we rewrite anything."
+- "Extract the business rules hidden in this program."
+- "Transform this module while preserving its behavior."
 
 ## Workflow
 
@@ -19,26 +20,25 @@ Use this skill to guide behavior-preserving modernization of legacy systems. The
 3. **Extract rules**: turn hidden procedural logic into business rule cards with source evidence.
 4. **Map**: map legacy modules to target domains, packages, services, and migration sequence.
 5. **Reimagine**: design the target API, data model, runtime, and operational model.
-6. **Transform**: rewrite module by module under `modernized/**`, with tests that pin legacy behavior.
+6. **Transform**: rewrite module by module under `backend/` and `frontend/`, with tests that pin legacy behavior.
 7. **Harden**: review security, tests, error handling, observability, and deployment readiness.
 
-## GitHub Copilot Primitives
+## GitHub Copilot primitives
 
 | Need | Primitive |
 | --- | --- |
-| Deep legacy discovery | `Legacy Analyst` agent |
-| Business rule extraction | `Business Rules Extractor` agent |
-| Target design review | `Architecture Critic` agent |
-| Security hardening | `Security Auditor` agent |
-| Characterization tests | `Modernization Test Engineer` agent |
-| Repeatable workflow entry points | `/modernize-*` prompts |
-| Folder safety rules | `code-modernization.instructions.md` |
+| Deep legacy discovery | [`@archaeologist`](../../agents/archaeologist.agent.md) agent (Stage 1) |
+| Business-rule extraction | [`/extract-business-rules`](../../prompts/stage-archaeologist-extract-business-rules.prompt.md) prompt |
+| Target design and ADRs | [`@architect`](../../agents/architect.agent.md) agent (Stage 2) |
+| Module translation and tests | [`@builder`](../../agents/builder.agent.md) agent (Stage 3) |
+| Security and delivery hardening | [`@evolution`](../../agents/evolution.agent.md) agent (Stage 4) |
+| Reading legacy code safely | [`natural-adabas`](../../instructions/natural-adabas.instructions.md) instructions |
 
-## Folder Contract
+## Folder contract
 
-- `legacy/**`: source evidence and legacy behavior. Read-only by default.
-- `analysis/**`: briefs, assessments, maps, rule catalogs, designs, and reports.
-- `modernized/**`: transformed or replacement implementation and tests.
+- `01-arqueologia/legado-sifap/**`: legacy source evidence and behavior. Read-only.
+- `01-arqueologia/**` and `specs/<NNN>-<feature>/`: briefs, assessments, maps, rule catalogs, EARS specs, and reports.
+- `backend/**` and `frontend/**`: transformed or replacement implementation and tests.
 
 ## Rules
 
@@ -55,3 +55,33 @@ Use this skill to guide behavior-preserving modernization of legacy systems. The
 - Run available test suites before and after transformation.
 - For transformed modules, provide evidence that tests compare or pin legacy behavior.
 - For hardening, report findings by severity with concrete remediation.
+
+## Output template
+
+Record each modernized module as an assessment note under `01-arqueologia/`, linked to its target under `backend/` or `frontend/`:
+
+```markdown
+## Modernization record - <legacy module>
+
+| Field | Value |
+|---|---|
+| Legacy source | 01-arqueologia/legado-sifap/natural-programs/<FILE>.NSN |
+| Target module | backend/src/main/java/<package>/ |
+| Stage reached | Brief / Assess / Extract / Map / Reimagine / Transform / Harden |
+| Behavior evidence | <characterization test path> |
+| Traces to | REQ-NNN |
+
+### Observed behavior
+- <fact drawn from the legacy code, with path:line evidence>
+
+### Open questions
+- <mystery that needs human validation>
+```
+
+## Quality gate
+
+- [ ] Assessment and business-rule extraction completed before any transformation.
+- [ ] Every finding cites a legacy source file, with line numbers when available.
+- [ ] Observed behavior is separated from inferred intent.
+- [ ] Characterization tests pin legacy behavior before intentional changes.
+- [ ] No invented complexity, cost, runtime, or risk metrics - values are measured or flagged as assumptions.

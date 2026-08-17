@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # GitHub Copilot Agent Experience Report
 
 > **Path:** [Team Kit](../README.md) › [Stage 4](README.md) › **Experience Report**

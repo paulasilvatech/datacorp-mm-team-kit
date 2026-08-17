@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Persona — Technical Lead
 
 > **Trail:** [Team Kit](../../README.md) › [Personas](../OVERVIEW.md) › [Technical Lead](README.md) › **PERSONA**

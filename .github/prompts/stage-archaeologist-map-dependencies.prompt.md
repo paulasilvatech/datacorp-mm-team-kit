@@ -3,7 +3,7 @@ name: "map-dependencies"
 description: "Maps program-to-program (CALLNAT, INCLUDE) and program-to-data (DDM access) dependencies for a selected scope."
 argument-hint: "scope=01-arqueologia/legado-sifap/natural-programs/ recursive=true"
 agent: "archaeologist"
-tools: ["search", "edit"]
+tools: ["read", "search", "edit"]
 ---
 # /map-dependencies
 

@@ -3,7 +3,7 @@ name: "carve-bounded-contexts"
 description: "Evaluates the Stage 1 boundary hypotheses and decides bounded contexts for the Modular Monolith."
 argument-hint: "report=01-arqueologia/discovery-report.md"
 agent: "architect"
-tools: ["search", "edit"]
+tools: ["read", "search", "edit"]
 ---
 # /carve-bounded-contexts
 

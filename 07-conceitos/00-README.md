@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # 07 — Core Workshop Concepts
 
 > **Path:** [Team Kit](../README.md) › **Core Concepts**

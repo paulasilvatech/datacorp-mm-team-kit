@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Glossary — Workshop Jargon Decoded
 
 > **Path:** [Team Kit](../README.md) › [Concepts](00-README.md) › **Visual Glossary**
@@ -152,7 +150,7 @@ A Java structure with fields used to carry data through the API, without busines
 
 ### Flyway
 
-A database migration tool. It applies versioned SQL scripts in the correct order (`V1__init.sql`, `V2__add_column.sql`). Once run, a script is never changed—subsequent changes require a new script. Location: `src/main/resources/db/migration/`.
+A database migration tool. It applies versioned SQL scripts in the correct order (`V1__init.sql`, `V2__add_coluna.sql`). Once run, a script is never changed—subsequent changes require a new script. Location: `src/main/resources/db/migration/`.
 
 ### JPA — Java Persistence API
 

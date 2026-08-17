@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # DevOps Engineer — Copilot Kit
 
 > **Track:** [Team Kit](../../README.md) › [Personas](../OVERVIEW.md) › **DevOps Engineer**

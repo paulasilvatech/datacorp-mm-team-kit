@@ -1,11 +1,8 @@
 ---
 name: "test-strategy"
-description: "Use when asked to design a test strategy, choose the shape of the test pyramid, define coverage targets, or evaluate testing investments across the unit / integration / E2E layers."
+description: "Use when designing a test strategy, choosing the test-pyramid shape, defining coverage targets, or evaluating testing investments across unit, integration, and E2E layers. Triggers include \"test strategy\", \"test pyramid\", \"coverage target\", \"E2E vs integration\", and \"testing investment\"."
 ---
-
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
-# Test Strategy Designer
+# Test strategy
 
 ## When to invoke
 
@@ -29,6 +26,35 @@ description: "Use when asked to design a test strategy, choose the shape of the 
 - If an E2E test can be rewritten as an integration + contract test, do it—E2E is expensive and flaky.
 - Contract tests beat mocks for anything that crosses a service boundary.
 - Mutation testing (Stryker, PIT) is the only honest way to detect tests that prove nothing.
+
+## Anti-patterns
+
+- Inverted pyramid: many slow E2E tests sitting on top of few unit tests.
+- One global coverage number with no higher target for P0 modules.
+- Mocked service boundaries that never catch a real integration break.
+- Coverage treated as the goal instead of a proxy for confidence.
+
+## Output template
+
+```markdown
+## Test strategy - <system or module>
+
+| Layer | Target mix | Tools | Coverage target |
+|---|---|---|---|
+| Unit | 70% | JUnit 5 / Vitest | 80% line (90% for P0) |
+| Integration | 20% | Testcontainers | critical paths |
+| E2E | 10% | Playwright | top user journeys |
+
+**Flaky-test budget**: <=1% (quarantine above)
+**Risk classification**: P0 <modules> / P1 <modules> / P2 <modules>
+```
+
+## Quality gate
+
+- [ ] Every module is risk-classified (P0/P1/P2) with a coverage target.
+- [ ] The pyramid mix is set per layer, and deviations from 70/20/10 are justified.
+- [ ] Each layer names its tool and threshold.
+- [ ] A flaky-test budget and quarantine rule are defined.
 
 ## References
 

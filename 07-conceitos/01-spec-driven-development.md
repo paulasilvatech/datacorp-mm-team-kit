@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Spec-Driven Development and Spec-Kit
 
 > **Path:** [Team Kit](../README.md) › [Concepts](00-README.md) › **Spec-Driven Development**

@@ -1,10 +1,7 @@
 ---
 name: "pipeline-hardening"
-description: "Use when hardening a CI/CD pipeline, migrating to OIDC, signing artifacts, or meeting SLSA requirements. Triggers include 'SLSA', 'supply chain', 'OIDC', 'sigstore', 'cosign', 'pipeline security', and 'GHA hardening'."
+description: "Use when hardening a CI/CD pipeline, migrating to OIDC, signing artifacts, or meeting SLSA requirements. Triggers include \"SLSA\", \"supply chain\", \"OIDC\", \"sigstore\", \"cosign\", \"pipeline security\", and \"GHA hardening\"."
 ---
-
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 # Pipeline hardening
 
 ## When to invoke
@@ -54,6 +51,31 @@ description: "Use when hardening a CI/CD pipeline, migrating to OIDC, signing ar
 - Floating `@main` or `@v3` tags in third-party actions.
 - Deploying an artifact built in another pipeline without verifying its signature.
 - Secrets printed in logs through unquoted shell expansion.
+
+## Output template
+
+```markdown
+## Pipeline hardening report - <workflow or repo>
+
+| Control | Status | Evidence / gap |
+|---|---|---|
+| OIDC for cloud auth | done / missing | <link or note> |
+| Actions pinned by SHA | done / missing | <count of floating tags> |
+| Least-privilege permissions | done / missing | <workflows missing the block> |
+| SBOM + artifact signing | done / missing | <tool> |
+| Provenance (SLSA) | Level 0/1/2/3 | <attestation link> |
+
+**Target SLSA level**: <N>
+**Blocking gaps**: <count>
+```
+
+## Quality gate
+
+- [ ] No long-lived cloud secrets remain; cloud auth uses OIDC federation.
+- [ ] Every third-party action is pinned by commit SHA, not a floating tag.
+- [ ] Every workflow declares a least-privilege `permissions:` block (default `contents: read`).
+- [ ] Release artifacts are signed and their signatures are verified at deploy time.
+- [ ] Secret scanning, push protection, and dependency updates are enabled.
 
 ## References
 

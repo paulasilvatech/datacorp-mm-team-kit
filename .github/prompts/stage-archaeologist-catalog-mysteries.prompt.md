@@ -3,7 +3,7 @@ name: "catalog-mysteries"
 description: "Records open questions with traceable evidence without attempting to resolve them."
 argument-hint: "scope=01-arqueologia/"
 agent: "archaeologist"
-tools: ["search", "edit"]
+tools: ["read", "search", "edit"]
 ---
 # /catalog-mysteries
 

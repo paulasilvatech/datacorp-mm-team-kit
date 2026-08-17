@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Stage 3 — Implementation (70 min)
 
 > **Path:** [Team Kit](../README.md) › [Stage 3](README.md) › **GUIDE**

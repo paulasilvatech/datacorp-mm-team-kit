@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Stage 2 — Specification (60 min)
 
 > **Path:** [Team Kit](../README.md) › [Stage 2](README.md) › **GUIDE**

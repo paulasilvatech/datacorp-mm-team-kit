@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Copilot's 3 Modes — Ask, Plan, and Agent
 
 > **Path:** [Team Kit](../README.md) › [Concepts](00-README.md) › **Copilot's 3 Modes**

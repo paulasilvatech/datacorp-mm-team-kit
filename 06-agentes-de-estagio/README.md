@@ -1,48 +1,46 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
+# Stage Agents — 4 Workshop Context Agents
 
-# Agentes de Estágio — 4 Agentes de Contexto do Workshop
+> **Path:** [Team Kit](../README.md) › **Stage Agents**
 
-> **Trilha:** [Kit do Time](../README.md) › **Agentes de Estágio**
+**Stage agents are custom GitHub Copilot agents that concentrate the technical context for each workshop phase, ensuring that the entire team interacts with Copilot consistently during the same stage.**
 
-**Os agentes de estágio são agentes customizados do GitHub Copilot que concentram o contexto técnico de cada fase do workshop, garantindo que todo o time converse com o Copilot da mesma forma na mesma etapa.**
-
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Time inteiro — leitura obrigatória antes do início |
-| **Pré-requisitos** | GitHub Copilot ativo no VS Code |
-| **Tempo estimado** | 10 min |
-| **Estágio** | Todos |
-| **Resultado esperado** | Saber qual agente usar, em qual momento, com qual papel |
+| **Target audience** | Entire team, required reading before the workshop starts |
+| **Prerequisites** | GitHub Copilot active in VS Code |
+| **Estimated time** | 10 min |
+| **Stage** | All |
+| **Expected outcome** | Know which agent to use, when to use it, and its role |
 
-![Camada 06 — Agentes](https://img.shields.io/badge/Camada-06%20Agentes-171717?style=flat-square)
-![4 agentes](https://img.shields.io/badge/Total-4%20agentes-404040?style=flat-square)
-
----
-
-## O que é um agente customizado do Copilot
-
-Um agente customizado do GitHub Copilot é um perfil de instruções configurado em `.github/copilot-instructions.md` e nos arquivos de `skills`, que orienta o Copilot sobre o contexto, as ferramentas, o vocabulário e as restrições de uma tarefa específica.
-
-Quando você seleciona `@archaeologist` no Copilot Chat, o Copilot carrega as instruções desse agente e passa a responder exclusivamente dentro daquele escopo — sem precisar que você repita o contexto a cada mensagem.
-
-**Por que isso importa neste workshop:** sem agentes customizados, cada membro do time precisaria repetir o contexto do SIFAP, das regras de rastreabilidade e da stack-alvo em cada conversa. Os agentes de estágio eliminam essa repetição e criam um ritual compartilhado.
+![Layer 06 — Agents](https://img.shields.io/badge/Layer-06%20Agents-171717?style=flat-square)
+![4 agents](https://img.shields.io/badge/Total-4%20agents-404040?style=flat-square)
 
 ---
 
-## Duas camadas de configuração
+## What is a custom Copilot agent?
 
-Este workshop usa duas camadas de configuração do Copilot que trabalham juntas:
+A custom GitHub Copilot agent is an instruction profile configured in `.github/copilot-instructions.md` and `skills` files. It guides Copilot on the context, tools, vocabulary, and constraints of a specific task.
 
-| Camada | O que faz | Onde fica |
+When you select `@archaeologist` in Copilot Chat, Copilot loads that agent's instructions and responds within that scope, without requiring you to repeat the context in every message.
+
+**Why this matters in this workshop:** without custom agents, every team member would need to repeat the SIFAP context, traceability rules, and target stack in each conversation. Stage agents remove this repetition and create a shared ritual.
+
+---
+
+## Two configuration layers
+
+This workshop uses two Copilot configuration layers that work together:
+
+| Layer | What it does | Location |
 |---|---|---|
-| **Persona-kit** (coluna) | Define o papel individual: Product Owner, Developer, QA… | [`05-personas/`](../05-personas/) |
-| **Agente de estágio** (linha) | Define o contexto da fase: arqueologia, spec, implementação, evolução | Esta pasta |
+| **Persona kit** (column) | Defines the individual role: Product Owner, Developer, QA, and others | [`05-personas/`](../05-personas/) |
+| **Stage agent** (row) | Defines the phase context: archaeology, specification, implementation, evolution | This folder |
 
-A persona responde "quem sou eu neste time". O agente responde "em que fase estamos agora". Cada pessoa mantém suas duas personas o dia inteiro; o agente de estágio muda conforme o cronograma avança.
+The persona answers "who am I on this team?" The agent answers "which phase are we in now?" Each person keeps their two personas throughout the day, while the stage agent changes as the schedule advances.
 
 ---
 
-## Os 4 agentes e o cronograma
+## The 4 agents and schedule
 
 ```mermaid
 %%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
@@ -50,81 +48,81 @@ flowchart LR
     classDef step fill:#F5F5F5,stroke:#171717,color:#171717
     classDef result fill:#FFFFFF,stroke:#171717,color:#171717,stroke-width:2px
 
-    A["Estágio 1<br/>@archaeologist<br/>11:00–14:00"]:::step --> B["Estágio 2<br/>@architect<br/>14:00–15:00"]:::step
-    B --> C["Estágio 3<br/>@builder<br/>15:00–16:10"]:::step
-    C --> D["Estágio 4<br/>@evolution<br/>16:10–16:50"]:::step
-    D --> E["SIFAP 2.0<br/>em execução"]:::result
+    A["Stage 1<br/>@archaeologist<br/>11:00–14:00"]:::step --> B["Stage 2<br/>@architect<br/>14:00–15:00"]:::step
+    B --> C["Stage 3<br/>@builder<br/>15:00–16:10"]:::step
+    C --> D["Stage 4<br/>@evolution<br/>16:10–16:50"]:::step
+    D --> E["SIFAP 2.0<br/>running"]:::result
 ```
 
-| Estágio | Horário | Agente | Postura do agente | Para que serve |
+| Stage | Time | Agent | Agent approach | Purpose |
 |---|---|---|---|---|
-| Estágio 1 — Arqueologia | 11:00–12:00 + 13:30–14:00 | [@archaeologist](01-archaeologist/README.md) | Investigativa | Ler legado, registrar evidência e recortar uma feature |
-| Estágio 2 — Especificação | 14:00–15:00 | [@architect](02-architect/README.md) | Analítica | Criar `spec.md`, `plan.md` e `tasks.md` com decisões de escopo |
-| Estágio 3 — Implementação | 15:00–16:10 | [@builder](03-builder/README.md) | Construtiva | Construir Java/Next.js, testes, migrations e endpoints rastreáveis |
-| Estágio 4 — Evolução | 16:10–16:50 | [@evolution](04-evolution/README.md) | Operacional | Delegar uma Issue pequena e registrar o resultado da revisão |
+| Stage 1 — Archaeology | 11:00–12:00 + 13:30–14:00 | [@archaeologist](01-archaeologist/README.md) | Investigative | Read the legacy system, record evidence, and scope a feature |
+| Stage 2 — Specification | 14:00–15:00 | [@architect](02-architect/README.md) | Analytical | Create `spec.md`, `plan.md`, and `tasks.md` with scope decisions |
+| Stage 3 — Implementation | 15:00–16:10 | [@builder](03-builder/README.md) | Constructive | Build traceable Java/Next.js code, tests, migrations, and endpoints |
+| Stage 4 — Evolution | 16:10–16:50 | [@evolution](04-evolution/README.md) | Operational | Delegate a small Issue and record the review outcome |
 
 ---
 
-## Como selecionar o agente no Copilot Chat
+## How to select the agent in Copilot Chat
 
-- [ ] **Confirmar a etapa atual** em [00-TEAM-FLOW.md](../00-TEAM-FLOW.md).
-- [ ] **Abrir o Copilot Chat** no VS Code (atalho: `Ctrl+Alt+I` / `Cmd+Alt+I`).
-- [ ] **Clicar no seletor de agentes** (ícone de arroba ou menu de contexto no campo de mensagem).
-- [ ] **Selecionar o agente correspondente ao estágio atual** (ex.: `@archaeologist`).
-- [ ] **Abrir o README do agente** na tabela acima e copiar o prompt de abertura.
-- [ ] **Trabalhar nos entregáveis da Definição de Pronto** do agente até o gate de passagem.
+- [ ] **Confirm the current stage** in [00-TEAM-FLOW.md](../00-TEAM-FLOW.md).
+- [ ] **Open Copilot Chat** in VS Code (`Ctrl+Alt+I` / `Cmd+Alt+I`).
+- [ ] **Open the agent selector** (the at-sign icon or context menu in the message field).
+- [ ] **Select the agent for the current stage** (for example, `@archaeologist`).
+- [ ] **Open the agent README** from the table above and copy the opening prompt.
+- [ ] **Work through the agent's Definition of Done deliverables** until the handoff gate.
 
 > [!WARNING]
-> Não pule o gate de passagem entre estágios. Ele existe para garantir que o próximo agente receba evidências, decisões e pendências explícitas — não apenas conversa no chat.
+> Do not skip the handoff gate between stages. It ensures that the next agent receives explicit evidence, decisions, and pending work rather than only a chat conversation.
 
 ---
 
-## Matriz de responsabilidade persona × agente
+## Persona × agent responsibility matrix
 
-**Protagonista** conduz a conversa com o agente. **Secundário** contribui ativamente. **Observador** acompanha e tira dúvidas quando chamado.
+The **Lead** conducts the conversation with the agent. A **Contributor** participates actively. An **Observer** follows along and answers questions when requested.
 
 | Persona | @archaeologist | @architect | @builder | @evolution |
 |---|---|---|---|---|
-| Product Owner | Observador | Secundário | Observador | Secundário |
-| Requirements Engineer | **Protagonista** | Secundário | Observador | Observador |
-| Enterprise Architect | Secundário | Secundário | Observador | Observador |
-| Software Architect | Observador | **Protagonista** | Secundário | Observador |
-| Technical Lead | Observador | Secundário | Secundário | **Protagonista** |
-| Developer | Observador | Observador | **Protagonista** | Secundário |
-| DBA | Secundário | Observador | Secundário | Observador |
-| QA Engineer | Observador | Observador | Secundário | Secundário |
-| DevOps Engineer | Observador | Observador | Secundário | Secundário |
-| Tech Writer | Secundário | Observador | Observador | Secundário |
+| Product Owner | Observer | Contributor | Observer | Contributor |
+| Requirements Engineer | **Lead** | Contributor | Observer | Observer |
+| Enterprise Architect | Contributor | Contributor | Observer | Observer |
+| Software Architect | Observer | **Lead** | Contributor | Observer |
+| Technical Lead | Observer | Contributor | Contributor | **Lead** |
+| Developer | Observer | Observer | **Lead** | Contributor |
+| DBA | Contributor | Observer | Contributor | Observer |
+| QA Engineer | Observer | Observer | Contributor | Contributor |
+| DevOps Engineer | Observer | Observer | Contributor | Contributor |
+| Tech Writer | Contributor | Observer | Observer | Contributor |
 
-Para a versão detalhada, consulte [docs/persona-agent-matrix.md](../docs/persona-agent-matrix.md).
+For the detailed version, see [docs/persona-agent-matrix.md](../docs/persona-agent-matrix.md).
 
 ---
 
-## Princípio: o agente não conhece o seu legado
+## Principle: the agent does not know your legacy system
 
-Os agentes sabem **como** modernizar Natural/Adabas. Eles não sabem **o que** existe no legado do seu time. Isso é proposital: o aprendizado acontece quando o time lê, debate e registra evidências.
+The agents know **how** to modernize Natural/Adabas. They do not know **what** exists in your team's legacy system. This is intentional. Learning occurs when the team reads, discusses, and records evidence.
 
-| Pedido inadequado | Resposta esperada do agente |
+| Inappropriate request | Expected agent response |
 |---|---|
-| "Me diga tudo que o sistema faz" | "Abra o primeiro arquivo e vamos ler juntos." |
-| "Crie a arquitetura sem ler o legado" | "Ainda estamos sem evidência. Volte ao Estágio 1." |
-| "Implemente sem REQ-ID" | "Falta rastreabilidade. Crie ou aponte o requisito." |
+| "Tell me everything the system does" | "Open the first file, and we will read it together." |
+| "Create the architecture without reading the legacy system" | "We still lack evidence. Return to Stage 1." |
+| "Implement without a REQ-ID" | "Traceability is missing. Create or identify the requirement." |
 
 ---
 
-## Critérios de conclusão por estágio
+## Completion criteria by stage
 
-- [ ] O time usa o mesmo agente na mesma etapa ao mesmo tempo.
-- [ ] O protagonista sabe qual entregável precisa sair daquela conversa.
-- [ ] A etapa termina com artefatos versionados no repositório, não apenas com conversa no chat.
-- [ ] A passagem de bastão seguinte recebe evidências, decisões e pendências explícitas.
+- [ ] The team uses the same agent during the same stage.
+- [ ] The lead knows which deliverable must result from the conversation.
+- [ ] The stage ends with versioned repository artifacts, not only a chat conversation.
+- [ ] The next handoff receives explicit evidence, decisions, and pending work.
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [Persona Kits](../05-personas/)<br/><sub>Configuração individual por papel no time.</sub> | [@archaeologist](01-archaeologist/README.md)<br/><sub>Estágio 1: leitura do legado Natural/Adabas.</sub> |
+| [Persona Kits](../05-personas/)<br/><sub>Individual configuration by team role.</sub> | [@archaeologist](01-archaeologist/README.md)<br/><sub>Stage 1: read the Natural/Adabas legacy system.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

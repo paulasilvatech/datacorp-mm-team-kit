@@ -1,90 +1,124 @@
 ---
 name: "migration"
+description: "Produce a versioned, reversible PostgreSQL 16 Flyway migration with online-safe steps, batched backfill, and a rollback script."
+argument-hint: "req=REQ-NNN change=<natural-language-change>"
 agent: "dba"
-description: "Create PostgreSQL 16 forward and rollback migrations with an indexing strategy, data backfill, and zero-downtime steps."
-tools: ["search", "edit", "execute"]
+tools: ["read", "search", "edit", "execute"]
 ---
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 # /migration
 
 ## Objective
 
-You are the DBA producing a **PostgreSQL 16** migration for SIFAP 2.0. Every migration must be (a) idempotent, (b) reversible, (c) safe to run while the application is online, and (d) traced to a `REQ-ID` in `specs/<NNN>-<feature>/spec.md`. The deliverable is a versioned Flyway migration plus a rollback script.
+Produce a **PostgreSQL 16** Flyway migration for a schema change that is (a) idempotent, (b) reversible, (c) safe to run while the application serves traffic, and (d) traced to a `REQ-ID` in `specs/<NNN>-<feature>/spec.md`. The deliverable is a versioned forward migration, a batched backfill when needed, and a matching rollback script—tested against a staging snapshot.
 
-## Inputs
+> [!WARNING]
+> Destructive changes (drop or rename a column, change a type, add `NOT NULL`) never ship in a single deployment. Expand, migrate, then contract.
 
-Ask the user for anything that is missing.
+## When to Invoke
 
-- The requested change in natural language.
-- The linked `REQ-ID` (and EARS statement).
-- The data scale: row counts for affected tables and peak QPS.
-- The deployment window: mandatory zero downtime or an allowed maintenance window.
-- The legacy reference, if any—mapping to an Adabas DDM in `01-arqueologia/legado-sifap/adabas-ddms/`.
+During Stage 3/4, when a task in `plan.md` requires a schema change, or when mapping an Adabas DDM to its first PostgreSQL table. Run it after the change is already recorded in the plan—never to invent schema.
 
-## Process
+## Preconditions
 
-1. **Confirm that the change is in `plan.md`.** The migration follows the plan, not the other way around. If it is not in the plan, stop and route it for architecture review.
-2. **Choose the version number.** Use `Vyyyymmddhhmm__short_description.sql` (Flyway convention).
-3. **Design for online migration.** Safe online patterns:
+- The change is present in `specs/<NNN>-<feature>/plan.md`; if it is not, it goes to architecture review first
+- `specs/<NNN>-<feature>/spec.md` holds the `REQ-ID` and EARS statement the change satisfies
+- A `db/migration/` folder exists (or is created by this migration) under the backend module
+- A staging snapshot of the target database is available to test against
 
-- Add a nullable column → backfill in batches → add the constraint last.
-- Create the index `CONCURRENTLY` (without `IF NOT EXISTS`—that requires a separate guard).
-- Avoid `ALTER TABLE` operations that require an `ACCESS EXCLUSIVE` lock on a hot table; if unavoidable, schedule a maintenance window.
+## Inputs the Team Must Provide
 
-4. **Plan the backfill.** For non-trivial data, write a separate idempotent backfill script that processes batches of 1k–10k rows with a `commit` between batches. Never perform the backfill in the migration itself if the table has more than 100k rows.
-5. **Apply constraints after the backfill.** Add `NOT NULL`, `CHECK`, foreign keys, and unique indexes only after the data is consistent.
-6. **Write the rollback.** Every forward migration comes with a `Vyyyymmddhhmm__short_description.undo.sql`. The rollback restores the previous schema even if an intermediate state existed.
-7. **Document side effects.** Note replication-slot drift, vacuum implications, plan-cache invalidation, and any application code that must be shipped in lockstep.
-8. **Test against a snapshot.** Restore the latest stage snapshot, run `flyway migrate`, verify, run the rollback, and verify again. Paste the output.
+- The requested change in natural language
+- The linked `REQ-ID` and its EARS statement
+- The data scale: row counts for affected tables and peak QPS
+- The deployment window: mandatory zero downtime, or an allowed maintenance window
+- The legacy reference, if any—the Adabas DDM in `01-arqueologia/legado-sifap/adabas-ddms/` this maps from
+- Ask the user for anything that is missing.
 
-## Output
+## What I Will Do
 
-Your final response must include:
+- Confirm the change is in `plan.md`, then choose a Flyway version `Vyyyymmddhhmm__short_description.sql`
+- Design an online-safe sequence: nullable column, then batched backfill, then constraints last
+- Map Adabas formats faithfully (packed `P9,2` → `NUMERIC(9,2)`, `MU` → child table or JSONB, `PE` → child table, super-descriptor → composite index)
+- Write a separate idempotent backfill for large tables and apply constraints only after it completes
+- Write the paired `*.undo.sql` rollback and document replication, vacuum, and plan-cache side effects
+- Test forward and rollback against a staging snapshot and paste the output
 
-- **Migration metadata** — version, REQ-ID, online-safe (yes/no), and estimated duration at production scale.
-- **Forward script** — complete SQL, ready to paste into `db/migration/Vyyyymmddhhmm__*.sql`.
-- **Backfill script**, if applicable—a separate file with a batch loop and progress logging.
-- **Rollback script** — complete SQL, ready to paste into `db/migration/Vyyyymmddhhmm__*.undo.sql`.
-- **Application coordination notes** — which code must be deployed before, with, or after the migration.
-- **Risk register** — locking risk, replication risk, and plan invalidation risk, with mitigations.
+## What I Will NOT Do
 
-### Forward Template (zero-downtime column addition)
+- Design schema that is not in `plan.md`—unplanned changes go back to architecture review
+- Add a `NOT NULL DEFAULT`, drop, or rename a column on a large hot table in one statement—it rewrites or blocks the table
+- Ship a forward migration without a matching rollback
+- Build an index without `CONCURRENTLY`, or backfill an entire table in one transaction
+- Store PII (CPF, benefit amounts) in a new column without flagging it and adding a column `COMMENT`
+- Write business logic into the database (stored procedures)—logic lives in Java
+- Assume what an Adabas field means or holds—I map only the format the team points at in the DDM
 
-```sql
--- V<timestamp>__<short_description>.sql
--- REQ-XXX: <EARS statement confirmed by the team>.
--- Online-safe: <chosen strategy and evidence>.
+## Output Format
 
-ALTER TABLE <table_name>
- ADD COLUMN IF NOT EXISTS <column_name> <sql_type>;
+```markdown
+### Migration metadata
+Version `V202603171430__add_reviewed_at.sql` · REQ-031 · online-safe: yes · ~2 min at 4M rows.
 
--- Include indexes and comments only after the team confirms the schema.
+### Forward — V202603171430__add_reviewed_at.sql
+-- REQ-031: While a payment is under review, the system shall record the review timestamp.
+-- Online-safe: nullable add + CONCURRENTLY index; no table rewrite.
+ALTER TABLE payment ADD COLUMN IF NOT EXISTS reviewed_at TIMESTAMPTZ;
+CREATE INDEX CONCURRENTLY idx_payment_reviewed_at ON payment (reviewed_at);
+COMMENT ON COLUMN payment.reviewed_at IS 'Review timestamp; not PII.';
+
+### Backfill (separate, idempotent) — batches of 5k
+-- Run outside the migration; commit between batches until no rows remain.
+
+### Rollback — V202603171430__add_reviewed_at.undo.sql
+DROP INDEX CONCURRENTLY IF EXISTS idx_payment_reviewed_at;
+ALTER TABLE payment DROP COLUMN IF EXISTS reviewed_at;
+
+### Application coordination
+Deploy the writer that populates reviewed_at after this migration; readers tolerate NULL until backfill completes.
+
+### Risk register
+Locking: none (CONCURRENTLY). Replication: index build adds lag—monitor. Plan cache: invalidated on column add.
 ```
 
-### Rollback Template
+## Definition of Done
 
-```sql
--- V<timestamp>__<short_description>.undo.sql
--- Describe the validated rollback for the change above.
+- [ ] Forward and rollback scripts are both committed under `db/migration/`
+- [ ] The forward script is idempotent (`IF NOT EXISTS`, `IF EXISTS`)
+- [ ] No `ACCESS EXCLUSIVE` lock on a hot table without an explicit maintenance-window note
+- [ ] The backfill handles more than 100k rows in batches of 1k–10k with a commit between batches
+- [ ] The linked `REQ-ID` and EARS statement appear in a top-of-file comment
+- [ ] `flyway migrate` and `flyway undo` output against a staging snapshot is pasted
+- [ ] The application coordination plan is stated explicitly
+
+## Prompt Body
+
+You are the `@dba`. The team needs a schema change turned into a safe, reversible migration. Read [`safe-migration`](../skills/safe-migration/SKILL.md) before you start; it owns the expand/migrate/contract pattern and the pre-flight checklist.
+
+**Step 1 — Confirm the change is planned.**
+Verify the change appears in `plan.md`. If it does not, stop and route it to architecture review—the migration follows the plan, never the other way around. Record the `REQ-ID` and EARS statement.
+
+**Step 2 — Choose the version and map the types.**
+Name the file `Vyyyymmddhhmm__short_description.sql`. When mapping an Adabas DDM, translate formats faithfully: packed `P9,2` → `NUMERIC(9,2)` (money is `NUMERIC`, never `FLOAT`); `MU` → a child table or JSONB; `PE` → a child table; a super-descriptor → a composite index. Natural format specs use a comma decimal separator, so `P9,2` means 9 integer plus 2 fractional digits (see [`natural-adabas`](../instructions/natural-adabas.instructions.md)).
+
+**Step 3 — Design for online migration.**
+Prefer additive, non-blocking steps: add a nullable column, then backfill, then add constraints last. Build indexes with `CREATE INDEX CONCURRENTLY` (without `IF NOT EXISTS`, which needs a separate guard). Avoid `ALTER TABLE` operations that require an `ACCESS EXCLUSIVE` lock on a hot table; if one is unavoidable, schedule a maintenance window and say so.
+
+**Step 4 — Plan the backfill.**
+For non-trivial data, write a separate idempotent backfill that processes 1k–10k rows per batch with a `commit` between batches. Never backfill inside the migration when the table exceeds 100k rows.
+
+**Step 5 — Apply constraints after the backfill.**
+Add `NOT NULL`, `CHECK`, foreign keys, and unique indexes only after the data is consistent.
+
+**Step 6 — Write the rollback.**
+Pair every forward migration with `Vyyyymmddhhmm__short_description.undo.sql` that restores the previous schema, even from an intermediate state.
+
+**Step 7 — Document side effects and test.**
+Note replication-slot drift, vacuum implications, plan-cache invalidation, and any application code that must ship in lockstep. Restore the staging snapshot, run `flyway migrate`, verify, run `flyway undo`, verify again, and paste the output.
+
+Never put business logic in the database. Mask CPF and benefit amounts, and flag any new PII column for the DevOps Engineer and technical leadership.
+
+## Invocation Example
+
 ```
-
-## Anti-patterns
-
-- Using `ALTER TABLE ... ADD COLUMN ... NOT NULL DEFAULT 'x'` on a large, hot table—it rewrites the entire table. Split it into nullable addition + backfill + constraint.
-- Creating an index without `CONCURRENTLY` on a production table—it blocks writers.
-- Combining a schema change and a large `UPDATE` in the same migration—this causes long transactions and replication lag.
-- Omitting a rollback script. The database cannot be restored without one.
-- Failing to coordinate with application releases—the code reads a column that does not yet exist, or vice versa.
-- Storing PII in a new column without consulting the DevOps Engineer and technical leadership.
-- Skipping the test against a stage snapshot. "It worked in my dev DB" is not enough.
-
-## Success Criteria
-
-- [ ] Forward and rollback scripts are both committed.
-- [ ] The forward script is idempotent (`IF NOT EXISTS`, `IF EXISTS`).
-- [ ] No `ACCESS EXCLUSIVE` lock on a hot table without an explicit maintenance-window note.
-- [ ] The backfill handles >100k rows in batches.
-- [ ] The linked `REQ-ID` and EARS statement appear in a top-of-file comment.
-- [ ] Tested against a stage snapshot—the output of `flyway migrate` and `flyway undo` is pasted.
-- [ ] The application coordination plan is stated explicitly.
+/migration req=REQ-031 change="add a nullable review timestamp to the payment table"
+```

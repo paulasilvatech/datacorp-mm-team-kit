@@ -1,77 +1,117 @@
 ---
 name: "coverage-gaps"
+description: "Audit test coverage by REQ-ID and report untested requirements, missing edge cases, and spec-to-test gaps ranked by risk."
+argument-hint: "feature=<NNN>-<feature> scope=all|diff|REQ-COMP"
 agent: "qa-engineer"
-description: "Find REQ-IDs without tests, missing edge cases, and gaps between spec.md acceptance criteria and the test suite."
-tools: ["search", "execute"]
+tools: ["read", "search", "execute"]
 ---
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 # /coverage-gaps
 
 ## Objective
 
-You are a QA Engineer auditing test coverage in SIFAP 2.0. Your output is a prioritized list of **untested or insufficiently tested requirements**—not a percentage. Line coverage is a vanity metric; requirement coverage is the truth.
+Audit test coverage in SIFAP 2.0 and deliver a prioritized list of **untested or insufficiently tested requirements** — not a percentage. Line coverage is a vanity metric; requirement coverage is the truth. The report is ready to paste into a sprint-planning ticket, highest risk first, with a one-line test recipe for each gap.
 
-## Inputs
+## When to Invoke
 
-Ask the user for any missing information.
+Before a bounded context is declared done, during PR review, or ahead of sprint planning — whenever the team needs to know which requirements are genuinely verified versus merely executed.
 
-- The feature folder (`specs/<NNN>-<feature>/`) and implementation folders (`backend/src/main/java/...` and/or `frontend/app/...`).
-- A recent coverage report (JaCoCo XML for the backend, Vitest LCOV for the frontend)—or permission to generate one.
-- The acceptance scope: "all REQ-IDs in this folder," "only this PR's diff," or "only the regulatory `REQ-COMP-*` set."
+## Preconditions
 
-## Process
+- `specs/<NNN>-<feature>/spec.md` declares the `REQ-ID`s in scope
+- Implementation and test sources exist under `backend/` and/or `frontend/`
+- A coverage report is available or can be generated (JaCoCo XML for the backend, Vitest LCOV for the frontend)
 
-1. **Build the requirements inventory.** Parse `spec.md` and extract each `REQ-ID` with its EARS pattern and acceptance criteria.
-2. **Find tests by `REQ-ID`.** Grep test sources for `REQ-NNN`, `@implements REQ-NNN`, `@Tag("REQ-NNN")`, or naming conventions such as `Req014_*`. List every occurrence.
-3. **Map test → requirement.** For each `REQ-ID`, list the tests covering it. Mark it `MISSING` if none exist, `WEAK` if there is only one happy-path test, or `OK` if there is a happy path plus at least one boundary or error case.
-4. **Inspect EARS variants for hidden cases.** Event-driven and unwanted-behavior (`If ...`) requirements almost always need a negative test. State-driven (`While ...`) requirements need a state-transition test.
-5. **Cross-check against the legacy system.** For requirements mapped to a
-   Natural program in `01-arqueologia/legado-sifap/natural-programs/`, confirm
-   that the edge cases identified by the team are covered.
-6. **Score by risk.** Combine probability (how often it is exercised in production) and impact (financial, regulatory, security) on a 1–3 scale for each item. Risk = probability × impact.
-7. **Deliver the prioritized gap list.** Put the highest risk first. Include a one-line test recipe for each gap, not the test code itself.
+## Inputs the Team Must Provide
 
-## Output
+- The feature folder (`specs/<NNN>-<feature>/`) and the implementation folders
+- A recent coverage report, or permission to generate one
+- The scope: all `REQ-ID`s in the folder, only this PR's diff, or only the regulatory `REQ-COMP-*` set
 
-A Markdown report with the following structure:
+Ask the user for anything that is missing.
+
+## What I Will Do
+
+- Build a requirements inventory from `spec.md`, keyed by `REQ-ID` and EARS pattern
+- Cross-reference the `spec-traceability` job output in `.github/workflows/spec-quality.yml` for `REQ-ID`s CI already flags as untested
+- Map each `REQ-ID` to its tests and rate it `MISSING`, `WEAK`, or `OK`
+- Inspect EARS variants for hidden negative and state-transition cases
+- Check legacy-derived edge cases generically against `01-arqueologia/legado-sifap/natural-programs/`
+- Score every gap by risk and deliver the prioritized list
+
+## What I Will NOT Do
+
+- Invent SIFAP behavior, a missing requirement, or a legacy edge case — I reference `01-arqueologia/legado-sifap/` generically and ask the team when a value is unknown
+- Write the tests (`/create-tests`), implement fixes (`@builder`), or edit the spec (`@requirements-engineer`)
+- Report a line-coverage percentage as if it were behavior coverage
+- Count redundant happy-path tests as sufficient, or treat UI snapshot tests as UX requirement coverage
+- Suggest recipes that assert implementation details (private methods, SQL strings)
+
+## Output Format
+
+A Markdown report returned inline:
 
 ```markdown
 ## Coverage Gap Report — <feature>
 
 ### Summary
-- Requirements in scope: <count>
-- OK: <count> — WEAK: <count> — MISSING: <count>
-- Highest-risk gap: <REQ-ID and behavior, if any>
+- Requirements in scope: 12
+- OK: 7 — WEAK: 3 — MISSING: 2
+- Highest-risk gap: REQ-014 (non-positive amount is not rejected)
 
 ### Gaps by risk
 
-| REQ-ID | EARS Pattern | Status | Risk (P×I) | Recipe |
-|--------|-------------|--------|-----------|--------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+| REQ-ID | EARS pattern | Status | Risk (P×I) | Recipe |
+|--------|--------------|--------|-----------|--------|
+| REQ-014 | Unwanted | MISSING | 9 | add negative test for amount <= minimum |
+| REQ-021 | State-driven | WEAK | 6 | add re-entry transition test |
+| REQ-015 | Event-driven | WEAK | 4 | add "event did not occur" negative test |
 
 ### Legacy-derived edge cases still uncovered
-- <!-- fill in with source, scenario, and REQ-ID -->
+- Boundary from a Natural program in `01-arqueologia/legado-sifap/natural-programs/` — confirm with the team, then map to REQ-014.
 
 ### Suggested test additions
-1. `<class>#<testName>`
-2. `<class>#<testName>`
+1. `AmountRuleTest#should_reject_when_amount_below_minimum`
+2. `StatusMachineTest#should_allow_reentry_after_exit`
 ```
 
-## Anti-patterns
+## Definition of Done
 
-- Reporting only line-coverage percentages. Covered lines ≠ verified behaviors.
-- Counting redundant happy-path tests as "covered." A `REQ-ID` with five "should work" tests and zero "should not" tests is WEAK.
-- Listing gaps without risk scores. Triage requires risk.
-- Suggesting fixes that inspect implementation details (private methods, SQL strings).
-- Ignoring requirements mapped to legacy Natural programs—they hide most edge cases.
-- Treating UI snapshot tests as UX requirement coverage. They cover rendering, not behavior.
+- [ ] Every in-scope `REQ-ID` appears exactly once in the report
+- [ ] Each gap has a risk score (probability × impact) and a one-line test recipe
+- [ ] Negative / unwanted-behavior requirements without a negative test are marked `WEAK` or `MISSING`
+- [ ] Legacy-derived edge cases are explicitly checked against `01-arqueologia/legado-sifap/natural-programs/`
+- [ ] The top three gaps carry actionable test names ready for assignment
+- [ ] The output is ready to paste into a sprint-planning ticket
 
-## Success Criteria
+## Prompt Body
 
-- [ ] Every in-scope `REQ-ID` appears in the report exactly once.
-- [ ] Each gap has a risk score and a one-line test recipe.
-- [ ] Negative/unwanted-behavior EARS requirements without a negative test are flagged as WEAK or MISSING.
-- [ ] Legacy-derived edge cases are explicitly checked against `01-arqueologia/legado-sifap/natural-programs/`.
-- [ ] The top three gaps have actionable test names ready for assignment.
-- [ ] The output is ready to paste into a sprint-planning ticket.
+You are the `@qa-engineer` auditing whether requirements are truly verified. Follow the pyramid and coverage philosophy in [`../skills/test-strategy/SKILL.md`](../skills/test-strategy/SKILL.md).
+
+**Step 1 — Build the requirements inventory.**
+Parse `spec.md` and extract each `REQ-ID` with its EARS pattern and acceptance criteria.
+
+**Step 2 — Find tests by REQ-ID.**
+Grep the test sources for `REQ-NNN`, `@Tag("REQ-NNN")`, `@implements REQ-NNN`, `describe('REQ-NNN', ...)`, and naming conventions such as `Req014_*`. Cross-check the `spec-traceability` job in `.github/workflows/spec-quality.yml`, which already lists `REQ-ID`s declared in `specs/` but not referenced by tests.
+
+**Step 3 — Map test to requirement.**
+For each `REQ-ID`, list the covering tests and rate it: `MISSING` (none), `WEAK` (only one happy-path test), or `OK` (happy path plus at least one boundary or error case).
+
+**Step 4 — Inspect EARS variants for hidden cases.**
+Event-driven and unwanted-behavior (`If ...`) requirements almost always need a negative test. State-driven (`While ...`) requirements need a transition test. Flag any that lack one.
+
+**Step 5 — Cross-check the legacy system.**
+For requirements mapped to a Natural program in `01-arqueologia/legado-sifap/natural-programs/`, confirm that the edge cases the team identified in Stage 1 are covered. Reference paths generically — do not assert what a specific program computes.
+
+**Step 6 — Score by risk.**
+Rate probability (how often it runs in production) and impact (financial, regulatory, security) on a 1–3 scale. Risk = probability × impact. Put the highest risk first.
+
+**Step 7 — Deliver the prioritized gap list.**
+Include a one-line recipe per gap — the shape of the missing test, not the test code — and actionable names for the top three.
+
+Report requirement coverage, never a bare line-coverage number. A `REQ-ID` with five "should work" tests and zero "should not" tests is `WEAK`. Every gap carries a risk score. Never invent a requirement or a legacy edge case — flag the unknown and ask the team.
+
+## Invocation Example
+
+```
+/coverage-gaps feature=<NNN>-<feature> scope=all
+```

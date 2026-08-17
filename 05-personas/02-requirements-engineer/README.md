@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Requirements Engineer — Copilot Kit
 
 > **Trail:** [Team Kit](../../README.md) › [Personas](../OVERVIEW.md) › **Requirements Engineer**

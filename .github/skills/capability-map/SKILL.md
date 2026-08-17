@@ -2,9 +2,6 @@
 name: "capability-map"
 description: "Use when mapping business capabilities, identifying overlaps or gaps across the enterprise, or aligning IT investments with business outcomes. Triggers include \"capability map\", \"business capability\", \"domain map\", and \"enterprise architecture\"."
 ---
-
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 # Capability map
 
 ## When to invoke
@@ -43,6 +40,19 @@ Rule of thumb: 8-12 L1 capabilities for a medium-sized enterprise.
 
 5. **Overlay investment**: compare where the money is going with where differentiation occurs.
 
+## Mermaid example
+
+```mermaid
+flowchart TD
+ A[Tax Collection] --> B[Assessment]
+ A --> C[<Capability>]
+ A --> D[Enforcement]
+ B --> B1[Calculate Penalty]
+ B --> B2[Audit Taxpayer]
+ C --> C1[<Sub-capability>]
+ C --> C2[Refund Issuance]
+```
+
 ## Output template
 
 ```markdown
@@ -57,19 +67,9 @@ Rule of thumb: 8-12 L1 capabilities for a medium-sized enterprise.
  - Investment: $$$
 ```
 
-## Mermaid example
-
-```mermaid
-flowchart TD
- A[Tax Collection] --> B[Assessment]
- A --> C[<Capability>]
- A --> D[Enforcement]
- B --> B1[Calculate Penalty]
- B --> B2[Audit Taxpayer]
- C --> C1[<Sub-capability>]
- C --> C2[Refund Issuance]
-```
-
 ## Quality gate
 
-Every L3 capability must have exactly one accountable owner and a Core, Supporting, or Commodity tag.
+- [ ] Every L3 capability has exactly one accountable owner.
+- [ ] Every L3 capability is tagged Core, Supporting, or Commodity.
+- [ ] Each L3 capability is overlaid with the systems that deliver it.
+- [ ] Duplications, gaps, and monoliths are flagged for follow-up.

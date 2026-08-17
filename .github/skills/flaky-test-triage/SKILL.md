@@ -1,10 +1,7 @@
 ---
 name: "flaky-test-triage"
-description: "Use when a test is intermittent, when asked to investigate CI instability, to 'quarantine a flaky test', or to create a flaky-test dashboard."
+description: "Use when a test is intermittent, CI is unstable, or you need to quarantine a flaky test. Triggers include \"flaky test\", \"quarantine\", \"intermittent failure\", \"CI instability\", and \"flaky dashboard\"."
 ---
-
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 # Flaky test triage
 
 ## When to invoke
@@ -38,6 +35,33 @@ description: "Use when a test is intermittent, when asked to investigate CI inst
 - `sleep(1000)` - always wrong.
 - Repeating the assertion in a loop - hides timing bugs.
 - `@Retry(3)` - masks flakes and rewards poor tests.
+
+## Output template
+
+Record each investigated flake and its disposition:
+
+```markdown
+## Flaky triage - <test id>
+
+| Field | Value |
+|---|---|
+| Test | <suite::test name> |
+| Flake rate | <N>% over <M> runs |
+| Root cause | Async-timing / Order dependency / External dependency / Non-determinism / Resource contention |
+| Fix or quarantine | <PR link, or `flaky/` tag + tracking issue> |
+| SLA | <30-day fix-or-delete date> |
+
+### Evidence
+- <command used to reproduce, e.g. pytest --count=50 path::test>
+- <observed failure output or race condition>
+```
+
+## Quality gate
+
+- [ ] The flake was reproduced in isolation (50+ runs) and its category identified.
+- [ ] The fix addresses the root cause - no added `sleep`, retry, or assertion loop.
+- [ ] Anything not fixed within one day is quarantined with a tracking issue and a 30-day SLA.
+- [ ] Quarantined tests still run but do not fail the build.
 
 ## References
 

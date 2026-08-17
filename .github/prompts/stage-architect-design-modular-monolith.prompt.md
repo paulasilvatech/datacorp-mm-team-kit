@@ -3,7 +3,7 @@ name: "design-modular-monolith"
 description: "Records in plan.md only the Modular Monolith design required for the selected feature."
 argument-hint: "feature=NNN-feature-name"
 agent: "architect"
-tools: ["search", "edit"]
+tools: ["read", "search", "edit"]
 ---
 # /design-modular-monolith
 

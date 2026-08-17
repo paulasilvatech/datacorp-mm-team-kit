@@ -3,7 +3,7 @@ name: "delegate-to-copilot-agent"
 description: "Delegates an issue to the GitHub Copilot Agent in the cloud and tracks the resulting PR."
 argument-hint: "issue=04-evolucao/issues/<slug>.md"
 agent: "evolution"
-tools: ["search", "edit"]
+tools: ["read", "search", "edit", "github/*"]
 ---
 # /delegate-to-copilot-agent
 

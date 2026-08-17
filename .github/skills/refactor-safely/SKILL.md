@@ -1,11 +1,8 @@
 ---
 name: "refactor-safely"
-description: "Use when refactoring legacy code, extracting a service, or making behavior-preserving changes. Triggers include 'refactor', 'legacy code', 'strangler fig', 'characterization test', and 'mikado method'."
+description: "Use when refactoring legacy code, extracting a service, or making behavior-preserving changes. Triggers include \"refactor\", \"legacy code\", \"strangler fig\", \"characterization test\", and \"mikado method\"."
 ---
-
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
-# Refactor Safely
+# Refactor safely
 
 ## When to invoke
 
@@ -29,7 +26,7 @@ description: "Use when refactoring legacy code, extracting a service, or making 
 
 ### Strangler Fig (for systems)
 
-1. Put a façade (proxy, router, feature flag) in front of the old system.
+1. Put a facade (proxy, router, feature flag) in front of the old system.
 2. Route a thin slice of traffic to the new implementation.
 3. Grow the new implementation slice by slice while shrinking the old one.
 4. Delete the old implementation when its traffic reaches zero.
@@ -58,6 +55,32 @@ Introduce an interface, migrate callers to it, swap implementations, and retire 
 - Big-bang rewrites with no delivery for months.
 - Deleting old code before the new code handles 100% of traffic.
 - Refactoring without tests and relying on manual happy-path verification.
+
+## Output template
+
+```markdown
+## Refactor plan - <target>
+
+| Field | Value |
+|---|---|
+| Goal | <behavior-preserving change> |
+| Safety net | <characterization test path> |
+| Pattern | Strangler Fig / Mikado / Branch by Abstraction |
+| Steps | <ordered, reversible transformations> |
+
+### Prerequisites (Mikado)
+- <prerequisite discovered by attempting the goal>
+
+### Commits
+- refactor: <one behavior-preserving step per commit>
+```
+
+## Quality gate
+
+- [ ] Characterization tests capture current behavior (including quirks) before any change.
+- [ ] Refactoring commits are separate from behavior-change commits.
+- [ ] Tests stay green after every step; a red step is reverted, not pushed through.
+- [ ] Old code is deleted only after the new path handles all traffic.
 
 ## References
 

@@ -2,9 +2,6 @@
 name: "ears-validate"
 description: "Use when validating requirements against EARS notation patterns. Triggers include \"EARS\", \"requirement review\", \"requirement quality\", \"shall statement\", and \"REQ-ID\"."
 ---
-
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 # EARS validation
 
 ## When to invoke
@@ -64,4 +61,8 @@ _(or `[GREENFIELD] <justification>` when there is no legacy equivalent)_
 
 ## Quality gate
 
-Reject any requirement without a **REQ-ID**, **pattern classification**, **acceptance criteria**, or **`source_legacy`**. The `legacy-traceability` CI job in `.github/workflows/spec-quality.yml` enforces this requirement on every PR.
+- [ ] Every requirement has a unique REQ-ID in `REQ-NNN` format.
+- [ ] Every requirement is classified under exactly one EARS pattern.
+- [ ] Every requirement has at least one testable acceptance criterion.
+- [ ] Every requirement has a `source_legacy:` line pointing to a real legacy file or `[GREENFIELD] <justification>`.
+- [ ] The `legacy-traceability` job in `.github/workflows/spec-quality.yml` passes for the PR.

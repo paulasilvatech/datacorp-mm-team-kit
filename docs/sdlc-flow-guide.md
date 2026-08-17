@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Workshop SDLC Flow and Handoffs
 
 > **Path:** [Team Kit](../README.md) › [Docs](README.md) › **SDLC Flow**

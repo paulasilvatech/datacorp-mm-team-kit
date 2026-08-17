@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Persona — Developer
 
 > **Track:** [Team Kit](../../README.md) › [Personas](../OVERVIEW.md) › [Developer](README.md) › **PERSONA**

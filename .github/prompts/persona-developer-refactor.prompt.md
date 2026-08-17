@@ -1,70 +1,118 @@
 ---
 name: "refactor"
+description: "Improve internal structure behind passing tests without changing observable behavior or breaking REQ-ID traceability."
+argument-hint: "target=<file-or-package> smell=<code-smell>"
 agent: "implementer"
-description: "Refactor code with passing tests without changing observable behavior or breaking REQ-ID traceability."
-tools: ["search", "edit", "execute"]
+tools: ["read", "search", "edit", "execute"]
 ---
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 # /refactor
 
 ## Objective
 
-You are improving the internal structure of SIFAP 2.0 code without changing what it does. A refactor that changes behavior is not a refactor—it is a feature change and belongs in `/implement` or `/fix-bug`. Your output must leave all existing tests passing and all `REQ-ID` links intact.
+Improve the internal structure of existing code without changing what it does. A change that alters behavior is not a refactor—it belongs in `/implement` or `/fix-bug`. The result leaves every existing test passing with the same names and every `REQ-ID` link intact: one smell, one move, one PR.
 
-## Inputs
+> [!WARNING]
+> If any output, assertion, or public signature changes, it is not a refactor. Stop and use `/implement` or `/fix-bug`.
 
-Ask the user for any missing item.
+## When to Invoke
 
-- The target file, package, or component.
-- The motivation: the observed code smell (long method, duplication, primitive obsession, feature envy, etc.).
-- Any constraints from `plan.md` or ADRs that limit your changes (for example, "controllers must remain thin").
-- The area's current test coverage (run a coverage report if unknown).
+When a named code smell is slowing the team down and the target has (or can quickly get) a passing test safety net. Run it on a dedicated `impl/<NNN>-<feature>` branch, separate from any feature or bug work.
 
-## Process
+## Preconditions
 
-1. **Confirm the safety net.** If the target's line coverage is below 80%, write characterization tests first. Refactoring without tests is rewriting.
-2. **Name the smell precisely.** Choose from the catalog (Long Method, Large Class, Primitive Obsession, Data Clumps, Feature Envy, Shotgun Surgery, Divergent Change). Vague justifications such as "make it cleaner" are rejected.
-3. **Choose a refactoring move from Fowler's catalog**—Extract Method, Extract Class, Replace Conditional with Polymorphism, Introduce Parameter Object, etc. One move per commit.
-4. **Run tests before making any change.** Confirm they pass. If they fail or are skipped, fix that first; do not refactor broken builds.
-5. **Apply the move.** Use IDE refactoring tools when possible (Extract Method, Rename, Move). Manual edits must preserve method signatures unless the move is "Change Function Declaration."
-6. **Run tests after every micro-step.** Tests must remain green in every commit. If they fail, revert and take a smaller step.
-7. **Preserve traceability.** Every `@implements REQ-NNN` annotation must move with its method. Do not delete or silently merge them.
-8. **Stop when the smell is gone.** Resist the urge to refactor neighboring code. Each refactor is one chat, one PR, one smell.
+- The target file, package, or component exists and builds
+- Its tests currently pass, or characterization tests can be added first
+- No `/fix-bug` is pending on the same code—defects are fixed before refactoring from a clean baseline
+- Any constraints in `plan.md` or ADRs (for example, "controllers stay thin") are known
 
-## Output
+## Inputs the Team Must Provide
 
-Your final response must include:
+- The target file, package, or component
+- The motivation: the observed code smell (Long Method, Duplication, Primitive Obsession, Feature Envy, etc.)
+- Any constraints from `plan.md` or ADRs that limit the change
+- The area's current test coverage (run a coverage report if it is unknown)
+- Ask the user for any missing item.
 
-- **Named smell** — the exact catalog entry plus 1–2 lines of evidence.
-- **Chosen refactoring** — the exact catalog entry and why it fits.
-- **Diff or before/after** for every touched file.
-- **Test results** — confirmation that the same test set passes (paste the summary).
-- **Behavior-preservation note** — "Public API unchanged. No new throws clauses. No DB migration. No new environment variables."
-- **Commit message** following Conventional Commits with the `refactor:` type:
+## What I Will Do
 
- ```
- refactor(<scope>): <short description>
+- Confirm the safety net—if line coverage is below 80%, write characterization tests first
+- Name the smell precisely from the catalog and cite one or two lines of evidence
+- Choose one Fowler move that fits and apply it as a single behavior-preserving step
+- Run tests before and after every micro-step, keeping the suite green in each commit
+- Move every `@implements REQ-NNN` annotation with its method, unchanged
 
- <describe the preserved behavior and structural improvement>
+## What I Will NOT Do
 
- Refs: REQ-XXX
- ```
+- Refactor without tests—that is a rewrite by another name
+- Change behavior under the guise of refactoring—if any output or assertion changes, the work is void
+- Make "small improvements" to neighboring code—I stay strictly within the named smell
+- Rename or reshape a public API without a migration or deprecation plan
+- Combine a refactor with a feature or bug fix in the same PR
+- Invent a new behavior the spec does not describe—structural change only; requirement questions go to `/update-spec`
 
-## Anti-patterns
+## Output Format
 
-- Refactoring without tests. That is a rewrite by another name.
-- Making "small improvements" to neighboring code. Stay within scope.
-- Changing behavior under the guise of refactoring. If the output changes, it is not a refactor.
-- Renaming public APIs without a migration plan or deprecation notice.
-- Combining a refactor and feature in the same PR. Reviewers cannot reason about it reliably.
-- Refactoring code with a pending `/fix-bug`—fix it first, then refactor from a clean baseline.
+```markdown
+### Named smell
+Long Method — `FeeService.calculate()` spans 74 lines across three nested branches.
 
-## Success Criteria
+### Chosen refactoring
+Extract Method — pull each branch into `applyExemption`, `applyCeiling`, and `applyRounding`.
 
-- [ ] All tests that passed before still pass with the same names.
-- [ ] No public API changes, new exceptions, or new dependencies.
-- [ ] Coverage does not decrease.
-- [ ] One smell, one move, one PR.
-- [ ] All `@implements REQ-NNN` annotations remain present and correct.
-- [ ] The commit message uses the `refactor:` type and explicitly states "no behavior change."
+### Diff
+<before/after for every touched file>
+
+### Test results
+`./mvnw test` → 12 passing (the same names as before).
+
+### Behavior-preservation note
+Public API unchanged. No new throws clauses. No DB migration. No new environment variables.
+
+### Commit message
+refactor(fees): extract the fee-calculation steps
+
+Splits calculate() into three private methods. No behavior change.
+Refs: REQ-031
+```
+
+## Definition of Done
+
+- [ ] Every test that passed before still passes, with the same names
+- [ ] No public API change, new exception, or new dependency
+- [ ] Coverage does not decrease
+- [ ] One smell, one move, one PR
+- [ ] All `@implements REQ-NNN` annotations remain present and correct
+- [ ] The commit message uses the `refactor:` type and states "no behavior change"
+
+## Prompt Body
+
+You are the `@implementer`. The team wants a behavior-preserving structural improvement. Read [`refactor-safely`](../skills/refactor-safely/SKILL.md) before you start; it owns the safety-net, small-steps, and characterization-test procedures.
+
+**Step 1 — Confirm the safety net.**
+Check the target's line coverage. If it is below 80%, write characterization tests that lock in current behavior—including its quirks—before changing anything. Refactoring without tests is rewriting.
+
+**Step 2 — Name the smell precisely.**
+Choose from the catalog: Long Method, Large Class, Primitive Obsession, Data Clumps, Feature Envy, Shotgun Surgery, Divergent Change. Cite one or two lines of evidence. "Make it cleaner" is rejected.
+
+**Step 3 — Choose one Fowler move.**
+Pick the matching move—Extract Method, Extract Class, Replace Conditional with Polymorphism, Introduce Parameter Object—and apply exactly one move per commit.
+
+**Step 4 — Run tests before you touch anything.**
+Confirm they pass. If any fail or are skipped, fix that first; never refactor a broken build.
+
+**Step 5 — Apply the move.**
+Prefer IDE refactoring tools (Extract, Rename, Move). Manual edits must preserve method signatures unless the move is Change Function Declaration with a migration plan.
+
+**Step 6 — Run tests after every micro-step.**
+The suite must be green in every commit. If it turns red and you do not know why, revert and take a smaller step. Move each `@implements REQ-NNN` annotation with its method.
+
+**Step 7 — Stop when the smell is gone.**
+Resist refactoring neighboring code. Each invocation is one chat, one PR, one smell.
+
+If a genuine behavior change or a new requirement surfaces mid-refactor, stop and route it to `/implement`, `/fix-bug`, or `/update-spec`—do not fold it into this change.
+
+## Invocation Example
+
+```
+/refactor target=backend/src/main/java/com/example/app/fees/FeeService.java smell=long-method
+```

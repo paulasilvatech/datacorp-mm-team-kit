@@ -4,39 +4,26 @@ This directory contains the GitHub Copilot file-specific instructions for the wo
 
 > Important: Copilot discovers `*.instructions.md` files in `.github/instructions/` and its subdirectories. This workshop keeps them directly in this directory so the index and scopes are easy to review.
 
-## Architecture and Legacy
+## Instruction Files
 
-| File | When it applies |
-| --- | --- |
-| `modular-monolith.instructions.md` | Java/Spring code, Maven/Gradle, and Modular Monolith architecture. |
-| `natural-adabas.instructions.md` | Reading Natural/Adabas legacy code, DDMs, copycodes, and artifacts in `01-arqueologia/legado-sifap/`. |
-
-## Implementation
-
-| File | When it applies |
-| --- | --- |
-| `backend.instructions.md` | APIs, services, controllers, validation, and backend boundaries. |
-| `frontend.instructions.md` | Generic frontend components and pages. |
-| `frontend-spec.instructions.md` | Next.js 15 App Router, strict TypeScript, Tailwind CSS, and shadcn/ui. |
-| `database.instructions.md` | Repositories, migrations, schema, SQL, indexes, and data changes. |
-
-## Delivery and Operations
-
-| File | When it applies |
-| --- | --- |
-| `cicd.instructions.md` | GitHub Actions, YAML workflows, CI/CD gates, and build/deployment automation. |
-| `infrastructure.instructions.md` | Terraform, Bicep, Azure IaC, and environment configuration. |
-
-## Quality, Security, and Requirements
-
-| File | When it applies |
-| --- | --- |
-| `requirements.instructions.md` | Requirements, EARS, acceptance criteria, traceability, and requirements documentation. |
-| `security.instructions.md` | Authentication, authorization, cryptography, secrets, secure configuration, and sensitive code. |
-| `tests.instructions.md` | Automated tests, test strategy, coverage gaps, regression, and quality gates. |
+| File | Description | `applyTo` scope |
+| --- | --- | --- |
+| `backend.instructions.md` | Use when implementing backend APIs, services, controllers, request validation, error handling, and business service boundaries. | `backend/src/main/java/**,backend/src/test/java/**` |
+| `cicd.instructions.md` | Use when creating or reviewing GitHub Actions, CI/CD workflows, YAML pipeline gates, build checks, and deployment automation. | `.github/workflows/**,.github/actions/**,**/action.yml,**/action.yaml` |
+| `database.instructions.md` | Use when writing database repositories, migrations, schema changes, SQL queries, indexes, and rollback-safe data changes. | `backend/src/main/java/**/infrastructure/**,backend/src/main/resources/db/migration/**` |
+| `frontend-spec.instructions.md` | Use when implementing or reviewing Next.js 15 App Router, TypeScript, Tailwind CSS, shadcn/ui, and server components under frontend/. | `frontend/app/**,frontend/components/**,frontend/src/app/**,frontend/src/components/**,frontend/**/*.ts,frontend/**/*.tsx` |
+| `frontend.instructions.md` | Use when building frontend UI components, pages, client interactions, component state, accessibility, and user-facing flows. | `frontend/app/**,frontend/components/**,frontend/src/app/**,frontend/src/components/**` |
+| `infrastructure.instructions.md` | Use when creating or reviewing infrastructure as code, Terraform, Bicep, Azure resource definitions, and environment configuration. | `infra/**,**/*.tf,**/*.bicep,compose*.yml,compose*.yaml,docker-compose*.yml,docker-compose*.yaml` |
+| `modular-monolith.instructions.md` | Use when designing or reviewing Modular Monolith architecture, package-by-feature boundaries, JPA mapping, and Strangler Fig migration. | `backend/src/main/java/**,backend/pom.xml,backend/build.gradle*` |
+| `natural-adabas.instructions.md` | Use when reading Natural/Adabas legacy code, language patterns, FDT structure, naming conventions, and batch flows. | `01-arqueologia/legado-sifap/**,**/*.NSP,**/*.nsp,**/*.NSN,**/*.nsn,**/*.NSS,**/*.nss,**/*.NSA,**/*.nsa,**/*.NSL,**/*.nsl,**/*.NSC,**/*.nsc,**/*.NSM,**/*.nsm,**/*.NSD,**/*.nsd,**/*.NAT,**/*.nat,**/*.CPY,**/*.cpy,**/*.DDM,**/*.ddm,**/*.jcl,**/*.JCL` |
+| `requirements.instructions.md` | Use when writing or reviewing requirements, EARS specifications, acceptance criteria, traceability, and docs-backed requirements. | `docs/**/*.md,specs/**/*.md,02-spec-moderna/**/*.md` |
+| `security.instructions.md` | Use when implementing or reviewing authentication, authorization, crypto, secure configuration, secrets handling, and security-sensitive code. | `backend/src/main/java/**/auth/**,backend/src/main/java/**/security/**,backend/src/main/java/**/config/**,backend/src/main/resources/**,frontend/**/auth/**,frontend/**/middleware.ts` |
+| `tests.instructions.md` | Use when creating or reviewing automated tests, test strategy, specs, coverage gaps, regression tests, and quality gates. | `**/*.test.*,**/*.spec.*,**/tests/**` |
 
 ## Maintenance Rule
 
-- Every file MUST maintain valid YAML frontmatter with `description` and `applyTo`.
-- Avoid `applyTo: "**"`; prefer specific globs.
+- Every file MUST maintain valid YAML frontmatter with exactly the needed `description` and `applyTo` fields.
+- `applyTo` is a single quoted string; multiple globs are comma-separated with no spaces after commas.
+- Avoid `applyTo: "**"`; prefer specific globs that match the files the instruction truly governs.
+- Keep the house pattern consistent: intro paragraph -> topical sections -> `## Conventions` -> `## Do / Do Not` -> `## Checklist Before Opening a PR`.
 - When creating a new area, add a new flat `*.instructions.md` file in this directory and update this index.

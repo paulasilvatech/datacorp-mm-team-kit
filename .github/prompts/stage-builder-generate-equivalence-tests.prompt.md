@@ -3,7 +3,7 @@ name: "generate-equivalence-tests"
 description: "Generates JUnit tests that validate whether the modern Java implementation produces the same outputs as the original Natural program for the same inputs."
 argument-hint: "class=<java.package>.<Service> method=<method>"
 agent: "builder"
-tools: ["search", "edit", "execute"]
+tools: ["read", "search", "edit", "execute"]
 ---
 # /generate-equivalence-tests
 

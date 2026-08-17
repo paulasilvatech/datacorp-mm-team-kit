@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Daily STATUS — Progress Dashboard
 
 > **Path:** [Team Kit](../README.md) › [Docs](README.md) › **STATUS**

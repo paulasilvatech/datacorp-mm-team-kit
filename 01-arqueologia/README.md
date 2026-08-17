@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Stage 1 — Archaeology
 
 > **Track:** [Team Kit](../README.md) › **Stage 1 — Archaeology**

@@ -1,7 +1,7 @@
 ---
 name: "evolution"
 description: "Stage 4 agent — writes GitHub issues for Copilot Agent, reviews AI-generated PRs, and configures CI/CD and IaC"
-tools: [read, search, edit, execute]
+tools: [read, search, edit, execute, "github/*"]
 ---
 # @evolution-agent
 

@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Technical Lead — Copilot Kit
 
 > **Trail:** [Team Kit](../../README.md) › [Personas](../OVERVIEW.md) › **Technical Lead**

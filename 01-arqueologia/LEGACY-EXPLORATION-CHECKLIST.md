@@ -1,128 +1,126 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
+# Legacy Exploration Checklist
 
-# Checklist de Exploração do Legado
+> **Track:** [Team Kit](../README.md) › [Stage 1](README.md) › **Exploration Checklist**
 
-> **Trilha:** [Kit do Time](../README.md) › [Estágio 1](README.md) › **Checklist de Exploração**
+**Mandatory gate before Stage 2.** This checklist ensures that each pair read its assigned programs and that candidate rules are traceable to legacy code.
 
-**Portão obrigatório antes do Estágio 2.** Este checklist garante que cada par leu os programas atribuídos e que as regras candidatas têm rastreabilidade ao código legado.
-
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Todos os pares — preencher durante o Estágio 1 |
-| **Pré-requisitos** | Acesso ao diretório `legado-sifap/natural-programs/` e `adabas-ddms/` |
-| **Tempo estimado** | Preenchido ao longo de 90 min |
-| **Estágio** | Estágio 1 — Arqueologia |
-| **Resultado esperado** | Matriz completa de leitura por par e critérios de conclusão verificados |
+| **Target audience** | All pairs—complete during Stage 1 |
+| **Prerequisites** | Access to `legado-sifap/natural-programs/` and `adabas-ddms/` |
+| **Estimated time** | Completed throughout the 90 minutes |
+| **Stage** | Stage 1 — Archaeology |
+| **Expected outcome** | Complete reading matrix by pair and verified completion criteria |
 
 > [!IMPORTANT]
-> **Portão obrigatório antes do Estágio 2.** Nenhum requisito EARS é aceito sem referência a um arquivo de programa Natural ou DDM. Requisitos greenfield (sem paralelo no legado) precisam ser marcados `[GREENFIELD]` e justificados por escrito na spec.
+> **Mandatory gate before Stage 2.** No EARS requirement is accepted without a reference to a Natural program or DDM file. Greenfield requirements (with no legacy equivalent) must be marked `[GREENFIELD]` and justified in writing in the spec.
 
 > [!WARNING]
-> Na edição anterior do workshop, vários times pularam a exploração do legado e escreveram specs baseadas apenas no brief de modernização. O resultado foram especificações que não preservavam as regras de negócio reais dos 29 anos do SIFAP. Este portão é obrigatório.
+> In the previous workshop edition, several teams skipped legacy exploration and wrote specs based only on the modernization brief. The result was specifications that did not preserve the real business rules from SIFAP's 29 years as the Payment Inspection and Administration System. This gate is mandatory.
 
 ---
 
-## 1. A regra de rastreabilidade
+## 1. The traceability rule
 
-Todo `REQ-ID` em `specs/<NNN>-<feature>/spec.md` precisa ter uma linha `source_legacy:` que aponte para um dos seguintes:
+Every `REQ-ID` in `specs/<NNN>-<feature>/spec.md` must have a `source_legacy:` line pointing to one of the following:
 
-- um programa `.NSN` específico em `01-arqueologia/legado-sifap/natural-programs/` (preferencialmente com faixa de linhas);
-- um arquivo `.ddm` específico em `01-arqueologia/legado-sifap/adabas-ddms/`;
-- `[GREENFIELD]` com justificativa de uma linha.
+- a specific `.NSN` program in `01-arqueologia/legado-sifap/natural-programs/` (preferably with a line range);
+- a specific `.ddm` file in `01-arqueologia/legado-sifap/adabas-ddms/`;
+- `[GREENFIELD]` with a one-line justification.
 
-O CI rejeita PRs para `develop` se algum `REQ-ID` estiver sem a linha `source_legacy:`. Facilitadores verificam por amostragem na passagem de bastão H2, às 15:00.
+CI rejects PRs to `develop` if any `REQ-ID` lacks a `source_legacy:` line. Facilitators perform spot checks during the H2 handoff at 15:00.
 
 ---
 
-## 2. Os 15 programas Natural — quem lê o quê
+## 2. The 15 Natural programs—who reads what
 
-Cada par fica com 3 programas. Nenhum programa pode ficar sem leitor.
+Each pair receives 3 programs. No program may be left without a reader.
 
-| Par | Programas para ler | Mistérios | Por que |
+| Pair | Programs to read | Mysteries | Why |
 |---|---|---|---|
-| **1 · Visão** (PO + RE) | `CADBENEF.NSP`, `CADDEPEND.NSP`, `CADPROG.NSP` | `SIFAP-M-01` … `M-04` | Lógica de cadastro — entidades centrais que viram sujeitos das EARS. |
-| **2 · Arquitetura** (EA + SA) | `BATCHPGT.NSP`, `BATCHREL.NSP`, `BATCHCON.NSP` | `SIFAP-M-05` … `M-08` | Fluxos batch revelam fronteiras de módulo (bounded contexts). |
-| **3 · Implementação** (TL + Dev) | `CALCBENF.NSN`, `CALCCORR.NSP`, `CALCDSCT.NSP`\* | `SIFAP-M-09` … `M-12` | Cálculos são onde o código moderno vai morar; a equipe precisa reproduzi-los. |
-| **4 · Qualidade** (DBA + QA) | `VALBENEF.NSN`, `VALDOCS.NSP`, `VALELEG.NSN` | `SIFAP-M-13` … `M-16` | Validações viram testes; o DBA também mapeia campos dos DDMs. |
-| **5 · Operações** (DevOps + TW) | `CONSBENF.NSP`, `RELPGT.NSP`, `RELAUDIT.NSP` | `SIFAP-M-17` … `M-20` | Caminhos de leitura alimentam o glossário e o runbook. |
+| **1 · Vision** (PO + RE) | `CADBENEF.NSP`, `CADDEPEND.NSP`, `CADPROG.NSP` | `SIFAP-M-01` … `M-04` | Registration logic—core entities that become EARS subjects. |
+| **2 · Architecture** (EA + SA) | `BATCHPGT.NSP`, `BATCHREL.NSP`, `BATCHCON.NSP` | `SIFAP-M-05` … `M-08` | Batch flows reveal module boundaries (bounded contexts). |
+| **3 · Implementation** (TL + Dev) | `CALCBENF.NSN`, `CALCCORR.NSP`, `CALCDSCT.NSP`\* | `SIFAP-M-09` … `M-12` | Calculations are where the modern code will live; the team must reproduce them. |
+| **4 · Quality** (DBA + QA) | `VALBENEF.NSN`, `VALDOCS.NSP`, `VALELEG.NSN` | `SIFAP-M-13` … `M-16` | Validations become tests; the DBA also maps DDM fields. |
+| **5 · Operations** (DevOps + TW) | `CONSBENF.NSP`, `RELPGT.NSP`, `RELAUDIT.NSP` | `SIFAP-M-17` … `M-20` | Read paths feed the glossary and runbook. |
 
-\* `CALCDSCT.NSP` é **leitura de apoio** para o Par 3: nenhum mistério canônico vive nele. Ainda assim vale a pergunta de por que ele existe e quem o chama.
+\* `CALCDSCT.NSP` is **supporting reading** for Pair 3: no canonical mystery lives in it. It is still worth asking why it exists and who calls it.
 
 > [!IMPORTANT]
-> **São 20 mistérios canônicos, 4 por par** — este é o único alvo numérico do Estágio 1. Os IDs e as áreas estão em [`mysteries-checklist.md`](mysteries-checklist.md); o registro vai em [`mysteries-found.md`](mysteries-found.md). Achados fora da lista contam como bônus e **não** alteram o denominador.
+> **There are 20 canonical mysteries, 4 per pair**—this is the only numeric target in Stage 1. IDs and areas are in [`mysteries-checklist.md`](mysteries-checklist.md); record them in [`mysteries-found.md`](mysteries-found.md). Findings outside the list count as bonuses and **do not** change the denominator.
 
-### Checklist por programa
+### Checklist for each program
 
-Para cada programa do seu par, registre notas de leitura suficientes para confirmar que ele foi examinado:
+For each program assigned to your pair, record enough reading notes to confirm it was examined:
 
-- [ ] **Identificar o programa.** Anotar nome, autor e ano da última modificação.
-- [ ] **Mapear inputs.** Quais DDMs ele lê.
-- [ ] **Mapear outputs.** Quais DDMs ele escreve.
-- [ ] **Registrar chamadas.** Outros programas chamados via `CALLNAT`.
-- [ ] **Catalogar regra candidata.** Quando o programa contiver regra relevante ao recorte, registrar em `business-rules-catalog.md` com `Programa Fonte` e faixa de linhas.
+- [ ] **Identify the program.** Record its name, author, and year of last modification.
+- [ ] **Map inputs.** Which DDMs it reads.
+- [ ] **Map outputs.** Which DDMs it writes.
+- [ ] **Record calls.** Other programs called through `CALLNAT`.
+- [ ] **Catalog candidate rules.** When the program contains a rule relevant to the scope, record it in `business-rules-catalog.md` with `Source Program` and a line range.
 
 > [!WARNING]
-> Uma linha sem `Programa Fonte` não pode fundamentar uma EARS.
+> A row without `Source Program` cannot support an EARS requirement.
 
 ---
 
-## 3. Os 4 DDMs — mapeamento de campos
+## 3. The 4 DDMs—field mapping
 
-O Par 4 (DBA + QA) lidera. Todos os outros pares contribuem com revisão.
+Pair 4 (DBA + QA) leads. All other pairs contribute reviews.
 
-| DDM | Dono | Artefato-alvo em PostgreSQL |
+| DDM | Owner | Target artifact in PostgreSQL |
 |---|---|---|
-| `BENEFICIARIO.ddm` | Par 4 | <!-- definir a partir da evidência --> |
-| `PAGAMENTO.ddm` | Par 4 | <!-- definir a partir da evidência --> |
-| `PROGRAMA-SOCIAL.ddm` | Par 4 | <!-- definir a partir da evidência --> |
-| `AUDITORIA.ddm` | Par 4 | <!-- definir a partir da evidência --> |
+| `BENEFICIARIO.ddm` | Pair 4 | <!-- define from evidence --> |
+| `PAGAMENTO.ddm` | Pair 4 | <!-- define from evidence --> |
+| `PROGRAMA-SOCIAL.ddm` | Pair 4 | <!-- define from evidence --> |
+| `AUDITORIA.ddm` | Pair 4 | <!-- define from evidence --> |
 
-Consulte os DDMs necessários para a feature escolhida. O mapeamento completo para PostgreSQL pertence ao plano e à implementação; não é pré-requisito para iniciar a spec.
+Review the DDMs needed for the selected feature. Complete PostgreSQL mapping belongs in planning and implementation; it is not a prerequisite for starting the spec.
 
 ---
 
-## 4. Registro de perguntas em aberto
+## 4. Recording open questions
 
-Use [`mysteries-checklist.md`](mysteries-checklist.md) para registrar perguntas em aberto sem antecipar respostas. O registro é um catálogo de incertezas, não um gabarito nem uma fonte de regras.
+Use [`mysteries-checklist.md`](mysteries-checklist.md) to record open questions without anticipating answers. The record is a catalog of uncertainties, not an answer key or a source of rules.
 
-Registre em `mysteries-found.md` apenas as perguntas que afetarem o recorte. Cada registro deve ter:
+Record in `mysteries-found.md` only questions that affect the scope. Each record must include:
 
-| Campo | Descrição |
+| Field | Description |
 |---|---|
-| Pergunta aberta | Texto da dúvida sem conclusão |
-| Evidência | `path:linha` |
-| Impacto | Efeito sobre o recorte |
-| Hipótese | Marcada explicitamente como não confirmada |
-| Responsável | Pessoa ou área que pode validar |
-| Status | `aberta` / `aguardando validação humana` / `encerrada após validação humana` |
+| Open question | Question text without a conclusion |
+| Evidence | `path:line` |
+| Impact | Effect on the scope |
+| Hypothesis | Explicitly marked as unconfirmed |
+| Owner | Person or area that can validate |
+| Status | `open` / `awaiting human validation` / `closed after human validation` |
 
-Uma pergunta só pode ser encerrada ou usada como base de regra após validação humana explícita apoiada pela evidência registrada.
+A question may be closed or used as the basis for a rule only after explicit human validation supported by the recorded evidence.
 
 ---
 
-## 5. Verificação antes de abrir o Estágio 2
+## 5. Verification before opening Stage 2
 
-Por volta de 13h50 um facilitador verifica o trabalho do par contra esta matriz. Linha vermelha impede a passagem para o Estágio 2.
+At approximately 13:50, a facilitator checks the pair's work against this matrix. A red line blocks progression to Stage 2.
 
-| Verificação | Critério do portão |
+| Check | Gate criterion |
 |---|---|
-| Leitura atribuída | Cada par confirmou a leitura dos três programas que recebeu. |
-| Catálogo de regras | Cada regra candidata ao recorte tem `Programa Fonte` não vazio. |
-| Recorte | O relatório de descoberta identifica uma feature pequena e o que foi adiado. |
-| Perguntas abertas | Incertezas relevantes foram registradas sem virar requisitos. |
+| Assigned reading | Each pair confirmed reading the three programs it received. |
+| Rules catalog | Every candidate rule in scope has a non-empty `Source Program`. |
+| Scope | The discovery report identifies a small feature and what was postponed. |
+| Open questions | Relevant uncertainties were recorded without becoming requirements. |
 
 ---
 
-## 6. Formato obrigatório no Estágio 2
+## 6. Mandatory Stage 2 format
 
-Escreva EARS somente em `specs/<NNN>-<feature>/spec.md`, usando o Spec-Kit. Cada `REQ-ID` precisa de padrão EARS, critérios Given/When/Then e `source_legacy:`. Não preencha requisito algum até a equipe confirmar a fonte ou a justificativa greenfield.
+Write EARS only in `specs/<NNN>-<feature>/spec.md` using Spec-Kit. Every `REQ-ID` needs an EARS pattern, Given/When/Then criteria, and `source_legacy:`. Do not complete any requirement until the team confirms the source or greenfield justification.
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [GUIDE do Estágio 1](GUIDE.md)<br/><sub>Roteiro cronometrado.</sub> | [Templates](templates/)<br/><sub>Gabaritos preenchíveis para os artefatos do estágio.</sub> |
+| [Stage 1 GUIDE](GUIDE.md)<br/><sub>Timed schedule.</sub> | [Templates](templates/)<br/><sub>Fillable templates for the stage artifacts.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

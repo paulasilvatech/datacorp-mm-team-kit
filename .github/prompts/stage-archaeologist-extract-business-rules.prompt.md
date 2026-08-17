@@ -3,7 +3,7 @@ name: "extract-business-rules"
 description: "Extracts business rules from a Natural program by reading IF/THEN/ELSE blocks and confirming them against documentation."
 argument-hint: "file=01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSN docs=01-arqueologia/legado-sifap/legacy-docs/"
 agent: "archaeologist"
-tools: ["search", "edit"]
+tools: ["read", "search", "edit"]
 ---
 # /extract-business-rules
 

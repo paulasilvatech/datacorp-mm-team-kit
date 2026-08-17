@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Architecture Decision Records (ADR)
 
 > **Path:** [Team Kit](../README.md) › [Concepts](00-README.md) › **Architecture Decision Records**

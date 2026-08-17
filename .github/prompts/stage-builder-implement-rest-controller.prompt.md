@@ -3,7 +3,7 @@ name: "implement-rest-controller"
 description: "Implements a Spring REST controller from an OpenAPI endpoint definition and connects it to the bounded context services."
 argument-hint: "endpoint=\"<METHOD /api/v1/resource>\" context=<context> service=<Service>"
 agent: "builder"
-tools: ["search", "edit", "execute"]
+tools: ["read", "search", "edit", "execute"]
 ---
 # /implement-rest-controller
 

@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Scope Decisions — Stage 2
 
 > **Path:** [Team Kit](../README.md) › [Stage 2](README.md) › **Scope Decisions**

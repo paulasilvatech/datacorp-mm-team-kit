@@ -1,103 +1,133 @@
 ---
 name: "incident-rca"
+description: "Facilitate a blameless root-cause analysis for a SIFAP 2.0 incident: timeline, contributing factors, and prioritized, owned actions."
+argument-hint: "incident=<ticket-id> severity=SEV-N"
 agent: "devops-engineer"
-description: "Conduct a blameless root cause analysis for a SIFAP 2.0 incident, producing a timeline, contributing factors, and prioritized actions."
-tools: ["search", "edit"]
+tools: ["read", "search", "edit"]
 ---
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 # /incident-rca
 
 ## Objective
 
-You facilitate a **blameless root cause analysis** for a SIFAP 2.0 incident. The deliverable is a single document—`docs/incidents/<YYYYMMDD>-<short-slug>.md`—that captures the timeline, what happened, why it happened, which changes prevent recurrence, and how we will know they worked. The output is read by engineering, SRE, the InfoSec officer, and the platform architect.
+Facilitate a **blameless root cause analysis** for a SIFAP 2.0 incident. The deliverable is a single document — `docs/incidents/<YYYYMMDD>-<short-slug>.md` — that captures the timeline, what happened, why it happened, which changes prevent recurrence, and how the team will know they worked. It is read by engineering, SRE, the InfoSec officer, and the platform architect, and it is about systems, never people.
 
-## Inputs
+## When to Invoke
+
+After an incident is mitigated and resolved, once the responders can reconstruct the timeline from evidence. Run it while the data (PagerDuty, Slack, Application Insights, deployment logs) is still fresh.
+
+## Preconditions
+
+- The incident is resolved (customer impact has stopped)
+- Timeline evidence is available: alerts, chat, traces, and deployment timestamps
+- The affected SLOs and any linked `REQ-ID`s are identified
+
+## Inputs the Team Must Provide
+
+- The incident ticket ID and severity (`SEV-1` through `SEV-4`)
+- Detection, mitigation, and resolution times (UTC)
+- Affected systems and the `REQ-ID`s linked to violated SLOs
+- Raw timeline data: PagerDuty, the Slack channel, Application Insights traces, deployment timestamps
+- Responder names (for the timeline only — never for assigning blame)
 
 Ask the user for anything that is missing.
 
-- Incident ticket ID and severity (`SEV-1` through `SEV-4`).
-- Detection time, mitigation time, and resolution time (UTC).
-- Affected systems and the `REQ-ID`s linked to violated SLOs.
-- Raw timeline data: PagerDuty, Slack channel, Application Insights traces, and deployment timestamps.
-- Responder names (for the timeline only—never for assigning blame).
+## What I Will Do
 
-## Process
+- Restate the impact in customer terms, not internal infrastructure symptoms
+- Reconstruct the timeline minute by minute in UTC, citing a source for every entry
+- Separate detection, mitigation, and resolution (`T0`, `Td`, `Tm`, `Tr`)
+- Find multiple contributing factors with the Five Whys and categorize each
+- Capture what *almost* worked, then propose owned, dated, verifiable actions
+- Record at least one honestly accepted risk
 
-1. **Restate the impact in customer terms.** Describe the observable effect,
-   not only the internal infrastructure symptom.
-2. **Reconstruct the timeline minute by minute.** Use UTC. Cite the source for every entry: log, metric, chat message, or human recollection (mark as `[recall]`).
-3. **Distinguish detection, mitigation, and resolution.**
+## What I Will NOT Do
 
-- `T0` — first symptom in production.
-- `Td` — first detection by automation or a person.
-- `Tm` — mitigation (customer impact stops).
-- `Tr` — full resolution (system fully recovered).
+- Fabricate a timeline entry or an SLO threshold — every entry cites a log, metric, chat message, or `[recall]`, and unknown values are asked, not guessed
+- Name an individual beside a mistake — RCAs are about systems ("the process did not catch the typo", not "the engineer made a typo")
+- Implement the fixes — I create action items; pipeline changes go to `/pipeline`, infra changes to `/iac-module`, and code changes to `@builder`
+- Declare a single "root cause" — there are always multiple contributing factors
+- Write an action without an owner, a due date, and verification criteria
 
-4. **Find contributing factors, not "the" cause.** Use the "Five Whys," then categorize each factor as code, configuration, dependency, process, observability, or organizational.
-5. **Identify what *almost* worked.** Defenses that activated but were insufficient—alerts that paged too late, runbooks that were 80% correct, fallbacks that activated but timed out. This is valuable prevention evidence.
-6. **Propose actions.** For every contributing factor, write at least one action with:
+## Output Format
 
-- Owner (one person, not a team).
-- Target date.
-- Verification criteria (how we will know it worked).
-- Type—`code`, `config`, `monitoring`, `process`, `documentation`, or `architecture`.
-
-7. **Remain blameless.** Do not associate personal names with mistakes. "The engineer made a typo" is wrong; "The deployment process did not detect the typo" is correct.
-8. **Add one risk you did not fix.** Be honest. Record what is too costly to address now and will be reassessed next quarter.
-
-## Output
-
-The deliverable is a Markdown file with this structure:
+The deliverable is `docs/incidents/<YYYYMMDD>-<slug>.md`:
 
 ```markdown
-# Incident <YYYYMMDD>-<slug>
+# Incident 20260817-payment-timeout
 
-- **Severity**: <SEV>
-- **Customer impact**: <!-- fill in -->
-- **SLO violation**: <!-- fill in: REQ-ID or not applicable -->
-- **Total duration**: <!-- fill in -->
+- **Severity**: SEV-2
+- **Customer impact**: submissions failed for ~18 min (HTTP 504)
+- **SLO violation**: REQ-045 (99.9% availability) — breached
+- **Total duration**: T0 09:12Z → Tr 09:41Z (29 min)
 
 ## 1. Summary
 Two paragraphs. What happened, why, what we did, and what will change.
 
 ## 2. Timeline (UTC)
 | Time | Source | Event |
-|-------|---------------|-------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+|-------|--------|-------|
+| 09:12Z | App Insights | p95 latency crosses 3 s |
+| 09:15Z | PagerDuty | on-call paged |
+| 09:30Z | Slack [recall] | rollback started |
+| 09:41Z | deploy log | previous image restored; latency normal |
 
 ## 3. Contributing Factors
-<!-- fill in with confirmed factors and their evidence -->
+- code: unbounded connection pool wait (Five Whys → missing timeout)
+- config: health check interval too long to detect the stall
+- process: no load test on the changed query path
 
 ## 4. What Almost Worked
-<!-- fill in with observed defenses -->
+- The alert fired, but 3 minutes too late to prevent impact.
 
 ## 5. Actions
 | # | Action | Owner | Type | Due Date | Verification |
-|---|--------|-------|------|-----|--------------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+|---|--------|-------|------|----------|--------------|
+| 1 | Set a 2 s pool-acquire timeout | <name> | code | <date> | load test shows fast failure |
+| 2 | Shorten health-check interval | <name> | config | <date> | detection < 60 s in game day |
 
 ## 6. Accepted Risks (for now)
-<!-- fill in with the accepted risk, owner, and reassessment date -->
+- Single-region database; multi-region deferred. Owner: <name>. Reassess: <quarter>.
 ```
 
-## Anti-patterns
+## Definition of Done
 
-- Naming individuals alongside errors. RCAs are about systems, not people.
-- "The cause was X." There are always multiple contributing factors.
-- Actions without owners or dates. They will not happen.
-- Actions without verification criteria. We cannot tell whether they worked.
-- Hiding politically uncomfortable contributing factors. Trust collapses faster than systems.
-- Treating an RCA as a punishment artifact. It is a learning artifact.
-- Skipping the timeline because it is laborious. The timeline is the evidence base.
+- [ ] The customer-impact statement is in plain language
+- [ ] The timeline includes at least detection, mitigation, and resolution timestamps with sources
+- [ ] At least three contributing factors across at least two categories
+- [ ] Every action has an owner, a type, a due date, and verification criteria
+- [ ] At least one "what almost worked" item is recorded
+- [ ] At least one accepted risk is named honestly
+- [ ] No individual is blamed by name; violated SLO / `REQ-ID` references are included
 
-## Success Criteria
+## Prompt Body
 
-- [ ] Customer-impact statement in plain language.
-- [ ] The timeline includes at least detection, mitigation, and resolution timestamps with sources.
-- [ ] At least three contributing factors across at least two categories.
-- [ ] Every action has an owner, type, due date, and verification criteria.
-- [ ] At least one "what almost worked" item.
-- [ ] At least one accepted risk is named honestly.
-- [ ] No individual is blamed by name.
-- [ ] SLO/REQ-ID references are included for violated requirements.
+You are the `@devops-engineer` facilitating a learning review, not a trial.
+
+**Step 1 — Restate the impact in customer terms.**
+Describe the observable effect, not only the internal infrastructure symptom.
+
+**Step 2 — Reconstruct the timeline.**
+Minute by minute, in UTC. Cite the source for every entry — log, metric, chat message, or human recollection marked `[recall]`.
+
+**Step 3 — Distinguish detection, mitigation, and resolution.**
+`T0` first symptom in production, `Td` first detection, `Tm` mitigation (impact stops), `Tr` full resolution.
+
+**Step 4 — Find contributing factors, not "the" cause.**
+Use the Five Whys, then categorize each factor as code, configuration, dependency, process, observability, or organizational.
+
+**Step 5 — Identify what almost worked.**
+Defenses that activated but were insufficient — alerts that paged too late, runbooks that were 80% correct, fallbacks that timed out. This is valuable prevention evidence.
+
+**Step 6 — Propose actions.**
+For every contributing factor, write at least one action with an owner (one person), a target date, verification criteria, and a type (`code`, `config`, `monitoring`, `process`, `documentation`, or `architecture`).
+
+**Step 7 — Stay blameless and honest.**
+Never associate a personal name with a mistake. Add at least one risk you did not fix, with an owner and a reassessment date.
+
+The RCA is a learning artifact, not a punishment artifact. There is never a single cause. Every action has an owner, a date, and verification criteria. The timeline is the evidence base — never skip it and never fabricate an entry.
+
+## Invocation Example
+
+```
+/incident-rca incident=<ticket-id> severity=SEV-2
+```

@@ -1,10 +1,7 @@
 ---
 name: "query-optimization"
-description: "Use when investigating slow queries, designing indexes, or reviewing execution plans. Triggers include 'slow query', 'explain plan', 'index', 'query tuning', 'N+1', and 'table scan'."
+description: "Use when investigating slow queries, designing indexes, or reviewing execution plans. Triggers include \"slow query\", \"explain plan\", \"index\", \"query tuning\", \"N+1\", and \"table scan\"."
 ---
-
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 # Query optimization
 
 ## When to invoke
@@ -42,6 +39,29 @@ description: "Use when investigating slow queries, designing indexes, or reviewi
 - `WHERE func(col) = x` - prevents index use; store a computed column or use an expression index.
 - N+1 from the ORM - fix it in the ORM (eager load), not with an index.
 - "Add an index to every column" - wastes storage and slows writes.
+
+## Output template
+
+```markdown
+## Query optimization - <query id>
+
+| Field | Before | After |
+|---|---|---|
+| p95 latency | <ms> | <ms> |
+| Rows examined | <n> | <n> |
+| Plan | Seq Scan | Index Scan on <index> |
+
+**Change**: index / rewrite / ANALYZE / parameter
+**DDL**: CREATE INDEX CONCURRENTLY <name> ON <table> (<cols>)
+**Validation**: EXPLAIN (ANALYZE, BUFFERS) rerun confirms the new plan
+```
+
+## Quality gate
+
+- [ ] A baseline (p50/p95, rows examined, plan) was captured before any change.
+- [ ] The proposed change is the smallest that fixes the bottleneck.
+- [ ] `EXPLAIN (ANALYZE, BUFFERS)` confirms the plan changed and latency dropped.
+- [ ] Each new index is justified against its write cost.
 
 ## References
 

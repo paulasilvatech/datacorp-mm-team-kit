@@ -1,168 +1,168 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Guia de Setup — Do Zero ao Código
+# Setup guide: from zero to code
 
-> **Trilha:** [Kit do Time](README.md) › **Setup**
+> **Track:** [Team kit](README.md) › **Setup**
 
-**Leva você de "ainda não temos nada" até "repositório criado, Copilot funcionando, todas as personas prontas" em 45 minutos.**
+**This guide takes you from "we do not have anything yet" to "repository created, Copilot working, every persona ready" in 45 minutes.**
 
-![Setup](https://img.shields.io/badge/Setup-00-171717?style=flat-square) ![Duração 45 min](https://img.shields.io/badge/Dura%C3%A7%C3%A3o-45%20min-737373?style=flat-square) ![Quando Antes do Dia 2](https://img.shields.io/badge/QUANDO-Antes%20do%20Dia%202-A3A3A3?style=flat-square)
+![Setup](https://img.shields.io/badge/Setup-00-171717?style=flat-square) ![Duration: 45 min](https://img.shields.io/badge/Duration-45%20min-737373?style=flat-square) ![When: before Day 2](https://img.shields.io/badge/When-Before%20Day%202-A3A3A3?style=flat-square)
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Líder do time + cada membro no próprio laptop |
-| **Pré-requisitos** | Conta GitHub com Copilot ativo |
-| **Tempo estimado** | 45 minutos |
-| **Resultado esperado** | Repositório protegido, Copilot ativo, personas validadas, smoke test verde |
+| **Target audience** | Team lead + each member on their own laptop |
+| **Prerequisites** | GitHub account with Copilot enabled |
+| **Estimated time** | 45 minutes |
+| **Expected result** | Protected repository, Copilot active, personas validated, smoke test green |
 
 > [!WARNING]
-> **Usuários de Windows:** os blocos de terminal com heredoc ou `for` assumem **Git Bash** ou **WSL**. Não use PowerShell ou CMD nesses blocos.
+> **Windows users:** terminal blocks with heredoc or `for` assume **Git Bash** or **WSL**. Do not use PowerShell or CMD for those blocks.
 
-**Vocês são 5 pessoas. Cada pessoa usa 2 personas. Vocês têm um dia de trabalho.** Todas as pessoas do time acompanham no próprio laptop. Uma pessoa compartilha a tela com os passos e as outras 4 repetem. Ao final, cada laptop estará totalmente configurado.
+**You are five people. Each person uses two personas. You have one workday.** Everyone follows along on their own laptop. One person shares the screen for the steps, and the other four repeat them. At the end, every laptop is fully configured.
 
-## Sumário
+## Summary
 
-- [Antes de Começar — Modelo Mental](#antes-de-começar--modelo-mental)
-- [Passo 1 — Verifique os pré-requisitos do laptop](#passo-1--verifique-os-pré-requisitos-do-laptop)
-- [Passo 2 — Crie o repositório do time pelo template (somente líder)](#passo-2--crie-o-repositório-do-time-pelo-template-somente-líder)
-- [Passo 3 — Clone o repositório e crie `develop` (somente líder)](#passo-3--clone-o-repositório-e-crie-develop-somente-líder)
-- [Passo 4 — Proteja a branch `main` (somente líder)](#passo-4--proteja-a-branch-main-somente-líder)
-- [Passo 5 — Adicione os outros 4 membros (somente líder)](#passo-5--adicione-os-outros-4-membros-somente-líder)
-- [Passo 6 — Cada membro clona o repositório](#passo-6--cada-membro-clona-o-repositório)
-- [Passo 7 — Ative o GitHub Copilot no VS Code (todos)](#passo-7--ative-o-github-copilot-no-vs-code-todos)
-- [Passo 8 — Valide os agentes e prompts das suas personas (todos)](#passo-8--valide-os-agentes-e-prompts-das-suas-personas-todos)
-- [Passo 9 — Instale o Spec-Kit (todos)](#passo-9--instale-o-spec-kit-todos)
-- [Passo 10 — Use o fluxo Spec-Kit (todos)](#passo-10--use-o-fluxo-spec-kit-todos)
-- [Passo 11 — Entenda a estratégia de branches](#passo-11--entenda-a-estratégia-de-branches)
-- [Passo 12 — Fluxo diário por persona](#passo-12--fluxo-diário-por-persona)
-- [Passo 13 — Smoke test (time inteiro, às 10:30)](#passo-13--smoke-test-time-inteiro-às-1030)
-- [Solução de problemas](#solução-de-problemas)
+- [Before you start: mental model](#before-you-start-mental-model)
+- [Step 1: Check your laptop prerequisites](#step-1-check-your-laptop-prerequisites)
+- [Step 2: Create the team repository from the template (lead only)](#step-2-create-the-team-repository-from-the-template-lead-only)
+- [Step 3: Clone the repository and create `develop` (lead only)](#step-3-clone-the-repository-and-create-develop-lead-only)
+- [Step 4: Protect the `main` branch (lead only)](#step-4-protect-the-main-branch-lead-only)
+- [Step 5: Add the other four members (lead only)](#step-5-add-the-other-four-members-lead-only)
+- [Step 6: Each member clones the repository](#step-6-each-member-clones-the-repository)
+- [Step 7: Turn on GitHub Copilot in VS Code (everyone)](#step-7-turn-on-github-copilot-in-vs-code-everyone)
+- [Step 8: Validate the agents and prompts for your personas (everyone)](#step-8-validate-the-agents-and-prompts-for-your-personas-everyone)
+- [Step 9: Install Spec-Kit (everyone)](#step-9-install-spec-kit-everyone)
+- [Step 10: Use the Spec-Kit flow (everyone)](#step-10-use-the-spec-kit-flow-everyone)
+- [Step 11: Understand the branch strategy](#step-11-understand-the-branch-strategy)
+- [Step 12: Daily flow by persona](#step-12-daily-flow-by-persona)
+- [Step 13: Smoke test (whole team, at 10:30)](#step-13-smoke-test-whole-team-at-1030)
+- [Troubleshooting](#troubleshooting)
 
 ---
 
-## Antes de Começar — Modelo Mental
+## Before you start: mental model
 
-Você vai lidar com **2 repositórios GitHub**:
+You will work with **two GitHub repositories**:
 
 ```text
 GitHub
-├── <TEMPLATE_ORG>/workshop-preto-00/       (repositório principal do workshop, usado como template)
-└── <WORKSHOP_ORG>/workshop-team-XX/        (repositório de trabalho do SEU time — onde você commita)
+├── <TEMPLATE_ORG>/workshop-preto-00/       (main workshop repository, used once as a template)
+└── <WORKSHOP_ORG>/workshop-team-XX/        (YOUR team's working repository - where you commit)
 ```
 
-No seu laptop, você clona somente o repositório do seu time:
+On your laptop, you clone only your team's repository:
 
 ```bash
 ~/Code/workshop-team-XX/
 ```
 
-| Repositório | O que você faz com ele | Onde ele fica |
+| Repository | What you do with it | Where it lives |
 |---|---|---|
-| `workshop-preto-00` | Você usa como template uma vez no início | `github.com/<TEMPLATE_ORG>/workshop-preto-00` |
-| `workshop-team-XX` | Todo o seu trabalho vai aqui | `github.com/<WORKSHOP_ORG>/workshop-team-XX` (privado, você cria) |
+| `workshop-preto-00` | Use it once as the template at the beginning | `github.com/<TEMPLATE_ORG>/workshop-preto-00` |
+| `workshop-team-XX` | All of your work goes here | `github.com/<WORKSHOP_ORG>/workshop-team-XX` (private, you create it) |
 
 > [!NOTE]
-> A organização exata será informada pela facilitação no dia do workshop. Ela fará parte do Enterprise [software-gbb-workshops](https://github.com/enterprises/software-gbb-workshops).
+> The exact organization will be provided by the facilitators on the workshop day. It will belong to the Enterprise [software-gbb-workshops](https://github.com/enterprises/software-gbb-workshops).
 
 > [!IMPORTANT]
-> Nunca faça push para o repositório principal do workshop. Os commits do seu time vão somente para `workshop-team-XX`. O legado SIFAP já vem dentro do kit em `01-arqueologia/legado-sifap/` e é material de leitura, não de edição.
+> Never push to the main workshop repository. Your team's commits go only to `workshop-team-XX`. The legacy **Payment Inspection and Administration System (SIFAP)** already ships in the kit under `01-arqueologia/legado-sifap/` and is reading material, not editing material.
 
 ---
 
-## Passo 1 — Verifique os pré-requisitos do laptop
+## Step 1: Check your laptop prerequisites
 
-**Cada membro do time roda este checklist no próprio laptop.**
+**Each team member runs this checklist on their own laptop.**
 
-- [ ] **Verificar Git.**
+- [ ] **Check the tools.**
 
-| Ferramenta | Versão mínima | Como verificar | Se estiver faltando |
+| Tool | Minimum version | How to check | If missing |
 |---|---|---|---|
 | **Git** | 2.40+ | `git --version` | <https://git-scm.com/downloads> |
-| **Conta GitHub** | — | Acesse github.com e faça login | <https://github.com/signup> |
+| **GitHub account** | - | Sign in at github.com | <https://github.com/signup> |
 | **GitHub CLI** | 2.40+ | `gh --version` | <https://cli.github.com> |
-| **VS Code** | 1.93+ | Help → About | <https://code.visualstudio.com/download> |
-| **Docker Desktop** | 4.30+ | `docker --version` e abra o app | <https://www.docker.com/products/docker-desktop> |
+| **VS Code** | 1.93+ | Help -> About | <https://code.visualstudio.com/download> |
+| **Docker Desktop** | 4.30+ | `docker --version` and open the app | <https://www.docker.com/products/docker-desktop> |
 | **Java 21 JDK** | 21 | `java -version` | <https://learn.microsoft.com/java/openjdk/download> |
 | **Node.js** | 20 LTS | `node --version` | <https://nodejs.org/en/download> |
 
 > [!CAUTION]
-> Faltando a maioria desses itens? Instale as ferramentas antes do workshop começar. Este kit não traz ambiente pré-montado nem bootstrap automático.
+> Missing most of these items? Install the tools before the workshop starts. This kit does not ship with a prebuilt environment or automatic bootstrap.
 
-### Verificação de licença (uma pessoa verifica pelo time)
+### License check (one person checks for the team)
 
-- [ ] **Abrir <https://github.com/settings/copilot>** — você deve ver "Active subscription" (Individual) ou "Business plan". Se ver "Get GitHub Copilot", chame a facilitação.
-
----
-
-## Passo 2 — Crie o repositório do time pelo template (somente líder)
-
-**Escolha uma pessoa para ser líder do time** (normalmente quem cobre a persona Technical Lead no Par 3). Somente a pessoa líder faz os Passos 2 a 5. As outras 4 aguardam e seguem a partir do Passo 6.
-
-### Pelo template no GitHub
-
-- [ ] **Criar o repositório a partir do template.**
-
-1. Abra o repositório principal do workshop no GitHub. A facilitação informará a URL no formato `https://github.com/<TEMPLATE_ORG>/workshop-preto-00`.
-2. Clique em **Use this template** → **Create a new repository**.
-3. Preencha:
-   - **Owner**: a organização do workshop indicada pela facilitação, dentro do Enterprise `software-gbb-workshops`. Não escolha seu usuário pessoal.
-   - **Nome do repositório**: `workshop-team-XX` (substitua XX pelo número do seu time, por exemplo `workshop-team-01`)
-   - **Descrição**: `Workshop DATACORP 2026 — Team XX`
-   - **Visibilidade**: Privado
-4. Clique em **Create repository**.
-
-Você deve ver uma cópia completa do kit em `https://github.com/<WORKSHOP_ORG>/workshop-team-XX`, com documentação, legado, templates, workflows e arquivos `.github/` já presentes.
+- [ ] **Open <https://github.com/settings/copilot>** - you should see "Active subscription" (Individual) or "Business plan". If you see "Get GitHub Copilot", call a facilitator.
 
 ---
 
-## Passo 3 — Clone o repositório e crie `develop` (somente líder)
+## Step 2: Create the team repository from the template (lead only)
 
-- [ ] **Clonar e criar a branch `develop`.**
+**Choose one person to act as the team lead** (usually the person covering the Technical Lead persona in Pair 3). Only the lead performs Steps 2 through 5. The other four wait and continue from Step 6.
+
+### Using the template on GitHub
+
+- [ ] **Create the repository from the template.**
+
+1. Open the main workshop repository on GitHub. The facilitators will provide the URL in the format `https://github.com/<TEMPLATE_ORG>/workshop-preto-00`.
+2. Click **Use this template** -> **Create a new repository**.
+3. Fill in:
+   - **Owner**: the workshop organization provided by the facilitators, inside the `software-gbb-workshops` Enterprise. Do not choose your personal user.
+   - **Repository name**: `workshop-team-XX` (replace XX with your team number, for example `workshop-team-01`)
+   - **Description**: `DATACORP 2026 Workshop - Team XX`
+   - **Visibility**: Private
+4. Click **Create repository**.
+
+You should now see a full copy of the kit at `https://github.com/<WORKSHOP_ORG>/workshop-team-XX`, including documentation, legacy code, templates, workflows, and `.github/` files.
+
+---
+
+## Step 3: Clone the repository and create `develop` (lead only)
+
+- [ ] **Clone the repository and create the `develop` branch.**
 
 ```bash
-# 1. Escolha uma pasta para todo o seu código
+# 1. Choose a folder for all your code
 mkdir -p ~/Code && cd ~/Code
 
-# 2. Clone o repositório do seu time
+# 2. Clone your team's repository
 git clone https://github.com/<WORKSHOP_ORG>/workshop-team-01.git
 cd workshop-team-01
 
-# 3. Confira que o template veio completo
+# 3. Confirm that the template came across intact
 ls 01-arqueologia/legado-sifap .github/agents .github/prompts .github/instructions .github/skills
 
-# 4. Crie a branch de integração do time
+# 4. Create the team's integration branch
 git checkout -b develop
 git push -u origin develop
 ```
 
 > [!WARNING]
-> A partir daqui, nunca faça push diretamente para `main`. O Passo 4 protege essa branch.
+> From this point on, never push directly to `main`. Step 4 protects that branch.
 
-`develop` é onde as branches de funcionalidade de todo mundo serão integradas. Promoções para `main` acontecem via PR depois de cada estágio.
+`develop` is where everyone's feature branches are integrated. Promotions to `main` happen through PRs after each stage.
 
 ---
 
-## Passo 4 — Proteja a branch `main` (somente líder)
+## Step 4: Protect the `main` branch (lead only)
 
-Isso impede que qualquer pessoa (exceto o admin do repositório) faça push direto para `main`. Toda mudança deve passar por um Pull Request.
+This prevents anyone, except a repository admin, from pushing directly to `main`. Every change must go through a Pull Request.
 
 > [!NOTE]
-> Como o repositório será criado em uma organização dentro do Enterprise `software-gbb-workshops`, a proteção de branch deve estar disponível. Se a opção não aparecer, chame a facilitação para conferir permissões.
+> Because the repository is created in an organization inside the `software-gbb-workshops` Enterprise, branch protection should be available. If you do not see the option, ask a facilitator to verify permissions.
 
-### Usando o site
+### Using the website
 
-- [ ] **Criar a regra de proteção.**
+- [ ] **Create the protection rule.**
 
-1. Vá para **Settings** → **Branches** (barra lateral esquerda).
-2. Em **Branch protection rules**, clique em **Add rule**.
-3. Padrão de nome da branch: `main`
-4. Marque:
+1. Go to **Settings** -> **Branches** (left sidebar).
+2. Under **Branch protection rules**, click **Add rule**.
+3. Branch name pattern: `main`
+4. Check:
    - **Require a pull request before merging**
-   - **Require approvals** — defina como `1`
+   - **Require approvals** - set it to `1`
    - **Require conversation resolution before merging**
-5. Clique em **Create**.
+5. Click **Create**.
 
-### Usando a CLI
+### Using the CLI
 
 ```bash
 gh api -X PUT "repos/<WORKSHOP_ORG>/workshop-team-01/branches/main/protection" \
@@ -181,28 +181,28 @@ gh api -X PUT "repos/<WORKSHOP_ORG>/workshop-team-01/branches/main/protection" \
 JSON
 ```
 
-> **Por que isso importa.** Sem essa regra, alguém do time eventualmente vai enviar um erro para `main` no minuto 90 e a demo vai falhar no minuto 480. Custo: 30 segundos. Economia: horas.
+> **Why this matters.** Without this rule, someone on the team eventually pushes a mistake to `main` at minute 90, and the demo fails at minute 480. Cost: 30 seconds. Savings: hours.
 
 ---
 
-## Passo 5 — Adicione os outros 4 membros (somente líder)
+## Step 5: Add the other four members (lead only)
 
-### Opção A — usando o site
+### Option A: use the website
 
-- [ ] **Convidar os 4 colegas.**
+- [ ] **Invite the other four teammates.**
 
-1. Vá para o repositório no GitHub: `https://github.com/<WORKSHOP_ORG>/workshop-team-XX`
-2. Clique em **Settings** → **Collaborators and teams** → **Manage access**.
-3. Clique em **Add people**.
-4. Digite o usuário GitHub e escolha na lista.
-5. Escolha o papel **Write** (não Admin, não Read).
-6. Clique em **Add ... to this repository**.
-7. Repita para as outras 3 pessoas.
+1. Go to the repository on GitHub: `https://github.com/<WORKSHOP_ORG>/workshop-team-XX`
+2. Click **Settings** -> **Collaborators and teams** -> **Manage access**.
+3. Click **Add people**.
+4. Type the GitHub username and select it from the list.
+5. Choose the **Write** role (not Admin, not Read).
+6. Click **Add ... to this repository**.
+7. Repeat for the other three people.
 
 > [!TIP]
-> Se a facilitação criou um time GitHub para cada equipe, adicione o time inteiro com permissão Write em vez de convidar pessoa por pessoa. Cada pessoa convidada recebe um email — ela precisa clicar em **Accept invitation** antes de conseguir fazer push.
+> If the facilitators created a GitHub team for each workshop team, add the whole team with Write permission instead of inviting people one by one. Each invited person gets an email and must click **Accept invitation** before they can push.
 
-### Opção B — usando a CLI
+### Option B: use the CLI
 
 ```bash
 for user in alice bob carla dani; do
@@ -213,38 +213,38 @@ done
 
 ---
 
-## Passo 6 — Cada membro clona o repositório
+## Step 6: Each member clones the repository
 
-**Agora todo mundo entra.** Os outros 4 membros do time fazem isto.
+**Now everyone joins.** The other four team members do this.
 
-### 6.1 Aceite o convite
+### 6.1 Accept the invitation
 
-- [ ] **Aceitar o convite recebido por email ou notificação no GitHub.**
+- [ ] **Accept the invitation from email or from the GitHub notification.**
 
-### 6.2 Clone e mude para `develop`
+### 6.2 Clone and switch to `develop`
 
-- [ ] **Clonar e confirmar acesso.**
+- [ ] **Clone the repository and confirm access.**
 
 ```bash
 mkdir -p ~/Code && cd ~/Code
 
-# Substitua 01 pelo número real do seu time e <WORKSHOP_ORG> pela organização informada no dia
+# Replace 01 with your actual team number and <WORKSHOP_ORG> with the organization provided that day
 git clone https://github.com/<WORKSHOP_ORG>/workshop-team-01.git
 cd workshop-team-01
 
-# Mude para a branch develop (onde o trabalho diário acontece)
+# Switch to the develop branch, where day-to-day work happens
 git checkout develop
 ```
 
-### 6.3 Abra no VS Code
+### 6.3 Open it in VS Code
 
 ```bash
 code .
 ```
 
-### 6.4 Confirme as ferramentas locais
+### 6.4 Confirm local tools
 
-Este kit não inclui ambiente pré-montado, protótipo pré-pronto nem containerização herdada. Cada pessoa valida as ferramentas no próprio laptop; o protótipo será criado do zero no Estágio 3.
+This kit does not include a prebuilt environment, ready-made prototype, or inherited containerization. Each person validates their own tools locally. The prototype is created from scratch in Stage 3.
 
 ```bash
 git --version
@@ -254,7 +254,7 @@ docker --version
 specify version
 ```
 
-### 6.5 Confirme que o template veio completo
+### 6.5 Confirm that the template came across intact
 
 ```bash
 ls 01-arqueologia/legado-sifap .github/agents .github/prompts .github/instructions .github/skills
@@ -262,75 +262,75 @@ ls 01-arqueologia/legado-sifap .github/agents .github/prompts .github/instructio
 
 ---
 
-## Passo 7 — Ative o GitHub Copilot no VS Code (todos)
+## Step 7: Turn on GitHub Copilot in VS Code (everyone)
 
-### 7.1 Faça login
+### 7.1 Sign in
 
-- [ ] **Autenticar no Copilot.**
+- [ ] **Authenticate with Copilot.**
 
-1. No VS Code, clique no ícone do Copilot na barra de status inferior.
-2. Escolha **Sign in with GitHub**.
-3. Uma janela do navegador abre. Clique em **Authorize Visual Studio Code**.
-4. Volte para o VS Code. Aguarde "Copilot ready" perto do canto inferior direito.
+1. In VS Code, click the Copilot icon in the lower status bar.
+2. Choose **Sign in with GitHub**.
+3. A browser window opens. Click **Authorize Visual Studio Code**.
+4. Go back to VS Code. Wait for "Copilot ready" near the lower-right corner.
 
-### 7.2 Abra o painel do Copilot Chat
+### 7.2 Open the Copilot Chat panel
 
-| SO | Atalho |
+| OS | Shortcut |
 |---|---|
 | Mac | Cmd+Ctrl+I |
 | Windows / Linux | Ctrl+Alt+I |
 
-### 7.3 Verifique se os 3 modos estão disponíveis
+### 7.3 Verify that the three modes are available
 
-| Modo | Quando usar |
+| Mode | When to use it |
 |---|---|
-| **Ask** | Fazer perguntas, explorar código, discutir opções |
-| **Plan** | Planejar mudanças multi-arquivo antes da execução |
-| **Agent** | Delegar uma funcionalidade inteira via Issue e depois revisar o PR |
+| **Ask** | Ask questions, explore code, discuss options |
+| **Plan** | Plan multi-file changes before execution |
+| **Agent** | Delegate a whole feature through an Issue, then review the PR |
 
-- [ ] **Confirmar que Ask, Plan e Agent aparecem no dropdown.**
+- [ ] **Confirm that Ask, Plan, and Agent appear in the dropdown.**
 
-Se **Plan** ou **Agent** não aparecerem, atualize o VS Code para uma versão recente ou use VS Code Insiders.
+If **Plan** or **Agent** does not appear, update VS Code to a recent version or use VS Code Insiders.
 
-### 7.4 Teste de fumaça do Copilot
+### 7.4 Copilot smoke test
 
-- [ ] **Enviar pergunta de teste.**
+- [ ] **Send a test question.**
 
-No painel de Chat, digite:
+In Copilot Chat, type:
 
 ```text
-Qual stack estamos usando neste projeto?
+What stack are we using in this project?
 ```
 
-Ele deve responder com **Java 21 + Spring Boot 3.3 + Next.js 15 + PostgreSQL 16**. Se não responder, o arquivo `.github/copilot-instructions.md` do projeto não está sendo carregado — veja [Solução de problemas](#solução-de-problemas).
+It should answer with **Java 21 + Spring Boot 3.3 + Next.js 15 + PostgreSQL 16**. If it does not, the project file `.github/copilot-instructions.md` is not being loaded. See [Troubleshooting](#troubleshooting).
 
 ---
 
-## Passo 8 — Valide os agentes e prompts das suas personas (todos)
+## Step 8: Validate the agents and prompts for your personas (everyone)
 
-### 8.1 Encontre seu papel
+### 8.1 Find your role
 
-- [ ] **Ler o `PERSONA.md` das duas personas.**
+- [ ] **Read the `PERSONA.md` for both personas.**
 
-Abra `05-personas/` no VS Code. Dentro da pasta do seu papel, leia `PERSONA.md` de ponta a ponta (~10 minutos). Ele diz:
+Open `05-personas/` in VS Code. Inside each role folder, read `PERSONA.md` from start to finish (~10 minutes). It tells you:
 
-- O que você faz nos 4 estágios
-- Qual modo do Copilot usar
-- Prompts específicos que você pode copiar/colar
-- De quem você depende e quem depende de você
+- What you do in the four stages
+- Which Copilot mode to use
+- Specific prompts you can copy and paste
+- Who you depend on and who depends on you
 
-### 8.2 Valide seu kit
+### 8.2 Validate your kit
 
 ```bash
-# Deve listar agents, prompts, instructions e skills consolidados
+# Should list consolidated agents, prompts, instructions, and skills
 ls .github/agents .github/prompts .github/instructions .github/skills
 ```
 
-Não copie `.github/*` manualmente: isso já foi feito no kit consolidado do repositório.
+Do not copy `.github/*` manually. The consolidated repository already includes everything.
 
-### 8.3 Mapeamento persona-para-kit
+### 8.3 Persona-to-kit mapping
 
-| Persona | Kit consolidado |
+| Persona | Consolidated kit |
 |---|---|
 | Product Owner | `05-personas/01-product-owner/PERSONA.md` |
 | Requirements Engineer | `05-personas/02-requirements-engineer/PERSONA.md` |
@@ -343,11 +343,11 @@ Não copie `.github/*` manualmente: isso já foi feito no kit consolidado do rep
 | DevOps Engineer | `05-personas/09-devops-engineer/PERSONA.md` |
 | Tech Writer | `05-personas/10-tech-writer/PERSONA.md` |
 
-### 8.4 Atualize o `copilot-instructions.md` do time
+### 8.4 Update the team `copilot-instructions.md`
 
-- [ ] **Líder atualiza `.github/copilot-instructions.md` com os nomes do time.**
+- [ ] **The lead updates `.github/copilot-instructions.md` with the team names.**
 
-Encontre a seção:
+Find the section:
 
 ```markdown
 ## Active Personas on This Team
@@ -357,7 +357,7 @@ Encontre a seção:
       ...
 ```
 
-Marque as caixas e escreva o nome ao lado de cada papel:
+Check the boxes and write the name next to each role:
 
 ```markdown
 - [x] 01 — Product Owner — Maria Santos
@@ -366,116 +366,116 @@ Marque as caixas e escreva o nome ao lado de cada papel:
       ...
 ```
 
-Faça commit e push para `develop`. Agora as sugestões do Copilot sabem quem está no seu time.
+Commit and push to `develop`. Copilot suggestions now know who is on your team.
 
 ---
 
-## Passo 9 — Instale o Spec-Kit (todos)
+## Step 9: Install Spec-Kit (everyone)
 
-[**Spec-Kit**](https://github.com/github/spec-kit) é o toolkit oficial do GitHub para desenvolvimento orientado por especificação. Use para **rascunhos rápidos de funcionalidades** no Estágio 2.
+[**Spec-Kit**](https://github.com/github/spec-kit) is GitHub's official toolkit for specification-driven development. Use it for **quick feature drafts** in Stage 2.
 
-### 9.1 Instale o Specify CLI no seu laptop
+### 9.1 Install Specify CLI on your laptop
 
-- [ ] **Instalar o Specify CLI.**
+- [ ] **Install Specify CLI.**
 
 ```bash
 uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@vX.Y.Z
 specify version
 ```
 
-Substitua `vX.Y.Z` pela versão mais recente em <https://github.com/github/spec-kit/releases>.
+Replace `vX.Y.Z` with the latest version from <https://github.com/github/spec-kit/releases>.
 
-### 9.2 Inicialize no repositório do time
+### 9.2 Initialize it in the team repository
 
-- [ ] **Inicializar na raiz do repositório.**
+- [ ] **Initialize it at the repository root.**
 
 ```bash
 specify init . --integration copilot
 ```
 
-Isso cria a configuração `.specify/`, scripts de automação e os slash commands `/speckit.*` para o GitHub Copilot.
+This creates the `.specify/` configuration, automation scripts, and `/speckit.*` slash commands for GitHub Copilot.
 
-### 9.3 Verifique os comandos no Copilot
+### 9.3 Verify the commands in Copilot
 
-| Comando | Quando usar |
+| Command | When to use it |
 |---|---|
-| `/speckit.constitution` | Define princípios, padrões e gates do projeto |
-| `/speckit.specify` | Cria a spec da funcionalidade |
-| `/speckit.clarify` | Resolve ambiguidades antes do plano |
-| `/speckit.plan` | Cria o plano técnico |
-| `/speckit.tasks` | Gera tasks implementáveis |
-| `/speckit.analyze` | Checa consistência e cobertura |
-| `/speckit.implement` | Implementa a funcionalidade guiada pela spec |
+| `/speckit.constitution` | Define project principles, standards, and gates |
+| `/speckit.specify` | Create the feature spec |
+| `/speckit.clarify` | Resolve ambiguity before the plan |
+| `/speckit.plan` | Create the technical plan |
+| `/speckit.tasks` | Generate implementable tasks |
+| `/speckit.analyze` | Check consistency and coverage |
+| `/speckit.implement` | Implement the feature guided by the spec |
 
-### 9.4 Escreva uma funcionalidade
+### 9.4 Write a feature
 
-No Copilot Chat:
+In Copilot Chat:
 
 ```text
-/speckit.specify <descreva a funcionalidade identificada pelo time no legado>. Preserve a rastreabilidade legada com source_legacy em cada requisito.
+/speckit.specify <describe the feature identified by the team in the legacy code>. Preserve legacy traceability with source_legacy in each requirement.
 ```
 
-O Spec-Kit cria uma branch numerada e a estrutura:
+Spec-Kit creates a numbered branch and this structure:
 
 ```text
 specs/<NNN>-<feature>/
 └── spec.md
 ```
 
-Em seguida, rode:
+Then run:
 
 ```text
 /speckit.clarify
-/speckit.plan Use Java 21, Spring Boot 3.3, PostgreSQL 16, Next.js 15 e a arquitetura de monólito modular do workshop.
+/speckit.plan Use Java 21, Spring Boot 3.3, PostgreSQL 16, Next.js 15, and the workshop modular monolith architecture.
 /speckit.tasks
 ```
 
-### 9.5 Regra do workshop
+### 9.5 Workshop rule
 
-Todo requisito que vier do legado continua precisando de `source_legacy:` apontando para `.NSN` ou `.ddm`. Requisitos sem paralelo no legado usam `[GREENFIELD]` com justificativa.
+Every requirement that comes from the legacy system still needs `source_legacy:` pointing to a `.NSN` or `.ddm`. Requirements with no legacy counterpart use `[GREENFIELD]` with a justification.
 
 ---
 
-## Passo 10 — Use o fluxo Spec-Kit (todos)
+## Step 10: Use the Spec-Kit flow (everyone)
 
-| Fase | Comando | Saída principal | Persona dona |
+| Phase | Command | Main output | Owning persona |
 |---|---|---|---|
-| Constituição | `/speckit.constitution` | `.specify/memory/constitution.md` | Technical Lead + Architect |
+| Constitution | `/speckit.constitution` | `.specify/memory/constitution.md` | Technical Lead + Architect |
 | Spec | `/speckit.specify` | `specs/<NNN>-<feature>/spec.md` | Requirements Engineer |
-| Clarificação | `/speckit.clarify` | Perguntas resolvidas na spec | Requirements Engineer + Product Owner |
-| Plano | `/speckit.plan` | `specs/<NNN>-<feature>/plan.md` | Software Architect |
+| Clarification | `/speckit.clarify` | Questions resolved in the spec | Requirements Engineer + Product Owner |
+| Plan | `/speckit.plan` | `specs/<NNN>-<feature>/plan.md` | Software Architect |
 | Tasks | `/speckit.tasks` | `specs/<NNN>-<feature>/tasks.md` | Technical Lead |
-| Análise | `/speckit.analyze` | Lacunas e inconsistências | QA Engineer + Architect |
-| Implementação | `/speckit.implement` | Código + testes guiados pela spec | Developer + QA Engineer |
+| Analysis | `/speckit.analyze` | Gaps and inconsistencies | QA Engineer + Architect |
+| Implementation | `/speckit.implement` | Code + tests guided by the spec | Developer + QA Engineer |
 
 > [!IMPORTANT]
-> O time revisa explicitamente `spec.md`, `plan.md` e `tasks.md` antes de implementar (gates LGTM).
+> The team explicitly reviews `spec.md`, `plan.md`, and `tasks.md` before implementation starts (LGTM gates).
 
 ---
 
-## Passo 11 — Entenda a estratégia de branches
+## Step 11: Understand the branch strategy
 
 ```text
-main                    <- pronto para release, protegido, exige 1 revisão
-develop                 <- integração de todas as funcionalidades
-spec/NNN-feature        <- trabalho de especificação (Estágio 2)
-impl/NNN-feature        <- trabalho de implementação (Estágio 3)
-infra/NNN-azure         <- trabalho de infraestrutura (Estágio 4)
+main                    <- release-ready, protected, requires 1 review
+develop                 <- integration of all features
+spec/NNN-feature        <- specification work (Stage 2)
+impl/NNN-feature        <- implementation work (Stage 3)
+infra/NNN-azure         <- infrastructure work (Stage 4)
 ```
 
-### Convenção de nomes
+### Naming convention
 
-| Tipo | Padrão | Exemplo |
+| Type | Pattern | Example |
 |---|---|---|
 | Spec | `spec/<NNN>-<feature>` | `spec/001-calculo-beneficio` |
-| Implementação | `impl/<NNN>-<feature>` | `impl/001-calculo-beneficio` |
-| Infraestrutura | `infra/<componente>` | `infra/azure-postgres` |
+| Implementation | `impl/<NNN>-<feature>` | `impl/001-calculo-beneficio` |
+| Infrastructure | `infra/<componente>` | `infra/azure-postgres` |
 
-`NNN` é o número da funcionalidade (corresponde à pasta em `specs/<NNN>-<feature>/`).
+`NNN` is the feature number (it matches the folder in `specs/<NNN>-<feature>/`).
 
-### Criando uma branch de funcionalidade
+### Create a feature branch
 
-- [ ] **Criar branch a partir de `develop`.**
+- [ ] **Create a branch from `develop`.**
 
 ```bash
 git checkout develop
@@ -488,205 +488,205 @@ git commit -m "feat: draft EARS requirements"
 git push -u origin spec/<NNN>-<feature>
 ```
 
-### Abrindo um Pull Request
+### Open a Pull Request
 
-- [ ] **Abrir PR e preencher o template.**
+- [ ] **Open the PR and complete the template.**
 
-1. Após o push, o GitHub imprime uma URL para criar o PR. Clique nela.
-2. Título: use Conventional Commits — `feat: add feature spec`
-3. Preencha o template (`.github/PULL_REQUEST_TEMPLATE.md`): o que mudou, REQ-IDs, como testar, issues vinculadas.
-4. Adicione pelo menos uma pessoa revisora de outra persona.
-5. Clique em **Create pull request**.
-6. Aguarde CI verde.
-7. Após aprovação, clique em **Rebase and merge** (não Merge commit, não Squash).
-8. Delete a branch de funcionalidade quando solicitado.
+1. After the push, GitHub prints a URL to create the PR. Click it.
+2. Title: use Conventional Commits - `feat: add feature spec`
+3. Complete the template (`.github/PULL_REQUEST_TEMPLATE.md`): what changed, REQ-IDs, how to test, linked issues.
+4. Add at least one reviewer from another persona.
+5. Click **Create pull request**.
+6. Wait for CI green.
+7. After approval, click **Rebase and merge** (not Merge commit, not Squash).
+8. Delete the feature branch when prompted.
 
 ---
 
-## Passo 12 — Fluxo diário por persona
+## Step 12: Daily flow by persona
 
 ### Product Owner / Requirements Engineer
 
 ```text
-1. Leia os achados do Estágio 1 (glossário, catálogo de regras de negócio)
-2. Rode /speckit.specify "feature-name" com orientação de source_legacy
-3. Rode /speckit.clarify e valide com personas stakeholder (PO + EA)
-4. Rode /speckit.plan com a stack do workshop e as escolhas arquiteturais
-5. Rode /speckit.tasks depois que o plano for aprovado
-6. Abra um PR na branch spec/<NNN>-<feature>
-7. Faça passagem para Software Architect (gate LGTM)
+1. Read the findings from Stage 1 (glossary, business rule catalog)
+2. Run /speckit.specify "feature-name" with source_legacy guidance
+3. Run /speckit.clarify and validate with stakeholder personas (PO + EA)
+4. Run /speckit.plan with the workshop stack and architecture choices
+5. Run /speckit.tasks after the plan is approved
+6. Open a PR on the spec/<NNN>-<feature> branch
+7. Hand work off to Software Architect (LGTM gate)
 ```
 
 ### Enterprise Architect / Software Architect
 
 ```text
-1. Faça pull do develop mais recente
-2. git checkout spec/NNN-feature (leia a spec EARS)
-3. Rode /speckit.plan → produz plan.md, research.md e contracts
-4. Adicione ADRs em docs/adr/ para decisões não triviais
-5. Abra um PR — revise a seção de design do PR da spec
-6. Faça passagem para Tech Lead (gate LGTM)
+1. Pull the latest develop
+2. git checkout spec/NNN-feature (read the EARS spec)
+3. Run /speckit.plan -> produces plan.md, research.md, and contracts
+4. Add ADRs in docs/adr/ for non-trivial decisions
+5. Open a PR and review the design section of the spec PR
+6. Hand work off to Technical Lead (LGTM gate)
 ```
 
 ### Technical Lead
 
 ```text
-1. Leia o plan.md aprovado e os ADRs
-2. Rode /speckit.tasks → produz tasks.md com IDs de tarefa (T001, T002, ...)
-3. Abra uma GitHub Issue por tarefa usando .github/ISSUE_TEMPLATE/task.yml
-4. Atribua cada issue a Developer / DBA / QA
-5. Acompanhe CI verde/vermelho e desbloqueie pessoas
+1. Read the approved plan.md and ADRs
+2. Run /speckit.tasks -> produces tasks.md with task IDs (T001, T002, ...)
+3. Open one GitHub Issue per task using .github/ISSUE_TEMPLATE/task.yml
+4. Assign each issue to Developer / DBA / QA
+5. Watch CI green/red and unblock people
 ```
 
 ### Developer
 
 ```text
-1. Escolha uma issue de tarefa (T-NNN) no board do time
-2. git checkout -b impl/NNN-feature (a partir de develop)
-3. No Copilot, rode /implement (prompt ativo: .github/prompts/persona-developer-implement.prompt.md)
-4. Testes primeiro (vermelho), código (verde), refatoração
-5. Rode o gate local definido pelo protótipo (./mvnw verify, npm test, npm run lint ou equivalente)
-6. git commit, git push, abra PR
-7. Marque a issue com "Closes #NN" no corpo do PR
+1. Pick a task issue (T-NNN) from the team board
+2. git checkout -b impl/NNN-feature (from develop)
+3. In Copilot, run /implement (active prompt: .github/prompts/persona-developer-implement.prompt.md)
+4. Tests first (red), code (green), refactor
+5. Run the local gate defined by the prototype (./mvnw verify, npm test, npm run lint, or equivalent)
+6. git commit, git push, open PR
+7. Mark the issue with "Closes #NN" in the PR body
 ```
 
 ### DBA
 
 ```text
-1. Escolha uma tarefa de schema/migração
+1. Pick a schema or migration task
 2. git checkout -b impl/NNN-feature
-3. Adicione a migração Flyway em backend/src/main/resources/db/migration/
-4. Rode o prompt /migration (prompt ativo: .github/prompts/persona-dba-migration.prompt.md)
-5. Teste localmente contra o Postgres definido pelo time ou via Testcontainers
-6. Abra PR e peça revisão de Developer
+3. Add the Flyway migration in backend/src/main/resources/db/migration/
+4. Run the /migration prompt (active prompt: .github/prompts/persona-dba-migration.prompt.md)
+5. Test locally against the team's Postgres or with Testcontainers
+6. Open PR and ask Developer for review
 ```
 
 ### QA Engineer
 
 ```text
-1. Acompanhe todo PR de implementação
-2. Rode o prompt /coverage-gaps para encontrar REQ-IDs sem cobertura
-3. Adicione testes na branch de implementação (em par com Developer)
-4. O prompt /test-strategy produz um plano de testes para novas funcionalidades
-5. Bloqueie o merge se a cobertura cair abaixo de 70%
+1. Follow every implementation PR
+2. Run the /coverage-gaps prompt to find REQ-IDs without coverage
+3. Add tests on the implementation branch (pairing with Developer)
+4. The /test-strategy prompt produces a test plan for new features
+5. Block the merge if coverage drops below 70%
 ```
 
 ### DevOps Engineer
 
 ```text
-1. Escolha uma tarefa de infraestrutura (configuração Azure, CI/CD, deployment)
+1. Pick an infrastructure task (Azure config, CI/CD, deployment)
 2. git checkout -b infra/NNN-azure-foo
-3. Edite módulos Terraform em infra/
-4. Rode terraform fmt + terraform validate localmente
-5. Rode o prompt /iac-module (prompt ativo: .github/prompts/persona-devops-engineer-iac-module.prompt.md)
-6. Abra PR; workflows/ci.yml executa validação Terraform
+3. Edit Terraform modules in infra/
+4. Run terraform fmt + terraform validate locally
+5. Run the /iac-module prompt (active prompt: .github/prompts/persona-devops-engineer-iac-module.prompt.md)
+6. Open PR; workflows/ci.yml runs Terraform validation
 ```
 
 ### Tech Writer
 
 ```text
-1. Depois de cada merge em develop, procure drift em ADR/glossário
-2. Rode o prompt /doc-drift (prompt ativo: .github/prompts/persona-tech-writer-doc-drift.prompt.md)
-3. Atualize 01-arqueologia/glossary.md, docs/adr/ e os READMEs
-4. Abra um PR pequeno por atualização de documentação
+1. After each merge to develop, look for drift in ADRs and the glossary
+2. Run the /doc-drift prompt (active prompt: .github/prompts/persona-tech-writer-doc-drift.prompt.md)
+3. Update 01-arqueologia/glossary.md, docs/adr/, and the READMEs
+4. Open one small PR per documentation update
 ```
 
 ---
 
-## Passo 13 — Smoke test (time inteiro, às 10:30)
+## Step 13: Smoke test (whole team, at 10:30)
 
-A pessoa líder lê cada item em voz alta. Cada pessoa confirma no próprio laptop.
+The team lead reads each item aloud. Each person confirms it on their own laptop.
 
-- [ ] Cada membro clonou `workshop-team-XX`
-- [ ] Cada membro consegue rodar `git checkout develop && git pull origin develop` (acesso de escrita confirmado)
-- [ ] CI rodou no commit inicial criado pelo template — check verde na aba **Actions**
-- [ ] Time confirmou que não há protótipo pré-pronto: `backend/`, `frontend/` e arquivos Docker/infra serão criados no Estágio 3 quando necessário
-- [ ] Cada Copilot Chat responde "Qual stack estamos usando neste projeto?" com a resposta certa
-- [ ] Cada membro instalou o Spec-Kit oficial: `specify version` imprime uma versão
-- [ ] Os comandos `/speckit.*` aparecem no Copilot depois de `specify init . --integration copilot`
-- [ ] Abrir **New issue** no GitHub mostra 3 templates (spec, adr, task)
-- [ ] Todos os 5 membros do time aparecem em repo Settings → Collaborators
-- [ ] Cada persona leu sua carta em `05-personas/XX-role/PERSONA.md`
-- [ ] A pessoa líder do time atualizou `.github/copilot-instructions.md` com os nomes de todo mundo
-- [ ] `.github/agents`, `.github/prompts`, `.github/instructions` e `.github/skills` estão presentes e consolidados
-- [ ] [`00-TEAM-FLOW.md`](00-TEAM-FLOW.md) foi lido em voz alta uma vez (a linha do tempo do dia)
+- [ ] Every member cloned `workshop-team-XX`
+- [ ] Every member can run `git checkout develop && git pull origin develop` (write access confirmed)
+- [ ] CI ran on the initial template commit - green check in the **Actions** tab
+- [ ] The team confirmed that there is no ready-made prototype: `backend/`, `frontend/`, and Docker/infra files will be created in Stage 3 when needed
+- [ ] Every Copilot Chat answers "What stack are we using in this project?" with the correct answer
+- [ ] Every member installed the official Spec-Kit: `specify version` prints a version
+- [ ] The `/speckit.*` commands appear in Copilot after `specify init . --integration copilot`
+- [ ] Opening **New issue** on GitHub shows three templates (spec, adr, task)
+- [ ] All five team members appear in repo Settings -> Collaborators
+- [ ] Every persona read its card in `05-personas/XX-role/PERSONA.md`
+- [ ] The team lead updated `.github/copilot-instructions.md` with everyone's names
+- [ ] `.github/agents`, `.github/prompts`, `.github/instructions`, and `.github/skills` are present and consolidated
+- [ ] [`00-TEAM-FLOW.md`](00-TEAM-FLOW.md) was read aloud once (the day's timeline)
 
-Quando os 13 itens estiverem verdes, seu time está pronto para o **Estágio 1: Arqueologia**.
+When all 13 items are green, your team is ready for **Stage 1: archaeology**.
 
 ---
 
-## Solução de problemas
+## Troubleshooting
 
 <details>
-<summary><strong>Erros comuns e como resolver</strong> — clique para expandir</summary>
+<summary><strong>Common errors and how to fix them</strong> - click to expand</summary>
 
-### Copilot não lê `copilot-instructions.md`
+### Copilot does not read `copilot-instructions.md`
 
-- O VS Code precisa estar aberto **na raiz do repositório**, não dentro de uma subpasta.
-- Reinicie o VS Code depois de editar o arquivo.
-- Em Settings, verifique se `github.copilot.chat.useProjectInstructions` está como `true` (padrão na 1.93+).
+- VS Code must be open **at the repository root**, not inside a subfolder.
+- Restart VS Code after editing the file.
+- In Settings, confirm that `github.copilot.chat.useProjectInstructions` is `true` (default in 1.93+).
 
-### O botão **Use this template** não aparece
+### The **Use this template** button does not appear
 
-- Confirme que você abriu o repositório principal do workshop, não o repositório de outro time.
-- Se ainda não aparecer, peça à facilitação para confirmar se a opção **Template repository** está habilitada em Settings → General.
-- Não use **Import repository**. O caminho oficial do workshop é **Use this template**.
+- Confirm that you opened the main workshop repository, not another team's repository.
+- If it still does not appear, ask the facilitators to confirm whether **Template repository** is enabled in Settings -> General.
+- Do not use **Import repository**. The official workshop path is **Use this template**.
 
-### O nome `workshop-team-XX` já está em uso
+### The name `workshop-team-XX` is already in use
 
-- Confirme se você está usando o número correto do seu time.
-- Se a facilitação autorizar, adicione um sufixo curto, por exemplo `workshop-team-01b`.
+- Confirm that you are using the correct team number.
+- If the facilitators allow it, add a short suffix, for example `workshop-team-01b`.
 
-### `specify init` falha ou os comandos `/speckit.*` não aparecem
+### `specify init` fails or `/speckit.*` commands do not appear
 
-- Confirme que `uv`, Python 3.11+ e Git estão instalados.
-- Rode `specify version` para garantir que você instalou o CLI oficial.
-- Reexecute `specify init . --integration copilot` na raiz do repositório.
-- Recarregue o VS Code: Command Palette → **Developer: Reload Window**.
+- Confirm that `uv`, Python 3.11+, and Git are installed.
+- Run `specify version` to confirm that you installed the official CLI.
+- Run `specify init . --integration copilot` again at the repository root.
+- Reload VS Code: Command Palette -> **Developer: Reload Window**.
 
-### CI falha no primeiro push com "no tests found"
+### CI fails on the first push with "no tests found"
 
-- Esperado. O fluxo de trabalho `ci.yml` só roda jobs cujos caminhos mudaram. Quando código backend/frontend entrar, os jobs relevantes vão rodar.
+- Expected. The `ci.yml` workflow only runs jobs whose paths changed. When backend or frontend code lands, the relevant jobs run.
 
-### Docker não está disponível quando o time precisar dele
+### Docker is not available when the team needs it
 
-- As portas 5432, 8080 ou 3000 podem estar em uso. Rode:
+- Ports 5432, 8080, or 3000 may already be in use. Run:
 
   ```bash
   lsof -i :5432 -i :8080 -i :3000
   ```
 
-  Mate o processo que está ocupando a porta (`kill -9 <PID>`) antes de subir o ambiente criado pelo time.
+  Kill the process that is using the port (`kill -9 <PID>`) before you start the environment created by the team.
 
-- Garanta que o Docker Desktop está **rodando** (o ícone na barra de menu deve estar estável, não animado).
+- Make sure Docker Desktop is **running** (the menu bar icon should be steady, not animated).
 
-### Copilot Agent mode não aparece no dropdown
+### Copilot Agent mode does not appear in the dropdown
 
-- Atualize o VS Code para **1.93 ou posterior** (ou instale **VS Code Insiders**).
-- Recarregue a janela: Command Palette → **Developer: Reload Window**.
+- Update VS Code to **1.93 or later** (or install **VS Code Insiders**).
+- Reload the window: Command Palette -> **Developer: Reload Window**.
 
-### "Permission denied" ao fazer push para `main`
+### "Permission denied" when pushing to `main`
 
-- A proteção de branch (Passo 4) está fazendo seu trabalho. Abra um Pull Request a partir da sua branch de funcionalidade.
+- Branch protection (Step 4) is doing its job. Open a Pull Request from your feature branch instead.
 
-### Fiz pull do `develop` mais recente, mas minha IDE ainda mostra código antigo
+### I pulled the latest `develop`, but my IDE still shows old code
 
-- Recarregue a janela do VS Code: Command Palette → **Developer: Reload Window**.
-- Se o VS Code ainda mostrar estado antigo, feche e reabra a pasta do repositório.
+- Reload the VS Code window: Command Palette -> **Developer: Reload Window**.
+- If VS Code still shows stale state, close and reopen the repository folder.
 
-### A pasta `.github/` parece quebrada
+### The `.github/` folder looks broken
 
-- Não copie persona-kits manualmente por cima da `.github/` consolidada.
-- Se algo parecer quebrado: restaure com `git checkout develop -- .github/` ou peça ajuda ao facilitador antes de tentar sobrescrever arquivos.
+- Do not copy persona kits manually over the consolidated `.github/`.
+- If something looks broken, restore it with `git checkout develop -- .github/` or ask a facilitator for help before you try to overwrite files.
 
 </details>
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [TEAM-FLOW](00-TEAM-FLOW.md)<br/><sub>Cronograma de 8h, passagens entre pares, regra dos 20 min, DoD.</sub> | [OVERVIEW das 10 personas](05-personas/OVERVIEW.md)<br/><sub>Tabela comparativa: par, líder de estágio, defaults de emergência.</sub> |
+| [Team flow](00-TEAM-FLOW.md)<br/><sub>8-hour schedule, pair handoffs, 20-minute rule, definition of done.</sub> | [Overview of the 10 personas](05-personas/OVERVIEW.md)<br/><sub>Comparison table: pair, stage lead, emergency defaults.</sub> |
 
-<sub>[Voltar ao índice do kit](README.md)</sub>
+<sub>[Back to the kit index](README.md)</sub>

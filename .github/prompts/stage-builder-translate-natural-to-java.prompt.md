@@ -3,7 +3,7 @@ name: "translate-natural-to-java"
 description: "Translates a Natural program into idiomatic Java 21 + Spring Boot 3.3 while preserving business semantics."
 argument-hint: "file=01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSN context=<context> package=<java.package>"
 agent: "builder"
-tools: ["search", "edit", "execute"]
+tools: ["read", "search", "edit", "execute"]
 ---
 # /translate-natural-to-java
 

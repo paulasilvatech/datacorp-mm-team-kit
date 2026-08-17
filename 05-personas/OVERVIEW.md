@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Overview of the 10 Personas
 
 > **Track:** [Team Kit](../README.md) › [Personas](README.md) › **OVERVIEW**

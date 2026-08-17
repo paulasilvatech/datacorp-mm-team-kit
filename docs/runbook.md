@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Runbook
 
 ![Runbook Type](https://img.shields.io/badge/Type-Runbook-171717?style=flat-square)

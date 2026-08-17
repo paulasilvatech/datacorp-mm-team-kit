@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Stage 4 — Evolution
 
 > **Path:** [Team Kit](../README.md) › **Stage 4 — Evolution**

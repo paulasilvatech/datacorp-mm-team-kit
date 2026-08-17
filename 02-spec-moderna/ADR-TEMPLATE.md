@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # ADR-XXX: Decision Title
 
 > **Path:** [Team Kit](../README.md) › [Stage 2](README.md) › **ADR Template**
@@ -113,7 +111,7 @@ An ADR is the formal record of a significant architectural decision. It document
 | **Date** | 2026-05-10 |
 | **Status** | Accepted |
 | **Decision-makers** | Pair 2 (Enterprise Architect + Software Architect) |
-| **Related feature** | `specs/001-benefit-payment/` |
+| **Related feature** | `specs/001-pagamento-beneficio/` |
 
 **Context:** The legacy SIFAP (Payment Inspection and Administration System) uses Adabas, a navigational database. The modernization needs a relational database compatible with JPA/Hibernate and supported by the operations team.
 

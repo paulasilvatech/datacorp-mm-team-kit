@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # The Four SDLC Agents — Explained
 
 ![Concept Type](https://img.shields.io/badge/Type-Concept-171717?style=flat-square)

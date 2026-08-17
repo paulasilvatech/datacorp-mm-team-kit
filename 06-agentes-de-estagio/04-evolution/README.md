@@ -1,128 +1,126 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
+# @evolution — Stage 4: Evolution
 
-# @evolution — Estágio 4: Evolução
+> **Path:** [Team Kit](../../README.md) › [Stage Agents](../README.md) › **@evolution**
 
-> **Trilha:** [Kit do Time](../../README.md) › [Agentes de Estágio](../README.md) › **@evolution**
+**The `@evolution` agent guides the team in turning Stage 3 local work into a reviewable delivery: well-written Issues for Copilot Agent mode, PR review, CI/CD records, and an experience report.**
 
-**O agente `@evolution` orienta o time a transformar o trabalho local do Estágio 3 em entrega revisável: Issues bem escritas para o modo Agent do Copilot, revisão de PR, registro de CI/CD e relatório de experiência.**
-
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Technical Lead (protagonista), DevOps Engineer, Tech Writer, Developer e QA Engineer |
-| **Pré-requisitos** | Passagem de bastão do Estágio 3 com backend/frontend funcionando e testes relevantes |
-| **Tempo estimado** | 16:10–16:50 |
-| **Estágio** | Estágio 4 — Evolução |
-| **Resultado esperado** | Issue criada ou em rascunho, PR revisado ou próximo passo registrado, relatório de experiência preenchido |
+| **Target audience** | Technical Lead (lead), DevOps Engineer, Tech Writer, Developer, and QA Engineer |
+| **Prerequisites** | Stage 3 handoff with a working backend/frontend and relevant tests |
+| **Estimated time** | 16:10–16:50 |
+| **Stage** | Stage 4 — Evolution |
+| **Expected outcome** | Issue created or drafted, PR reviewed or next step recorded, experience report completed |
 
-![Estágio 4](https://img.shields.io/badge/Est%C3%A1gio-4%20%C2%B7%20Evolu%C3%A7%C3%A3o-171717?style=flat-square)
-![Postura operacional](https://img.shields.io/badge/Postura-Operacional-404040?style=flat-square)
-
----
-
-## Quando usar
-
-Use este agente quando o protótipo já existe e o time precisa transformar trabalho local em entrega revisável: Issues, PRs, CI/CD, IaC, runbook e relatório final.
-
-- **Protagonista:** Technical Lead
-- **Suporte forte:** DevOps Engineer, Tech Writer, Developer e QA Engineer
-- **Pré-requisito hard gate:** protótipo com backend/frontend funcionando e testes relevantes
+![Stage 4](https://img.shields.io/badge/Stage-4%20%C2%B7%20Evolution-171717?style=flat-square)
+![Operational approach](https://img.shields.io/badge/Approach-Operational-404040?style=flat-square)
 
 ---
 
-## O que o agente faz
+## When to use
 
-- Ajuda a estruturar Issues pequenas e revisáveis para o modo Agent do Copilot
-- Orienta a revisão de PRs com foco em bug, risco, regressão e teste faltante
-- Cria workflows GitHub Actions para build, test e validação de Terraform
-- Converte comandos avulsos em runbook para a equipe de operação
-- Produz o relatório de experiência do modo Agent (`agent-experience-report.md`)
+Use this agent when the prototype exists and the team needs to turn local work into a reviewable delivery: Issues, PRs, CI/CD, IaC, a runbook, and the final report.
 
----
-
-## O que o agente NÃO faz
-
-- Não delega Issue vaga ao modo Agent: exige contexto, escopo e critérios de aceitação
-- Não aprova PR de IA sem revisão humana explícita
-- Não cria features novas no Estágio 4 (coloca no backlog)
-- Não esconde pendências: documenta risco e registra próximo passo
+- **Lead:** Technical Lead
+- **Strong support:** DevOps Engineer, Tech Writer, Developer, and QA Engineer
+- **Hard-gate prerequisite:** prototype with a working backend/frontend and relevant tests
 
 ---
 
-## Entradas
+## What the agent does
 
-| Entrada | Onde encontrar |
+- Helps structure small, reviewable Issues for Copilot Agent mode
+- Guides PR review with emphasis on bugs, risks, regressions, and missing tests
+- Creates GitHub Actions workflows for build, test, and Terraform validation
+- Converts individual commands into an operations runbook
+- Produces the Agent mode experience report (`agent-experience-report.md`)
+
+---
+
+## What the agent does NOT do
+
+- It does not delegate a vague Issue to Agent mode; it requires context, scope, and acceptance criteria
+- It does not approve an AI-generated PR without explicit human review
+- It does not create new features in Stage 4; it adds them to the backlog
+- It does not hide pending work; it documents risks and records the next step
+
+---
+
+## Inputs
+
+| Input | Location |
 |---|---|
-| Backend/frontend do Estágio 3 | `backend/`, `frontend/` |
-| Pendências conhecidas | Seção de notas da passagem de bastão do Estágio 3 |
-| `spec.md` da feature | `specs/<NNN>-<feature>/spec.md` |
-| ADRs e plano técnico | `02-spec-moderna/` ou `docs/adr/` |
+| Stage 3 backend/frontend | `backend/`, `frontend/` |
+| Known pending work | Stage 3 handoff notes |
+| Feature `spec.md` | `specs/<NNN>-<feature>/spec.md` |
+| ADRs and technical plan | `02-spec-moderna/` or `docs/adr/` |
 
 ---
 
-## Saídas esperadas
+## Expected outputs
 
-| Artefato | Localização |
+| Artifact | Location |
 |---|---|
-| Issue para o modo Agent | GitHub Issues do repositório |
-| Revisão de PR (se disponível) | GitHub Pull Requests |
-| Workflow CI/CD (se pertinente) | `.github/workflows/` |
-| Runbook (se pertinente) | `docs/runbook/` |
-| Relatório de experiência do Agent | `docs/agent-experience-report.md` |
+| Issue for Agent mode | Repository GitHub Issues |
+| PR review (if available) | GitHub Pull Requests |
+| CI/CD workflow (if relevant) | `.github/workflows/` |
+| Runbook (if relevant) | `docs/runbook/` |
+| Agent experience report | `docs/agent-experience-report.md` |
 
 ---
 
-## Como selecionar o agente no Copilot Chat
+## How to select the agent in Copilot Chat
 
-- [ ] **Abrir o Copilot Chat** no VS Code (`Ctrl+Alt+I` / `Cmd+Alt+I`).
-- [ ] **Clicar no seletor de agentes** e selecionar `@evolution`.
-- [ ] **Abrir a lista de pendências** do Estágio 3 no editor.
-- [ ] **Colar o prompt de abertura** abaixo e pressionar Enter.
+- [ ] **Open Copilot Chat** in VS Code (`Ctrl+Alt+I` / `Cmd+Alt+I`).
+- [ ] **Select `@evolution`** from the agent selector.
+- [ ] **Open the Stage 3 pending-work list** in the editor.
+- [ ] **Paste the opening prompt** below and press Enter.
 
 ```text
-Estou iniciando o Estágio 4 — Evolução.
-Temos um protótipo com backend, frontend e testes.
-Ajude a revisar uma Issue pequena para o Copilot Agent e a registrar o
-resultado da delegação. Não invente requisitos, arquitetura ou critérios.
+I am starting Stage 4 — Evolution.
+We have a prototype with a backend, frontend, and tests.
+Help review a small Issue for Copilot Agent and record the delegation
+outcome. Do not invent requirements, architecture, or criteria.
 ```
 
 ---
 
-## Prompts de exemplo
+## Example prompts
 
-| Situação | Prompt útil |
+| Situation | Useful prompt |
 |---|---|
-| Issue para o modo Agent | "Escreva uma Issue pequena com contexto, arquivos relevantes, critérios de aceitação e fora de escopo." |
-| Revisão de PR | "Revise este PR priorizando bug, risco, regressão e teste faltante." |
-| CI/CD | "Crie workflow GitHub Actions para build, test e validação de Terraform." |
-| Runbook | "Transforme estes comandos em runbook para pessoa de operação iniciante." |
-| Relatório final | "Escreva o `agent-experience-report` com o que funcionou, o que falhou e o que aprendemos." |
+| Issue for Agent mode | "Write a small Issue with context, relevant files, acceptance criteria, and out-of-scope items." |
+| PR review | "Review this PR, prioritizing bugs, risks, regressions, and missing tests." |
+| CI/CD | "Create a GitHub Actions workflow for build, test, and Terraform validation." |
+| Runbook | "Turn these commands into a runbook for a new operations team member." |
+| Final report | "Write the `agent-experience-report` with what worked, what failed, and what we learned." |
 
 ---
 
 ## Definition of Done
 
-- [ ] Uma Issue pequena foi criada ou ficou como rascunho revisável com contexto, escopo e critérios de aceitação.
-- [ ] Um PR disponível recebeu revisão humana; se não há PR, o próximo passo está documentado.
-- [ ] Situação de CI/IaC foi registrada sem criar infraestrutura apenas por meta.
-- [ ] Relatório de experiência do modo Agent está preenchido.
+- [ ] A small Issue was created or left as a reviewable draft with context, scope, and acceptance criteria.
+- [ ] An available PR received human review; if no PR exists, the next step is documented.
+- [ ] CI/IaC status was recorded without creating infrastructure only to meet a target.
+- [ ] The Agent mode experience report is complete.
 
 ---
 
-## Erros comuns
+## Common mistakes
 
-| Sintoma | Causa | Correção |
+| Symptom | Cause | Correction |
 |---|---|---|
-| Modo Agent entrega resultado fora do escopo | Issue vaga sem critérios explícitos | Reescreva a Issue com contexto, arquivos relevantes e fora de escopo |
-| PR de IA mergeado sem revisão | Confiança excessiva no resultado do Agent | Revise exatamente como revisaria um PR humano |
-| Feature nova surgindo no final | Falta de controle de escopo | Registre no backlog; não implemente no Estágio 4 |
-| Pendência escondida para não afetar a demo | Medo de julgamento | Documente o risco e o workaround; transparência é o objetivo |
+| Agent mode produces an out-of-scope result | Vague Issue without explicit criteria | Rewrite the Issue with context, relevant files, and out-of-scope items |
+| AI-generated PR merged without review | Excessive trust in the Agent result | Review it exactly as you would review a human PR |
+| New feature appears at the end | Poor scope control | Add it to the backlog; do not implement it in Stage 4 |
+| Pending work hidden to protect the demo | Fear of judgment | Document the risk and workaround; transparency is the goal |
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [@builder](../03-builder/README.md)<br/><sub>Estágio 3: construir a implementação rastreável.</sub> | [Agentes de Estágio — visão geral](../README.md)<br/><sub>Visão dos 4 agentes e cronograma do workshop.</sub> |
+| [@builder](../03-builder/README.md)<br/><sub>Stage 3: build the traceable implementation.</sub> | [Stage Agents — overview](../README.md)<br/><sub>Overview of the 4 agents and workshop schedule.</sub> |
 
-<sub>[Voltar ao índice do kit](../../README.md)</sub>
+<sub>[Back to the kit index](../../README.md)</sub>

@@ -2,9 +2,6 @@
 name: "adr-draft"
 description: "Use when drafting Architecture Decision Records, evaluating alternatives, or documenting technical trade-offs. Triggers include \"ADR\", \"architecture decision\", \"trade-off\", \"pick between\", and \"why did we choose\"."
 ---
-
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 # ADR draft
 
 ## When to invoke
@@ -24,7 +21,9 @@ Write an ADR when a decision:
 
 Do not write an ADR for a local refactor or a reversible configuration change.
 
-## Structure
+## Output template
+
+Save the ADR to `docs/adr/NNNN-<slug>.md`. The repo's canonical template is [`docs/adr/0000-template.md`](../../../docs/adr/0000-template.md); the condensed shape is:
 
 ```markdown
 # ADR-NNN: <Decision title in imperative>
@@ -79,4 +78,7 @@ One paragraph. "We will <decision>."
 
 ## Quality gate
 
-Reject any ADR that lacks Context, Decision, Alternatives, and Consequences sections.
+- [ ] The ADR has Context, Decision, Alternatives considered, and Consequences sections.
+- [ ] At least two rejected alternatives are documented with their trade-offs.
+- [ ] Status is set (proposed, accepted, superseded, or deprecated), not left blank.
+- [ ] The file is saved as `docs/adr/NNNN-<slug>.md` and linked from the REQ-IDs it affects.

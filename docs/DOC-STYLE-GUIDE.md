@@ -1,144 +1,140 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
+# Documentation Style Guide
 
-# Guia de Padronização da Documentação
+> **Path:** [Team Kit](../README.md) › [Docs](README.md) › **Documentation Style Guide**
 
-> **Trilha:** [Kit do Time](../README.md) › [Docs](README.md) › **Guia de estilo da documentação**
+This is the **single style contract** for ALL `.md` files in the
+`datacorp-mm-team-kit` repository, **except** those inside `.github/` (do not modify).
 
-Este é o **contrato único** de estilo para TODOS os arquivos `.md` do repositório
-`datacorp-mm-team-kit`, **exceto** os que estão dentro de `.github/` (não tocar).
-
-Objetivo: documentação moderna, didática, profissional, sóbria — sem emojis,
-sem analogia de Super Mario, com diagramas Mermaid em tons neutros
-(branco / cinza / preto), tabelas, checklists e blocos de destaque.
+Goal: modern, educational, professional, understated documentation—with no emojis,
+no Super Mario analogies, and with Mermaid diagrams in neutral tones
+(white / gray / black), tables, checklists, and callout blocks.
 
 ---
 
-## 1. Regras absolutas (nunca violar)
+## 1. Absolute rules (never violate)
 
-| # | Regra |
+| # | Rule |
 |---|---|
-| R1 | **Zero emojis.** Remover todos os caracteres emoji/pictográficos de títulos, tabelas, listas, callouts, blocos ASCII e texto corrido. Substituir por palavras, badges em cinza, ou nada. |
-| R2 | **Zero analogia Super Mario / Nintendo.** Remover Mario, Luigi, Peach, Daisy, Rosalina, Toad, Yoshi, Koopa, Goomba, Bowser, princesa, castelo, cogumelo, power-up, mundo 1-1, cano verde, estrela de invencibilidade, mana, XP, "raid", "game over", "boss", "co-op". Ver §2 para o vocabulário substituto. |
-| R3 | **"hackathon"/"hackaton" → "workshop".** Inclusive em nomes de diretório de exemplo (`hackathon-team-XX` → `workshop-team-XX`), títulos e texto corrido. |
-| R4 | **Não alterar nada dentro de `.github/`.** Links *apontando para* `.github/...` continuam válidos e devem ser preservados. |
-| R5 | **Não inventar conteúdo factual novo.** Preservar 100% da informação técnica, comandos, caminhos, REQ-IDs, nomes de arquivos e tabelas de dados existentes. A mudança é de forma, didática e organização — não de fatos. |
-| R6 | **Não quebrar links.** Ao renomear um arquivo, atualizar todos os links que apontam para ele. Caminhos relativos devem continuar corretos. |
-| R7 | Escrever em **português do Brasil**, tom didático e educativo (ver §6). |
+| R1 | **Zero emojis.** Remove all emoji/pictographic characters from headings, tables, lists, callouts, ASCII blocks, and body text. Replace them with words, gray badges, or nothing. |
+| R2 | **Zero Super Mario / Nintendo analogies.** Remove Mario, Luigi, Peach, Daisy, Rosalina, Toad, Yoshi, Koopa, Goomba, Bowser, princess, castle, mushroom, power-up, world 1-1, green pipe, invincibility star, mana, XP, "raid", "game over", "boss", and "co-op". See §2 for replacement vocabulary. |
+| R3 | **"hackathon"/"hackaton" → "workshop".** This includes example directory names (`hackathon-team-XX` → `workshop-team-XX`), headings, and body text. |
+| R4 | **Do not modify anything inside `.github/`.** Links *pointing to* `.github/...` remain valid and must be preserved. |
+| R5 | **Do not invent new factual content.** Preserve 100% of the existing technical information, commands, paths, REQ-IDs, file names, and data tables. Changes concern form, educational quality, and organization—not facts. |
+| R6 | **Do not break links.** When renaming a file, update every link that points to it. Relative paths must remain correct. |
+| R7 | Write in **Brazilian Portuguese**, with an educational and instructive tone (see §6). |
 
 ---
 
-## 2. Vocabulário substituto (Mario → profissional)
+## 2. Replacement vocabulary (Mario → professional)
 
-| Termo antigo | Termo novo |
+| Former term | New term |
 |---|---|
-| Mundo 1 / 1-1 / Overworld | Estágio 1 — Arqueologia |
-| Mundo 2 / 2-1 / Underground | Estágio 2 — Especificação |
-| Mundo 3 / 3-1 / Athletic | Estágio 3 — Implementação |
-| Castelo / 4-Castle / Bowser | Estágio 4 — Evolução |
-| Princesa / resgatar a princesa | Objetivo final: SIFAP 2.0 em execução na demonstração |
-| Cano verde | Passagem de bastão (handoff) entre estágios |
-| Estrela / estrela de invencibilidade | Pipeline de CI aprovado (CI verde) |
-| Power-up / inventário / mochila | Kit da persona (prompts, skills, instructions) |
-| Personagem jogável (Mario, Peach…) | A própria persona (Product Owner, Developer…) |
-| Ataque / golpe especial / mana / XP | Modo do Copilot / slash command / custo de tempo |
-| Cena de combate / raid / boss | Cenário de uso / exemplo prático / revisão de PR |
-| Game over / cair no buraco | Falha do projeto / risco / antipadrão |
-| Co-op de 5 jogadores | Equipe de 5 pessoas em 5 pares de personas |
-| Mario Maker | Ferramenta de autoria de especificação (Spec-Kit) |
-| Receita de cogumelo | Modelo/gabarito de requisito |
-| Carta da princesa | Registro formal de decisão (ADR) |
-| Yoshi engole tabelas | (reescrever de forma literal: modelagem e otimização de dados) |
+| World 1 / 1-1 / Overworld | Stage 1 — Archaeology |
+| World 2 / 2-1 / Underground | Stage 2 — Specification |
+| World 3 / 3-1 / Athletic | Stage 3 — Implementation |
+| Castle / 4-Castle / Bowser | Stage 4 — Evolution |
+| Princess / rescue the princess | Final objective: SIFAP 2.0 running in the demonstration |
+| Green pipe | Handoff between stages |
+| Star / invincibility star | Approved CI pipeline (green CI) |
+| Power-up / inventory / backpack | Persona kit (prompts, skills, instructions) |
+| Playable character (Mario, Peach…) | The persona itself (Product Owner, Developer…) |
+| Attack / special move / mana / XP | Copilot mode / slash command / time cost |
+| Combat scene / raid / boss | Usage scenario / practical example / PR review |
+| Game over / fall into a pit | Project failure / risk / antipattern |
+| 5-player co-op | Team of 5 people working in 5 persona pairs |
+| Mario Maker | Specification authoring tool (Spec-Kit) |
+| Mushroom recipe | Requirement template |
+| Letter from the princess | Formal decision record (ADR) |
+| Yoshi swallows tables | (rewrite literally: data modeling and optimization) |
 
-Quando a analogia era o *único* conteúdo de uma seção, **substitua por conteúdo
-didático real**: definição do conceito, por que importa, exemplo concreto SIFAP
-e caso de uso. Não deixe seção vazia nem apenas renomeie o rótulo.
+When an analogy was the *only* content in a section, **replace it with real
+educational content**: a definition of the concept, why it matters, a concrete SIFAP
+example, and a use case. Do not leave the section empty or merely rename its label.
 
 ---
 
-## 3. Estrutura canônica de documento
+## 3. Canonical document structure
 
-Todo `.md` (exceto templates puros e arquivos de dados) segue esta ordem:
+Every `.md` file (except pure templates and data files) follows this order:
 
 ```markdown
-<!-- markdownlint-disable MD013 MD033 MD041 -->
+# Document Title
 
-# Título do Documento
+> **Path:** [Team Kit](../README.md) › [Section](README.md) › **Current document**
 
-> **Trilha:** [Kit do Time](../README.md) › [Seção](README.md) › **Documento atual**
+**One-sentence summary.** A single, direct sentence explaining what the reader
+will be able to do after reading.
 
-**Resumo em uma frase.** Frase única, direta, que explica o que o leitor
-consegue fazer depois de ler.
-
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | quem deve ler |
-| **Pré-requisitos** | o que precisa saber/ter antes |
-| **Tempo estimado** | 15 min |
-| **Estágio** | Estágio 2 — Especificação |
-| **Resultado esperado** | artefato concreto produzido |
+| **Target audience** | who should read it |
+| **Prerequisites** | what they need to know/have beforehand |
+| **Estimated time** | 15 min |
+| **Stage** | Stage 2 — Specification |
+| **Expected outcome** | concrete artifact produced |
 
 ---
 
-## Conceito
+## Concept
 
-Explicação didática do conceito (o quê, por que existe, qual problema resolve).
+Educational explanation of the concept (what it is, why it exists, which problem it solves).
 
-## Como funciona
+## How it works
 
-Diagrama Mermaid + explicação.
+Mermaid diagram + explanation.
 
-## Passo a passo
+## Step by step
 
-Checklist executável.
+Executable checklist.
 
-## Exemplo aplicado ao SIFAP
+## Example applied to SIFAP
 
-Exemplo concreto, nunca abstrato.
+Concrete example, never abstract.
 
-## Casos de uso
+## Use cases
 
-Quando usar / quando não usar.
+When to use / when not to use.
 
-## Critérios de conclusão
+## Completion criteria
 
-- [ ] item verificável
+- [ ] verifiable item
 
-## Erros comuns e como evitar
+## Common errors and how to avoid them
 
-Tabela sintoma → causa → correção.
+Symptom → cause → correction table.
 
-## Referências
+## References
 
-Links relacionados.
+Related links.
 
 ---
 
-### Continuar a leitura
-(bloco de navegação — ver §8)
+### Continue reading
+(navigation block—see §8)
 ```
 
-Adapte as seções ao conteúdo real do arquivo; não force seções vazias.
-O importante é: **contexto → conceito → prática → verificação → próximos passos**.
+Adapt the sections to the file's actual content; do not force empty sections.
+What matters is: **context → concept → practice → verification → next steps**.
 
 ---
 
-## 4. Diagramas Mermaid — tema neutro obrigatório
+## 4. Mermaid diagrams—mandatory neutral theme
 
-Substitua desenhos ASCII-art por Mermaid sempre que o diagrama representar
-fluxo, hierarquia, sequência, estados ou relações. Preserve blocos de código
-de terminal/código-fonte como estão (não são diagramas).
+Replace ASCII-art drawings with Mermaid whenever the diagram represents a
+flow, hierarchy, sequence, states, or relationships. Preserve terminal/source-code
+blocks as they are (they are not diagrams).
 
-### Paleta única (usar exatamente estes valores)
+### Single palette (use exactly these values)
 
-| Papel | fill | stroke | color |
+| Role | fill | stroke | color |
 |---|---|---|---|
-| Primário / destaque | `#F5F5F5` | `#171717` | `#171717` |
-| Secundário | `#FFFFFF` | `#525252` | `#171717` |
-| Terciário / apoio | `#FAFAFA` | `#A3A3A3` | `#404040` |
-| Sombreado / inativo | `#E5E5E5` | `#737373` | `#404040` |
-| Contorno forte (resultado) | `#FFFFFF` | `#171717` | `#171717` (stroke-width 2px) |
+| Primary / highlight | `#F5F5F5` | `#171717` | `#171717` |
+| Secondary | `#FFFFFF` | `#525252` | `#171717` |
+| Tertiary / supporting | `#FAFAFA` | `#A3A3A3` | `#404040` |
+| Shaded / inactive | `#E5E5E5` | `#737373` | `#404040` |
+| Strong outline (result) | `#FFFFFF` | `#171717` | `#171717` (stroke-width 2px) |
 
-### Cabeçalho padrão obrigatório em todo bloco Mermaid
+### Mandatory standard header in every Mermaid block
 
 ```mermaid
 %%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
@@ -148,213 +144,231 @@ flowchart LR
     classDef muted fill:#FAFAFA,stroke:#A3A3A3,color:#404040
     classDef result fill:#FFFFFF,stroke:#171717,color:#171717,stroke-width:2px
 
-    A["Estágio 1<br/>Arqueologia"]:::step --> B["Estágio 2<br/>Especificação"]:::step
-    B --> C["Estágio 3<br/>Implementação"]:::step
-    C --> D["Estágio 4<br/>Evolução"]:::step
-    D --> E["SIFAP 2.0<br/>em execução"]:::result
+    A["Stage 1<br/>Archaeology"]:::step --> B["Stage 2<br/>Specification"]:::step
+    B --> C["Stage 3<br/>Implementation"]:::step
+    C --> D["Stage 4<br/>Evolution"]:::step
+    D --> E["SIFAP 2.0<br/>running"]:::result
 ```
 
-Regras Mermaid:
+Mermaid rules:
 
-- Sempre incluir o bloco `%%{init: ...}%%` acima (copiar literal).
-- Nunca usar cores saturadas (azul, laranja, verde, vermelho, amarelo).
-- Rótulos entre aspas duplas: `A["Texto"]`. Quebra de linha com `<br/>`.
-- Sem emojis dentro do diagrama.
-- Tipos permitidos: `flowchart`, `sequenceDiagram`, `stateDiagram-v2`,
+- Always include the `%%{init: ...}%%` block above (copy it literally).
+- Never use saturated colors (blue, orange, green, red, yellow).
+- Enclose labels in double quotes: `A["Text"]`. Use `<br/>` for line breaks.
+- No emojis inside the diagram.
+- Allowed types: `flowchart`, `sequenceDiagram`, `stateDiagram-v2`,
   `journey`, `gantt`, `mindmap`, `timeline`, `erDiagram`, `classDiagram`,
   `quadrantChart`, `C4Context`.
-- Diagramas grandes: preferir `flowchart TB` com `subgraph` nomeado por área.
-- Não usar `linkStyle` com cor saturada; se necessário `stroke:#525252`.
+- For large diagrams, prefer `flowchart TB` with a `subgraph` named for each area.
+- Do not use `linkStyle` with a saturated color; use `stroke:#525252` if necessary.
 
-### Substituir sequências ASCII por Mermaid
+### Replace ASCII sequences with Mermaid
 
-Blocos como `A ──> B ──> C` ou caixas desenhadas com `┌─┐` devem virar Mermaid.
-Árvores de diretório (`├──`) **podem permanecer** como bloco de código `text`,
-mas sem emojis nos nós.
+Blocks such as `A ──> B ──> C` or boxes drawn with `┌─┐` must become Mermaid.
+Directory trees (`├──`) **may remain** as `text` code blocks, but without emojis
+in their nodes.
 
 ---
 
-## 5. Componentes visuais permitidos
+## 5. Allowed visual components
 
-### 5.1 Blocos de destaque (GitHub Alerts) — usar no lugar de emojis
+### 5.1 Callout blocks (GitHub Alerts)—use instead of emojis
 
 ```markdown
 > [!NOTE]
-> Informação complementar útil.
+> Useful supplementary information.
 
 > [!TIP]
-> Atalho ou boa prática.
+> Shortcut or good practice.
 
 > [!IMPORTANT]
-> Informação necessária para ter sucesso.
+> Information required for success.
 
 > [!WARNING]
-> Risco de perder trabalho ou quebrar o CI.
+> Risk of losing work or breaking CI.
 
 > [!CAUTION]
-> Consequência negativa séria; ação proibida.
+> Serious negative consequence; prohibited action.
 ```
 
-### 5.2 Badges — apenas escala de cinza
+### 5.2 Badges—grayscale only
 
-Use `flat-square` e apenas estas cores: `171717`, `404040`, `737373`, `A3A3A3`, `E5E5E5`.
+Use `flat-square` and only these colors: `171717`, `404040`, `737373`, `A3A3A3`, `E5E5E5`.
 
 ```markdown
-![Estágio 2](https://img.shields.io/badge/Est%C3%A1gio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-171717?style=flat-square)
-![Duração 90 min](https://img.shields.io/badge/Dura%C3%A7%C3%A3o-90%20min-737373?style=flat-square)
-![Nível Intermediário](https://img.shields.io/badge/N%C3%ADvel-Intermedi%C3%A1rio-A3A3A3?style=flat-square)
+![Stage 2](https://img.shields.io/badge/Stage-2%20%C2%B7%20Specification-171717?style=flat-square)
+![Duration 90 min](https://img.shields.io/badge/Duration-90%20min-737373?style=flat-square)
+![Intermediate Level](https://img.shields.io/badge/Level-Intermediate-A3A3A3?style=flat-square)
 ```
 
-Máximo 3 badges por documento, sempre logo após o resumo. Nunca colorido.
+Maximum of 3 badges per document, always immediately after the summary. Never use color.
 
-### 5.3 Tabelas
+### 5.3 Tables
 
-Preferir tabela a lista sempre que houver 2+ dimensões (item × atributo).
-Cabeçalhos em **negrito** apenas na primeira coluna quando for chave.
-Alinhamento: `|---|---|` (padrão). Evitar tabelas com mais de 5 colunas.
+Prefer a table to a list whenever there are 2+ dimensions (item × attribute).
+Use **bold** headers only in the first column when it is a key.
+Alignment: `|---|---|` (standard). Avoid tables with more than 5 columns.
 
 ### 5.4 Checklists
 
-Toda seção que descreve ações executáveis vira checklist GFM:
+Every section that describes executable actions becomes a GFM checklist:
 
 ```markdown
-## Passo a passo
+## Step by step
 
-- [ ] **Passo 1 — Ler os programas atribuídos.** Abrir `01-arqueologia/legado-sifap/natural-programs/`.
-- [ ] **Passo 2 — Registrar regras.** Preencher `business-rules-catalog.md`.
-- [ ] **Passo 3 — Validar.** Executar `npm run lint:docs`.
+- [ ] **Step 1 — Read the assigned programs.** Open `01-arqueologia/legado-sifap/natural-programs/`.
+- [ ] **Step 2 — Record rules.** Complete `business-rules-catalog.md`.
+- [ ] **Step 3 — Validate.** Run `npm run lint:docs`.
 ```
 
-Padrão do item: `- [ ] **Verbo no infinitivo — título curto.** Detalhe com caminho/comando.`
+Item pattern: `- [ ] **Infinitive verb — short title.** Detail with path/command.`
 
-### 5.5 Blocos `<details>` para conteúdo longo opcional
+### 5.5 `<details>` blocks for long optional content
 
 ```markdown
 <details>
-<summary><strong>Exemplo completo do arquivo gerado</strong></summary>
+<summary><strong>Complete example of the generated file</strong></summary>
 
-...conteúdo...
+...content...
 
 </details>
 ```
 
-### 5.6 Separadores
+### 5.6 Separators
 
-Usar `---` entre grandes áreas do documento. Não usar mais de um `---` seguido.
+Use `---` between major areas of the document. Do not use more than one consecutive `---`.
 
-### 5.7 Imagens/SVG existentes
+### 5.7 Existing images/SVGs
 
-Manter todas as referências a `assets/*.svg` existentes. Não remover imagens.
-Garantir que todo `![...]` tenha **texto alternativo descritivo** (acessibilidade),
-sem emoji.
-
----
-
-## 6. Tom didático (obrigatório)
-
-Cada conceito novo deve ter, nesta ordem:
-
-1. **Definição** — o que é, em uma frase objetiva.
-2. **Por que importa** — que problema resolve neste workshop.
-3. **Como se aplica ao SIFAP** — exemplo concreto do domínio (programas `.NSN`,
-   DDMs, pagamentos, benefícios, fiscalização).
-4. **Caso de uso** — situação real em que o leitor vai usar.
-5. **Erro comum** — o que costuma dar errado.
-
-Diretrizes de escrita:
-
-- Voz ativa, segunda pessoa ("você faz", "abra o arquivo").
-- Frases curtas. Um parágrafo = uma ideia.
-- Termos técnicos em inglês são mantidos (`bounded context`, `pull request`),
-  mas explicados na primeira ocorrência.
-- Nada de humor forçado, gírias de jogo ou hype. Profissional e acolhedor.
-- Nunca usar "simplesmente", "basta", "é fácil".
+Keep all existing references to `assets/*.svg`. Do not remove images.
+Ensure that every `![...]` has **descriptive alternative text** (accessibility),
+with no emojis.
 
 ---
 
-## 7. Glossário e termos do domínio
+## 6. Educational tone (mandatory)
 
-Manter e reforçar: SIFAP, Natural, Adabas, DDM, FDT, EARS, REQ-ID,
-`source_legacy`, ADR, bounded context, Spec-Kit, Strangler Fig,
-Modular Monolith, Testcontainers.
+Each new concept must include, in this order:
 
-Ao mencionar um termo pela primeira vez em um documento, dar definição curta
-entre parênteses ou em nota.
+1. **Definition**—what it is, in one objective sentence.
+2. **Why it matters**—which problem it solves in this workshop.
+3. **How it applies to SIFAP**—a concrete domain example (`.NSN` programs,
+   DDMs, payments, benefits, inspections).
+4. **Use case**—a real situation in which the reader will use it.
+5. **Common error**—what usually goes wrong.
+
+Writing guidelines:
+
+- Use active voice and the second person ("you do," "open the file").
+- Keep sentences short. One paragraph = one idea.
+- Keep technical terms in English (`bounded context`, `pull request`),
+  but explain them on first occurrence.
+- No forced humor, game jargon, or hype. Be professional and welcoming.
+- Never use "simply," "just," or "it is easy."
 
 ---
 
-## 8. Rodapé de navegação padrão
+## 7. Glossary and domain terms
 
-Substituir os rodapés atuais por este formato (sem emoji):
+Retain and reinforce: SIFAP (Payment Inspection and Administration System),
+Natural, Adabas, DDM, FDT, EARS, REQ-ID, `source_legacy`, ADR, bounded context,
+Spec-Kit, Strangler Fig, Modular Monolith, Testcontainers.
+
+When mentioning a term for the first time in a document, provide a short
+definition in parentheses or a note.
+
+---
+
+## 8. Standard navigation footer
+
+Replace current footers with this format (no emojis):
 
 ```markdown
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [Título anterior](arquivo-anterior.md)<br/><sub>Resumo em uma linha.</sub> | [Título seguinte](arquivo-seguinte.md)<br/><sub>Resumo em uma linha.</sub> |
+| [Previous title](previous-file.md)<br/><sub>One-line summary.</sub> | [Next title](next-file.md)<br/><sub>One-line summary.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>
 ```
 
-Se não houver anterior ou próximo, use `—` na célula.
-Blocos `<table>` em HTML existentes devem ser convertidos para este formato.
+If there is no previous or next document, use `—` in the cell.
+Existing HTML `<table>` blocks must be converted to this format.
 
 ---
 
-## 9. Cabeçalho de arquivo
+## 9. File header
 
-Substituir a linha longa de `markdownlint-disable` por a versão enxuta:
+**Do not add inline `<!-- markdownlint-disable ... -->` comments.**
+The repository's `.markdownlint-cli2.jsonc` is the single source of truth for
+lint configuration and already disables every rule the kit needs relaxed
+(`MD003`, `MD013`, `MD025`, `MD026`, `MD028`, `MD029`, `MD033`, `MD034`,
+`MD036`, `MD040`, `MD041`, `MD051`, `MD060`).
+
+Inline pragmas are harmful for two reasons:
+
+1. They duplicate configuration, so the two sources drift apart over time.
+2. In Copilot primitives (`.github/agents/`, `.github/prompts/`,
+   `.github/skills/`, `.github/instructions/`) the comment is loaded into the
+   model's context window, spending tokens on content that carries no
+   instructional value.
+
+Add a pragma **only** when a single file genuinely needs a rule that is not
+disabled globally, and disable only that rule. The only current example is
+`docs/adr/0000-template.md`, which needs `MD024` because the template
+deliberately repeats headings:
 
 ```markdown
-<!-- markdownlint-disable MD013 MD033 MD041 -->
+<!-- markdownlint-disable MD024 -->
 ```
 
-Apenas um `# H1` por arquivo. Hierarquia de títulos sem pular níveis
-(`#` → `##` → `###`).
+The first line of every file is therefore the `# H1` title (or the YAML
+frontmatter, when the file is a Copilot primitive). Only one `# H1` per file.
+Do not skip heading levels (`#` → `##` → `###`).
 
 ---
 
-## 10. Renomeações de arquivo acordadas (07-conceitos)
+## 10. Agreed file renames (07-conceitos)
 
-| Arquivo atual | Novo nome |
+| Current file | New name |
 |---|---|
 | `07-conceitos/01-spec-kit-como-mario-maker.md` | `07-conceitos/01-spec-driven-development.md` |
 | `07-conceitos/02-agentes-como-super-mario.md` | `07-conceitos/02-agentes-e-personas.md` |
 | `07-conceitos/05-ears-receita-de-cogumelo.md` | `07-conceitos/05-notacao-ears.md` |
 | `07-conceitos/06-adr-carta-da-princesa.md` | `07-conceitos/06-architecture-decision-records.md` |
 
-Os demais arquivos (`00-README.md`, `03-glossario-visual.md`,
-`04-3-modos-do-copilot.md`) mantêm o nome.
+The other files (`00-README.md`, `03-glossario-visual.md`,
+`04-3-modos-do-copilot.md`) keep their names.
 
-Renomear com `git mv`. Todo agente que encontrar links para os nomes antigos
-deve atualizá-los para os novos.
-
----
-
-## 11. Checklist de verificação por arquivo
-
-Antes de considerar um arquivo pronto:
-
-- [ ] Nenhum emoji (`grep -P '[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}\x{2B00}-\x{2BFF}\x{FE0F}\x{2190}-\x{21FF}]'` sem resultados relevantes)
-- [ ] Nenhuma referência a Mario/Nintendo/analogia de jogo
-- [ ] Nenhuma ocorrência de "hackathon"/"hackaton"
-- [ ] Todo bloco Mermaid tem o cabeçalho `%%{init:...}%%` e paleta neutra
-- [ ] Todas as ações executáveis estão em checklist `- [ ]`
-- [ ] Tabelas usadas onde há 2+ dimensões
-- [ ] Alertas GFM (`> [!NOTE]`) no lugar de emojis de aviso
-- [ ] Rodapé de navegação no formato do §8
-- [ ] Links relativos válidos (arquivo de destino existe)
-- [ ] Conteúdo factual preservado
+Rename files with `git mv`. Every agent that finds links to the former names
+must update them to the new names.
 
 ---
 
-### Continuar a leitura
+## 11. Per-file verification checklist
 
-| Anterior | Próximo |
+Before considering a file complete:
+
+- [ ] No emojis (`grep -P '[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}\x{2B00}-\x{2BFF}\x{FE0F}\x{2190}-\x{21FF}]'` returns no relevant results)
+- [ ] No references to Mario/Nintendo/game analogies
+- [ ] No occurrences of "hackathon"/"hackaton"
+- [ ] Every Mermaid block has the `%%{init:...}%%` header and neutral palette
+- [ ] All executable actions are in `- [ ]` checklists
+- [ ] Tables are used where there are 2+ dimensions
+- [ ] GFM alerts (`> [!NOTE]`) are used instead of warning emojis
+- [ ] The navigation footer uses the §8 format
+- [ ] Relative links are valid (the target file exists)
+- [ ] Factual content is preserved
+
+---
+
+### Continue reading
+
+| Previous | Next |
 |---|---|
-| [Índice da documentação](README.md)<br/><sub>Todos os documentos de apoio do kit.</sub> | [FAQ](FAQ.md)<br/><sub>Perguntas frequentes do workshop.</sub> |
+| [Documentation index](README.md)<br/><sub>All supporting documents in the kit.</sub> | [FAQ](FAQ.md)<br/><sub>Frequently asked questions about the workshop.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

@@ -3,7 +3,7 @@ name: "discovery-report"
 description: "Synthesizes Stage 1 outputs into a single discovery report ready for the Stage 2 handoff."
 argument-hint: "team=\"Team 07\""
 agent: "archaeologist"
-tools: ["search", "edit"]
+tools: ["read", "search", "edit"]
 ---
 # /discovery-report
 

@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Agents and Personas — The Two Context Layers
 
 > **Path:** [Team Kit](../README.md) › [Concepts](00-README.md) › **Agents and Personas**

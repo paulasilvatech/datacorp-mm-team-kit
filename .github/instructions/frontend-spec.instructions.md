@@ -5,7 +5,7 @@ applyTo: "frontend/app/**,frontend/components/**,frontend/src/app/**,frontend/sr
 
 # Frontend Specification — Next.js 15 + TypeScript
 
-This file is activated when you work with TypeScript, TSX, `app/`, or `components/` within `frontend/`. It enforces the frontend conventions for the modernized system.
+This file activates when you work with TypeScript, TSX, App Router routes, or reusable components within `frontend/`. It teaches the platform contract for the modernized SIFAP (Payment Inspection and Administration System): Next.js 15 App Router, Server Components, Server Actions, strict TypeScript, Tailwind CSS, shadcn/ui, accessibility baseline, and Vitest integration. It owns framework, typing, styling, and server/client boundary rules; [`frontend.instructions.md`](frontend.instructions.md) owns component craft, client interaction details, state choreography, accessibility execution, and user-facing flows.
 
 ## Stack Summary
 
@@ -155,11 +155,34 @@ describe('ResourceCard', () => {
 
 Test name: `should_[expected behavior]_when_[condition]` or `displays [what] when [condition]`.
 
-## What NOT to Do
+## Conventions
 
-- **No `export default`** in component files — use named exports
-- **No `any`** — use `unknown` and type guards
-- **No `.then()` chains** — use `async/await`
-- **No CSS modules or styled-components** — use Tailwind
-- **No client-side data fetching in Server Components** — fetch directly with `await`
-- **No secrets in `'use client'` files** — environment variables beginning with `NEXT_PUBLIC_` are exposed to the browser
+| Rule | Rationale |
+|---|---|
+| Next.js 15 App Router with Server Components by default | Minimizes client JavaScript and keeps data access server-side |
+| `strict: true`, no `any`, and no `// @ts-ignore` | Type errors surface before runtime |
+| Named exports for reusable components | Imports stay consistent; App Router route files may keep required defaults |
+| Server Actions for mutations | Forms mutate through a server boundary instead of client-side API calls |
+| Tailwind CSS and shadcn/ui for UI | Avoids ad hoc styling stacks and keeps components consistent |
+| Vitest + Testing Library with behavior-focused names | Tests describe user-visible behavior and expected conditions |
+
+## Do / Do Not
+
+| Do | Do not |
+|---|---|
+| Use named exports in component files | Use `export default` for reusable components |
+| Use `unknown` with type guards | Use `any` or suppress strict TypeScript |
+| Use `async`/`await` for async flows | Chain `.then()` calls |
+| Style with Tailwind and shadcn/ui | Add CSS modules or styled-components |
+| Fetch directly with `await` in Server Components | Add client-side data fetching to Server Components |
+| Keep secrets server-side | Put secrets in `'use client'` files or `NEXT_PUBLIC_` variables |
+
+## Checklist Before Opening a PR
+
+- [ ] `tsconfig.json` stays strict; no `any` or `// @ts-ignore` was added
+- [ ] Server Components remain the default and `'use client'` appears only where interaction requires it
+- [ ] Mutations use Server Actions and validate data before calling the backend API
+- [ ] Reusable components use named exports; App Router route files use defaults only where Next.js requires them
+- [ ] Styling uses Tailwind utilities and shadcn/ui components without a new styling dependency
+- [ ] Accessibility basics are covered: labels, keyboard operation, heading order, and non-color signals
+- [ ] Vitest + Testing Library tests cover changed behavior with the agreed test naming pattern

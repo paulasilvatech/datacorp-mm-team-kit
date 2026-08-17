@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Discovery Report — Stage 1: Digital Archaeology
 
 > **Track:** [Team Kit](../README.md) › [Stage 1](README.md) › **Discovery Report**

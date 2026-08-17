@@ -2,9 +2,6 @@
 name: "doc-style-lint"
 description: "Use when reviewing documentation for style, clarity, inclusive language, or compliance with Microsoft or Google style guides. Triggers include \"doc review\", \"style guide\", \"plain language\", \"inclusive language\", and \"readability\"."
 ---
-
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 # Documentation style lint
 
 ## When to invoke
@@ -103,4 +100,7 @@ Replace:
 
 ## Quality gate
 
-Every document must pass the configured automated linters before human review.
+- [ ] The document passes the repository's configured linters (for example Vale, Alex.js, markdownlint) before human review.
+- [ ] Voice is active and present tense, with sentence-case headings.
+- [ ] No exclusionary terms remain; flagged terms are replaced with inclusive alternatives.
+- [ ] Every code example is tested and every link resolves.

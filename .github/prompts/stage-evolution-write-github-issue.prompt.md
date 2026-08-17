@@ -1,9 +1,9 @@
 ---
 name: "write-github-issue"
 description: "Writes a high-quality GitHub issue ready for the Copilot Agent in the cloud."
-argument-hint: "feature=\"<trabalho delimitado>\" context=<context> reqs=REQ-XXX"
+argument-hint: "feature=\"<scoped-work>\" context=<context> reqs=REQ-XXX"
 agent: "evolution"
-tools: ["search", "edit"]
+tools: ["read", "search", "edit", "github/*"]
 ---
 # /write-github-issue
 
@@ -117,5 +117,5 @@ Remind the team: this is a draft. Review it, adjust the scope if necessary, then
 ## Invocation Example
 
 ```
-/write-github-issue feature="<trabalho delimitado>" context=<context> reqs=REQ-XXX
+/write-github-issue feature="<scoped-work>" context=<context> reqs=REQ-XXX
 ```

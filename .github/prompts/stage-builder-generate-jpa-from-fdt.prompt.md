@@ -3,7 +3,7 @@ name: "generate-jpa-from-fdt"
 description: "Generates JPA entity classes from Adabas FDT definitions, using JSONB for MU/PE fields."
 argument-hint: "ddm=01-arqueologia/legado-sifap/adabas-ddms/<DDM>.ddm context=<context> package=<java.package> dateformat=<format>"
 agent: "builder"
-tools: ["search", "edit", "execute"]
+tools: ["read", "search", "edit", "execute"]
 ---
 # /generate-jpa-from-fdt
 

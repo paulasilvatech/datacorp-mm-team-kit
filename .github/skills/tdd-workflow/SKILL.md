@@ -1,11 +1,8 @@
 ---
 name: "tdd-workflow"
-description: "Use when practicing test-driven development, writing a failing test first, or guiding red-green-refactor. Triggers include 'TDD', 'red-green-refactor', 'test first', 'failing test', and 'write a test'."
+description: "Use when practicing test-driven development, writing a failing test first, or guiding red-green-refactor. Triggers include \"TDD\", \"red-green-refactor\", \"test first\", \"failing test\", and \"write a test\"."
 ---
-
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
-# TDD Workflow
+# TDD workflow
 
 ## When to invoke
 
@@ -59,6 +56,30 @@ Order tests to guide the design:
 - Tests that duplicate the implementation (change detectors).
 - Huge test fixtures shared across files—they are fragile.
 - Asserting implementation details (private methods, exact SQL strings).
+
+## Output template
+
+```java
+// REQ-NNN: <behavior under test>
+@Test
+void calculatesTaxForTaxExemptCustomer() {
+    // Arrange
+    var customer = new Customer(TAX_EXEMPT);
+    // Act
+    var tax = calculator.taxFor(customer);
+    // Assert
+    assertThat(tax).isEqualTo(Money.ZERO);
+}
+```
+
+Commit sequence per behavior: `red: add failing test` -> `green: make it pass` -> `refactor: <improvement>`.
+
+## Quality gate
+
+- [ ] No production code was written without a failing test first.
+- [ ] Only one test is red at a time, and each cycle covers one behavior.
+- [ ] The refactor step ran while the tests were green.
+- [ ] Test names describe behavior and reference their REQ-ID in a comment.
 
 ## References
 

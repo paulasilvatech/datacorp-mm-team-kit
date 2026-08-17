@@ -1,10 +1,7 @@
 ---
 name: "iac-review"
-description: "Use when reviewing Terraform, Bicep, or CloudFormation, checking drift, or hardening infrastructure code. Triggers include 'review terraform', 'review bicep', 'IaC review', 'drift detection', and 'state file'."
+description: "Use when reviewing Terraform, Bicep, or CloudFormation, checking drift, or hardening infrastructure code. Triggers include \"review terraform\", \"review bicep\", \"IaC review\", \"drift detection\", and \"state file\"."
 ---
-
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 # IaC review
 
 ## When to invoke
@@ -57,6 +54,29 @@ description: "Use when reviewing Terraform, Bicep, or CloudFormation, checking d
 - **`depends_on` everywhere** → usually signals missing implicit dependencies; remove it unless truly necessary.
 - **Data sources used for values available at plan time** → unnecessary API calls and unstable CI.
 - **Environment differences through `terraform.workspace` string interpolation** → fragile; use tfvars or separate stacks.
+
+## Output template
+
+```markdown
+## IaC review - <module or stack>
+
+| Area | Finding | Severity | Recommendation |
+|---|---|---|---|
+| State | Local state, no locking | High | Move to a remote backend with locking |
+| Security | Storage account allows public access | High | Set public_network_access_enabled = false |
+| Change safety | Provider version unpinned | Medium | Pin with ~> major.minor |
+
+**Blocking findings**: <count>
+**Verdict**: approve / request changes
+```
+
+## Quality gate
+
+- [ ] `terraform fmt` and `terraform validate` pass, and the plan is attached to the PR.
+- [ ] No secrets appear in code, variables, or state; secrets use Key Vault or Secrets Manager.
+- [ ] Provider and module versions are pinned; stateful resources set `prevent_destroy`.
+- [ ] `tfsec` or `checkov` reports no findings, or every exception is documented.
+- [ ] Every resource carries `project`, `environment`, and `owner` tags.
 
 ## References
 

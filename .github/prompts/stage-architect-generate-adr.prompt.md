@@ -3,7 +3,7 @@ name: "generate-adr"
 description: "Drafts an Architecture Decision Record (ADR) for a specific design choice the team is making."
 argument-hint: "title=\"Map Adabas MU fields to JSONB vs ElementCollection\""
 agent: "architect"
-tools: ["search", "edit"]
+tools: ["read", "search", "edit"]
 ---
 # /generate-adr
 

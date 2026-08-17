@@ -3,7 +3,7 @@ name: "write-ears-spec"
 description: "Guides the team in recording confirmed EARS requirements in spec.md with mandatory traceability."
 argument-hint: "feature=NNN-feature-name rules=01-arqueologia/business-rules-catalog.md"
 agent: "architect"
-tools: ["search", "edit"]
+tools: ["read", "search", "edit"]
 ---
 # /write-ears-spec
 

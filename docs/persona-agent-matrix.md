@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Persona-Agent Matrix
 
 ![Reference Type](https://img.shields.io/badge/Type-Reference-171717?style=flat-square)

@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Dependency Map — Legacy SIFAP
 
 > **Track:** [Team Kit](../README.md) › [Stage 1](README.md) › **Dependency Map**

@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Legacy Inventory — Team `<fill in>`
 
 > **Track:** [Team Kit](../README.md) › [Stage 1](README.md) › **Inventory**
@@ -35,7 +33,7 @@
 | Extension | Count | Likely purpose |
 |---|---|---|
 | `.NSN` | <!-- fill in --> | Natural source programs |
-| `.ddm` | <!-- preencher --> | Data Definition Modules (Adabas) |
+| `.ddm` | <!-- fill in --> | Data Definition Modules (Adabas) |
 | `.md` / `.docx` | <!-- fill in --> | Historical documentation |
 
 ---

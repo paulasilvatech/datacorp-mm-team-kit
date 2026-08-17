@@ -2,9 +2,6 @@
 name: "context-audit"
 description: "Use when a new engineer joins the team, during onboarding to an unfamiliar codebase, or when auditing whether the team shares a common understanding. Triggers include \"onboard\", \"context\", \"knowledge gap\", \"bus factor\", and \"team understanding\"."
 ---
-
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 # Context audit
 
 ## When to invoke
@@ -27,7 +24,7 @@ Measure the team's shared understanding, expose knowledge concentrated in one pe
 
 If the answers differ significantly, the team has a context gap.
 
-## Outputs
+## Output template
 
 ### 1. Shared architecture map (1 page)
 
@@ -63,4 +60,7 @@ Any row with a bus factor of 1 for a high-criticality module requires a P0 actio
 
 ## Quality gate
 
-A new engineer must be able to deliver a low-risk change by the end of week 1 with paired review. Otherwise, the audit has failed.
+- [ ] The shared architecture map, risk heat map, and week 1 runbook all exist.
+- [ ] Every high-criticality module with a bus factor of 1 has a P0 remediation action.
+- [ ] The runbook includes coding and system-operation tasks, not only reading.
+- [ ] A new engineer can deliver a low-risk change by the end of week 1 with paired review.

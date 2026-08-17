@@ -1,4 +1,4 @@
-<!-- markdownlint-disable MD013 MD024 MD028 MD033 MD041 -->
+<!-- markdownlint-disable MD024 -->
 
 # ADR-NNNN: Short, Decisive Title
 

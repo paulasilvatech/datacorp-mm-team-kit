@@ -3,7 +3,7 @@ name: "security-self-review"
 description: "Self-review checklist for security and OWASP Top 10 issues in a newly built feature."
 argument-hint: "context=<context> files=<Controller>.java,<Service>.java,<Entity>.java"
 agent: "builder"
-tools: ["search", "edit"]
+tools: ["read", "search", "edit"]
 ---
 # /security-self-review
 
@@ -115,7 +115,7 @@ Search for:
 - Response DTOs that include fields such as `password`, `token`, or `ssn`
 
 **Step 6 — Identify rate-limiting opportunities.**
-Flag any write endpoint (POST, PUT, DELETE) without rate limiting. Note: the team may not implement rate limiting during the hackathon, but it must be documented as a production concern.
+Flag any write endpoint (POST, PUT, DELETE) without rate limiting. Note: the team may not implement rate limiting during the workshop, but it must be documented as a production concern.
 
 **Step 7 — Compile the report.**
 Write to `03-implementacao/security-review-[context].md`, with all findings ordered by severity (High first). Include a summary count and a section listing areas where a real scanner (SAST/DAST) should be run.

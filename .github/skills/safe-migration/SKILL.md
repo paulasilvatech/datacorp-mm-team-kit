@@ -1,11 +1,8 @@
 ---
 name: "safe-migration"
-description: "Use when planning an online schema change, a zero-downtime migration, or a rollback for a deployment that changed a table. Triggers include 'migration', 'ALTER TABLE', 'zero-downtime', 'expand-contract', and 'backfill'."
+description: "Use when planning an online schema change, a zero-downtime migration, or a rollback for a deployment that changed a table. Triggers include \"migration\", \"ALTER TABLE\", \"zero-downtime\", \"expand-contract\", and \"backfill\"."
 ---
-
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
-# Safe Schema Migration
+# Safe schema migration
 
 ## When to invoke
 
@@ -44,6 +41,32 @@ Every schema change that affects live traffic goes through **three deployments**
 - A migration coupled to the application deployment that cannot be rolled back independently.
 - An irreversible step without a backup.
 - A backfill that rewrites every row in one transaction.
+
+## Output template
+
+```markdown
+## Migration plan - <change>
+
+| Field | Value |
+|---|---|
+| Change type | additive / destructive |
+| Pattern stage | Expand / Migrate / Contract |
+| Migration file | backend/src/main/resources/db/migration/V<N>__<desc>.sql |
+| Forward plan | <DDL / backfill> |
+| Rollback plan | <how to reverse independently of the app deploy> |
+| Lock impact | <estimate from a production copy> |
+
+### Backfill
+- Batch size <rows>, pause <ms>, idempotent yes/no
+```
+
+## Quality gate
+
+- [ ] Destructive changes are split across expand / migrate / contract deployments.
+- [ ] Forward and rollback plans exist and are independent of the app deployment.
+- [ ] Indexes are built with `CREATE INDEX CONCURRENTLY`; no full-table lock ships.
+- [ ] Backfills run in bounded, idempotent batches within the replication-lag budget.
+- [ ] Duration and lock impact were estimated on a production-sized copy.
 
 ## References
 

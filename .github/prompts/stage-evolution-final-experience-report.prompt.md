@@ -3,13 +3,13 @@ name: "final-experience-report"
 description: "Concludes Stage 4 with a team retrospective on the day's experience with agents."
 argument-hint: "team=\"Team 07\""
 agent: "evolution"
-tools: ["edit"]
+tools: ["read", "search", "edit"]
 ---
 # /final-experience-report
 
 ## Objective
 
-Capture the team's honest reflections on using AI agents throughout the hackathon. The agent facilitates the retrospective but does not write the answers — the team speaks, and the agent formats.
+Capture the team's honest reflections on using AI agents throughout the workshop. The agent facilitates the retrospective but does not write the answers — the team speaks, and the agent formats.
 
 ## When to Invoke
 
