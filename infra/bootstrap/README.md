@@ -2,7 +2,7 @@
 
 > **Track:** [Team Kit](../../README.md) › [Infrastructure](../adabas-natural-lab/README.md) › **State Bootstrap**
 
-**Creates the Azure Storage account that every other Terraform module in this repository uses as its remote backend.**
+**Optional helper for tenants that allow an Azure Storage remote backend. The Microsoft corporate workshop tenant does not, so the lab defaults to local state.**
 
 ![Runbook Type](https://img.shields.io/badge/Type-Runbook-171717?style=flat-square) ![Run Once](https://img.shields.io/badge/Frequency-Run%20Once-737373?style=flat-square) ![Azure Subscription Cost](https://img.shields.io/badge/Cost-Azure%20Subscription-A3A3A3?style=flat-square)
 
@@ -11,10 +11,14 @@
 | **Target audience** | DevOps Engineer, or whoever owns the Azure subscription |
 | **Prerequisites** | Azure subscription, authenticated Azure CLI, Terraform 1.14.x, Owner (or Contributor + User Access Administrator) |
 | **Estimated time** | 5 minutes, run once per subscription |
-| **Stage** | Prerequisite for every module under `infra/` |
-| **Expected result** | A hardened storage account and container, plus the three values the lab module and CI need |
+| **Stage** | Optional; do not run in the Microsoft corporate workshop tenant |
+| **Expected result** | In permissive tenants only: a hardened storage account and container for Terraform state |
 
 ---
+
+
+> [!IMPORTANT]
+> In tenant `35a95b67-eacb-4fb6-a20d-79635544da88`, the management-group policy assignment **MCAPSGov Deploy and Modify Policies** forces storage account `publicNetworkAccess=Disabled`. That makes the Blob data plane unreachable from facilitator laptops and GitHub-hosted runners. Do **not** request a policy exemption for this workshop. Use local state for [`infra/adabas-natural-lab`](../adabas-natural-lab/README.md) instead.
 
 ## Why this module exists
 
@@ -26,16 +30,16 @@ Terraform state is the map between your configuration and the real resources in 
 | Two people applying at once silently corrupt each other | The backend takes a blob lease; the second apply waits |
 | A lost laptop means orphaned, still-billing Azure resources | State survives the laptop |
 
-CI cannot deploy at all without a shared backend, so this is the first thing to run.
+A shared backend is useful in tenants where storage public network access is allowed. In the Microsoft corporate workshop tenant, GitHub Actions cannot own local state and cannot reach a Blob backend, so the workflow is validation-only and apply/destroy are facilitator-local.
 
 ## Why this module keeps local state
 
 This module creates the backend, so it cannot consume it. That is the chicken-and-egg, and the resolution is deliberate:
 
 - **`infra/bootstrap/` runs on local state.** Its own `terraform.tfstate` stays on the operator's machine and is gitignored.
-- **Every other module uses the remote backend** this one produces.
+- **Only tenants that opt in to remote state use the backend** this one produces. The Microsoft corporate workshop tenant does not.
 
-Losing the bootstrap state is recoverable and low impact: the storage account keeps existing and keeps serving every other module. You would only need to `terraform import` the resources back if you wanted to change the backend itself. Losing a *workload* module's state is the expensive failure, and that is exactly the one this module removes.
+In a permissive tenant that actually uses this backend, losing the bootstrap state is recoverable and low impact: the storage account keeps existing and keeps serving any modules configured to use it. You would only need to `terraform import` the resources back if you wanted to change the backend itself. Losing a *workload* module's state is the expensive failure; in the Microsoft corporate workshop tenant, mitigate that by backing up the lab local state after every apply or destroy.
 
 ## What gets created
 
@@ -147,7 +151,7 @@ az role assignment create \
 
 ## Feed GitHub Actions
 
-`.github/workflows/deploy-lab.yml` reads these as **repository variables**, never as secrets — none of them is one:
+If you opt in to a remote backend in a tenant that allows reachable storage, store these as repository variables. The current `deploy-lab.yml` does **not** read them because the supported workshop path is local state:
 
 ```bash
 gh variable set TFSTATE_RESOURCE_GROUP  --body "$(terraform output -raw resource_group_name)"
@@ -155,11 +159,65 @@ gh variable set TFSTATE_STORAGE_ACCOUNT --body "$(terraform output -raw storage_
 gh variable set TFSTATE_CONTAINER       --body "$(terraform output -raw container_name)"
 ```
 
+The workflow also needs the OIDC login variables:
+
+```bash
+gh variable set AZURE_CLIENT_ID       --body "<APP-REGISTRATION-CLIENT-ID>"
+gh variable set AZURE_TENANT_ID       --body "35a95b67-eacb-4fb6-a20d-79635544da88"
+gh variable set AZURE_SUBSCRIPTION_ID --body "bf39c110-94c5-4bfa-959d-216b1f971d81"
+```
+
+If and only if a tenant opts in to the remote backend, grant that app registration the same backend data-plane role as the human operator:
+
+```bash
+CI_OBJECT_ID="$(az ad sp show --id "<APP-REGISTRATION-CLIENT-ID>" --query id -o tsv)"
+az role assignment create \
+  --assignee "$CI_OBJECT_ID" \
+  --role "Storage Blob Data Contributor" \
+  --scope "$(az storage account show \
+    --resource-group sifap-shared-rg-tfstate-eus2 \
+    --name sifaptfstateehht4z \
+    --query id -o tsv)"
+```
+
+## Attempted values for subscription `ME-M365CPI95372353-paulasilva-3`
+
+On 2026-08-17, this module was applied in tenant `35a95b67-eacb-4fb6-a20d-79635544da88`, subscription `bf39c110-94c5-4bfa-959d-216b1f971d81`, with:
+
+```hcl
+owner                    = "paulanunes85"
+account_replication_type = "LRS"
+location                 = "eastus2"
+```
+
+Terraform created resource group `sifap-shared-rg-tfstate-eus2` and storage account `sifaptfstateehht4z`, but Azure policy forced `publicNetworkAccess = Disabled`. The data-plane checks failed with:
+
+```text
+The request may be blocked by network rules of storage account.
+```
+
+The lab module also failed to initialize because Terraform could not list blobs:
+
+```text
+Error: listing blobs: unexpected status 403 AuthorizationFailure
+```
+
+Those resources were then destroyed with the bootstrap local state. Verification after destroy:
+
+```bash
+az group exists --name sifap-shared-rg-tfstate-eus2   # false
+az storage account show \
+  --resource-group sifap-shared-rg-tfstate-eus2 \
+  --name sifaptfstateehht4z                           # ResourceNotFound
+```
+
+The current design for this tenant is local state in `infra/adabas-natural-lab/terraform.tfstate`, backed up by the facilitator after every apply or destroy.
+
 ---
 
 ## Terraform version alignment
 
-Every module in this repository pins `required_version = "~> 1.14.0"`, and both workflows install the same exact patch. Version drift between a laptop and CI is not cosmetic: the state file records the version that wrote it, and an older Terraform refuses to read state written by a newer one. That failure surfaces mid-apply, against the shared backend, with a lease held.
+Every module in this repository pins `required_version = "~> 1.14.0"`, and workflows install the same exact patch. Version drift between a laptop and CI is not cosmetic: the state file records the version that wrote it, and an older Terraform refuses to read state written by a newer one.
 
 ```bash
 terraform version   # must report v1.14.x
@@ -173,7 +231,7 @@ A state account holding a few hundred kilobytes of blobs costs cents per month. 
 
 ## Teardown
 
-There is no routine teardown. `prevent_destroy` is set on the resource group, the storage account, and the container, so `terraform destroy` fails by design.
+There is no routine teardown for an active remote-state backend. `prevent_destroy` is set on the resource group, the storage account, and the container, so `terraform destroy` fails by design unless you deliberately lift those guards.
 
 To retire a subscription entirely, in this order:
 
@@ -207,8 +265,8 @@ terraform destroy
 
 - [ ] `terraform output storage_account_name` returns an account name.
 - [ ] `az storage account show -n <ACCOUNT> --query allowSharedKeyAccess` returns `false`.
-- [ ] The lab module runs `terraform init` against the backend without a key or SAS token.
-- [ ] `TFSTATE_RESOURCE_GROUP`, `TFSTATE_STORAGE_ACCOUNT`, and `TFSTATE_CONTAINER` exist as GitHub repository variables.
+- [ ] In a permissive tenant only, the lab module runs `terraform init` against the backend without a key or SAS token.
+- [ ] In the Microsoft corporate workshop tenant, do not use this backend; initialize the lab with local state.
 - [ ] No `terraform.tfstate` from this module is tracked by git.
 
 ---
