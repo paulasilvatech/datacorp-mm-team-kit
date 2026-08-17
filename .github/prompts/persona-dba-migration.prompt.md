@@ -38,7 +38,7 @@ During Stage 3/4, when a task in `plan.md` requires a schema change, or when map
 
 - Confirm the change is in `plan.md`, then choose a Flyway version `Vyyyymmddhhmm__short_description.sql`
 - Design an online-safe sequence: nullable column, then batched backfill, then constraints last
-- Map Adabas formats faithfully (packed `P9,2` → `NUMERIC(9,2)`, `MU` → child table or JSONB, `PE` → child table, super-descriptor → composite index)
+- Map Adabas formats faithfully (Natural packed `P9.2` / DDM `P 9,2` → `NUMERIC(9,2)`, `MU` → child table or JSONB, `PE` → child table, super-descriptor → composite index)
 - Write a separate idempotent backfill for large tables and apply constraints only after it completes
 - Write the paired `*.undo.sql` rollback and document replication, vacuum, and plan-cache side effects
 - Test forward and rollback against a staging snapshot and paste the output
@@ -98,7 +98,7 @@ You are the `@dba`. The team needs a schema change turned into a safe, reversibl
 Verify the change appears in `plan.md`. If it does not, stop and route it to architecture review—the migration follows the plan, never the other way around. Record the `REQ-ID` and EARS statement.
 
 **Step 2 — Choose the version and map the types.**
-Name the file `Vyyyymmddhhmm__short_description.sql`. When mapping an Adabas DDM, translate formats faithfully: packed `P9,2` → `NUMERIC(9,2)` (money is `NUMERIC`, never `FLOAT`); `MU` → a child table or JSONB; `PE` → a child table; a super-descriptor → a composite index. Natural format specs use a comma decimal separator, so `P9,2` means 9 integer plus 2 fractional digits (see [`natural-adabas`](../instructions/natural-adabas.instructions.md)).
+Name the file `Vyyyymmddhhmm__short_description.sql`. When mapping an Adabas DDM, translate formats faithfully: Natural packed `P9.2` / DDM `P 9,2` → `NUMERIC(9,2)` (money is `NUMERIC`, never `FLOAT`); `MU` → a child table or JSONB; `PE` → a child table; a super-descriptor → a composite index. In the Natural CE 9.3.3 lab image, Natural format specs use a period decimal separator, so `P9.2` means 9 integer plus 2 fractional digits. Comma forms such as `P9,2` fail with `NAT0165` in source declarations (see [`natural-adabas`](../instructions/natural-adabas.instructions.md)).
 
 **Step 3 — Design for online migration.**
 Prefer additive, non-blocking steps: add a nullable column, then backfill, then add constraints last. Build indexes with `CREATE INDEX CONCURRENTLY` (without `IF NOT EXISTS`, which needs a separate guard). Avoid `ALTER TABLE` operations that require an `ACCESS EXCLUSIVE` lock on a hot table; if one is unavoidable, schedule a maintenance window and say so.

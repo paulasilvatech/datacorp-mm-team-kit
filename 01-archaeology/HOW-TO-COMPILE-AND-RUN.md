@@ -257,8 +257,8 @@ Reversing this order produces a DDM that compiles and a program that fails on it
 | File | What it is | How to use it |
 |---|---|---|
 | [`FDT-150-BENEFICIARY.txt`](legacy-sifap/adabas-ddms/FDT-150-BENEFICIARY.txt) | `ADAREP` output for the physical FDT of file 150 | Ready specification for defining file 150 |
-| [`BENEFICIARY.ddm`](legacy-sifap/adabas-ddms/BENEFICIARY.ddm) | `LISTDDM` listing—DBID 057, FNR 150 | Source for the long names in DDM 150 |
-| [`SOCIAL-PROGRAM.ddm`](legacy-sifap/adabas-ddms/SOCIAL-PROGRAM.ddm) | `LISTDDM` listing—DBID 057, FNR 151 | Specification for file **and** DDM 151 |
+| `BENEFIC.ddm` | `LISTDDM` listing—DBID 057, FNR 150 | Source for the long field names in DDM 150, the Beneficiary file |
+| `SOCPROG.ddm` | `LISTDDM` listing—DBID 057, FNR 151 | Specification for file 151 and DDM member `SOCPROG` |
 | [`PAYMENT.ddm`](legacy-sifap/adabas-ddms/PAYMENT.ddm) | `LISTDDM` listing—DBID 057, FNR 152 | Specification for file **and** DDM 152 |
 | [`AUDIT.ddm`](legacy-sifap/adabas-ddms/AUDIT.ddm) | `LISTDDM` listing—DBID 057, FNR 153 | Specification for file **and** DDM 153 |
 
@@ -302,9 +302,10 @@ The repository's `.ddm` files are **output from the `LISTDDM` utility**: printed
 The DDM must be created inside Natural—using the `SYSDDM` utility in a Natural session or NaturalONE's DDM editor. The most economical route is to **generate the DDM from the already defined Adabas file**: the utility reads the FDT and creates entries with short names, and you complete the long names using the corpus listing as a dictionary. The exact name of this generation function varies by version—confirm it in the documentation before looking for it in the menu.
 
 - [ ] **Generate the DDM** from the corresponding FNR.
+- [ ] **Use the Natural member name that fits the 8-character limit**: `BENEFIC`, `SOCPROG`, `PAYMENT`, or `AUDIT`.
 - [ ] **Complete the long names** exactly as shown in the listing: `AB` → `NUM-CPF`, `CH` → `AMT-FAMILY-INCOME`, and so on. A different long name breaks every corpus `VIEW OF`.
 - [ ] **Check format and length** field by field against the listing.
-- [ ] **Repeat for all four DDMs**: `BENEFICIARY`, `SOCIAL-PROGRAM`, `PAYMENT`, `AUDIT`.
+- [ ] **Repeat for all four DDMs**: `BENEFIC`, `SOCPROG`, `PAYMENT`, `AUDIT`.
 
 ---
 
@@ -349,7 +350,7 @@ Three notes about this block:
 
 | Dependency | How it appears in `CADBENEF.NSP` | Type |
 |---|---|---|
-| `BENEFICIARY` | `1 BENEFICIARY-V VIEW OF BENEFICIARY` | DDM / FNR 150 |
+| `BENEFIC` | `1 BENEFICIARY-V VIEW OF BENEFIC` | DDM / FNR 150, the Beneficiary file |
 | `AUDIT` | `1 AUDIT-V VIEW OF AUDIT` | DDM / FNR 153 |
 | `PDAVALID` | `LOCAL USING PDAVALID` | PDA |
 | `SUBVALCP` | `CALLNAT 'SUBVALCP' ...` | Subprogram |

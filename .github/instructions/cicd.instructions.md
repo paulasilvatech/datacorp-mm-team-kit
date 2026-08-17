@@ -12,6 +12,7 @@ This file activates when you edit workflows under `.github/workflows/`, composit
 | Workflow · Job | What it enforces | Blocking? |
 |---|---|---|
 | `ci.yml` · `detect-changes` | `dorny/paths-filter` sets `backend`/`frontend`/`infra` outputs so downstream jobs run only on relevant changes | n/a |
+| `ci.yml` · `natural-format` | Fails when Natural source uses comma decimal format declarations such as `(P9,2)` instead of the Natural CE period form `(P9.2)` | Yes |
 | `ci.yml` · `backend` | JDK 21 (temurin) + `./mvnw -B verify`; uploads the Jacoco report | Yes |
 | `ci.yml` · `frontend` | pnpm 9 + Node 20; `pnpm lint`, `pnpm typecheck`, `pnpm test --run --coverage` | Yes |
 | `ci.yml` · `infra` | `terraform fmt -check -recursive`, then `init -backend=false` + `validate` per module | Yes |
