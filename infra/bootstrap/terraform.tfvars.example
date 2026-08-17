@@ -1,0 +1,60 @@
+# Copy to terraform.tfvars and adjust before running terraform apply.
+#
+#   cp terraform.tfvars.example terraform.tfvars
+#
+# terraform.tfvars is gitignored at the repository root. Nothing secret belongs
+# here either way: this module takes no credentials.
+
+# REQUIRED. Owner tag: the GitHub handle or e-mail accountable for the state backend.
+owner = "your-github-handle"
+
+# --- Subscription selection -------------------------------------------------
+# The subscription is NOT a Terraform variable. The azurerm provider reads it from
+# the environment, so select it before you apply:
+#
+#   az account show --query id -o tsv
+#   export ARM_SUBSCRIPTION_ID="<SUBSCRIPTION-ID>"
+#
+# or set it once for the CLI and let the provider inherit it:
+#
+#   az account set --subscription "<SUBSCRIPTION-ID>"
+
+# --- Optional overrides -----------------------------------------------------
+
+# project     = "sifap"
+# environment = "shared"
+# cost_center = "workshop-legacy-modernization"
+
+# Keep the backend in the same region as the workloads it serves.
+# location       = "eastus2"
+# location_short = "eus2"   # leave unset to derive it from location
+
+# One container holds every module's state; each module gets its own blob `key`.
+# state_container_name = "tfstate"
+
+# ZRS survives an availability-zone failure. Drop to LRS only in regions without zones.
+# account_replication_type = "ZRS"
+
+# Soft-delete window for blobs and containers: the undo button for a corrupted state file.
+# blob_retention_days = 30
+
+# Object ID of the federated CI application used by .github/workflows/deploy-lab.yml, plus
+# any human who runs plans locally. Each one gets "Storage Blob Data Contributor" on the
+# state account. Find the CI app's object id with:
+#   az ad sp show --id "$AZURE_CLIENT_ID" --query id -o tsv
+# state_writer_principal_ids = [
+#   "00000000-0000-0000-0000-000000000000",
+# ]
+
+# Set to false only if the data-plane role was already granted out of band.
+# assign_deployer_blob_role = true
+
+# Adds a CanNotDelete management lock on top of prevent_destroy. Needs Owner or
+# User Access Administrator.
+# enable_delete_lock = false
+
+# Public IP allow-list for the storage firewall. Leave empty for GitHub-hosted runners,
+# which have no stable egress IP. Azure rejects /31 and /32 here.
+# allowed_ip_rules = [
+#   "203.0.113.0/24",
+# ]

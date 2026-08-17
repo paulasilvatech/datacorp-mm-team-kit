@@ -5,6 +5,7 @@
       {
         "type": "command",
         "bash": ".github/hooks/session-auto-commit/auto-commit.sh",
+        "cwd": ".",
         "timeoutSec": 30
       }
     ]

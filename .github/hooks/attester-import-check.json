@@ -4,12 +4,12 @@
     "preToolUse": [
       {
         "type": "command",
-        "bash": "hooks/tool-guardian/guard-tool.sh",
+        "bash": ".github/hooks/attester-import-check/check-imports.py",
         "cwd": ".",
         "env": {
-          "GUARD_MODE": "block"
+          "ATTESTER_MODE": "block"
         },
-        "timeoutSec": 10
+        "timeoutSec": 30
       }
     ]
   }
