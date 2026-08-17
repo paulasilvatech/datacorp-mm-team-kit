@@ -38,7 +38,7 @@ Each pair receives 3 programs. No program may be left without a reader.
 
 | Pair | Programs to read | Mysteries | Why |
 |---|---|---|---|
-| **1 · Vision** (PO + RE) | `CADBENEF.NSP`, `CADDEPEND.NSP`, `CADPROG.NSP` | `SIFAP-M-01` … `M-04` | Registration logic—core entities that become EARS subjects. |
+| **1 · Vision** (PO + RE) | `CADBENEF.NSP`, `CADDEPEN.NSP`, `CADPROG.NSP` | `SIFAP-M-01` … `M-04` | Registration logic—core entities that become EARS subjects. |
 | **2 · Architecture** (EA + SA) | `BATCHPGT.NSP`, `BATCHREL.NSP`, `BATCHCON.NSP` | `SIFAP-M-05` … `M-08` | Batch flows reveal module boundaries (bounded contexts). |
 | **3 · Implementation** (TL + Dev) | `CALCBENF.NSN`, `CALCCORR.NSP`, `CALCDSCT.NSP`\* | `SIFAP-M-09` … `M-12` | Calculations are where the modern code will live; the team must reproduce them. |
 | **4 · Quality** (DBA + QA) | `VALBENEF.NSN`, `VALDOCS.NSP`, `VALELEG.NSN` | `SIFAP-M-13` … `M-16` | Validations become tests; the DBA also maps DDM fields. |

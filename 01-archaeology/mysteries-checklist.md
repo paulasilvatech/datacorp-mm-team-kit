@@ -38,7 +38,7 @@ Labels indicate the mystery's **area**, never the finding.
 
 | Pair | Domain | IDs | Programs |
 |---|---|---|---|
-| 1 | Registration | `M-01` … `M-04` | `CADBENEF`, `CADDEPEND`, `CADPROG` |
+| 1 | Registration | `M-01` … `M-04` | `CADBENEF`, `CADDEPEN`, `CADPROG` |
 | 2 | Batch | `M-05` … `M-08` | `BATCHPGT`, `BATCHREL`, `BATCHCON` |
 | 3 | Calculation | `M-09` … `M-12` | `CALCBENF`, `CALCCORR`, `CALCDSCT`\* |
 | 4 | Validation | `M-13` … `M-16` | `VALBENEF`, `VALDOCS`, `VALELEG` |

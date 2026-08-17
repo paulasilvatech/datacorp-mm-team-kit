@@ -21,7 +21,7 @@ Spec-Driven Development (SDD) is the practice of fully specifying a feature, inc
 
 **Why it matters:** without an upfront specification, code grows without traceable direction. Workshop CI verifies that every REQ-ID has `source_legacy:` pointing to the actual legacy system. This ensures that SIFAP 2.0 implements the rules of the original SIFAP (Payment Inspection and Administration System).
 
-**Use case:** in Stage 1, the team identifies that `CALC-BENEFICIO.NSN` contains annual adjustment calculation logic. In Stage 2, that logic becomes `REQ-015` in `spec.md` with `source_legacy: 01-archaeology/legacy-sifap/natural-programs/CALC-BENEFICIO.NSN`. In Stage 3, the test either passes or fails, completing the traceability chain.
+**Use case:** in Stage 1, the team identifies that `CALCCORR.NSP` contains annual adjustment calculation logic. In Stage 2, that logic becomes `REQ-015` in `spec.md` with `source_legacy: 01-archaeology/legacy-sifap/natural-programs/CALCCORR.NSP`. In Stage 3, the test either passes or fails, completing the traceability chain.
 
 ---
 

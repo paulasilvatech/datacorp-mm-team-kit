@@ -42,7 +42,7 @@ Each pair reads the three programs below. Reading may focus on domain decisions;
 
 | Pair | Programs |
 |---|---|
-| 1 · Vision | `CADBENEF.NSP`, `CADDEPEND.NSP`, `CADPROG.NSP` |
+| 1 · Vision | `CADBENEF.NSP`, `CADDEPEN.NSP`, `CADPROG.NSP` |
 | 2 · Architecture | `BATCHPGT.NSP`, `BATCHREL.NSP`, `BATCHCON.NSP` |
 | 3 · Implementation | `CALCBENF.NSN`, `CALCCORR.NSP`, `CALCDSCT.NSP` |
 | 4 · Quality | `VALBENEF.NSN`, `VALDOCS.NSP`, `VALELEG.NSN` |

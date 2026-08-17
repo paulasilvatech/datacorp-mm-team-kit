@@ -98,7 +98,7 @@ A unique requirement identifier (for example, `REQ-042`). Every Stage 3 commit t
 
 ### `source_legacy:`
 
-A mandatory field in every REQ-ID that points to the source section in the legacy system. Format: `01-archaeology/legacy-sifap/natural-programs/CALCPGTO.NSN#L120-L198`. For new functionality, use `[GREENFIELD] <justification>`. If it is missing, CI rejects the change.
+A mandatory field in every REQ-ID that points to the source section in the legacy system. Format: `01-archaeology/legacy-sifap/natural-programs/CALCDSCT.NSP#L120-L198`. For new functionality, use `[GREENFIELD] <justification>`. If it is missing, CI rejects the change.
 
 ### Greenfield
 
