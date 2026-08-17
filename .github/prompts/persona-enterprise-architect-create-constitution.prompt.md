@@ -88,7 +88,7 @@ The deliverable is `.specify/memory/constitution.md`:
 ## 5. Process
 | ID | Rule | Consequence |
 |---|---|---|
-| C11 | One branch per spec — `spec/<NNN>-<name>` from `develop`. No direct commits to `develop` or `main`. | PR rejected. |
+| C11 | One branch per work item, cut from `develop` with the persona prefix per `00-GIT-WORKFLOW.md` (`spec/`, `impl/`, `infra/`, `docs/`, `agent/`). No direct commits to `develop` or `main`. | PR rejected. |
 | C12 | Every requirement uses EARS notation and every test cites a `REQ-ID`. | Spec review blocks. |
 
 ## 6. Compliance
