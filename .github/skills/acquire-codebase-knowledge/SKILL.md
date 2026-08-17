@@ -1,28 +1,26 @@
 ---
-name: acquire-codebase-knowledge
-description: 'Use this skill when the user explicitly asks to map, document, or onboard into an existing codebase. Trigger for prompts like "map this codebase", "document this architecture", "onboard me to this repo", or "create codebase docs". Do not trigger for routine feature implementation, bug fixes, or narrow code edits unless the user asks for repository-level discovery.'
-argument-hint: 'Optional: specific area to focus on, e.g. "architecture only", "testing and concerns"'
+name: "acquire-codebase-knowledge"
+description: "Use this skill when the user explicitly asks to map, document, or onboard into an existing codebase. Trigger for prompts like \"map this codebase\", \"document this architecture\", \"onboard me to this repo\", or \"create codebase docs\". Do not trigger for routine feature implementation, bug fixes, or narrow code edits unless the user asks for repository-level discovery."
 ---
-
-# Acquire Codebase Knowledge
+# Acquire codebase knowledge
 
 Produces seven populated documents in `docs/codebase/` covering everything needed to work effectively on the project. Only document what is verifiable from files or terminal output — never infer or assume.
 
-## Output Contract (Required)
+## When to invoke
 
-Before finishing, all of the following must be true:
+- "Map this codebase and document its architecture."
+- "Onboard me to this repository; where do I start?"
+- "Create codebase docs so a new engineer can be productive in week 1."
+- "Document the stack, structure, and integrations of this project."
 
-1. Exactly these files exist in `docs/codebase/`: `STACK.md`, `STRUCTURE.md`, `ARCHITECTURE.md`, `CONVENTIONS.md`, `INTEGRATIONS.md`, `TESTING.md`, `CONCERNS.md`.
-2. Every claim is traceable to source files, config, or terminal output.
-3. Unknowns are marked as `[TODO]`; intent-dependent decisions are marked `[ASK USER]`.
-4. Every document includes a short "evidence" list with concrete file paths.
-5. Final response includes numbered `[ASK USER]` questions and intent-vs-reality divergences.
+> [!NOTE]
+> In this workshop the modern application does not exist until Stage 3, so point this skill at an existing project or at the kit itself. Treat everything under `01-archaeology/legacy-sifap/` as read-only evidence and never assert what a legacy program or field contains. Record how to find out and defer to the reading gate in [`01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md`](../../../01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md) and [`01-archaeology/legacy-sifap/HOW-TO-READ-NATURAL.md`](../../../01-archaeology/legacy-sifap/HOW-TO-READ-NATURAL.md).
 
 ## Workflow
 
 Copy and track this checklist:
 
-```
+```text
 - [ ] Phase 1: Run scan, read intent documents
 - [ ] Phase 2: Investigate each documentation area
 - [ ] Phase 3: Populate all seven docs in docs/codebase/
@@ -123,7 +121,7 @@ Validation pass criteria:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do instead |
+| Anti-pattern | Do instead |
 |---------|--------------|
 | "Uses Clean Architecture with Domain/Data layers." (when no such directories exist) | State only what directory structure actually shows. |
 | "This is a Next.js project." (without checking `package.json`) | Check `dependencies` first. State what's actually there. |
@@ -151,7 +149,6 @@ Use these sections during Phase 2 to inform investigation questions and identify
 | Asset | When to load |
 |-------|-------------|
 | [`scripts/scan.py`](scripts/scan.py) | Phase 1 — run first, before reading any code (Python 3.8+ required) |
-
 | [`references/inquiry-checkpoints.md`](references/inquiry-checkpoints.md) | Phase 2 — load for per-template investigation questions |
 | [`references/stack-detection.md`](references/stack-detection.md) | Phase 2 — only if stack is ambiguous |
 | [`assets/templates/STACK.md`](assets/templates/STACK.md) | Phase 3 step 1 |
@@ -166,3 +163,34 @@ Template usage mode:
 
 - Default mode: complete only the "Core Sections (Required)" in each template.
 - Extended mode: add optional sections only when the repo complexity justifies them.
+
+## Output template
+
+Each of the seven files under `docs/codebase/` states claims first, then the evidence that supports them. For example, `STACK.md`:
+
+```markdown
+## Stack
+
+| Layer | Technology | Version | Evidence |
+|---|---|---|---|
+| Language | Java | 21 | backend/pom.xml |
+| Framework | Spring Boot | 3.3.x | backend/pom.xml |
+| Database | PostgreSQL | 16 | compose.yml, application.yml |
+
+### Unknowns
+- [TODO] No cache layer found in the manifests
+- [ASK USER] Is Redis planned, or is in-memory caching intended?
+
+### Evidence
+- backend/pom.xml
+- compose.yml
+```
+
+## Quality gate
+
+- [ ] Exactly the seven files exist in `docs/codebase/`, each with its required sections.
+- [ ] Every non-trivial claim is traceable to a file, config, or terminal output.
+- [ ] Unknowns use `[TODO]`; intent-dependent decisions use `[ASK USER]`.
+- [ ] Each document carries a concrete evidence list with real paths.
+- [ ] Generated output (`dist/`, `build/`, `.next/`) is excluded from convention claims.
+- [ ] The final response presents numbered `[ASK USER]` questions and each intent-versus-reality divergence.

@@ -33,7 +33,7 @@ class OrderRepositoryPostgresTest {
   
   @Container
   @ServiceConnection
-  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:18");
+  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16");
   
   @Autowired
   private OrderRepository orderRepository;
@@ -69,11 +69,11 @@ class MultiDatabaseTest {
   
   @Container
   @ServiceConnection(name = "primary")
-  static PostgreSQLContainer<?> primaryDb = new PostgreSQLContainer<>("postgres:18");
+  static PostgreSQLContainer<?> primaryDb = new PostgreSQLContainer<>("postgres:16");
   
   @Container
   @ServiceConnection(name = "analytics")
-  static PostgreSQLContainer<?> analyticsDb = new PostgreSQLContainer<>("postgres:18");
+  static PostgreSQLContainer<?> analyticsDb = new PostgreSQLContainer<>("postgres:16");
 }
 ```
 
@@ -90,7 +90,7 @@ Then enable reuse in code:
 ```java
 @Container
 @ServiceConnection
-static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:18")
+static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16")
   .withReuse(true);
 ```
 
@@ -101,7 +101,7 @@ static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:18"
 ```java
 @Container
 @ServiceConnection
-static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:18")
+static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16")
   .withInitScript("schema.sql");
 ```
 
@@ -115,7 +115,7 @@ class MigrationTest {
   
   @Container
   @ServiceConnection
-  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:18");
+  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16");
   
   @Autowired
   private Flyway flyway;
@@ -135,7 +135,7 @@ class MigrationTest {
 ```java
 @Container
 @ServiceConnection
-static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:18")
+static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16")
   .withDatabaseName("testdb")
   .withUsername("testuser")
   .withPassword("testpass")
@@ -146,7 +146,7 @@ static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:18"
 
 ```java
 @Container
-static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:18")
+static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16")
   .waitingFor(Wait.forLogMessage(".*database system is ready.*", 1));
 ```
 
@@ -160,7 +160,7 @@ class OrderRepositoryTest {
   
   @Container
   @ServiceConnection
-  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:18");
+  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16");
   
   @Autowired
   private OrderRepository orderRepository;
@@ -203,7 +203,7 @@ If not using @ServiceConnection:
 class OrderServiceTest {
   
   @Container
-  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:18");
+  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16");
   
   @DynamicPropertySource
   static void configureProperties(DynamicPropertyRegistry registry) {
@@ -229,6 +229,6 @@ class OrderServiceTest {
 
 1. Use @ServiceConnection when possible (Spring Boot 3.1+)
 2. Enable container reuse for faster local builds
-3. Use specific versions (postgres:18) not latest
+3. Use specific versions (postgres:16) not latest
 4. Keep container config in static field
 5. Use @DataJpaTest with AutoConfigureTestDatabase.Replace.NONE

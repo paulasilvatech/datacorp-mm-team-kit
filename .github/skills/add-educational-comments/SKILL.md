@@ -1,11 +1,20 @@
 ---
-name: add-educational-comments
+name: "add-educational-comments"
 description: "Add clear, level-appropriate educational comments to an existing source file so it becomes a learning resource, preserving structure, encoding, and build correctness. Use when the user asks to explain, annotate, or add teaching comments to a specific code file in any language; if no file is given, prompt for one."
 ---
-
-# Add Educational Comments
+# Add educational comments
 
 Add educational comments to code files so they become effective learning resources. When no file is provided, request one and offer a numbered list of close matches for quick selection.
+
+## When to invoke
+
+- "Add teaching comments to this file so a junior can learn from it."
+- "Annotate this module and explain the tricky parts."
+- "Turn this source file into a learning resource for the team."
+- "Explain what this code does and why, inline."
+
+> [!NOTE]
+> This skill teaches language and framework concepts. When you annotate legacy code, describe what the code shows and defer its specific business meaning to the team's own reading via [`01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md`](../../../01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md). Never invent SIFAP facts, and never place sensitive data such as CPF numbers or benefit amounts in a comment.
 
 ## Role
 
@@ -74,15 +83,17 @@ You are an expert educator and technical writer. You can explain programming top
 
 ### Parameters
 
-- **File Name** (required): Target file(s) for commenting.
-- **Comment Detail** (`1-3`): Depth of each explanation (default `2`).
-- **Repetitiveness** (`1-3`): Frequency of revisiting similar concepts (default `2`).
-- **Educational Nature**: Domain focus (default `Computer Science`).
-- **User Knowledge** (`1-3`): General CS/SE familiarity (default `2`).
-- **Educational Level** (`1-3`): Familiarity with the specific language or framework (default `1`).
-- **Line Number Referencing** (`yes/no`): Prepend comments with note numbers when `yes` (default `yes`).
-- **Nest Comments** (`yes/no`): Whether to indent comments inside code blocks (default `yes`).
-- **Fetch List**: Optional URLs for authoritative references.
+| Parameter | Values | Meaning | Default |
+|---|---|---|---|
+| File name | path(s) | Target file or files for commenting | required |
+| Comment detail | `1-3` | Depth of each explanation | `2` |
+| Repetitiveness | `1-3` | How often to revisit similar concepts | `2` |
+| Educational nature | text | Domain focus | `Computer Science` |
+| User knowledge | `1-3` | General CS or SE familiarity | `2` |
+| Educational level | `1-3` | Familiarity with the specific language or framework | `1` |
+| Line number referencing | `yes/no` | Prefix each new comment with a note number | `yes` |
+| Nest comments | `yes/no` | Indent comments inside code blocks | `yes` |
+| Fetch list | URLs | Optional authoritative references | none |
 
 If a configurable element is missing, use the default value. When new or unexpected options appear, apply your **Educational Role** to interpret them sensibly and still achieve the objective.
 
@@ -119,10 +130,34 @@ If a configurable element is missing, use the default value. When new or unexpec
 
 Interpret `Line Numer = no` as `Line Number Referencing = no` and adjust behavior accordingly while maintaining all rules above.
 
-## Final Checklist
+## Output template
 
-- Ensure the transformed file satisfies the 125% rule without exceeding limits.
-- Keep encoding, end-of-line style, and indentation unchanged.
-- Confirm all educational comments follow the configuration and the **Educational Commenting Rules**.
-- Provide clarifying suggestions only when they aid learning.
-- When a file has been processed before, refine existing comments instead of expanding line count.
+The artifact is the original file with educational comments added. In Python, note-numbered comments read like this, kept indented inside a function so no comment sits at column zero:
+
+```python
+def sum_of_squares(numbers):
+    # Note 1 - A list comprehension builds the result in one readable pass.
+    # It expresses "square each value", which is clearer than a manual loop here.
+    squares = [value * value for value in numbers]
+
+    # Note 2 - A guard clause returns early so the main path stays unindented.
+    # Prefer this to a large if/else when the empty case is exceptional.
+    if not squares:
+        return 0
+    return sum(squares)
+```
+
+Alongside the file, report what changed:
+
+- lines added and the resulting ratio against the original length
+- the configuration used (comment detail, knowledge level, line-number referencing)
+- any concept the reader should study next
+
+## Quality gate
+
+- [ ] The transformed file satisfies the line-count target without exceeding the limits.
+- [ ] Encoding, end-of-line style, and indentation are unchanged, and the file still builds or runs.
+- [ ] Every comment follows the configuration and the educational commenting rules.
+- [ ] Comments explain reasoning; clarifying suggestions appear only when they aid learning.
+- [ ] For a previously processed file, existing comments are refined instead of re-inflating the line count.
+- [ ] No emojis, non-keyboard characters, or sensitive data appear in any comment.

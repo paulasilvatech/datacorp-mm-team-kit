@@ -1,9 +1,8 @@
 ---
-name: harness-engineering
-description: 'Adopt repository-level harness engineering for coding agents. Use when a user wants to prevent repeated AI coding-agent mistakes by turning failures into durable instructions, drift checks, regression tests, failure memory, and adoption reports tailored to the target repository.'
+name: "harness-engineering"
+description: "Adopt repository-level harness engineering for coding agents. Use when a user wants to prevent repeated AI coding-agent mistakes by turning failures into durable instructions, drift checks, regression tests, failure memory, and adoption reports tailored to the target repository."
 ---
-
-# Harness Engineering
+# Harness engineering
 
 Harness engineering turns repeated coding-agent mistakes into durable
 repository artifacts:
@@ -12,7 +11,14 @@ repository artifacts:
 Harness = Instructions + Constraints + Feedback + Memory + Evaluation + Governance
 ```
 
-Use this skill when the user asks to:
+## When to invoke
+
+- "Make this repository more reliable for GitHub Copilot and other coding agents."
+- "Turn this recurring agent mistake into a durable rule and a check."
+- "Add drift checks so our project rules do not go stale."
+- "Review our agent harness and tell me what is missing."
+
+This skill fits requests to:
 
 - make a repository more reliable for GitHub Copilot or other coding agents
 - add durable agent instructions, repository rules, or guardrails
@@ -21,8 +27,8 @@ Use this skill when the user asks to:
 - add lightweight drift checks for project rules
 - review, refresh, or update an existing agent harness
 
-Do not use this skill for ordinary feature implementation unless the user asks
-to improve the repository's agent operating environment.
+> [!NOTE]
+> Do not use this skill for ordinary feature implementation unless the user asks to improve the repository's agent operating environment.
 
 ## Core Principles
 
@@ -137,11 +143,9 @@ Record failures when they are user-visible, high-risk, or likely to recur.
 Use a new file under `docs/failures/` unless an existing note already covers
 the same root cause.
 
-Recommended structure:
+Recommended structure. The note opens with an H1 title, then these sections:
 
 ```markdown
-# Short Failure Title
-
 ## Summary
 
 What failed, who saw it, and why it matters.
@@ -206,17 +210,43 @@ Report findings first, ordered by severity, with file and line references when
 available. Do not modify files during a review unless the user explicitly asks
 for fixes.
 
-## Output Contract
+## Output template
 
-Before finishing harness adoption work, verify:
+Finish substantial harness work with an adoption report, for example
+`docs/harness/adoption-report.md`:
 
-- the target repository was inspected before edits
-- new guidance is specific to the target repository
-- changed checks can be run locally or have a documented manual substitute
-- failure memory was recorded when required, or the final response explains why
-  it was skipped
-- generated docs or indexes are refreshed
-- the final report names every command run and its result
+```markdown
+## Harness adoption report
+
+### Files changed
+- `.github/copilot-instructions.md`: added dependency and test rules
+
+### Rules added or updated
+| Rule | Enforcement | Location |
+|---|---|---|
+| Do not edit generated clients | drift script | scripts/check_generated.py |
+
+### Checks
+| Check | Command | Result |
+|---|---|---|
+| Generated-path guard | python3 scripts/check_generated.py | pass |
+
+### Failure memory
+- docs/failures/generated-client-overwrite.md (new); names its detection check
+
+### Assumptions and follow-up
+- Assumed npm is the package manager (package-lock.json present)
+- Manual: confirm CI runs the new check on pull requests
+```
+
+## Quality gate
+
+- [ ] The target repository was inspected before any edits.
+- [ ] New guidance is specific to the target repository, not a generic template.
+- [ ] Changed checks can be run locally or have a documented manual substitute.
+- [ ] Failure memory was recorded when required, or the final response explains why it was skipped.
+- [ ] Generated docs or indexes are refreshed.
+- [ ] The final report names every command run and its result.
 
 ## Optional Reference
 

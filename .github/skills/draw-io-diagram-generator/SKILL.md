@@ -1,47 +1,56 @@
 ---
-name: draw-io-diagram-generator
-description: Use when creating, editing, or generating draw.io diagram files (.drawio, .drawio.svg, .drawio.png). Covers mxGraph XML authoring, shape libraries, style strings, flowcharts, system architecture, sequence diagrams, ER diagrams, UML class diagrams, network topology, layout strategy, the hediet.vscode-drawio VS Code extension, and the full agent workflow from request to a ready-to-open file.
+name: "draw-io-diagram-generator"
+description: "Use when creating, editing, or generating draw.io diagram files (.drawio, .drawio.svg, .drawio.png). Covers mxGraph XML authoring, shape libraries, style strings, flowcharts, system architecture, sequence diagrams, ER diagrams, UML class diagrams, network topology, layout strategy, the hediet.vscode-drawio VS Code extension, and the full agent workflow from request to a ready-to-open file."
+---
+# Draw.io diagram generator
+
+This skill enables you to generate, edit, and validate draw.io (`.drawio`) diagram files with correct mxGraph XML structure. All generated files open immediately in the [draw.io VS Code extension](https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio) (`hediet.vscode-drawio`) without any manual fixes required. You can also open the files in the draw.io web app or desktop app if you prefer.
+
+| Section | Purpose |
+|---|---|
+| When to invoke | Trigger phrases and supported diagram types |
+| Prerequisites | Extension and optional Python tooling |
+| Step-by-step agent workflow | Request to layout to XML to a validated file |
+| Diagram-type recipes | Flowchart, architecture, sequence, ER, and UML snippets |
+| Multi-page and editing | Multi-page files and safe edits to existing diagrams |
+| Output template | The exact `.drawio` artifact to deliver |
+| Quality gate | Structural checks before delivery |
+| References | Bundled templates, references, and scripts |
+
 ---
 
-# Draw.io Diagram Generator
+## When to invoke
 
-This skill enables you to generate, edit, and validate draw.io (`.drawio`) diagram files with
-correct mxGraph XML structure. All generated files open immediately in the
-[Draw.io VS Code extension](https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio)
-(`hediet.vscode-drawio`) without any manual fixes required. You can also open the files in the draw.io web app or desktop app if you prefer.
+- "Create a system architecture diagram for these services."
+- "Draw a flowchart of this approval process."
+- "Generate an ER diagram from these tables."
+- "Turn this sequence of API calls into a sequence diagram."
 
----
+Any request to produce or modify a `.drawio`, `.drawio.svg`, or `.drawio.png` file loads this skill. Related trigger phrases include "design a sequence diagram", "make a UML class diagram", "build an ER diagram", "document the architecture", "show the data model", and "visualise the flow".
 
-## 1. When to Use This Skill
-
-**Trigger phrases (load this skill when you see these)**
-
-- "create a diagram", "draw a flowchart", "generate an architecture diagram"
-- "design a sequence diagram", "make a UML class diagram", "build an ER diagram"
-- "add a .drawio file", "update the diagram", "visualise the flow"
-- "document the architecture", "show the data model", "diagram the service interactions"
-- Any request to produce or modify a `.drawio`, `.drawio.svg`, or `.drawio.png` file
+> [!NOTE]
+> Generated files render in the **draw.io VS Code extension** (`hediet.vscode-drawio`), the editor the workshop uses for diagrams. If it is not installed, the `.drawio` file is still valid — open it in the draw.io web or desktop app instead. The Python scripts under `scripts/` are optional helpers and require Python 3.8+.
 
 **Supported diagram types**
 
-| Diagram Type | Template Available | Description |
+| Diagram type | Template available | Description |
 |---|---|---|
 | Flowchart | `assets/templates/flowchart.drawio` | Process flows with decisions and branches |
-| System Architecture | `assets/templates/architecture.drawio` | Multi-tier / layered service architecture |
-| Sequence Diagram | `assets/templates/sequence.drawio` | Actor lifelines and timed message flows |
-| ER Diagram | `assets/templates/er-diagram.drawio` | Database tables with relationships |
-| UML Class Diagram | `assets/templates/uml-class.drawio` | Classes, interfaces, enums, relationships |
-| Network Topology | (use shape library) | Routers, servers, firewalls, subnets |
-| BPMN Workflow | (use shape library) | Business process events, tasks, gateways |
-| Mind Map | (manual) | Central topic with radiating branches |
+| System architecture | `assets/templates/architecture.drawio` | Multi-tier / layered service architecture |
+| Sequence diagram | `assets/templates/sequence.drawio` | Actor lifelines and timed message flows |
+| ER diagram | `assets/templates/er-diagram.drawio` | Database tables with relationships |
+| UML class diagram | `assets/templates/uml-class.drawio` | Classes, interfaces, enums, relationships |
+| Network topology | (use shape library) | Routers, servers, firewalls, subnets |
+| BPMN workflow | (use shape library) | Business process events, tasks, gateways |
+| Mind map | (manual) | Central topic with radiating branches |
 
 ---
 
-## 2. Prerequisites
+## Prerequisites
 
-- If running with VS Code integration enabled, Install the drawio extension: **draw.io VS Code extension** — `hediet.vscode-drawio` (extension id). Install with:
+- If running with VS Code integration enabled, install the **draw.io VS Code extension** — `hediet.vscode-drawio` (extension id). Install it with:
 
-  ```
+  ```text
   ext install hediet.vscode-drawio
   ```
 
@@ -50,7 +59,7 @@ correct mxGraph XML structure. All generated files open immediately in the
 
 ---
 
-## 3. Step-by-Step Agent Workflow
+## Step-by-step agent workflow
 
 Follow these steps in order for every diagram generation task.
 
@@ -127,7 +136,7 @@ Before generating XML, sketch the logical placement:
 
 - Every cell id must be **globally unique** within the file
 - Every vertex must have an `mxGeometry` child with `x`, `y`, `width`, `height`, `as="geometry"`
-- Every edge must have `source` and `target` matching existing vertex ids — **exception**: floating edges (e.g. sequence diagram lifelines) use `sourcePoint`/`targetPoint` inside `<mxGeometry>` instead; see §4 Sequence Diagram
+- Every edge must have `source` and `target` matching existing vertex ids — **exception**: floating edges (e.g. sequence diagram lifelines) use `sourcePoint`/`targetPoint` inside `<mxGeometry>` instead; see the Sequence diagram recipe
 - Every cell's `parent` must reference an existing cell id
 - Use `html=1` in style when the label contains HTML (`<b>`, `<i>`, `<br>`)
 - Escape XML special characters in labels: `&` => `&amp;`, `<` => `&lt;`, `>` => `&gt;`
@@ -147,37 +156,18 @@ Use the standard semantic color palette for consistency:
 
 Common style strings by diagram type:
 
-```
-# Rounded process box (flowchart)
-rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;
-
-# Decision diamond
-rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;
-
-# Start/End terminal
-ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;
-
-# Database cylinder
-shape=mxgraph.flowchart.database;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;
-
-# Swimlane container (tier)
-swimlane;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;
-
-# UML class box
-swimlane;fontStyle=1;align=center;startSize=40;fillColor=#dae8fc;strokeColor=#6c8ebf;
-
-# Interface / stereotype box
-swimlane;fontStyle=3;align=center;startSize=40;fillColor=#f5f5f5;strokeColor=#666666;
-
-# ER table container
-shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;
-
-# Orthogonal connector
-edgeStyle=orthogonalEdgeStyle;html=1;
-
-# ER relationship (crow's foot)
-edgeStyle=entityRelationEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;
-```
+| Purpose | Style string |
+|---|---|
+| Rounded process box (flowchart) | `rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;` |
+| Decision diamond | `rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;` |
+| Start/End terminal | `ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;` |
+| Database cylinder | `shape=mxgraph.flowchart.database;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;` |
+| Swimlane container (tier) | `swimlane;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;` |
+| UML class box | `swimlane;fontStyle=1;align=center;startSize=40;fillColor=#dae8fc;strokeColor=#6c8ebf;` |
+| Interface / stereotype box | `swimlane;fontStyle=3;align=center;startSize=40;fillColor=#f5f5f5;strokeColor=#666666;` |
+| ER table container | `shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;` |
+| Orthogonal connector | `edgeStyle=orthogonalEdgeStyle;html=1;` |
+| ER relationship (crow's foot) | `edgeStyle=entityRelationEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;` |
 
 > See `references/style-reference.md` for the complete style key catalog and `references/shape-libraries.md` for all shape library names.
 
@@ -196,7 +186,7 @@ edgeStyle=entityRelationEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;
 
 ---
 
-## 4. Diagram-Type Recipes
+## Diagram-type recipes
 
 ### Flowchart
 
@@ -342,7 +332,7 @@ Arrow styles by relationship type:
 
 ---
 
-## 5. Multi-Page Diagrams
+## Multi-page diagrams
 
 Add multiple `<diagram>` elements for complex systems:
 
@@ -361,7 +351,7 @@ Each page has its own independent cell id namespace. The same id value can appea
 
 ---
 
-## 6. Editing Existing Diagrams
+## Editing existing diagrams
 
 When modifying an existing `.drawio` file:
 
@@ -379,7 +369,7 @@ python .github/skills/draw-io-diagram-generator/scripts/add-shape.py docs/arch.d
 
 ---
 
-## 7. Best Practices
+## Best practices
 
 **Layout**
 
@@ -396,7 +386,7 @@ python .github/skills/draw-io-diagram-generator/scripts/add-shape.py docs/arch.d
 
 **Style consistency**
 
-- Use the semantic color palette from Section 3 Step 5 consistently across a project
+- Use the semantic color palette from the Apply Correct Styles step (Step 5) consistently across a project
 - Prefer `edgeStyle=orthogonalEdgeStyle` for clean right-angle connectors
 - Do not inline arbitrary HTML in labels unless necessary
 
@@ -407,7 +397,7 @@ python .github/skills/draw-io-diagram-generator/scripts/add-shape.py docs/arch.d
 
 ---
 
-## 8. Troubleshooting
+## Troubleshooting
 
 | Problem | Likely Cause | Fix |
 |---|---|---|
@@ -421,7 +411,57 @@ python .github/skills/draw-io-diagram-generator/scripts/add-shape.py docs/arch.d
 
 ---
 
-## 9. Validation Checklist
+## Output template
+
+Deliver a complete, valid `.drawio` file. The minimal well-formed artifact this skill produces looks like:
+
+```xml
+<mxfile host="Electron" modified="2026-01-01T00:00:00.000Z" version="26.0.0">
+  <diagram id="page-1" name="Overview">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1"
+                  tooltips="1" connect="1" arrows="1" fold="1"
+                  page="1" pageScale="1" pageWidth="1169" pageHeight="827"
+                  math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="System Overview"
+                style="text;html=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1;"
+                vertex="1" parent="1">
+          <mxGeometry x="60" y="30" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="webapp" value="Web App"
+                style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;"
+                vertex="1" parent="1">
+          <mxGeometry x="80" y="100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="api" value="API Server"
+                style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;"
+                vertex="1" parent="1">
+          <mxGeometry x="320" y="100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;html=1;"
+                edge="1" source="webapp" target="api" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
+```
+
+Alongside the file, always provide:
+
+1. **A one-sentence summary** of what the diagram shows.
+2. **How to open it**:
+   > "Open `<filename>` in VS Code — the draw.io extension will render it automatically. Or you can open it in the draw.io web app or desktop app if you prefer."
+3. **How to edit it** (if the user is likely to customise):
+   > "Click any shape to select it. Double-click to edit the label. Drag to reposition."
+4. **Validation status** — whether the validator script was run and passed.
+
+---
+
+## Quality gate
 
 Before delivering any generated `.drawio` file, verify:
 
@@ -445,21 +485,7 @@ python .github/skills/draw-io-diagram-generator/scripts/validate-drawio.py <file
 
 ---
 
-## 10. Output Format
-
-When delivering a diagram, always provide:
-
-1. **The `.drawio` file** written to the requested path
-2. **A one-sentence summary** of what the diagram shows
-3. **How to open it**:
-   > "Open `<filename>` in VS Code — the draw.io extension will render it automatically. Or you can open it in the draw.io web app or desktop app if you prefer."
-4. **How to edit it** (if the user is likely to customise):
-   > "Click any shape to select it. Double-click to edit the label. Drag to reposition."
-5. **Validation status** — whether the validator script was run and passed
-
----
-
-## 11. References
+## References
 
 All companion files are in `.github/skills/draw-io-diagram-generator/`:
 

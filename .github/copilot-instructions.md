@@ -98,6 +98,7 @@ Use the skills in [`.github/skills/`](skills/) for specialized workflows. Copilo
 - ❌ Do not merge into `main` without at least one peer review
 - ❌ Do not skip guided handoff conversations during stage transitions (see [`00-TEAM-FLOW.md`](../00-TEAM-FLOW.md))
 - ❌ Do not create a root `AGENTS.md`, `CLAUDE.md`, or `GEMINI.md`. This file is the single source of truth for repo-wide agent instructions; every Copilot surface that reads `AGENTS.md` also reads this file, and this file outranks it in precedence — a second file only adds drift risk. See [`docs/adr/0001-agent-instructions-single-source-of-truth.md`](../docs/adr/0001-agent-instructions-single-source-of-truth.md).
+- ❌ Do not add or edit a Copilot primitive (agent, prompt, instruction, skill, or hook) that does not follow [`PRIMITIVE-STANDARD.md`](PRIMITIVE-STANDARD.md); the `copilot-primitives` CI job enforces its structure.
 
 ## References
 
@@ -106,6 +107,7 @@ Use the skills in [`.github/skills/`](skills/) for specialized workflows. Copilo
 - Copilot's 3 modes (Ask · Plan · Agent): [`09-cheat-sheets/copilot-3-modes.md`](../09-cheat-sheets/copilot-3-modes.md)
 - Persona kits (read 2 per person; active artifacts are already consolidated in `.github/`): [`05-personas/`](../05-personas/)
 - Stage agents: [`06-stage-agents/`](../06-stage-agents/)
+- How every Copilot primitive is structured: [`PRIMITIVE-STANDARD.md`](PRIMITIVE-STANDARD.md) — the agent, prompt, instruction, skill, and hook standard the `copilot-primitives` CI job enforces.
 - SIFAP legacy system: [`01-archaeology/legacy-sifap/`](../01-archaeology/legacy-sifap/)
 - Modern prototype: the team creates `backend/` and `frontend/` during Stage 3 (neither exists yet); there is no ready-made application codebase to copy. `infra/` already exists (Adabas/Natural lab) and is extended, not created.
 - Known agent failures + the guardrail that catches each recurrence: [`docs/failures/README.md`](../docs/failures/README.md) — read it before finishing and add an entry whenever a mistake recurs.

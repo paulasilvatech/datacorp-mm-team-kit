@@ -1,28 +1,37 @@
 ---
-name: postgresql-code-review
+name: "postgresql-code-review"
 description: "Review existing PostgreSQL SQL, schema, and functions for PostgreSQL-specific anti-patterns, quality, and security — JSONB operations, array usage, custom types, schema design, function optimization, and Row Level Security (RLS). Use when the user asks to review, audit, or critique existing PostgreSQL code or a migration. To author or optimize new PostgreSQL features, use postgresql-optimization."
 ---
+# PostgreSQL code review
 
-# PostgreSQL Code Review Assistant
+Expert PostgreSQL code review for `${selection}` (or the entire project when nothing is selected). It focuses on the PostgreSQL-specific best practices, anti-patterns, and quality standards that are unique to PostgreSQL rather than generic SQL. To author or tune new PostgreSQL features instead of reviewing existing ones, use [`postgresql-optimization`](../postgresql-optimization/SKILL.md).
 
-Expert PostgreSQL code review for ${selection} (or entire project if no selection). Focus on PostgreSQL-specific best practices, anti-patterns, and quality standards that are unique to PostgreSQL.
+> [!IMPORTANT]
+> The SIFAP 2.0 backend reaches **PostgreSQL 16** through **JPA/Hibernate**. Application queries must use JPQL, Spring Data derived queries, or bound native parameters — never string-concatenated SQL. Schema lives in Flyway migrations under `backend/src/main/resources/db/migration/`. Where this skill and [`database.instructions.md`](../../instructions/database.instructions.md) overlap, the instruction file is authoritative.
 
-## 🎯 PostgreSQL-Specific Review Areas
+## When to invoke
+
+- "Review this migration for PostgreSQL anti-patterns."
+- "Audit our JSONB and array usage."
+- "Is this schema using the right PostgreSQL types?"
+- "Check this PL/pgSQL function and RLS policy before it merges."
+
+## PostgreSQL-Specific Review Areas
 
 ### JSONB Best Practices
 
 ```sql
--- ❌ BAD: Inefficient JSONB usage
+-- BAD: Inefficient JSONB usage
 SELECT * FROM orders WHERE data->>'status' = 'shipped';  -- No index support
 
--- ✅ GOOD: Indexable JSONB queries
+-- GOOD: Indexable JSONB queries
 CREATE INDEX idx_orders_status ON orders USING gin((data->'status'));
 SELECT * FROM orders WHERE data @> '{"status": "shipped"}';
 
--- ❌ BAD: Deep nesting without consideration
+-- BAD: Deep nesting without consideration
 UPDATE orders SET data = data || '{"shipping":{"tracking":{"number":"123"}}}';
 
--- ✅ GOOD: Structured JSONB with validation
+-- GOOD: Structured JSONB with validation
 ALTER TABLE orders ADD CONSTRAINT valid_status 
 CHECK (data->>'status' IN ('pending', 'shipped', 'delivered'));
 ```
@@ -30,17 +39,17 @@ CHECK (data->>'status' IN ('pending', 'shipped', 'delivered'));
 ### Array Operations Review
 
 ```sql
--- ❌ BAD: Inefficient array operations
+-- BAD: Inefficient array operations
 SELECT * FROM products WHERE 'electronics' = ANY(categories);  -- No index
 
--- ✅ GOOD: GIN indexed array queries
+-- GOOD: GIN indexed array queries
 CREATE INDEX idx_products_categories ON products USING gin(categories);
 SELECT * FROM products WHERE categories @> ARRAY['electronics'];
 
--- ❌ BAD: Array concatenation in loops
+-- BAD: Array concatenation in loops
 -- This would be inefficient in a function/procedure
 
--- ✅ GOOD: Bulk array operations
+-- GOOD: Bulk array operations
 UPDATE products SET categories = categories || ARRAY['new_category']
 WHERE id IN (SELECT id FROM products WHERE condition);
 ```
@@ -48,14 +57,14 @@ WHERE id IN (SELECT id FROM products WHERE condition);
 ### PostgreSQL Schema Design Review
 
 ```sql
--- ❌ BAD: Not using PostgreSQL features
+-- BAD: Not using PostgreSQL features
 CREATE TABLE users (
     id INTEGER,
     email VARCHAR(255),
     created_at TIMESTAMP
 );
 
--- ✅ GOOD: PostgreSQL-optimized schema
+-- GOOD: PostgreSQL-optimized schema
 CREATE TABLE users (
     id BIGSERIAL PRIMARY KEY,
     email CITEXT UNIQUE NOT NULL,  -- Case-insensitive email
@@ -71,14 +80,14 @@ CREATE INDEX idx_users_metadata ON users USING gin(metadata);
 ### Custom Types and Domains
 
 ```sql
--- ❌ BAD: Using generic types for specific data
+-- BAD: Using generic types for specific data
 CREATE TABLE transactions (
     amount DECIMAL(10,2),
     currency VARCHAR(3),
     status VARCHAR(20)
 );
 
--- ✅ GOOD: PostgreSQL custom types
+-- GOOD: PostgreSQL custom types
 CREATE TYPE currency_code AS ENUM ('USD', 'EUR', 'GBP', 'JPY');
 CREATE TYPE transaction_status AS ENUM ('pending', 'completed', 'failed', 'cancelled');
 CREATE DOMAIN positive_amount AS DECIMAL(10,2) CHECK (VALUE > 0);
@@ -90,7 +99,7 @@ CREATE TABLE transactions (
 );
 ```
 
-## 🔍 PostgreSQL-Specific Anti-Patterns
+## PostgreSQL-Specific Anti-Patterns
 
 ### Performance Anti-Patterns
 
@@ -109,7 +118,7 @@ CREATE TABLE transactions (
 ### Function and Trigger Issues
 
 ```sql
--- ❌ BAD: Inefficient trigger function
+-- BAD: Inefficient trigger function
 CREATE OR REPLACE FUNCTION update_modified_time()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -118,7 +127,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- ✅ GOOD: Optimized trigger function
+-- GOOD: Optimized trigger function
 CREATE OR REPLACE FUNCTION update_modified_time()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -135,17 +144,17 @@ CREATE TRIGGER update_modified_time_trigger
     EXECUTE FUNCTION update_modified_time();
 ```
 
-## 📊 PostgreSQL Extension Usage Review
+## PostgreSQL Extension Usage Review
 
 ### Extension Best Practices
 
 ```sql
--- ✅ Check if extension exists before creating
+-- Check if extension exists before creating
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 CREATE EXTENSION IF NOT EXISTS "pg_trgm";
 
--- ✅ Use extensions appropriately
+-- Use extensions appropriately
 -- UUID generation
 SELECT uuid_generate_v4();
 
@@ -156,12 +165,12 @@ SELECT crypt('password', gen_salt('bf'));
 SELECT word_similarity('postgres', 'postgre');
 ```
 
-## 🛡️ PostgreSQL Security Review
+## PostgreSQL Security Review
 
 ### Row Level Security (RLS)
 
 ```sql
--- ✅ GOOD: Implementing RLS
+-- GOOD: Implementing RLS
 ALTER TABLE sensitive_data ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY user_data_policy ON sensitive_data
@@ -172,15 +181,15 @@ CREATE POLICY user_data_policy ON sensitive_data
 ### Privilege Management
 
 ```sql
--- ❌ BAD: Overly broad permissions
+-- BAD: Overly broad permissions
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO app_user;
 
--- ✅ GOOD: Granular permissions
+-- GOOD: Granular permissions
 GRANT SELECT, INSERT, UPDATE ON specific_table TO app_user;
 GRANT USAGE ON SEQUENCE specific_table_id_seq TO app_user;
 ```
 
-## 🎯 PostgreSQL Code Quality Checklist
+## PostgreSQL Code Quality Checklist
 
 ### Schema Design
 
@@ -213,7 +222,7 @@ GRANT USAGE ON SEQUENCE specific_table_id_seq TO app_user;
 - [ ] Using PostgreSQL's built-in encryption functions
 - [ ] Implementing audit trails with PostgreSQL features
 
-## 📝 PostgreSQL-Specific Review Guidelines
+## PostgreSQL-Specific Review Guidelines
 
 1. **Data Type Optimization**: Ensure PostgreSQL-specific types are used appropriately
 2. **Index Strategy**: Review index types and ensure PostgreSQL-specific indexes are utilized
@@ -224,3 +233,32 @@ GRANT USAGE ON SEQUENCE specific_table_id_seq TO app_user;
 7. **Security Implementation**: Review PostgreSQL-specific security features
 
 Focus on PostgreSQL's unique capabilities and ensure the code leverages what makes PostgreSQL special rather than treating it as a generic SQL database.
+
+## Output template
+
+Deliver the review as a verdict, a findings table, and paste-ready corrected SQL.
+
+```markdown
+## PostgreSQL review — <file or selection>
+
+**Verdict**: Pass | Fix required | Reject
+
+| # | Severity | Finding | Evidence | Fix |
+|---|---|---|---|---|
+| 1 | High | User input concatenated into SQL | `... WHERE status = '` + input | Bind `:status` through JPQL or a parameterized native query |
+| 2 | Medium | JSONB containment query has no GIN index | Seq Scan on `orders` | `CREATE INDEX idx_orders_data ON orders USING gin(data)` |
+| 3 | Low | VARCHAR used for a case-insensitive email | `email VARCHAR(255)` | Use `CITEXT` with a `CHECK` constraint |
+
+### Corrected SQL
+CREATE INDEX idx_orders_data ON orders USING gin(data);
+-- Repository query stays parameterized: WHERE data @> :filter
+```
+
+## Quality gate
+
+- [ ] A verdict is stated: Pass, Fix required, or Reject.
+- [ ] Every finding carries a severity and concrete evidence (file/line or a plan snippet).
+- [ ] No user input is concatenated into SQL; every parameter is bound (JPQL, derived query, or bound native query).
+- [ ] PostgreSQL-specific types, index types (GIN/GiST/partial), and `CHECK`/`ENUM`/domain constraints are validated.
+- [ ] PII such as CPF or benefit amounts is masked in logs or documented with a column `COMMENT`.
+- [ ] Corrected SQL is paste-ready and any schema change stays rollback-safe (see [`database.instructions.md`](../../instructions/database.instructions.md)).

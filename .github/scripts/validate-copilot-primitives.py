@@ -17,6 +17,9 @@ What it checks
    competing assistants/IDEs, and no stale (pre-rename) directory names.
 5. Structure: every Markdown file under .github/ ends with exactly one trailing
    newline and has exactly one H1.
+6. Body sections: every agent, prompt, skill and instruction carries the
+   required `## ` sections its primitive type mandates (prompts also in their
+   canonical order), matching the reference primitives.
 
 Design constraints
 ------------------
@@ -328,6 +331,7 @@ def check_closed_schema(
 
 def check_agents(agent_files: list[str], reporter: Reporter) -> None:
     for rel in agent_files:
+        check_agent_structure(rel, reporter)
         fm_lines = split_frontmatter(read_text(rel))
         if fm_lines is None:
             reporter.error("agents", rel, 1, "missing or unterminated YAML frontmatter")
@@ -340,6 +344,7 @@ def check_agents(agent_files: list[str], reporter: Reporter) -> None:
 
 def check_prompts(prompt_files: list[str], valid_agent_ids: set[str], reporter: Reporter) -> None:
     for rel in prompt_files:
+        check_prompt_structure(rel, reporter)
         fm_lines = split_frontmatter(read_text(rel))
         if fm_lines is None:
             reporter.error("prompts", rel, 1, "missing or unterminated YAML frontmatter")
@@ -359,6 +364,7 @@ def check_prompts(prompt_files: list[str], valid_agent_ids: set[str], reporter: 
 
 def check_instructions(instruction_files: list[str], reporter: Reporter) -> None:
     for rel in instruction_files:
+        check_instruction_structure(rel, reporter)
         fm_lines = split_frontmatter(read_text(rel))
         if fm_lines is None:
             reporter.error("instructions", rel, 1, "missing or unterminated YAML frontmatter")
@@ -378,6 +384,7 @@ def check_instructions(instruction_files: list[str], reporter: Reporter) -> None
 
 def check_skills(skill_files: list[str], reporter: Reporter) -> None:
     for rel in skill_files:
+        check_skill_structure(rel, reporter)
         dirname = rel.split("/")[-2]
         fm_lines = split_frontmatter(read_text(rel))
         if fm_lines is None:
@@ -635,6 +642,176 @@ def _check_link_target(rel: str, lineno: int, target: str, base_dir: Path, repor
         )
 
 
+# --- Primitive body-structure checks ---------------------------------------
+#
+# Frontmatter tells the loader how to wire a primitive; the body `## ` sections
+# are the contract a human reads. The reference primitives (the archaeologist
+# agent, the stage/persona prompts, and the native skills and instructions)
+# share a fixed skeleton of sections. These checks turn that convention into a
+# gate, so a primitive that silently drops "What I Will NOT Do" or "Quality
+# gate" fails loudly instead of drifting. Findings land in one `primitive-
+# structure` category. Fenced code and YAML frontmatter are ignored (via the
+# same fence mask and frontmatter detector used elsewhere) so that `## ` lines
+# inside example templates are never mistaken for real document sections.
+
+STRUCTURE_CHECK = "primitive-structure"
+
+H2_RE = re.compile(r"^ {0,3}##(?!#)[ \t]+(.+?)[ \t]*$")
+ATX_CLOSING_RE = re.compile(r"[ \t]+#+[ \t]*$")
+
+# Agents: presence only. The gold archaeologist places its definition-of-done
+# section before "Available Prompts" while the persona agents place it after,
+# so section order is deliberately not enforced.
+AGENT_REQUIRED_SECTIONS = [
+    "Mission",
+    "Lead Personas",
+    "Operating Principles",
+    "What This Agent Knows",
+    "What This Agent Does NOT Know",
+    "Available Prompts",
+    "Anti-Patterns This Agent Rejects",
+]
+# The archaeologist titles this "Stage 1 Definition of Done"; persona agents use
+# a bare "Definition of Done". Any heading ending in this phrase satisfies it.
+AGENT_DOD_SUFFIX = "Definition of Done"
+# Common but not universal, so its absence is a warning rather than an error.
+AGENT_RECOMMENDED_SECTIONS = ["Spec-Kit Integration"]
+
+# Prompts: presence AND canonical relative order. Extra sections (for example a
+# "## Rules from <file>" block that may sit between "Output Format" and
+# "Definition of Done") are allowed and simply ignored by the order check.
+PROMPT_REQUIRED_SECTIONS = [
+    "Objective",
+    "When to Invoke",
+    "Preconditions",
+    "Inputs the Team Must Provide",
+    "What I Will Do",
+    "What I Will NOT Do",
+    "Output Format",
+    "Definition of Done",
+    "Prompt Body",
+    "Invocation Example",
+]
+
+# Skills: matched case-insensitively because native skills use sentence case
+# ("## When to invoke") while some imports use title case.
+SKILL_REQUIRED_SECTIONS = ["When to invoke", "Output template", "Quality gate"]
+
+# Instructions: presence only, exact title match.
+INSTRUCTION_REQUIRED_SECTIONS = [
+    "Conventions",
+    "Do / Do Not",
+    "Checklist Before Opening a PR",
+]
+
+
+def h2_sections(rel: str) -> list[tuple[str, int]]:
+    """Return (title, 1-based line) for each real ## heading in a Markdown file.
+
+    Reuses the fenced-code mask and the frontmatter detector so that ## lines
+    inside example blocks or YAML frontmatter are not counted as sections.
+    """
+    lines = read_text(rel).split("\n")
+    mask = fence_mask(lines)
+    start = frontmatter_end(lines)
+    sections: list[tuple[str, int]] = []
+    for i in range(start, len(lines)):
+        if mask[i]:
+            continue
+        heading = H2_RE.match(lines[i])
+        if heading:
+            title = ATX_CLOSING_RE.sub("", heading.group(1)).strip()
+            sections.append((title, i + 1))
+    return sections
+
+
+def _report_missing_sections(
+    rel: str, present: set[str], required: list[str], reporter: Reporter
+) -> None:
+    for section in required:
+        if section not in present:
+            reporter.error(
+                STRUCTURE_CHECK, rel, None, f"missing required section '## {section}'"
+            )
+
+
+def check_agent_structure(rel: str, reporter: Reporter) -> None:
+    titles = [title for title, _ in h2_sections(rel)]
+    present = set(titles)
+    _report_missing_sections(rel, present, AGENT_REQUIRED_SECTIONS, reporter)
+    if not any(
+        title == AGENT_DOD_SUFFIX or title.endswith(f" {AGENT_DOD_SUFFIX}")
+        for title in titles
+    ):
+        reporter.error(
+            STRUCTURE_CHECK, rel, None,
+            f"missing required section ending in '{AGENT_DOD_SUFFIX}' "
+            "(e.g. '## Definition of Done' or '## Stage 1 Definition of Done')",
+        )
+    for section in AGENT_RECOMMENDED_SECTIONS:
+        if section not in present:
+            reporter.warning(
+                STRUCTURE_CHECK, rel, None,
+                f"missing recommended section '## {section}'",
+            )
+
+
+def check_prompt_structure(rel: str, reporter: Reporter) -> None:
+    sections = h2_sections(rel)
+    present = {title for title, _ in sections}
+    _report_missing_sections(rel, present, PROMPT_REQUIRED_SECTIONS, reporter)
+
+    # Verify the required sections appear in canonical relative order. Walk the
+    # document's headings and track the highest-ranked required section seen so
+    # far; a required section whose rank is lower than that maximum appears too
+    # late and is reported against the section it should have preceded.
+    canonical = {name: index for index, name in enumerate(PROMPT_REQUIRED_SECTIONS)}
+    highest_rank = -1
+    highest_title: str | None = None
+    seen: set[str] = set()
+    for title, lineno in sections:
+        if title not in canonical or title in seen:
+            continue
+        seen.add(title)
+        rank = canonical[title]
+        if rank < highest_rank:
+            reporter.error(
+                STRUCTURE_CHECK, rel, lineno,
+                f"section '## {title}' is out of order: it must appear before "
+                f"'## {highest_title}'",
+            )
+            return
+        highest_rank = rank
+        highest_title = title
+
+
+def check_skill_structure(rel: str, reporter: Reporter) -> None:
+    sections = h2_sections(rel)
+    lower_titles = [title.lower() for title, _ in sections]
+    for section in SKILL_REQUIRED_SECTIONS:
+        if section.lower() not in lower_titles:
+            reporter.error(
+                STRUCTURE_CHECK, rel, None, f"missing required section '## {section}'"
+            )
+    # A conforming skill puts at least one procedure section between its trigger
+    # ("When to invoke") and its "Output template". A gap of one means the two
+    # headings are adjacent (no procedure); soft-signal it as a warning.
+    if "when to invoke" in lower_titles and "output template" in lower_titles:
+        first = lower_titles.index("when to invoke")
+        last = lower_titles.index("output template")
+        if last - first < 2:
+            reporter.warning(
+                STRUCTURE_CHECK, rel, sections[last][1],
+                "no procedure section between '## When to invoke' and "
+                "'## Output template'; document the steps the skill performs",
+            )
+
+
+def check_instruction_structure(rel: str, reporter: Reporter) -> None:
+    present = {title for title, _ in h2_sections(rel)}
+    _report_missing_sections(rel, present, INSTRUCTION_REQUIRED_SECTIONS, reporter)
+
+
 # --- Repository policy checks ----------------------------------------------
 
 PRAGMA_RE = re.compile(r"<!--\s*markdownlint-disable")
@@ -752,7 +929,11 @@ def main() -> int:
     check_hooks(hook_files, subdir_hook_files, reporter)
 
     for rel in github_markdown:
-        check_markdown_structure(rel, reporter)
+        # GitHub's own issue, PR, and discussion templates intentionally carry no
+        # H1: the frontmatter `name:` supplies the title GitHub renders. Their
+        # links are still checked.
+        if not match(rel, r"\.github/(ISSUE_TEMPLATE|PULL_REQUEST_TEMPLATE|DISCUSSION_TEMPLATE)(/|\.md$)"):
+            check_markdown_structure(rel, reporter)
         check_markdown_links(rel, reporter)
 
     check_pragmas(all_markdown, reporter)

@@ -1,15 +1,32 @@
 ---
-name: copilot-sdk
-description: Build agentic applications with GitHub Copilot SDK. Use when embedding AI agents in apps, creating custom tools, implementing streaming responses, managing sessions, connecting to MCP servers, or creating custom agents. Triggers on Copilot SDK, GitHub SDK, agentic app, embed Copilot, programmable agent, MCP server, custom agent.
+name: "copilot-sdk"
+description: "Build agentic applications with GitHub Copilot SDK. Use when embedding AI agents in apps, creating custom tools, implementing streaming responses, managing sessions, connecting to MCP servers, or creating custom agents. Triggers on Copilot SDK, GitHub SDK, agentic app, embed Copilot, programmable agent, MCP server, custom agent."
 ---
-
 # GitHub Copilot SDK
 
 Embed Copilot's agentic workflows in any application using Python, TypeScript, Go, or .NET.
 
+| Area | Sections |
+|---|---|
+| Setup | Prerequisites, Installation, Quick Start |
+| Interaction | Streaming Responses, Interactive CLI Assistant, Common Patterns |
+| Extending the agent | Custom Tools, MCP Server Integration, Custom Agents, System Message |
+| Configuration | Client Configuration, Session Configuration, Session Persistence |
+| Reference | Event Types, Available Models, Best Practices, Architecture |
+
 ## Overview
 
 The GitHub Copilot SDK exposes the same engine behind Copilot CLI: a production-tested agent runtime you can invoke programmatically. No need to build your own orchestration - you define agent behavior, Copilot handles planning, tool invocation, file edits, and more.
+
+## When to invoke
+
+- "Embed a Copilot agent in our app with the Copilot SDK."
+- "Add a custom tool the agent can call during a session."
+- "Stream the model's response token by token in our CLI."
+- "Connect the SDK to an MCP server and a custom agent."
+
+> [!NOTE]
+> The SDK drives the GitHub Copilot CLI, which must be installed and authenticated first (see Prerequisites). It is in Technical Preview and may introduce breaking changes — pin versions and re-test on upgrade.
 
 ## Prerequisites
 
@@ -927,7 +944,7 @@ const models = await client.getModels();
 
 ## Architecture
 
-```
+```text
 Your Application
        |
   SDK Client
@@ -938,6 +955,42 @@ Your Application
 ```
 
 The SDK manages the CLI process lifecycle automatically. All communication happens via JSON-RPC over stdio or TCP.
+
+## Output template
+
+A delivered integration follows this shape — client, session, optional tools, a run loop, and guaranteed cleanup:
+
+```typescript
+import { CopilotClient, approveAll } from "@github/copilot-sdk";
+
+// 1. Create the client and a session (add custom tools via `tools: [...]`).
+const client = new CopilotClient();
+const session = await client.createSession({
+    onPermissionRequest: approveAll,
+    model: "gpt-4.1",
+    streaming: true,
+});
+
+// 2. Drive the agent.
+try {
+    const response = await session.sendAndWait({ prompt: "..." }, 30000);
+    console.log(response?.data.content);
+} finally {
+    // 3. Always clean up.
+    await client.stop();
+}
+```
+
+Report the language and runtime, the models used, any tools or MCP servers wired in, and how the process is cleaned up.
+
+## Quality gate
+
+- [ ] The Copilot CLI is installed and authenticated, and the chosen runtime matches the SDK (Node.js 18+, Python 3.8+, Go 1.21+, or .NET 8.0+).
+- [ ] `client.stop()` is guaranteed on every path (`try/finally`, `defer`, or `await using`).
+- [ ] Long-running calls use `sendAndWait` with a timeout, and errors and `session.error` events are handled.
+- [ ] Custom tools declare a clear name, description, and parameter schema.
+- [ ] Secrets and tokens are never hardcoded; MCP endpoints and models stay configuration.
+- [ ] The integration runs end to end against the target model before it is considered done.
 
 ## Resources
 

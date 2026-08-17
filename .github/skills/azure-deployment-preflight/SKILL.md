@@ -1,21 +1,21 @@
 ---
-name: azure-deployment-preflight
-description: 'Performs comprehensive preflight validation of Bicep deployments to Azure, including template syntax validation, what-if analysis, and permission checks. Use this skill before any deployment to Azure to preview changes, identify potential issues, and ensure the deployment will succeed. Activate when users mention deploying to Azure, validating Bicep files, checking deployment permissions, previewing infrastructure changes, running what-if, or preparing for azd provision.'
+name: "azure-deployment-preflight"
+description: "Use before deploying Bicep/ARM to Azure to run template syntax validation, what-if analysis, and permission checks. Activate when users mention deploying to Azure, validating Bicep files, checking deployment permissions, previewing infrastructure changes, running what-if, or preparing for azd provision. Triggers include \"preflight\", \"what-if\", \"validate deployment\", \"azd provision --preview\", and \"deployment permissions\"."
 ---
-
 # Azure Deployment Preflight Validation
 
 This skill validates Bicep deployments before execution, supporting both Azure CLI (`az`) and Azure Developer CLI (`azd`) workflows.
 
 > **Kit scope:** This kit's IaC is **Terraform (Azure provider `~> 3.x`)**. Bicep/ARM are **out of scope** for the kit's deliverables; use this preflight only when a project genuinely uses Bicep/ARM. For Terraform, use `terraform validate` / `terraform plan` and the `terraform-azurerm-set-diff-analyzer` skill instead.
 
-## When to Use This Skill
+## When to invoke
 
-- Before deploying infrastructure to Azure
-- When preparing or reviewing Bicep files
-- To preview what changes a deployment will make
-- To verify permissions are sufficient for deployment
-- Before running `azd up`, `azd provision`, or `az deployment` commands
+- "Validate my Bicep deployment before I run it."
+- "Preview what changes `azd provision` will make."
+- "Check whether I have permission to deploy this template."
+- "Run a what-if on my infrastructure before deploying."
+
+Typical moments: before deploying infrastructure to Azure, when preparing or reviewing Bicep files, to preview the changes a deployment will make, to verify permissions are sufficient, or before running `azd up`, `azd provision`, or `az deployment`.
 
 ## Validation Process
 
@@ -86,32 +86,42 @@ Determine the deployment scope from the Bicep file's `targetScope` declaration:
 | `managementGroup` | `az deployment mg what-if` |
 | `tenant` | `az deployment tenant what-if` |
 
-**Run with Provider validation level first:**
+**Run with Provider validation level first.**
+
+Resource Group scope (most common):
 
 ```bash
-# Resource Group scope (most common)
 az deployment group what-if \
   --resource-group <rg-name> \
   --template-file <bicep-file> \
   --parameters <param-file> \
   --validation-level Provider
+```
 
-# Subscription scope
+Subscription scope:
+
+```bash
 az deployment sub what-if \
   --location <location> \
   --template-file <bicep-file> \
   --parameters <param-file> \
   --validation-level Provider
+```
 
-# Management Group scope
+Management Group scope:
+
+```bash
 az deployment mg what-if \
   --location <location> \
   --management-group-id <mg-id> \
   --template-file <bicep-file> \
   --parameters <param-file> \
   --validation-level Provider
+```
 
-# Tenant scope
+Tenant scope:
+
+```bash
 az deployment tenant what-if \
   --location <location> \
   --template-file <bicep-file> \
@@ -216,6 +226,54 @@ bicep --version
 5. Agent runs `azd provision --preview`
 6. Agent generates `preflight-report.md` in project root
 7. Agent summarizes findings to user
+
+## Output template
+
+The skill writes `preflight-report.md` to the project root, following [references/REPORT-TEMPLATE.md](references/REPORT-TEMPLATE.md). Below its top-level `Deployment Preflight Report` title, it contains:
+
+```markdown
+## Summary
+
+- Status: PASS with warnings
+- Timestamp: 2026-08-17T14:00:00Z
+- Files validated: infra/main.bicep
+- Target scope: resourceGroup (rg-sifap)
+
+## Tools executed
+
+| Tool | Version | Result |
+|---|---|---|
+| bicep build | 0.30.3 | success |
+| az deployment group what-if | 2.76.0 (Provider) | success |
+
+## Issues
+
+| Severity | Location | Finding | Remediation |
+|---|---|---|---|
+| Warning | main.bicep:42 | Storage allows public blob access | Set allowBlobPublicAccess to false |
+
+## What-if results
+
+| Change | Count | Resources |
+|---|---|---|
+| Create (+) | 3 | storageAccount, appService, keyVault |
+| Modify (~) | 1 | appServicePlan (B1 -> S1) |
+| Delete (-) | 0 | none |
+
+## Recommendations
+
+- Resolve the public-access warning before deploying.
+- Re-run with `--validation-level Provider` once RBAC is granted.
+```
+
+## Quality gate
+
+- [ ] Project type detected (azd vs standalone) and all `.bicep` files located.
+- [ ] Bicep syntax validated with `bicep build`, or the missing tool noted in the report.
+- [ ] What-if run at the correct scope; an RBAC failure fell back to `ProviderNoRbac` and was noted.
+- [ ] Every create/modify/delete change categorized, with property-level detail on modifications.
+- [ ] `preflight-report.md` written to the project root with all five sections populated.
+- [ ] Validation continued through every step, capturing all issues rather than stopping at the first error.
 
 ## Reference Documentation
 

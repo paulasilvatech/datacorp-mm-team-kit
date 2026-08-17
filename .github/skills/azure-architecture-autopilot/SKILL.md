@@ -1,181 +1,138 @@
 ---
-name: azure-architecture-autopilot
-description: >
-  Design Azure infrastructure using natural language, or analyze existing Azure resources
-  to auto-generate architecture diagrams, refine them through conversation, and deploy with Bicep.
-
-  When to use this skill:
-  - "Create X on Azure", "Set up a RAG architecture" (new design)
-  - "Analyze my current Azure infrastructure", "Draw a diagram for rg-xxx" (existing analysis)
-  - "Foundry is slow", "I want to reduce costs", "Strengthen security" (natural language modification)
-  - Azure resource deployment, Bicep template generation, IaC code generation
-  - Microsoft Foundry, AI Search, OpenAI, Fabric, ADLS Gen2, Databricks, and all Azure services
+name: "azure-architecture-autopilot"
+description: "Use when the user wants to design Azure infrastructure from natural language or analyze an existing Azure environment into an interactive architecture diagram, then iterate and optionally deploy. Drives a design-diagram-review-deploy pipeline with a bundled offline diagram engine (605+ Azure icons). Triggers include \"create X on Azure\", \"design a RAG architecture\", \"analyze my Azure resources\", and \"draw a diagram for rg-...\". It emits Bicep, which is out of scope for this kit — re-express any adopted design as Terraform."
 ---
+# Azure Architecture Autopilot
 
-# Azure Architecture Builder
+A pipeline that designs Azure infrastructure from natural language, or analyzes existing resources, to visualize the architecture as an interactive diagram and then iterate through modification and deployment.
 
-A pipeline that designs Azure infrastructure using natural language, or analyzes existing resources to visualize architecture and proceed through modification and deployment.
+> [!WARNING]
+> This kit's IaC is **Terraform (Azure provider `~> 3.x`)**. This skill emits **Bicep**, which is **out of scope** for the kit's deliverables. Use it for exploration, diagrams, and reference only, and re-express any adopted architecture as Terraform under `infra/` (which the team creates in Stage 3), with the required `project`, `environment`, and `owner` tags.
 
-> **Kit scope:** This kit's IaC is **Terraform (Azure provider `~> 3.x`)**. This skill emits **Bicep**, which is **out of scope** for the kit's deliverables — use it for exploration, diagrams, or reference only, and re-express any adopted architecture as Terraform under `infra/` (which the team creates in Stage 3).
+> [!NOTE]
+> This skill depends on a bundled Python diagram engine (`scripts/`, no install needed). Deployment phases additionally require the `az` CLI and Bicep tooling. Microsoft Docs fact-checking uses the `web_fetch` and `web_search` tools directly from the main agent.
 
-The diagram engine is **embedded within the skill** (`scripts/` folder).
-No `pip install` needed — the bundled Python scripts generate interactive HTML diagrams with 605+ official Azure icons. The engine entry point is [`scripts/cli.py`](scripts/cli.py), which imports [`scripts/generator.py`](scripts/generator.py) (HTML/SVG rendering) and [`scripts/icons.py`](scripts/icons.py) (official Azure icon data).
-Ready to use immediately without network access or package installation.
+## When to invoke
 
-## Automatic User Language Detection
+- "Create a RAG architecture on Azure."
+- "Analyze my current Azure infrastructure and draw a diagram for rg-sifap."
+- "Foundry is slow — how should I change this architecture?"
+- "I want to reduce cost / strengthen security on this design."
 
-**🚨 Detect the language of the user's first message and provide all subsequent responses in that language. This is the highest-priority principle.**
+## Bundled diagram engine
 
-- If the user writes in Korean → respond in Korean
-- If the user writes in English → **respond in English** (ask_user, progress updates, reports, Bicep comments — all in English)
-- The instructions and examples in this document are written in English, and **all user-facing output must match the user's language**
+The diagram engine is embedded in the skill under `scripts/`. No `pip install` is needed — the bundled Python scripts render interactive HTML diagrams with 605+ official Azure icons, fully offline. The entry point is [scripts/cli.py](scripts/cli.py), which imports [scripts/generator.py](scripts/generator.py) for HTML/SVG rendering and [scripts/icons.py](scripts/icons.py) for icon data.
 
-**⚠️ Do not copy examples from this document verbatim to the user.**
-Use only the structure as reference, and adapt text to the user's language.
+## User-facing language
 
-## Tool Usage Guide (GHCP Environment)
+Detect the language of the user's first message and provide all user-facing output — questions, progress updates, reports, and Bicep comments — in that language. This skill's own instructions are written in English; adapt the examples, do not copy them verbatim.
 
-| Feature | Tool Name | Notes |
-|---------|-----------|-------|
-| Fetch URL content | `web_fetch` | For MS Docs lookups, etc. |
+## Tool usage
+
+| Need | Tool | Notes |
+|---|---|---|
+| Fetch URL content | `web_fetch` | Microsoft Docs lookups |
 | Web search | `web_search` | URL discovery |
-| Ask user | `ask_user` | `choices` must be a string array |
-| Sub-agents | `task` | explore/task/general-purpose |
-| Shell command execution | `powershell` | Windows PowerShell |
+| Ask the user | `ask_user` | `choices` must be a string array |
+| Sub-agents | `task` | explore / task / general-purpose |
+| Shell execution | shell tool | Discover `az` / `python` / `bicep` paths first |
 
-> All sub-agents (explore/task/general-purpose) cannot use `web_fetch` or `web_search`.
-> Fact-checking that requires MS Docs lookups must be performed **directly by the main agent**.
+> [!NOTE]
+> Sub-agents cannot use `web_fetch` or `web_search`. Perform Microsoft Docs fact-checks directly from the main agent.
 
-## External Tool Path Discovery
+## Path discovery
 
-`az`, `python`, `bicep`, etc. are often not on PATH.
-**Discover once before starting a Phase and cache the result. Do not re-discover every time.**
+`az`, `python`, and `bicep` are often not on `PATH`. Discover each once before a phase and cache the result; do not re-discover on every call, and prefer direct filesystem discovery over shell aliases. See the diagram-generation section in [references/phase1-advisor.md](references/phase1-advisor.md) for the Python path plus embedded-engine wiring.
 
-> **⚠️ Do not use `Get-Command python`** — risk of Windows Store alias.
-> Direct filesystem discovery (`$env:LOCALAPPDATA\Programs\Python`) takes priority.
+## Progress updates
 
-az CLI path:
+Report progress with short status lines in the user's language — not emoji. Use one line per action:
 
-```powershell
-$azCmd = $null
-if (Get-Command az -ErrorAction SilentlyContinue) { $azCmd = 'az' }
-if (-not $azCmd) {
-  $azExe = Get-ChildItem -Path "$env:ProgramFiles\Microsoft SDKs\Azure\CLI2\wbin", "$env:LOCALAPPDATA\Programs\Azure CLI\wbin" -Filter "az.cmd" -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
-  if ($azExe) { $azCmd = $azExe }
-}
+```text
+Action — reason for it
+Done — result
+Warning — detail to watch
+Failed — cause and next step
 ```
 
-Python path + embedded diagram engine: refer to the diagram generation section in `references/phase1-advisor.md`.
+## Pipeline
 
-## Progress Updates Required
+Two paths, chosen automatically from the request; when ambiguous, ask the user which they want.
 
-Use blockquote + emoji + bold format:
+### Path A: new design
 
-```markdown
-> **⏳ [Action]** — [Reason]
-> **✅ [Complete]** — [Result]
-> **⚠️ [Warning]** — [Details]
-> **❌ [Failed]** — [Cause]
+Trigger phrases: "create", "set up", "deploy", "build".
+
+```text
+Phase 1 (references/phase1-advisor.md)    Interactive design + diagram
+  -> Phase 2 (references/bicep-generator.md)  Bicep generation (out of kit scope)
+  -> Phase 3 (references/bicep-reviewer.md)    Review + compile check
+  -> Phase 4 (references/phase4-deployer.md)    validate -> what-if -> deploy
 ```
 
-## Parallel Preload Principle
+### Path B: analyze and modify
 
-While waiting for user input via `ask_user`, preload information needed for the next step in parallel.
+Trigger phrases: "analyze", "current resources", "scan", "draw a diagram".
 
-| ask_user Question | Preload Simultaneously |
-|---|---|
-| Project name / scan scope | Reference files, MS Docs, Python path discovery, **diagram module path verification** |
-| Model/SKU selection | MS Docs for next question choices |
-| Architecture confirmation | `az account show/list`, `az group list` |
-| Subscription selection | `az group list` |
-
----
-
-## Path Branching — Automatically Determined by User Request
-
-### Path A: New Design (New Build)
-
-**Trigger**: "create", "set up", "deploy", "build", etc.
-
-```
-Phase 1 (references/phase1-advisor.md) — Interactive architecture design + diagram
-    ↓
-Phase 2 (references/bicep-generator.md) — Bicep code generation
-    ↓
-Phase 3 (references/bicep-reviewer.md) — Code review + compilation verification
-    ↓
-Phase 4 (references/phase4-deployer.md) — validate → what-if → deploy
+```text
+Phase 0 (references/phase0-scanner.md)    Scan existing resources + diagram
+  -> Modification conversation (natural-language change request)
+  -> Phase 1 (references/phase1-advisor.md)   Confirm changes + update diagram
+  -> Phases 2-4 as in Path A
 ```
 
-### Path B: Existing Analysis + Modification (Analyze & Modify)
+## Phase transition rules
 
-**Trigger**: "analyze", "current resources", "scan", "draw a diagram", "show my infrastructure", etc.
+- Each phase follows the instructions in its `references/*.md` file.
+- Always tell the user the next step at every transition.
+- Do not skip phases — in particular, never skip the what-if between Phase 3 and Phase 4.
+- Phase 1 to Phase 2 requires a generated `01_arch_diagram_draft.html` shown to the user; never generate Bicep without a confirmed diagram.
+- A post-deployment modification returns to Phase 1, not Phase 0.
 
-```
-Phase 0 (references/phase0-scanner.md) — Existing resource scan + diagram
-    ↓
-Modification conversation — "What would you like to change here?" (natural language modification request → follow-up questions)
-    ↓
-Phase 1 (references/phase1-advisor.md) — Confirm modifications + update diagram
-    ↓
-Phase 2~4 — Same as above
-```
+## Service coverage
 
-### When Path Determination Is Ambiguous
+Optimized services: Microsoft Foundry, Azure OpenAI, AI Search, ADLS Gen2, Key Vault, Microsoft Fabric, Azure Data Factory, VNet / Private Endpoint, and AML / AI Hub. All other Azure services are supported at the same quality bar via Microsoft Docs lookups.
 
-Ask the user directly:
+| Category | Handling | Examples |
+|---|---|---|
+| Stable | Reference files first | `isHnsEnabled`, private-endpoint triples |
+| Dynamic | Always fetch Microsoft Docs | API version, model availability, SKU, region |
 
-```
-ask_user({
-  question: "What would you like to do?",
-  choices: [
-    "Design a new Azure architecture (Recommended)",
-    "Analyze + modify existing Azure resources"
-  ]
-})
-```
-
----
-
-## Phase Transition Rules
-
-- Each Phase reads and follows the instructions in its corresponding `references/*.md` file
-- When transitioning between Phases, always inform the user about the next step
-- Do not skip Phases (especially the what-if between Phase 3 → Phase 4)
-- **🚨 Required condition for Phase 1 → Phase 2 transition**: `01_arch_diagram_draft.html` must have been generated using the embedded diagram engine and shown to the user. **Do not proceed to Bicep generation without a diagram.** Completing spec collection alone does not mean Phase 1 is done — Phase 1 includes diagram generation + user confirmation.
-- Modification request after deployment → return to Phase 1, not Phase 0 (Delta Confirmation Rule)
-
-## Service Coverage & Fallback
-
-### Optimized Services
-
-Microsoft Foundry, Azure OpenAI, AI Search, ADLS Gen2, Key Vault, Microsoft Fabric, Azure Data Factory, VNet/Private Endpoint, AML/AI Hub
-
-### Other Azure Services
-
-All supported — MS Docs are automatically consulted to generate at the same quality standard.
-**Do not send messages that cause user anxiety such as "out of scope" or "best-effort".**
-
-### Stable vs Dynamic Information Handling
-
-| Category | Handling Method | Examples |
-|----------|----------------|---------|
-| **Stable** | Reference files first | `isHnsEnabled: true`, PE triple set |
-| **Dynamic** | **Always fetch MS Docs** | API version, model availability, SKU, region |
-
-## Quick Reference
+## Reference files
 
 | File | Role |
-|------|------|
-| `references/phase0-scanner.md` | Existing resource scan + relationship inference + diagram |
-| `references/phase1-advisor.md` | Interactive architecture design + fact checking |
-| `references/bicep-generator.md` | Bicep code generation rules |
-| `references/bicep-reviewer.md` | Code review checklist |
-| `references/phase4-deployer.md` | validate → what-if → deploy |
-| `references/service-gotchas.md` | Required properties, PE mappings |
-| `references/azure-dynamic-sources.md` | MS Docs URL registry |
-| `references/azure-common-patterns.md` | PE/security/naming patterns |
-| `references/ai-data.md` | AI/Data service guide |
-| `assets/06-architecture-diagram.png` | Example generated architecture diagram |
-| `assets/07-azure-portal-resources.png` | Example Azure portal resource view |
-| `assets/08-deployment-succeeded.png` | Example successful deployment result |
+|---|---|
+| [references/phase0-scanner.md](references/phase0-scanner.md) | Existing-resource scan, relationship inference, and diagram |
+| [references/phase1-advisor.md](references/phase1-advisor.md) | Interactive design and fact-checking |
+| [references/bicep-generator.md](references/bicep-generator.md) | Bicep generation rules (out of kit scope) |
+| [references/bicep-reviewer.md](references/bicep-reviewer.md) | Code-review checklist |
+| [references/phase4-deployer.md](references/phase4-deployer.md) | validate -> what-if -> deploy |
+| [references/service-gotchas.md](references/service-gotchas.md) | Required properties and private-endpoint mappings |
+| [references/azure-dynamic-sources.md](references/azure-dynamic-sources.md) | Microsoft Docs URL registry |
+| [references/azure-common-patterns.md](references/azure-common-patterns.md) | Private-endpoint, security, and naming patterns |
+| [references/architecture-guidance-sources.md](references/architecture-guidance-sources.md) | Architecture guidance sources |
+| [references/ai-data.md](references/ai-data.md) | AI and data service guide |
+
+Example outputs: [assets/06-architecture-diagram.png](assets/06-architecture-diagram.png), [assets/07-azure-portal-resources.png](assets/07-azure-portal-resources.png), and [assets/08-deployment-succeeded.png](assets/08-deployment-succeeded.png).
+
+## Output template
+
+The skill produces an interactive HTML diagram plus a design summary. Record the adopted design so it can be re-expressed as Terraform:
+
+```text
+Architecture: <name>
+Path: A (new design) | B (analyze + modify)
+Diagram: 01_arch_diagram_draft.html (generated, shown to user, confirmed)
+Services: Foundry, AI Search, ADLS Gen2, Key Vault (private endpoints)
+Bicep: generated for reference only (out of kit scope)
+Kit follow-up: re-express as Terraform under infra/ with project/environment/owner tags
+```
+
+## Quality gate
+
+- [ ] The path (A new design, B analyze and modify) was chosen or confirmed with the user.
+- [ ] A diagram (`01_arch_diagram_draft.html`) was generated with the bundled engine and shown before any Bicep.
+- [ ] Phases ran in order, with no skipped what-if between review and deploy.
+- [ ] Dynamic facts (API version, SKU, region, model availability) were confirmed against Microsoft Docs.
+- [ ] User-facing output used the user's language, and the primitive itself contains no emojis.
+- [ ] Any adopted architecture is flagged for re-expression as Terraform under `infra/`, since Bicep is out of kit scope.

@@ -1,13 +1,31 @@
 ---
-name: java-mcp-server-generator
+name: "java-mcp-server-generator"
 description: "Generate a complete Model Context Protocol (MCP) server project in Java using the official MCP Java SDK, with Maven or Gradle and optional Spring Boot integration. Use when the user wants to create, scaffold, or bootstrap a Java-based MCP server that exposes tools, resources, or prompts."
 ---
+# Java MCP server generator
 
-# Java MCP Server Generator
+Generate a complete, production-ready MCP (Model Context Protocol) server in Java on **Java 21** using the official MCP Java SDK, with Maven or Gradle. Handlers are reactive (Project Reactor `Mono`) and log through SLF4J. Generate and run everything from VS Code, the kit's approved editor.
 
-Generate a complete, production-ready MCP server in Java using the official Java SDK with Maven or Gradle.
+## When to invoke
 
-## Project Generation
+- "Create a Java MCP server that exposes these tools."
+- "Scaffold an MCP server project with Maven and the official Java SDK."
+- "Bootstrap an MCP server with tools, resources, and prompts."
+- "Generate a Gradle-based MCP server skeleton in Java."
+
+## What this skill generates
+
+| Concern | Files produced |
+|---|---|
+| Build | `pom.xml` or `build.gradle.kts` |
+| Entry point | `McpServerApplication.java` |
+| Tools | `tools/ToolDefinitions.java`, `tools/ToolHandlers.java` |
+| Resources | `resources/ResourceDefinitions.java`, `resources/ResourceHandlers.java` |
+| Prompts | `prompts/PromptDefinitions.java`, `prompts/PromptHandlers.java` |
+| Tests | `McpServerTest.java` |
+| Docs | `README.md` |
+
+## Project generation
 
 When asked to create a Java MCP server, generate a complete project with this structure:
 
@@ -58,9 +76,9 @@ my-mcp-server/
     <description>Model Context Protocol server implementation</description>
 
     <properties>
-        <java.version>17</java.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mcp.version>0.14.1</mcp.version>
         <slf4j.version>2.0.9</slf4j.version>
@@ -151,8 +169,8 @@ group = "com.example"
 version = "1.0.0"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 repositories {
@@ -668,22 +686,23 @@ class McpServerTest {
 ## README.md Template
 
 ````markdown
-# My MCP Server
+My MCP Server
+=============
 
 A Model Context Protocol server built with Java and the official MCP Java SDK.
 
 ## Features
 
-- ✅ Tools: greet, calculate
-- ✅ Resources: example data, configuration
-- ✅ Prompts: code-review
-- ✅ Reactive Streams with Project Reactor
-- ✅ Structured logging with SLF4J
-- ✅ Full test coverage
+- Tools: greet, calculate
+- Resources: example data, configuration
+- Prompts: code-review
+- Reactive Streams with Project Reactor
+- Structured logging with SLF4J
+- Full test coverage
 
 ## Requirements
 
-- Java 17 or later
+- Java 21 or later
 - Maven 3.6+ or Gradle 7+
 
 ## Build
@@ -722,13 +741,13 @@ mvn test
 ./gradlew test
 ```
 
-## Integration with Claude Desktop
+## Integration with VS Code
 
-Add to `claude_desktop_config.json`:
+Add the server to VS Code's `.vscode/mcp.json`:
 
 ```json
 {
-  "mcpServers": {
+  "servers": {
     "my-mcp-server": {
       "command": "java",
       "args": ["-jar", "/path/to/my-mcp-server-1.0.0.jar"]
@@ -754,3 +773,30 @@ MIT
 8. **Include error handling** with proper responses
 9. **Document public APIs** with Javadoc
 10. **Provide both sync and async** examples
+
+## Output template
+
+```text
+my-mcp-server/  (Java 21, Maven or Gradle)
+├── pom.xml | build.gradle.kts
+├── src/main/java/com/example/mcp/
+│   ├── McpServerApplication.java
+│   ├── tools/       ToolDefinitions.java, ToolHandlers.java
+│   ├── resources/   ResourceDefinitions.java, ResourceHandlers.java
+│   └── prompts/     PromptDefinitions.java, PromptHandlers.java
+├── src/test/java/com/example/mcp/McpServerTest.java
+└── README.md
+
+capabilities: tools=greet,calculate | resources=example,config | prompts=code-review
+build: mvn clean package   (or ./gradlew build)
+run:   java -jar target/my-mcp-server-1.0.0.jar
+```
+
+## Quality gate
+
+- [ ] The project builds on Java 21 with Maven (`mvn clean package`) or Gradle (`./gradlew build`).
+- [ ] Every tool, resource, and prompt has both a definition and a registered handler.
+- [ ] Handlers validate arguments and return an error response instead of throwing on bad input.
+- [ ] Async handlers use Project Reactor (`Mono`); logging uses SLF4J (no `System.out`).
+- [ ] `McpServerTest` covers each tool, including an error path such as division by zero.
+- [ ] The README documents build, run, and MCP client integration via VS Code `.vscode/mcp.json`.

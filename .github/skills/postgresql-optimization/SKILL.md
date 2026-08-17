@@ -1,11 +1,20 @@
 ---
-name: postgresql-optimization
+name: "postgresql-optimization"
 description: "Author and optimize PostgreSQL using its advanced features — JSONB, array/range/geometric types, custom types, full-text search, window functions, indexing, and the extensions ecosystem. Use when the user wants to write, tune, or speed up PostgreSQL queries, schema, or performance. To review existing PostgreSQL code, use postgresql-code-review."
 ---
+# PostgreSQL development and optimization
 
-# PostgreSQL Development Assistant
+Expert PostgreSQL guidance for `${selection}` (or the entire project when nothing is selected). It covers PostgreSQL-specific features and optimization patterns: JSONB, arrays, ranges, geometric types, full-text search, window functions, indexing, and the extensions ecosystem. To review existing PostgreSQL code instead of authoring it, use [`postgresql-code-review`](../postgresql-code-review/SKILL.md).
 
-Expert PostgreSQL guidance for ${selection} (or entire project if no selection). Focus on PostgreSQL-specific features, optimization patterns, and advanced capabilities.
+> [!IMPORTANT]
+> The SIFAP 2.0 backend runs **PostgreSQL 16** through **JPA/Hibernate**. Author application queries as JPQL, Spring Data derived queries, or bound native parameters — never string-concatenated SQL. Schema changes ship as forward-only Flyway migrations under `backend/src/main/resources/db/migration/`. For generic execution-plan and index analysis see [`query-optimization`](../query-optimization/SKILL.md); for migration safety see [`database.instructions.md`](../../instructions/database.instructions.md). Those files are authoritative where they overlap.
+
+## When to invoke
+
+- "Write a fast JSONB containment query for this table."
+- "Speed up this aggregation — it does a sequential scan."
+- "Design the right index for this filter and sort."
+- "Model this with a range type and an exclusion constraint."
 
 ## PostgreSQL-Specific Features
 
@@ -218,7 +227,7 @@ WHERE coordinates <-> point(40.7128, -74.0060) < 10; -- Within 10 units
 CREATE INDEX idx_locations_coords ON locations USING gist(coordinates);
 ```
 
-## 📊 PostgreSQL Extensions & Tools
+## PostgreSQL Extensions & Tools
 
 ### Useful Extensions
 
@@ -263,7 +272,7 @@ WHERE idx_scan = 0;  -- Unused indexes
 - **Partition large tables** using PostgreSQL 10+ declarative partitioning
 - **Use pg_stat_statements** for query performance monitoring
 
-## 📊 Monitoring and Maintenance
+## Monitoring and Maintenance
 
 ### Query Performance Monitoring
 
@@ -287,15 +296,15 @@ WHERE idx_scan = 0;
 - **Statistics Updates**: Keep query planner statistics current
 - **Log Analysis**: Regular review of PostgreSQL logs
 
-## 🛠️ Common Query Patterns
+## Common Query Patterns
 
 ### Pagination
 
 ```sql
--- ❌ BAD: OFFSET for large datasets
+-- BAD: OFFSET for large datasets
 SELECT * FROM products ORDER BY id OFFSET 10000 LIMIT 20;
 
--- ✅ GOOD: Cursor-based pagination
+-- GOOD: Cursor-based pagination
 SELECT * FROM products 
 WHERE id > $last_id 
 ORDER BY id 
@@ -305,13 +314,13 @@ LIMIT 20;
 ### Aggregation
 
 ```sql
--- ❌ BAD: Inefficient grouping
+-- BAD: Inefficient grouping
 SELECT user_id, COUNT(*) 
 FROM orders 
 WHERE order_date >= '2024-01-01' 
 GROUP BY user_id;
 
--- ✅ GOOD: Optimized with partial index
+-- GOOD: Optimized with partial index
 CREATE INDEX idx_orders_recent ON orders(user_id) 
 WHERE order_date >= '2024-01-01';
 
@@ -324,16 +333,16 @@ GROUP BY user_id;
 ### JSON Queries
 
 ```sql
--- ❌ BAD: Inefficient JSON querying
+-- BAD: Inefficient JSON querying
 SELECT * FROM users WHERE data::text LIKE '%admin%';
 
--- ✅ GOOD: JSONB operators and GIN index
+-- GOOD: JSONB operators and GIN index
 CREATE INDEX idx_users_data_gin ON users USING gin(data);
 
 SELECT * FROM users WHERE data @> '{"role": "admin"}';
 ```
 
-## 📋 Optimization Checklist
+## Optimization Checklist
 
 ### Query Analysis
 
@@ -367,36 +376,10 @@ SELECT * FROM users WHERE data @> '{"role": "admin"}';
 - [ ] Track database growth and maintenance needs
 - [ ] Set up alerting for performance degradation
 
-## 🎯 Optimization Output Format
-
-### Query Analysis Results
-
-```
-## Query Performance Analysis
-
-**Original Query**:
-[Original SQL with performance issues]
-
-**Issues Identified**:
-- Sequential scan on large table (Cost: 15000.00)
-- Missing index on frequently queried column
-- Inefficient join order
-
-**Optimized Query**:
-[Improved SQL with explanations]
-
-**Recommended Indexes**:
-```sql
-CREATE INDEX idx_table_column ON table(column);
-```
-
-**Performance Impact**: Expected 80% improvement in execution time
-
-```
-
-## 🚀 Advanced PostgreSQL Features
+## Advanced PostgreSQL Features
 
 ### Window Functions
+
 ```sql
 -- Running totals and rankings
 SELECT 
@@ -427,3 +410,30 @@ SELECT * FROM category_tree ORDER BY level, name;
 ```
 
 Focus on providing specific, actionable PostgreSQL optimizations that improve query performance, security, and maintainability while leveraging PostgreSQL's advanced features.
+
+## Output template
+
+Report each optimization as a before/after with the plan change and the exact DDL.
+
+```markdown
+## PostgreSQL optimization — <query or object>
+
+| Field | Before | After |
+|---|---|---|
+| p95 latency | <ms> | <ms> |
+| Plan | Seq Scan on `orders` | Index Scan on `idx_orders_data` |
+| Rows examined | <n> | <n> |
+
+**Change**: index | rewrite | type/constraint | configuration
+**DDL**: CREATE INDEX idx_orders_data ON orders USING gin(data);
+**Validation**: EXPLAIN (ANALYZE, BUFFERS) rerun confirms the new plan and lower latency
+```
+
+## Quality gate
+
+- [ ] A baseline plan and latency were captured with `EXPLAIN (ANALYZE, BUFFERS)` before any change.
+- [ ] The chosen PostgreSQL feature (JSONB, array, range, full-text search, window function) fits the access pattern.
+- [ ] Indexes match the filters, joins, and sorts; each new index is justified against its write cost.
+- [ ] Application access stays parameterized (JPQL, derived query, or bound native) — no string-built SQL.
+- [ ] Schema changes are forward-only Flyway migrations and remain rollback-safe.
+- [ ] `EXPLAIN (ANALYZE, BUFFERS)` confirms the plan changed and latency dropped.

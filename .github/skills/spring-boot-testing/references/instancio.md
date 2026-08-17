@@ -94,7 +94,7 @@ class OrderRepositoryTest {
   
   @Container
   @ServiceConnection
-  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:18");
+  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16");
   
   @Autowired
   private OrderRepository orderRepository;

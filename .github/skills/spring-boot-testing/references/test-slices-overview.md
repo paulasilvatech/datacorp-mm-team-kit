@@ -57,7 +57,7 @@ class OrderControllerTest {
 @Testcontainers
 class OrderRepositoryTest {
   @Container
-  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:18");
+  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16");
 }
 ```
 
@@ -111,7 +111,7 @@ class OrderIntegrationTest {
 3. **@DataJpaTest with @MockBean** - Defeats the purpose (you want real repositories)
 4. **Multiple slices in one test** - Each slice is a separate test class
 
-## Java 25 Features in Tests
+## Java 21 Features in Tests
 
 ### Records for Test Data
 

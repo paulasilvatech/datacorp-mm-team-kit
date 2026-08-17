@@ -1,45 +1,54 @@
 ---
-name: azure-well-architected-review
-description: "Run an Azure Well-Architected Framework review across the five pillars against a workload's IaC (Terraform, Bicep, or ARM) and deployed resources, then open GitHub issues for the findings. Use when the user asks for a WAF review, an architecture assessment, or a reliability, security, cost, performance, or operational-excellence audit of an Azure workload."
+name: "azure-well-architected-review"
+description: "Use when the user asks for an Azure Well-Architected Framework review, an architecture assessment, or a reliability, security, cost, performance, or operational-excellence audit of an Azure workload. Reviews the five WAF pillars against the workload's IaC (Terraform for this kit; Bicep/ARM also readable) and deployed resources, then opens GitHub issues for the findings. Triggers include \"WAF review\", \"well-architected\", \"architecture assessment\", \"reliability audit\", and \"security review of Azure\"."
 ---
-
 # Azure Well-Architected Review
 
-This workflow performs a structured Azure Well-Architected Framework (WAF) review against your workload's IaC files and deployed infrastructure. It identifies risks across all 5 WAF pillars and creates GitHub issues to track remediation.
+This workflow performs a structured Azure Well-Architected Framework (WAF) review against a workload's IaC files and deployed infrastructure. It identifies risks across all five WAF pillars and creates GitHub issues to track remediation.
+
+> [!NOTE]
+> This kit's IaC is **Terraform (`azurerm ~> 3.x`)**. The review reads whatever IaC exists (Terraform, Bicep, or ARM), but remediation examples are written as Terraform. Bicep/ARM snippets are illustrative only and out of scope for the kit's deliverables. This skill also depends on the **`az` CLI** and the **GitHub MCP server** (or `gh`) being authenticated.
+
+## When to invoke
+
+- "Run a Well-Architected review on our Azure workload."
+- "Audit this architecture for reliability and security risks."
+- "Are we following Azure best practices across the five pillars?"
+- "Open GitHub issues for the WAF gaps in our infrastructure."
 
 ## Prerequisites
 
-- Azure CLI (`az`) configured and authenticated
-- IaC files present in the repository (Bicep, Terraform, or ARM templates)
-- GitHub MCP server configured and authenticated
+- Azure CLI (`az`) configured and authenticated.
+- IaC files present in the repository (Terraform preferred; Bicep or ARM also readable).
+- GitHub MCP server (or `gh`) configured and authenticated.
 
-## Workflow Steps
+## Workflow steps
 
-### Step 1: Load Well-Architected Framework Reference
+### Step 1: Load Well-Architected Framework reference
 
 Fetch current Azure WAF best practices:
 
 - `https://learn.microsoft.com/en-us/azure/well-architected/`
 - Service guides for the Azure services in use (`https://learn.microsoft.com/en-us/azure/well-architected/service-guides/`)
-- Workload-specific guidance relevant to the workload type (SaaS, mission-critical, AI, etc.)
+- Workload-specific guidance relevant to the workload type (SaaS, mission-critical, AI, and similar)
 
 If the `microsoft.docs.mcp` MCP server is available, use it to query the latest pillar checklists and service-specific recommendations.
 
-### Step 2: Discover IaC & Architecture
+### Step 2: Discover IaC and architecture
 
 Establish the review scope, then inventory both the code and the live environment:
 
-1. **Confirm the Azure scope**: Ask the user which subscription(s)/resource group(s) are in scope, or infer them from IaC parameters and confirm.
+1. **Confirm the Azure scope**: ask the user which subscription(s)/resource group(s) are in scope, or infer them from IaC parameters and confirm.
 2. **Scan the repository for IaC files**:
+   - Terraform: `**/*.tf` (azurerm/azapi providers) — this kit's primary IaC
    - Bicep: `**/*.bicep`, `bicepconfig.json`
-   - Terraform: `**/*.tf` (azurerm/azapi providers)
    - ARM templates: `**/azuredeploy*.json`, `**/*.template.json`, files with `$schema` containing `deploymentTemplate`
-3. **Inventory live resources** (always, even when IaC exists): `az resource list --resource-group <rg> --output json` (or subscription-wide), plus targeted `az <service> show` calls for configuration details the pillar checks need.
-4. **Compare IaC with live inventory**: Flag drift — resources present in Azure but absent from IaC (portal-created), resources defined in IaC but not deployed, and configuration mismatches. Record drift findings for Step 3 (they typically map to the Operational Excellence pillar).
+3. **Inventory live resources** (always, even when IaC exists): `az resource list --resource-group <rg> --output json` (or subscription-wide), plus targeted `az <service> show` calls for the configuration details the pillar checks need.
+4. **Compare IaC with live inventory**: flag drift — resources present in Azure but absent from IaC (portal-created), resources defined in IaC but not deployed, and configuration mismatches. Record drift findings for Step 3 (they typically map to the Operational Excellence pillar).
 
-Identify key Azure services in use (compute, data, networking, security, observability) and generate a Mermaid architecture diagram.
+Identify the key Azure services in use (compute, data, networking, security, observability) and generate a Mermaid architecture diagram.
 
-### Step 3: Pillar-by-Pillar Review
+### Step 3: Pillar-by-pillar review
 
 #### Pillar 1: Reliability
 
@@ -60,7 +69,7 @@ Identify key Azure services in use (compute, data, networking, security, observa
 - [ ] Secrets stored in Azure Key Vault with RBAC authorization (not access policies)
 - [ ] Storage accounts deny public blob access and disallow shared key access where possible
 - [ ] Private endpoints (or at minimum service endpoints + firewall rules) for PaaS data services
-- [ ] NSGs restrict inbound traffic to minimum required ports/CIDRs (no `*` → `*` allow rules)
+- [ ] NSGs restrict inbound traffic to the minimum required ports/CIDRs (no `*` to `*` allow rules)
 - [ ] TLS 1.2+ enforced on all endpoints (`minimumTlsVersion`, `httpsOnly`)
 - [ ] Azure RBAC follows least privilege (no Owner/Contributor at subscription scope for workload identities)
 - [ ] Microsoft Defender for Cloud enabled on relevant resource types (`az security pricing list`)
@@ -99,113 +108,141 @@ Identify key Azure services in use (compute, data, networking, security, observa
 - [ ] Premium/zone-redundant storage used for latency-sensitive disk workloads
 - [ ] Connection pooling and async patterns used for database and HTTP clients
 
-### Step 4: Risk Classification
+### Step 4: Risk classification
 
 For each finding, classify:
 
-- **High Risk**: Security vulnerability, single point of failure, no backup/recovery
-- **Medium Risk**: Suboptimal reliability, cost inefficiency, performance concern
-- **Low Risk**: Best practice deviation, minor optimization opportunity
+| Risk | Meaning |
+|---|---|
+| High | Security vulnerability, single point of failure, no backup/recovery |
+| Medium | Suboptimal reliability, cost inefficiency, performance concern |
+| Low | Best-practice deviation, minor optimization opportunity |
 
-### Step 5: User Confirmation
+### Step 5: User confirmation
 
+Present the summary and gate on explicit approval before creating any GitHub issues:
+
+```text
+Azure Well-Architected Review Summary
+
+Review Results:
+- IaC Files Analyzed: X
+- Azure Services Identified: Y
+- Total Findings: Z
+  - High Risk: A (immediate action required)
+  - Medium Risk: B (should address soon)
+  - Low Risk: C (nice to have)
+
+Top High Risk Findings:
+1. [Pillar]: [Finding] - [Why it matters]
+2. [Pillar]: [Finding] - [Why it matters]
+
+This will create Z individual GitHub issues plus 1 EPIC issue.
+
+Proceed with creating GitHub issues? (y/n)
 ```
-🏗️ Azure Well-Architected Review Summary
 
-📊 Review Results:
-• IaC Files Analyzed: X
-• Azure Services Identified: Y
-• Total Findings: Z
-  • High Risk: A (immediate action required)
-  • Medium Risk: B (should address soon)
-  • Low Risk: C (nice to have)
+> [!IMPORTANT]
+> Only proceed to Steps 6-7 if the user gives an explicit affirmative response (for example "y", "yes"). On a negative, ambiguous, or missing response, do **not** create any GitHub issues — output the full findings as formatted markdown to the console and stop.
 
-🔴 Top High Risk Findings:
-1. [Pillar]: [Finding] — [Why it matters]
-2. [Pillar]: [Finding] — [Why it matters]
+### Step 6: Create individual finding issues
 
-💡 This will create Z individual GitHub issues + 1 EPIC issue.
+Label with `well-architected` and the pillar name (for example `security`, `reliability`).
 
-❓ Proceed with creating GitHub issues? (y/n)
-```
+Title: `[WAF-<PILLAR>] <Brief Finding> - <Risk Level>`
 
-**Gate**: Only proceed to Steps 6–7 if the user gives an explicit affirmative response (e.g. "y", "yes"). On a negative, ambiguous, or missing response, do **not** create any GitHub issues — output the full findings as formatted markdown to the console and stop.
-
-### Step 6: Create Individual Finding Issues
-
-Label with "well-architected" and the pillar name (e.g., "security", "reliability").
-
-**Title**: `[WAF-<PILLAR>] [Brief Finding] — [Risk Level]`
-
-**Body**:
+Body:
 
 ````markdown
-## 🏗️ Well-Architected Finding: [Brief Title]
+## Well-Architected Finding: <Brief Title>
 
-**Pillar**: [Name] | **Risk Level**: [High/Medium/Low] | **Effort**: [Low/Medium/High]
+**Pillar**: <Name> | **Risk Level**: <High/Medium/Low> | **Effort**: <Low/Medium/High>
 
-### 📋 Description
-[Clear explanation of the finding and why it matters]
+### Description
+<Clear explanation of the finding and why it matters>
 
-### 🔧 Remediation
+### Remediation
 
-**IaC Fix** (preferred):
-```bicep
-// Bicep example
-resource storageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' = {
-  name: storageAccountName
-  location: location
-  sku: { name: 'Standard_ZRS' }
-  kind: 'StorageV2'
-  properties: {
-    minimumTlsVersion: 'TLS1_2'
-    allowBlobPublicAccess: false
-    supportsHttpsTrafficOnly: true
+IaC fix (preferred, Terraform — this kit's IaC):
+```hcl
+resource "azurerm_storage_account" "data" {
+  name                            = "sifapdata"
+  resource_group_name             = azurerm_resource_group.main.name
+  location                        = azurerm_resource_group.main.location
+  account_tier                    = "Standard"
+  account_replication_type        = "ZRS"
+  min_tls_version                 = "TLS1_2"
+  allow_nested_items_to_be_public = false
+  shared_access_key_enabled       = false
+
+  tags = {
+    project     = "sifap"
+    environment = "prod"
+    owner       = "platform-team"
   }
 }
 ```
 
-**Azure CLI fallback**:
+Azure CLI fallback:
 ```bash
 az storage account update --name <name> --resource-group <rg> \
   --min-tls-version TLS1_2 --allow-blob-public-access false --https-only true
 ```
 
-### 📚 Azure Reference
-- [WAF Best Practice Link]
-- [Microsoft Learn Documentation Link]
+### Azure reference
+- <WAF best-practice link>
+- <Microsoft Learn documentation link>
 
-### ✅ Validation
-- [ ] Change implemented in IaC and deployed
+### Validation
+- [ ] Change implemented in Terraform and applied
 - [ ] Azure Policy compliance passes (if applicable)
 - [ ] Microsoft Defender for Cloud recommendation resolved (if applicable)
 
-**Well-Architected Recommendation**: [WAF checklist item this maps to]
+**Well-Architected Recommendation**: <WAF checklist item this maps to>
 ````
 
-### Step 7: Create EPIC Tracking Issue
+### Step 7: Create EPIC tracking issue
 
-Label with "well-architected" and "epic".
+Label with `well-architected` and `epic`.
 
-**Title**: `[EPIC] Azure Well-Architected Review — X findings across 5 pillars`
+Title: `[EPIC] Azure Well-Architected Review - X findings across 5 pillars`
 
-**Body**: Executive summary with pillar breakdown table (finding counts by pillar and risk level), Mermaid architecture diagram, prioritized checklist linking all individual issues (High → Medium → Low), and success criteria:
+Body: an executive summary with a pillar breakdown table (finding counts by pillar and risk level), a Mermaid architecture diagram, a prioritized checklist linking all individual issues (High to Medium to Low), and success criteria:
 
 - All High-risk findings resolved
 - Medium findings have accepted mitigation plans
 - No regression in existing Azure Monitor alerts or Azure Policy compliance
 
-## Error Handling
+## Error handling
 
-- **No IaC Files Found**: Limit review to live resource discovery via Azure CLI (`az resource list`) and note the gap
-- **Insufficient Azure Permissions**: List required read-only roles for the review (Reader, Security Reader)
-- **GitHub Creation Failure**: Output all findings as formatted markdown to console
+| Situation | Action |
+|---|---|
+| No IaC files found | Limit the review to live resource discovery via `az resource list` and note the gap |
+| Insufficient Azure permissions | List the required read-only roles (Reader, Security Reader) |
+| GitHub creation failure | Output all findings as formatted markdown to the console |
 
-## Success Criteria
+## Output template
 
-- ✅ All 5 WAF pillars reviewed against IaC and live infrastructure
-- ✅ All findings classified by risk level and pillar
-- ✅ Actionable remediation steps with IaC examples for each finding
-- ✅ GitHub issues created for team tracking
-- ✅ Architecture diagram generated for EPIC context
-- ✅ Microsoft Learn documentation references included
+When issue creation is skipped (or as the console summary), deliver the findings as a table grouped by pillar:
+
+```markdown
+## Well-Architected Review — <workload>
+
+| Pillar | Finding | Risk | Remediation |
+|---|---|---|---|
+| Security | Storage allows public blob access | High | Set allow_nested_items_to_be_public = false |
+| Reliability | App Service runs a single instance | Medium | Enable autoscale, minimum 2 instances |
+| Cost | Log Analytics has no data cap | Low | Set a daily cap and retention policy |
+
+Totals: High 1, Medium 1, Low 1 across 5 pillars.
+Verdict: address High-risk security finding before the next release.
+```
+
+## Quality gate
+
+- [ ] All five WAF pillars reviewed against both IaC and live infrastructure.
+- [ ] Every finding classified by risk level and mapped to a pillar.
+- [ ] Each finding has an actionable Terraform remediation (Bicep/ARM only as illustration).
+- [ ] Drift between IaC and deployed resources recorded as Operational Excellence findings.
+- [ ] GitHub issues created only after explicit user approval; otherwise findings printed to the console.
+- [ ] A Mermaid architecture diagram and Microsoft Learn references are included.

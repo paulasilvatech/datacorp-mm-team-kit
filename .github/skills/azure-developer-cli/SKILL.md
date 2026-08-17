@@ -1,11 +1,20 @@
 ---
-name: azure-developer-cli
-description: 'Design, create, review, migrate, or troubleshoot Azure Developer CLI (azd) projects using current Microsoft guidance. Use when working with azd, azure.yaml, AZD templates, Terraform (or Bicep) under infra, AZD environments and secrets, hooks, deployment workflows, and azd-managed CI/CD.'
+name: "azure-developer-cli"
+description: "Use when designing, creating, reviewing, migrating, or troubleshooting Azure Developer CLI (azd) projects with current Microsoft guidance. Covers azd, azure.yaml, AZD templates, Terraform (or Bicep) under infra, AZD environments and secrets, hooks, deployment workflows, and azd-managed CI/CD. Triggers include \"azd\", \"azure.yaml\", \"azd environment\", \"azd pipeline\", and \"azd up\"."
 ---
-
 # Azure Developer CLI best practices
 
-Use this skill to produce maintainable, secure, environment-aware `azd` projects. Prefer repository conventions when they are already coherent, and make the smallest complete change that improves the project.
+Use this skill to produce maintainable, secure, environment-aware `azd` projects. Prefer repository conventions when they are already coherent, and make the smallest complete change that improves the project. This skill teaches how to structure and operate an `azd` project; it does not decide the workload's architecture for you.
+
+> [!NOTE]
+> This skill assumes the **`azd` CLI** is installed and authenticated. This kit standardizes on **Terraform (`azurerm ~> 3.x`)** for IaC, so treat Terraform as the provider under `infra/` and read the Bicep guidance below as reference only.
+
+## When to invoke
+
+- "Set up a new azd project for our backend and frontend services."
+- "Review our azure.yaml and infra layout for problems."
+- "Migrate this azd template from Bicep to Terraform."
+- "Why does `azd provision` fail for our staging environment?"
 
 ## Start with repository discovery
 
@@ -40,7 +49,7 @@ Do not assume the default `infra` path, the default Bicep provider, or a single 
 | Project manifest | One `azure.yaml` at the repository root |
 | Application code | `src/<service-name>` per independently deployable service |
 | Infrastructure | `infra` with a thin entry point and reusable modules |
-| IaC provider | Bicep unless the repository or user chooses Terraform |
+| IaC provider | Terraform in this kit; otherwise Bicep unless the repository or user chooses Terraform |
 | Deployment environments | Separate named environments for dev, test, staging, and production |
 | Local AZD state | `.azure/<environment-name>` and excluded from source control |
 | Shared environment state | AZD remote environments backed by Azure Blob Storage |
@@ -131,3 +140,26 @@ State:
 - Any beta or preview feature the solution relies on.
 
 Do not claim deployment success unless the target environment was actually deployed and verified.
+
+## Output template
+
+Report the change as a short status block:
+
+```text
+azd project review — sifap-modern
+Changed: azure.yaml (added web service), infra/main.tf (added storage module)
+IaC provider: Terraform (azurerm ~> 3.x); environment: sifap-dev
+Checks run: terraform fmt -check, terraform validate, azd package
+Not run: azd provision (would modify Azure); requires explicit approval
+Preview features: none
+```
+
+## Quality gate
+
+- [ ] `azure.yaml` service paths exist and settings match the source projects.
+- [ ] The IaC entry point and provider agree with `azure.yaml` (Terraform for this kit).
+- [ ] Required deployment outputs match the variables consumed by services, hooks, and pipelines.
+- [ ] `.gitignore` excludes `.azure`, secrets, local state, and generated artifacts.
+- [ ] No secret appears in tracked content or command output; secrets use managed identity or Key Vault references.
+- [ ] Applicable checks pass (`terraform fmt -check`, `terraform validate`, and the project's formatter, linter, and tests).
+- [ ] No cloud-changing command ran without explicit approval, and success is claimed only after real verification.

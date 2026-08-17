@@ -12,7 +12,7 @@ class OrderRepositoryTest {
   
   @Container
   @ServiceConnection
-  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:18");
+  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16");
   
   @Autowired
   private OrderRepository orderRepository;
@@ -169,7 +169,7 @@ class OrderRepositoryH2Test {
 class OrderRepositoryPostgresTest {
   @Container
   @ServiceConnection
-  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:18");
+  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16");
 }
 ```
 
@@ -193,5 +193,5 @@ void shouldPersistData() {
 3. Clear() the entity manager to test lazy loading
 4. Use real database (Testcontainers) for accurate results
 5. Test both success and failure cases
-6. Leverage Java 25 var keyword for cleaner variable declarations
+6. Leverage Java 21 var keyword for cleaner variable declarations
 7. Use sequenced collection methods (getFirst(), getLast(), reversed())

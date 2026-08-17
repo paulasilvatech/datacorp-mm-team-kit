@@ -1,13 +1,19 @@
 ---
-name: spring-boot-testing
+name: "spring-boot-testing"
 description: "Select the right Spring Boot test technique for a scenario — test slices (@WebMvcTest, @DataJpaTest, @RestClientTest, @JsonTest, @SpringBootTest), Testcontainers, Mockito, and AssertJ. Use when writing or reviewing Spring Boot integration or slice tests. Targets the kit's Spring Boot 3.3 + JUnit 5; newer 3.4+/4.0 APIs (MockMvcTester, @MockitoBean, RestTestClient) are noted as out of scope for the kit."
 ---
+# Spring Boot testing
 
-# Spring Boot Testing
+This skill helps you choose the right Spring Boot testing technique for a scenario. It targets the kit's **Spring Boot 3.3 + JUnit 5 + Testcontainers** stack; a few newer APIs from Spring Boot 3.4+/4.0 are shown for reference only and clearly marked as **out of scope for the kit**. For plain business-logic unit tests (no Spring context), use [`java-junit`](../java-junit/SKILL.md).
 
-This skill helps you choose the right Spring Boot testing technique for a scenario. It targets the kit's **Spring Boot 3.3 + JUnit 5 + Testcontainers** stack; a few newer APIs from Spring Boot 3.4+/4.0 are shown for reference only and clearly marked as **out of scope for the kit**.
+## When to invoke
 
-## Core Principles
+- "Which test slice should I use for this controller?"
+- "Write a `@DataJpaTest` against a real PostgreSQL with Testcontainers."
+- "Review these Spring Boot tests for the right layer and scope."
+- "Set up Testcontainers for our integration tests."
+
+## Core principles
 
 1. **Test Pyramid**: Unit (fast) > Slice (focused) > Integration (complete)
 2. **Right Tool**: Use the narrowest slice that gives you confidence
@@ -33,10 +39,10 @@ This skill helps you choose the right Spring Boot testing technique for a scenar
 
 ## Testing Tools Reference
 
-- [references/mockmvc-tester.md](references/mockmvc-tester.md) - AssertJ-style MockMvc (3.2+)
-- [references/mockmvc-classic.md](references/mockmvc-classic.md) - Traditional MockMvc (pre-3.2)
-- [references/resttestclient.md](references/resttestclient.md) - Spring Boot 4+ REST client
-- [references/mockitobean.md](references/mockitobean.md) - Mocking dependencies
+- [references/mockmvc-classic.md](references/mockmvc-classic.md) - Classic MockMvc — kit default on Spring Boot 3.3
+- [references/mockmvc-tester.md](references/mockmvc-tester.md) - AssertJ-style MockMvc (Spring Boot 3.4+, out of scope)
+- [references/mockitobean.md](references/mockitobean.md) - `@MockitoBean` mocking (Spring Boot 3.4+, out of scope)
+- [references/resttestclient.md](references/resttestclient.md) - RestTestClient (Spring Boot 4.0, out of scope)
 
 ## Assertion Libraries
 
@@ -45,7 +51,7 @@ This skill helps you choose the right Spring Boot testing technique for a scenar
 
 ## Testcontainers
 
-- [references/testcontainers-jdbc.md](references/testcontainers-jdbc.md) - PostgreSQL, MySQL, etc.
+- [references/testcontainers-jdbc.md](references/testcontainers-jdbc.md) - PostgreSQL 16 and other JDBC databases
 
 ## Test Data Generation
 
@@ -194,3 +200,35 @@ Testcontainers support module to run `@DataJpaTest` / `@SpringBootTest` against 
   <scope>test</scope>
 </dependency>
 ```
+
+## Output template
+
+```java
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@Testcontainers
+class PaymentRepositoryTest {
+
+    @Container
+    @ServiceConnection
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16");
+
+    @Autowired
+    PaymentRepository repository;
+
+    @Test
+    void findsByStatus() {
+        repository.save(new Payment("PENDING"));
+        assertThat(repository.findByStatus("PENDING")).hasSize(1);
+    }
+}
+```
+
+## Quality gate
+
+- [ ] The narrowest slice that gives confidence is used (unit -> slice -> `@SpringBootTest`).
+- [ ] Data-layer and full integration tests run against a real PostgreSQL 16 via Testcontainers, not H2.
+- [ ] On Spring Boot 3.3, classic `MockMvc` and `@MockBean` are used; no 3.4+/4.0 API (MockMvcTester, `@MockitoBean`, RestTestClient) is adopted.
+- [ ] Assertions use AssertJ `assertThat`; each test targets one behaviour.
+- [ ] The suite reuses the Spring context where possible (see context-caching) to stay fast.
+- [ ] `./mvnw test` passes locally before the PR is opened.

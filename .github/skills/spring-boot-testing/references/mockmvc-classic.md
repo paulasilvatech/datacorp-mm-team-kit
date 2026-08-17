@@ -1,15 +1,15 @@
 # MockMvc Classic
 
-Traditional MockMvc API for Spring MVC controller tests (pre-Spring Boot 3.2 or legacy codebases).
+Classic `MockMvc` API for Spring MVC controller tests — the approach the kit uses on **Spring Boot 3.3**.
 
 ## When to Use This Reference
 
-- The project uses Spring Boot < 3.2 (no `MockMvcTester` available)
+- The project uses Spring Boot 3.3 (the kit stack) or any version < 3.4, where `MockMvcTester` is not available
 - Existing tests use `mvc.perform(...)` and you are maintaining or extending them
 - You need to migrate classic MockMvc tests to `MockMvcTester` (see migration section below)
 - The user explicitly asks about `ResultActions`, `andExpect()`, or Hamcrest-style web assertions
 
-For new tests on Spring Boot 3.2+, prefer [mockmvc-tester.md](mockmvc-tester.md) instead.
+`MockMvcTester` (AssertJ-style) requires **Spring Boot 3.4+** and is out of scope for the kit; see [mockmvc-tester.md](mockmvc-tester.md) only if the project upgrades beyond 3.3.
 
 ## Setup
 

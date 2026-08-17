@@ -2,6 +2,9 @@
 
 Testing Spring MVC controllers with focused slice tests.
 
+> [!IMPORTANT]
+> The examples below use `MockMvcTester` and `@MockitoBean`, which are **Spring Boot 3.4+** and **out of scope for the kit**. On the kit's Spring Boot 3.3, use classic `MockMvc` with `mockMvc.perform(...).andExpect(...)` and `@MockBean` — see [mockmvc-classic.md](mockmvc-classic.md).
+
 ## Basic Structure
 
 ```java
@@ -47,7 +50,7 @@ void shouldReturnOrder() {
 
 ## Testing POST with Request Body
 
-### Using Text Blocks (Java 25)
+### Using Text Blocks (Java 21)
 
 ```java
 @Test
@@ -169,9 +172,9 @@ class OrderControllerWithoutSecurityTest {
 
 ## Key Points
 
-1. Always mock services with @MockitoBean
-2. Use MockMvcTester for AssertJ-style assertions
+1. On Spring Boot 3.3, mock collaborators with `@MockBean` (`@MockitoBean` is the 3.4+ replacement)
+2. On Spring Boot 3.3, use classic `MockMvc` (`perform(...).andExpect(...)`); `MockMvcTester` requires 3.4+
 3. Test HTTP semantics (status, headers, content-type)
 4. Verify service method calls when side effects matter
 5. Don't test business logic here - that's for unit tests
-6. Leverage Java 25 text blocks for JSON payloads
+6. Leverage Java 21 text blocks for JSON payloads
