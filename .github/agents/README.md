@@ -30,15 +30,15 @@ Ten agents, one per team role. The Developer persona is served by the [`implemen
 | Agent | Invoke | Bound prompts | Description |
 | --- | --- | --- | --- |
 | [`product-owner`](product-owner.agent.md) | `@product-owner` | 3 | Product Owner assistant for writing specifications, refining the backlog, and validating acceptance with EARS notation and the SDD workflow |
-| [`requirements-engineer`](requirements-engineer.agent.md) | `@requirements-engineer` | 3 | Requirements engineering assistant for EARS notation, specification validation, and legacy-traceable requirements in the SDD workflow |
+| [`requirements-engineer`](requirements-engineer.agent.md) | `@requirements-engineer` | 4 | Requirements engineering assistant for EARS notation, specification validation, and legacy-traceable requirements in the SDD workflow |
 | [`enterprise-architect`](enterprise-architect.agent.md) | `@enterprise-architect` | 3 | Enterprise architecture assistant for the Spec-Kit constitution, ADRs, external integration mapping, and cross-cutting design |
 | [`software-architect`](software-architect.agent.md) | `@software-architect` | 3 | Software architecture assistant for CODEMAP, bounded contexts, module topology, and API contracts |
 | [`tech-lead`](tech-lead.agent.md) | `@tech-lead` | 3 | Technical leadership assistant for CODEMAP and context curation, Copilot usage guidance, and code-review standards |
-| [`implementer`](implementer.agent.md) | `@implementer` | 4 | Implementation assistant for Java 21 and Next.js 15 — TDD, bug fixing, and refactoring with REQ-ID traceability |
-| [`dba`](dba.agent.md) | `@dba` | 2 | Database assistant for PostgreSQL migrations, query optimization, indexing strategy, and SQL-injection auditing |
-| [`qa-engineer`](qa-engineer.agent.md) | `@qa-engineer` | 3 | Quality assurance assistant for test generation from specs, coverage-gap analysis, and CI quality gates |
-| [`devops-engineer`](devops-engineer.agent.md) | `@devops-engineer` | 3 | DevOps assistant for GitHub Actions pipelines, Terraform IaC, container builds, observability, and incident analysis |
-| [`tech-writer`](tech-writer.agent.md) | `@tech-writer` | 3 | Technical writing assistant for API docs, runbooks, ADRs, CODEMAP, and Diátaxis-style content with drift detection |
+| [`implementer`](implementer.agent.md) | `@implementer` | 6 | Implementation assistant for Java 21 and Next.js 15 — TDD, bug fixing, and refactoring with REQ-ID traceability |
+| [`dba`](dba.agent.md) | `@dba` | 4 | Database assistant for PostgreSQL migrations, query optimization, indexing strategy, and SQL-injection auditing |
+| [`qa-engineer`](qa-engineer.agent.md) | `@qa-engineer` | 5 | Quality assurance assistant for test generation from specs, coverage-gap analysis, and CI quality gates |
+| [`devops-engineer`](devops-engineer.agent.md) | `@devops-engineer` | 5 | DevOps assistant for GitHub Actions pipelines, Terraform IaC, container builds, observability, and incident analysis |
+| [`tech-writer`](tech-writer.agent.md) | `@tech-writer` | 5 | Technical writing assistant for API docs, runbooks, ADRs, CODEMAP, and Diátaxis-style content with drift detection |
 
 ## Specialist agents
 
@@ -54,8 +54,7 @@ Three depth specialists that fit neither the Stage nor the persona layer. Each o
 
 The 59 prompts in [`../prompts/`](../prompts/) bind to an agent through their `agent:` key:
 
-- **48** bind to one of the **14** named agents above (Stage + persona). The per-agent counts are in the tables' **Bound prompts** columns.
-- **11** bind to the generic built-in `agent: "agent"` rather than a named agent — mostly imported skill-companion prompts (for example `java-docs`, `postgresql-optimization`, `az-cost-optimize`).
+- All **59** bind to one of the **14** named agents above (Stage + persona) — no prompt is left on the generic built-in `agent: "agent"`. The per-agent counts are in the tables' **Bound prompts** columns.
 - The three specialist agents (`se-ux-ui-designer`, `expert-react-frontend-engineer`, `java-mcp-expert`) own **0** prompts and are invoked directly.
 
 Regenerate the counts with `grep -h '^agent:' ../prompts/*.prompt.md | sort | uniq -c`.
