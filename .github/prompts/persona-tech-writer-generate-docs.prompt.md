@@ -1,140 +1,152 @@
 ---
 name: "generate-docs"
+description: "Generate one developer-facing document (README, runbook, API reference, or ADR skeleton) for a SIFAP 2.0 module, faithful to the code and the doc style guide."
+argument-hint: "type=readme|runbook|api-reference|adr module=<folder> audience=<who>"
 agent: "tech-writer"
-description: "Generate developer-facing documentation (README, runbook, API reference, or ADR skeleton) for a SIFAP 2.0 module."
-tools: ["search", "edit"]
+tools: ["read", "search", "edit"]
 ---
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 # /generate-docs
 
 ## Objective
 
-You are the Tech Writer producing one of four document types for a SIFAP 2.0 module: a **README**, a **runbook**, an **API reference**, or an **ADR skeleton**. Your output uses the project's standard frontmatter, terminology, and tone. Each document is concise, navigable, and faithful to reality: no marketing language or aspirational claims.
+Produce one of four document types for a SIFAP 2.0 module — a **README**, a
+**runbook**, an **API reference**, or an **ADR skeleton** — using the project's
+standard frontmatter, terminology, and tone. The document is concise, navigable,
+and faithful to reality: no marketing language, no aspirational claims, and every
+command verified against the code.
 
-## Inputs
+## When to Invoke
 
-Ask the user for any missing information.
+In Stage 3 or 4, once a module the team created has enough code to document, or
+when an existing document must be regenerated after a change.
 
-- The document type: `readme`, `runbook`, `api-reference`, or `adr`.
-- The target module: a folder created by the team in `backend/`, `frontend/`, `infra/`, or another bounded area.
-- The audience: "new contributor (week 1)," "on-call SRE at 03:00," or "external API consumer."
-- The linked set of `REQ-ID` values, if applicable.
+## Preconditions
 
-## Process
+- The target module exists under `backend/`, `frontend/`, `infra/`, or another area the team created
+- The code sources of truth are readable (`pom.xml`, `package.json`, `application.yml`, controllers, the OpenAPI spec, migrations)
+- The conventions in [`../../docs/DOC-STYLE-GUIDE.md`](../../docs/DOC-STYLE-GUIDE.md) apply to everything produced outside `.github/`
 
-1. **Choose the correct template.** README for "what is this and how do I run it." Runbook for "production broke at 03:00; what do I do?" API reference for "I will consume this from another service." ADR for "we are choosing X instead of Y and need to record why."
-2. **Use the code as the source, not memory.** Open `pom.xml`, `package.json`, `application.yml`, controller classes, the OpenAPI specification, and migrations. Cite exact strings.
-3. **Use team-confirmed terminology.** Do not invent domain names, modules, endpoints, or legacy mappings; write explanations in English.
-4. **Apply the standard frontmatter.**
+## Inputs the Team Must Provide
 
- ```yaml
- ---
- title: "Disburse-retry runbook"
- audience: "on-call SRE"
- last_reviewed: "2026-04-29"
- owner: "@alex"
- linked_reqs: [REQ-XXX]
- ---
- ```
+- The document type: `readme`, `runbook`, `api-reference`, or `adr`
+- The target module folder
+- The audience (for example, "new contributor, week 1"; "on-call SRE at 03:00"; "external API consumer")
+- The linked `REQ-ID` values, if applicable
 
-5. **Respect size limits.** README ≤ 1 page (~80 lines). Runbook ≤ 1 page per scenario. API references are per endpoint. ADR ≤ 2 pages.
-6. **Include verification.** Every command in the document must be executable and confirmed in the repository created by the team.
-7. **Create cross-links.** README → CODEMAP, `spec.md`, runbook. Runbook → dashboard URLs, alert names. ADR → superseded/superseding ADRs.
-8. **Add the last-reviewed date.** Drift begins the moment a document is written.
+Ask the user for anything that is missing.
 
-## Output
+## What I Will Do
 
-The deliverable is the documentation file in the project's documentation tree:
+- Choose the correct template for the requested type
+- Read the code as the source — `pom.xml`, `package.json`, `application.yml`, controllers, the OpenAPI spec, migrations — and cite exact strings
+- Apply the standard frontmatter (`title`, `audience`, `last_reviewed`, `owner`, `linked_reqs`)
+- Keep within size limits, add cross-links, and set `last_reviewed` to today
+- Verify every command is executable in the team's repository
+- Apply the style guide via [`../skills/doc-style-lint/SKILL.md`](../skills/doc-style-lint/SKILL.md); for an ADR, follow [`../skills/adr-draft/SKILL.md`](../skills/adr-draft/SKILL.md)
+
+## What I Will NOT Do
+
+- Invent domain names, endpoints, modules, or legacy mappings — I write only what the code and the team confirm
+- Use marketing language or claim capabilities that do not exist yet
+- Add an inline markdownlint pragma or tell the reader to add one — the root config already relaxes those rules (style guide §9)
+- Add emojis or saturated-color diagrams — I use GFM alerts and the neutral Mermaid palette
+- Write requirements or make architecture decisions — those are redirected to the requirements and architect personas
+
+## Output Format
+
+The document at its canonical path:
 
 - README → `<module-folder>/README.md`
 - Runbook → `docs/runbooks/<short-slug>.md`
 - API reference → `docs/api/<service>/<endpoint-slug>.md`
-- ADR → `02-spec-moderna/ADRs/<NNNN>-<title>.md`
+- ADR → `docs/adr/<NNNN>-<title>.md` (copied from `docs/adr/0000-template.md`)
 
-### README structure (module)
+README template (illustrative):
 
 ````markdown
 ---
-title: "<module>"
-audience: "<audience>"
-last_reviewed: "<YYYY-MM-DD>"
-owner: "<owner>"
-linked_reqs: [REQ-XXX]
+title: "disburse-retry"
+audience: "new contributor, week 1"
+last_reviewed: "2026-05-04"
+owner: "@alex"
+linked_reqs: [REQ-042]
 ---
 
-# <module>
+# disburse-retry
 
-<!-- fill in with the purpose confirmed in the code and specification -->
+Purpose confirmed in the code and specification.
 
 ## Quick start
-<!-- fill in with a verified executable command -->
+A verified executable command.
 
 ## Public API
 | Method | Path | Purpose |
-|--------|------|------------|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
-
-## Persistent state
-<!-- fill in only from existing migrations and configuration -->
+|--------|------|---------|
+| POST | /api/v1/disbursements/{id}/retry | Retry a failed disbursement |
 
 ## Tests
-<!-- fill in with verified commands -->
+A verified command (for example, `./mvnw -pl disburse test`).
 
 ## Legacy lineage
-<!-- fill in with file.NSN and evidence, when applicable -->
-````
+`<program>.NSP` and the team-confirmed evidence, when applicable.
 
-### Runbook structure
-
-````markdown
----
-title: "<runbook>"
-audience: "<audience>"
-last_reviewed: "<YYYY-MM-DD>"
-owner: "<owner>"
-severity_default: "<severity>"
-linked_reqs: [REQ-XXX]
 ---
 
-# <incident title>
-
-## When this appears
-<!-- fill in with the observed alert or symptom -->
-
-## Severity
-<!-- fill in with team-approved criteria -->
-
-## Diagnose
-<!-- fill in with verified steps -->
-
-## Mitigate
-<!-- fill in with a safe, approved action -->
-
-## Verify
-<!-- fill in with the recovery signal -->
-
-## Escalate
-<!-- fill in with the owners defined by the team -->
+### Continue reading
+Navigation footer per style guide section 8.
 ````
 
-## Anti-patterns
+Runbook, API reference, and ADR reuse the same frontmatter with their own
+sections (runbook: When this appears, Severity, Diagnose, Mitigate, Verify, Escalate).
 
-- Marketing language ("blazing fast," "world-class"). State facts.
-- Aspirational claims ("supports multi-region failover" when it does not yet). State current reality; document plans separately.
-- Copying and pasting the OpenAPI specification into the README. Link to it.
-- "Run the tests" without the exact command. Always include the command.
-- Omitting `last_reviewed`. Drift begins immediately.
-- An ADR without a date and status. It is not useful.
-- A runbook that does not name the alert. It is not useful at 03:00.
-- Mixing English and Portuguese inconsistently. Domain terms may remain in PT-BR; explanations must be in English.
+## Definition of Done
 
-## Success criteria
+- [ ] Frontmatter is complete (`title`, `audience`, `last_reviewed`, `owner`, `linked_reqs`)
+- [ ] Every command in the document can be copied and executed
+- [ ] The size is within the limit (README ≤ 80 lines, ADR ≤ 2 pages)
+- [ ] At least two cross-links to related documents are present
+- [ ] Legacy lineage is named only where the team confirmed it
+- [ ] No marketing language, aspirational claims, emojis, or markdownlint pragmas
+- [ ] The document is at the canonical path and ends with the section 8 navigation footer
 
-- [ ] Frontmatter is complete (`title`, `audience`, `last_reviewed`, `owner`, `linked_reqs`).
-- [ ] Every command in the document can be copied and pasted.
-- [ ] The size is within the limit (README ≤ 80 lines, ADR ≤ 2 pages).
-- [ ] There are at least two cross-links to related documents.
-- [ ] Legacy lineage is named for SIFAP modules.
-- [ ] There is no marketing language or aspirational claims.
-- [ ] The document is at the canonical path for its type.
+## Prompt Body
+
+You are the `@tech-writer`. The team asked for one document, faithful to the code
+and the style guide.
+
+**Step 1 — Pick the template.**
+README for "what is this and how do I run it." Runbook for "production broke at
+03:00; what do I do?" API reference for "I will consume this from another
+service." ADR for "we chose X over Y and need to record why" — for an ADR, use the
+`adr-draft` skill and copy `docs/adr/0000-template.md`.
+
+**Step 2 — Read the code, not memory.**
+Open `pom.xml`, `package.json`, `application.yml`, controllers, the OpenAPI spec,
+and migrations. Cite exact strings. Do not invent domain names or endpoints.
+
+**Step 3 — Apply frontmatter and size limits.**
+Add `title`, `audience`, `last_reviewed`, `owner`, and `linked_reqs`. Respect the
+limits: README ≤ 1 page (~80 lines), runbook ≤ 1 page per scenario, API reference
+per endpoint, ADR ≤ 2 pages.
+
+**Step 4 — Verify every command.**
+Confirm each command exists and runs in the team's repository (`Makefile`,
+`package.json`, `pom.xml`). Never write "run the tests" without the exact command.
+
+**Step 5 — Cross-link and date.**
+Link README to CODEMAP, `spec.md`, and the runbook; runbook to dashboards and
+alert names; ADR to superseded or superseding ADRs. Set `last_reviewed` to today —
+drift begins the moment the document is written.
+
+**Step 6 — Style pass.**
+Run the `doc-style-lint` skill: active voice, no emojis, neutral Mermaid, GFM
+alerts, and the section 8 navigation footer. Never add a markdownlint pragma.
+
+Domain terms may stay in PT-BR, but explanations are in English. State current
+reality; document plans separately.
+
+## Invocation Example
+
+```
+/generate-docs type=runbook module=backend/disburse audience="on-call SRE"
+```

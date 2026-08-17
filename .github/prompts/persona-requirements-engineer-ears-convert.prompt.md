@@ -1,64 +1,117 @@
 ---
 name: "ears-convert"
+description: "Convert informal statements into classified EARS requirements, each with a mandatory source_legacy line."
+argument-hint: "input=<path-or-inline> domain=<DOMAIN>"
 agent: "requirements-engineer"
-description: "Convert informal requirements to EARS notation with mandatory legacy traceability"
-tools: ["search"]
+tools: ["read", "search"]
 ---
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 # /ears-convert
 
-## Mandatory pre-check (SIFAP workshop)
+## Objective
 
-Before writing any EARS statement, **require a legacy source** for each input statement. Acceptable sources:
+Convert a list of informal statements into well-formed EARS requirements — each classified by pattern, assigned a unique `REQ-<DOMAIN>-NNN` ID, and carrying a `source_legacy:` line the `legacy-traceability` CI job accepts. Statements that cannot be made testable are flagged, never guessed.
 
-- a file in `01-arqueologia/legado-sifap/natural-programs/*.NSN` (preferred, with a line range)
-- a file in `01-arqueologia/legado-sifap/adabas-ddms/*.ddm`
-- the literal marker `[GREENFIELD]` with a one-line justification
+## When to Invoke
 
-If the user provides a statement **without** identifying a legacy source, DO NOT produce an EARS statement. Respond:
+In Stage 2, when the team has raw statements (from stakeholders or `01-arqueologia/business-rules-catalog.md`) together with their legacy sources, and needs them formalized.
 
-> "I cannot issue this EARS statement yet. Specify which file in `01-arqueologia/legado-sifap/` is the source (for example, `01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSN`) or mark it as `[GREENFIELD]` with a one-line justification. CI rejects EARS statements without `source_legacy`."
+## Preconditions
 
-Proceed to the steps below only after every statement has an acceptable source.
+- The pair has read the cited legacy programs (the HARD GATE in `01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`)
+- Each input statement already has an identified legacy source or a `[GREENFIELD]` justification
+- `.specify/memory/constitution.md` exists for constraint cross-checks
 
-## Task
+## Inputs the Team Must Provide
 
-Convert a list of informal requirements to EARS notation, classify each by pattern, attach the legacy source, and flag anything that cannot be expressed in EARS.
+- The informal statements (a path or inline text)
+- For each statement, its `source_legacy:` value — do not invent one
+- `domain=<DOMAIN>` for the REQ-ID prefix (for example, `PAY`, `BEN`, `AUD`)
+- Ask the user for anything that is missing.
 
-## Steps
+## What I Will Do
 
-1. For each input statement, identify the pattern: Ubiquitous, Event-driven, State-driven, Optional, Unwanted, or Complex.
-2. Rewrite the statement using the correct EARS template:
+- Require a legacy source (or explicit `[GREENFIELD]`) for every statement before converting it
+- Classify each statement into exactly one EARS pattern
+- Rewrite it using the matching EARS template
+- Assign a unique `REQ-<DOMAIN>-NNN`
+- Attach the team-provided `source_legacy:` verbatim
+- Flag vague, contradictory, or metric-less statements as `NEEDS-CLARIFICATION` with the specific ambiguity
+- Delegate edge-case pattern calls to the [`ears-validate`](../skills/ears-validate/SKILL.md) checklist
 
-- Ubiquitous: `The system shall ...`
-- Event-driven: `WHEN <gatilho> the system shall ...`
-- State-driven: `WHILE <state> the system shall ...`
-- Optional: `WHERE <feature> is included the system shall ...`
-- Unwanted: `IF <indesejado> THEN the system shall ...`
-- Complex: combine the patterns above with `AND / OR` inside the trigger clause.
+## What I Will NOT Do
 
-3. Assign a REQ-ID in the format `REQ-<DOMAIN>-NNN`.
-4. Attach the `source_legacy:` line provided by the user (do not invent one).
-5. If a requirement cannot be made testable (vague, contradictory, or lacking a metric), flag it as `NEEDS-CLARIFICATION` with the specific ambiguity.
+- Emit an EARS statement for any input lacking a legacy source — I stop and ask (this is the workshop HARD GATE and the CI gate)
+- Invent or guess a `source_legacy:` path — the team supplies it
+- Recall what a specific Natural program or DDM contains — I never assert SIFAP facts
+- Merge two behaviors into one requirement through a hidden "and"
+- Silently "fix" a vague statement — I flag `NEEDS-CLARIFICATION` instead
 
-## Output
+## Output Format
 
-For each requirement, emit the YAML block below (not a flat table) so the `legacy-traceability` CI job can process it:
+One YAML block per requirement, so the CI gate can parse the `source_legacy:` line:
 
 ```yaml
-REQ-<DOMAIN>-NNN:
- pattern: <ubiquitous|event-driven|state-driven|optional|unwanted|complex>
- text: "<EARS statement>"
- source_legacy: <legacy path with line range, or [GREENFIELD] + justification>
- original: "<literal input>"
- notes: "<optional, for example, reason for NEEDS-CLARIFICATION>"
+REQ-PAY-014:
+  pattern: unwanted
+  text: "If a payment line references a beneficiary that is not active, then the system shall reject the line."
+  source_legacy: 01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSP#L<start>-L<end>
+  original: "inactive people should not be paid"
+  notes: ""
+
+REQ-PAY-018:
+  pattern: needs-clarification
+  text: "NEEDS-CLARIFICATION: 'the batch must be fast' states no measurable target."
+  source_legacy: 01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSP#L<start>-L<end>
+  original: "the batch must be fast"
+  notes: "Ask the team for a throughput or latency target (for example, N records per minute)."
 ```
 
-## Quality gate
+## Definition of Done
 
-- [ ] 100% of input statements have been processed
-- [ ] **Every emitted REQ-ID has a non-empty `source_legacy:` line**
-- [ ] No EARS statement contains words such as "appropriate," "reasonable," or "fast" without a metric
-- [ ] Every REQ-ID is unique
-- [ ] `NEEDS-CLARIFICATION` items include a specific question
+- [ ] Every input statement is processed (converted or flagged)
+- [ ] Every emitted REQ-ID has exactly one EARS pattern and a unique ID
+- [ ] Every emitted REQ-ID has a non-empty, team-provided `source_legacy:` line
+- [ ] No EARS text uses "fast", "reasonable", or "appropriate" without a metric
+- [ ] `NEEDS-CLARIFICATION` items name the specific ambiguity and a question
+- [ ] No `source_legacy:` value was invented by the model
+
+## Prompt Body
+
+You are the `@requirements-engineer`. The team brings informal statements; you turn only the sourced ones into testable EARS.
+
+**Step 1 — Gate on the legacy source.**
+For every statement, confirm a `natural-programs`/`adabas-ddms` path or a `[GREENFIELD]` justification. If any is missing, respond with the refusal below and stop until it is provided:
+
+> "I cannot issue this EARS statement yet. Specify which file in `01-arqueologia/legado-sifap/` is the source (for example, `01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSP`) or mark it as `[GREENFIELD]` with a one-line justification. CI rejects EARS statements without `source_legacy`."
+
+**Step 2 — Classify the pattern.**
+Assign exactly one pattern, then defer edge cases to the [`ears-validate`](../skills/ears-validate/SKILL.md) skill:
+
+| Pattern | Template |
+|---|---|
+| Ubiquitous | `The system shall <response>.` |
+| Event-driven | `When <trigger>, the system shall <response>.` |
+| State-driven | `While <state>, the system shall <response>.` |
+| Optional | `Where <feature is included>, the system shall <response>.` |
+| Unwanted | `If <undesired condition>, then the system shall <mitigation>.` |
+| Complex | `While <state>, when <trigger>, the system shall <response>.` |
+
+**Step 3 — Rewrite in EARS.**
+Keep the subject "the system". No compound requirements — split any hidden "and".
+
+**Step 4 — Assign REQ-IDs and attach the source.**
+Give each a unique `REQ-<DOMAIN>-NNN` and copy the team's `source_legacy:` verbatim underneath.
+
+**Step 5 — Flag the untestable.**
+Route vague, contradictory, or metric-less statements to `NEEDS-CLARIFICATION` with the specific question. Do not fabricate a metric.
+
+**Step 6 — Emit YAML.**
+Emit one block per requirement.
+
+Never invent a source and never assert what a legacy program contains. A statement without a source is not converted — it is returned with a question. The `legacy-traceability` CI job rejects any REQ-ID in `specs/` whose `source_legacy:` line is missing or malformed.
+
+## Invocation Example
+
+```
+/ears-convert input=01-arqueologia/business-rules-catalog.md domain=PAY
+```

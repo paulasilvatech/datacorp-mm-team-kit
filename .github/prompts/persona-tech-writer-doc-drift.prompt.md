@@ -1,99 +1,131 @@
 ---
 name: "doc-drift"
+description: "Detect drift between SIFAP 2.0 documentation and the current code, and report prioritized corrections with exact lines and fixes."
+argument-hint: "docs=<paths> code=<paths> horizon=since-release|all"
 agent: "tech-writer"
-description: "Detect drift between SIFAP 2.0 documentation (README, CODEMAP, ADRs, runbooks) and the current code, exposing concrete corrections."
 tools: ["search"]
 ---
-<!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
-
 # /doc-drift
 
 ## Objective
 
-You are the Tech Writer auditing SIFAP 2.0 documentation for **drift**: places where the documentation and code disagree. The deliverable is a prioritized list of corrections with the exact line, the contradiction, and a one-line fix. Do not silently rewrite the documentation; propose the correction and let the owner approve it.
+Audit SIFAP 2.0 documentation for **drift**: places where the docs and the code
+disagree. The deliverable is a prioritized list of corrections, each with the
+exact line, the contradiction, and a one-line fix. The report exposes drift; it
+does not silently rewrite documentation — the owner approves each change.
 
-## Inputs
+## When to Invoke
 
-Ask the user for any missing information.
+Before a release, after a batch of merges, or on a schedule, to keep README,
+CODEMAP, ADRs, and runbooks honest against the code.
 
-- The documentation in scope: `README.md`, `docs/CODEMAP.md`, `specs/<NNN>-<feature>/spec.md`, `specs/<NNN>-<feature>/plan.md`, `docs/runbooks/`, and supporting decisions in `02-spec-moderna/`.
-- The reference code paths created by the team: `backend/`, `frontend/`, and `infra/`.
-- Time horizon: "drift since the last release" or "all current drift."
-- A list of recent merges (titles + SHAs), if available, to focus the search.
+## Preconditions
 
-## Process
+- The documentation in scope exists (README, `docs/CODEMAP.md`, `specs/<NNN>-<feature>/`, `docs/runbooks/`, ADRs)
+- The reference code the team created (`backend/`, `frontend/`, `infra/`) is readable
+- The conventions in [`../../docs/DOC-STYLE-GUIDE.md`](../../docs/DOC-STYLE-GUIDE.md) are the standard being enforced
 
-1. **Build an inventory of claims.** For each document, extract claims that can be verified against the code:
+## Inputs the Team Must Provide
 
-- Names of files and folders created by the team.
-- REST routes and HTTP methods.
-- Database tables, columns, and types.
-- Environment variables and configuration keys.
-- Build, run, and deployment commands.
-- Version numbers (Java, Spring Boot, Next.js, Postgres).
-- REQ-ID references.
+- The documentation in scope
+- The reference code paths
+- The time horizon: "drift since the last release" or "all current drift"
+- A list of recent merges (titles + SHAs), if available, to focus the search
 
-2. **Verify each claim against its source.** For routes, check controllers. For schemas, check migrations in `db/migration/`. For configuration, check `application.yml`. For commands, check `Makefile`, `package.json`, `pom.xml`, and GitHub Actions.
-3. **Classify the drift.**
+Ask the user for anything that is missing.
 
-- **Critical**—instructions that fail when followed (incorrect command, missing file, broken link).
-- **Major**—outdated facts that mislead but do not break the workflow (wrong version, renamed module).
-- **Minor**—terminology mismatch or outdated examples.
+## What I Will Do
 
-4. **Verify legacy mappings.** For any document claiming that a module replaces a
-   Natural program, verify the cited source in
-   `01-arqueologia/legado-sifap/natural-programs/`.
-5. **Cross-check the ADRs.** An ADR with "Status: Accepted" and a "Consequences" section that is not reflected in the code is critical drift.
-6. **Generate the correction list.**
+- Build an inventory of verifiable claims (files, routes, tables, config keys, commands, versions, REQ-IDs)
+- Verify each claim against its source: controllers, migrations, `application.yml`, `Makefile`, `pom.xml`, `package.json`, and GitHub Actions
+- Classify drift as Critical, Major, or Minor
+- Verify legacy mappings and cross-check ADRs against the code
+- Produce a correction list with file, line, claim, reality, and a one-line fix, delegating the style dimension to [`../skills/doc-style-lint/SKILL.md`](../skills/doc-style-lint/SKILL.md)
 
-## Output
+## What I Will NOT Do
 
-A Markdown report:
+- Silently edit documentation — I expose drift first; ownership matters
+- Report "the README is outdated" without a line number — every finding is actionable
+- Treat every minor mismatch as critical — I triage by real impact
+- Assert what a Natural program contains — I verify a claimed mapping against its cited source, nothing more
+- Add or recommend a markdownlint pragma (style guide §9) — corrections never introduce one
+
+## Output Format
+
+A Markdown report presented for review. Example (illustrative, abbreviated):
 
 ```markdown
-## Documentation Drift Report — <YYYY-MM-DD>
+## Documentation Drift Report — 2026-05-04
 
 ### Summary
-- Files audited: <count>
-- Critical: <count> — Major: <count> — Minor: <count>
-- Most outdated file: <path, if any>
+- Files audited: 12
+- Critical: 2 — Major: 3 — Minor: 4
+- Most outdated file: docs/runbooks/disburse.md
 
 ### Critical
 | # | File | Line | Claim | Reality | Correction |
-|---|------|------|-------|---------|-----|
-| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+|---|------|------|-------|---------|------------|
+| 1 | README.md | 34 | `make run` starts the app | No `run` target in Makefile | Use `./mvnw spring-boot:run` |
 
-### Major
-... (table)
-
-### Minor
-... (table)
-
-### Transversal issues
-- <!-- fill in with patterns observed during the audit -->
+### Major / Minor
+... (tables)
 
 ### Recommended workflow
-1. Open one PR per critical correction, citing the document and line.
-2. Group related major corrections into a reviewable PR.
+1. One PR per critical correction, citing document and line.
+2. Group related major corrections into one reviewable PR.
 3. Record minor findings in the backlog.
 ```
 
-## Anti-patterns
+## Definition of Done
 
-- Silently editing documentation. Always expose the drift first; ownership matters.
-- Reporting "the README is outdated" without line numbers. Reviewers cannot act on it.
-- Treating every minor mismatch as critical. Triage matters.
-- Skipping ADRs because they "seem" stable. ADRs experience the most drift.
-- Failing to verify schema claims against migrations. Migrations are the source of truth.
-- Counting drift in dead documentation (`docs/archive/`). Mark it as archived first and audit only active documentation.
-- Reporting drift without proposing a correction. That is only half the work.
+- [ ] Each finding cites a file and line
+- [ ] Each finding has a one-line proposed correction
+- [ ] Severity (Critical/Major/Minor) is assigned
+- [ ] Cross-cutting issues are summarized so they can be fixed once
+- [ ] ADRs are checked explicitly, not skipped
+- [ ] Legacy lineage references are validated against the cited source
+- [ ] Recommended PR grouping keeps corrections reviewable
 
-## Success criteria
+## Prompt Body
 
-- [ ] Each finding cites a file and line.
-- [ ] Each finding has a one-line proposed correction.
-- [ ] Severity (Critical/Major/Minor) is assigned.
-- [ ] Cross-cutting issues are summarized so they can be fixed once.
-- [ ] ADRs are checked explicitly, not skipped.
-- [ ] Legacy lineage references (Natural programs) are validated.
-- [ ] Recommended PR grouping is included so documentation corrections do not grow too large.
+You are the `@tech-writer`. The team wants the documentation reconciled with the
+code.
+
+**Step 1 — Inventory the claims.**
+For each in-scope document, extract claims that can be checked against code: file
+and folder names, REST routes and methods, tables and columns, environment
+variables and config keys, build/run/deploy commands, version numbers, and REQ-ID
+references.
+
+**Step 2 — Verify each claim.**
+Check routes against controllers, schemas against migrations in `db/migration/`,
+configuration against `application.yml`, and commands against `Makefile`,
+`package.json`, `pom.xml`, and GitHub Actions. Record every mismatch with its file
+and line.
+
+**Step 3 — Classify.**
+Mark each drift Critical (instructions that fail when followed), Major (outdated
+facts that mislead but do not break the workflow), or Minor (terminology or an
+outdated example).
+
+**Step 4 — Verify legacy mappings.**
+For any document claiming a module replaces a Natural program, verify the cited
+source under `01-arqueologia/legado-sifap/natural-programs/`. Do not assert the
+program's behavior — only confirm the claim matches its cited evidence.
+
+**Step 5 — Cross-check ADRs.**
+An ADR marked "Status: Accepted" whose "Consequences" are not reflected in the
+code is Critical drift. Check ADRs explicitly; they drift the most.
+
+**Step 6 — Assemble the correction list.**
+Group findings by severity into tables and add a recommended PR workflow. Audit
+only active documentation; mark `docs/archive/` as archived and skip it.
+
+Always expose the drift and propose a correction — never rewrite silently, and
+never introduce a markdownlint pragma.
+
+## Invocation Example
+
+```
+/doc-drift docs=README.md,docs/CODEMAP.md code=backend/,frontend/ horizon=all
+```
