@@ -1,93 +1,93 @@
 ---
 name: "test-strategy"
 agent: "qa-engineer"
-description: "Escreva uma estratégia de testes para uma feature do SIFAP 2.0: camadas da pirâmide, escolhas de framework, ambientes e critérios de saída."
+description: "Write a test strategy for a SIFAP 2.0 feature: pyramid layers, framework choices, environments, and exit criteria."
 tools: ["search", "edit"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /test-strategy
 
-## Objetivo
+## Objective
 
-Você é um QA lead escrevendo a estratégia de testes para uma feature do SIFAP 2.0. A estratégia diz ao time **o que testar, em qual camada, com qual ferramenta, contra qual ambiente e como sabemos que terminamos**. Ela é aprovada pelo Technical Lead depois de `/speckit.tasks` e antes de `/speckit.implement`, e fica em `specs/<NNN>-<feature>/TEST-STRATEGY.md`.
+You are a QA lead writing the test strategy for a SIFAP 2.0 feature. The strategy tells the team **what to test, at which layer, with which tool, against which environment, and how we know we are done**. It is approved by the Technical Lead after `/speckit.tasks` and before `/speckit.implement`, and it is stored at `specs/<NNN>-<feature>/TEST-STRATEGY.md`.
 
-## Entradas
+## Inputs
 
-Peça ao usuário o que estiver faltando.
+Ask the user for any missing information.
 
-- A pasta da feature (`specs/<NNN>-<feature>/`) com `spec.md` e `plan.md` já aprovados.
-- O perfil de risco definido pelo time.
-- Restrições: orçamento de tempo, minutos de CI paralelo, ambientes disponíveis (`local`, `dev`, `stage`, `prod-shadow`).
-- Quaisquer requisitos não funcionais com limites mensuráveis (latência p95, throughput, RPO/RTO).
+- The feature folder (`specs/<NNN>-<feature>/`) with approved `spec.md` and `plan.md`.
+- The risk profile defined by the team.
+- Constraints: time budget, parallel CI minutes, and available environments (`local`, `dev`, `stage`, `prod-shadow`).
+- Any non-functional requirements with measurable thresholds (p95 latency, throughput, RPO/RTO).
 
-## Processo
+## Process
 
-1. **Classifique cada `REQ-ID` por camada de teste.** Use a pirâmide de testes:
+1. **Classify each `REQ-ID` by test layer.** Use the test pyramid:
 
-- **Unit** — funções puras, calculadoras e validadores.
-- **Integration** — adapters: repositories, filas e serviços externos.
-- **Contract** — testes consumer/provider de API (frontend ↔ backend, backend ↔ wrapper Adabas externo).
-- **End-to-end** — apenas jornadas críticas de usuário definidas pelo time.
-- **Non-functional** — performance, segurança, acessibilidade, observabilidade.
+- **Unit**—pure functions, calculators, and validators.
+- **Integration**—adapters: repositories, queues, and external services.
+- **Contract**—API consumer/provider tests (frontend ↔ backend, backend ↔ external Adabas wrapper).
+- **End-to-end**—only critical user journeys defined by the team.
+- **Non-functional**—performance, security, accessibility, and observability.
 
-2. **Escolha ferramentas por camada.** JUnit 5 + AssertJ + Mockito (unit/integration backend), Testcontainers (integration), Pact (contract), Playwright (E2E), k6 (load), OWASP ZAP (security baseline), axe-core (a11y).
-3. **Defina a estratégia de dados de teste.** Dados sintéticos para happy paths, snapshots legados anonimizados para casos de borda, seeds determinísticas para testes property-based. Nenhum PII de produção em qualquer ambiente.
-4. **Mapeie testes para ambientes.** Unit/integration a cada push (CI). Contract em PR para `develop`. E2E noturno em `stage`. Performance semanal em `prod-shadow`.
-5. **Defina critérios de saída.** Por camada: cobertura mínima de `REQ-IDs` (não de linhas), taxa máxima de flakiness, runtime p95 máximo.
-6. **Identifique riscos e mitigações.** Dependências externas flaky, suítes de teste lentas, vazamento de dados, drift de ambiente.
-7. **Escreva a estratégia como `TEST-STRATEGY.md`.**
+2. **Choose tools by layer.** JUnit 5 + AssertJ + Mockito (backend unit/integration), Testcontainers (integration), Pact (contract), Playwright (E2E), k6 (load), OWASP ZAP (security baseline), and axe-core (a11y).
+3. **Define the test-data strategy.** Synthetic data for happy paths, anonymized legacy snapshots for edge cases, and deterministic seeds for property-based tests. No production PII in any environment.
+4. **Map tests to environments.** Unit/integration on every push (CI). Contract on PRs to `develop`. Nightly E2E in `stage`. Weekly performance tests in `prod-shadow`.
+5. **Define exit criteria.** For each layer: minimum `REQ-ID` coverage (not line coverage), maximum flakiness rate, and maximum p95 runtime.
+6. **Identify risks and mitigations.** Flaky external dependencies, slow test suites, data leakage, and environment drift.
+7. **Write the strategy as `TEST-STRATEGY.md`.**
 
-## Saída
+## Output
 
-O entregável é um arquivo markdown com esta estrutura:
+The deliverable is a Markdown file with this structure:
 
 ```markdown
 # Test Strategy — <feature>
 
 ## 1. Scope
-In scope: <!-- preencher com REQ-IDs -->
-Out of scope: <!-- preencher -->
+In scope: <!-- fill in with REQ-IDs -->
+Out of scope: <!-- fill in -->
 
 ## 2. Risk profile
-<!-- preencher com riscos e evidências confirmadas -->
+<!-- fill in with risks and confirmed evidence -->
 
 ## 3. Test pyramid
 
 | Layer | Framework | Coverage target | Where it runs |
 |--------------|--------------------------|---------------------------|---------------|
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
 
 ## 4. Data strategy
-<!-- preencher com dados, anonimização e restrições aprovadas -->
+<!-- fill in with data, anonymization, and approved constraints -->
 
 ## 5. Environments
-<!-- preencher com ambientes disponíveis -->
+<!-- fill in with available environments -->
 
 ## 6. Exit criteria
-<!-- preencher com critérios mensuráveis aprovados pelo time -->
+<!-- fill in with measurable criteria approved by the team -->
 
 ## 7. Risks
-<!-- preencher com riscos observados e mitigações -->
+<!-- fill in with observed risks and mitigations -->
 
 ## 8. Schedule
-<!-- preencher com a sequência de execução -->
+<!-- fill in with the execution sequence -->
 ```
 
-## Anti-padrões
+## Anti-patterns
 
-- Uma meta de 100% de cobertura de linhas sem meta de cobertura de requisitos. Linhas são fáceis; comportamentos não.
-- Testes E2E para tudo. Eles são lentos, flaky e um lugar ruim para verificar lógica de ramificação.
-- Pular a camada de contrato entre frontend e backend. Quebras em PR custarão mais do que isso economiza.
-- Usar dados de produção em qualquer ambiente não produtivo. Risco LGPD / regulatório.
-- Definir critérios de saída como "todos os testes passam" — isso é uma tautologia.
-- Escolher ferramentas que o time ainda não usou no meio da sprint. A estratégia reflete a realidade.
+- A 100% line-coverage target without a requirement-coverage target. Lines are easy; behaviors are not.
+- E2E tests for everything. They are slow, flaky, and a poor place to verify branching logic.
+- Skipping the contract layer between frontend and backend. PR breakages will cost more than this saves.
+- Using production data in any non-production environment. This creates LGPD/regulatory risk.
+- Defining exit criteria as "all tests pass"—that is a tautology.
+- Choosing tools the team has never used in the middle of a sprint. The strategy must reflect reality.
 
-## Critérios de sucesso
+## Success Criteria
 
-- [ ] Todo `REQ-ID` é mapeado para exatamente uma camada primária (com secundária opcional).
-- [ ] Cada camada tem uma ferramenta nomeada, uma meta de cobertura e um orçamento de runtime.
-- [ ] A estratégia de dados proíbe explicitamente PII de produção em não produção.
-- [ ] Os critérios de saída são mensuráveis e delimitados no tempo.
-- [ ] Os riscos têm owners nomeados e datas de mitigação.
-- [ ] O documento é curto o suficiente (< 3 páginas) para que o time inteiro realmente leia.
+- [ ] Every `REQ-ID` is mapped to exactly one primary layer (with an optional secondary layer).
+- [ ] Each layer has a named tool, coverage target, and runtime budget.
+- [ ] The data strategy explicitly prohibits production PII in non-production environments.
+- [ ] Exit criteria are measurable and time-bound.
+- [ ] Risks have named owners and mitigation dates.
+- [ ] The document is short enough (< 3 pages) for the entire team to actually read.

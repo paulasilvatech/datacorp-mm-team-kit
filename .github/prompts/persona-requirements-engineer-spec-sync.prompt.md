@@ -1,34 +1,34 @@
 ---
 name: "spec-sync"
 agent: "requirements-engineer"
-description: "Sincronize spec.md com o codebase atual"
+description: "Synchronize spec.md with the current codebase"
 tools: ["search"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /spec-sync
 
-## Tarefa
+## Task
 
-Detecte drift entre `specs/<NNN>-<feature>/spec.md` e a implementação. Produza um relatório de sincronização e uma proposta de atualização da spec.
+Detect drift between `specs/<NNN>-<feature>/spec.md` and the implementation. Produce a synchronization report and a proposed specification update.
 
-## Passos
+## Steps
 
-1. Faça parse dos REQ-IDs de `spec.md`.
-2. Use grep no codebase para referências a REQ-ID (em comentários, nomes de testes, mensagens de commit).
-3. Para cada REQ-ID: classifique como Implemented (tem código + teste), Partial (apenas código), Orphaned (sem código), Undocumented (o código referencia um REQ-ID desconhecido).
-4. Para drift comportamental: escolha 3 fluxos representativos, compare a spec com o caminho real do código.
-5. Proponha adições/atualizações em `spec.md` para quaisquer itens Undocumented encontrados.
+1. Parse the REQ-IDs from `spec.md`.
+2. Use grep in the codebase to find REQ-ID references (in comments, test names, and commit messages).
+3. For each REQ-ID, classify it as Implemented (has code + test), Partial (code only), Orphaned (no code), or Undocumented (the code references an unknown REQ-ID).
+4. For behavioral drift, select three representative flows and compare the specification with the actual code path.
+5. Propose additions or updates to `spec.md` for any Undocumented items found.
 
-## Saída
+## Output
 
-- Tabela de drift: `REQ-ID | Status | Evidência (arquivo:linha) | Ação`
-- Patch proposto da spec em bloco diff cercado por crases
-- Resumo "Top 3 drifts by risk"
+- Drift table: `REQ-ID | Status | Evidence (file:line) | Action`
+- Proposed specification patch in a fenced diff block
+- "Top 3 drifts by risk" summary
 
-## Gate de Qualidade
+## Quality gate
 
-- [ ] Todo REQ-ID na spec está classificado
-- [ ] Todo achado Undocumented tem um REQ-ID proposto e uma declaração EARS
-- [ ] Evidência cita arquivo:linha exato
-- [ ] O patch proposto compila contra a estrutura atual de `spec.md`
+- [ ] Every REQ-ID in the specification is classified
+- [ ] Every Undocumented finding has a proposed REQ-ID and an EARS statement
+- [ ] Evidence cites the exact file:line
+- [ ] The proposed patch applies cleanly to the current `spec.md` structure

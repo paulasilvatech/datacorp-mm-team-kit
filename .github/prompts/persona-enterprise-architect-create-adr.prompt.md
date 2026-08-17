@@ -1,115 +1,115 @@
 ---
 name: "create-adr"
 agent: "enterprise-architect"
-description: "Escreva um Registro de Decisão de Arquitetura (ADR) capturando contexto, opções, decisão e consequências para uma escolha arquitetural do SIFAP 2.0."
+description: "Write an Architecture Decision Record (ADR) capturing the context, options, decision, and consequences of a SIFAP 2.0 architectural choice."
 tools: ["search", "edit"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /create-adr
 
-## Objetivo
+## Objective
 
-Você está escrevendo um **Registro de Decisão de Arquitetura** para o SIFAP 2.0 no formato usado em `specs/<NNN>-<feature>/ADRs/`. Um ADR é a resposta durável para "por que fizemos desse jeito?" Ele captura o contexto no momento da decisão, as opções consideradas, o caminho escolhido e as consequências. ADRs são imutáveis depois de aceitos — correções acontecem por meio de um *novo* ADR que substitui o anterior.
+You are writing an **Architecture Decision Record** for SIFAP 2.0 using the format in `specs/<NNN>-<feature>/ADRs/`. An ADR is the durable answer to "why did we do it this way?" It captures the context at the time of the decision, the options considered, the chosen path, and the consequences. ADRs are immutable after acceptance—corrections are made through a *new* ADR that supersedes the previous one.
 
-## Entradas
+## Inputs
 
-Peça ao usuário o que estiver faltando.
+Ask the user for any missing information.
 
-- O tópico da decisão em linguagem clara (por exemplo, "Como o SIFAP integrará com o wrapper legado de Adabas?").
-- A pasta da feature onde o ADR fica (`specs/<NNN>-<feature>/ADRs/`).
-- O próximo número de ADR — olhe os arquivos existentes para evitar colisões.
-- Os `REQ-ID`s vinculados que a decisão afeta.
-- Stakeholders que devem ser citados (architect, security, DevOps, product).
-- Um rascunho da direção escolhida, mesmo que vago.
+- The decision topic in plain language (for example, "How will SIFAP integrate with the legacy Adabas wrapper?").
+- The feature folder where the ADR belongs (`specs/<NNN>-<feature>/ADRs/`).
+- The next ADR number—inspect existing files to avoid collisions.
+- The linked `REQ-ID`s affected by the decision.
+- Stakeholders who must be cited (architect, security, DevOps, product).
+- A draft of the chosen direction, even if vague.
 
-## Processo
+## Process
 
-1. **Escolha um título afiado.** Use um título guiado por verbo e com forma de decisão: "Integrar legado Adabas via adaptador REST" — não "Abordagem de integração" ou "Ideias sobre Adabas".
-2. **Defina o status corretamente.**
+1. **Choose a precise title.** Use a verb-led title framed as a decision: "Integrate legacy Adabas through a REST adapter"—not "Integration approach" or "Ideas about Adabas."
+2. **Set the status correctly.**
 
-- `Proposed` — decisão rascunhada, aguardando revisão.
-- `Accepted` — aprovada pelo fórum de arquitetura, com data.
-- `Superseded by NNNN` — substituída por outro ADR.
-- `Rejected` — considerada e rejeitada (ainda registrada — evita rediscussão futura).
+- `Proposed`—decision drafted and awaiting review.
+- `Accepted`—approved by the architecture forum, with a date.
+- `Superseded by NNNN`—replaced by another ADR.
+- `Rejected`—considered and rejected (still recorded to prevent future rediscussion).
 
-3. **Escreva o contexto com honestidade.** Quais forças estão em jogo agora? Restrições (Java 21, Postgres 16, somente Azure, regulatório)? Decisões existentes (ADRs anteriores)? Conhecidos e desconhecidos?
-4. **Liste pelo menos três opções.** Inclua o status quo e uma opção "não fazer nada" se aplicável. Cada opção precisa de:
+3. **Write the context honestly.** What forces are at play now? Constraints (Java 21, Postgres 16, Azure only, regulatory)? Existing decisions (previous ADRs)? Known and unknown factors?
+4. **List at least three options.** Include the status quo and a "do nothing" option when applicable. Each option needs:
 
-- Descrição em uma linha.
-- Prós (máximo 3 bullets).
-- Contras (máximo 3 bullets).
-- Perfil de custo / risco em linguagem simples.
+- A one-line description.
+- Pros (maximum 3 bullets).
+- Cons (maximum 3 bullets).
+- A cost/risk profile in plain language.
 
-5. **Nomeie a decisão e a justificativa.** Um parágrafo para cada. Referencie a opção escolhida pelo nome.
-6. **Capture consequências — positivas *e* negativas.** O que se torna possível? O que fica mais difícil? Quais novos riscos aparecem? Quais outras decisões agora ficam forçadas ou restringidas?
-7. **Vincule para frente e para trás.** Cite os REQ-IDs, ADRs anteriores na mesma feature e itens inegociáveis de `.specify/memory/constitution.md` dos quais essa decisão depende.
-8. **Registre a data e os signatários.** Data do fórum de arquitetura. Nomes dos aprovadores (technical lead, software architect, donos de persona afetados).
+5. **State the decision and rationale.** Use one paragraph for each. Refer to the chosen option by name.
+6. **Capture both positive *and* negative consequences.** What becomes possible? What becomes harder? What new risks arise? What other decisions are now forced or constrained?
+7. **Link forward and backward.** Cite the REQ-IDs, previous ADRs in the same feature, and non-negotiable items in `.specify/memory/constitution.md` on which this decision depends.
+8. **Record the date and signatories.** Include the architecture forum date and the names of approvers (technical lead, software architect, affected persona owners).
 
-## Saída
+## Output
 
-O entregável é um único arquivo em `specs/<NNN>-<feature>/ADRs/<NNNN>-<title-slug>.md`:
+The deliverable is a single file at `specs/<NNN>-<feature>/ADRs/<NNNN>-<title-slug>.md`:
 
 ```markdown
-# ADR <NNNN> — <título da decisão>
+# ADR <NNNN> — <decision title>
 
 - **Status**: Proposed
-- **Data**: <YYYY-MM-DD>
-- **Aprovadores**: <pessoas que participarão da decisão>
-- **REQs vinculados**: REQ-XXX
-- **ADRs vinculados**: <!-- preencher, se houver -->
-- **Substitui**: <!-- preencher, se houver -->
+- **Date**: <YYYY-MM-DD>
+- **Approvers**: <people participating in the decision>
+- **Linked REQs**: REQ-XXX
+- **Linked ADRs**: <!-- fill in, if any -->
+- **Supersedes**: <!-- fill in, if any -->
 
-## 1. Contexto
-<!-- preencher com evidências, restrições e perguntas que a equipe forneceu -->
+## 1. Context
+<!-- fill in with evidence, constraints, and questions provided by the team -->
 
-## 2. Opções consideradas
+## 2. Options considered
 
-### Opção A — <nome>
-- Prós: <!-- preencher -->
-- Contras: <!-- preencher -->
-- Custo/risco: <!-- preencher -->
+### Option A — <name>
+- Pros: <!-- fill in -->
+- Cons: <!-- fill in -->
+- Cost/risk: <!-- fill in -->
 
-### Opção B — <nome>
-- Prós: <!-- preencher -->
-- Contras: <!-- preencher -->
-- Custo/risco: <!-- preencher -->
+### Option B — <name>
+- Pros: <!-- fill in -->
+- Cons: <!-- fill in -->
+- Cost/risk: <!-- fill in -->
 
-### Opção C — <nome, se aplicável>
-- Prós: <!-- preencher -->
-- Contras: <!-- preencher -->
-- Custo/risco: <!-- preencher -->
+### Option C — <name, if applicable>
+- Pros: <!-- fill in -->
+- Cons: <!-- fill in -->
+- Cost/risk: <!-- fill in -->
 
-## 3. Decisão
-<!-- preencher somente após decisão explícita da equipe -->
+## 3. Decision
+<!-- fill in only after an explicit team decision -->
 
-## 4. Justificativa
-<!-- preencher com a justificativa declarada pela equipe -->
+## 4. Rationale
+<!-- fill in with the rationale stated by the team -->
 
-## 5. Consequências
-<!-- preencher com efeitos positivos, negativos e riscos confirmados -->
+## 5. Consequences
+<!-- fill in with positive effects, negative effects, and confirmed risks -->
 
-## 6. Validação
-<!-- preencher com os critérios que a equipe acordar -->
+## 6. Validation
+<!-- fill in with the criteria agreed upon by the team -->
 ```
 
-## Antipadrões
+## Anti-patterns
 
-- ADRs pré-cozidos que apresentam apenas a opção escolhida. Sempre liste opções rejeitadas — metade do valor está aí.
-- "Escolhemos X porque é melhor." Não é justificativa; descreva as forças.
-- Consequências ausentes. ADRs sem consequências enganam o você do futuro.
-- Reescrever um ADR aceito. Crie um novo com status `Supersedes NNNN`.
-- ADRs sem datas. Sem valor para arqueologia.
-- Não vincular nada. ADRs que não citam REQ-IDs ou ADRs anteriores são isolados e pouco confiáveis.
-- "Não fazer nada" nunca considerado. Às vezes a resposta certa é "depois".
+- Predetermined ADRs that present only the chosen option. Always list rejected options—half the value lies there.
+- "We chose X because it is better." This is not a rationale; describe the forces involved.
+- Missing consequences. ADRs without consequences mislead your future self.
+- Rewriting an accepted ADR. Create a new one with status `Supersedes NNNN`.
+- ADRs without dates. They have no archaeological value.
+- No links. ADRs that cite neither REQ-IDs nor previous ADRs are isolated and unreliable.
+- Never considering "do nothing." Sometimes the right answer is "later."
 
-## Critérios de sucesso
+## Success Criteria
 
-- [ ] Nome de arquivo segue `<NNNN>-<title-slug>.md`, número não colide.
-- [ ] Status é um de `Proposed`, `Accepted`, `Superseded by NNNN`, `Rejected`.
-- [ ] Data e aprovadores registrados.
-- [ ] Pelo menos três opções, cada uma com prós, contras e custo/risco.
-- [ ] Decisão nomeia explicitamente a opção escolhida.
-- [ ] Consequências incluem positivas, negativas e riscos.
-- [ ] `REQ-ID`s vinculados e ADRs anteriores citados.
-- [ ] Critérios de validação incluídos para que possamos checar esta decisão depois.
+- [ ] File name follows `<NNNN>-<title-slug>.md`, with no number collision.
+- [ ] Status is one of `Proposed`, `Accepted`, `Superseded by NNNN`, or `Rejected`.
+- [ ] Date and approvers are recorded.
+- [ ] At least three options, each with pros, cons, and cost/risk.
+- [ ] The decision explicitly names the chosen option.
+- [ ] Consequences include positive effects, negative effects, and risks.
+- [ ] Linked `REQ-ID`s and previous ADRs are cited.
+- [ ] Validation criteria are included so the decision can be checked later.

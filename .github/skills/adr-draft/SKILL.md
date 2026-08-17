@@ -1,30 +1,30 @@
 ---
 name: "adr-draft"
-description: "Use ao rascunhar Arquitetura Decision Records, avaliar alternativas ou documentar trade-offs técnicos. Aciona com \"ADR\", \"architecture decision\", \"trade-off\", \"pick between\", \"why did we choose\"."
+description: "Use when drafting Architecture Decision Records, evaluating alternatives, or documenting technical trade-offs. Triggers include \"ADR\", \"architecture decision\", \"trade-off\", \"pick between\", and \"why did we choose\"."
 ---
 
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
-# Rascunho de ADR
+# ADR draft
 
-## Quando invocar
+## When to invoke
 
 - "Draft an ADR for choosing PostgreSQL over MongoDB."
 - "Document our decision to adopt event-driven architecture."
 - "Revisit ADR-007 - we need to supersede it."
 
-## Quando escrever um ADR
+## When to write an ADR
 
-Escreva um ADR quando uma decisão:
+Write an ADR when a decision:
 
-- É difícil ou cara de reverter.
-- Afeta mais de um time.
-- Restringe escolhas futuras (technology lock-in).
-- Provavelmente será questionada em 6 meses.
+- Is difficult or expensive to reverse.
+- Affects more than one team.
+- Restricts future choices (technology lock-in).
+- Will probably be questioned in 6 months.
 
-Não escreva um ADR para um refactor local ou ajuste de configuração reversível.
+Do not write an ADR for a local refactor or a reversible configuration change.
 
-## Estrutura
+## Structure
 
 ```markdown
 # ADR-NNN: <Decision title in imperative>
@@ -63,20 +63,20 @@ One paragraph. "We will <decision>."
 - Source 2
 ```
 
-## Dicas de escrita
+## Writing tips
 
-- Escreva no tempo presente ("We use X").
-- Inclua pelo menos 2 alternativas rejeitadas.
-- Nomeie consequências que você sabe que vão doer - seu eu futuro vai agradecer.
-- Substitua, nunca delete. A história é o valor.
+- Write in the present tense ("We use X").
+- Include at least 2 rejected alternatives.
+- Name consequences that you know will be painful. Your future self will thank you.
+- Supersede, never delete. The history provides value.
 
-## Antipadrões
+## Antipatterns
 
-- ADRs escritos depois do fato para justificar decisão já tomada.
-- Um ADR que agrupa 5 decisões não relacionadas.
-- Sem seção de alternativas (sinaliza que não houve análise de trade-off).
-- Status preso em "proposed" por meses.
+- ADRs written after the fact to justify a decision already made.
+- One ADR that groups 5 unrelated decisions.
+- No alternatives section, which signals that no trade-off analysis occurred.
+- Status stuck at "proposed" for months.
 
-## Gate de qualidade
+## Quality gate
 
-Rejeite qualquer ADR sem seções Context, Decision, Alternatives e Consequences.
+Reject any ADR that lacks Context, Decision, Alternatives, and Consequences sections.

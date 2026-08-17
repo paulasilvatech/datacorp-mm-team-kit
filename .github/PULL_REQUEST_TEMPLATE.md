@@ -1,30 +1,30 @@
 # Pull Request
 
-## Descrição
+## Description
 
-<!-- Descreva o que foi implementado neste PR -->
+<!-- Describe what was implemented in this PR -->
 
-## Estágio
+## Stage
 
-- [ ] Estágio 1 - Arqueologia
-- [ ] Estágio 2 - Spec Moderna
-- [ ] Estágio 3 - Implementação
-- [ ] Estágio 4 - Evolução (IaC)
+- [ ] Stage 1 - Archaeology
+- [ ] Stage 2 - Modern Specification
+- [ ] Stage 3 - Implementation
+- [ ] Stage 4 - Evolution (IaC)
 
-## Persona Responsável
+## Responsible Persona
 
-<!-- Qual persona criou este PR? -->
+<!-- Which persona created this PR? -->
 
 ## Checklist
 
-- [ ] Código compila sem erros
-- [ ] Testes unitários passando
-- [ ] Sem dados sensíveis expostos
-- [ ] Atualizado CHANGELOG ou README se necessário
-- [ ] Vinculado ao REQ-ID correspondente na spec (quando aplicável)
-- [ ] Todo REQ-ID novo ou alterado inclui `source_legacy:` válido ou `[GREENFIELD]` justificado
-- [ ] Alterações em workflow usam permissões mínimas e ações fixadas por SHA
+- [ ] Code compiles without errors
+- [ ] Unit tests pass
+- [ ] No sensitive data is exposed
+- [ ] CHANGELOG or README updated if necessary
+- [ ] Linked to the corresponding REQ-ID in the specification (when applicable)
+- [ ] Every new or changed REQ-ID includes a valid `source_legacy:` or justified `[GREENFIELD]`
+- [ ] Workflow changes use least-privilege permissions and actions pinned by SHA
 
-## REQ-IDs Atendidos
+## REQ-IDs Addressed
 
-<!-- Ex: REQ-001, REQ-003 -->
+<!-- Example: REQ-001, REQ-003 -->

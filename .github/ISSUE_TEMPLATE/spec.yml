@@ -34,7 +34,7 @@ body:
       label: Business goal
       description: What outcome does this feature enable? Tie to a SIFAP business rule
         when possible.
-      placeholder: "<descreva o resultado identificado pelo time>"
+      placeholder: "<describe the outcome identified by the team>"
     validations:
       required: true
 

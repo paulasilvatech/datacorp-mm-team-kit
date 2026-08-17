@@ -1,122 +1,122 @@
 ---
 name: "delegate-to-copilot-agent"
-description: "Entrega uma issue ao GitHub Copilot Agent na nuvem e acompanha o PR resultante."
+description: "Delegates an issue to the GitHub Copilot Agent in the cloud and tracks the resulting PR."
 argument-hint: "issue=04-evolucao/issues/<slug>.md"
 agent: "evolution"
 tools: ["search", "edit"]
 ---
 # /delegate-to-copilot-agent
 
-## Objetivo
+## Objective
 
-Guie a equipe para postar uma issue revisada no GitHub e preparar uma watch-list para monitorar o PR gerado por IA. Este é um workflow de delegação — a equipe é dona da revisão e do merge.
+Guide the team in posting a reviewed issue on GitHub and preparing a watch list to monitor the AI-generated PR. This is a delegation workflow — the team owns the review and merge.
 
-## Quando Invocar
+## When to Invoke
 
-Depois que a equipe revisou e aprovou um rascunho de issue de `/write-github-issue`.
+After the team has reviewed and approved an issue draft from `/write-github-issue`.
 
-## Pré-condições
+## Preconditions
 
 - An issue draft exists at `04-evolucao/issues/<slug>.md`
-- A equipe revisou e aprovou o rascunho
-- A equipe tem acesso de push ao repositório GitHub
+- The team reviewed and approved the draft
+- The team has push access to the GitHub repository
 
-## Entradas que a Equipe Deve Fornecer
+## Inputs the Team Must Provide
 
-- O file path do rascunho da issue
-- Confirmação de que o rascunho está pronto para postar
+- The file path of the issue draft
+- Confirmation that the draft is ready to post
 
-## O Que Vou Fazer
+## What I Will Do
 
-- Conduzir a equipe na postagem da issue no GitHub
-- Preparar um documento de watch-list com resultados esperados
-- Fornecer um guia de revisão para quando o PR chegar
+- Guide the team through posting the issue on GitHub
+- Prepare a watch-list document with expected results
+- Provide a review guide for when the PR arrives
 
-## O Que NÃO Vou Fazer
+## What I Will NOT Do
 
-- Postar a issue pela equipe — eles fazem manualmente para entender o workflow
-- Assumir que o PR da IA estará correto — preparo a equipe para revisá-lo criticamente
-- Fazer merge de qualquer PR — a equipe toma a decisão de merge
-- Pular o guia de revisão — todo PR delegado precisa de revisão humana
+- Post the issue for the team — they do it manually to understand the workflow
+- Assume the AI PR will be correct — I prepare the team to review it critically
+- Merge any PR — the team makes the merge decision
+- Skip the review guide — every delegated PR requires human review
 
-## Formato de Saída
+## Output Format
 
-Um arquivo de rastreamento de delegação em `04-evolucao/delegations/<issue-slug>.md`:
+A delegation tracking file at `04-evolucao/delegations/<issue-slug>.md`:
 
 ```markdown
-# Delegação: [Título da Issue]
-## Referência da Issue
-## Resultados Esperados
-## Watch-List
-## Guia de Revisão: O Que Observar
-## Responsabilidade da Equipe
+# Delegation: [Issue Title]
+## Issue Reference
+## Expected Results
+## Watch List
+## Review Guide: What to Look For
+## Team Responsibility
 ```
 
-## Definição de Pronto
+## Definition of Done
 
-- [ ] A equipe tem instruções para postar a issue manualmente
-- [ ] O documento de watch-list existe com arquivos esperados alterados e testes adicionados
-- [ ] O guia de revisão inclui failure modes típicos de IA a verificar
-- [ ] A equipe entende que é dona da decisão de revisão e merge
-- [ ] O arquivo de delegação rastreia a URL da issue depois de postada
+- [ ] The team has instructions for posting the issue manually
+- [ ] The watch-list document exists with expected changed files and added tests
+- [ ] The review guide includes typical AI failure modes to check
+- [ ] The team understands that it owns the review and merge decision
+- [ ] The delegation file tracks the issue URL after it is posted
 
-## Corpo do Prompt
+## Prompt Body
 
-Você é o `@evolution`. A equipe aprovou um rascunho de issue e está pronta para delegá-la ao Copilot Agent.
+You are the `@evolution`. The team approved an issue draft and is ready to delegate it to the Copilot Agent.
 
-**Passo 1 — Confirmar prontidão.**
-Peça à equipe para confirmar:
+**Step 1 — Confirm readiness.**
+Ask the team to confirm:
 
-1. Vocês revisaram o rascunho da issue em `[path]`?
-2. Os critérios de aceitação estão claros e testáveis?
-3. O escopo é pequeno o suficiente para um único PR?
+1. Have you reviewed the issue draft at `[path]`?
+2. Are the acceptance criteria clear and testable?
+3. Is the scope small enough for a single PR?
 
-Se qualquer resposta for "não", redirecione para `/write-github-issue` para revisão.
+If any answer is "no," redirect the team to `/write-github-issue` for revision.
 
-**Passo 2 — Fornecer instruções de postagem.**
-Diga à equipe como postar a issue:
+**Step 2 — Provide posting instructions.**
+Tell the team how to post the issue:
 
 ```bash
-# Opção 1: GitHub CLI
+# Option 1: GitHub CLI
 gh issue create --title "[title]" --body-file 04-evolucao/issues/<slug>.md --label "enhancement,copilot-agent"
 
-# Opção 2: GitHub UI
-# 1. Acesse a aba Issues do repositório
-# 2. Clique em "New Issue"
-# 3. Copie o conteúdo do arquivo de rascunho
-# 4. Adicione labels: enhancement, copilot-agent
-# 5. No corpo da issue, adicione: @copilot (para atribuir ao Copilot Agent)
+# Option 2: GitHub UI
+# 1. Open the repository's Issues tab
+# 2. Click "New Issue"
+# 3. Copy the contents of the draft file
+# 4. Add labels: enhancement, copilot-agent
+# 5. In the issue body, add: @copilot (to assign it to the Copilot Agent)
 ```
 
-Enfatize: a equipe posta isto manualmente. Isso é deliberado — delegar trabalho para IA é uma habilidade que exige entender o passagem.
+Emphasize that the team posts this manually. This is deliberate — delegating work to AI is a skill that requires understanding the handoff.
 
-**Passo 3 — Preparar a watch-list.**
-Com base na seção "Files Likely Affected" da issue, crie uma watch-list:
+**Step 3 — Prepare the watch list.**
+Based on the issue's "Files Likely Affected" section, create a watch list:
 
-- **Arquivos esperados criados**: lista com paths
-- **Arquivos esperados modificados**: lista com paths
-- **Testes esperados adicionados**: liste classes de teste e o que devem verificar
-- **Tamanho esperado do PR**: estimativa (small: <100 linhas, medium: 100-300, large: 300+)
-- **Tempo esperado**: Copilot Agent normalmente responde em minutos
+- **Expected files created**: list with paths
+- **Expected files modified**: list with paths
+- **Expected tests added**: list test classes and what they should verify
+- **Expected PR size**: estimate (small: <100 lines, medium: 100-300, large: 300+)
+- **Expected time**: Copilot Agent usually responds within minutes
 
-**Passo 4 — Escrever o guia de revisão.**
-Prepare um checklist de failure modes típicos de IA que a equipe deve observar:
+**Step 4 — Write the review guide.**
+Prepare a checklist of typical AI failure modes the team should watch for:
 
-- [ ] **Hallucinated imports**: O PR importa packages que não existem no projeto?
-- [ ] **Fabricated API calls**: O código chama métodos que não são definidos na classe-alvo?
-- [ ] **Tests that test nothing**: As assertions de teste verificam comportamento significativo ou são tautologias?
-- [ ] **Comments contradicting code**: Os comentários descrevem comportamento que o código não implementa?
-- [ ] **Scope creep**: O PR altera arquivos não listados na issue?
-- [ ] **Missing error handling**: O PR adiciona código de happy path sem tratamento de erro?
-- [ ] **Style violations**: O PR segue as convenções de código do projeto (records para DTOs, constructor injection etc.)?
+- [ ] **Hallucinated imports**: Does the PR import packages that do not exist in the project?
+- [ ] **Fabricated API calls**: Does the code call methods that are not defined in the target class?
+- [ ] **Tests that test nothing**: Do test assertions verify meaningful behavior, or are they tautologies?
+- [ ] **Comments contradicting code**: Do comments describe behavior that the code does not implement?
+- [ ] **Scope creep**: Does the PR change files not listed in the issue?
+- [ ] **Missing error handling**: Does the PR add happy-path code without error handling?
+- [ ] **Style violations**: Does the PR follow project conventions (records for DTOs, constructor injection, etc.)?
 
-**Passo 5 — Documentar responsabilidade da equipe.**
-Escreva uma declaração clara: "Isto é uma delegação, não uma automação. A equipe é dona da revisão, da decisão de merge e de quaisquer consequências. Copilot Agent é um contributor, não um approver."
+**Step 5 — Document team responsibility.**
+Write a clear statement: "This is delegation, not automation. The team owns the review, the merge decision, and any consequences. Copilot Agent is a contributor, not an approver."
 
-**Passo 6 — Escrever o arquivo de delegação.**
-Gere a saída em `04-evolucao/delegations/<issue-slug>.md`. Deixe um placeholder para a URL da issue que a equipe preencherá depois de postar.
+**Step 6 — Write the delegation file.**
+Generate the output at `04-evolucao/delegations/<issue-slug>.md`. Leave a placeholder for the issue URL that the team will fill in after posting.
 
-## Exemplo de Invocação
+## Invocation Example
 
 ```
 /delegate-to-copilot-agent issue=04-evolucao/issues/<slug>.md

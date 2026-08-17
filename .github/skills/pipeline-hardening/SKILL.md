@@ -1,61 +1,61 @@
 ---
 name: "pipeline-hardening"
-description: "Use ao fortalecer um pipeline CI/CD, migrar para OIDC, assinar artefatos ou atender requisitos SLSA. Aciona com 'SLSA', 'supply chain', 'OIDC', 'sigstore', 'cosign', 'pipeline security', 'GHA hardening'."
+description: "Use when hardening a CI/CD pipeline, migrating to OIDC, signing artifacts, or meeting SLSA requirements. Triggers include 'SLSA', 'supply chain', 'OIDC', 'sigstore', 'cosign', 'pipeline security', and 'GHA hardening'."
 ---
 
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
-# Fortalecimento de Pipeline
+# Pipeline hardening
 
-## Quando invocar
+## When to invoke
 
-- "Fortaleça nosso pipeline GitHub Actions / Azure DevOps / GitLab."
-- "Migre de secrets de longa duração para OIDC."
-- "Alcance SLSA Level 2/3."
-- "Assine nossas imagens de container."
+- "Harden our GitHub Actions / Azure DevOps / GitLab pipeline."
+- "Migrate from long-lived secrets to OIDC."
+- "Achieve SLSA Level 2/3."
+- "Sign our container images."
 
-## Modelo de ameaças (lista curta)
+## Threat model (short list)
 
-1. **Secrets roubados** de logs do pipeline ou runner comprometido.
-2. **Dependência maliciosa** publicada upstream ou typosquatted.
-3. **GitHub Action de terceiro / etapa compartilhada comprometida**.
-4. **Artefato adulterado** entre build e deploy.
-5. **Escalação de privilégio** por permissões amplas demais no pipeline.
+1. **Stolen secrets** from pipeline logs or a compromised runner.
+2. **Malicious dependency** published upstream or through typosquatting.
+3. **Compromised third-party GitHub Action or shared step**.
+4. **Tampered artifact** between build and deployment.
+5. **Privilege escalation** caused by overly broad pipeline permissions.
 
-## Controles (ordenados por ROI)
+## Controls (ordered by ROI)
 
-### Tier 1 — faça primeiro
+### Tier 1 — do first
 
-- [ ] **OIDC para a cloud** — sem credenciais cloud de longa duração armazenadas como secrets. Identidade federada com tokens de curta duração.
-- [ ] **Fixe actions de terceiros por SHA**, não por tag (`actions/checkout@<sha>` com um comentário mostrando a versão).
-- [ ] **Bloco `permissions:`** em todo workflow, default `contents: read`, elevando apenas onde necessário.
-- [ ] **Branch protection**: revisões obrigatórias, status checks obrigatórios, sem force-push, commits assinados na main.
-- [ ] **Secret scanning + push protection** habilitados em toda a org.
-- [ ] **Dependabot / Renovate** para dependências e actions.
+- [ ] **OIDC for the cloud**: do not store long-lived cloud credentials as secrets. Use federated identity with short-lived tokens.
+- [ ] **Pin third-party actions by SHA**, not by tag (`actions/checkout@<sha>` with a comment showing the version).
+- [ ] A **`permissions:` block** in every workflow, defaulting to `contents: read` and elevated only where needed.
+- [ ] **Branch protection**: required reviews, required status checks, no force pushes, and signed commits on main.
+- [ ] **Secret scanning + push protection** enabled across the organization.
+- [ ] **Dependabot / Renovate** for dependencies and actions.
 
-### Tier 2 — integridade de supply chain
+### Tier 2 — supply chain integrity
 
-- [ ] **SBOM** gerado em todo build (Syft / CycloneDX).
-- [ ] **Assinatura de artefatos** com Cosign (keyless via OIDC preferido).
-- [ ] **Provenance** (SLSA v1.0 attestation) publicada com o artefato.
-- [ ] **Verificar assinaturas no deploy** — o job de deploy recusa artefatos não assinados.
-- [ ] **Varredura de vulnerabilidades** (Trivy / Grype) na imagem; falha em Critical/High com exceções justificadas.
+- [ ] **SBOM** generated for every build (Syft / CycloneDX).
+- [ ] **Artifact signing** with Cosign (keyless via OIDC preferred).
+- [ ] **Provenance** (SLSA v1.0 attestation) published with the artifact.
+- [ ] **Verify signatures during deployment**: the deployment job rejects unsigned artifacts.
+- [ ] **Vulnerability scanning** (Trivy / Grype) on the image; fail on Critical/High findings unless exceptions are justified.
 
-### Tier 3 — maduro
+### Tier 3 — mature
 
-- [ ] **Builds herméticos / reproduzíveis** quando viável.
-- [ ] **Revisão por duas pessoas** para pipelines de release.
-- [ ] **Runner hardening**: efêmero, network-egress restrito, sem state mutável compartilhado.
+- [ ] **Hermetic / reproducible builds** where feasible.
+- [ ] **Two-person review** for release pipelines.
+- [ ] **Runner hardening**: ephemeral, restricted network egress, and no shared mutable state.
 
-## Antipadrões
+## Anti-patterns
 
-- Armazenar `AWS_ACCESS_KEY_ID` / `AZURE_CLIENT_SECRET` como secret de repositório quando OIDC está disponível.
+- Storing `AWS_ACCESS_KEY_ID` / `AZURE_CLIENT_SECRET` as repository secrets when OIDC is available.
 - `permissions: write-all`.
-- Tags flutuantes `@main` ou `@v3` em actions de terceiros.
-- Implantar um artefato construído em outro pipeline sem verificar sua assinatura.
-- Secrets impressos em logs por expansão de shell sem aspas.
+- Floating `@main` or `@v3` tags in third-party actions.
+- Deploying an artifact built in another pipeline without verifying its signature.
+- Secrets printed in logs through unquoted shell expansion.
 
-## Referências
+## References
 
 - [SLSA v1.0](https://slsa.dev/spec/v1.0/)
 - [GitHub - Security hardening for GHA](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions)

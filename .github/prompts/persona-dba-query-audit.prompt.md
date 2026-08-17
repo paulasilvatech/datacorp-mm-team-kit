@@ -1,110 +1,110 @@
 ---
 name: "query-audit"
 agent: "dba"
-description: "Audite uma consulta SQL quanto a performance, segurança e padrões de código do SIFAP. Produza uma consulta corrigida mais uma justificativa baseada em EXPLAIN."
+description: "Audit a SQL query for performance, security, and SIFAP coding standards. Produce a corrected query and an EXPLAIN-based rationale."
 tools: ["search", "execute"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /query-audit
 
-## Objetivo
+## Objective
 
-Você é o DBA revisando uma consulta SQL (ou consulta JPA/JPQL) destinada ao PostgreSQL 16. Sua auditoria captura risco de injection, armadilhas de varredura sequencial, padrões N+1 e violações dos padrões de código do SIFAP. O entregável é um veredito (Passa / Correção obrigatória / Rejeitar), uma consulta reescrita e uma leitura de `EXPLAIN ANALYZE`.
+You are the DBA reviewing a SQL query (or JPA/JPQL query) intended for PostgreSQL 16. Your audit identifies injection risk, sequential-scan traps, N+1 patterns, and violations of SIFAP coding standards. The deliverable is a verdict (Pass / Fix required / Reject), a rewritten query, and an interpretation of `EXPLAIN ANALYZE`.
 
-## Entradas
+## Inputs
 
-Peça ao usuário o que estiver faltando.
+Ask the user for anything that is missing.
 
-- A consulta, em sua forma original (raw SQL, JPQL, Criteria API ou QueryDSL).
-- O schema das tabelas envolvidas, ou um ponteiro para migrações em `db/migration/`.
-- Índices existentes (saída de `\d table_name`) nessas tabelas.
-- Contagens de linhas e estimativas de seletividade realistas para produção.
-- O caminho de código chamador — é um endpoint quente (por requisição) ou um batch job (noturno)?
+- The query in its original form (raw SQL, JPQL, Criteria API, or QueryDSL).
+- The schema of the involved tables, or a pointer to migrations in `db/migration/`.
+- Existing indexes (output of `\d table_name`) on those tables.
+- Realistic production row counts and selectivity estimates.
+- The calling code path—is it a hot endpoint (per request) or a batch job (nightly)?
 
-## Processo
+## Process
 
-1. **Faça primeiro a varredura estática.**
+1. **Perform the static scan first.**
 
-- Qualquer concatenação de string com entrada do usuário → rejeite como SQL injection.
-- `SELECT *` em tabela larga → rejeite.
-- Casts implícitos (`varchar = bigint`) que desabilitam índices → corrija.
-- Funções em colunas indexadas podem impedir o uso do índice → corrija ou
-   adicione índice de expressão quando a evidência justificar.
+- Any string concatenation with user input → reject as SQL injection.
+- `SELECT *` on a wide table → reject.
+- Implicit casts (`varchar = bigint`) that disable indexes → fix.
+- Functions on indexed columns can prevent index use → fix them or
+   add an expression index when the evidence justifies it.
 
-2. **Faça a varredura dinâmica.** Execute `EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT) ...` em snapshot de stage. Leia o plano de cima para baixo.
+2. **Perform the dynamic scan.** Run `EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT) ...` against a stage snapshot. Read the plan from top to bottom.
 
-- Sinalize qualquer `Seq Scan` em tabelas maiores que 10k linhas quando existir filtro.
-- Sinalize qualquer etapa `Sort` que poderia ser apoiada por índice.
-- Sinalize qualquer `Nested Loop` sobre mais de ~1k linhas externas quando um `Hash Join` seria mais barato.
-- Sinalize razão de divergência entre `rows estimated` e `rows actual` acima de 10× — as estatísticas estão obsoletas ou o formato da consulta é desfavorável.
+- Flag any `Seq Scan` on tables larger than 10k rows when a filter exists.
+- Flag any `Sort` step that could be supported by an index.
+- Flag any `Nested Loop` over more than ~1k outer rows when a `Hash Join` would be cheaper.
+- Flag a divergence ratio between `rows estimated` and `rows actual` above 10×—the statistics are stale or the query shape is unfavorable.
 
-3. **Verifique N+1.** Se a consulta for invocada a partir de JPA, procure `JOIN FETCH` ou hints de batch-size ausentes. Liste o loop pai no código da aplicação.
-4. **Verifique locks e isolamento.** `SELECT ... FOR UPDATE` em tabelas quentes exige cuidado. O isolamento padrão deve ser `READ COMMITTED`; sinalize `SERIALIZABLE` sem justificativa.
-5. **Confirme parametrização.** Todos os valores voltados ao usuário devem ser parâmetros vinculados, nunca interpolados em string. Mesmo vindos de caminhos de código "confiáveis".
-6. **Compare com os padrões do SIFAP.**
+3. **Check for N+1.** If the query is invoked from JPA, look for missing `JOIN FETCH` clauses or batch-size hints. Identify the parent loop in the application code.
+4. **Check locks and isolation.** `SELECT ... FOR UPDATE` on hot tables requires care. The default isolation level must be `READ COMMITTED`; flag unjustified `SERIALIZABLE`.
+5. **Confirm parameterization.** All user-facing values must be bound parameters, never interpolated into strings—even when they come from "trusted" code paths.
+6. **Compare against SIFAP standards.**
 
-- Todos os schemas públicos usam `snake_case`.
-- Timestamps são `TIMESTAMPTZ`.
-- Valores monetários são `NUMERIC(15,2)`, nunca `FLOAT`.
-- Colunas PII devem ter um `COMMENT` sinalizando isso.
+- All public schemas use `snake_case`.
+- Timestamps use `TIMESTAMPTZ`.
+- Monetary values use `NUMERIC(15,2)`, never `FLOAT`.
+- PII columns must have a `COMMENT` identifying them as such.
 
-7. **Escreva a correção.** Reescreva a consulta com hints de índice se necessário, adicione uma migração de índice ausente se houver justificativa.
-8. **Classifique o veredito.**
+7. **Write the fix.** Rewrite the query with index hints if needed, and add a migration for a missing index when justified.
+8. **Classify the verdict.**
 
-## Saída
+## Output
 
-Um relatório Markdown com esta estrutura:
+A Markdown report with this structure:
 
 ```markdown
-## Auditoria de Consulta — <identificador curto>
+## Query Audit — <short identifier>
 
-### Veredito
-<!-- preencher: Passa / Correção obrigatória / Rejeitar, com evidência -->
+### Verdict
+<!-- fill in: Pass / Fix required / Reject, with evidence -->
 
-### Achados
-| # | Severidade | Achado | Evidência |
+### Findings
+| # | Severity | Finding | Evidence |
 |---|----------|---------|----------|
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
 
-### Consulta reescrita
+### Rewritten Query
 ```sql
-<!-- preencher com a consulta parametrizada confirmada -->
+<!-- fill in with the confirmed parameterized query -->
 ```
 
-### Recomendação de índice
+### Index Recommendation
 
 ```sql
--- preencher somente se a evidência de EXPLAIN justificar um índice
+-- fill in only if EXPLAIN evidence justifies an index
 ```
 
-### EXPLAIN ANALYZE antes / depois
+### EXPLAIN ANALYZE Before / After
 
-- Antes: <!-- preencher com medição -->
-- Depois: <!-- preencher com medição -->
+- Before: <!-- fill in with measurement -->
+- After: <!-- fill in with measurement -->
 
-### Mudança obrigatória na aplicação
+### Required Application Change
 
-- <!-- preencher com mudanças confirmadas na aplicação -->
+- <!-- fill in with confirmed application changes -->
 
 ```
 
-## Antipadrões
+## Anti-patterns
 
-- Aprovar uma consulta porque "é rápida em dev" — dev tem 1k linhas, prod tem milhões.
-- Aprovar um `SELECT *` porque "o ORM remove colunas não usadas" — ele não remove.
-- Adicionar índices para toda consulta sem considerar amplificação de escrita.
-- Confiar em `EXPLAIN` sem `ANALYZE` — estimativas mentem quando as estatísticas estão obsoletas.
-- Aprovar `FOR UPDATE` em linha quente sem fila ou estratégia de backoff.
-- Ler PII sem um `COMMENT` na coluna sinalizando que ela é PII.
-- Escrever uma consulta que funciona mas discorda do mapeamento da entidade JPA — isso leva a correções silenciosas de N+1 que reintroduzem o bug.
+- Approving a query because "it is fast in dev"—dev has 1k rows; prod has millions.
+- Approving `SELECT *` because "the ORM removes unused columns"—it does not.
+- Adding indexes for every query without considering write amplification.
+- Trusting `EXPLAIN` without `ANALYZE`—estimates lie when statistics are stale.
+- Approving `FOR UPDATE` on a hot row without a queue or backoff strategy.
+- Reading PII without a column `COMMENT` identifying it as PII.
+- Writing a query that works but disagrees with the JPA entity mapping—this leads to silent N+1 fixes that reintroduce the bug.
 
-## Critérios de sucesso
+## Success Criteria
 
-- [ ] Veredito informado: Passa / Correção obrigatória / Rejeitar.
-- [ ] Achados têm severidade, evidência (arquivo/linha ou snippet de EXPLAIN) e recomendação.
-- [ ] Consulta reescrita está pronta para colar.
-- [ ] EXPLAIN ANALYZE colado antes e depois, com tempos medidos.
-- [ ] Migrações de índice são versionadas e online-safe (`CONCURRENTLY`).
-- [ ] Todos os parâmetros estão vinculados, sem concatenação de string restante.
-- [ ] Acesso a PII está sinalizado e comentários de coluna confirmados.
+- [ ] Verdict stated: Pass / Fix required / Reject.
+- [ ] Findings include severity, evidence (file/line or EXPLAIN snippet), and a recommendation.
+- [ ] The rewritten query is ready to paste.
+- [ ] EXPLAIN ANALYZE is pasted before and after, with measured times.
+- [ ] Index migrations are versioned and online-safe (`CONCURRENTLY`).
+- [ ] All parameters are bound, with no remaining string concatenation.
+- [ ] PII access is flagged and column comments are confirmed.

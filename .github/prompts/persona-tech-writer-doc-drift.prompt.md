@@ -1,99 +1,99 @@
 ---
 name: "doc-drift"
 agent: "tech-writer"
-description: "Detectar drift entre a documentação do SIFAP 2.0 (README, CODEMAP, ADRs, runbooks) e o código atual, expondo correções concretas."
+description: "Detect drift between SIFAP 2.0 documentation (README, CODEMAP, ADRs, runbooks) and the current code, exposing concrete corrections."
 tools: ["search"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /doc-drift
 
-## Objetivo
+## Objective
 
-Você é o Tech Writer auditando a documentação do SIFAP 2.0 em busca de **drift**, ou seja, lugares em que a documentação e o código discordam. O entregável é uma lista priorizada de correções com a linha exata, a contradição e uma correção em uma linha. Você não reescreve a documentação silenciosamente; você propõe a correção e deixa o proprietário aprovar.
+You are the Tech Writer auditing SIFAP 2.0 documentation for **drift**: places where the documentation and code disagree. The deliverable is a prioritized list of corrections with the exact line, the contradiction, and a one-line fix. Do not silently rewrite the documentation; propose the correction and let the owner approve it.
 
-## Entradas
+## Inputs
 
-Peça à pessoa usuária o que estiver faltando.
+Ask the user for any missing information.
 
-- O conjunto de documentação no escopo: `README.md`, `docs/CODEMAP.md`, `specs/<NNN>-<feature>/spec.md`, `specs/<NNN>-<feature>/plan.md`, `docs/runbooks/` e decisões de apoio em `02-spec-moderna/`.
-- Os caminhos de código de referência criados pelo time: `backend/`, `frontend/`, `infra/`.
-- Horizonte de tempo: "drift desde a última release" ou "todo o drift atual".
-- Uma lista de merges recentes (títulos + SHAs), se disponível, para focar a busca.
+- The documentation in scope: `README.md`, `docs/CODEMAP.md`, `specs/<NNN>-<feature>/spec.md`, `specs/<NNN>-<feature>/plan.md`, `docs/runbooks/`, and supporting decisions in `02-spec-moderna/`.
+- The reference code paths created by the team: `backend/`, `frontend/`, and `infra/`.
+- Time horizon: "drift since the last release" or "all current drift."
+- A list of recent merges (titles + SHAs), if available, to focus the search.
 
-## Processo
+## Process
 
-1. **Monte o inventário de afirmações.** Para cada documento, extraia afirmações que possam ser verificadas contra o código:
+1. **Build an inventory of claims.** For each document, extract claims that can be verified against the code:
 
-- Nomes de arquivos e pastas criados pelo time.
-- Rotas REST e métodos HTTP.
-- Tabelas, colunas e tipos do banco de dados.
-- Variáveis de ambiente e chaves de configuração.
-- Comandos de build, execução e deploy.
-- Números de versão (Java, Spring Boot, Next.js, Postgres).
-- Referências a REQ-ID.
+- Names of files and folders created by the team.
+- REST routes and HTTP methods.
+- Database tables, columns, and types.
+- Environment variables and configuration keys.
+- Build, run, and deployment commands.
+- Version numbers (Java, Spring Boot, Next.js, Postgres).
+- REQ-ID references.
 
-2. **Verifique cada afirmação contra a fonte.** Para rotas, verifique controllers. Para schema, verifique migrações em `db/migration/`. Para configurações, verifique `application.yml`. Para comandos, verifique `Makefile`, `package.json`, `pom.xml`, GitHub Actions.
-3. **Classifique o drift.**
+2. **Verify each claim against its source.** For routes, check controllers. For schemas, check migrations in `db/migration/`. For configuration, check `application.yml`. For commands, check `Makefile`, `package.json`, `pom.xml`, and GitHub Actions.
+3. **Classify the drift.**
 
-- **Critical** — instruções que falham quando seguidas (comando incorreto, arquivo ausente, link quebrado).
-- **Major** — fatos desatualizados que induzem ao erro, mas não quebram o fluxo (versão errada, módulo renomeado).
-- **Minor** — divergência de terminologia, exemplos obsoletos.
+- **Critical**—instructions that fail when followed (incorrect command, missing file, broken link).
+- **Major**—outdated facts that mislead but do not break the workflow (wrong version, renamed module).
+- **Minor**—terminology mismatch or outdated examples.
 
-4. **Verifique os mapeamentos legados.** Para qualquer documento que afirme que um
-   módulo substitui um programa Natural, verifique a fonte citada em
+4. **Verify legacy mappings.** For any document claiming that a module replaces a
+   Natural program, verify the cited source in
    `01-arqueologia/legado-sifap/natural-programs/`.
-5. **Cruze as ADRs.** Uma ADR com "Status: Accepted" e uma seção "Consequences" que o código não reflete é drift crítico.
-6. **Gere a lista de correções.**
+5. **Cross-check the ADRs.** An ADR with "Status: Accepted" and a "Consequences" section that is not reflected in the code is critical drift.
+6. **Generate the correction list.**
 
-## Saída
+## Output
 
-Um relatório em markdown:
+A Markdown report:
 
 ```markdown
-## Relatório de Desalinhamento da Documentação — <YYYY-MM-DD>
+## Documentation Drift Report — <YYYY-MM-DD>
 
-### Resumo
-- Arquivos auditados: <quantidade>
-- Crítico: <quantidade> — Maior: <quantidade> — Menor: <quantidade>
-- Arquivo mais desalinhado: <path, se houver>
+### Summary
+- Files audited: <count>
+- Critical: <count> — Major: <count> — Minor: <count>
+- Most outdated file: <path, if any>
 
-### Crítico
-| # | Arquivo | Linha | Afirmação | Realidade | Correção |
+### Critical
+| # | File | Line | Claim | Reality | Correction |
 |---|------|------|-------|---------|-----|
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
 
-### Maior
-... (tabela)
+### Major
+... (table)
 
-### Menor
-... (tabela)
+### Minor
+... (table)
 
 ### Transversal issues
-- <!-- preencher com padrões observados na auditoria -->
+- <!-- fill in with patterns observed during the audit -->
 
 ### Recommended workflow
-1. Abra um PR por correção crítica, citando documento e linha.
-2. Agrupe correções maiores relacionadas em um PR revisável.
-3. Registre achados menores no backlog.
+1. Open one PR per critical correction, citing the document and line.
+2. Group related major corrections into a reviewable PR.
+3. Record minor findings in the backlog.
 ```
 
-## Antipadrões
+## Anti-patterns
 
-- Editar documentação silenciosamente. Sempre exponha o drift primeiro; propriedade importa.
-- Relatar "o README está desatualizado" sem números de linha. Revisores não conseguem agir.
-- Tratar toda divergência menor como crítica. Triagem importa.
-- Pular ADRs porque elas "parecem" estáveis. ADRs sofrem mais drift.
-- Não verificar afirmações de schema contra migrações. Migrações são a fonte da verdade.
-- Contar drift em documentação morta (`docs/archive/`). Marque como arquivada primeiro e audite apenas documentação viva.
-- Relatar drift sem propor a correção. É só metade do trabalho.
+- Silently editing documentation. Always expose the drift first; ownership matters.
+- Reporting "the README is outdated" without line numbers. Reviewers cannot act on it.
+- Treating every minor mismatch as critical. Triage matters.
+- Skipping ADRs because they "seem" stable. ADRs experience the most drift.
+- Failing to verify schema claims against migrations. Migrations are the source of truth.
+- Counting drift in dead documentation (`docs/archive/`). Mark it as archived first and audit only active documentation.
+- Reporting drift without proposing a correction. That is only half the work.
 
-## Critérios de sucesso
+## Success criteria
 
-- [ ] Cada achado cita arquivo e linha.
-- [ ] Cada achado tem uma correção proposta em uma linha.
-- [ ] A severidade (Critical/Major/Minor) está atribuída.
-- [ ] Problemas transversais estão resumidos para que possam ser corrigidos uma única vez.
-- [ ] ADRs são verificadas explicitamente, não puladas.
-- [ ] Referências de linhagem legada (programas Natural) são validadas.
-- [ ] O agrupamento recomendado de PRs está incluído para que as correções de documentação não cresçam demais.
+- [ ] Each finding cites a file and line.
+- [ ] Each finding has a one-line proposed correction.
+- [ ] Severity (Critical/Major/Minor) is assigned.
+- [ ] Cross-cutting issues are summarized so they can be fixed once.
+- [ ] ADRs are checked explicitly, not skipped.
+- [ ] Legacy lineage references (Natural programs) are validated.
+- [ ] Recommended PR grouping is included so documentation corrections do not grow too large.

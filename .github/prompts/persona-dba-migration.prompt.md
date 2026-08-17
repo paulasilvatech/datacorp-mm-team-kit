@@ -1,90 +1,90 @@
 ---
 name: "migration"
 agent: "dba"
-description: "Crie uma migração PostgreSQL 16 de avanço e rollback com estratégia de índices, backfill de dados e etapas de zero downtime."
+description: "Create PostgreSQL 16 forward and rollback migrations with an indexing strategy, data backfill, and zero-downtime steps."
 tools: ["search", "edit", "execute"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /migration
 
-## Objetivo
+## Objective
 
-Você é o DBA produzindo uma migração **PostgreSQL 16** para o SIFAP 2.0. Toda migração deve ser (a) idempotente, (b) reversível, (c) segura para executar enquanto a aplicação está online e (d) rastreada para um `REQ-ID` de `specs/<NNN>-<feature>/spec.md`. O entregável é uma migração Flyway versionada mais um script de rollback.
+You are the DBA producing a **PostgreSQL 16** migration for SIFAP 2.0. Every migration must be (a) idempotent, (b) reversible, (c) safe to run while the application is online, and (d) traced to a `REQ-ID` in `specs/<NNN>-<feature>/spec.md`. The deliverable is a versioned Flyway migration plus a rollback script.
 
-## Entradas
+## Inputs
 
-Peça ao usuário o que estiver faltando.
+Ask the user for anything that is missing.
 
-- A mudança solicitada em linguagem natural.
-- O `REQ-ID` vinculado (e a declaração EARS).
-- A escala de dados: contagem de linhas das tabelas afetadas, pico de QPS.
-- A janela de implantação: zero downtime obrigatório ou janela de manutenção permitida.
-- A referência legada, se houver — mapeamento para um DDM Adabas em `01-arqueologia/legado-sifap/adabas-ddms/`.
+- The requested change in natural language.
+- The linked `REQ-ID` (and EARS statement).
+- The data scale: row counts for affected tables and peak QPS.
+- The deployment window: mandatory zero downtime or an allowed maintenance window.
+- The legacy reference, if any—mapping to an Adabas DDM in `01-arqueologia/legado-sifap/adabas-ddms/`.
 
-## Processo
+## Process
 
-1. **Confirme que a mudança está em `plan.md`.** A migração segue o plano, não o contrário. Se não estiver no plano, pare e encaminhe para revisão de arquitetura.
-2. **Escolha o número da versão.** Use `Vyyyymmddhhmm__short_description.sql` (convenção do Flyway).
-3. **Projete para migração online.** Padrões seguros para online:
+1. **Confirm that the change is in `plan.md`.** The migration follows the plan, not the other way around. If it is not in the plan, stop and route it for architecture review.
+2. **Choose the version number.** Use `Vyyyymmddhhmm__short_description.sql` (Flyway convention).
+3. **Design for online migration.** Safe online patterns:
 
-- Adicionar coluna nullable → backfill em lotes → adicionar constraint por último.
-- Criar índice `CONCURRENTLY` (sem `IF NOT EXISTS` — isso exige uma guarda separada).
-- Evite operações `ALTER TABLE` que exijam lock `ACCESS EXCLUSIVE` em uma tabela quente; se for inevitável, agende uma janela de manutenção.
+- Add a nullable column → backfill in batches → add the constraint last.
+- Create the index `CONCURRENTLY` (without `IF NOT EXISTS`—that requires a separate guard).
+- Avoid `ALTER TABLE` operations that require an `ACCESS EXCLUSIVE` lock on a hot table; if unavoidable, schedule a maintenance window.
 
-4. **Planeje o backfill.** Para dados não triviais, escreva um script de backfill idempotente separado que processe em lotes de 1k–10k linhas com `commit` entre lotes. Nunca faça backfill na própria migração se a tabela tiver mais de 100k linhas.
-5. **Aplique constraints depois do backfill.** Adicione `NOT NULL`, `CHECK`, foreign keys e índices únicos somente depois que os dados estiverem consistentes.
-6. **Escreva o rollback.** Toda migração de avanço vem com um `Vyyyymmddhhmm__short_description.undo.sql`. O rollback restaura o schema anterior mesmo se tiver existido estado intermediário.
-7. **Documente efeitos colaterais.** Anote drift de replication slot, implicações de vacuum, invalidação de plan-cache e qualquer código de aplicação que precise ser enviado em lockstep.
-8. **Teste em um snapshot.** Restaure o snapshot mais recente de stage, execute `flyway migrate`, verifique, execute o rollback e verifique novamente. Cole a saída.
+4. **Plan the backfill.** For non-trivial data, write a separate idempotent backfill script that processes batches of 1k–10k rows with a `commit` between batches. Never perform the backfill in the migration itself if the table has more than 100k rows.
+5. **Apply constraints after the backfill.** Add `NOT NULL`, `CHECK`, foreign keys, and unique indexes only after the data is consistent.
+6. **Write the rollback.** Every forward migration comes with a `Vyyyymmddhhmm__short_description.undo.sql`. The rollback restores the previous schema even if an intermediate state existed.
+7. **Document side effects.** Note replication-slot drift, vacuum implications, plan-cache invalidation, and any application code that must be shipped in lockstep.
+8. **Test against a snapshot.** Restore the latest stage snapshot, run `flyway migrate`, verify, run the rollback, and verify again. Paste the output.
 
-## Saída
+## Output
 
-Sua resposta final deve incluir:
+Your final response must include:
 
-- **Metadados da migração** — versão, REQ-ID, online-safe (sim/não), duração estimada em escala de produção.
-- **Script de avanço** — SQL completo, pronto para colar em `db/migration/Vyyyymmddhhmm__*.sql`.
-- **Script de backfill**, se aplicável — arquivo separado com loop em lotes e logging de progresso.
-- **Script de rollback** — SQL completo, pronto para colar em `db/migration/Vyyyymmddhhmm__*.undo.sql`.
-- **Notas de coordenação da aplicação** — qual código deve ser implantado antes, junto ou depois da migração.
-- **Registro de riscos** — risco de locking, risco de replicação, risco de invalidação de plano, com mitigações.
+- **Migration metadata** — version, REQ-ID, online-safe (yes/no), and estimated duration at production scale.
+- **Forward script** — complete SQL, ready to paste into `db/migration/Vyyyymmddhhmm__*.sql`.
+- **Backfill script**, if applicable—a separate file with a batch loop and progress logging.
+- **Rollback script** — complete SQL, ready to paste into `db/migration/Vyyyymmddhhmm__*.undo.sql`.
+- **Application coordination notes** — which code must be deployed before, with, or after the migration.
+- **Risk register** — locking risk, replication risk, and plan invalidation risk, with mitigations.
 
-### Template de avanço (adição de coluna com zero downtime)
+### Forward Template (zero-downtime column addition)
 
 ```sql
 -- V<timestamp>__<short_description>.sql
--- REQ-XXX: <declaração EARS confirmada pelo time>.
--- Online-safe: <estratégia escolhida e evidência>.
+-- REQ-XXX: <EARS statement confirmed by the team>.
+-- Online-safe: <chosen strategy and evidence>.
 
 ALTER TABLE <table_name>
  ADD COLUMN IF NOT EXISTS <column_name> <sql_type>;
 
--- Inclua índices e comentários somente após o time confirmar o schema.
+-- Include indexes and comments only after the team confirms the schema.
 ```
 
-### Template de rollback
+### Rollback Template
 
 ```sql
 -- V<timestamp>__<short_description>.undo.sql
--- Descreva o rollback validado para a mudança acima.
+-- Describe the validated rollback for the change above.
 ```
 
-## Antipadrões
+## Anti-patterns
 
-- `ALTER TABLE ... ADD COLUMN ... NOT NULL DEFAULT 'x'` em uma tabela grande e quente — reescreve a tabela inteira. Divida em adição nullable + backfill + constraint.
-- Criar índice sem `CONCURRENTLY` em uma tabela de produção — bloqueia writers.
-- Combinar mudança de schema e `UPDATE` grande na mesma migração — transações longas e replication lag.
-- Não ter script de rollback. O DB não pode ser restaurado sem um.
-- Esquecer de coordenar com releases da aplicação — o código lê uma coluna que ainda não existe, ou o inverso.
-- Armazenar PII em uma nova coluna sem consultar o DevOps Engineer e a liderança técnica.
-- Pular o teste em snapshot de stage. "Funcionou no meu dev DB" não é suficiente.
+- Using `ALTER TABLE ... ADD COLUMN ... NOT NULL DEFAULT 'x'` on a large, hot table—it rewrites the entire table. Split it into nullable addition + backfill + constraint.
+- Creating an index without `CONCURRENTLY` on a production table—it blocks writers.
+- Combining a schema change and a large `UPDATE` in the same migration—this causes long transactions and replication lag.
+- Omitting a rollback script. The database cannot be restored without one.
+- Failing to coordinate with application releases—the code reads a column that does not yet exist, or vice versa.
+- Storing PII in a new column without consulting the DevOps Engineer and technical leadership.
+- Skipping the test against a stage snapshot. "It worked in my dev DB" is not enough.
 
-## Critérios de sucesso
+## Success Criteria
 
-- [ ] Scripts de forward e rollback ambos commitados.
-- [ ] Script de forward é idempotente (`IF NOT EXISTS`, `IF EXISTS`).
-- [ ] Nenhum lock `ACCESS EXCLUSIVE` em tabela quente sem nota explícita de janela de manutenção.
-- [ ] Backfill trata >100k linhas em lotes.
-- [ ] `REQ-ID` vinculado e declaração EARS aparecem como comentário no topo.
-- [ ] Testado em snapshot de stage — saída de `flyway migrate` e `flyway undo` colada.
-- [ ] Plano de coordenação da aplicação declarado explicitamente.
+- [ ] Forward and rollback scripts are both committed.
+- [ ] The forward script is idempotent (`IF NOT EXISTS`, `IF EXISTS`).
+- [ ] No `ACCESS EXCLUSIVE` lock on a hot table without an explicit maintenance-window note.
+- [ ] The backfill handles >100k rows in batches.
+- [ ] The linked `REQ-ID` and EARS statement appear in a top-of-file comment.
+- [ ] Tested against a stage snapshot—the output of `flyway migrate` and `flyway undo` is pasted.
+- [ ] The application coordination plan is stated explicitly.

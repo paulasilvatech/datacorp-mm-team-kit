@@ -1,67 +1,67 @@
 ---
 name: "ears-validate"
-description: "Use ao validar requisitos contra padrões da notação EARS. Aciona com \"EARS\", \"requirement review\", \"requirement quality\", \"shall statement\", \"REQ-ID\"."
+description: "Use when validating requirements against EARS notation patterns. Triggers include \"EARS\", \"requirement review\", \"requirement quality\", \"shall statement\", and \"REQ-ID\"."
 ---
 
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
-# Validação EARS
+# EARS validation
 
-## Quando invocar
+## When to invoke
 
-- "Revise estes requisitos quanto à conformidade EARS."
-- "Este requisito é testável?"
-- "Classifique este requisito por padrão EARS."
+- "Review these requirements for EARS compliance."
+- "Is this requirement testable?"
+- "Classify this requirement by EARS pattern."
 
-## Padrões EARS
+## EARS patterns
 
-| Padrão | Modelo |
+| Pattern | Template |
 |---|---|
-| Ubiquitous | `O <sistema> deverá <resposta>.` |
-| Event-driven | `Quando <gatilho>, o <sistema> deverá <resposta>.` |
-| State-driven | `Enquanto <estado>, o <sistema> deverá <resposta>.` |
-| Optional | `Onde <feature estiver incluída>, o <sistema> deverá <resposta>.` |
-| Unwanted | `Se <condição indesejada>, então o <sistema> deverá <mitigação>.` |
-| Complex | `Enquanto <estado>, quando <gatilho>, o <sistema> deverá <resposta>.` |
+| Ubiquitous | `The <system> shall <response>.` |
+| Event-driven | `When <trigger>, the <system> shall <response>.` |
+| State-driven | `While <state>, the <system> shall <response>.` |
+| Optional | `Where <feature is included>, the <system> shall <response>.` |
+| Unwanted | `If <undesired condition>, then the <system> shall <mitigation>.` |
+| Complex | `While <state>, when <trigger>, the <system> shall <response>.` |
 
-## Checklist de validação
+## Validation checklist
 
-- [ ] Exatamente um padrão por requisito.
-- [ ] Sujeito não ambíguo ("the system", não "it").
-- [ ] Resposta observável e testável.
-- [ ] Nenhum "and" escondido que mascara dois requisitos em um.
-- [ ] Sem detalhes de implementação ("use Redis") - apenas comportamento.
-- [ ] Tem um REQ-ID no formato `REQ-NNN`.
-- [ ] Tem pelo menos um critério de aceitação.
-- [ ] **Tem um `source_legacy:` não vazio apontando para `01-arqueologia/legado-sifap/natural-programs/*.NSN`, `01-arqueologia/legado-sifap/adabas-ddms/*.ddm` ou `[GREENFIELD] + justificativa`.**
+- [ ] Exactly one pattern per requirement.
+- [ ] Unambiguous subject ("the system", not "it").
+- [ ] Observable and testable response.
+- [ ] No hidden "and" that combines two requirements into one.
+- [ ] No implementation details ("use Redis"), only behavior.
+- [ ] Includes a REQ-ID in the `REQ-NNN` format.
+- [ ] Includes at least one acceptance criterion.
+- [ ] **Includes a non-empty `source_legacy:` pointing to `01-arqueologia/legado-sifap/natural-programs/*.NSN`, `01-arqueologia/legado-sifap/adabas-ddms/*.ddm`, or `[GREENFIELD] + justification`.**
 
-## Defeitos comuns
+## Common defects
 
-| Defeito | Exemplo | Correção |
+| Defect | Example | Correction |
 |---|---|---|
-| Ambíguo | "O sistema deve ser rápido." | "Quando uma pessoa usuária envia um formulário, o sistema deverá responder em até 500ms." |
-| Composto | "Fazer login e enviar e-mail." | Dividir em dois requisitos. |
-| Não testável | "O sistema deverá ser fácil de usar." | Substituir por métrica de UX mensurável. |
-| Passivo | "Login deverá ser suportado." | "O sistema deverá aceitar autenticação por usuário/senha." |
+| Ambiguous | "The system must be fast." | "When a user submits a form, the system shall respond within 500ms." |
+| Compound | "Log in and send an email." | Split into two requirements. |
+| Not testable | "The system shall be easy to use." | Replace with a measurable UX metric. |
+| Passive | "Login shall be supported." | "The system shall accept username/password authentication." |
 
-## Template de saída
+## Output template
 
 ```markdown
 ### REQ-NNN (<pattern>)
 <EARS statement>
 
 source_legacy: 01-arqueologia/legado-sifap/natural-programs/<FILE>.NSN#L<start>-L<end>
-_(ou `[GREENFIELD] <justificativa>` quando não houver paralelo legado)_
+_(or `[GREENFIELD] <justification>` when there is no legacy equivalent)_
 
-**Critérios de aceite**
+**Acceptance criteria**
 - <criterion 1>
 - <criterion 2>
 
-**Rastreado a partir de**: US-NNN, ADR-NNN
-**Prioridade**: P0 / P1 / P2
-**Status**: proposto / aprovado / implementado / verificado
+**Traced from**: US-NNN, ADR-NNN
+**Priority**: P0 / P1 / P2
+**Status**: proposed / approved / implemented / verified
 ```
 
-## Gate de qualidade
+## Quality gate
 
-Rejeite qualquer requisito sem **REQ-ID**, **classificação de padrão**, **critérios de aceitação** ou **`source_legacy`**. O job de CI `legacy-traceability` em `.github/workflows/spec-quality.yml` aplica isso em todo PR.
+Reject any requirement without a **REQ-ID**, **pattern classification**, **acceptance criteria**, or **`source_legacy`**. The `legacy-traceability` CI job in `.github/workflows/spec-quality.yml` enforces this requirement on every PR.

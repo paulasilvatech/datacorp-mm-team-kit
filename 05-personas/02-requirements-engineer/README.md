@@ -1,70 +1,70 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Requirements Engineer — Kit Copilot
+# Requirements Engineer — Copilot Kit
 
-> **Trilha:** [Kit do Time](../../README.md) › [Personas](../OVERVIEW.md) › **Requirements Engineer**
+> **Trail:** [Team Kit](../../README.md) › [Personas](../OVERVIEW.md) › **Requirements Engineer**
 
-**Inventário do kit Copilot para a persona Requirements Engineer.** Liste os artefatos ativos, onde vivem na `.github/` e as boas práticas específicas deste papel.
+**Inventory of the Copilot kit for the Requirements Engineer persona.** Lists the active artifacts, where they live under `.github/`, and best practices specific to this role.
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Pessoa que vai atuar como Requirements Engineer no workshop |
-| **Par** | 1 · Visão (junto com Product Owner) |
-| **Fase do SDLC** | Requisitos → Especificação |
-| **Pré-requisitos** | [PERSONA.md](PERSONA.md) lido |
-| **Resultado esperado** | Kit validado, prompts acessíveis no Copilot Chat |
+| **Target audience** | Person acting as Requirements Engineer in the workshop |
+| **Pair** | 1 · Vision (with the Product Owner) |
+| **SDLC phase** | Requirements → Specification |
+| **Prerequisites** | [PERSONA.md](PERSONA.md) read |
+| **Expected outcome** | Kit validated, prompts accessible in Copilot Chat |
 
 > [!IMPORTANT]
-> Leia [PERSONA.md](PERSONA.md) antes de continuar. A ficha explica missão, passagem de bastão e rubricas de avaliação.
+> Read [PERSONA.md](PERSONA.md) before continuing. The profile explains the mission, handoff, and evaluation rubrics.
 
 ---
 
-## Conceito
+## Concept
 
-O Requirements Engineer é o papel responsável por transformar conversas e descobertas em requisitos formais e testáveis. No SIFAP, as regras de negócio estão tacitamente codificadas em Natural — sem documentação atualizada. O RE extrai essas regras, estrutura-as em notação EARS (Easy Approach to Requirements Syntax) e garante rastreabilidade do legado ao requisito moderno.
+The Requirements Engineer is responsible for transforming conversations and discoveries into formal, testable requirements. In SIFAP (Payment Inspection and Administration System), business rules are tacitly encoded in Natural, without up-to-date documentation. The RE extracts those rules, structures them using EARS (Easy Approach to Requirements Syntax), and ensures traceability from the legacy system to the modern requirement.
 
 ---
 
-## Kit da persona
+## Persona kit
 
-| **Artefato** | Tipo | Propósito |
+| **Artifact** | Type | Purpose |
 |---|---|---|
-| `PERSONA.md` | Ficha | Responsabilidades, passagem de bastão, prompts e rubrica |
-| `.github/agents/requirements-engineer.agent.md` | Agent | Análise de requisitos |
+| `PERSONA.md` | Profile | Responsibilities, handoff, prompts, and rubric |
+| `.github/agents/requirements-engineer.agent.md` | Agent | Requirements analysis |
 | `.github/prompts/persona-requirements-engineer-spec-sync.prompt.md` | Prompt | `/spec-sync` |
 | `.github/prompts/persona-requirements-engineer-contradiction-check.prompt.md` | Prompt | `/contradiction-check` |
 | `.github/prompts/persona-requirements-engineer-ears-convert.prompt.md` | Prompt | `/ears-convert` |
-| `.github/instructions/requirements.instructions.md` | Instructions | Convenções de documentação de requisitos |
+| `.github/instructions/requirements.instructions.md` | Instructions | Requirements documentation conventions |
 
 ---
 
-## Onde os artefatos vivem
+## Where the artifacts live
 
-Os artefatos ativos estão consolidados na `.github/` da raiz:
+The active artifacts are consolidated under the root `.github/` directory:
 
-| **Tipo** | Caminho |
+| **Type** | Path |
 |---|---|
 | Agents | `.github/agents/` |
 | Prompts | `.github/prompts/persona-*.prompt.md` |
 | Skills | `.github/skills/` |
 | Instructions | `.github/instructions/` |
 
-Use esta pasta como referência. Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá quando precisar de manutenção.
+Use this directory as the reference. Active files live only under the root `.github/` directory — edit them there when maintenance is needed.
 
-Se o kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
-
----
-
-## Boas práticas
-
-- Use padrões EARS exclusivamente; requisitos vagos precisam ser quantificados.
-- Todo `REQ-ID` deve ser único, imutável e rastreável a pelo menos um teste e uma task.
-- Faça uma passada de contradição antes de aceitar novas specs.
-- Remova ou quantifique termos ambíguos como "adequado", "razoável" e "amigável".
+If the kit includes `mcp.json` and the facilitator requests local MCP, copy only that file to `.vscode/mcp.json`.
 
 ---
 
-## Referências
+## Best practices
+
+- Use EARS patterns exclusively; vague requirements must be quantified.
+- Every `REQ-ID` must be unique, immutable, and traceable to at least one test and one task.
+- Perform a contradiction pass before accepting new specifications.
+- Remove or quantify ambiguous terms such as "adequate," "reasonable," and "user-friendly."
+
+---
+
+## References
 
 - [EARS Notation — Alistair Mavin](https://alistairmavin.com/ears/)
 - [IEEE 29148 — Requirements Engineering](https://www.iso.org/standard/72089.html)
@@ -73,10 +73,10 @@ Se o kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arq
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [OVERVIEW](../OVERVIEW.md)<br/><sub>Tabela das 10 personas.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Ficha desta persona.</sub> |
+| [OVERVIEW](../OVERVIEW.md)<br/><sub>Table of the 10 personas.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Profile for this persona.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

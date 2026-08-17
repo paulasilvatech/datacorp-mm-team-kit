@@ -1,76 +1,76 @@
 ---
 name: "tdd"
 agent: "implementer"
-description: "Conduza uma feature por um ciclo TDD red-green-refactor rigoroso. Um teste falhando, o menor código que passa e então refatoração."
+description: "Drive a feature through a rigorous red-green-refactor TDD cycle: one failing test, the smallest passing code, and then refactoring."
 tools: ["search", "edit", "execute"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /tdd
 
-## Objetivo
+## Objective
 
-Você produzirá um ciclo TDD completo para um único comportamento no SIFAP 2.0. O entregável são três commits — `red`, `green`, `refactor` — cada um separado. Nenhum código de produção é escrito sem um teste falhando, e nenhum teste é escrito para passar imediatamente.
+You will produce a complete TDD cycle for a single behavior in SIFAP 2.0. The deliverable is three separate commits—`red`, `green`, and `refactor`. No production code is written without a failing test, and no test is written to pass immediately.
 
-## Entradas
+## Inputs
 
-Peça ao usuário o que estiver faltando.
+Ask the user for anything that is missing.
 
-- O comportamento a descobrir, em linguagem simples.
-- O `REQ-ID` vinculado em `specs/<NNN>-<feature>/spec.md`.
-- O arquivo ou classe alvo. Se não existir, diga isso — TDD também guia o design, então criar é aceitável.
-- O framework de teste — JUnit 5 + AssertJ para Java, Vitest + Testing Library para TypeScript.
+- The behavior to discover, in plain language.
+- The linked `REQ-ID` in `specs/<NNN>-<feature>/spec.md`.
+- The target file or class. If it does not exist, say so—TDD also guides design, so creating it is acceptable.
+- The test framework—JUnit 5 + AssertJ for Java, or Vitest + Testing Library for TypeScript.
 
-## Processo
+## Process
 
-Você executa exatamente três fases. Não as compacte.
+Execute exactly three phases. Do not combine them.
 
-### Fase 1 — RED (escreva o teste que falha)
+### Phase 1 — RED (write the failing test)
 
-1. Escolha o **caso não trivial mais simples** para o comportamento. Não o caso vazio, nem o catastrófico — o menor caso que exercita lógica real.
-2. Nomeie o teste pelo comportamento, não pelo método: `should_<expected>_when_<condition>`, não `test1`.
-3. Use estrutura Given/When/Then ou Arrange/Act/Assert, com linhas em branco entre as seções.
-4. Execute o teste. Confirme que falha. Leia a mensagem de falha e confirme que falha pelo motivo esperado (erro de compilação, incompatibilidade de assertion — não erro de setup).
+1. Choose the **simplest non-trivial case** for the behavior. Not the empty case or the catastrophic case—the smallest case that exercises real logic.
+2. Name the test after the behavior, not the method: `should_<expected>_when_<condition>`, not `test1`.
+3. Use Given/When/Then or Arrange/Act/Assert structure, with blank lines between sections.
+4. Run the test. Confirm that it fails. Read the failure message and confirm that it fails for the expected reason (compilation error or assertion mismatch—not a setup error).
 5. Commit: `test(<scope>): red — <short behavior description>`.
 
-### Fase 2 — GREEN (menor código para passar)
+### Phase 2 — GREEN (smallest code that passes)
 
-6. Escreva a **menor quantidade de código de produção** que faça o teste passar. "Fake it till you make it" é permitido: retornar um valor fixo é aceitável no primeiro ciclo.
-7. Execute o teste único. Confirme verde. Execute a suíte completa. Confirme que continua verde.
+6. Write the **smallest amount of production code** that makes the test pass. "Fake it till you make it" is allowed: returning a fixed value is acceptable in the first cycle.
+7. Run the single test. Confirm it passes. Run the full suite. Confirm it remains green.
 8. Commit: `feat(<scope>): green — implement REQ-XXX (minimal)`.
 
-### Fase 3 — REFACTOR (melhore com tudo verde)
+### Phase 3 — REFACTOR (improve while everything is green)
 
-9. Procure duplicação, nomes que mentem, primitive obsession. Aplique uma pequena manobra de Fowler (Extract Method, Inline Variable, Rename).
-10. Execute todos os testes após cada micro-passo. Eles devem permanecer verdes.
-11. Pare quando o design estiver bom o suficiente para o próximo ciclo, não perfeito.
+9. Look for duplication, misleading names, and primitive obsession. Apply one small Fowler move (Extract Method, Inline Variable, Rename).
+10. Run all tests after every micro-step. They must remain green.
+11. Stop when the design is good enough for the next cycle, not perfect.
 12. Commit: `refactor(<scope>): <short description>`.
 
-## Saída
+## Output
 
-Sua resposta final deve incluir:
+Your final response must include:
 
-- **O comportamento descoberto** — uma frase.
-- **Os três commits** — mensagem, arquivos tocados e resultado de teste de cada um.
-- **O arquivo de teste** — conteúdo completo.
-- **O código de produção** — conteúdo completo após a fase de refatoração.
-- **Dica do próximo ciclo** — que teste você escreveria em seguida (limite, erro, segunda variação). Não o implemente.
+- **The discovered behavior** — one sentence.
+- **The three commits** — message, touched files, and test result for each.
+- **The test file** — complete content.
+- **The production code** — complete content after the refactoring phase.
+- **Next-cycle hint** — which test you would write next (boundary, error, second variation). Do not implement it.
 
-## Antipadrões
+## Anti-patterns
 
-- Escrever o teste e o código juntos. Isso é verificação, não TDD.
-- Pular a fase de refatoração. A maior parte do valor de design mora ali.
-- Dois testes falhando ao mesmo tempo. Um red por vez.
-- Testar métodos privados. Teste pela interface pública.
-- Escrever um primeiro teste gigante que cobre seis casos. Dê passos menores.
-- Mockar tudo. Um teste que mocka todo colaborador não testa nada.
-- "Refatorar" mudando comportamento. Se o teste muda, você trapaceou.
+- Writing the test and code together. That is verification, not TDD.
+- Skipping the refactoring phase. Most of the design value lives there.
+- Having two failing tests at the same time. One red at a time.
+- Testing private methods. Test through the public interface.
+- Writing one giant first test that covers six cases. Take smaller steps.
+- Mocking everything. A test that mocks every collaborator tests nothing.
+- "Refactoring" by changing behavior. If the test changes, you cheated.
 
-## Critérios de sucesso
+## Success Criteria
 
-- [ ] Existem três commits separados: `test:` (red), `feat:` (green), `refactor:`.
-- [ ] O commit red é reproduzivelmente vermelho — você consegue fazer checkout desse commit e o build falha.
-- [ ] O commit green é o mínimo para passar — um método, com valor fixo se necessário.
-- [ ] O commit refactor altera estrutura, não comportamento. Nomes de teste e assertions permanecem inalterados.
-- [ ] A suíte completa está verde no final.
-- [ ] O comportamento descoberto mapeia exatamente para um critério de aceitação de um `REQ-ID`.
+- [ ] There are three separate commits: `test:` (red), `feat:` (green), and `refactor:`.
+- [ ] The red commit is reproducibly red—you can check it out and the build fails.
+- [ ] The green commit is the minimum needed to pass—one method, with a fixed value if necessary.
+- [ ] The refactor commit changes structure, not behavior. Test names and assertions remain unchanged.
+- [ ] The full suite is green at the end.
+- [ ] The discovered behavior maps exactly to one acceptance criterion of a `REQ-ID`.

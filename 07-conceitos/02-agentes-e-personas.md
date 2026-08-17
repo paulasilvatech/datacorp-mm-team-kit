@@ -1,46 +1,46 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Agentes e Personas — As Duas Camadas de Contexto
+# Agents and Personas — The Two Context Layers
 
-> **Trilha:** [Kit do Time](../README.md) › [Conceitos](00-README.md) › **Agentes e Personas**
+> **Path:** [Team Kit](../README.md) › [Concepts](00-README.md) › **Agents and Personas**
 
-**O Copilot Chat opera com duas camadas de contexto simultâneas: a persona, que define o papel individual de cada participante, e o agente de estágio, que define o enquadramento coletivo do time — saber combiná-las é fundamental para obter respostas relevantes durante o workshop.**
+**Copilot Chat operates with two context layers at the same time: the persona, which defines each participant's individual role, and the stage agent, which defines the team's shared framing. Knowing how to combine them is essential for relevant answers during the workshop.**
 
-![Conceito 02](https://img.shields.io/badge/Conceito-02-171717?style=flat-square) ![Uso Todos os Estágios](https://img.shields.io/badge/Uso-Todos%20os%20est%C3%A1gios-737373?style=flat-square) ![Duração 20 min](https://img.shields.io/badge/Dura%C3%A7%C3%A3o-20%20min-A3A3A3?style=flat-square)
+![Concept 02](https://img.shields.io/badge/Concept-02-171717?style=flat-square) ![Used in All Stages](https://img.shields.io/badge/Used-All%20stages-737373?style=flat-square) ![Duration 20 min](https://img.shields.io/badge/Duration-20%20min-A3A3A3?style=flat-square)
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Todas as personas |
-| **Pré-requisitos** | Nenhum — leia antes do Estágio 1 |
-| **Tempo estimado** | 20 minutos |
-| **Estágio** | Todos os estágios |
-| **Resultado esperado** | Saber selecionar agente e persona e usá-los em conjunto no Copilot Chat |
+| **Target audience** | All personas |
+| **Prerequisites** | None—read before Stage 1 |
+| **Estimated time** | 20 minutes |
+| **Stage** | All stages |
+| **Expected outcome** | Know how to select an agent and persona and use them together in Copilot Chat |
 
 ---
 
-## Conceito
+## Concept
 
-O workshop usa **dois tipos de agente** no Copilot:
+The workshop uses **two types of agents** in Copilot:
 
-- **Persona-kit** — contexto individual, carregado por cada participante a partir de `05-personas/`. Define o papel, as habilidades e os comandos disponíveis para aquela pessoa ao longo de todo o dia.
-- **Agente de estágio** — contexto coletivo, selecionado pelo time inteiro no início de cada estágio. Define o enquadramento temático da conversa com o Copilot para aquele bloco de trabalho.
+- **Persona kit** — individual context loaded by each participant from `05-personas/`. It defines that person's role, skills, and available commands throughout the day.
+- **Stage agent** — shared context selected by the whole team at the start of each stage. It defines the thematic framing for the team's Copilot conversations during that work block.
 
-As duas camadas coexistem. Você nunca troca a persona pelo agente de estágio — você usa as duas ao mesmo tempo.
-
----
-
-## Por que importa
-
-Sem persona selecionada, o Copilot responde como assistente genérico, sem considerar as habilidades ou restrições do seu papel. Sem agente de estágio, cada membro do time recebe respostas com enquadramentos diferentes, tornando impossível manter consistência.
-
-Com as duas camadas ativas, o Copilot sabe simultaneamente:
-
-- **Quem pergunta** (papel, habilidades, slash commands disponíveis)
-- **Em que contexto o time está** (Estágio 1: arqueologia; Estágio 2: especificação; etc.)
+The two layers coexist. You never replace your persona with the stage agent—you use both at the same time.
 
 ---
 
-## Como se combinam
+## Why it matters
+
+Without a selected persona, Copilot responds as a generic assistant without considering your role's skills or constraints. Without a stage agent, each team member receives answers framed differently, making consistency impossible.
+
+With both layers active, Copilot simultaneously knows:
+
+- **Who is asking** (role, skills, and available slash commands)
+- **What context the team is in** (Stage 1: archaeology; Stage 2: specification; and so on)
+
+---
+
+## How they combine
 
 ```mermaid
 %%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
@@ -49,9 +49,9 @@ flowchart LR
     classDef result fill:#FFFFFF,stroke:#171717,color:#171717,stroke-width:2px
     classDef muted fill:#FAFAFA,stroke:#A3A3A3,color:#404040
 
-    P["Persona-kit<br/><sub>05-personas/0X-nome/<br/>PERSONA.md + prompts + skills</sub>"]:::step
-    A["Agente de estágio<br/><sub>@archaeologist | @architect<br/>@builder | @evolution</sub>"]:::step
-    C["Copilot Chat<br/><sub>Resposta enquadrada pelo<br/>papel E pelo estágio atual</sub>"]:::result
+    P["Persona kit<br/><sub>05-personas/0X-name/<br/>PERSONA.md + prompts + skills</sub>"]:::step
+    A["Stage agent<br/><sub>@archaeologist | @architect<br/>@builder | @evolution</sub>"]:::step
+    C["Copilot Chat<br/><sub>Response framed by both<br/>the role AND the current stage</sub>"]:::result
 
     P --> C
     A --> C
@@ -59,135 +59,135 @@ flowchart LR
 
 ---
 
-## Camada 1 — Personas (kit individual)
+## Layer 1 — Personas (individual kit)
 
-Cada participante escolhe **dois papéis** (duas personas) e mantém ambos durante todo o workshop. Os arquivos de cada persona estão em [`05-personas/`](../05-personas/) e já estão consolidados na raiz do repositório em `.github/`.
+Each participant chooses **two roles** (two personas) and keeps both throughout the workshop. Each persona's files are in [`05-personas/`](../05-personas/) and have already been consolidated under `.github/` at the repository root.
 
-| Persona | Papel no workshop | Estágio de maior atuação |
+| Persona | Workshop role | Most active stage |
 |---|---|---|
-| **Product Owner** | Define escopo, valida requisitos com o negócio | Estágios 1 e 2 |
-| **Requirements Engineer** | Lê o legado e converte regras em EARS | Estágios 1 e 2 |
-| **Enterprise Architect** | Visão macro do sistema (C4 L1 e L2) | Estágio 2 |
-| **Software Architect** | Define bounded contexts e contratos de API | Estágio 2 |
-| **Technical Lead** | Conduz revisão de PR e decisões de implementação | Estágios 3 e 4 |
-| **Developer** | Implementa código Java e Next.js | Estágio 3 |
-| **DBA** | Modela dados, escreve migrations, otimiza consultas | Estágio 3 |
-| **QA Engineer** | Escreve e valida testes de equivalência | Estágio 3 |
-| **DevOps Engineer** | Configura CI/CD, Terraform, Actions | Estágio 4 |
-| **Tech Writer** | Documenta APIs, ADRs e runbooks | Estágios 2 e 4 |
+| **Product Owner** | Defines scope and validates requirements with the business | Stages 1 and 2 |
+| **Requirements Engineer** | Reads the legacy system and converts rules into EARS | Stages 1 and 2 |
+| **Enterprise Architect** | Provides the system-wide view (C4 L1 and L2) | Stage 2 |
+| **Software Architect** | Defines bounded contexts and API contracts | Stage 2 |
+| **Technical Lead** | Leads PR reviews and implementation decisions | Stages 3 and 4 |
+| **Developer** | Implements Java and Next.js code | Stage 3 |
+| **DBA** | Models data, writes migrations, and optimizes queries | Stage 3 |
+| **QA Engineer** | Writes and validates equivalence tests | Stage 3 |
+| **DevOps Engineer** | Configures CI/CD, Terraform, and Actions | Stage 4 |
+| **Tech Writer** | Documents APIs, ADRs, and runbooks | Stages 2 and 4 |
 
-### O que vem com cada persona
+### What each persona includes
 
-O kit da persona contém os seguintes artefatos em `05-personas/0X-nome/` e `.github/`:
+The persona kit contains the following artifacts in `05-personas/0X-name/` and `.github/`:
 
-| Artefato | Localização | Para que serve |
+| Artifact | Location | Purpose |
 |---|---|---|
-| `PERSONA.md` | `05-personas/0X-nome/` | Ficha do papel: responsabilidades, entregáveis, slash commands |
-| `*.prompt.md` | `.github/prompts/` | Prompts especializados para o papel |
-| `SKILL.md` | `.github/skills/*/` | Conhecimento de domínio ativado automaticamente |
-| `*.instructions.md` | `.github/instructions/` | Regras aplicadas automaticamente em determinados arquivos |
-| `mcp.json` | Raiz do repo | Servidores MCP disponíveis para o papel |
+| `PERSONA.md` | `05-personas/0X-name/` | Role profile: responsibilities, deliverables, and slash commands |
+| `*.prompt.md` | `.github/prompts/` | Role-specific prompts |
+| `SKILL.md` | `.github/skills/*/` | Domain knowledge activated automatically |
+| `*.instructions.md` | `.github/instructions/` | Rules applied automatically to specific files |
+| `mcp.json` | Repository root | MCP servers available to the role |
 
 > [!IMPORTANT]
-> Leia seus dois `PERSONA.md` antes de iniciar qualquer estágio. Os slash commands só funcionam se o contexto do repositório estiver carregado no Copilot Chat.
+> Read both of your `PERSONA.md` files before starting any stage. Slash commands work only when the repository context is loaded in Copilot Chat.
 
 ---
 
-## Camada 2 — Agentes de estágio (kit coletivo)
+## Layer 2 — Stage agents (shared kit)
 
-O time inteiro seleciona o mesmo agente de estágio no Copilot Chat no início de cada bloco de trabalho. Isso garante que todos recebam respostas com o mesmo enquadramento.
+At the start of each work block, the entire team selects the same stage agent in Copilot Chat. This ensures that everyone receives answers with the same framing.
 
-| Estágio | Agente | Enquadramento temático | Protagonistas |
+| Stage | Agent | Thematic framing | Lead roles |
 |---|---|---|---|
-| Estágio 1 — Arqueologia | [`@archaeologist`](../06-agentes-de-estagio/01-archaeologist/) | Leitura e interpretação de código legado Natural/Adabas | Requirements Engineer, Tech Writer |
-| Estágio 2 — Especificação | [`@architect`](../06-agentes-de-estagio/02-architect/) | Especificação EARS, ADRs, modelo C4 | Enterprise Architect, Software Architect |
-| Estágio 3 — Implementação | [`@builder`](../06-agentes-de-estagio/03-builder/) | Código Java 21, JPA, Testcontainers, Next.js 15 | Developer, DBA, QA Engineer |
-| Estágio 4 — Evolução | [`@evolution`](../06-agentes-de-estagio/04-evolution/) | Delegação ao modo Agent, IaC, CI/CD | DevOps Engineer, Tech Writer |
+| Stage 1 — Archaeology | [`@archaeologist`](../06-agentes-de-estagio/01-archaeologist/) | Reading and interpreting legacy Natural/Adabas code | Requirements Engineer, Tech Writer |
+| Stage 2 — Specification | [`@architect`](../06-agentes-de-estagio/02-architect/) | EARS specifications, ADRs, and the C4 model | Enterprise Architect, Software Architect |
+| Stage 3 — Implementation | [`@builder`](../06-agentes-de-estagio/03-builder/) | Java 21, JPA, Testcontainers, and Next.js 15 code | Developer, DBA, QA Engineer |
+| Stage 4 — Evolution | [`@evolution`](../06-agentes-de-estagio/04-evolution/) | Delegation to Agent mode, IaC, and CI/CD | DevOps Engineer, Tech Writer |
 
-### Diferença prática
+### Practical difference
 
-| Sem agente de estágio selecionado | Com agente de estágio selecionado |
+| Without a selected stage agent | With a selected stage agent |
 |---|---|
-| Copilot responde no contexto geral do repositório | Copilot assume o enquadramento do estágio atual |
-| Cada pessoa recebe respostas com ênfases diferentes | O time recebe respostas consistentes entre si |
-| Pode sugerir ações inadequadas para o momento (ex.: código no Estágio 1) | Restringe-se ao escopo do estágio atual |
+| Copilot responds in the repository's general context | Copilot adopts the current stage's framing |
+| Each person receives answers with different emphases | The team receives mutually consistent answers |
+| It may suggest actions inappropriate for the moment (for example, code in Stage 1) | It remains within the current stage's scope |
 
 ---
 
-## Como selecionar
+## How to select them
 
 ### Persona
 
-1. Abra o Copilot Chat no VS Code.
-2. Selecione o painel do agente (ícone no canto superior do campo de entrada).
-3. Escolha a persona correspondente ao seu papel no dropdown.
-4. Confirme executando um slash command do seu `PERSONA.md` — se funcionar, está ativo.
+1. Open Copilot Chat in VS Code.
+2. Select the agent panel (the icon in the corner of the input field).
+3. Choose the persona that matches your role from the dropdown.
+4. Confirm it by running a slash command from your `PERSONA.md`. If it works, the persona is active.
 
-### Agente de estágio
+### Stage agent
 
-1. No início de cada estágio, o facilitador anuncia qual agente o time usa.
-2. Cada participante seleciona o agente no Copilot Chat da mesma forma que a persona.
-3. A persona individual permanece — o agente de estágio é adicionado ao contexto, não substitui.
-
----
-
-## Exemplo aplicado ao SIFAP
-
-**Cenário:** você é Requirements Engineer no Estágio 2. O time acabou de migrar do Estágio 1.
-
-```
-1. O facilitador anuncia: "Selecionem @architect no chat."
-
-2. Você seleciona @architect.
-   Resultado: o Copilot Chat passa a enquadrar respostas
-   no contexto de especificação e arquitetura.
-
-3. Você usa o modo Ask para orientação:
-   "@architect, qual a ordem recomendada para especificar
-   as regras do catálogo business-rules-catalog.md?"
-
-4. Com base na resposta, você aciona o slash command do seu papel:
-   /ears-convert BR-042: <regra de cálculo de benefício>
-   Use CALCPGTO.NSN#L120-L198 como source_legacy.
-
-5. O EARS sai com REQ-ID e source_legacy.
-   O CI valida a rastreabilidade no PR.
-```
+1. At the start of each stage, the facilitator announces which agent the team will use.
+2. Each participant selects the agent in Copilot Chat in the same way as the persona.
+3. The individual persona remains active—the stage agent is added to the context, not substituted for it.
 
 ---
 
-## Erros comuns e como evitar
+## SIFAP example
 
-| Sintoma | Causa | Correcao |
+**Scenario:** You are the Requirements Engineer in Stage 2. The team has just completed Stage 1.
+
+```
+1. The facilitator announces: "Select @architect in chat."
+
+2. You select @architect.
+   Result: Copilot Chat now frames responses
+   in the specification and architecture context.
+
+3. You use Ask mode for guidance:
+   "@architect, what is the recommended order for specifying
+   the rules in business-rules-catalog.md?"
+
+4. Based on the response, you run your role's slash command:
+   /ears-convert BR-042: <benefit calculation rule>
+   Use CALCPGTO.NSN#L120-L198 as source_legacy.
+
+5. The EARS requirement includes a REQ-ID and source_legacy.
+   CI validates traceability in the PR.
+```
+
+---
+
+## Common mistakes and how to avoid them
+
+| Symptom | Cause | Correction |
 |---|---|---|
-| Copilot sugere código durante o Estágio 1 | Agente de estágio errado ou ausente | Selecione `@archaeologist` e confirme com o time |
-| Slash command não é reconhecido | Janela do Copilot aberta fora da raiz do repositório | Reabra o VS Code na raiz do repositório |
-| Respostas inconsistentes entre membros do time | Cada um com agente diferente selecionado | Confirmar agente ativo no início de cada estágio |
-| Agente de estágio substituiu a persona | Confusão na seleção | Persona e agente de estágio são seleções independentes no painel |
+| Copilot suggests code during Stage 1 | Wrong or missing stage agent | Select `@archaeologist` and confirm with the team |
+| Slash command is not recognized | Copilot window opened outside the repository root | Reopen VS Code at the repository root |
+| Inconsistent answers across team members | Each person selected a different agent | Confirm the active agent at the start of each stage |
+| Stage agent replaced the persona | Selection confusion | The persona and stage agent are independent selections in the panel |
 
 ---
 
-## Checklist de ativacao
+## Activation checklist
 
-- [ ] **Ler os dois `PERSONA.md` atribuídos a você.** Localizar em `05-personas/`.
-- [ ] **Testar um slash command da persona** no Copilot Chat para confirmar que está ativo.
-- [ ] **No início de cada estágio, selecionar o agente correto** junto com o restante do time.
-- [ ] **Confirmar o agente ativo antes de fazer perguntas técnicas críticas.**
-
----
-
-## Referências
-
-- [Lista completa de personas](../05-personas/OVERVIEW.md)
-- [Agentes de estágio](../06-agentes-de-estagio/)
-- [Cheat-sheet dos 3 modos do Copilot](../09-cheat-sheets/copilot-3-modes.md)
+- [ ] **Read both `PERSONA.md` files assigned to you.** Find them in `05-personas/`.
+- [ ] **Test a persona slash command** in Copilot Chat to confirm that it is active.
+- [ ] **At the start of each stage, select the correct agent** with the rest of the team.
+- [ ] **Confirm the active agent before asking critical technical questions.**
 
 ---
 
-### Continuar a leitura
+## References
 
-| Anterior | Próximo |
+- [Complete persona list](../05-personas/OVERVIEW.md)
+- [Stage agents](../06-agentes-de-estagio/)
+- [Copilot's 3 Modes cheat sheet](../09-cheat-sheets/copilot-3-modes.md)
+
+---
+
+### Continue reading
+
+| Previous | Next |
 |---|---|
-| [Spec-Driven Development](01-spec-driven-development.md)<br/><sub>Por que especificar antes de codar e o ciclo do Spec-Kit.</sub> | [Glossário Visual](03-glossario-visual.md)<br/><sub>30+ termos com definição, exemplo SIFAP e referência.</sub> |
+| [Spec-Driven Development](01-spec-driven-development.md)<br/><sub>Why to specify before coding and the Spec-Kit cycle.</sub> | [Visual Glossary](03-glossario-visual.md)<br/><sub>30+ terms with a definition, SIFAP example, and reference.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

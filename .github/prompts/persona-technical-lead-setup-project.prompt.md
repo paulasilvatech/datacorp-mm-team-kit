@@ -1,35 +1,35 @@
 ---
 name: "setup-project"
 agent: "tech-lead"
-description: "Inicialize um novo projeto habilitado para Copilot"
+description: "Initialize a new Copilot-enabled project"
 tools: ["search", "edit", "execute"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /setup-project
 
-## Tarefa
+## Task
 
-Inicialize um projeto com o scaffold de context engineering do Copilot: AGENTS.md, CODEMAP.md, `.github/instructions/`, `.github/prompts/`, `.github/agents/`, `.github/copilot-instructions.md`.
+Initialize a project with the Copilot context engineering scaffold: AGENTS.md, CODEMAP.md, `.github/instructions/`, `.github/prompts/`, `.github/agents/`, and `.github/copilot-instructions.md`.
 
-## Passos
+## Steps
 
-1. Detecte a stack técnica a partir dos arquivos existentes (package.json, pom.xml, requirements.txt, *.csproj).
-2. Crie AGENTS.md com: resumo da stack, convenções de código, comando de teste, comando de lint, comando de build.
-3. Crie esqueleto de CODEMAP.md com seções `## Modules`, `## Data Flow`, `## External Integrations`.
-4. Crie `.github/copilot-instructions.md` com linguagem, tom e regras de segurança do padrão do time.
-5. Adicione arquivos de instruction baseline com escopo por `applyTo:` (ex.: `**/*.java`, `**/*.ts`).
-6. Stage as mudanças, mas não faça commit. Imprima a lista de arquivos criados.
+1. Detect the technical stack from existing files (package.json, pom.xml, requirements.txt, *.csproj).
+2. Create AGENTS.md with a stack summary, code conventions, test command, lint command, and build command.
+3. Create a CODEMAP.md skeleton with `## Modules`, `## Data Flow`, and `## External Integrations` sections.
+4. Create `.github/copilot-instructions.md` with the team's standard language, tone, and security rules.
+5. Add baseline instructions files scoped with `applyTo:` (for example, `**/*.java`, `**/*.ts`).
+6. Stage the changes, but do not commit. Print the list of created files.
 
-## Saída
+## Output
 
-- Lista de arquivos criados (paths absolutos)
-- Mensagem sugerida para o primeiro commit
-- Três ações de follow-up que o usuário deve executar manualmente
+- List of created files (absolute paths)
+- Suggested message for the first commit
+- Three follow-up actions the user must perform manually
 
-## Gate de Qualidade
+## Quality gate
 
-- [ ] AGENTS.md é específico para a stack detectada, não genérico
-- [ ] Todo arquivo de instruction tem escopo `applyTo:`
-- [ ] Sem secrets, credenciais ou placeholders como TODO
-- [ ] `.gitignore` atualizado se novas pastas precisarem ser versionadas
+- [ ] AGENTS.md is specific to the detected stack, not generic
+- [ ] Every instructions file has an `applyTo:` scope
+- [ ] No secrets, credentials, or placeholders such as TODO
+- [ ] `.gitignore` is updated if new folders need to be tracked

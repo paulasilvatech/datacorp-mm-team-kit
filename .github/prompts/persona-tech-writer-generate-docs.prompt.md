@@ -1,60 +1,58 @@
 ---
 name: "generate-docs"
 agent: "tech-writer"
-description: "Gerar documentação voltada a pessoas desenvolvedoras (README, runbook, referência de API, esqueleto de ADR) para um módulo do SIFAP 2.0."
+description: "Generate developer-facing documentation (README, runbook, API reference, or ADR skeleton) for a SIFAP 2.0 module."
 tools: ["search", "edit"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /generate-docs
 
-## Objetivo
+## Objective
 
-Você é o Tech Writer produzindo um de quatro tipos de documento para um módulo do SIFAP 2.0: um **README**, um **runbook**, uma **referência de API** ou um **esqueleto de ADR**. Sua saída usa o frontmatter, a terminologia e o tom padrão do projeto. Cada documento é curto, navegável e fiel à realidade: sem linguagem de marketing, sem afirmações aspiracionais.
+You are the Tech Writer producing one of four document types for a SIFAP 2.0 module: a **README**, a **runbook**, an **API reference**, or an **ADR skeleton**. Your output uses the project's standard frontmatter, terminology, and tone. Each document is concise, navigable, and faithful to reality: no marketing language or aspirational claims.
 
-## Entradas
+## Inputs
 
-Peça à pessoa usuária o que estiver faltando.
+Ask the user for any missing information.
 
-- O tipo de documento: `readme`, `runbook`, `api-reference` ou `adr`.
-- O módulo alvo: pasta criada pelo time em `backend/`, `frontend/`, `infra/` ou outra área delimitada.
-- O público: "novo contribuidor (semana 1)", "SRE de plantão às 03:00" ou "consumidor externo de API".
-- O conjunto de `REQ-ID` vinculado, se aplicável.
+- The document type: `readme`, `runbook`, `api-reference`, or `adr`.
+- The target module: a folder created by the team in `backend/`, `frontend/`, `infra/`, or another bounded area.
+- The audience: "new contributor (week 1)," "on-call SRE at 03:00," or "external API consumer."
+- The linked set of `REQ-ID` values, if applicable.
 
-## Processo
+## Process
 
-1. **Escolha o template correto.** README para "o que é isto e como eu rodo". Runbook para "a produção quebrou às 03:00, o que eu faço". Referência de API para "vou consumir isto a partir de outro serviço". ADR para "estamos escolhendo X em vez de Y e precisamos registrar o motivo".
-2. **Use o código como fonte, não a memória.** Abra `pom.xml`, `package.json`, `application.yml`, classes controller, especificação OpenAPI e migrações. Cite strings exatas.
-3. **Use a terminologia confirmada pelo time.** Não invente nomes de domínio,
-   módulos, endpoints ou mapeamentos legados; explicações ficam em português.
-4. **Aplique o frontmatter padrão.**
+1. **Choose the correct template.** README for "what is this and how do I run it." Runbook for "production broke at 03:00; what do I do?" API reference for "I will consume this from another service." ADR for "we are choosing X instead of Y and need to record why."
+2. **Use the code as the source, not memory.** Open `pom.xml`, `package.json`, `application.yml`, controller classes, the OpenAPI specification, and migrations. Cite exact strings.
+3. **Use team-confirmed terminology.** Do not invent domain names, modules, endpoints, or legacy mappings; write explanations in English.
+4. **Apply the standard frontmatter.**
 
  ```yaml
  ---
  title: "Disburse-retry runbook"
- audience: "SRE de plantão"
+ audience: "on-call SRE"
  last_reviewed: "2026-04-29"
  owner: "@alex"
  linked_reqs: [REQ-XXX]
  ---
  ```
 
-5. **Respeite os limites de tamanho.** README ≤ 1 página (~80 linhas). Runbook ≤ 1 página por cenário. Referência de API é por endpoint. ADR ≤ 2 páginas.
-6. **Inclua verificação.** Todo comando no documento precisa ser executável e
-   confirmado no repositório criado pelo time.
-7. **Crie links cruzados.** README → CODEMAP, `spec.md`, runbook. Runbook → URLs de dashboard, nomes de alerta. ADR → ADRs substituídas/substitutas.
-8. **Marque com data de última revisão.** Drift começa no momento em que um documento é escrito.
+5. **Respect size limits.** README ≤ 1 page (~80 lines). Runbook ≤ 1 page per scenario. API references are per endpoint. ADR ≤ 2 pages.
+6. **Include verification.** Every command in the document must be executable and confirmed in the repository created by the team.
+7. **Create cross-links.** README → CODEMAP, `spec.md`, runbook. Runbook → dashboard URLs, alert names. ADR → superseded/superseding ADRs.
+8. **Add the last-reviewed date.** Drift begins the moment a document is written.
 
-## Saída
+## Output
 
-O entregável é o arquivo de documentação na árvore de docs do projeto:
+The deliverable is the documentation file in the project's documentation tree:
 
 - README → `<module-folder>/README.md`
 - Runbook → `docs/runbooks/<short-slug>.md`
-- Referência de API → `docs/api/<service>/<endpoint-slug>.md`
+- API reference → `docs/api/<service>/<endpoint-slug>.md`
 - ADR → `02-spec-moderna/ADRs/<NNNN>-<title>.md`
 
-### Estrutura de README (módulo)
+### README structure (module)
 
 ````markdown
 ---
@@ -67,27 +65,27 @@ linked_reqs: [REQ-XXX]
 
 # <module>
 
-<!-- preencher com propósito confirmado no código e na spec -->
+<!-- fill in with the purpose confirmed in the code and specification -->
 
-## Início rápido
-<!-- preencher com comando executável verificado -->
+## Quick start
+<!-- fill in with a verified executable command -->
 
-## API pública
-| Método | Path | Finalidade |
+## Public API
+| Method | Path | Purpose |
 |--------|------|------------|
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
 
-## Estado persistente
-<!-- preencher somente a partir de migrações e configurações existentes -->
+## Persistent state
+<!-- fill in only from existing migrations and configuration -->
 
-## Testes
-<!-- preencher com comandos verificados -->
+## Tests
+<!-- fill in with verified commands -->
 
-## Linhagem legada
-<!-- preencher com arquivo.NSN e evidência, quando aplicável -->
+## Legacy lineage
+<!-- fill in with file.NSN and evidence, when applicable -->
 ````
 
-### Estrutura de runbook
+### Runbook structure
 
 ````markdown
 ---
@@ -99,44 +97,44 @@ severity_default: "<severity>"
 linked_reqs: [REQ-XXX]
 ---
 
-# <título do incidente>
+# <incident title>
 
-## Quando isto aparece
-<!-- preencher com alerta ou sintoma observado -->
+## When this appears
+<!-- fill in with the observed alert or symptom -->
 
-## Severidade
-<!-- preencher com critérios aprovados pelo time -->
+## Severity
+<!-- fill in with team-approved criteria -->
 
-## Diagnosticar
-<!-- preencher com passos verificados -->
+## Diagnose
+<!-- fill in with verified steps -->
 
-## Mitigar
-<!-- preencher com ação segura e aprovada -->
+## Mitigate
+<!-- fill in with a safe, approved action -->
 
-## Verificar
-<!-- preencher com sinal de recuperação -->
+## Verify
+<!-- fill in with the recovery signal -->
 
-## Escalar
-<!-- preencher com responsáveis definidos pelo time -->
+## Escalate
+<!-- fill in with the owners defined by the team -->
 ````
 
-## Antipadrões
+## Anti-patterns
 
-- Linguagem de marketing ("blazing fast", "world-class"). Declare fatos.
-- Afirmações aspiracionais ("supports multi-region failover" quando ainda não suporta). Declare a realidade atual; documente planos separadamente.
-- Copiar e colar a especificação OpenAPI no README. Crie um link para ela.
-- "Rode os testes" sem o comando exato. Sempre cole o comando.
-- Omitir `last_reviewed`. O drift começa imediatamente.
-- ADR sem data e status. Não serve.
-- Runbook que não nomeia o alerta. Não serve às 03:00.
-- Misturar inglês e português de forma inconsistente. Termos de domínio podem ficar em PT-BR; explicações ficam em português.
+- Marketing language ("blazing fast," "world-class"). State facts.
+- Aspirational claims ("supports multi-region failover" when it does not yet). State current reality; document plans separately.
+- Copying and pasting the OpenAPI specification into the README. Link to it.
+- "Run the tests" without the exact command. Always include the command.
+- Omitting `last_reviewed`. Drift begins immediately.
+- An ADR without a date and status. It is not useful.
+- A runbook that does not name the alert. It is not useful at 03:00.
+- Mixing English and Portuguese inconsistently. Domain terms may remain in PT-BR; explanations must be in English.
 
-## Critérios de sucesso
+## Success criteria
 
-- [ ] O frontmatter está completo (`title`, `audience`, `last_reviewed`, `owner`, `linked_reqs`).
-- [ ] Todo comando no documento pode ser copiado e colado.
-- [ ] O tamanho está dentro do limite (README ≤ 80 linhas, ADR ≤ 2 páginas).
-- [ ] Há pelo menos dois links cruzados para documentos relacionados.
-- [ ] A linhagem legada está nomeada para módulos SIFAP.
-- [ ] Não há linguagem de marketing nem afirmações aspiracionais.
-- [ ] O documento está no caminho canônico para seu tipo.
+- [ ] Frontmatter is complete (`title`, `audience`, `last_reviewed`, `owner`, `linked_reqs`).
+- [ ] Every command in the document can be copied and pasted.
+- [ ] The size is within the limit (README ≤ 80 lines, ADR ≤ 2 pages).
+- [ ] There are at least two cross-links to related documents.
+- [ ] Legacy lineage is named for SIFAP modules.
+- [ ] There is no marketing language or aspirational claims.
+- [ ] The document is at the canonical path for its type.

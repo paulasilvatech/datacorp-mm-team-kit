@@ -1,45 +1,45 @@
 ---
 name: "flaky-test-triage"
-description: "Use quando um teste for intermitente, quando pedirem para investigar instabilidade no CI, 'quarantine a flaky test', ou para criar um dashboard de flaky tests."
+description: "Use when a test is intermittent, when asked to investigate CI instability, to 'quarantine a flaky test', or to create a flaky-test dashboard."
 ---
 
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
-# Triagem de testes flaky
+# Flaky test triage
 
-## Quando invocar
+## When to invoke
 
-- O CI falha e o re-run passa.
+- CI fails and the rerun passes.
 - "This test is flaky - help me fix it."
 - "Build a flaky-test quarantine process."
 
-## Workflow de diagnóstico
+## Diagnostic workflow
 
-1. **Reproduza**: rode o teste isoladamente 50× com `--repeat-each 50` (Playwright) ou `pytest --count=50`. Se ele falhar <1×, provavelmente depende da ordem.
-2. **Categorize** a causa raiz do flake:
+1. **Reproduce**: run the test in isolation 50× with `--repeat-each 50` (Playwright) or `pytest --count=50`. If it fails <1×, it probably depends on execution order.
+2. **Categorize** the root cause of the flake:
 
-- **Async/timing** - await ausente, race condition, sleep hard-coded
-- **Order dependency** - estado compartilhado, DB não limpo, singleton global
-- **External dependency** - rede, relógio, filesystem
-- **Non-determinism** - iteração sobre mapa não ordenado, random seed
-- **Resource contention** - porta, file lock, colisão de worker paralelo
+- **Async/timing** - missing await, race condition, hard-coded sleep
+- **Order dependency** - shared state, database not cleaned, global singleton
+- **External dependency** - network, clock, filesystem
+- **Non-determinism** - iteration over an unordered map, random seed
+- **Resource contention** - port, file lock, parallel worker collision
 
-3. **Corrija na raiz**: substitua sleeps por esperas explícitas, isole estado, fixe random seeds, use portas com escopo de teste.
-4. **Coloque em quarentena se não der para corrigir em <1 dia**: mova para uma tag `flaky/`, abra uma issue de rastreamento, defina um SLA de 30 dias para corrigir ou excluir.
+3. **Fix the root cause**: replace sleeps with explicit waits, isolate state, set random seeds, and use test-scoped ports.
+4. **Quarantine if it cannot be fixed in <1 day**: move it to a `flaky/` tag, open a tracking issue, and set a 30-day SLA to fix or delete it.
 
-## Política de quarentena
+## Quarantine policy
 
-- Testes em quarentena rodam, mas não quebram o build.
-- Qualquer coisa em quarentena por >30 dias é excluída; um teste que não pode ser corrigido é pior que nenhum teste.
-- Dashboard: acompanhe a taxa de flake por teste ao longo de 100 execuções. Qualquer coisa >5% entra em quarentena automaticamente.
+- Quarantined tests run, but do not fail the build.
+- Delete anything quarantined for >30 days. A test that cannot be fixed is worse than no test.
+- Dashboard: track the flake rate per test across 100 runs. Automatically quarantine anything above 5%.
 
-## Anti-padrões
+## Anti-patterns
 
-- `sleep(1000)` - sempre errado.
-- Repetir a asserção com um loop - esconde bugs de timing.
-- `@Retry(3)` - mascara flakes e recompensa testes ruins.
+- `sleep(1000)` - always wrong.
+- Repeating the assertion in a loop - hides timing bugs.
+- `@Retry(3)` - masks flakes and rewards poor tests.
 
-## Referências
+## References
 
 - [Google - Flaky Tests at Google](https://testing.googleblog.com/2016/05/flaky-tests-at-google-and-how-we.html)
 - [Microsoft Research - Empirical Study of Flaky Tests](https://www.microsoft.com/en-us/research/publication/an-empirical-analysis-of-flaky-tests/)

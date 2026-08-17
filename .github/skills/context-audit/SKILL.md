@@ -1,41 +1,41 @@
 ---
 name: "context-audit"
-description: "Use quando uma nova pessoa de engenharia entra no time, durante onboarding em um codebase desconhecido, ou ao auditar se o time tem entendimento compartilhado. Aciona com \"onboard\", \"context\", \"knowledge gap\", \"bus factor\", \"team understanding\"."
+description: "Use when a new engineer joins the team, during onboarding to an unfamiliar codebase, or when auditing whether the team shares a common understanding. Triggers include \"onboard\", \"context\", \"knowledge gap\", \"bus factor\", and \"team understanding\"."
 ---
 
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
-# Auditoria de Contexto
+# Context audit
 
-## Quando invocar
+## When to invoke
 
-- "Nova pessoa dev entra segunda-feira - o que ela precisa saber na semana 1?"
-- "Auditoria: o time realmente entende por que escolhemos X?"
-- "Nosso bus factor é 1 no módulo de billing. Corrija isso."
+- "A new developer starts Monday. What do they need to know in week 1?"
+- "Audit whether the team truly understands why we chose X."
+- "Our bus factor is 1 for the billing module. Fix it."
 
-## Objetivo
+## Objective
 
-Medir entendimento compartilhado do time, expor conhecimento concentrado em uma pessoa e criar uma pista de decolagem de semana 1 para novas pessoas.
+Measure the team's shared understanding, expose knowledge concentrated in one person, and create a week 1 ramp-up path for new team members.
 
-## Perguntas de auditoria (faça privadamente a cada membro do time)
+## Audit questions (ask each team member privately)
 
-1. Você consegue desenhar a arquitetura do sistema em um quadro branco em 5 minutos?
-2. Quais são os 3 invariantes mais importantes que este sistema deve preservar?
-3. Onde está o código mais arriscado? Quem o conhece melhor?
-4. O que você nunca mudaria sem revisão sênior? Por quê?
-5. Quais partes você pessoalmente evita tocar? Por quê?
+1. Can you draw the system architecture on a whiteboard in 5 minutes?
+2. What are the 3 most important invariants this system must preserve?
+3. Where is the riskiest code? Who understands it best?
+4. What would you never change without senior review? Why?
+5. Which parts do you personally avoid changing? Why?
 
-Se as respostas divergirem significativamente, você tem uma lacuna de contexto.
+If the answers differ significantly, the team has a context gap.
 
-## Saídas
+## Outputs
 
-### 1. Mapa de arquitetura compartilhada (1 página)
+### 1. Shared architecture map (1 page)
 
-- Diagrama Mermaid de serviços e fluxo de dados
-- Lista de integrações externas e quem é dono delas
-- Lista de invariantes (regras de negócio que precisam se manter)
+- Mermaid diagram of services and data flow
+- List of external integrations and their owners
+- List of invariants (business rules that must remain intact)
 
-### 2. Mapa de calor de risco
+### 2. Risk heat map
 
 ```
 | Module | Criticality | Bus factor | Last refactor | Owner |
@@ -44,23 +44,23 @@ Se as respostas divergirem significativamente, você tem uma lacuna de contexto.
 | auth | high | 3 | 6mo ago | team |
 ```
 
-Qualquer linha com bus factor 1 em um módulo de alta criticidade é uma ação P0.
+Any row with a bus factor of 1 for a high-criticality module requires a P0 action.
 
-### 3. Runbook da semana 1 para nova pessoa
+### 3. Week 1 runbook for a new team member
 
-- Day 1: ler estes 5 ADRs, rodar a stack localmente.
-- Day 2: parear com Alex em billing, enviar uma melhoria de docs.
-- Day 3: acompanhar a rotação on-call.
-- Day 4: pegar um ticket "starter" com review pareado.
-- Day 5: retro com tech lead. O que ainda está pouco claro?
+- Day 1: read these 5 ADRs and run the stack locally.
+- Day 2: pair with Alex on billing and submit a documentation improvement.
+- Day 3: shadow the on-call rotation.
+- Day 4: take a "starter" ticket with paired review.
+- Day 5: hold a retrospective with the tech lead. What is still unclear?
 
-## Antipadrões
+## Antipatterns
 
-- "Onboarding is just our READMEs." (Insuficiente - READMEs perdem conhecimento tácito.)
-- Plano de semana 1 sem codificação nem operação do sistema.
-- Nenhuma menção a invariantes ou modos de falha.
-- Conhecimento apenas na cabeça de engenheiros sênior, sem trilha documental.
+- "Onboarding is just our READMEs." (Insufficient because READMEs omit tacit knowledge.)
+- A week 1 plan with no coding or system operation.
+- No mention of invariants or failure modes.
+- Knowledge held only by senior engineers, with no documentation trail.
 
-## Gate de qualidade
+## Quality gate
 
-Uma nova pessoa de engenharia deve conseguir entregar uma mudança de baixo risco até o fim da semana 1 com review pareado. Caso contrário, a auditoria falhou.
+A new engineer must be able to deliver a low-risk change by the end of week 1 with paired review. Otherwise, the audit has failed.

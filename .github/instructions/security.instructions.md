@@ -5,12 +5,12 @@ applyTo: "backend/src/main/java/**/auth/**,backend/src/main/java/**/security/**,
 
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
-# Convenções de Segurança
+# Security Conventions
 
-## Auth: bcrypt/argon2, rate limiting, MFA para admin
+## Auth: bcrypt/argon2, rate limiting, MFA for administrators
 
-## Authz: toda requisição, menor privilégio, nível de recurso
+## Authz: every request, least privilege, resource level
 
-## Entrada: consultas parametrizadas, sanitizar HTML, validar uploads
+## Input: parameterized queries, sanitize HTML, validate uploads
 
-## Agent: sem permissões autoconcedidas, sem banco de produção sem aprovação
+## Agent: no self-granted permissions, no production database access without approval

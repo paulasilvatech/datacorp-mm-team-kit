@@ -1,104 +1,104 @@
 ---
 name: "contradiction-check"
 agent: "requirements-engineer"
-description: "Detecte contradições entre requisitos em spec.md — mesma feature, regras diferentes — antes que virem bugs em produção."
+description: "Detect contradictions between requirements in spec.md—same feature, different rules—before they become production bugs."
 tools: ["search"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /contradiction-check
 
-## Objetivo
+## Objective
 
-Você é o requirements engineer auditando `spec.md` em busca de **contradições**: pares de requisitos que não podem ser satisfeitos ao mesmo tempo. Contradições descobertas agora são correções de spec; contradições descobertas em produção são incidentes. O entregável é uma lista de candidatos a conflito com evidência, severidade e resolução proposta.
+You are the requirements engineer auditing `spec.md` for **contradictions**: pairs of requirements that cannot be satisfied at the same time. Contradictions found now are specification fixes; contradictions found in production are incidents. The deliverable is a list of potential conflicts with evidence, severity, and a proposed resolution.
 
-## Entradas
+## Inputs
 
-Peça ao usuário o que estiver faltando.
+Ask the user for any missing information.
 
-- O arquivo de spec (`specs/<NNN>-<feature>/spec.md`).
-- Quaisquer specs pai relacionadas cujos REQ-IDs sejam referenciados por esta.
-- A constituição (`.specify/memory/constitution.md`) — contradições também devem ser verificadas contra regras constitucionais.
-- Qualquer log de esclarecimento já produzido por `/speckit.clarify`.
+- The specification file (`specs/<NNN>-<feature>/spec.md`).
+- Any related parent specifications whose REQ-IDs are referenced by this one.
+- The constitution (`.specify/memory/constitution.md`)—contradictions must also be checked against constitutional rules.
+- Any clarification log already produced by `/speckit.clarify`.
 
-## Processo
+## Process
 
-1. **Indexe todos os requisitos.** Para cada `REQ-ID`, capture: padrão EARS, gatilho (evento/estado/condição), ação, ator, resultado e limites quantitativos.
-2. **Faça varredura em pares dentro de cada domínio.** Agrupe REQ-IDs por domínio (`PAY-*`, `BEN-*` etc.). Compare cada par. Pares entre domínios vêm depois.
-3. **Procure as quatro contradições clássicas.**
+1. **Index all requirements.** For each `REQ-ID`, capture the EARS pattern, trigger (event/state/condition), action, actor, outcome, and quantitative limits.
+2. **Scan pairs within each domain.** Group REQ-IDs by domain (`PAY-*`, `BEN-*`, etc.). Compare each pair. Check cross-domain pairs afterward.
+3. **Look for the four classic contradictions.**
 
-- **Contradição direta** — REQ-A diz "the system shall X under condition C"; REQ-B diz "the system shall not X under condition C."
-- **Conflito de limite** — REQ-A diz "respond within 200 ms"; REQ-B diz "perform 5 sequential checks each up to 80 ms" — os orçamentos não podem ser cumpridos juntos.
-- **Conflito de estado** — REQ-A permite uma ação enquanto está no estado S1; REQ-B a proíbe durante o estado sobreposto S2 ⊆ S1.
-- **Conflito de ator** — REQ-A concede permissão ao papel R1; REQ-B proíbe a mesma operação ao papel R2 onde R2 ⊇ R1.
+- **Direct contradiction**—REQ-A says "the system shall X under condition C"; REQ-B says "the system shall not X under condition C."
+- **Threshold conflict**—REQ-A says "respond within 200 ms"; REQ-B says "perform 5 sequential checks each up to 80 ms"—the budgets cannot both be met.
+- **State conflict**—REQ-A allows an action while in state S1; REQ-B prohibits it during the overlapping state S2 ⊆ S1.
+- **Actor conflict**—REQ-A grants permission to role R1; REQ-B prohibits the same operation for role R2 where R2 ⊇ R1.
 
-4. **Verifique contra a CONSTITUTION.** Qualquer requisito que viole uma regra constitucional é uma contradição com a própria constituição (normalmente regras C de segurança, dados ou compliance).
-5. **Verifique contra invariantes do legado.** Se um REQ contradiz comportamento imposto pelo SIFAP legado (documentado em `01-arqueologia/legado-sifap/legacy-docs/REGRAS-NEGOCIO-2012.md`), sinalize como risco de regressão.
-6. **Pontue a severidade.**
+4. **Check against the CONSTITUTION.** Any requirement that violates a constitutional rule contradicts the constitution itself (typically category C rules for security, data, or compliance).
+5. **Check against legacy invariants.** If a REQ contradicts behavior enforced by the legacy SIFAP system (documented in `01-arqueologia/legado-sifap/legacy-docs/REGRAS-NEGOCIO-2012.md`), flag it as a regression risk.
+6. **Rate the severity.**
 
-- **Critical** — contradição direta, sem implementação possível que satisfaça ambos.
-- **Major** — conflito de limite ou estado resolvível apenas alterando um REQ.
-- **Minor** — divergência terminológica escondendo um acordo real.
+- **Critical**—direct contradiction, with no possible implementation that satisfies both.
+- **Major**—threshold or state conflict that can be resolved only by changing a REQ.
+- **Minor**—terminology mismatch concealing actual agreement.
 
-7. **Proponha resoluções.** Para cada achado, sugira uma opção: (a) mesclar REQs, (b) dividir REQs por subcondição, (c) restringir o escopo de um REQ, (d) escalar para o product owner.
+7. **Propose resolutions.** For each finding, suggest one option: (a) merge REQs, (b) split REQs by subcondition, (c) narrow the scope of a REQ, or (d) escalate to the product owner.
 
-## Saída
+## Output
 
-Um relatório Markdown:
+A Markdown report:
 
 ```markdown
-## Relatório de Contradições — <feature>
+## Contradiction Report — <feature>
 
-### Resumo
-- Requisitos analisados: <quantidade>
-- Achados: <quantidade por severidade>
-- Maior severidade: <REQ-A vs REQ-B, se houver>
+### Summary
+- Requirements analyzed: <count>
+- Findings: <count by severity>
+- Highest severity: <REQ-A vs REQ-B, if any>
 
 ### Critical
-| # | REQ-A | REQ-B | Tipo | Evidência | Resolução proposta |
+| # | REQ-A | REQ-B | Type | Evidence | Proposed resolution |
 |---|-------|-------|------|----------|---------------------|
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
 
 ### Major
-| # | REQ-A | REQ-B | Tipo | Evidência | Resolução proposta |
+| # | REQ-A | REQ-B | Type | Evidence | Proposed resolution |
 |---|-------|-------|------|----------|---------------------|
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
 
 ### Minor
-| # | REQ-A | REQ-B | Tipo | Evidência | Resolução proposta |
+| # | REQ-A | REQ-B | Type | Evidence | Proposed resolution |
 |---|-------|-------|------|----------|---------------------|
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
 
-### Conflitos constitucionais
-| # | REQ | Regra | Conflito |
+### Constitutional conflicts
+| # | REQ | Rule | Conflict |
 |---|-----|------|---------|
-| — | nenhum encontrado | | |
+| — | none found | | |
 
-### Riscos de regressão legada
-| # | REQ | Invariante legado | Conflito |
+### Legacy regression risks
+| # | REQ | Legacy invariant | Conflict |
 |---|-----|------------------|---------|
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
 
-### Próximo passo recomendado
-Resolver achados Critical e Major antes da aprovação da spec.
+### Recommended next step
+Resolve Critical and Major findings before approving the specification.
 ```
 
-## Antipadrões
+## Anti-patterns
 
-- Relatar "the spec is contradictory" sem nomear os pares. Revisores não conseguem agir.
-- Verificar apenas dentro de um domínio. Muitas contradições cruzam domínios.
-- Ignorar a constituição. Conflitos constitucionais têm severidade maior que conflitos entre REQs pares.
-- Confundir ambiguidade com contradição. Ambiguidade é para `/speckit.clarify`; contradição é incompatibilidade.
-- Resolver silenciosamente na própria cabeça. Sempre exponha e encaminhe — mesmo quando parecer "obvious".
-- Pular verificações de regressão legada. A modernização do SIFAP vive ou morre pela fidelidade ao legado.
-- Tratar conflitos de limite como "can fix in design". Se a matemática não fecha, o REQ está errado.
+- Reporting "the spec is contradictory" without naming the pairs. Reviewers cannot act on it.
+- Checking only within one domain. Many contradictions cross domains.
+- Ignoring the constitution. Constitutional conflicts have higher severity than conflicts between peer REQs.
+- Confusing ambiguity with contradiction. Ambiguity belongs in `/speckit.clarify`; contradiction means incompatibility.
+- Resolving issues silently in your head. Always expose and route them—even when the answer seems "obvious."
+- Skipping legacy regression checks. SIFAP modernization succeeds or fails based on fidelity to the legacy system.
+- Treating threshold conflicts as "can fix in design." If the math does not work, the REQ is wrong.
 
-## Critérios de sucesso
+## Success criteria
 
-- [ ] Todo achado cita dois REQ-IDs (ou um REQ-ID e uma regra constitucional, ou um REQ-ID e um invariante legado).
-- [ ] Achados classificados por tipo (Direct / Threshold / State / Actor) e severidade (Critical / Major / Minor).
-- [ ] Cada achado tem uma resolução proposta em uma linha.
-- [ ] Conflitos constitucionais verificados.
-- [ ] Riscos de regressão legada verificados contra `01-arqueologia/legado-sifap/legacy-docs/`.
-- [ ] Achados Critical e Major sinalizados para resolução antes do sign-off da fase.
-- [ ] Saída pronta para colar no PR da spec ou em um ticket de esclarecimento.
+- [ ] Every finding cites two REQ-IDs (or one REQ-ID and a constitutional rule, or one REQ-ID and a legacy invariant).
+- [ ] Findings are classified by type (Direct / Threshold / State / Actor) and severity (Critical / Major / Minor).
+- [ ] Each finding has a one-line proposed resolution.
+- [ ] Constitutional conflicts have been checked.
+- [ ] Legacy regression risks have been checked against `01-arqueologia/legado-sifap/legacy-docs/`.
+- [ ] Critical and Major findings are flagged for resolution before phase sign-off.
+- [ ] The output is ready to paste into the specification PR or a clarification ticket.

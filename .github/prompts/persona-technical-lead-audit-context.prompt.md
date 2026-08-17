@@ -1,34 +1,34 @@
 ---
 name: "audit-context"
 agent: "tech-lead"
-description: "Audite arquivos de context engineering do repositório"
+description: "Audit the repository's context engineering files"
 tools: ["search"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /audit-context
 
-## Tarefa
+## Task
 
-Audite a superfície de context engineering do repositório (AGENTS.md, CODEMAP.md, `.github/instructions/*`, `.github/prompts/*`, `.github/agents/*`) e retorne uma lista priorizada de correções.
+Audit the repository's context engineering surface (AGENTS.md, CODEMAP.md, `.github/instructions/*`, `.github/prompts/*`, `.github/agents/*`) and return a prioritized list of corrections.
 
-## Passos
+## Steps
 
-1. Liste todos os arquivos em `.github/instructions/`, `.github/prompts/`, `.github/agents/` e reporte contagem de linhas.
-2. Verifique o escopo `applyTo:` em todo arquivo de instructions. Sinalize qualquer arquivo com `applyTo: "**"` ou escopo ausente.
-3. Leia CODEMAP.md. Sinalize como obsoleto se não tiver sido atualizado nos últimos 30 dias ou referenciar arquivos deletados.
-4. Verifique o frontmatter de todo prompt/agent para: `description` presente e informativa (não "TBD"), `agent` apontando para um agente existente quando usado, tools mínimos e nenhuma seleção de modelo fixada.
-5. Use grep para referências obsoletas de pastas (rastreamento de renames) e links relativos quebrados.
-6. Resuma como tabela: `Arquivo | Problema | Severidade (Alta/Média/Baixa) | Correção`.
+1. List all files in `.github/instructions/`, `.github/prompts/`, and `.github/agents/`, and report line counts.
+2. Check the `applyTo:` scope in every instructions file. Flag any file with `applyTo: "**"` or a missing scope.
+3. Read CODEMAP.md. Flag it as stale if it has not been updated in the last 30 days or references deleted files.
+4. Check the frontmatter of every prompt/agent for an informative `description` (not "TBD"), an `agent` that points to an existing agent when used, minimal tools, and no pinned model selection.
+5. Use grep to find stale folder references (rename tracking) and broken relative links.
+6. Summarize the findings in a table: `File | Issue | Severity (High/Medium/Low) | Correction`.
 
-## Saída
+## Output
 
-- Uma tabela Markdown com uma linha por achado, ordenada por severidade.
-- Um resumo curto "Top 3 correções" no final.
+- A Markdown table with one row per finding, sorted by severity.
+- A short "Top 3 corrections" summary at the end.
 
-## Gate de Qualidade
+## Quality gate
 
-- [ ] Sem falsos positivos (todo item sinalizado é de fato um problema)
-- [ ] Todo item de severidade Alta tem uma correção concreta, não uma sugestão vaga
-- [ ] Frescor de CODEMAP.md reportado explicitamente
-- [ ] Nenhuma sugestão para editar código, apenas arquivos de contexto
+- [ ] No false positives (every flagged item is an actual issue)
+- [ ] Every High-severity item has a concrete correction, not a vague suggestion
+- [ ] CODEMAP.md freshness is explicitly reported
+- [ ] No suggestions to edit code, only context files

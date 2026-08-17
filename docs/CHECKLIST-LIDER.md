@@ -1,146 +1,146 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Checklist do Líder do Time
+# Team Leader Checklist
 
-![Checklist](https://img.shields.io/badge/Tipo-Checklist-171717?style=flat-square)
-![Persona Technical Lead](https://img.shields.io/badge/Persona-Technical%20Lead-737373?style=flat-square)
-![Duração O dia inteiro](https://img.shields.io/badge/Dura%C3%A7%C3%A3o-O%20dia%20inteiro-A3A3A3?style=flat-square)
+![Checklist](https://img.shields.io/badge/Type-Checklist-171717?style=flat-square)
+![Technical Lead Persona](https://img.shields.io/badge/Persona-Technical%20Lead-737373?style=flat-square)
+![Duration All day](https://img.shields.io/badge/Duration-All%20day-A3A3A3?style=flat-square)
 
-> **Trilha:** [Kit do Time](../README.md) › [Docs](README.md) › **Checklist do Líder**
+> **Path:** [Team Kit](../README.md) › [Docs](README.md) › **Leader Checklist**
 
-**Lista cronológica de verificações para o Technical Lead** — do período anterior ao workshop até a demonstração final.
+**Chronological checklist for the Technical Lead** — from the period before the workshop through the final demonstration.
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Pessoa com a persona Technical Lead (Par 3) |
-| **Pré-requisitos** | Ter lido [`00-TEAM-FLOW.md`](../00-TEAM-FLOW.md) |
-| **Resultado esperado** | Time em ritmo, passagens no horário, demo executada |
+| **Target audience** | Person with the Technical Lead persona (Pair 3) |
+| **Prerequisites** | Read [`00-TEAM-FLOW.md`](../00-TEAM-FLOW.md) |
+| **Expected outcome** | Team maintains pace, handoffs occur on time, and the demo is delivered |
 
 ---
 
-## Antes do workshop começar (D-1, noite anterior)
+## Before the workshop starts (D-1, previous evening)
 
-- [ ] **Verificar laptops** — 5 laptops com VS Code Insiders instalado.
-- [ ] **Verificar contas GitHub** — 5 contas com Copilot ativo (verificar em <https://github.com/settings/copilot>).
-- [ ] **Verificar repositório** — `workshop-team-XX` criado e clonado por todos.
-- [ ] **Validar ferramentas locais** — Git, Java 21, Node, Docker e Spec-Kit funcionando em pelo menos 1 laptop.
-- [ ] **Proteger branch** — branch `develop` criada e protegida.
-- [ ] **Confirmar presença** — todos os 5 membros confirmados (par + 2 personas cada).
+- [ ] **Check laptops** — five laptops have VS Code Insiders installed.
+- [ ] **Check GitHub accounts** — five accounts have active Copilot access (verify at <https://github.com/settings/copilot>).
+- [ ] **Check repository** — `workshop-team-XX` is created and cloned by everyone.
+- [ ] **Validate local tools** — Git, Java 21, Node, Docker, and Spec-Kit work on at least one laptop.
+- [ ] **Protect branch** — `develop` exists and is protected.
+- [ ] **Confirm attendance** — all five members are confirmed (one pair and two personas per person).
 
 ---
 
-## Hora a hora — pontos de verificação
+## Hour-by-hour checkpoints
 
-### 10:00–11:00 · Setup e personas
+### 10:00–11:00 · Setup and personas
 
-- [ ] **10:15** — Todos os laptops abriram o repositório no VS Code.
-- [ ] **10:30** — Git, Java/Node, Docker e Spec-Kit validados em todos os laptops.
-- [ ] **10:45** — Cada pessoa leu seus 2 `PERSONA.md` e confirmou que `.github/` está consolidada.
-- [ ] **10:55** — Cada pessoa testou um slash command da sua persona.
+- [ ] **10:15** — Every laptop has opened the repository in VS Code.
+- [ ] **10:30** — Git, Java/Node, Docker, and Spec-Kit are validated on every laptop.
+- [ ] **10:45** — Everyone has read their two `PERSONA.md` files and confirmed that `.github/` is consolidated.
+- [ ] **10:55** — Everyone has tested one slash command from their persona.
 
-### 11:00–12:00 · Estágio 1 — Arqueologia (parte 1)
+### 11:00–12:00 · Stage 1 — Archaeology (part 1)
 
-- [ ] **11:00** — Time inteiro selecionou `@archaeologist` no Chat.
-- [ ] **11:10** — Cada par sabe quais 3 programas Natural vai ler.
-- [ ] **11:10** — Cada par sabe **quais 4 mistérios canônicos** são os seus (`SIFAP-M-NN`, veja [`mysteries-checklist.md`](../01-arqueologia/mysteries-checklist.md)).
-- [ ] **11:30** — Stand-up de 2 minutos: cada par diz 1 frase do que descobriu.
-- [ ] **11:45** — Cada par registrou evidências e dúvidas dos programas atribuídos.
+- [ ] **11:00** — The entire team has selected `@archaeologist` in Chat.
+- [ ] **11:10** — Every pair knows which three Natural programs it will read.
+- [ ] **11:10** — Every pair knows **which four canonical mysteries** it owns (`SIFAP-M-NN`; see [`mysteries-checklist.md`](../01-arqueologia/mysteries-checklist.md)).
+- [ ] **11:30** — Two-minute stand-up: each pair states one finding.
+- [ ] **11:45** — Every pair has recorded evidence and questions from its assigned programs.
 
 > [!TIP]
-> **Mistérios — o denominador é 20** (4 por par). O gabarito com as respostas **não vive neste repositório** (ele é público) — é distribuído aos facilitadores por canal privado. Nunca projete o gabarito em tela. Dica não tira ponto; par travado por mais de 40 minutos, sim — dê a dica.
+> **Mysteries use a denominator of 20** (four per pair). The answer key **does not live in this repository** because the repository is public; facilitators receive it through a private channel. Never project the answer key. A hint does not reduce the score, but a pair blocked for more than 40 minutes does — provide the hint.
 
-### 13:30–14:00 · Estágio 1 — Síntese e Passagem H1
+### 13:30–14:00 · Stage 1 — Synthesis and Handoff H1
 
-- [ ] **13:35** — Catálogo contém fontes das regras candidatas ao recorte.
-- [ ] **13:40** — Placar de mistérios consolidado: **≥16/20** e nenhum par abaixo de 2/4.
-- [ ] **13:45** — Product Owner escolheu uma feature fina e registrou adiamentos.
-- [ ] **13:50** — Facilitador validou `LEGACY-EXPLORATION-CHECKLIST.md`.
-- [ ] **14:00** — **Passagem H1**: Par 1 entrega `discovery-report.md` ao Par 2.
-
-> [!WARNING]
-> Se às 13:50 falta `Programa Fonte` em qualquer regra, pause tudo e foque em preencher. O CI rejeita pull requests sem esse campo.
-
-### 14:00–15:00 · Estágio 2 — Spec Moderna
-
-- [ ] **14:05** — Time selecionou `@architect`.
-- [ ] **14:30** — Product Owner aprovou uma feature fina.
-- [ ] **14:45** — `spec.md`, `plan.md` e `tasks.md` estão na pasta da feature.
-- [ ] **15:00** — **Passagem H2**: artefatos formais entregues aos Pares 3 e 4.
+- [ ] **13:35** — The catalog contains sources for rules considered for the scope.
+- [ ] **13:40** — Mystery score consolidated: **≥16/20**, with no pair below 2/4.
+- [ ] **13:45** — Product Owner has selected one thin feature and recorded deferrals.
+- [ ] **13:50** — Facilitator has validated `LEGACY-EXPLORATION-CHECKLIST.md`.
+- [ ] **14:00** — **Handoff H1**: Pair 1 delivers `discovery-report.md` to Pair 2.
 
 > [!WARNING]
-> Qualquer REQ-ID sem `source_legacy:` bloqueia o pull request. Verifique cada um antes da passagem.
+> If any rule lacks a `Source Program` at 13:50, pause everything and complete it. CI rejects pull requests without this field.
 
-### 15:00–16:10 · Estágio 3 — Implementação
+### 14:00–15:00 · Stage 2 — Modern Specification
 
-- [ ] **15:05** — Time selecionou `@builder`.
-- [ ] **15:30** — Migration Flyway V2 criada e executando localmente.
-- [ ] **15:50** — 1 ou mais endpoints REST funcionando via Swagger.
-- [ ] **16:00** — Pelo menos 1 teste passando.
-- [ ] **16:10** — **Passagem H3**: código mergeado em `develop`, CI verde.
+- [ ] **14:05** — The team has selected `@architect`.
+- [ ] **14:30** — Product Owner has approved one thin feature.
+- [ ] **14:45** — `spec.md`, `plan.md`, and `tasks.md` are in the feature folder.
+- [ ] **15:00** — **Handoff H2**: formal artifacts delivered to Pairs 3 and 4.
 
 > [!WARNING]
-> CI com falha ou cobertura abaixo de 70%: priorize a correção antes de adicionar novas funcionalidades.
+> Any REQ-ID without `source_legacy:` blocks the pull request. Check every requirement before the handoff.
 
-### 16:10–16:50 · Estágio 4 — Evolução com Agent
+### 15:00–16:10 · Stage 3 — Implementation
 
-- [ ] **16:15** — Time selecionou `@evolution`.
-- [ ] **16:20** — Pelo menos 1 Issue bem escrita para o Copilot Agent.
-- [ ] **16:35** — Pull request disponível revisado; se não houver PR, próximo passo registrado.
-- [ ] **16:45** — Situação de CI/IaC registrada, sem criar infraestrutura por meta.
-- [ ] **16:50** — `agent-experience-report.md` preenchido.
+- [ ] **15:05** — The team has selected `@builder`.
+- [ ] **15:30** — Flyway migration V2 has been created and runs locally.
+- [ ] **15:50** — One or more REST endpoints work through Swagger.
+- [ ] **16:00** — At least one test passes.
+- [ ] **16:10** — **Handoff H3**: code merged into `develop`, CI green.
 
-### 16:50–17:00 · Preparação da demo
+> [!WARNING]
+> If CI fails or coverage is below 70%, prioritize the fix before adding features.
 
-- [ ] **Combinar falas** — cada par tem 30 segundos definidos.
-- [ ] **Testar execução** — demo testada uma vez com o modo criado pelo time.
-- [ ] **Preparar navegador** — Swagger, frontend e PR mergeado abertos e prontos.
+### 16:10–16:50 · Stage 4 — Evolution with Agent
 
-### 17:00–17:30 · Demonstrações
+- [ ] **16:15** — The team has selected `@evolution`.
+- [ ] **16:20** — At least one well-written Issue exists for Copilot Agent.
+- [ ] **16:35** — Available pull request reviewed; if there is no PR, the next step is recorded.
+- [ ] **16:45** — CI/IaC status recorded, without creating infrastructure merely to meet a metric.
+- [ ] **16:50** — `agent-experience-report.md` completed.
 
-- [ ] Product Owner conduz e controla o tempo.
-- [ ] Time inteiro visível na câmera.
-- [ ] SIFAP 2.0 em execução demonstrado ao vivo.
+### 16:50–17:00 · Demo preparation
+
+- [ ] **Coordinate speaking roles** — each pair has a defined 30-second segment.
+- [ ] **Test execution** — run the demo once using the approach created by the team.
+- [ ] **Prepare the browser** — Swagger, frontend, and merged PR are open and ready.
+
+### 17:00–17:30 · Demonstrations
+
+- [ ] Product Owner presents and keeps time.
+- [ ] Entire team is visible on camera.
+- [ ] SIFAP 2.0 is demonstrated live.
 
 ---
 
-## As 3 perguntas que o Technical Lead faz a cada 30 minutos
+## Three questions the Technical Lead asks every 30 minutes
 
 ```text
-1. Alguém está bloqueado há mais de 20 minutos?
-2. O CI está verde?
-3. A próxima passagem (H1/H2/H3) está no horário?
+1. Has anyone been blocked for more than 20 minutes?
+2. Is CI green?
+3. Is the next handoff (H1/H2/H3) on schedule?
 ```
 
-Qualquer resposta negativa exige intervenção imediata.
+Any negative answer requires immediate intervention.
 
 ---
 
-## Respostas de emergência
+## Emergency responses
 
-| Situação | Ação do Technical Lead |
+| Situation | Technical Lead action |
 |---|---|
-| Par sem direção há 15 minutos | Sentar com eles e perguntar: "qual é o objetivo agora?" |
-| CI com falha há 30 minutos | Parar outras frentes e concentrar o time na correção |
-| Product Owner mudou escopo após o H2 | Negar a mudança. O escopo trava no H2. |
-| Dev quer refatorar sem teste existente | Negar. Abortar refatoração sem cobertura. |
-| Agent gerou pull request de baixa qualidade | Não fazer merge. Solicitar ajustes ou implementar manualmente. |
-| Falta meia hora e a demo não funciona | Reduzir o escopo da demo, não tentar corrigir o problema. |
-| Copilot indisponível | Plano B em [troubleshooting.md](troubleshooting.md#plano-b--copilot-fora-do-ar). |
+| Pair lacks direction for 15 minutes | Sit with them and ask: "What is the objective right now?" |
+| CI has failed for 30 minutes | Stop other work and focus the team on the fix |
+| Product Owner changes scope after H2 | Reject the change. Scope freezes at H2. |
+| Developer wants to refactor without an existing test | Reject it. Abort refactoring without coverage. |
+| Agent generates a low-quality pull request | Do not merge. Request changes or implement manually. |
+| Thirty minutes remain and the demo does not work | Reduce demo scope instead of trying to fix the problem. |
+| Copilot is unavailable | Use Plan B in [troubleshooting.md](troubleshooting.md#plan-b--copilot-outage). |
 
 ---
 
-## Objetivo do Technical Lead
+## Technical Lead objective
 
-> O papel do Technical Lead não é fazer o trabalho de todos — é garantir que ninguém esteja parado.
+> The Technical Lead's role is not to do everyone's work — it is to ensure no one is idle.
 
-Você contribui com código na mesma proporção que os outros. Sua responsabilidade diferenciada é manter o **ritmo** e o **escopo**.
+You contribute code in the same proportion as everyone else. Your distinct responsibility is to maintain **pace** and **scope**.
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [TEAM-FLOW](../00-TEAM-FLOW.md)<br/><sub>Cronograma completo do dia.</sub> | [Lições aprendidas](lessons-learned.md)<br/><sub>Erros comuns dos times.</sub> |
+| [TEAM-FLOW](../00-TEAM-FLOW.md)<br/><sub>Complete schedule for the day.</sub> | [Lessons Learned](lessons-learned.md)<br/><sub>Common team mistakes.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

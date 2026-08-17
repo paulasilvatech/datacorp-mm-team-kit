@@ -1,110 +1,110 @@
-# Instruções do GitHub Copilot — Workshop de Modernização de Legado
+# GitHub Copilot Instructions — Legacy Modernization Workshop
 
-> Estas instruções dizem ao Copilot o que sua equipe está construindo, qual stack usar,
-> quais convenções seguir e o que NÃO fazer. Elas se aplicam a todo o repositório
-> da equipe.
+> These instructions tell Copilot what your team is building, which stack to use,
+> which conventions to follow, and what NOT to do. They apply to the team's entire
+> repository.
 
-## Ferramentas Aprovadas — Somente Estas
+## Approved Tools — These Only
 
-Este workshop roda com uma **toolchain fixa**. Usar qualquer outra coisa fragmenta a equipe e quebra as demos.
+This workshop uses a **fixed toolchain**. Using anything else fragments the team and breaks the demos.
 
-| Use estas | Por quê |
+| Use these | Why |
 |-----------|-----|
-| **VS Code** (ou VS Code Insiders) | Editor único para toda a equipe. |
-| **GitHub Copilot** (modos Ask + Plan + Agent) | Assistente de IA principal. Copilot Workspace também é permitido para delegação Issue → PR. |
-| **GitHub Copilot CLI** *(opcional)* | Para tarefas em fluxo de terminal. |
-| **GitHub Spec-Kit** (`Specify CLI` + `/speckit.*`) | Toolkit oficial de Spec-Driven Development para especificação, planejamento, tarefas e implementação. |
-| **GitHub** (Issues, PRs, Actions, Projects) | Fonte da verdade para trabalho, código e CI. |
-| **Docker / Docker Compose** | Paridade do ambiente local quando o time criar containers no próprio protótipo. |
+| **VS Code** (or VS Code Insiders) | The only editor for the entire team. |
+| **GitHub Copilot** (Ask + Plan + Agent modes) | Primary AI assistant. Copilot Workspace is also allowed for Issue → PR delegation. |
+| **GitHub Copilot CLI** *(optional)* | For terminal-based tasks. |
+| **GitHub Spec-Kit** (`Specify CLI` + `/speckit.*`) | Official Spec-Driven Development toolkit for specification, planning, tasks, and implementation. |
+| **GitHub** (Issues, PRs, Actions, Projects) | Source of truth for work, code, and CI. |
+| **Docker / Docker Compose** | Local environment parity when the team creates containers in its own prototype. |
 | **Terraform** | IaC (Azure provider). |
 
-**Não use** outros assistentes de IA (Cursor, Windsurf, Codex, Cline, Continue, Aider, Codeium, Tabnine), IDEs alternativos (IntelliJ, Eclipse, Neovim), UIs web de chat para gerar código, nem frameworks SDD alternativos (Kiro etc.). Misturar ferramentas quebra rastreabilidade spec → code → test.
+**Do not use** other AI assistants (Cursor, Windsurf, Codex, Cline, Continue, Aider, Codeium, Tabnine), alternative IDEs (IntelliJ, Eclipse, Neovim), web chat UIs to generate code, or alternative SDD frameworks (Kiro, etc.). Mixing tools breaks specification → code → test traceability.
 
-## Contexto do Projeto
+## Project Context
 
-Modernização do legado **SIFAP** (Sistema de Fiscalização e Administração de Pagamentos) — Natural/Adabas, 29 anos — para Java 21 + Next.js 15. Código legado em [`01-arqueologia/legado-sifap/`](../01-arqueologia/legado-sifap/) (12 programas `.NSP` + 5 subprogramas `.NSN` + 4 DDMs `.NSD`).
+Modernization of the 29-year-old Natural/Adabas **SIFAP** legacy system (Payment Inspection and Administration System) to Java 21 + Next.js 15. Legacy code is in [`01-arqueologia/legado-sifap/`](../01-arqueologia/legado-sifap/) (12 `.NSP` programs + 5 `.NSN` subprograms + 4 `.NSD` DDMs).
 
-O kit usa **duas camadas de agentes** (persona-kit por pessoa + agente de estágio por equipe). Detalhes em [`06-agentes-de-estagio/README.md`](../06-agentes-de-estagio/README.md).
+The kit uses **two agent layers** (one persona kit per person + one stage agent per team). See [`06-agentes-de-estagio/README.md`](../06-agentes-de-estagio/README.md) for details.
 
-Use as skills em [`.github/skills/`](skills/) para workflows especializados. O Copilot seleciona a skill pertinente pela descrição; não duplique fluxos especializados nestas instruções globais.
+Use the skills in [`.github/skills/`](skills/) for specialized workflows. Copilot selects the relevant skill from its description; do not duplicate specialized workflows in these global instructions.
 
-## Stack-Alvo
+## Target Stack
 
 - **Backend:** Java 21 + Spring Boot 3.3 + JPA/Hibernate + PostgreSQL 16
 - **Frontend:** Next.js 15 (App Router) + TypeScript 5 (strict) + Tailwind CSS + shadcn/ui
-- **Containers:** Docker + Docker Compose criados pelo time no Estágio 3/4, quando necessário
+- **Containers:** Docker + Docker Compose created by the team in Stage 3/4 when necessary
 - **IaC:** Terraform (Azure provider ~> 3.x)
 - **CI/CD:** GitHub Actions
 - **Testing:** JUnit 5 + Testcontainers (backend); Vitest + Testing Library (frontend)
 
-## Regras de Geração de Código
+## Code Generation Rules
 
 ### Java
 
-- Use recursos do Java 21: records para DTOs, sealed interfaces para uniões discriminadas, pattern matching, virtual threads
-- Use `Optional` corretamente — nunca retorne `null` de métodos públicos
-- `@Transactional` somente na camada de service, nunca em repositories
-- Valide entradas na camada de controller com `@Valid` + Bean Validation
-- Nomes de classes em inglês; comentários em inglês
-- Testes unitários são obrigatórios para lógica de negócio
-- Nunca exponha dados sensíveis (CPF, valores de benefício) em logs — mascare-os
+- Use Java 21 features: records for DTOs, sealed interfaces for discriminated unions, pattern matching, and virtual threads
+- Use `Optional` correctly — never return `null` from public methods
+- Use `@Transactional` only in the service layer, never in repositories
+- Validate inputs in the controller layer with `@Valid` + Bean Validation
+- Use English class names and comments
+- Unit tests are mandatory for business logic
+- Never expose sensitive data (CPF, benefit amounts) in logs — mask it
 
 ### TypeScript / Next.js
 
-- `strict: true` em `tsconfig.json` — sem exceções
-- Use server actions para mutations; nunca exponha secrets em client components
-- Prefira `async/await` a cadeias `.then()`
-- Somente named exports — sem default exports em arquivos de componentes
+- Set `strict: true` in `tsconfig.json` — no exceptions
+- Use server actions for mutations; never expose secrets in client components
+- Prefer `async/await` over `.then()` chains
+- Use named exports only — no default exports in component files
 
 ### REST APIs
 
-- Convenção de path: `/api/v1/{resource}`
-- Use verbos HTTP corretamente (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`)
-- Retorne status codes apropriados (`201` para criação, `204` para sem conteúdo, `409` para conflito)
-- Todos os endpoints devem ter annotations OpenAPI/Swagger
+- Path convention: `/api/v1/{resource}`
+- Use HTTP verbs correctly (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`)
+- Return appropriate status codes (`201` for creation, `204` for no content, `409` for conflict)
+- Every endpoint must have OpenAPI/Swagger annotations
 
 ### Terraform
 
-- Todo recurso deve ter `tags` incluindo `project`, `environment`, `owner`
-- Secrets somente via `azurerm_key_vault_secret` — nunca em `locals` ou `variables`
-- Um módulo por área de serviço Azure (networking, compute, database, monitoring)
-- `terraform fmt` e `terraform validate` devem passar antes do commit
+- Every resource must have `tags` including `project`, `environment`, and `owner`
+- Store secrets only through `azurerm_key_vault_secret` — never in `locals` or `variables`
+- Use one module per Azure service area (networking, compute, database, monitoring)
+- `terraform fmt` and `terraform validate` must pass before commit
 
-## Regras de Segurança (OWASP Top 10)
+## Security Rules (OWASP Top 10)
 
-- Valide entradas em toda fronteira do sistema
-- Nunca faça hardcode de secrets, API keys ou credenciais
-- Consultas SQL somente via JPA/JPQL — sem concatenação de strings
-- CORS configurado explicitamente — sem wildcard `*` em produção
-- Autenticação via OAuth2/JWT (Spring Security no backend)
-- Todos os recursos Azure usam Managed Identity para autenticação serviço-a-serviço
+- Validate inputs at every system boundary
+- Never hardcode secrets, API keys, or credentials
+- Use JPA/JPQL only for SQL queries — no string concatenation
+- Configure CORS explicitly — no `*` wildcard in production
+- Use OAuth2/JWT authentication (Spring Security in the backend)
+- All Azure resources use Managed Identity for service-to-service authentication
 
 ## Spec-Driven Development (Spec-Kit)
 
-- Todo requisito usa **notação EARS** (Easy Approach to Requirements Syntax)
-- Todo requisito tem um **REQ-ID** único no formato `REQ-NNN`
-- **Todo requisito carrega uma linha `source_legacy:`** apontando para `01-arqueologia/legado-sifap/natural-programs/*.{NSP,NSN,NSS,NSA,NSL,NSC,NSM,jcl}`, `01-arqueologia/legado-sifap/adabas-ddms/*.{NSD,ddm,txt}` ou `[GREENFIELD] + justificativa`. O job de CI `legacy-traceability` rejeita PRs que violam isso. Consulte [`01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md).
-- Testes rastreiam para REQ-IDs por comentários inline
-- Estratégia de branch: `spec/<NNN>-<feature>` → `develop` → `main` (sem `stage`; ver [`00-GIT-WORKFLOW.md`](../00-GIT-WORKFLOW.md))
-- Antes de escrever EARS no Estágio 2, o par DEVE ter lido os programas Natural atribuídos (HARD GATE — ver checklist acima)
+- Every requirement uses **EARS notation** (Easy Approach to Requirements Syntax)
+- Every requirement has a unique **REQ-ID** in the `REQ-NNN` format
+- **Every requirement includes a `source_legacy:` line** pointing to `01-arqueologia/legado-sifap/natural-programs/*.{NSP,NSN,NSS,NSA,NSL,NSC,NSM,jcl}`, `01-arqueologia/legado-sifap/adabas-ddms/*.{NSD,ddm,txt}`, or `[GREENFIELD] + justification`. The `legacy-traceability` CI job rejects PRs that violate this rule. See [`01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md).
+- Tests trace to REQ-IDs through inline comments
+- Branch strategy: `spec/<NNN>-<feature>` → `develop` → `main` (no `stage`; see [`00-GIT-WORKFLOW.md`](../00-GIT-WORKFLOW.md))
+- Before writing EARS requirements in Stage 2, the pair MUST have read their assigned Natural programs (HARD GATE — see the checklist above)
 
-## Regras Rígidas — Não Faça Isto
+## Strict Rules — Do Not Do This
 
-- ❌ Não assuma protótipo pré-existente, symlink de protótipo ou containerização herdada. O time deve criar `backend/`, `frontend/` e, quando necessário, `infra/` do zero a partir da spec.
-- ❌ Não escreva um EARS sem `source_legacy:` — o CI rejeitará o PR
-- ❌ Não adicione dependências sem justificativa em um ADR
-- ❌ Não escreva testes depois do fato — escreva-os enquanto implementa
-- ❌ Não exponha secrets em mensagens de commit, logs ou descrições de PR
-- ❌ Não faça merge em `main` sem pelo menos uma revisão entre pares
-- ❌ Não pule as conversas guiadas de passagem nas transições de estágio (veja [`00-TEAM-FLOW.md`](../00-TEAM-FLOW.md))
+- ❌ Do not assume a pre-existing prototype, prototype symlink, or inherited containerization. The team must create `backend/`, `frontend/`, and, when necessary, `infra/` from scratch based on the specification.
+- ❌ Do not write an EARS requirement without `source_legacy:` — CI will reject the PR
+- ❌ Do not add dependencies without justification in an ADR
+- ❌ Do not write tests after the fact — write them during implementation
+- ❌ Do not expose secrets in commit messages, logs, or PR descriptions
+- ❌ Do not merge into `main` without at least one peer review
+- ❌ Do not skip guided handoff conversations during stage transitions (see [`00-TEAM-FLOW.md`](../00-TEAM-FLOW.md))
 
-## Referências
+## References
 
-- Cronograma + pares: [`00-TEAM-FLOW.md`](../00-TEAM-FLOW.md)
+- Schedule + pairs: [`00-TEAM-FLOW.md`](../00-TEAM-FLOW.md)
 - Git workflow: [`00-GIT-WORKFLOW.md`](../00-GIT-WORKFLOW.md)
-- 3 modos do Copilot (Ask · Plan · Agent): [`09-cheat-sheets/copilot-3-modes.md`](../09-cheat-sheets/copilot-3-modes.md)
-- Persona kits (leia 2 por pessoa; artefatos ativos já consolidados em `.github/`): [`05-personas/`](../05-personas/)
-- Agentes de estágio: [`06-agentes-de-estagio/`](../06-agentes-de-estagio/)
-- Legado SIFAP: [`01-arqueologia/legado-sifap/`](../01-arqueologia/legado-sifap/)
-- Protótipo moderno: criado pelo time durante o Estágio 3 em `backend/`, `frontend/` e, se necessário, `infra/`; não há código-base pré-pronto para copiar.
+- Copilot's 3 modes (Ask · Plan · Agent): [`09-cheat-sheets/copilot-3-modes.md`](../09-cheat-sheets/copilot-3-modes.md)
+- Persona kits (read 2 per person; active artifacts are already consolidated in `.github/`): [`05-personas/`](../05-personas/)
+- Stage agents: [`06-agentes-de-estagio/`](../06-agentes-de-estagio/)
+- SIFAP legacy system: [`01-arqueologia/legado-sifap/`](../01-arqueologia/legado-sifap/)
+- Modern prototype: created by the team during Stage 3 in `backend/`, `frontend/`, and, if necessary, `infra/`; there is no ready-made codebase to copy.
 - Spec-Kit SDD: <https://github.com/github/spec-kit>

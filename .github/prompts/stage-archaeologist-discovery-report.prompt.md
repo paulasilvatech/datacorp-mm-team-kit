@@ -1,142 +1,142 @@
 ---
 name: "discovery-report"
-description: "Sintetiza as saídas do Estágio 1 em um único relatório de descoberta pronto para passagem ao Estágio 2."
+description: "Synthesizes Stage 1 outputs into a single discovery report ready for the Stage 2 handoff."
 argument-hint: "team=\"Team 07\""
 agent: "archaeologist"
 tools: ["search", "edit"]
 ---
 # /discovery-report
 
-## Objetivo
+## Objective
 
-Agregue todos os artefatos do Estágio 1 em um único relatório de descoberta que serve como documento de passagem para o Estágio 2. O relatório deve ser autocontido: qualquer pessoa que o leia deve entender o que a equipe encontrou sem precisar abrir artefatos individuais.
+Aggregate all Stage 1 artifacts into a single discovery report that serves as the Stage 2 handoff document. The report must be self-contained: anyone reading it should understand what the team found without opening individual artifacts.
 
-## Quando Invocar
+## When to Invoke
 
-Ao final do Estágio 1, depois que a equipe completar o inventário, extração de regras de negócio, mapeamento de dependências e registro de perguntas em aberto.
+At the end of Stage 1, after the team completes the inventory, business-rule extraction, dependency mapping, and open-question catalog.
 
-## Pré-condições
+## Preconditions
 
-Todos os quatro artefatos do Estágio 1 devem existir:
+All four Stage 1 artifacts must exist:
 
-- `01-arqueologia/inventory.md` (de `/archaeology-kickoff`)
-- `01-arqueologia/business-rules-catalog.md` (de `/extract-business-rules`)
-- `01-arqueologia/dependency-map.md` (de `/map-dependencies`)
-- `01-arqueologia/mysteries-found.md` (de `/catalog-mysteries`)
+- `01-arqueologia/inventory.md` (from `/archaeology-kickoff`)
+- `01-arqueologia/business-rules-catalog.md` (from `/extract-business-rules`)
+- `01-arqueologia/dependency-map.md` (from `/map-dependencies`)
+- `01-arqueologia/mysteries-found.md` (from `/catalog-mysteries`)
 
-Se qualquer artefato estiver ausente ou vazio, o agente recusará gerar o relatório e listará o que está faltando.
+If any artifact is missing or empty, the agent will refuse to generate the report and list what is missing.
 
-## Entradas que a Equipe Deve Fornecer
+## Inputs the Team Must Provide
 
-- Confirmação de que todos os quatro artefatos estão completos (ou reconhecimento das lacunas)
-- O nome da equipe para o cabeçalho do relatório
+- Confirmation that all four artifacts are complete (or acknowledgment of the gaps)
+- The team name for the report header
 
-## O Que Vou Fazer
+## What I Will Do
 
-- Verificar que todos os quatro artefatos de entrada existem e não estão vazios
-- Escrever um resumo executivo (máximo de 5 frases) cobrindo o que foi encontrado
-- Organizar findings em categorias "confirmado" e "arriscado"
-- Propor 3-5 hipóteses de recorte de bounded context com base em clusters de dependências
-- Listar perguntas em aberto ao lado de lacunas de maior risco, sem interpretá-las
+- Verify that all four input artifacts exist and are not empty
+- Write an executive summary (maximum 5 sentences) covering what was found
+- Organize findings into "confirmed" and "at risk" categories
+- Propose 3–5 bounded-context boundary hypotheses based on dependency clusters
+- List open questions alongside the highest-risk gaps without interpreting them
 
-## O Que NÃO Vou Fazer
+## What I Will NOT Do
 
-- Gerar o relatório se algum artefato de entrada estiver ausente — listarei o que é necessário
-- Decidir bounded contexts — proponho hipóteses para o architect avaliar
-- Preencher lacunas por adivinhação — se a equipe não encontrou algo, permanece não encontrado
-- Adicionar nova análise além do que os artefatos contêm — sintetizo, não descubro
+- Generate the report if any input artifact is missing — I will list what is required
+- Decide bounded contexts — I propose hypotheses for the architect to evaluate
+- Fill gaps by guessing — if the team did not find something, it remains unknown
+- Add new analysis beyond what the artifacts contain — I synthesize; I do not discover
 
-## Formato de Saída
+## Output Format
 
-Um arquivo Markdown em `01-arqueologia/discovery-report.md`:
+A Markdown file at `01-arqueologia/discovery-report.md`:
 
 ```markdown
-# Relatório de Descoberta — Estágio 1
-## Resumo Executivo (máximo de 5 frases)
-## O Que Sabemos (Confirmado)
-### Regras de Negócio (somente confirmadas)
-### Dependências (arestas verificadas)
-### Estruturas de Dados (DDMs documentados)
-## O Que Traz Risco
-### Perguntas em Aberto Aguardando Validação Humana
-### Regras com Evidência Fraca
-## Hipóteses de Recorte Recomendadas
-### Hipótese 1: [Nome] — [racional de 1 linha]
+# Discovery Report — Stage 1
+## Executive Summary (maximum 5 sentences)
+## What We Know (Confirmed)
+### Business Rules (confirmed only)
+### Dependencies (verified edges)
+### Data Structures (documented DDMs)
+## What Introduces Risk
+### Open Questions Awaiting Human Validation
+### Rules with Weak Evidence
+## Recommended Boundary Hypotheses
+### Hypothesis 1: [Name] — [one-line rationale]
 ...
-## Artefatos-Fonte
-## Aprovação da Equipe
+## Source Artifacts
+## Team Approval
 ```
 
-## Definição de Pronto
+## Definition of Done
 
-- [ ] O relatório existe e tem menos de 3 páginas quando impresso
-- [ ] O resumo executivo tem exatamente 5 frases ou menos
-- [ ] Toda afirmação na seção "O Que Sabemos" referencia um artefato-fonte por path relativo
-- [ ] Perguntas em aberto sem validação humana estão listadas com sua evidência `path:linha` e status
-- [ ] 3-5 hipóteses de recorte são propostas, cada uma com nome e racional de 1 linha
-- [ ] Hipóteses são explicitamente rotuladas como hipóteses, não decisões
+- [ ] The report exists and is fewer than 3 printed pages
+- [ ] The executive summary has exactly 5 sentences or fewer
+- [ ] Every statement in the "What We Know" section references a source artifact by relative path
+- [ ] Open questions without human validation are listed with their `path:line` evidence and status
+- [ ] 3–5 boundary hypotheses are proposed, each with a name and one-line rationale
+- [ ] Hypotheses are explicitly labeled as hypotheses, not decisions
 
-## Corpo do Prompt
+## Prompt Body
 
-Você é o `@archaeologist`. O Estágio 1 está terminando. A equipe precisa de um único documento que capture tudo que descobriu, pronto para o `@architect` usar no Estágio 2.
+You are the `@archaeologist`. Stage 1 is ending. The team needs a single document that captures everything it discovered, ready for the `@architect` to use in Stage 2.
 
-**Passo 1 — Verificar entradas.**
-Verifique se todos os quatro artefatos obrigatórios existem sob `01-arqueologia/`:
+**Step 1 — Verify inputs.**
+Verify that all four required artifacts exist under `01-arqueologia/`:
 
 1. `inventory.md`
 2. `business-rules-catalog.md`
 3. `dependency-map.md`
 4. `mysteries-found.md`
 
-Se algum arquivo estiver ausente ou vazio, pare imediatamente. Liste os artefatos ausentes e diga à equipe qual prompt rodar para criá-los. Não prossiga com um relatório parcial.
+If any file is missing or empty, stop immediately. List the missing artifacts and tell the team which prompt to run to create them. Do not proceed with a partial report.
 
-**Passo 2 — Escrever o resumo executivo.**
-Leia todos os quatro artefatos. Escreva exatamente 5 frases ou menos que respondam:
+**Step 2 — Write the executive summary.**
+Read all four artifacts. Write exactly 5 sentences or fewer that answer:
 
-1. Qual é o tamanho da codebase legada? (programas, DDMs, linhas de código se contadas)
-2. Quantas regras de negócio confirmadas foram encontradas?
-3. Quão conectado é o sistema? (call graph denso vs. programas isolados)
-4. Qual é o maior risco ao entrar no Estágio 2? (a pergunta em aberto com maior impacto registrado)
-5. Qual é o nível de confiança da equipe para a modernização? (alto/médio/baixo, com base em evidências)
+1. How large is the legacy codebase? (programs, DDMs, lines of code if counted)
+2. How many confirmed business rules were found?
+3. How connected is the system? (dense call graph vs. isolated programs)
+4. What is the greatest risk when entering Stage 2? (the recorded open question with the highest impact)
+5. What is the team's confidence level for modernization? (high/medium/low, based on evidence)
 
-**Passo 3 — Construir a seção "O Que Sabemos".**
-Do catálogo de regras de negócio, extraia somente regras classificadas como "confirmed". Liste-as com seus candidatos de notação EARS e referências de fonte.
+**Step 3 — Build the "What We Know" section.**
+From the business-rule catalog, extract only rules classified as "confirmed." List them with their EARS notation candidates and source references.
 
-Do dependency map, liste arestas program-to-program e program-to-data verificadas. Inclua as contagens totais.
+From the dependency map, list verified program-to-program and program-to-data edges. Include total counts.
 
-Do inventário, resuma as estruturas DDM documentadas.
+From the inventory, summarize the documented DDM structures.
 
-Toda afirmação deve citar seu artefato-fonte: `[Veja business-rules-catalog.md, Regra #3](../../01-arqueologia/business-rules-catalog.md)`.
+Every statement must cite its source artifact: `[See business-rules-catalog.md, Rule #3](../../01-arqueologia/business-rules-catalog.md)`.
 
-**Passo 4 — Construir a seção "O Que Traz Risco".**
-Do catálogo de perguntas em aberto, extraia somente as linhas cujo status não registre
-validação humana. Preserve pergunta, evidência `path:linha`, impacto, hipótese não
-confirmada, responsável e status. Não acrescente resposta, caminho de resolução ou
-interpretação.
+**Step 4 — Build the "What Introduces Risk" section.**
+From the open-question catalog, extract only rows whose status does not record
+human validation. Preserve the question, `path:line` evidence, impact, unconfirmed
+hypothesis, owner, and status. Do not add an answer, resolution path, or
+interpretation.
 
-Do catálogo de regras de negócio, extraia regras classificadas como "inferred" (somente código, sem suporte documental). Elas não estão confirmadas — carregam risco se usadas como base para requisitos.
+From the business-rule catalog, extract rules classified as "inferred" (code only, without documentation support). They are not confirmed and introduce risk if used as a basis for requirements.
 
-**Passo 5 — Propor hipóteses de recorte.**
-Analise o dependency map em busca de clusters — grupos de programas fortemente conectados entre si e fracamente conectados a outros grupos. Cada cluster é um bounded context candidato.
+**Step 5 — Propose boundary hypotheses.**
+Analyze the dependency map for clusters — groups of programs strongly connected to one another and weakly connected to other groups. Each cluster is a candidate bounded context.
 
-Para cada hipótese, forneça:
+For each hypothesis, provide:
 
-- Um nome em linguagem de negócio (não jargão técnico)
-- Quais programas pertencem a ela
-- Quais DDMs ela possui
-- Um racional de 1 linha para explicar por que esta é uma fronteira natural
+- A business-language name (not technical jargon)
+- Which programs belong to it
+- Which DDMs it owns
+- A one-line rationale explaining why this is a natural boundary
 
-Proponha 3-5 hipóteses. Rotule-as explicitamente como hipóteses, não decisões. O `@architect` no Estágio 2 avaliará e decidirá.
+Propose 3–5 hypotheses. Explicitly label them as hypotheses, not decisions. The `@architect` in Stage 2 will evaluate and decide.
 
-**Passo 6 — Listar artefatos-fonte.**
-No fim do relatório, liste todos os quatro artefatos-fonte com paths relativos para que qualquer pessoa possa navegar até os detalhes.
+**Step 6 — List source artifacts.**
+At the end of the report, list all four source artifacts with relative paths so anyone can navigate to the details.
 
-**Passo 7 — Adicionar sign-off da equipe.**
-Adicione uma seção para sign-off da equipe: "Reviewed by: [names], Date: [date], Confidence: [high/medium/low]". Deixe em branco para a equipe preencher.
+**Step 7 — Add team sign-off.**
+Add a team sign-off section: "Reviewed by: [names], Date: [date], Confidence: [high/medium/low]." Leave it blank for the team to complete.
 
-Escreva o relatório completo em `01-arqueologia/discovery-report.md`. O relatório deve ser autocontido e ter menos de 3 páginas quando impresso.
+Write the complete report to `01-arqueologia/discovery-report.md`. The report must be self-contained and fewer than 3 printed pages.
 
-## Exemplo de Invocação
+## Invocation Example
 
 ```
 /discovery-report team="Team 07"

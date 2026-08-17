@@ -1,64 +1,64 @@
 ---
 name: "ears-convert"
 agent: "requirements-engineer"
-description: "Converta requisitos informais para notação EARS com rastreabilidade obrigatória ao legado"
+description: "Convert informal requirements to EARS notation with mandatory legacy traceability"
 tools: ["search"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /ears-convert
 
-## Pré-checagem dura (workshop SIFAP)
+## Mandatory pre-check (SIFAP workshop)
 
-Antes de escrever qualquer EARS, **exija uma fonte legada** para cada declaração de entrada. Fontes aceitáveis:
+Before writing any EARS statement, **require a legacy source** for each input statement. Acceptable sources:
 
-- um arquivo em `01-arqueologia/legado-sifap/natural-programs/*.NSN` (preferido, com intervalo de linhas)
-- um arquivo em `01-arqueologia/legado-sifap/adabas-ddms/*.ddm`
-- o marcador literal `[GREENFIELD]` com uma justificativa em uma linha
+- a file in `01-arqueologia/legado-sifap/natural-programs/*.NSN` (preferred, with a line range)
+- a file in `01-arqueologia/legado-sifap/adabas-ddms/*.ddm`
+- the literal marker `[GREENFIELD]` with a one-line justification
 
-Se o usuário fornecer uma declaração **sem** identificar uma fonte legada, NÃO produza uma EARS. Responda:
+If the user provides a statement **without** identifying a legacy source, DO NOT produce an EARS statement. Respond:
 
-> "Ainda não posso emitir esta EARS. Informe qual arquivo em `01-arqueologia/legado-sifap/` é a fonte (por exemplo, `01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSN`) ou marque como `[GREENFIELD]` com uma justificativa em uma linha. O CI rejeita EARS sem `source_legacy`."
+> "I cannot issue this EARS statement yet. Specify which file in `01-arqueologia/legado-sifap/` is the source (for example, `01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSN`) or mark it as `[GREENFIELD]` with a one-line justification. CI rejects EARS statements without `source_legacy`."
 
-Somente depois que toda declaração tiver uma fonte aceitável, prossiga para os passos abaixo.
+Proceed to the steps below only after every statement has an acceptable source.
 
-## Tarefa
+## Task
 
-Converter uma lista de requisitos informais para notação EARS, classificar cada um por padrão, anexar a fonte legada e sinalizar qualquer coisa que não possa ser expressa em EARS.
+Convert a list of informal requirements to EARS notation, classify each by pattern, attach the legacy source, and flag anything that cannot be expressed in EARS.
 
-## Passos
+## Steps
 
-1. Para cada declaração de entrada, identifique o padrão: Ubiquitous, Event-driven, State-driven, Optional, Unwanted ou Complex.
-2. Reescreva a declaração usando o template EARS correto:
+1. For each input statement, identify the pattern: Ubiquitous, Event-driven, State-driven, Optional, Unwanted, or Complex.
+2. Rewrite the statement using the correct EARS template:
 
-- Ubiquitous: `O sistema deverá ...`
-- Event-driven: `QUANDO <gatilho> o sistema deverá ...`
-- State-driven: `ENQUANTO <estado> o sistema deverá ...`
-- Optional: `ONDE <feature> estiver incluída o sistema deverá ...`
-- Unwanted: `SE <indesejado> ENTÃO o sistema deverá ...`
-- Complex: combine os padrões acima com `AND / OR` dentro da cláusula de gatilho.
+- Ubiquitous: `The system shall ...`
+- Event-driven: `WHEN <gatilho> the system shall ...`
+- State-driven: `WHILE <state> the system shall ...`
+- Optional: `WHERE <feature> is included the system shall ...`
+- Unwanted: `IF <indesejado> THEN the system shall ...`
+- Complex: combine the patterns above with `AND / OR` inside the trigger clause.
 
-3. Atribua um REQ-ID no formato `REQ-<DOMAIN>-NNN`.
-4. Anexe a linha `source_legacy:` fornecida pelo usuário (não invente).
-5. Se um requisito não puder se tornar testável (vago, contraditório ou sem métrica), sinalize como `NEEDS-CLARIFICATION` com a ambiguidade específica.
+3. Assign a REQ-ID in the format `REQ-<DOMAIN>-NNN`.
+4. Attach the `source_legacy:` line provided by the user (do not invent one).
+5. If a requirement cannot be made testable (vague, contradictory, or lacking a metric), flag it as `NEEDS-CLARIFICATION` with the specific ambiguity.
 
-## Saída
+## Output
 
-Para cada requisito, emita o bloco YAML abaixo (não uma tabela plana) para que o job de CI `legacy-traceability` possa processá-lo:
+For each requirement, emit the YAML block below (not a flat table) so the `legacy-traceability` CI job can process it:
 
 ```yaml
 REQ-<DOMAIN>-NNN:
  pattern: <ubiquitous|event-driven|state-driven|optional|unwanted|complex>
- text: "<declaração EARS>"
- source_legacy: <path legado com intervalo de linhas, ou [GREENFIELD] + justificativa>
- original: "<entrada literal>"
- notes: "<opcional, por exemplo, motivo de NEEDS-CLARIFICATION>"
+ text: "<EARS statement>"
+ source_legacy: <legacy path with line range, or [GREENFIELD] + justification>
+ original: "<literal input>"
+ notes: "<optional, for example, reason for NEEDS-CLARIFICATION>"
 ```
 
-## Gate de Qualidade
+## Quality gate
 
-- [ ] 100% das declarações de entrada processadas
-- [ ] **Todo REQ-ID emitido tem uma linha `source_legacy:` não vazia**
-- [ ] Nenhuma declaração EARS contém palavras como "appropriate", "reasonable", "fast" sem uma métrica
-- [ ] Todo REQ-ID é único
-- [ ] Itens `NEEDS-CLARIFICATION` têm uma pergunta específica anexada
+- [ ] 100% of input statements have been processed
+- [ ] **Every emitted REQ-ID has a non-empty `source_legacy:` line**
+- [ ] No EARS statement contains words such as "appropriate," "reasonable," or "fast" without a metric
+- [ ] Every REQ-ID is unique
+- [ ] `NEEDS-CLARIFICATION` items include a specific question

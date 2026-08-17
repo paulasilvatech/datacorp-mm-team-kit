@@ -1,113 +1,112 @@
 ---
 name: "update-codemap"
 agent: "tech-writer"
-description: "Gerar ou atualizar CODEMAP.md — um índice navegável da base de código do SIFAP 2.0 mostrando módulos, proprietários e pontos de entrada."
+description: "Generate or update CODEMAP.md—a navigable index of the SIFAP 2.0 codebase showing modules, owners, and entry points."
 tools: ["search", "edit"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /update-codemap
 
-## Objetivo
+## Objective
 
-Você produz ou atualiza `docs/CODEMAP.md`, um guia de navegação de uma página que uma nova pessoa do time consegue ler em 10 minutos e usar para encontrar qualquer módulo, seu proprietário, seus pontos de entrada e seus testes. O codemap **não** é documentação gerada automaticamente; ele é curado. Ele complementa `plan.md` (arquitetura) e a spec (requisitos).
+You produce or update `docs/CODEMAP.md`, a one-page navigation guide that a new team member can read in 10 minutes and use to find any module, its owner, its entry points, and its tests. The code map is **not** automatically generated documentation; it is curated. It complements `plan.md` (architecture) and the specification (requirements).
 
-## Entradas
+## Inputs
 
-Peça à pessoa usuária o que estiver faltando.
+Ask the user for any missing information.
 
-- O caminho raiz do repositório (este workspace).
-- Se deve atualizar no lugar (`update`) ou reconstruir (`rebuild`).
-- A tabela de proprietários das personas, quando criada pelo time.
-- Uma versão anterior de `CODEMAP.md`, se existir.
+- The repository root path (this workspace).
+- Whether to update in place (`update`) or rebuild (`rebuild`).
+- The persona ownership table, once created by the team.
+- A previous version of `CODEMAP.md`, if one exists.
 
-## Processo
+## Process
 
-1. **Liste as pastas de serviço de nível superior.** Serviços backend em `backend/src/main/java/br/gov/sifap/<service>/`, rotas frontend em `frontend/app/<route>/`, infra em `infra/modules/<name>/` ou no layout criado pelo time.
-2. **Para cada módulo, capture cinco fatos.**
+1. **List top-level service folders.** Backend services in `backend/src/main/java/br/gov/sifap/<service>/`, frontend routes in `frontend/app/<route>/`, and infrastructure in `infra/modules/<name>/` or the layout created by the team.
+2. **Capture five facts for each module.**
 
-- Propósito (uma frase).
-- Pontos de entrada públicos (endpoints REST, rotas de página, comandos CLI, entradas de IaC).
-- Estado persistente (tabelas, filas, blob containers).
-- Faixas de `REQ-ID` vinculadas.
-- Persona proprietária.
+- Purpose (one sentence).
+- Public entry points (REST endpoints, page routes, CLI commands, IaC entry points).
+- Persistent state (tables, queues, blob containers).
+- Linked `REQ-ID` ranges.
+- Owning persona.
 
-3. **Encontre testes.** Para cada módulo, encontre o diretório de testes correspondente e crie um link para ele.
-4. **Encontre o mapeamento legado.** Quando um módulo corresponder a um programa
-   Natural de `01-arqueologia/legado-sifap/natural-programs/`, cite o arquivo e a
-   evidência confirmados pelo time. Isso explicita a linhagem da modernização.
-5. **Encontre dependências não óbvias.** Imports entre módulos, bibliotecas compartilhadas (`commons-*`) e serviços externos do Azure. Destaque qualquer módulo que dependa de mais de três outros, pois isso é um cheiro de design.
-6. **Ordene módulos por valor visível à pessoa usuária.** Caminhos críticos de uso
-   primeiro, módulos de suporte depois, infraestrutura por último.
-7. **Renderize como um único arquivo markdown navegável.** Mantenha abaixo de 200 linhas. Se passar disso, divida sub-codemaps por área de serviço e crie links para eles.
+3. **Find tests.** For each module, find the corresponding test directory and link to it.
+4. **Find the legacy mapping.** When a module corresponds to a Natural program in
+   `01-arqueologia/legado-sifap/natural-programs/`, cite the file and evidence
+   confirmed by the team. This makes modernization lineage explicit.
+5. **Find non-obvious dependencies.** Look for imports between modules, shared libraries (`commons-*`), and external Azure services. Highlight any module that depends on more than three others because this is a design smell.
+6. **Order modules by user-visible value.** Put critical user journeys first, supporting modules next, and infrastructure last.
+7. **Render as a single navigable Markdown file.** Keep it under 200 lines. If it exceeds that limit, split it into sub-code maps by service area and link to them.
 
-## Saída
+## Output
 
-O entregável é `docs/CODEMAP.md` (ou subarquivos), com esta estrutura:
+The deliverable is `docs/CODEMAP.md` (or subfiles), with this structure:
 
 ```markdown
-# Mapa do Código do SIFAP 2.0
+# SIFAP 2.0 Code Map
 
-> Última atualização: <YYYY-MM-DD>. Donos: <referência criada pelo time>.
+> Last updated: <YYYY-MM-DD>. Owners: <reference created by the team>.
 
-## 1. Guia de leitura
-- Caminhos críticos: <!-- preencher a partir do código -->
-- Veja `plan.md` para o racional arquitetural; veja `spec.md` para requisitos.
+## 1. Reading guide
+- Critical paths: <!-- fill in from the code -->
+- See `plan.md` for the architectural rationale; see `spec.md` for requirements.
 
-## 2. Serviços de backend
+## 2. Backend services
 
-### <módulo> — <propósito confirmado>
-- **Path**: `<path criado pelo time>`
-- **Testes**: `<path de testes>`
-- **Pontos de entrada**: <!-- preencher -->
-- **Estado**: <!-- preencher a partir do schema e da configuração -->
-- **REQ-IDs**: <!-- preencher -->
-- **Dono**: <!-- preencher -->
-- **Linhagem legada**: <!-- preencher com fonte e evidência, quando aplicável -->
-- **Dependências entre módulos**: <!-- preencher -->
+### <module> — <confirmed purpose>
+- **Path**: `<path created by the team>`
+- **Tests**: `<test path>`
+- **Entry points**: <!-- fill in -->
+- **State**: <!-- fill in from the schema and configuration -->
+- **REQ-IDs**: <!-- fill in -->
+- **Owner**: <!-- fill in -->
+- **Legacy lineage**: <!-- fill in with source and evidence, when applicable -->
+- **Cross-module dependencies**: <!-- fill in -->
 
-## 3. Rotas de frontend
+## 3. Frontend routes
 
-### <rota> — <propósito confirmado>
-- **Path**: `<path criado pelo time>`
-- **Testes**: `<path de testes>`
-- **REQ-IDs**: <!-- preencher -->
-- **Dono**: <!-- preencher -->
-- **Consome API de**: <!-- preencher -->
+### <route> — <confirmed purpose>
+- **Path**: `<path created by the team>`
+- **Tests**: `<test path>`
+- **REQ-IDs**: <!-- fill in -->
+- **Owner**: <!-- fill in -->
+- **Consumes API from**: <!-- fill in -->
 
-## 4. Módulos de infraestrutura
+## 4. Infrastructure modules
 
-### <módulo>
-- **Path**: `<path criado pelo time>`
-- **REQ-IDs**: <!-- preencher -->
-- **Dono**: <!-- preencher -->
+### <module>
+- **Path**: `<path created by the team>`
+- **REQ-IDs**: <!-- fill in -->
+- **Owner**: <!-- fill in -->
 
-## 5. Bibliotecas transversais
-- <!-- preencher somente com bibliotecas existentes -->
+## 5. Cross-cutting libraries
+- <!-- fill in only with existing libraries -->
 
-## 6. Pontos de atenção observados
-- <!-- preencher somente com achados observados -->
+## 6. Observed concerns
+- <!-- fill in only with observed findings -->
 
-## 7. Como atualizar este arquivo
-Rode `/update-codemap` após adicionar ou renomear qualquer módulo. Não gere automaticamente; faça curadoria.
+## 7. How to update this file
+Run `/update-codemap` after adding or renaming any module. Do not generate it automatically; curate it.
 ```
 
-## Antipadrões
+## Anti-patterns
 
-- Gerar a partir de `find . -type d`: isso é uma listagem de diretórios, não um mapa.
-- Incluir todos os arquivos. O codemap nomeia módulos, não linhas.
-- Listar endpoints como `*`. Seja específico.
-- Esquecer a coluna de linhagem legada para SIFAP. Modernização sem linhagem fica invisível.
-- Usar times como proprietários. A pessoa de plantão é a proprietária.
-- Pular a seção "Smells observados". O codemap também é uma verificação de saúde.
-- Deixar o arquivo sofrer drift por mais de 30 dias. Codemap desatualizado é pior que nenhum codemap.
+- Generating from `find . -type d`: that is a directory listing, not a map.
+- Including every file. The code map names modules, not lines.
+- Listing endpoints as `*`. Be specific.
+- Omitting legacy lineage for SIFAP. Modernization without lineage is invisible.
+- Using teams as owners. The on-call person is the owner.
+- Skipping the "Observed smells" section. The code map is also a health check.
+- Allowing the file to drift for more than 30 days. An outdated code map is worse than no code map.
 
-## Critérios de sucesso
+## Success criteria
 
-- [ ] Todo serviço backend, rota frontend e módulo IaC está listado.
-- [ ] Cada entrada tem Finalidade, Path, Testes, Pontos de entrada, Estado, REQ-IDs, Owner.
-- [ ] A linhagem legada está nomeada para qualquer módulo que mapeie para um programa Natural.
-- [ ] Dependências entre módulos estão declaradas; módulos com > 3 dependências estão sinalizados.
-- [ ] O arquivo permanece abaixo de 200 linhas (ou é dividido com subarquivos vinculados).
-- [ ] A data de última atualização está definida como hoje.
-- [ ] Os nomes das personas proprietárias correspondem a `pt-br/05-personas/`.
+- [ ] Every backend service, frontend route, and IaC module is listed.
+- [ ] Each entry has Purpose, Path, Tests, Entry Points, State, REQ-IDs, and Owner.
+- [ ] Legacy lineage is named for every module that maps to a Natural program.
+- [ ] Cross-module dependencies are declared; modules with > 3 dependencies are flagged.
+- [ ] The file remains under 200 lines (or is split into linked subfiles).
+- [ ] The last-updated date is set to today.
+- [ ] Owning persona names match `pt-br/05-personas/`.

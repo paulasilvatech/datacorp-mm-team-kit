@@ -1,39 +1,39 @@
 ---
 name: "iac-module"
 agent: "devops-engineer"
-description: "Crie ou refatore um único módulo Terraform para a infraestrutura Azure do SIFAP 2.0 com tags, variáveis, saídas e validação."
+description: "Create or refactor a single Terraform module for SIFAP 2.0 Azure infrastructure with tags, variables, outputs, and validation."
 tools: ["search", "edit", "execute"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /iac-module
 
-## Objetivo
+## Objective
 
-Você é o DevOps engineer produzindo ou atualizando um **único módulo Terraform** em `infra/modules/` para o SIFAP 2.0. Os módulos são delimitados a uma área de serviço do Azure (rede, computação, banco de dados, monitoramento, segurança). O entregável passa sem erros em `terraform fmt`, `terraform validate`, `tflint` e `checkov`, e vem com um exemplo.
+You are the DevOps engineer producing or updating a **single Terraform module** in `infra/modules/` for SIFAP 2.0. Modules are scoped to one Azure service area (networking, compute, database, monitoring, or security). The deliverable passes `terraform fmt`, `terraform validate`, `tflint`, and `checkov` without errors and includes an example.
 
-## Entradas
+## Inputs
 
-Peça ao usuário o que estiver faltando.
+Ask the user for anything that is missing.
 
-- O nome do módulo e o serviço Azure (por exemplo, `postgres` para `azurerm_postgresql_flexible_server`).
-- O `REQ-ID` vinculado em `specs/<NNN>-<feature>/spec.md` (normalmente um requisito não funcional ou operacional).
-- Os ambientes-alvo (`dev`, `stage`, `prod`) e quaisquer sobrescritas específicas por ambiente.
-- A linha de base existente: estamos criando um módulo novo ou modificando `infra/modules/<name>/`?
+- The module name and Azure service (for example, `postgres` for `azurerm_postgresql_flexible_server`).
+- The linked `REQ-ID` in `specs/<NNN>-<feature>/spec.md` (usually a non-functional or operational requirement).
+- The target environments (`dev`, `stage`, `prod`) and any environment-specific overrides.
+- The existing baseline: are we creating a new module or modifying `infra/modules/<name>/`?
 
-## Processo
+## Process
 
-1. **Leia a constituição e os módulos existentes.** Abra `.specify/memory/constitution.md` para ver os itens não negociáveis (managed identity, Key Vault para secrets, sem IPs públicos etc.) e os módulos existentes para copiar padrões.
-2. **Escolha uma versão de provider com suporte da Microsoft.** Use `azurerm ~> 4.x` e fixe via `required_providers`. Referencie [Azure Verified Modules](https://aka.ms/avm) quando aplicável.
-3. **Escreva o esqueleto do módulo.** No mínimo cinco arquivos:
+1. **Read the constitution and existing modules.** Open `.specify/memory/constitution.md` for non-negotiable rules (managed identity, Key Vault for secrets, no public IPs, etc.) and review existing modules for patterns to follow.
+2. **Choose a Microsoft-supported provider version.** Use `azurerm ~> 4.x` and pin it through `required_providers`. Reference [Azure Verified Modules](https://aka.ms/avm) where applicable.
+3. **Write the module skeleton.** At least five files:
 
-- `main.tf` — apenas resources, sem bloco `provider`.
-- `variables.tf` — cada entrada tipada e documentada, com blocos `validation` onde intervalos importarem.
-- `outputs.tf` — IDs, nomes e FQDNs de que os chamadores precisam, nunca secrets.
-- `versions.tf` — `terraform` e `required_providers`.
-- `README.md` — propósito, entradas, saídas e exemplo de uso.
+- `main.tf` — resources only, with no `provider` block.
+- `variables.tf` — every input typed and documented, with `validation` blocks where ranges matter.
+- `outputs.tf` — IDs, names, and FQDNs needed by callers; never secrets.
+- `versions.tf` — `terraform` and `required_providers`.
+- `README.md` — purpose, inputs, outputs, and usage example.
 
-4. **Aplique as tags padrão do SIFAP** a todo recurso taggable:
+4. **Apply the standard SIFAP tags** to every taggable resource:
 
  ```hcl
  tags = merge(var.tags, {
@@ -45,11 +45,11 @@ Peça ao usuário o que estiver faltando.
  })
  ```
 
-5. **Disciplina de secrets.** Nada de secrets em variables, nada de secrets em outputs, nada de secrets em state files quando pudermos evitar. Connection strings vêm de data sources `azurerm_key_vault_secret` ou são retornadas como URIs que chamadores podem resolver em runtime.
-6. **Disciplina de identidade.** Use managed identities `system-assigned` ou `user-assigned`; nunca credenciais de service principal no código.
-7. **Disciplina de rede.** Nada de `public_network_access_enabled = true` sem uma exceção em `.specify/memory/constitution.md`. Private endpoints por padrão.
-8. **Adicione uma pasta `examples/`.** Um `examples/basic/main.tf` mínimo que consome o módulo — usado por `tflint` e pelos revisores.
-9. **Valide localmente.** Rode:
+5. **Secrets discipline.** No secrets in variables, no secrets in outputs, and no secrets in state files when they can be avoided. Connection strings come from `azurerm_key_vault_secret` data sources or are returned as URIs that callers can resolve at runtime.
+6. **Identity discipline.** Use `system-assigned` or `user-assigned` managed identities; never put service principal credentials in code.
+7. **Network discipline.** Do not use `public_network_access_enabled = true` without an exception in `.specify/memory/constitution.md`. Use private endpoints by default.
+8. **Add an `examples/` folder.** Include a minimal `examples/basic/main.tf` that consumes the module—used by `tflint` and reviewers.
+9. **Validate locally.** Run:
 
  ```
  terraform fmt -check -recursive
@@ -59,36 +59,36 @@ Peça ao usuário o que estiver faltando.
  checkov -d . --soft-fail false
  ```
 
- Todos devem passar.
+ All commands must pass.
 
-## Saída
+## Output
 
-Sua resposta final deve incluir:
+Your final response must include:
 
-- **Resumo do módulo** — nome, propósito, REQ-ID.
-- **Todos os cinco arquivos** com conteúdo completo.
-- **Consumidor de exemplo** — `examples/basic/main.tf`.
-- **Relatório de validação** — cole a saída de `fmt`, `validate`, `tflint`, `checkov`.
-- **Nota de custo** — link para [preços do Azure](https://azure.microsoft.com/pricing/) da(s) SKU(s) escolhida(s) e uma estimativa mensal em uma linha por ambiente.
+- **Module summary** — name, purpose, REQ-ID.
+- **All five files** with complete content.
+- **Example consumer** — `examples/basic/main.tf`.
+- **Validation report** — paste the output from `fmt`, `validate`, `tflint`, and `checkov`.
+- **Cost note** — link to [Azure pricing](https://azure.microsoft.com/pricing/) for the selected SKU(s), with a one-line monthly estimate per environment.
 
-## Antipadrões
+## Anti-patterns
 
-- IDs de subscription, nomes de resource group ou região hard-coded. Passe-os como variables.
-- Blocos `provider` dentro de modules. Providers pertencem aos root modules.
-- `count = var.create ? 1 : 0` para tornar recursos opcionais. Use módulos separados ou flags de feature.
-- Outputs que vazam secrets (`administrator_password`, connection strings).
-- `public_network_access_enabled = true` sem uma exceção explícita em `.specify/memory/constitution.md`.
-- Taggear alguns resources e outros não. Taggeie tudo que for taggable.
-- Pular blocos `validation` em inputs numéricos — isso produz erros crípticos do Azure no momento do apply.
-- Misturar atualização de módulo com mudança de feature no mesmo PR. Mudanças de módulo são entregues sozinhas.
+- Hard-coded subscription IDs, resource group names, or regions. Pass them as variables.
+- `provider` blocks inside modules. Providers belong in root modules.
+- Using `count = var.create ? 1 : 0` to make resources optional. Use separate modules or feature flags.
+- Outputs that leak secrets (`administrator_password`, connection strings).
+- `public_network_access_enabled = true` without an explicit exception in `.specify/memory/constitution.md`.
+- Tagging some resources but not others. Tag everything that supports tags.
+- Skipping `validation` blocks on numeric inputs—this produces cryptic Azure errors during apply.
+- Mixing a module update with a feature change in the same PR. Module changes are delivered independently.
 
-## Critérios de sucesso
+## Success Criteria
 
-- [ ] `terraform fmt -check`, `terraform validate`, `tflint` e `checkov` passam.
-- [ ] Todos os resources taggable carregam o conjunto padrão de tags.
-- [ ] Nenhum secret em variables, outputs ou default values.
-- [ ] Acesso de rede pública desabilitado, a menos que uma exceção em `.specify/memory/constitution.md` seja referenciada.
-- [ ] Managed identity usada; nenhuma credencial de SP no código.
-- [ ] Um consumidor em `examples/basic/` compila e valida.
-- [ ] O README documenta entradas, saídas e um exemplo.
-- [ ] O `REQ-ID` vinculado é citado no README do módulo.
+- [ ] `terraform fmt -check`, `terraform validate`, `tflint`, and `checkov` pass.
+- [ ] Every taggable resource carries the standard tag set.
+- [ ] No secrets in variables, outputs, or default values.
+- [ ] Public network access is disabled unless an exception in `.specify/memory/constitution.md` is referenced.
+- [ ] Managed identity is used; no SP credentials appear in code.
+- [ ] A consumer in `examples/basic/` compiles and validates.
+- [ ] The README documents inputs, outputs, and an example.
+- [ ] The linked `REQ-ID` is cited in the module README.

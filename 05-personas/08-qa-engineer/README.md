@@ -1,65 +1,65 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# QA Engineer — Kit Copilot
+# QA Engineer — Copilot Kit
 
-> **Trilha:** [Kit do Time](../../README.md) › [Personas](../OVERVIEW.md) › **QA Engineer**
+> **Track:** [Team Kit](../../README.md) › [Personas](../OVERVIEW.md) › **QA Engineer**
 
-**Kit de referência para a persona QA Engineer no workshop de modernização do SIFAP.**
+**Reference kit for the QA Engineer persona in the SIFAP modernization workshop.**
 
-![Persona](https://img.shields.io/badge/Persona-QA%20Engineer-171717?style=flat-square) ![Par 4](https://img.shields.io/badge/Par-4%20%C2%B7%20Qualidade-404040?style=flat-square) ![Estágios 3 e 4](https://img.shields.io/badge/Est%C3%A1gios-3%20e%204-737373?style=flat-square)
+![Persona](https://img.shields.io/badge/Persona-QA%20Engineer-171717?style=flat-square) ![Pair 4](https://img.shields.io/badge/Par-4%20%C2%B7%20Qualidade-404040?style=flat-square) ![Stages 3 and 4](https://img.shields.io/badge/Est%C3%A1gios-3%20e%204-737373?style=flat-square)
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Pessoa que ocupa a persona QA Engineer no workshop |
-| **Foco** | Geração de testes a partir de specs EARS, cobertura de comportamentos críticos e manutenção do pipeline verde |
-| **Fase do SDLC** | Estágio 3 — Implementação; Estágio 4 — Evolução |
-| **Resultado esperado** | Suíte de testes passando, pipeline de CI verde e rastreabilidade spec → teste garantida |
+| **Target audience** | Person taking the QA Engineer persona in the workshop |
+| **Focus** | Generating tests from EARS specs, covering critical behavior, and keeping the pipeline green |
+| **SDLC phase** | Stage 3 — Implementation; Stage 4 — Evolution |
+| **Expected outcome** | Passing test suite, green CI pipeline, and guaranteed spec-to-test traceability |
 
-Leia primeiro: [PERSONA.md](PERSONA.md).
+Read first: [PERSONA.md](PERSONA.md).
 
 ---
 
-## Conceito
+## Concept
 
-O QA Engineer (Quality Assurance Engineer) transforma requisitos EARS em testes executáveis. Na modernização do SIFAP, essa persona valida a equivalência funcional entre o comportamento do legado Natural e o código Java 21 moderno, garantindo que cada REQ-ID tenha ao menos um teste verificável e que o pipeline de CI (GitHub Actions) permaneça verde.
+The QA Engineer transforms EARS requirements into executable tests. In the SIFAP (Payment Inspection and Administration System) modernization, this persona validates functional equivalence between the Natural legacy behavior and the modern Java 21 code, ensuring that every REQ-ID has at least one verifiable test and that the GitHub Actions CI pipeline remains green.
 
-Por que importa: testes ausentes ou frágeis deixam o time cego para regressões. Em uma modernização de legado, a equivalência funcional entre o comportamento antigo e o novo só pode ser provada por testes rastreáveis a requisitos.
+Why it matters: missing or fragile tests leave the team blind to regressions. In legacy modernization, functional equivalence between old and new behavior can only be proven by tests traceable to requirements.
 
-## Kit da persona
+## Persona kit
 
-Todos os artefatos ativos vivem na `.github/` da raiz do repositório. Esta pasta é referência; edite os arquivos em `.github/` quando precisar de manutenção.
+All active artifacts live in the repository root `.github/` directory. This folder is a reference; edit the files under `.github/` when maintenance is needed.
 
-| Arquivo | Tipo | Propósito |
+| File | Type | Purpose |
 |---|---|---|
-| `PERSONA.md` | Ficha | Responsabilidades, estágios, prompts e rubricas do QA Engineer |
-| `.github/agents/qa-engineer.agent.md` | Agente | Geração de testes, análise de cobertura e gates de qualidade |
+| `PERSONA.md` | Profile | QA Engineer responsibilities, stages, prompts, and rubrics |
+| `.github/agents/qa-engineer.agent.md` | Agent | Test generation, coverage analysis, and quality gates |
 | `.github/prompts/persona-qa-engineer-create-tests.prompt.md` | Prompt | `/create-tests` |
 | `.github/prompts/persona-qa-engineer-coverage-gaps.prompt.md` | Prompt | `/coverage-gaps` |
 | `.github/prompts/persona-qa-engineer-test-strategy.prompt.md` | Prompt | `/test-strategy` |
-| `.github/instructions/tests.instructions.md` | Instructions | Convenções de teste |
+| `.github/instructions/tests.instructions.md` | Instructions | Testing conventions |
 
 > [!TIP]
-> Se o facilitador pedir MCP local e este kit tiver `mcp.json`, copie apenas esse arquivo para `.vscode/mcp.json`.
+> If the facilitator requests a local MCP configuration and this kit has `mcp.json`, copy only that file to `.vscode/mcp.json`.
 
-## Onde os artefatos ativos vivem
+## Where active artifacts live
 
-- Agentes: `.github/agents/`
+- Agents: `.github/agents/`
 - Prompts: `.github/prompts/persona-*.prompt.md`
 - Skills: `.github/skills/`
 - Instructions: `.github/instructions/`
 
-## Boas práticas
+## Best practices
 
-- [ ] **Seguir a pirâmide de testes.** Priorizar testes unitários em maior volume, testes de integração em proporção média e testes end-to-end em menor quantidade.
-- [ ] **Tratar teste instável como bug.** Isolar, corrigir ou remover; nunca ignorar.
-- [ ] **Garantir que toda asserção prove comportamento.** Cobertura de linha sem asserção significativa não valida o domínio.
-- [ ] **Rastrear teste ao requisito.** Todo teste deve apontar para um REQ-ID por comentário inline.
+- [ ] **Follow the test pyramid.** Prioritize more unit tests, a moderate number of integration tests, and fewer end-to-end tests.
+- [ ] **Treat a flaky test as a bug.** Isolate, fix, or remove it; never ignore it.
+- [ ] **Ensure every assertion proves behavior.** Line coverage without a meaningful assertion does not validate the domain.
+- [ ] **Trace tests to requirements.** Every test must reference a REQ-ID in an inline comment.
 
-## Exemplo aplicado ao SIFAP
+## SIFAP example
 
-No Estágio 2, o QA Engineer valida que cada EARS do `spec.md` tem critério de aceitação testável. No Estágio 3, escreve testes JUnit 5 com Testcontainers para o endpoint `POST /api/v1/beneficios`, verificando os cenários identificados no programa Natural `SIFAP-BEN.NSN`: inclusão válida, duplicata e campos obrigatórios ausentes. Adiciona comentário `// REQ-012` em cada método de teste.
+In Stage 2, the QA Engineer validates that every EARS requirement in `spec.md` has testable acceptance criteria. In Stage 3, they write JUnit 5 tests with Testcontainers for `POST /api/v1/beneficios`, verifying scenarios identified in `SIFAP-BEN.NSN`: valid creation, duplicate entry, and missing required fields. They add `// REQ-012` to every test method.
 
-## Referências
+## References
 
 - [Google Testing Blog](https://testing.googleblog.com/)
 - [xUnit Test Patterns — Gerard Meszaros](http://xunitpatterns.com/)
@@ -68,10 +68,10 @@ No Estágio 2, o QA Engineer valida que cada EARS do `spec.md` tem critério de 
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [Visão geral das personas](../OVERVIEW.md)<br/><sub>Tabela das 10 personas e seus pares.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Ficha completa da persona QA Engineer.</sub> |
+| [Persona overview](../OVERVIEW.md)<br/><sub>Table of the 10 personas and their pairs.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Complete QA Engineer persona profile.</sub> |
 
-<sub>[Voltar ao índice do kit](../../README.md)</sub>
+<sub>[Back to the kit index](../../README.md)</sub>

@@ -1,70 +1,70 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Product Owner — Kit Copilot
+# Product Owner — Copilot Kit
 
-> **Trilha:** [Kit do Time](../../README.md) › [Personas](../OVERVIEW.md) › **Product Owner**
+> **Trail:** [Team Kit](../../README.md) › [Personas](../OVERVIEW.md) › **Product Owner**
 
-**Inventário do kit Copilot para a persona Product Owner.** Liste os artefatos ativos, onde vivem na `.github/` e as boas práticas específicas deste papel.
+**Inventory of the Copilot kit for the Product Owner persona.** Lists the active artifacts, where they live under `.github/`, and best practices specific to this role.
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Pessoa que vai atuar como Product Owner no workshop |
-| **Par** | 1 · Visão (junto com Requirements Engineer) |
-| **Fase do SDLC** | Descoberta → Especificação → Aceite |
-| **Pré-requisitos** | [PERSONA.md](PERSONA.md) lido |
-| **Resultado esperado** | Kit validado, prompts acessíveis no Copilot Chat |
+| **Target audience** | Person acting as Product Owner in the workshop |
+| **Pair** | 1 · Vision (with the Requirements Engineer) |
+| **SDLC phase** | Discovery → Specification → Acceptance |
+| **Prerequisites** | [PERSONA.md](PERSONA.md) read |
+| **Expected outcome** | Kit validated, prompts accessible in Copilot Chat |
 
 > [!IMPORTANT]
-> Leia [PERSONA.md](PERSONA.md) antes de continuar. A ficha explica missão, passagem de bastão e rubricas de avaliação.
+> Read [PERSONA.md](PERSONA.md) before continuing. The profile explains the mission, handoff, and evaluation rubrics.
 
 ---
 
-## Conceito
+## Concept
 
-O Product Owner é o papel responsável por traduzir necessidades de negócio em escopo executável. Num processo de modernização de legado como o SIFAP, essa função é crítica: sistemas legados acumulam regras implícitas que só fazem sentido quando alguém sabe "por que" elas existem. O PO conecta cada decisão técnica à evidência de negócio.
+The Product Owner is responsible for translating business needs into executable scope. In a legacy modernization process such as SIFAP (Payment Inspection and Administration System), this function is critical: legacy systems accumulate implicit rules that only make sense when someone knows "why" they exist. The PO connects every technical decision to business evidence.
 
 ---
 
-## Kit da persona
+## Persona kit
 
-| **Artefato** | Tipo | Propósito |
+| **Artifact** | Type | Purpose |
 |---|---|---|
-| `PERSONA.md` | Ficha | Responsabilidades, passagem de bastão, prompts e rubrica |
-| `.github/agents/product-owner.agent.md` | Agent | Assistente de Product Owner para spec, backlog e aceite |
-| `.github/prompts/persona-product-owner-spec.prompt.md` | Prompt | `/spec` — escreve seção de `specs/<NNN>-<feature>/spec.md` a partir de user stories em EARS |
-| `.github/prompts/persona-product-owner-update-spec.prompt.md` | Prompt | `/update-spec` — atualiza a spec quando uma feature muda |
-| `.github/prompts/persona-product-owner-acceptance-check.prompt.md` | Prompt | `/acceptance-check` — verifica se o código atende aos critérios de aceite |
-| `mcp.json` | MCP | Manifesto de servidores GitHub + Azure DevOps work items |
+| `PERSONA.md` | Profile | Responsibilities, handoff, prompts, and rubric |
+| `.github/agents/product-owner.agent.md` | Agent | Product Owner assistant for specification, backlog, and acceptance |
+| `.github/prompts/persona-product-owner-spec.prompt.md` | Prompt | `/spec` — writes a section of `specs/<NNN>-<feature>/spec.md` from user stories in EARS |
+| `.github/prompts/persona-product-owner-update-spec.prompt.md` | Prompt | `/update-spec` — updates the specification when a feature changes |
+| `.github/prompts/persona-product-owner-acceptance-check.prompt.md` | Prompt | `/acceptance-check` — checks whether the code meets the acceptance criteria |
+| `mcp.json` | MCP | GitHub servers + Azure DevOps work items manifest |
 
 ---
 
-## Onde os artefatos vivem
+## Where the artifacts live
 
-Os artefatos ativos estão consolidados na `.github/` da raiz:
+The active artifacts are consolidated under the root `.github/` directory:
 
-| **Tipo** | Caminho |
+| **Type** | Path |
 |---|---|
 | Agents | `.github/agents/` |
 | Prompts | `.github/prompts/persona-*.prompt.md` |
 | Skills | `.github/skills/` |
 | Instructions | `.github/instructions/` |
 
-Use esta pasta como referência. Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá quando precisar de manutenção.
+Use this directory as the reference. Active files live only under the root `.github/` directory — edit them there when maintenance is needed.
 
-Se o kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
-
----
-
-## Boas práticas
-
-- Escreva requisitos em EARS para que cada frase seja testável.
-- Mantenha cada user story ligada a um resultado mensurável.
-- Marque suposições explicitamente — suposição escondida vira bug de produção.
-- Trate `.specify/memory/constitution.md` como fonte de verdade para itens inegociáveis.
+If the kit includes `mcp.json` and the facilitator requests local MCP, copy only that file to `.vscode/mcp.json`.
 
 ---
 
-## Referências
+## Best practices
+
+- Write requirements in EARS so that every sentence is testable.
+- Keep every user story tied to a measurable outcome.
+- Mark assumptions explicitly — a hidden assumption becomes a production bug.
+- Treat `.specify/memory/constitution.md` as the source of truth for non-negotiable items.
+
+---
+
+## References
 
 - [EARS Notation — Alistair Mavin](https://alistairmavin.com/ears/)
 - [Spec-Driven Development (Spec-Kit)](https://github.com/github/spec-kit)
@@ -73,10 +73,10 @@ Se o kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arq
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [OVERVIEW](../OVERVIEW.md)<br/><sub>Tabela das 10 personas.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Ficha desta persona.</sub> |
+| [OVERVIEW](../OVERVIEW.md)<br/><sub>Table of the 10 personas.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Profile for this persona.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

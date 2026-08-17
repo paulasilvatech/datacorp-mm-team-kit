@@ -1,68 +1,68 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Documentação
+# Documentation
 
-> **Trilha:** [Kit do Time](../README.md) › **Docs**
+> **Path:** [Team Kit](../README.md) › **Docs**
 
-**Índice da documentação transversal do workshop** — recursos consultados em qualquer estágio do dia.
+**Index of the workshop's cross-cutting documentation** — resources used at any stage of the day.
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Todo o time, especialmente Tech Writer e Technical Lead |
-| **Pré-requisitos** | Ter lido [`00-TEAM-FLOW.md`](../00-TEAM-FLOW.md) |
-| **Tempo estimado** | 5 min |
-| **Resultado esperado** | Saber onde encontrar cada recurso transversal |
+| **Target audience** | The entire team, especially the Tech Writer and Technical Lead |
+| **Prerequisites** | Read [`00-TEAM-FLOW.md`](../00-TEAM-FLOW.md) |
+| **Estimated time** | 5 min |
+| **Expected outcome** | Know where to find each cross-cutting resource |
 
 ---
 
-## Como usar esta pasta
+## How to use this folder
 
-- [ ] **Antes de começar o dia** — leia [sdlc-flow-guide.md](sdlc-flow-guide.md) para entender o mapa completo.
-- [ ] **Ao escolher suas personas** — leia [persona-agent-matrix.md](persona-agent-matrix.md) para saber quando você protagoniza, apoia ou observa.
-- [ ] **Durante o Estágio 1** — atualize o [glossário do Estágio 1](../01-arqueologia/glossary.md) e registre termos com fonte no legado.
-- [ ] **A cada decisão técnica** — crie um ADR em [adr/](adr/).
-- [ ] **Ao final do dia** — revise [runbook.md](runbook.md) para que outra pessoa consiga executar e operar o sistema.
+- [ ] **Before starting the day** — read [sdlc-flow-guide.md](sdlc-flow-guide.md) to understand the complete map.
+- [ ] **When choosing your personas** — read [persona-agent-matrix.md](persona-agent-matrix.md) to learn when you lead, support, or observe.
+- [ ] **During Stage 1** — update the [Stage 1 glossary](../01-arqueologia/glossary.md) and record terms with a legacy source.
+- [ ] **For every technical decision** — create an ADR in [adr/](adr/).
+- [ ] **At the end of the day** — review [runbook.md](runbook.md) so another person can run and operate the system.
 
-## Estrutura
+## Structure
 
-| Caminho | Finalidade |
+| Path | Purpose |
 |---|---|
-| [`adr/`](adr/) | Registros de decisão de arquitetura (um arquivo por decisão) |
-| [`../01-arqueologia/glossary.md`](../01-arqueologia/glossary.md) | Glossário de domínio — preenchido durante o Estágio 1 |
-| [`4-agents-explained.md`](4-agents-explained.md) | Explicação dos 4 agentes de etapa e sua relação com persona-kits |
-| [`persona-agent-matrix.md`](persona-agent-matrix.md) | Matriz de quem protagoniza, apoia ou observa em cada etapa |
-| [`sdlc-flow-guide.md`](sdlc-flow-guide.md) | Fluxo completo do dia, passagens e entregáveis |
-| `api.md` _(criado pelo time)_ | Visão geral da OpenAPI e resumo dos endpoints |
-| [`runbook.md`](runbook.md) | Como executar o sistema localmente, em CI e no Azure |
+| [`adr/`](adr/) | Architecture decision records (one file per decision) |
+| [`../01-arqueologia/glossary.md`](../01-arqueologia/glossary.md) | Domain glossary — completed during Stage 1 |
+| [`4-agents-explained.md`](4-agents-explained.md) | Explanation of the four stage agents and their relationship to persona kits |
+| [`persona-agent-matrix.md`](persona-agent-matrix.md) | Matrix showing who leads, supports, or observes at each stage |
+| [`sdlc-flow-guide.md`](sdlc-flow-guide.md) | Complete flow of the day, handoffs, and deliverables |
+| `api.md` _(created by the team)_ | OpenAPI overview and endpoint summary |
+| [`runbook.md`](runbook.md) | How to run the system locally, in CI, and on Azure |
 
-## Convenções
+## Conventions
 
-- Um ADR por decisão. Numere-os em sequência: `0001-title.md`, `0002-title.md`.
-- Termos do glossário em ordem alfabética, com citações para o programa legado onde o termo se originou.
-- Todo README em subpastas segue [`.github/copilot-instructions.md`](../.github/copilot-instructions.md).
-- Toda decisão importante vira ADR. Conversa em chat não é registro suficiente.
-- Todo termo do glossário que nasceu do legado precisa de fonte (`.NSN`, `.ddm` ou documento histórico).
+- Use one ADR per decision. Number them sequentially: `0001-title.md`, `0002-title.md`.
+- Keep glossary terms in alphabetical order, with citations to the legacy program where each term originated.
+- Every README in a subfolder follows [`.github/copilot-instructions.md`](../.github/copilot-instructions.md).
+- Every important decision becomes an ADR. A chat conversation is not a sufficient record.
+- Every glossary term originating in the legacy system needs a source (`.NSN`, `.ddm`, or historical document).
 
-## Definição de pronto da documentação
+## Documentation definition of done
 
-- [ ] Glossário com fontes do legado.
-- [ ] ADRs com contexto, opções, decisão e consequências.
-- [ ] Runbook com comandos de execução, validação e troubleshooting.
-- [ ] Links internos apontam para arquivos corretos.
-- [ ] Documentos explicam o motivo antes do passo a passo.
+- [ ] Glossary includes legacy sources.
+- [ ] ADRs include context, options, decision, and consequences.
+- [ ] Runbook includes commands for execution, validation, and troubleshooting.
+- [ ] Internal links point to the correct files.
+- [ ] Documents explain the reason before the procedure.
 
-## Links rápidos
+## Quick links
 
-- [Fluxo da equipe](../00-TEAM-FLOW.md)
-- [Persona kits consolidados](../05-personas/) — leia `PERSONA.md` dentro do kit do seu papel
-- [Guias de estágio](../01-arqueologia/GUIDE.md)
+- [Team flow](../00-TEAM-FLOW.md)
+- [Consolidated persona kits](../05-personas/) — read `PERSONA.md` inside the kit for your role
+- [Stage guides](../01-arqueologia/GUIDE.md)
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [Cartões de Referência](../09-cheat-sheets/README.md)<br/><sub>3 cartões de 1 página: Copilot, Spec-Kit, modelos.</sub> | [Glossário Visual](../07-conceitos/03-glossario-visual.md)<br/><sub>30+ termos técnicos do domínio SIFAP.</sub> |
+| [Reference Cards](../09-cheat-sheets/README.md)<br/><sub>Three one-page cards: Copilot, Spec-Kit, and models.</sub> | [Visual Glossary](../07-conceitos/03-glossario-visual.md)<br/><sub>30+ technical terms from the SIFAP domain.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

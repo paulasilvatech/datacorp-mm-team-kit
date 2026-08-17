@@ -1,77 +1,77 @@
 ---
 name: "coverage-gaps"
 agent: "qa-engineer"
-description: "Encontre REQ-IDs sem testes, casos de borda ausentes e lacunas entre os critérios de aceitação de spec.md e a suíte de testes."
+description: "Find REQ-IDs without tests, missing edge cases, and gaps between spec.md acceptance criteria and the test suite."
 tools: ["search", "execute"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /coverage-gaps
 
-## Objetivo
+## Objective
 
-Você é um QA Engineer auditando a cobertura de testes no SIFAP 2.0. Sua saída é uma lista priorizada de **requisitos sem testes ou com testes insuficientes** — não uma porcentagem. Cobertura de linhas é uma métrica de vaidade; cobertura de requisitos é a verdade.
+You are a QA Engineer auditing test coverage in SIFAP 2.0. Your output is a prioritized list of **untested or insufficiently tested requirements**—not a percentage. Line coverage is a vanity metric; requirement coverage is the truth.
 
-## Entradas
+## Inputs
 
-Peça ao usuário o que estiver faltando.
+Ask the user for any missing information.
 
-- A pasta da feature (`specs/<NNN>-<feature>/`) e as pastas de implementação (`backend/src/main/java/...` e/ou `frontend/app/...`).
-- Um relatório de cobertura recente (JaCoCo XML para backend, Vitest LCOV para frontend) — ou permissão para gerar um.
-- O escopo de aceitação: "todos os REQ-IDs desta pasta", "somente o diff deste PR" ou "somente o conjunto regulatório `REQ-COMP-*`".
+- The feature folder (`specs/<NNN>-<feature>/`) and implementation folders (`backend/src/main/java/...` and/or `frontend/app/...`).
+- A recent coverage report (JaCoCo XML for the backend, Vitest LCOV for the frontend)—or permission to generate one.
+- The acceptance scope: "all REQ-IDs in this folder," "only this PR's diff," or "only the regulatory `REQ-COMP-*` set."
 
-## Processo
+## Process
 
-1. **Monte o inventário de requisitos.** Parseie `spec.md` e extraia cada `REQ-ID` junto com seu padrão EARS e seus critérios de aceitação.
-2. **Encontre testes por `REQ-ID`.** Use grep nas fontes de teste procurando `REQ-NNN`, `@implements REQ-NNN`, `@Tag("REQ-NNN")` ou convenções de nome como `Req014_*`. Liste cada ocorrência.
-3. **Mapeie teste → requisito.** Para cada `REQ-ID`, liste os testes que o cobrem. Marque `MISSING` se não houver nenhum, `WEAK` se houver apenas um teste de happy path, `OK` se houver happy path + pelo menos um caso de limite ou erro.
-4. **Inspecione variantes EARS em busca de casos ocultos.** Requisitos event-driven e unwanted-behavior (`If ...`) quase sempre precisam de um teste negativo. Requisitos state-driven (`While ...`) precisam de um teste de transição de estado.
-5. **Faça cross-check com o legado.** Para requisitos mapeados para um programa
-   Natural em `01-arqueologia/legado-sifap/natural-programs/`, confirme que os
-   casos de borda identificados pelo time estão cobertos.
-6. **Pontue por risco.** Combine probabilidade (quanto é exercitado em produção) e impacto (financeiro, regulatório, segurança) em escala 1–3 para cada um. Risco = probabilidade × impacto.
-7. **Entregue a lista priorizada de lacunas.** Maior risco primeiro. Inclua uma receita de teste de uma linha para cada lacuna, não o código do teste em si.
+1. **Build the requirements inventory.** Parse `spec.md` and extract each `REQ-ID` with its EARS pattern and acceptance criteria.
+2. **Find tests by `REQ-ID`.** Grep test sources for `REQ-NNN`, `@implements REQ-NNN`, `@Tag("REQ-NNN")`, or naming conventions such as `Req014_*`. List every occurrence.
+3. **Map test → requirement.** For each `REQ-ID`, list the tests covering it. Mark it `MISSING` if none exist, `WEAK` if there is only one happy-path test, or `OK` if there is a happy path plus at least one boundary or error case.
+4. **Inspect EARS variants for hidden cases.** Event-driven and unwanted-behavior (`If ...`) requirements almost always need a negative test. State-driven (`While ...`) requirements need a state-transition test.
+5. **Cross-check against the legacy system.** For requirements mapped to a
+   Natural program in `01-arqueologia/legado-sifap/natural-programs/`, confirm
+   that the edge cases identified by the team are covered.
+6. **Score by risk.** Combine probability (how often it is exercised in production) and impact (financial, regulatory, security) on a 1–3 scale for each item. Risk = probability × impact.
+7. **Deliver the prioritized gap list.** Put the highest risk first. Include a one-line test recipe for each gap, not the test code itself.
 
-## Saída
+## Output
 
-Um relatório em markdown com a seguinte estrutura:
+A Markdown report with the following structure:
 
 ```markdown
-## Relatório de Lacunas de Cobertura — <feature>
+## Coverage Gap Report — <feature>
 
-### Resumo
-- Requisitos no escopo: <quantidade>
-- OK: <quantidade> — WEAK: <quantidade> — MISSING: <quantidade>
-- Lacuna de maior risco: <REQ-ID e comportamento, se houver>
+### Summary
+- Requirements in scope: <count>
+- OK: <count> — WEAK: <count> — MISSING: <count>
+- Highest-risk gap: <REQ-ID and behavior, if any>
 
-### Lacunas por risco
+### Gaps by risk
 
-| REQ-ID | Padrão EARS | Status | Risco (P×I) | Receita |
+| REQ-ID | EARS Pattern | Status | Risk (P×I) | Recipe |
 |--------|-------------|--------|-----------|--------|
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
 
-### Bordas derivadas do legado ainda sem cobertura
-- <!-- preencher com fonte, cenário e REQ-ID -->
+### Legacy-derived edge cases still uncovered
+- <!-- fill in with source, scenario, and REQ-ID -->
 
-### Adições de teste sugeridas
-1. `<classe>#<nomeDoTeste>`
-2. `<classe>#<nomeDoTeste>`
+### Suggested test additions
+1. `<class>#<testName>`
+2. `<class>#<testName>`
 ```
 
-## Anti-padrões
+## Anti-patterns
 
-- Reportar apenas porcentagens de cobertura de linhas. Linhas cobertas ≠ comportamentos verificados.
-- Contar testes redundantes de happy path como "cobertos". Um `REQ-ID` com cinco testes "should work" e zero testes "should not" é WEAK.
-- Listar lacunas sem pontuação de risco. Triagem exige risco.
-- Sugerir correções que leem detalhes de implementação (métodos privados, strings SQL).
-- Ignorar requisitos que mapeiam para programas Natural legados — eles escondem a maioria dos casos de borda.
-- Tratar testes de snapshot de UI como cobertura de requisitos de UX. Eles cobrem renderização, não comportamento.
+- Reporting only line-coverage percentages. Covered lines ≠ verified behaviors.
+- Counting redundant happy-path tests as "covered." A `REQ-ID` with five "should work" tests and zero "should not" tests is WEAK.
+- Listing gaps without risk scores. Triage requires risk.
+- Suggesting fixes that inspect implementation details (private methods, SQL strings).
+- Ignoring requirements mapped to legacy Natural programs—they hide most edge cases.
+- Treating UI snapshot tests as UX requirement coverage. They cover rendering, not behavior.
 
-## Critérios de sucesso
+## Success Criteria
 
-- [ ] Todo `REQ-ID` no escopo aparece no relatório exatamente uma vez.
-- [ ] Cada lacuna tem pontuação de risco e uma receita de teste de uma linha.
-- [ ] Requisitos EARS negativos/unwanted-behavior sem teste negativo são sinalizados como WEAK ou MISSING.
-- [ ] Bordas derivadas do legado são verificadas explicitamente contra `01-arqueologia/legado-sifap/natural-programs/`.
-- [ ] As três principais lacunas têm nomes de teste acionáveis, prontos para atribuição.
-- [ ] A saída está pronta para colar em um ticket de planejamento de sprint.
+- [ ] Every in-scope `REQ-ID` appears in the report exactly once.
+- [ ] Each gap has a risk score and a one-line test recipe.
+- [ ] Negative/unwanted-behavior EARS requirements without a negative test are flagged as WEAK or MISSING.
+- [ ] Legacy-derived edge cases are explicitly checked against `01-arqueologia/legado-sifap/natural-programs/`.
+- [ ] The top three gaps have actionable test names ready for assignment.
+- [ ] The output is ready to paste into a sprint-planning ticket.

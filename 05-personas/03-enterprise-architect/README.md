@@ -1,72 +1,72 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Enterprise Architect — Kit Copilot
+# Enterprise Architect — Copilot Kit
 
-> **Trilha:** [Kit do Time](../../README.md) › [Personas](../OVERVIEW.md) › **Enterprise Architect**
+> **Trail:** [Team Kit](../../README.md) › [Personas](../OVERVIEW.md) › **Enterprise Architect**
 
-**Inventário do kit Copilot para a persona Enterprise Architect.** Liste os artefatos ativos, onde vivem na `.github/` e as boas práticas específicas deste papel.
+**Inventory of the Copilot kit for the Enterprise Architect persona.** Lists the active artifacts, where they live under `.github/`, and best practices specific to this role.
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Pessoa que vai atuar como Enterprise Architect no workshop |
-| **Par** | 2 · Arquitetura (junto com Software Architect) |
-| **Fase do SDLC** | Arquitetura → Desenho → Segurança |
-| **Pré-requisitos** | [PERSONA.md](PERSONA.md) lido |
-| **Resultado esperado** | Kit validado, prompts acessíveis no Copilot Chat |
+| **Target audience** | Person acting as Enterprise Architect in the workshop |
+| **Pair** | 2 · Architecture (with the Software Architect) |
+| **SDLC phase** | Architecture → Design → Security |
+| **Prerequisites** | [PERSONA.md](PERSONA.md) read |
+| **Expected outcome** | Kit validated, prompts accessible in Copilot Chat |
 
 > [!IMPORTANT]
-> Leia [PERSONA.md](PERSONA.md) antes de continuar. A ficha explica missão, passagem de bastão e rubricas de avaliação.
+> Read [PERSONA.md](PERSONA.md) before continuing. The profile explains the mission, handoff, and evaluation rubrics.
 
 ---
 
-## Conceito
+## Concept
 
-O Enterprise Architect enxerga o sistema dentro do seu ecossistema. No SIFAP, isso significa mapear as dependências externas — SIAFI, Banco do Brasil, INCRA, MDA — e garantir que a arquitetura-alvo respeite contratos existentes. O EA sabe onde estão os contratos, quais são frágeis e quais podem ser modificados sem disparar uma cadeia de efeitos imprevistos.
+The Enterprise Architect views the system within its ecosystem. In SIFAP (Payment Inspection and Administration System), this means mapping external dependencies — SIAFI, Banco do Brasil, INCRA, MDA — and ensuring that the target architecture respects existing contracts. The EA knows where the contracts are, which are fragile, and which can be changed without triggering a chain of unforeseen effects.
 
 ---
 
-## Kit da persona
+## Persona kit
 
-| **Artefato** | Tipo | Propósito |
+| **Artifact** | Type | Purpose |
 |---|---|---|
-| `PERSONA.md` | Ficha | Responsabilidades, passagem de bastão, prompts e rubrica |
-| `.github/agents/enterprise-architect.agent.md` | Agent | Arquitetura e segurança |
+| `PERSONA.md` | Profile | Responsibilities, handoff, prompts, and rubric |
+| `.github/agents/enterprise-architect.agent.md` | Agent | Architecture and security |
 | `.github/prompts/persona-enterprise-architect-create-constitution.prompt.md` | Prompt | `/create-constitution` |
 | `.github/prompts/persona-enterprise-architect-create-adr.prompt.md` | Prompt | `/create-adr` |
 | `.github/prompts/persona-enterprise-architect-architecture-review.prompt.md` | Prompt | `/architecture-review` |
-| `.github/instructions/security.instructions.md` | Instructions | Convenções de segurança |
-| `.github/instructions/infrastructure.instructions.md` | Instructions | Convenções de IaC |
-| `hooks.json` | Hooks | Bloqueios de edição para `.specify/memory/constitution.md` |
+| `.github/instructions/security.instructions.md` | Instructions | Security conventions |
+| `.github/instructions/infrastructure.instructions.md` | Instructions | IaC conventions |
+| `hooks.json` | Hooks | Edit blocks for `.specify/memory/constitution.md` |
 
 ---
 
-## Onde os artefatos vivem
+## Where the artifacts live
 
-Os artefatos ativos estão consolidados na `.github/` da raiz:
+The active artifacts are consolidated under the root `.github/` directory:
 
-| **Tipo** | Caminho |
+| **Type** | Path |
 |---|---|
 | Agents | `.github/agents/` |
 | Prompts | `.github/prompts/persona-*.prompt.md` |
 | Skills | `.github/skills/` |
 | Instructions | `.github/instructions/` |
 
-Use esta pasta como referência. Os arquivos ativos vivem apenas na `.github/` da raiz — edite lá quando precisar de manutenção.
+Use this directory as the reference. Active files live only under the root `.github/` directory — edit them there when maintenance is needed.
 
-Se o kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arquivo para `.vscode/mcp.json`.
-
----
-
-## Boas práticas
-
-- Use C4 L1/L2 para visão executiva e L3/L4 para implementação.
-- Toda decisão arquitetural precisa de ADR com contexto, decisão e consequências.
-- Prefira arquitetura previsível e operável em produção.
-- Use os pilares do Azure Well-Architected como gates de revisão, não como checklist tardio.
+If the kit includes `mcp.json` and the facilitator requests local MCP, copy only that file to `.vscode/mcp.json`.
 
 ---
 
-## Referências
+## Best practices
+
+- Use C4 L1/L2 for the executive view and L3/L4 for implementation.
+- Every architectural decision needs an ADR with context, decision, and consequences.
+- Prefer architecture that is predictable and operable in production.
+- Use the Azure Well-Architected pillars as review gates, not as a late checklist.
+
+---
+
+## References
 
 - [C4 Model — Simon Brown](https://c4model.com/)
 - [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/)
@@ -75,10 +75,10 @@ Se o kit tiver `mcp.json` e o facilitador pedir MCP local, copie apenas esse arq
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [OVERVIEW](../OVERVIEW.md)<br/><sub>Tabela das 10 personas.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Ficha desta persona.</sub> |
+| [OVERVIEW](../OVERVIEW.md)<br/><sub>Table of the 10 personas.</sub> | [PERSONA.md](PERSONA.md)<br/><sub>Profile for this persona.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

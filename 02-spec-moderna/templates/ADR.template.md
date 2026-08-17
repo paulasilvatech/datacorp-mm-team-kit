@@ -2,8 +2,8 @@
 
 ---
 
-title: "Modelo: Registro de Decisão Arquitetural"
-description: "Esqueleto de ADR em formato MADR para /generate-adr"
+title: "Template: Architecture Decision Record"
+description: "MADR-format ADR skeleton for /generate-adr"
 author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at Microsoft"
 date: "2026-04-29"
 version: "1.0.0"
@@ -11,82 +11,82 @@ status: "approved"
 tags: ["template", "adr", "architect", "stage-2"]
 ---
 
-<!-- Como usar: execute /generate-adr. Mínimo de 2 opções obrigatório. -->
+<!-- How to use: run /generate-adr. A minimum of 2 options is required. -->
 
-# ADR-<!-- placeholder: NNN -->: <!-- placeholder: Título -->
+# ADR-<!-- placeholder: NNN -->: <!-- placeholder: Title -->
 
-![Template ADR](https://img.shields.io/badge/Template-ADR-737373?style=flat-square) ![Copie — não edite o original](https://img.shields.io/badge/Copie-n%C3%A3o%20edite%20o%20original-A3A3A3?style=flat-square)
+![ADR Template](https://img.shields.io/badge/Template-ADR-737373?style=flat-square) ![Copy — do not edit the original](https://img.shields.io/badge/Copy-do%20not%20edit%20the%20original-A3A3A3?style=flat-square)
 
-> **Trilha:** [Kit do Time](../../README.md) › [Estágio 2](../README.md) › Templates › **ADR**
+> **Path:** [Team Kit](../../README.md) › [Stage 2](../README.md) › Templates › **ADR**
 
 > [!NOTE]
-> Este arquivo é um TEMPLATE. Copie para o repositório do seu time e preencha com os dados reais. Não edite o original.
+> This file is a TEMPLATE. Copy it to your team's repository and fill it with actual data. Do not edit the original.
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Status** | `Proposta` / `Aceita` / `Rejeitada` / `Substituída` |
-| **Data** | `YYYY-MM-DD` |
-| **Feature relacionada** | `specs/<NNN>-<feature>/` |
+| **Status** | `Proposed` / `Accepted` / `Rejected` / `Superseded` |
+| **Date** | `YYYY-MM-DD` |
+| **Related feature** | `specs/<NNN>-<feature>/` |
 
 ---
 
-## Contexto
+## Context
 
-<!-- placeholder: por que esta decisão é necessária -->
+<!-- placeholder: why this decision is necessary -->
 
 ---
 
-## Opções Consideradas
+## Options considered
 
-### Opção 1: <!-- placeholder -->
+### Option 1: <!-- placeholder -->
 
-| Aspecto | Avaliação |
+| Aspect | Assessment |
 |---|---|
-| **Prós** | <!-- placeholder: específico da equipe --> |
-| **Contras** | <!-- placeholder: específico da equipe --> |
+| **Pros** | <!-- placeholder: team-specific --> |
+| **Cons** | <!-- placeholder: team-specific --> |
 
-### Opção 2: <!-- placeholder -->
+### Option 2: <!-- placeholder -->
 
-| Aspecto | Avaliação |
+| Aspect | Assessment |
 |---|---|
-| **Prós** | <!-- placeholder --> |
-| **Contras** | <!-- placeholder --> |
+| **Pros** | <!-- placeholder --> |
+| **Cons** | <!-- placeholder --> |
 
 ---
 
-## Decisão
+## Decision
 
-<!-- placeholder: opção escolhida + justificativa -->
+<!-- placeholder: selected option + rationale -->
 
 ---
 
-## Consequências
+## Consequences
 
-### Positivas
+### Positive
 
 - <!-- placeholder -->
 
-### Negativas
+### Negative
 
 - <!-- placeholder -->
 
 ---
 
-## Requisitos Relacionados
+## Related requirements
 
 - `<!-- placeholder: REQ-NNN -->`
 
 ---
 
 > [!IMPORTANT]
-> Definição de Pronto do ADR: formato MADR, pelo menos 2 opções, prós/contras específicos da equipe, decisão datada.
+> ADR Definition of Done: MADR format, at least 2 options, team-specific pros/cons, and a dated decision.
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [GUIDE do Estágio 2](../GUIDE.md)<br/><sub>Passo a passo.</sub> | [GUIDE do Estágio 2](../GUIDE.md)<br/><sub>Conduza a decisão com o time.</sub> |
+| [Stage 2 GUIDE](../GUIDE.md)<br/><sub>Step-by-step instructions.</sub> | [Stage 2 GUIDE](../GUIDE.md)<br/><sub>Lead the decision with the team.</sub> |
 
-<sub>[Voltar ao índice do kit](../../README.md)</sub>
+<sub>[Back to the kit index](../../README.md)</sub>

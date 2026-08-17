@@ -1,55 +1,54 @@
 ---
 name: "codemap"
 agent: "software-architect"
-description: "Produza um mapa de código navegável de um serviço SIFAP 2.0: componentes, dependências, cobertura de REQ-ID e pontos de integração."
+description: "Produce a navigable code map for a SIFAP 2.0 service: components, dependencies, REQ-ID coverage, and integration points."
 tools: ["search", "edit"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /codemap
 
-## Objetivo
+## Objective
 
-Você é o software architect gerando um **mapa de código em nível de serviço** que complementa `plan.md`. Enquanto `plan.md` responde "por quê", o code map responde "onde" e "o que toca o quê". Ele é lido na IDE, deve caber em dez minutos e é atualizado junto com qualquer mudança estrutural.
+You are the software architect generating a **service-level code map** that complements `plan.md`. While `plan.md` answers "why," the code map answers "where" and "what touches what." It is read in the IDE, should take no more than ten minutes to review, and is updated with every structural change.
 
-## Entradas
+## Inputs
 
-Peça ao usuário o que estiver faltando.
+Ask the user for any missing information.
 
-- O serviço a mapear.
-- A raiz do path criada pelo time.
-- A pasta de spec vinculada (`specs/<NNN>-<feature>/spec.md`).
-- Se deve incluir ou excluir paths `test/`.
-- Um code map anterior para este serviço, se existir.
+- The service to map.
+- The root path created by the team.
+- The linked specification folder (`specs/<NNN>-<feature>/spec.md`).
+- Whether to include or exclude `test/` paths.
+- A previous code map for this service, if one exists.
 
-## Processo
+## Process
 
-1. **Liste pacotes e tipos principais.** Para Java, agrupe por `controller`, `service`, `domain`, `repository`, `infrastructure`, `config`. Para TypeScript, agrupe por `app/`, `components/`, `lib/`, `server/`.
-2. **Capture o papel de cada componente em uma linha.** Use a responsabilidade
-   confirmada no código, sem inferir comportamento de negócio.
-3. **Mapeie dependências inbound e outbound.** Inbound: quem chama isto? Outbound: o que isto chama? Fique em dependências diretas; análise transitiva fica em `plan.md`.
-4. **Encontre tipos compartilhados e ports.** Interfaces em `domain/`, ports em `application/`, gateways em `infrastructure/`. Liste quais são contratos estáveis e quais são internos.
-5. **Cruze referências de REQ-IDs.** Para cada método público ou componente, encontre anotações `@implements REQ-NNN`. Liste componentes sem requisito ("no REQ-ID found") para revisão.
-6. **Encontre linhagem legada.** Observe quais programas Natural em `01-arqueologia/legado-sifap/natural-programs/` mapeiam para qual componente Java. Isso é essencial para a modernização do SIFAP.
-7. **Exponha architecture smells.**
+1. **List the main packages and types.** For Java, group by `controller`, `service`, `domain`, `repository`, `infrastructure`, and `config`. For TypeScript, group by `app/`, `components/`, `lib/`, and `server/`.
+2. **Capture each component's role in one line.** Use the responsibility confirmed in the code without inferring business behavior.
+3. **Map inbound and outbound dependencies.** Inbound: who calls this? Outbound: what does this call? Limit the map to direct dependencies; transitive analysis belongs in `plan.md`.
+4. **Find shared types and ports.** Interfaces in `domain/`, ports in `application/`, and gateways in `infrastructure/`. Identify which are stable contracts and which are internal.
+5. **Cross-reference REQ-IDs.** For each public method or component, find `@implements REQ-NNN` annotations. List components without a requirement ("no REQ-ID found") for review.
+6. **Find legacy lineage.** Note which Natural programs in `01-arqueologia/legado-sifap/natural-programs/` map to each Java component. This is essential to SIFAP modernization.
+7. **Expose architecture smells.**
 
-- Classes de service chamando controllers (direção errada).
-- Domain dependendo de infrastructure (direção errada).
-- Componentes com > 5 deps outbound (god class).
-- Componentes sem deps inbound (dead code).
+- Service classes calling controllers (wrong direction).
+- Domain depending on infrastructure (wrong direction).
+- Components with > 5 outbound dependencies (god class).
+- Components with no inbound dependencies (dead code).
 
-8. **Renderize como Mermaid + tabela.** Mermaid para leitura visual, tabela para facilidade de grep.
+8. **Render as Mermaid + table.** Use Mermaid for visual reading and a table for easy grep searches.
 
-## Saída
+## Output
 
-Um documento Markdown `docs/codemap-<service>.md` com esta estrutura:
+A Markdown document at `docs/codemap-<service>.md` with this structure:
 
 ```markdown
-# Mapa de código — <service>
+# Code map — <service>
 
-> Última revisão: <YYYY-MM-DD> — owner: <pessoa> — mapa em nível de serviço.
+> Last reviewed: <YYYY-MM-DD> — owner: <person> — service-level map.
 
-## 1. Diagrama de componentes (Mermaid)
+## 1. Component diagram (Mermaid)
 
 ```mermaid
 flowchart LR
@@ -65,55 +64,55 @@ flowchart LR
  Service --> Gateway
 ```
 
-## 2. Componentes
+## 2. Components
 
-| Tipo | FQN | Papel | REQ-IDs | Entrada | Saída |
+| Type | FQN | Role | REQ-IDs | Input | Output |
 |------|-----|------|---------|---------|----------|
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
 
-## 3. API pública
+## 3. Public API
 
-| Método | Path | Testado por |
+| Method | Path | Tested by |
 |--------|------|-----------|
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
 
-## 4. Estado persistente
+## 4. Persistent state
 
-- <!-- preencher a partir do código e das migrações criados pelo time -->
+- <!-- fill in from the code and migrations created by the team -->
 
-## 5. Linhagem legada
+## 5. Legacy lineage
 
-| Componente Java | Substitui |
+| Java component | Replaces |
 |----------------|----------|
-| <!-- preencher --> | <!-- preencher: programa.NSN e evidência --> |
+| <!-- fill in --> | <!-- fill in: program.NSN and evidence --> |
 
-## 6. Smells observados
+## 6. Observed smells
 
-- <!-- preencher somente com achados observados no código -->
+- <!-- fill in only with findings observed in the code -->
 
-## 7. Como atualizar
+## 7. How to update
 
-Rode `/codemap` após qualquer adição, renomeação ou exclusão no serviço. Vincule este arquivo a partir de `docs/CODEMAP.md`.
+Run `/codemap` after any addition, rename, or deletion in the service. Link to this file from `docs/CODEMAP.md`.
 
 ```
 
-## Antipadrões
+## Anti-patterns
 
-- Autogerar a partir de imports. O mapa é curado; imports mentem sobre intenção.
-- Listar toda classe. Mapeie componentes, não classes; agrupe os pequenos.
-- Pular o diagrama Mermaid. Visuais capturam camadas quebradas instantaneamente.
-- Sem coluna REQ-ID. Codemap sem rastreabilidade é listagem de diretório.
-- Listar deps transitivas. Apenas diretas — mantenha escaneável.
-- Pular linhagem legada para módulos SIFAP. O projeto inteiro depende disso.
-- Deixar drift > 30 dias. Codemaps obsoletos confundem pessoas novas.
+- Auto-generating from imports. The map is curated; imports misrepresent intent.
+- Listing every class. Map components, not classes; group small ones.
+- Skipping the Mermaid diagram. Visuals reveal broken layering immediately.
+- Omitting the REQ-ID column. A code map without traceability is a directory listing.
+- Listing transitive dependencies. Include direct dependencies only—keep it scannable.
+- Skipping legacy lineage for SIFAP modules. The entire project depends on it.
+- Allowing drift for > 30 days. Outdated code maps confuse new team members.
 
-## Critérios de sucesso
+## Success criteria
 
-- [ ] Diagrama Mermaid renderiza corretamente.
-- [ ] Tabela cobre todos os componentes na pasta do serviço.
-- [ ] Coluna REQ-ID preenchida; entradas ausentes explicitamente anotadas.
-- [ ] Deps inbound/outbound são apenas diretas.
-- [ ] Estado persistente lista tabelas e filas com vínculo a REQ-ID.
-- [ ] Linhagem legada nomeia os programas Natural.
-- [ ] Smells anotados incluem classes quase god class e anotações REQ-ID ausentes.
-- [ ] Documento vinculado a partir de `docs/CODEMAP.md`.
+- [ ] The Mermaid diagram renders correctly.
+- [ ] The table covers every component in the service folder.
+- [ ] The REQ-ID column is populated; missing entries are explicitly noted.
+- [ ] Inbound and outbound dependencies are direct only.
+- [ ] Persistent state lists tables and queues linked to REQ-IDs.
+- [ ] Legacy lineage names the Natural programs.
+- [ ] Documented smells include near-god classes and missing REQ-ID annotations.
+- [ ] The document is linked from `docs/CODEMAP.md`.

@@ -5,6 +5,6 @@ applyTo: ".github/workflows/**,.github/actions/**,**/action.yml,**/action.yaml"
 
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
-# Convenções de CI/CD
+# CI/CD Conventions
 
-Workflows reutilizáveis, autenticação OIDC, actions fixadas por SHA e varreduras de segurança em todo PR.
+Reusable workflows, OIDC authentication, actions pinned by SHA, and security scans on every PR.

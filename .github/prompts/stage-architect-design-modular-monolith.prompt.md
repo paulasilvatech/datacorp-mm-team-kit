@@ -1,48 +1,48 @@
 ---
 name: "design-modular-monolith"
-description: "Registra no plan.md somente o design do Modular Monolith necessário para a feature selecionada."
+description: "Records in plan.md only the Modular Monolith design required for the selected feature."
 argument-hint: "feature=NNN-feature-name"
 agent: "architect"
 tools: ["search", "edit"]
 ---
 # /design-modular-monolith
 
-## Objetivo
+## Objective
 
-Registrar em `specs/<NNN>-<feature>/plan.md` apenas as decisões de design que
-desbloqueiam a primeira implementação. O prompt não cria uma arquitetura
-genérica, endpoints, contratos ou diagramas sem evidência na feature.
+Record in `specs/<NNN>-<feature>/plan.md` only the design decisions that
+unblock the first implementation. The prompt does not create a generic
+architecture, endpoints, contracts, or diagrams without evidence from the feature.
 
-## Pré-condições
+## Preconditions
 
-- `specs/<NNN>-<feature>/spec.md` existe e cada REQ-ID tem `source_legacy:`;
-- a equipe confirmou o recorte no Estágio 2;
-- a pergunta de design a resolver foi declarada.
+- `specs/<NNN>-<feature>/spec.md` exists and every REQ-ID has `source_legacy:`;
+- the team confirmed the scope in Stage 2;
+- the design question to resolve has been stated.
 
-## Processo
+## Process
 
-1. Leia `spec.md`, `plan.md` e as decisões de escopo em `02-spec-moderna/`.
-2. Peça evidência para qualquer fronteira, integração ou contrato não descrito
-   pela feature. Registre a dúvida; não complete lacunas por suposição.
-3. Descreva no `plan.md` a menor estrutura de módulos, dados e comunicação que
-   a primeira tarefa requer.
-4. Crie um diagrama Mermaid ou um contrato somente quando ele resolver uma
-   dúvida concreta de implementação. Referencie-o a partir do `plan.md`.
-5. Relacione o design às REQ-IDs existentes e a decisões de apoio relevantes.
+1. Read `spec.md`, `plan.md`, and the scope decisions in `02-spec-moderna/`.
+2. Request evidence for any boundary, integration, or contract not described
+   by the feature. Record the question; do not fill gaps through assumptions.
+3. Describe in `plan.md` the smallest module, data, and communication structure
+   required by the first task.
+4. Create a Mermaid diagram or contract only when it resolves a concrete
+   implementation question. Reference it from `plan.md`.
+5. Link the design to existing REQ-IDs and relevant supporting decisions.
 
-## Restrições
+## Constraints
 
-- Não sugerir microservices; a meta é um Modular Monolith.
-- Não escrever código de implementação.
-- Não preencher requisitos, endpoints, schemas ou decisões que a equipe não
-  confirmou.
-- Não usar `02-spec-moderna/` como localização de `spec.md`, `plan.md` ou
+- Do not suggest microservices; the target is a Modular Monolith.
+- Do not write implementation code.
+- Do not fill in requirements, endpoints, schemas, or decisions that the team
+  has not confirmed.
+- Do not use `02-spec-moderna/` as the location for `spec.md`, `plan.md`, or
   `tasks.md`.
 
-## Definição de Pronto
+## Definition of Done
 
-- [ ] `plan.md` descreve somente o design necessário para a feature fina.
-- [ ] Cada decisão tem evidência ou uma dúvida aberta explícita.
-- [ ] Qualquer artefato auxiliar está ligado ao `plan.md`.
-- [ ] O plano deixa os Pares 3 e 4 iniciar a primeira tarefa sem criar escopo
-      adicional.
+- [ ] `plan.md` describes only the design required for the narrow feature.
+- [ ] Every decision has evidence or an explicit open question.
+- [ ] Every supporting artifact is linked from `plan.md`.
+- [ ] The plan allows Pairs 3 and 4 to start the first task without creating
+      additional scope.

@@ -5,10 +5,10 @@ applyTo: "backend/src/main/java/**,backend/src/test/java/**"
 
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
-# Convenções de Backend
+# Backend Conventions
 
-## Naming: controllers em PascalCase, rotas em kebab-case
+## Naming: controllers in PascalCase, routes in kebab-case
 
 ## Errors: RFC 7807, correlation IDs
 
-## Testing: happy path + auth fail + validation fail, 85% de cobertura
+## Testing: happy path + auth failure + validation failure, 85% coverage

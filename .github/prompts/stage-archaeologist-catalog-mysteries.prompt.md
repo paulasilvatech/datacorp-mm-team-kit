@@ -1,77 +1,77 @@
 ---
 name: "catalog-mysteries"
-description: "Registra perguntas em aberto com evidência rastreável, sem tentar resolvê-las."
+description: "Records open questions with traceable evidence without attempting to resolve them."
 argument-hint: "scope=01-arqueologia/"
 agent: "archaeologist"
 tools: ["search", "edit"]
 ---
 # /catalog-mysteries
 
-## Objetivo
+## Objective
 
-Registrar perguntas em aberto do Estágio 1 em uma estrutura neutra e rastreável. O
-catálogo não responde perguntas, não confirma hipóteses e não promove descobertas.
+Record Stage 1 open questions in a neutral, traceable structure. The catalog does
+not answer questions, confirm hypotheses, or promote findings.
 
-## Quando invocar
+## When to Invoke
 
-Depois que uma pessoa da equipe tiver identificado uma pergunta em aberto e puder
-fornecer ou apontar a evidência disponível.
+After a team member has identified an open question and can provide or point to
+the available evidence.
 
-## Pré-condições
+## Preconditions
 
-- A pessoa solicitante informa os artefatos autorizados para consulta.
-- O legado em `01-arqueologia/legado-sifap/` está disponível somente para leitura.
-- Cada registro contém ou aguarda uma evidência no formato `path:linha`.
+- The requester identifies the artifacts authorized for review.
+- The legacy content in `01-arqueologia/legado-sifap/` is available as read-only.
+- Each record contains or awaits evidence in `path:line` format.
 
-## O que vou fazer
+## What I Will Do
 
-- Registrar cada pergunta sem fornecer uma resposta.
-- Copiar a evidência disponível como `path:linha`.
-- Preservar impacto, hipótese explicitamente não confirmada, pessoa/área responsável e status.
-- Manter a pergunta aberta quando a validação humana ou a evidência estiver ausente.
+- Record each question without providing an answer.
+- Copy the available evidence as `path:line`.
+- Preserve the impact, explicitly unconfirmed hypothesis, responsible person/area, and status.
+- Keep the question open when human validation or evidence is missing.
 
-## O que não vou fazer
+## What I Will NOT Do
 
-- Resolver, explicar, confirmar ou inferir uma resposta para um mistério.
-- Tratar uma hipótese como fato ou alterar seu status por conta própria.
-- Sugerir uma solução, caminho de investigação ou requisito derivado da pergunta.
-- Modificar qualquer arquivo sob `01-arqueologia/legado-sifap/`.
-- Remover evidência ou rastreabilidade fornecida pela equipe.
+- Resolve, explain, confirm, or infer an answer to a mystery.
+- Treat a hypothesis as fact or change its status independently.
+- Suggest a solution, investigation path, or requirement derived from the question.
+- Modify any file under `01-arqueologia/legado-sifap/`.
+- Remove evidence or traceability provided by the team.
 
-## Formato de saída
+## Output Format
 
-Atualize somente `01-arqueologia/mysteries-found.md` com esta estrutura:
+Update only `01-arqueologia/mysteries-found.md` with this structure:
 
 ```markdown
-| ID | Pergunta aberta | Evidência (`path:linha`) | Impacto | Hipótese (não confirmada) | Pessoa/área responsável | Status |
-| -- | --------------- | ------------------------ | ------- | ------------------------- | ----------------------- | ------ |
-|    |                 |                          |         |                           |                         |        |
+| ID | Open question | Evidence (`path:line`) | Impact | Hypothesis (unconfirmed) | Responsible person/area | Status |
+| -- | ------------- | ---------------------- | ------ | ------------------------ | ----------------------- | ------ |
+|    |               |                        |        |                          |                         |        |
 ```
 
-Em `ID`, use o identificador canônico informado pela pessoa (`SIFAP-M-01` … `SIFAP-M-20`)
-ou `BONUS` para um achado fora da lista canônica. Existem **20 mistérios canônicos, 4 por
-par** — veja `01-arqueologia/mysteries-checklist.md`. Não deduza nem atribua o ID por
-conta própria: quem lê o código decide a qual mistério a evidência corresponde.
+In `ID`, use the canonical identifier provided by the person (`SIFAP-M-01` … `SIFAP-M-20`)
+or `BONUS` for a finding outside the canonical list. There are **20 canonical mysteries, 4 per
+pair** — see `01-arqueologia/mysteries-checklist.md`. Do not infer or assign the ID
+independently: the person reading the code decides which mystery the evidence corresponds to.
 
-Não adicione classificações, severidade, respostas, exemplos ou recomendações.
+Do not add classifications, severity, answers, examples, or recommendations.
 
-## HARD GATE e rastreabilidade
+## HARD GATE and Traceability
 
-Uma pergunta não pode ser marcada como encerrada, convertida em regra de negócio ou
-usada em requisito até que uma pessoa responsável forneça validação humana explícita,
-apoiada por evidência em `path:linha`. O agente apenas registra essa informação; nunca
-a produz ou a confirma.
+A question cannot be marked as closed, converted into a business rule, or
+used in a requirement until a responsible person provides explicit human validation
+supported by evidence in `path:line` format. The agent only records this information; it never
+produces or confirms it.
 
-## Definição de pronto
+## Definition of Done
 
-- [ ] Cada linha contém os seis campos da estrutura de registro.
-- [ ] Toda evidência disponível usa `path:linha`.
-- [ ] Toda hipótese é explicitamente marcada como não confirmada.
-- [ ] Cada linha indica uma pessoa ou área responsável e um status.
-- [ ] Nenhuma linha contém resposta, conclusão ou solução gerada pelo agente.
-- [ ] Nenhum arquivo legado foi modificado.
+- [ ] Each row contains the six fields in the record structure.
+- [ ] All available evidence uses `path:line`.
+- [ ] Every hypothesis is explicitly marked as unconfirmed.
+- [ ] Each row identifies a responsible person or area and a status.
+- [ ] No row contains an agent-generated answer, conclusion, or solution.
+- [ ] No legacy file was modified.
 
-## Exemplo de invocação
+## Invocation Example
 
 ```text
 /catalog-mysteries scope=01-arqueologia/

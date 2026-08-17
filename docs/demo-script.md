@@ -1,63 +1,63 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Roteiro de Demonstração
+# Demonstration Script
 
-> **Trilha:** [Kit do Time](../README.md) › [Docs](README.md) › **Roteiro de Demo**
+> **Path:** [Team Kit](../README.md) › [Docs](README.md) › **Demo Script**
 
-**Estrutura para a apresentação final do workshop** — o time define o conteúdo conforme o que produziu.
+**Structure for the workshop's final presentation** — the team defines the content based on what it produced.
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Todo o time, especialmente o Product Owner |
-| **Quando usar** | 16:50–17:30 |
-| **Tempo estimado** | 10 min de preparação + até 30 min de apresentação |
-| **Resultado esperado** | Demonstração executada sem improviso, com evidência verificável |
+| **Target audience** | The entire team, especially the Product Owner |
+| **When to use** | 16:50–17:30 |
+| **Estimated time** | 10 min of preparation + up to 30 min of presentation |
+| **Expected outcome** | Demonstration delivered without improvisation and supported by verifiable evidence |
 
 ---
 
-## Preparação (16:50–17:00)
+## Preparation (16:50–17:00)
 
-- [ ] **Definir papéis** — quem conduz e quem controla o tempo.
-- [ ] **Selecionar evidências** — somente artefatos produzidos e verificáveis pelo time.
-- [ ] **Ensaiar transições** — combinar quem fala em cada momento, sem sobreposição.
-- [ ] **Preparar alternativa** — definir o que mostrar caso algum recurso ao vivo falhe.
-- [ ] **Abrir abas no navegador** — Swagger, frontend e pull request mergeado.
+- [ ] **Assign roles** — decide who presents and who keeps time.
+- [ ] **Select evidence** — use only artifacts produced and verified by the team.
+- [ ] **Rehearse transitions** — agree on who speaks at each point, without overlap.
+- [ ] **Prepare a fallback** — decide what to show if a live resource fails.
+- [ ] **Open browser tabs** — Swagger, frontend, and merged pull request.
 
 ---
 
-## Estrutura sugerida
+## Suggested structure
 
-| Bloco | Conteúdo | Tempo sugerido |
+| Section | Content | Suggested time |
 |---|---|---|
-| **1. Abertura** | Apresente o problema escolhido pelo time e o objetivo da demonstração | 30 s |
-| **2. Descobertas e decisões** | Mostre artefatos que registram evidência, hipóteses e decisões | 60 s |
-| **3. Trabalho realizado** | Apresente uma parte do fluxo implementado e explique como se conecta aos artefatos | 60 s |
-| **4. Validação** | Mostre a evidência disponível para a verificação realizada | 30 s |
-| **5. Encerramento** | Diga o que o time aprendeu, o que está em aberto e qual seria o próximo passo | 30 s |
+| **1. Opening** | Present the problem selected by the team and the demonstration's objective | 30 s |
+| **2. Findings and decisions** | Show artifacts that record evidence, hypotheses, and decisions | 60 s |
+| **3. Work completed** | Present part of the implemented flow and explain how it connects to the artifacts | 60 s |
+| **4. Validation** | Show the available evidence for the validation performed | 30 s |
+| **5. Closing** | State what the team learned, what remains open, and the next step | 30 s |
 
 ---
 
-## Plano alternativo
+## Fallback plan
 
-Se uma apresentação ao vivo não estiver disponível:
+If a live presentation is unavailable:
 
-- [ ] Apresente o artefato ou evidência que o time preparou previamente.
-- [ ] Explique a limitação de forma objetiva.
-- [ ] Não faça afirmações sobre funcionalidades que não possam ser demonstradas.
+- [ ] Present the artifact or evidence the team prepared in advance.
+- [ ] Explain the limitation objectively.
+- [ ] Do not claim functionality that cannot be demonstrated.
 
 ---
 
-## Regra de ouro
+## Golden rule
 
 > [!IMPORTANT]
-> Apresente somente o que o time consegue sustentar com evidência própria. Não complete lacunas com narrativa não verificável.
+> Present only what the team can support with its own evidence. Do not fill gaps with unverifiable narrative.
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [Lições aprendidas](lessons-learned.md)<br/><sub>Erros comuns dos times.</sub> | [Dashboard do dia](STATUS.md)<br/><sub>Acompanhar progresso.</sub> |
+| [Lessons Learned](lessons-learned.md)<br/><sub>Common team mistakes.</sub> | [Daily Dashboard](STATUS.md)<br/><sub>Track progress.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

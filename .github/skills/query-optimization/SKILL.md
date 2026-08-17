@@ -1,49 +1,49 @@
 ---
 name: "query-optimization"
-description: "Use ao investigar consultas lentas, desenhar índices ou revisar planos de execução. Acionadores: 'slow query', 'explain plan', 'index', 'query tuning', 'N+1', 'table scan'."
+description: "Use when investigating slow queries, designing indexes, or reviewing execution plans. Triggers include 'slow query', 'explain plan', 'index', 'query tuning', 'N+1', and 'table scan'."
 ---
 
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
-# Otimização de consultas
+# Query optimization
 
-## Quando invocar
+## When to invoke
 
-- "Esta consulta está lenta."
-- "Por que ela não está usando o índice?"
-- "Devo adicionar um índice em...?"
-- "Revise esta saída de EXPLAIN."
+- "This query is slow."
+- "Why is it not using the index?"
+- "Should I add an index on...?"
+- "Review this EXPLAIN output."
 
-## Fluxo diagnóstico
+## Diagnostic workflow
 
-1. **Meça antes de otimizar** - capture a baseline (latência p50/p95, linhas examinadas, linhas retornadas, leituras lógicas).
-2. **Obtenha o plano**: `EXPLAIN (ANALYZE, BUFFERS)` no PostgreSQL, `EXPLAIN ANALYZE FORMAT=JSON` no MySQL 8, `SET STATISTICS IO, TIME ON` no SQL Server.
-3. **Procure os suspeitos comuns**:
+1. **Measure before optimizing** - capture a baseline (p50/p95 latency, rows examined, rows returned, logical reads).
+2. **Get the plan**: `EXPLAIN (ANALYZE, BUFFERS)` in PostgreSQL, `EXPLAIN ANALYZE FORMAT=JSON` in MySQL 8, or `SET STATISTICS IO, TIME ON` in SQL Server.
+3. **Look for common suspects**:
 
-- **Seq Scan / Table Scan** em tabela grande com predicado seletivo → índice ausente
-- **Estimativa de linhas errada por >10×** → estatísticas obsoletas, execute `ANALYZE`
-- **Nested Loop com muitas linhas externas** → deveria ser Hash/Merge join
-- **Sort derramado para disco** → `work_mem` baixo demais ou índice ausente no ORDER BY
-- **Filtro depois do join** em vez de pushdown → reescreva ou adicione índice de predicado
+- **Seq Scan / Table Scan** on a large table with a selective predicate → missing index
+- **Row estimate off by >10×** → stale statistics; run `ANALYZE`
+- **Nested Loop with many outer rows** → should be a Hash/Merge join
+- **Sort spilled to disk** → `work_mem` is too low or an index is missing for the ORDER BY
+- **Filter after the join** instead of pushdown → rewrite the query or add a predicate index
 
-4. **Proponha a menor mudança**: índice, reescrita, atualização de estatísticas, ajuste de parâmetro.
-5. **Valide**: execute novamente com ANALYZE, confirme que o plano mudou e a latência caiu. Nunca faça "ship and hope".
+4. **Propose the smallest change**: an index, rewrite, statistics update, or parameter adjustment.
+5. **Validate**: run ANALYZE again, confirm that the plan changed, and verify that latency decreased. Never "ship and hope."
 
-## Heurísticas de design de índices
+## Index design heuristics
 
-- **Colunas de igualdade primeiro**, depois range, depois sort (a regra ESR).
-- **Covering index** (colunas INCLUDE) para consultas read-heavy evita heap lookups.
-- **Índice parcial** para filtros altamente seletivos em dados enviesados (`WHERE status = 'pending'`).
-- Todo índice custa escritas - justifique cada um.
+- **Equality columns first**, then range, then sort (the ESR rule).
+- A **covering index** (INCLUDE columns) avoids heap lookups for read-heavy queries.
+- A **partial index** supports highly selective filters on skewed data (`WHERE status = 'pending'`).
+- Every index adds write cost. Justify each one.
 
-## Antipadrões
+## Anti-patterns
 
-- `SELECT *` em caminhos quentes - força acesso ao heap, quebra covering indexes.
-- `WHERE func(col) = x` - impede uso de índice; armazene coluna computada ou use índice de expressão.
-- N+1 vindo do ORM - corrija no ORM (eager load), não com um índice.
-- "Adicionar índice em toda coluna" - desperdiça armazenamento e desacelera escritas.
+- `SELECT *` on hot paths - forces heap access and breaks covering indexes.
+- `WHERE func(col) = x` - prevents index use; store a computed column or use an expression index.
+- N+1 from the ORM - fix it in the ORM (eager load), not with an index.
+- "Add an index to every column" - wastes storage and slows writes.
 
-## Referências
+## References
 
 - [Use The Index, Luke!](https://use-the-index-luke.com/)
 - [PostgreSQL - Performance Tips](https://www.postgresql.org/docs/current/performance-tips.html)

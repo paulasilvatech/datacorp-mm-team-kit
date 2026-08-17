@@ -1,36 +1,36 @@
 ---
 name: "impl-plan"
 agent: "software-architect"
-description: "Estruture o plan.md da feature com tarefas por fases e perfis de capacidade"
+description: "Structure the feature plan.md with phased tasks and capability profiles"
 tools: ["search", "edit"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /impl-plan
 
-## Tarefa
+## Task
 
-Estruture `specs/<NNN>-<feature>/plan.md` para sequenciar tarefas em fases, marcar trabalho paralelizável, registrar o perfil de capacidade necessário por tarefa e definir critérios de saída.
+Structure `specs/<NNN>-<feature>/plan.md` to sequence tasks into phases, mark parallelizable work, record the capability profile required for each task, and define exit criteria.
 
-## Passos
+## Steps
 
-1. Leia `spec.md`, `plan.md` e `tasks.md` da feature.
-2. Agrupe tarefas em fases com base na ordem de dependências (fundação → features → hardening).
-3. Dentro de cada fase, marque tarefas como `[P]` paralelizáveis se tocarem arquivos disjuntos e não tiverem dependência de runtime.
-4. Atribua um perfil de capacidade por tarefa: raciocínio aprofundado (arquitetural), implementação ou mecânico. A pessoa usuária define o contexto de execução ao executar a tarefa.
-5. Defina uma Definição de Pronto por fase: testes passando, docs atualizadas, code review completo.
+1. Read the feature's `spec.md`, `plan.md`, and `tasks.md`.
+2. Group tasks into phases based on dependency order (foundation → features → hardening).
+3. Within each phase, mark tasks as parallelizable with `[P]` if they touch disjoint files and have no runtime dependency.
+4. Assign a capability profile to each task: deep reasoning (architectural), implementation, or mechanical. The user chooses the execution context when running the task.
+5. Define a Definition of Done for each phase: tests passing, documentation updated, and code review complete.
 
-## Saída
+## Output
 
-Uma seção de `plan.md` com:
+A `plan.md` section containing:
 
-- Títulos de fase, cada um com objetivo, estimativa de duração e critérios de saída
-- Tabela de tarefas por fase: `Task ID | Title | [P] | Perfil de capacidade | Est. Effort | Traces To (REQ-ID)`
-- Seção de riscos globais com mitigações
+- Phase headings, each with an objective, duration estimate, and exit criteria
+- Task table for each phase: `Task ID | Title | [P] | Capability Profile | Est. Effort | Traces To (REQ-ID)`
+- Global risks section with mitigations
 
-## Gate de Qualidade
+## Quality gate
 
-- [ ] Toda tarefa rastreia para pelo menos um REQ-ID
-- [ ] Tarefas `[P]` realmente tocam arquivos independentes (verificado por grep)
-- [ ] Critérios de saída de fase são mensuráveis
-- [ ] Nenhuma tarefa é maior que 1 dia de esforço sem decomposição
+- [ ] Every task traces to at least one REQ-ID
+- [ ] `[P]` tasks actually touch independent files (verified with grep)
+- [ ] Phase exit criteria are measurable
+- [ ] No task exceeds one day of effort without decomposition

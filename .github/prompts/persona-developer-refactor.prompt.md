@@ -1,70 +1,70 @@
 ---
 name: "refactor"
 agent: "implementer"
-description: "Refatore código com testes verdes sem alterar comportamento observável nem quebrar a rastreabilidade de REQ-ID."
+description: "Refactor code with passing tests without changing observable behavior or breaking REQ-ID traceability."
 tools: ["search", "edit", "execute"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /refactor
 
-## Objetivo
+## Objective
 
-Você está melhorando a estrutura interna do código do SIFAP 2.0 sem alterar o que ele faz. Uma refatoração que muda comportamento não é refatoração — é uma mudança de feature e pertence a `/implement` ou `/fix-bug`. Sua saída deve deixar todos os testes existentes verdes e todos os vínculos de `REQ-ID` intactos.
+You are improving the internal structure of SIFAP 2.0 code without changing what it does. A refactor that changes behavior is not a refactor—it is a feature change and belongs in `/implement` or `/fix-bug`. Your output must leave all existing tests passing and all `REQ-ID` links intact.
 
-## Entradas
+## Inputs
 
-Peça ao usuário qualquer item que esteja faltando.
+Ask the user for any missing item.
 
-- O arquivo, pacote ou componente alvo.
-- A motivação: code smell observado (long method, duplicação, primitive obsession, feature envy etc.).
-- Quaisquer restrições de `plan.md` ou ADRs que limitem seus movimentos (por exemplo "controllers devem permanecer finos").
-- A cobertura de testes atual da área (execute um relatório de cobertura se desconhecida).
+- The target file, package, or component.
+- The motivation: the observed code smell (long method, duplication, primitive obsession, feature envy, etc.).
+- Any constraints from `plan.md` or ADRs that limit your changes (for example, "controllers must remain thin").
+- The area's current test coverage (run a coverage report if unknown).
 
-## Processo
+## Process
 
-1. **Confirme a rede de segurança.** Se a cobertura de linhas do alvo estiver abaixo de 80%, escreva primeiro testes de caracterização. Refatoração sem testes é reescrita.
-2. **Nomeie o smell com precisão.** Escolha do catálogo (Long Method, Large Class, Primitive Obsession, Data Clumps, Feature Envy, Shotgun Surgery, Divergent Change). Justificativas vagas como "deixar mais limpo" são rejeitadas.
-3. **Escolha uma manobra de refatoração do catálogo de Fowler** — Extract Method, Extract Class, Replace Conditional with Polymorphism, Introduce Parameter Object etc. Uma manobra por commit.
-4. **Execute os testes antes de qualquer mudança.** Confirme verde. Se estiverem vermelhos ou pulados, corrija isso primeiro; não refatore em builds quebrados.
-5. **Aplique a manobra.** Use as ferramentas de refatoração da IDE quando possível (Extract Method, Rename, Move). Edições manuais devem preservar assinaturas de métodos, a menos que a manobra seja "Change Function Declaration".
-6. **Execute testes após cada micro-passo.** Os testes permanecem verdes em todo commit. Se ficarem vermelhos, reverta e dê um passo menor.
-7. **Preserve a rastreabilidade.** Toda anotação `@implements REQ-NNN` deve se mover junto com seu método. Não as exclua nem as funda silenciosamente.
-8. **Pare quando o smell desaparecer.** Resista à vontade de refatorar código vizinho. Cada refatoração é um chat, um PR, um smell.
+1. **Confirm the safety net.** If the target's line coverage is below 80%, write characterization tests first. Refactoring without tests is rewriting.
+2. **Name the smell precisely.** Choose from the catalog (Long Method, Large Class, Primitive Obsession, Data Clumps, Feature Envy, Shotgun Surgery, Divergent Change). Vague justifications such as "make it cleaner" are rejected.
+3. **Choose a refactoring move from Fowler's catalog**—Extract Method, Extract Class, Replace Conditional with Polymorphism, Introduce Parameter Object, etc. One move per commit.
+4. **Run tests before making any change.** Confirm they pass. If they fail or are skipped, fix that first; do not refactor broken builds.
+5. **Apply the move.** Use IDE refactoring tools when possible (Extract Method, Rename, Move). Manual edits must preserve method signatures unless the move is "Change Function Declaration."
+6. **Run tests after every micro-step.** Tests must remain green in every commit. If they fail, revert and take a smaller step.
+7. **Preserve traceability.** Every `@implements REQ-NNN` annotation must move with its method. Do not delete or silently merge them.
+8. **Stop when the smell is gone.** Resist the urge to refactor neighboring code. Each refactor is one chat, one PR, one smell.
 
-## Saída
+## Output
 
-Sua resposta final deve incluir:
+Your final response must include:
 
-- **Smell nomeado** — entrada exata do catálogo mais 1–2 linhas de evidência.
-- **Refatoração escolhida** — entrada exata do catálogo, mais por que ela se encaixa.
-- **Diff ou antes/depois** de cada arquivo tocado.
-- **Resultados dos testes** — confirmação de que o mesmo conjunto de testes passa (cole o resumo).
-- **Nota de preservação de comportamento** — "API pública inalterada. Nenhuma nova cláusula throws. Nenhuma migration de DB. Nenhuma nova env var."
-- **Mensagem de commit** seguindo Conventional Commits com o tipo `refactor:`:
+- **Named smell** — the exact catalog entry plus 1–2 lines of evidence.
+- **Chosen refactoring** — the exact catalog entry and why it fits.
+- **Diff or before/after** for every touched file.
+- **Test results** — confirmation that the same test set passes (paste the summary).
+- **Behavior-preservation note** — "Public API unchanged. No new throws clauses. No DB migration. No new environment variables."
+- **Commit message** following Conventional Commits with the `refactor:` type:
 
  ```
  refactor(<scope>): <short description>
 
- <descreva o comportamento preservado e a melhoria estrutural>
+ <describe the preserved behavior and structural improvement>
 
  Refs: REQ-XXX
  ```
 
-## Antipadrões
+## Anti-patterns
 
-- Refatorar sem testes. Isso é uma reescrita com outro nome.
-- Fazer "pequenas melhorias" em código vizinho. Permaneça no escopo.
-- Mudar comportamento sob o disfarce de refatoração. Se a saída muda, não é refatoração.
-- Renomear APIs públicas sem plano de migração ou aviso de depreciação.
-- Agrupar refatoração + feature no mesmo PR. Revisores não conseguem raciocinar sobre isso.
-- Refatorar código com um `/fix-bug` pendente — corrija primeiro, depois refatore sobre uma baseline limpa.
+- Refactoring without tests. That is a rewrite by another name.
+- Making "small improvements" to neighboring code. Stay within scope.
+- Changing behavior under the guise of refactoring. If the output changes, it is not a refactor.
+- Renaming public APIs without a migration plan or deprecation notice.
+- Combining a refactor and feature in the same PR. Reviewers cannot reason about it reliably.
+- Refactoring code with a pending `/fix-bug`—fix it first, then refactor from a clean baseline.
 
-## Critérios de sucesso
+## Success Criteria
 
-- [ ] Todos os testes que passavam antes continuam passando com os mesmos nomes.
-- [ ] Nenhuma mudança de API pública, nenhuma nova exceção, nenhuma nova dependência.
-- [ ] A cobertura não diminuiu.
-- [ ] Um smell, uma manobra, um PR.
-- [ ] Todas as anotações `@implements REQ-NNN` ainda estão presentes e corretas.
-- [ ] A mensagem de commit usa o tipo `refactor:` e declara explicitamente "sem mudança de comportamento".
+- [ ] All tests that passed before still pass with the same names.
+- [ ] No public API changes, new exceptions, or new dependencies.
+- [ ] Coverage does not decrease.
+- [ ] One smell, one move, one PR.
+- [ ] All `@implements REQ-NNN` annotations remain present and correct.
+- [ ] The commit message uses the `refactor:` type and explicitly states "no behavior change."

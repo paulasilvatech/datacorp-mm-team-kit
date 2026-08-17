@@ -2,8 +2,8 @@
 
 ---
 
-title: "Modelo: Bounded Contexts"
-description: "Esqueleto para definições de bounded contexts via /carve-bounded-contexts"
+title: "Template: Bounded Contexts"
+description: "Skeleton for bounded context definitions through /carve-bounded-contexts"
 author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at Microsoft"
 date: "2026-04-29"
 version: "1.0.0"
@@ -11,59 +11,59 @@ status: "approved"
 tags: ["template", "bounded-contexts", "architect", "stage-2"]
 ---
 
-<!-- Como usar: execute /carve-bounded-contexts. Clone o bloco de contexto para cada um. -->
+<!-- How to use: run /carve-bounded-contexts. Clone the context block for each context. -->
 
-# Mapa de Bounded Contexts
+# Bounded Context Map
 
-![Template bounded-contexts](https://img.shields.io/badge/Template-bounded--contexts-737373?style=flat-square) ![Copie — não edite o original](https://img.shields.io/badge/Copie-n%C3%A3o%20edite%20o%20original-A3A3A3?style=flat-square)
+![Bounded-contexts template](https://img.shields.io/badge/Template-bounded--contexts-737373?style=flat-square) ![Copy — do not edit the original](https://img.shields.io/badge/Copy-do%20not%20edit%20the%20original-A3A3A3?style=flat-square)
 
-> **Trilha:** [Kit do Time](../../README.md) › [Estágio 2](../README.md) › Templates › **bounded-contexts**
+> **Path:** [Team Kit](../../README.md) › [Stage 2](../README.md) › Templates › **bounded-contexts**
 
 > [!NOTE]
-> Este arquivo é um TEMPLATE. Copie para o repositório do seu time e preencha com os dados reais. Não edite o original.
+> This file is a TEMPLATE. Copy it to your team's repository and fill it with actual data. Do not edit the original.
 
 ---
 
-## Conceito: Bounded Context
+## Concept: Bounded Context
 
-Um bounded context é um limite explícito dentro do qual um modelo de domínio é válido e consistente. O termo vem do Domain-Driven Design (DDD) e é a base para definir os módulos de um Modular Monolith.
+A bounded context is an explicit boundary within which a domain model is valid and consistent. The term comes from Domain-Driven Design (DDD) and provides the foundation for defining the modules of a Modular Monolith.
 
-**Por que importa:** no SIFAP, o módulo de pagamentos usa o termo "beneficiário" de uma forma; o módulo de fiscalização pode usar o mesmo termo com regras diferentes. Definir os bounded contexts evita que um único modelo seja distorcido para atender a todos os contextos ao mesmo tempo, o que leva a acoplamento indesejado e dificuldade de evolução.
+**Why it matters:** in SIFAP, the payments module uses the term "beneficiary" in one way, while the inspection module may use the same term with different rules. Defining bounded contexts prevents a single model from being distorted to serve every context at once, which causes unwanted coupling and makes evolution difficult.
 
-**Modular Monolith:** arquitetura onde os bounded contexts são módulos Java independentes dentro de uma única JVM. Cada módulo tem suas próprias camadas (`domain/`, `application/`, `infrastructure/`) e se comunica com os demais apenas por interfaces públicas definidas.
+**Modular Monolith:** an architecture in which bounded contexts are independent Java modules within a single JVM. Each module has its own layers (`domain/`, `application/`, `infrastructure/`) and communicates with other modules only through defined public interfaces.
 
-**Strangler Fig:** padrão de migração incremental em que o sistema moderno cresce ao redor do legado, substituindo funcionalidades uma a uma. O SIFAP 2.0 não precisa substituir tudo de uma vez: cada bounded context pode ser modernizado de forma independente.
+**Strangler Fig:** an incremental migration pattern in which the modern system grows around the legacy system and replaces features one at a time. SIFAP 2.0 does not need to replace everything at once. Each bounded context can be modernized independently.
 
 ---
 
-## Avaliações de hipóteses
+## Hypothesis assessments
 
-### <!-- placeholder: Nome --> — <!-- placeholder: ACEITO / REJEITADO -->
+### <!-- placeholder: Name --> — <!-- placeholder: ACCEPTED / REJECTED -->
 
-| Critério | Avaliação | Evidência |
+| Criterion | Assessment | Evidence |
 |---|---|---|
-| Coesão | <!-- placeholder --> | <!-- placeholder --> |
-| Acoplamento | <!-- placeholder --> | <!-- placeholder --> |
-| Frequência de mudança | <!-- placeholder --> | <!-- placeholder --> |
+| Cohesion | <!-- placeholder --> | <!-- placeholder --> |
+| Coupling | <!-- placeholder --> | <!-- placeholder --> |
+| Change frequency | <!-- placeholder --> | <!-- placeholder --> |
 
 ---
 
-## Bounded contexts finais
+## Final bounded contexts
 
-### <!-- placeholder: Nome do Contexto -->
+### <!-- placeholder: Context Name -->
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Responsabilidade** | <!-- placeholder --> |
-| **Dados sob ownership** | <!-- placeholder --> |
-| **Interface pública** | <!-- placeholder --> |
-| **Por que é seu próprio contexto** | <!-- placeholder --> |
+| **Responsibility** | <!-- placeholder --> |
+| **Owned data** | <!-- placeholder --> |
+| **Public interface** | <!-- placeholder --> |
+| **Why it is its own context** | <!-- placeholder --> |
 
 ---
 
-## Comunicação entre contextos
+## Communication between contexts
 
-| De | Para | Mecanismo | Dados |
+| From | To | Mechanism | Data |
 |---|---|---|---|
 | <!-- placeholder --> | <!-- placeholder --> | <!-- placeholder --> | <!-- placeholder --> |
 
@@ -72,20 +72,20 @@ Um bounded context é um limite explícito dentro do qual um modelo de domínio 
 flowchart LR
     classDef ctx fill:#F5F5F5,stroke:#171717,color:#171717
 
-    CTX1["Contexto 1"]:::ctx -->|"chama"| CTX2["Contexto 2"]:::ctx
+    CTX1["Context 1"]:::ctx -->|"calls"| CTX2["Context 2"]:::ctx
 ```
 
 ---
 
 > [!IMPORTANT]
-> Definição de Pronto: hipóteses avaliadas, rejeições documentadas, 2 a 5 contextos nomeados, diagrama Mermaid renderiza sem erros.
+> Definition of Done: hypotheses assessed, rejections documented, 2 to 5 contexts named, and the Mermaid diagram renders without errors.
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [GUIDE do Estágio 2](../GUIDE.md)<br/><sub>Passo a passo.</sub> | [ADR Template](ADR.template.md)<br/><sub>Template de ADR.</sub> |
+| [Stage 2 GUIDE](../GUIDE.md)<br/><sub>Step-by-step instructions.</sub> | [ADR Template](ADR.template.md)<br/><sub>ADR template.</sub> |
 
-<sub>[Voltar ao índice do kit](../../README.md)</sub>
+<sub>[Back to the kit index](../../README.md)</sub>

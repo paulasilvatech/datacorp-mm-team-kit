@@ -1,36 +1,36 @@
 ---
 name: "routing-table"
 agent: "tech-lead"
-description: "Gere uma tabela de roteamento de tarefa por perfil de capacidade"
+description: "Generate a task routing table by capability profile"
 tools: ["search"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /routing-table
 
-## Tarefa
+## Task
 
-Produza uma tabela de roteamento que mapeia tarefas do SDLC para o perfil de capacidade necessário e explica o trade-off custo/qualidade, sem fixar uma capacidade ou fornecedor.
+Produce a routing table that maps SDLC tasks to the required capability profile and explains the cost/quality trade-off without pinning a specific capability or provider.
 
-## Passos
+## Steps
 
-1. Leia `specs/<NNN>-<feature>/tasks.md` (ou o backlog) e categorize cada tarefa como: Descoberta, Design, Implementação, Refactor, Review, Mechanical.
-2. Para cada categoria, recomende um perfil:
+1. Read `specs/<NNN>-<feature>/tasks.md` (or the backlog) and categorize each task as Discovery, Design, Implementation, Refactor, Review, or Mechanical.
+2. Recommend a profile for each category:
 
-- Descoberta / design ambíguo: raciocínio aprofundado.
-- Implementação / code review: implementação.
-- Edições mecânicas / renomes em massa / formatação: mecânico.
+- Discovery / ambiguous design: deep reasoning.
+- Implementation / code review: implementation.
+- Mechanical edits / bulk renames / formatting: mechanical.
 
-3. Para cada tarefa, estime o custo de tokens (ordem de grandeza aproximada) e justifique o perfil em uma frase.
-4. Sinalize tarefas em que um perfil mais econômico é suficiente, sem comprometer a qualidade aceitável. A pessoa usuária decide o contexto de execução no momento da execução.
+3. For each task, estimate token cost (approximate order of magnitude) and justify the profile in one sentence.
+4. Flag tasks for which a more economical profile is sufficient without compromising acceptable quality. The user chooses the execution context at execution time.
 
-## Saída
+## Output
 
-Tabela Markdown: `Task ID | Category | Perfil de capacidade | Rationale | Est. Cost Tier`.
+Markdown table: `Task ID | Category | Capability Profile | Rationale | Est. Cost Tier`.
 
-## Gate de Qualidade
+## Quality gate
 
-- [ ] Toda tarefa tem perfil de capacidade e justificativa
-- [ ] Pelo menos um candidato a perfil mecânico identificado (ou anotado como "none applicable")
-- [ ] Níveis de custo são consistentes (a mesma categoria raramente usa níveis diferentes)
-- [ ] A justificativa referencia o conteúdo da tarefa, não linguagem genérica
+- [ ] Every task has a capability profile and justification
+- [ ] At least one mechanical-profile candidate is identified (or noted as "none applicable")
+- [ ] Cost tiers are consistent (the same category rarely uses different tiers)
+- [ ] The justification references the task content rather than generic language

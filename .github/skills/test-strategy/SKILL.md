@@ -1,13 +1,13 @@
 ---
 name: "test-strategy"
-description: "Use quando pedirem para desenhar uma estratégia de testes, escolher o formato da pirâmide de testes, definir metas de cobertura ou avaliar investimentos em testes nas camadas unit / integration / E2E."
+description: "Use when asked to design a test strategy, choose the shape of the test pyramid, define coverage targets, or evaluate testing investments across the unit / integration / E2E layers."
 ---
 
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
-# Designer de estratégia de testes
+# Test Strategy Designer
 
-## Quando invocar
+## When to invoke
 
 - "Design a test strategy for…"
 - "How much unit vs integration vs E2E testing?"
@@ -16,21 +16,21 @@ description: "Use quando pedirem para desenhar uma estratégia de testes, escolh
 
 ## Workflow
 
-1. **Inventarie** o código sob teste: módulos, APIs públicas, integrações externas, caminhos críticos.
-2. **Classifique o risco** por módulo (P0 / P1 / P2) com base no blast radius se ele quebrar.
-3. **Aloque a pirâmide**: mire em 70% unit, 20% integration, 10% E2E como ponto de partida; justifique desvios.
-4. **Defina metas de cobertura**: baseline de 80% de cobertura de linhas, 90% para módulos P0, cobertura de branches acompanhada separadamente.
-5. **Defina o orçamento de flaky tests**: taxa flaky máxima de 1%; qualquer coisa acima dispara quarentena.
-6. **Escolha ferramentas por camada**: unit (Vitest/JUnit/pytest), integration (Testcontainers), E2E (Playwright).
-7. **Saída**: um doc de estratégia de uma página com metas por camada, ferramentas, thresholds de cobertura e regras de quarentena.
+1. **Inventory** the code under test: modules, public APIs, external integrations, and critical paths.
+2. **Classify risk** by module (P0 / P1 / P2) based on the blast radius if it fails.
+3. **Allocate the pyramid**: target 70% unit, 20% integration, and 10% E2E as a starting point; justify deviations.
+4. **Define coverage targets**: a baseline of 80% line coverage, 90% for P0 modules, with branch coverage tracked separately.
+5. **Define the flaky-test budget**: a maximum flaky rate of 1%; anything above it triggers quarantine.
+6. **Choose tools by layer**: unit (Vitest/JUnit/pytest), integration (Testcontainers), E2E (Playwright).
+7. **Output**: a one-page strategy document with per-layer targets, tools, coverage thresholds, and quarantine rules.
 
-## Heurísticas
+## Heuristics
 
-- Se um teste E2E puder ser reescrito como integration + contract test, faça isso - E2E é caro e flaky.
-- Contract tests vencem mocks para qualquer coisa que cruza uma fronteira de serviço.
-- Mutation testing (Stryker, PIT) é a única forma honesta de detectar testes fantasmas.
+- If an E2E test can be rewritten as an integration + contract test, do it—E2E is expensive and flaky.
+- Contract tests beat mocks for anything that crosses a service boundary.
+- Mutation testing (Stryker, PIT) is the only honest way to detect tests that prove nothing.
 
-## Referências
+## References
 
 - [Google Testing Blog - Test Sizes](https://testing.googleblog.com/2010/12/test-sizes.html)
 - [ISTQB Foundation Syllabus](https://www.istqb.org/certifications/certified-tester-foundation-level)

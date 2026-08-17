@@ -1,42 +1,42 @@
 # Instructions Index
 
-Este diretório guarda as file-specific instructions do GitHub Copilot para o workshop.
+This directory contains the GitHub Copilot file-specific instructions for the workshop.
 
-> Importante: o Copilot descobre arquivos `*.instructions.md` em `.github/instructions/` e em seus subdiretórios. Este workshop os mantém diretamente neste diretório para que o índice e os escopos sejam fáceis de revisar.
+> Important: Copilot discovers `*.instructions.md` files in `.github/instructions/` and its subdirectories. This workshop keeps them directly in this directory so the index and scopes are easy to review.
 
-## Arquitetura e Legado
+## Architecture and Legacy
 
-| Arquivo | Quando se aplica |
+| File | When it applies |
 | --- | --- |
-| `modular-monolith.instructions.md` | Código Java/Spring, Maven/Gradle e arquitetura de Modular Monolith. |
-| `natural-adabas.instructions.md` | Leitura do legado Natural/Adabas, DDMs, copycodes e artefatos em `01-arqueologia/legado-sifap/`. |
+| `modular-monolith.instructions.md` | Java/Spring code, Maven/Gradle, and Modular Monolith architecture. |
+| `natural-adabas.instructions.md` | Reading Natural/Adabas legacy code, DDMs, copycodes, and artifacts in `01-arqueologia/legado-sifap/`. |
 
-## Implementação
+## Implementation
 
-| Arquivo | Quando se aplica |
+| File | When it applies |
 | --- | --- |
-| `backend.instructions.md` | APIs, services, controllers, validação e fronteiras de backend. |
-| `frontend.instructions.md` | Componentes e páginas frontend genéricas. |
-| `frontend-spec.instructions.md` | Next.js 15 App Router, TypeScript strict, Tailwind CSS e shadcn/ui. |
-| `database.instructions.md` | Repositories, migrations, schema, SQL, índices e mudanças de dados. |
+| `backend.instructions.md` | APIs, services, controllers, validation, and backend boundaries. |
+| `frontend.instructions.md` | Generic frontend components and pages. |
+| `frontend-spec.instructions.md` | Next.js 15 App Router, strict TypeScript, Tailwind CSS, and shadcn/ui. |
+| `database.instructions.md` | Repositories, migrations, schema, SQL, indexes, and data changes. |
 
-## Entrega e Operação
+## Delivery and Operations
 
-| Arquivo | Quando se aplica |
+| File | When it applies |
 | --- | --- |
-| `cicd.instructions.md` | GitHub Actions, workflows YAML, gates de CI/CD e automação de build/deploy. |
-| `infrastructure.instructions.md` | Terraform, Bicep, Azure IaC e configuração de ambientes. |
+| `cicd.instructions.md` | GitHub Actions, YAML workflows, CI/CD gates, and build/deployment automation. |
+| `infrastructure.instructions.md` | Terraform, Bicep, Azure IaC, and environment configuration. |
 
-## Qualidade, Segurança e Requisitos
+## Quality, Security, and Requirements
 
-| Arquivo | Quando se aplica |
+| File | When it applies |
 | --- | --- |
-| `requirements.instructions.md` | Requisitos, EARS, critérios de aceite, rastreabilidade e documentação de requisitos. |
-| `security.instructions.md` | Autenticação, autorização, crypto, secrets, configuração segura e código sensível. |
-| `tests.instructions.md` | Testes automatizados, estratégia de testes, coverage gaps, regressão e quality gates. |
+| `requirements.instructions.md` | Requirements, EARS, acceptance criteria, traceability, and requirements documentation. |
+| `security.instructions.md` | Authentication, authorization, cryptography, secrets, secure configuration, and sensitive code. |
+| `tests.instructions.md` | Automated tests, test strategy, coverage gaps, regression, and quality gates. |
 
-## Regra de Manutenção
+## Maintenance Rule
 
-- Cada arquivo deve manter frontmatter YAML válido com `description` e `applyTo`.
-- Evite `applyTo: "**"`; prefira globs específicos.
-- Quando criar uma nova área, adicione uma nova `*.instructions.md` flat neste diretório e atualize este índice.
+- Every file MUST maintain valid YAML frontmatter with `description` and `applyTo`.
+- Avoid `applyTo: "**"`; prefer specific globs.
+- When creating a new area, add a new flat `*.instructions.md` file in this directory and update this index.

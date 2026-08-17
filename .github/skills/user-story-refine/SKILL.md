@@ -1,34 +1,34 @@
 ---
 name: "user-story-refine"
-description: "Use ao refinar itens de backlog, dividir épicos ou validar critérios INVEST. Aciona com \"refine story\", \"split epic\", \"critérios de aceite\", \"user story\", \"INVEST\"."
+description: "Use when refining backlog items, splitting epics, or validating INVEST criteria. Triggers include \"refine story\", \"split epic\", \"acceptance criteria\", \"user story\", and \"INVEST\"."
 ---
 
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
-# Refinamento de User Story
+# User Story Refinement
 
-## Quando invocar
+## When to invoke
 
 - "This story is too big. Help me split it."
-- "Turn this feature description into user stories with critérios de aceite."
+- "Turn this feature description into user stories with acceptance criteria."
 - "Check if these stories are INVEST-compliant."
 
-## Entradas necessárias
+## Required inputs
 
-- Descrição da feature ou épico
-- Persona / tipo de usuário
-- Objetivo de negócio atendido pela feature
-- Quaisquer restrições conhecidas (regulatórias, técnicas, UX)
+- Feature or epic description
+- Persona / user type
+- Business objective served by the feature
+- Any known constraints (regulatory, technical, UX)
 
-## Passos de refinamento
+## Refinement steps
 
-1. **Confirme o resultado**. Toda story deve responder: qual persona, qual resultado, por que importa.
-2. **Aplique INVEST** (Independent, Negotiable, Valuable, Estimable, Small, Testable) a cada rascunho.
-3. **Divida verticalmente**, nunca horizontalmente. Prefira divisões por: etapa do workflow, variação de dados, operação CRUD, caminho feliz vs. caminho de borda, regra de negócio, critério de aceitação.
-4. **Escreva critérios de aceitação em Given/When/Then**. Inclua um caminho feliz, um caso de borda e um caso de falha.
-5. **Rastreie até REQ-ID**. Toda story se vincula a pelo menos um requisito.
+1. **Confirm the outcome**. Every story must answer: which persona, what outcome, and why it matters.
+2. **Apply INVEST** (Independent, Negotiable, Valuable, Estimable, Small, Testable) to every draft.
+3. **Split vertically**, never horizontally. Prefer splits by workflow step, data variation, CRUD operation, happy path vs. edge path, business rule, or acceptance criterion.
+4. **Write acceptance criteria in Given/When/Then format**. Include a happy path, an edge case, and a failure case.
+5. **Trace to a REQ-ID**. Every story links to at least one requirement.
 
-## Template de saída
+## Output template
 
 ```markdown
 ### US-NNN: <short title>
@@ -45,13 +45,13 @@ description: "Use ao refinar itens de backlog, dividir épicos ou validar crité
 **Dependencies**: US-NNN (if any)
 ```
 
-## Antipadrões
+## Antipatterns
 
-- Stories escritas como tarefas ("Add a button").
-- Critérios de aceitação que descrevem UI em vez de comportamento.
-- Divisões horizontais ("backend story" + "frontend story" para a mesma feature).
-- Link de REQ-ID ausente.
+- Stories written as tasks ("Add a button").
+- Acceptance criteria that describe UI instead of behavior.
+- Horizontal splits ("backend story" + "frontend story" for the same feature).
+- Missing REQ-ID link.
 
-## Gate de qualidade
+## Quality gate
 
-Rejeite qualquer story que falhe no INVEST ou não tenha critérios de aceitação Given/When/Then.
+Reject any story that fails INVEST or lacks Given/When/Then acceptance criteria.

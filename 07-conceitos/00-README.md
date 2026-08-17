@@ -1,35 +1,35 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# 07 — Conceitos Fundamentais do Workshop
+# 07 — Core Workshop Concepts
 
-> **Trilha:** [Kit do Time](../README.md) › **Conceitos Fundamentais**
+> **Path:** [Team Kit](../README.md) › **Core Concepts**
 
-**Este índice apresenta os conceitos essenciais do workshop de modernização do SIFAP — o que você vai aprender, em que ordem, quanto tempo leva e como cada conceito se conecta aos quatro estágios de trabalho.**
+**This index introduces the essential concepts for the SIFAP modernization workshop—what you will learn, in what order, how long it takes, and how each concept connects to the four work stages.**
 
-![Seção Conceitos](https://img.shields.io/badge/Se%C3%A7%C3%A3o-07%20Conceitos-171717?style=flat-square) ![Audiência Todos](https://img.shields.io/badge/Audi%C3%AAncia-Todos-737373?style=flat-square) ![Leia Antes do Estágio 1](https://img.shields.io/badge/Leia-Antes%20do%20Est%C3%A1gio%201-A3A3A3?style=flat-square)
+![Concepts Section](https://img.shields.io/badge/Section-07%20Concepts-171717?style=flat-square) ![Audience Everyone](https://img.shields.io/badge/Audience-Everyone-737373?style=flat-square) ![Read Before Stage 1](https://img.shields.io/badge/Read-Before%20Stage%201-A3A3A3?style=flat-square)
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Qualquer pessoa do time, incluindo quem não programa |
-| **Pré-requisitos** | Nenhum — este é o ponto de partida |
-| **Tempo estimado** | 60 a 90 min para ler todos os documentos |
-| **Resultado esperado** | Vocabulário compartilhado antes do Estágio 1 |
+| **Target audience** | Anyone on the team, including non-developers |
+| **Prerequisites** | None—this is the starting point |
+| **Estimated time** | 60–90 min to read all documents |
+| **Expected outcome** | Shared vocabulary before Stage 1 |
 
 ---
 
-## O que você vai aprender
+## What you will learn
 
-Cada arquivo desta pasta explica um conceito técnico de forma direta, com exemplos reais do domínio SIFAP (pagamentos, benefícios, fiscalização). Ao concluir a leitura, você consegue:
+Each file in this folder explains a technical concept directly, using real examples from the SIFAP (Payment Inspection and Administration System) domain: payments, benefits, and inspections. After reading them, you will be able to:
 
-- Explicar o ciclo do Spec-Kit sem consultar nada
-- Distinguir persona-kit de agente de estágio e saber como combiná-los no Copilot Chat
-- Escolher o modo correto do Copilot (Ask, Plan ou Agent) para cada situação
-- Escrever ou revisar um requisito no formato EARS com `source_legacy:`
-- Escrever ou avaliar uma Architecture Decision Record (ADR)
+- Explain the Spec-Kit cycle without referring to documentation
+- Distinguish a persona kit from a stage agent and know how to combine them in Copilot Chat
+- Choose the right Copilot mode (Ask, Plan, or Agent) for each situation
+- Write or review an EARS requirement with `source_legacy:`
+- Write or evaluate an Architecture Decision Record (ADR)
 
 ---
 
-## Trilha de aprendizado
+## Learning path
 
 ```mermaid
 %%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
@@ -38,62 +38,62 @@ flowchart TD
     classDef tool fill:#FFFFFF,stroke:#525252,color:#171717
     classDef result fill:#FFFFFF,stroke:#171717,color:#171717,stroke-width:2px
 
-    A["01 — Spec-Driven Development<br/><sub>O que é o Spec-Kit e por que especificar antes de codar</sub>"]:::step
-    B["02 — Agentes e Personas<br/><sub>Duas camadas de contexto no Copilot Chat</sub>"]:::step
-    C["04 — 3 modos do Copilot<br/><sub>Ask · Plan · Agent e critérios de escolha</sub>"]:::step
-    D["03 — Glossário Visual<br/><sub>Referência de 30+ termos — consulte quando precisar</sub>"]:::tool
-    E["05 — Notação EARS<br/><sub>Como escrever requisitos sem ambiguidade</sub>"]:::step
-    F["06 — Architecture Decision Records<br/><sub>Como registrar decisões para o time futuro</sub>"]:::step
-    G["Estágio 1 — Arqueologia"]:::result
+    A["01 — Spec-Driven Development<br/><sub>What Spec-Kit is and why to specify before coding</sub>"]:::step
+    B["02 — Agents and Personas<br/><sub>Two context layers in Copilot Chat</sub>"]:::step
+    C["04 — Copilot's 3 Modes<br/><sub>Ask · Plan · Agent and selection criteria</sub>"]:::step
+    D["03 — Visual Glossary<br/><sub>Reference for 30+ terms—consult as needed</sub>"]:::tool
+    E["05 — EARS Notation<br/><sub>How to write unambiguous requirements</sub>"]:::step
+    F["06 — Architecture Decision Records<br/><sub>How to record decisions for the future team</sub>"]:::step
+    G["Stage 1 — Archaeology"]:::result
 
     A --> B --> C --> E --> F --> G
-    D -. "consulta a qualquer momento" .-> G
+    D -. "consult at any time" .-> G
 ```
 
 ---
 
-## Documentos desta pasta
+## Documents in this folder
 
-| # | Documento | Conceito central | Estágio principal |
+| # | Document | Core concept | Main stage |
 |---|---|---|---|
-| 01 | [Spec-Driven Development](01-spec-driven-development.md) | Ciclo Spec-Kit: specify → plan → tasks → implement | Estágio 2 |
-| 02 | [Agentes e Personas](02-agentes-e-personas.md) | Persona-kit individual × agente de estágio compartilhado | Todos |
-| 03 | [Glossário Visual](03-glossario-visual.md) | 30+ termos com definição, exemplo SIFAP e referência | Todos |
-| 04 | [3 modos do Copilot](04-3-modos-do-copilot.md) | Ask · Plan · Agent — critérios e antipadrões | Todos |
-| 05 | [Notação EARS](05-notacao-ears.md) | 6 padrões EARS (5 base + Complex), REQ-ID e `source_legacy:` | Estágio 2 |
-| 06 | [Architecture Decision Records](06-architecture-decision-records.md) | Anatomia, quando escrever e ciclo de vida de ADRs | Estágio 2 |
+| 01 | [Spec-Driven Development](01-spec-driven-development.md) | Spec-Kit cycle: specify → plan → tasks → implement | Stage 2 |
+| 02 | [Agents and Personas](02-agentes-e-personas.md) | Individual persona kit × shared stage agent | All |
+| 03 | [Visual Glossary](03-glossario-visual.md) | 30+ terms with a definition, SIFAP example, and reference | All |
+| 04 | [Copilot's 3 Modes](04-3-modos-do-copilot.md) | Ask · Plan · Agent—criteria and anti-patterns | All |
+| 05 | [EARS Notation](05-notacao-ears.md) | 6 EARS patterns (5 basic + Complex), REQ-ID, and `source_legacy:` | Stage 2 |
+| 06 | [Architecture Decision Records](06-architecture-decision-records.md) | Anatomy, when to write one, and the ADR lifecycle | Stage 2 |
 
 ---
 
-## Conexão com os quatro estágios
+## Connection to the four stages
 
-| Estágio | Documentos de referência desta pasta |
+| Stage | Reference documents in this folder |
 |---|---|
-| Estágio 1 — Arqueologia | Glossário (termos legado: Natural, DDM, MU, PE, BR-NNN) |
-| Estágio 2 — Especificação | Spec-Kit, Agentes, EARS, ADR, Glossário (EARS, REQ-ID, source_legacy) |
-| Estágio 3 — Implementação | 3 modos do Copilot, Glossário (JPA, Flyway, Testcontainers, Controller) |
-| Estágio 4 — Evolução | 3 modos do Copilot (modo Agent), Glossário (IaC, Terraform, CI/CD) |
+| Stage 1 — Archaeology | Glossary (legacy terms: Natural, DDM, MU, PE, BR-NNN) |
+| Stage 2 — Specification | Spec-Kit, Agents, EARS, ADR, Glossary (EARS, REQ-ID, source_legacy) |
+| Stage 3 — Implementation | Copilot's 3 Modes, Glossary (JPA, Flyway, Testcontainers, Controller) |
+| Stage 4 — Evolution | Copilot's 3 Modes (Agent mode), Glossary (IaC, Terraform, CI/CD) |
 
 ---
 
-## Verificacao antes de continuar
+## Check before continuing
 
-Antes de iniciar o Estágio 1, confirme que você consegue responder estas perguntas sem consultar nada:
+Before starting Stage 1, confirm that you can answer these questions without referring to documentation:
 
-- [ ] O que é o Spec-Kit e para que serve o comando `/speckit.specify`?
-- [ ] Qual a diferença entre persona-kit (em `05-personas/`) e agente de estágio (em `06-agentes-de-estagio/`)?
-- [ ] Quando usar Ask em vez de Agent no Copilot?
-- [ ] O que é uma EARS e por que o campo `source_legacy:` é obrigatório?
-- [ ] O que é um ADR e em qual situação você escreveria um?
+- [ ] What is Spec-Kit, and what is the `/speckit.specify` command for?
+- [ ] What is the difference between a persona kit (in `05-personas/`) and a stage agent (in `06-agentes-de-estagio/`)?
+- [ ] When should you use Ask instead of Agent in Copilot?
+- [ ] What is EARS, and why is the `source_legacy:` field mandatory?
+- [ ] What is an ADR, and in what situation would you write one?
 
-Se respondeu quatro das cinco: avance para [`../05-personas/`](../05-personas/) e leia os seus dois `PERSONA.md`.
+If you answered four out of five, continue to [`../05-personas/`](../05-personas/) and read your two `PERSONA.md` files.
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [Kit do Time](../README.md)<br/><sub>Hub principal do workshop.</sub> | [Spec-Driven Development](01-spec-driven-development.md)<br/><sub>Por que especificar antes de codar e como o Spec-Kit estrutura esse processo.</sub> |
+| [Team Kit](../README.md)<br/><sub>Main workshop hub.</sub> | [Spec-Driven Development](01-spec-driven-development.md)<br/><sub>Why to specify before coding and how Spec-Kit structures the process.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

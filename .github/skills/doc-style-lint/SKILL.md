@@ -1,106 +1,106 @@
 ---
 name: "doc-style-lint"
-description: "Use ao revisar documentação quanto a estilo, clareza, linguagem inclusiva ou conformidade com os guias de estilo Microsoft/Google. Dispara com \"doc review\", \"style guide\", \"plain language\", \"inclusive language\", \"readability\"."
+description: "Use when reviewing documentation for style, clarity, inclusive language, or compliance with Microsoft or Google style guides. Triggers include \"doc review\", \"style guide\", \"plain language\", \"inclusive language\", and \"readability\"."
 ---
 
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
-# Lint de estilo de documentação
+# Documentation style lint
 
-## Quando invocar
+## When to invoke
 
-- "Faça lint deste README contra nosso guia de estilo."
-- "Reescreva esta documentação de API em linguagem simples."
-- "Verifique termos excludentes e jargão."
+- "Lint this README against our style guide."
+- "Rewrite this API documentation in plain language."
+- "Check for exclusionary terms and jargon."
 
-## Regras
+## Rules
 
-### Voz e tom
+### Voice and tone
 
-- **Voz ativa**. "O sistema armazena o arquivo", não "O arquivo é armazenado pelo sistema."
-- **Tempo presente**. "Retorna uma resposta JSON", não "Retornará uma resposta JSON."
-- **Segunda pessoa** ("você") para guias práticos; **terceira pessoa** para referência.
-- **Títulos em sentence case** (não Title Case).
+- **Active voice**. "The system stores the file," not "The file is stored by the system."
+- **Present tense**. "Returns a JSON response," not "Will return a JSON response."
+- **Second person** ("you") for practical guides; **third person** for reference documentation.
+- **Sentence case headings**, not Title Case.
 
-### Clareza
+### Clarity
 
-- Uma ideia por frase.
-- Máximo de 25 palavras por frase como regra prática.
-- Máximo de cinco frases por parágrafo.
-- Evite palavras amortecedoras ("just", "simply", "easily"): elas mentem para a pessoa leitora.
-- Sem travessões longos. Use vírgulas, parênteses ou dois-pontos.
+- One idea per sentence.
+- Use 25 words per sentence as a practical maximum.
+- Use no more than five sentences per paragraph.
+- Avoid minimizing words ("just", "simply", "easily"). They mislead readers.
+- Do not use em dashes. Use commas, parentheses, or colons.
 
-### Linguagem inclusiva
+### Inclusive language
 
-Substitua:
+Replace:
 
-- "master/slave" -> "primary/replica" ou "leader/follower"
+- "master/slave" -> "primary/replica" or "leader/follower"
 - "whitelist/blacklist" -> "allowlist/blocklist"
 - "guys" -> "folks", "everyone", "team"
-- "crazy/insane" (como intensificador) -> "significant", "unusual"
-- "dummy" (nomes de variáveis) -> "example", "sample"
+- "crazy/insane" (as intensifiers) -> "significant", "unusual"
+- "dummy" (in variable names) -> "example", "sample"
 - "sanity check" -> "quick check", "verification"
 
-### Estrutura
+### Structure
 
-- **Comece pelo resultado**, não pelo contexto. A pessoa leitora sabe por que deve continuar lendo.
-- **Diga o que ela vai aprender** no topo.
-- **Resuma no final** em documentos longos.
-- **Use títulos segmentados** para facilitar a leitura rápida.
+- **Start with the outcome**, not the context. Readers should know why to continue.
+- **State what readers will learn** at the top.
+- **Summarize at the end** of long documents.
+- **Use descriptive headings** to support scanning.
 
 ### Links
 
-- O texto do link descreve o destino. Nunca use "click here" ou "this link".
-- URLs absolutas para fontes externas; relativas para conteúdo interno.
-- Verifique links no CI.
+- Link text describes the destination. Never use "click here" or "this link."
+- Use absolute URLs for external sources and relative URLs for internal content.
+- Check links in CI.
 
-### Exemplos de código
+### Code examples
 
-- Todo snippet executável deve ser testado.
-- Use exemplos realistas, não `foo/bar/baz`.
-- Destaque placeholders com clareza: `<YOUR-API-KEY>`.
+- Test every executable snippet.
+- Use realistic examples, not `foo/bar/baz`.
+- Clearly identify placeholders: `<YOUR-API-KEY>`.
 
-### Números e unidades
+### Numbers and units
 
-- Algarismos para 10+, palavras para zero a nove (estilo Microsoft).
-- Unidades métricas; inclua conversão se o público for misto.
-- Sempre especifique a unidade: "100 MB", não "100".
+- Use numerals for 10 and above and words for zero through nine (Microsoft style).
+- Use metric units and include conversions for mixed audiences.
+- Always specify the unit: "100 MB," not "100."
 
-## Etapas de revisão
+## Review steps
 
-1. **Leia uma vez como a pessoa leitora pretendida**. Tem o tamanho certo? O nível de detalhe certo?
-2. **Execute as verificações automatizadas configuradas no repositório**: por exemplo, Vale, Alex.js ou markdownlint. Reporte ferramentas ausentes sem instalá-las.
-3. **Aplique as regras de estilo** seção por seção.
-4. **Teste todo exemplo de código**.
-5. **Pergunte**: uma nova contratação no dia 1 entenderia isto?
+1. **Read once as the intended audience**. Is the length appropriate? Is the level of detail appropriate?
+2. **Run the automated checks configured in the repository**, such as Vale, Alex.js, or markdownlint. Report missing tools without installing them.
+3. **Apply the style rules** section by section.
+4. **Test every code example**.
+5. **Ask**: would a new hire understand this on day 1?
 
-## Template de saída
+## Output template
 
 ```markdown
-## Revisão de Estilo - <Doc>
+## Style review - <Doc>
 
-### Resumo
-- Legibilidade (grau Flesch-Kincaid): 11 (alvo: <=12)
-- Voz passiva: 8% (alvo: <10%)
-- Problemas de linguagem inclusiva: 2
-- Links quebrados: 0
-- Exemplos de código não testados: 3
+### Summary
+- Readability (Flesch-Kincaid grade): 11 (target: <=12)
+- Passive voice: 8% (target: <10%)
+- Inclusive language issues: 2
+- Broken links: 0
+- Untested code examples: 3
 
-### Recomendações (top 10)
-| ID | Local | Problema | Correção |
+### Recommendations (top 10)
+| ID | Location | Issue | Fix |
 |----|----------|-------|-----|
-| 01 | Seção de instalação | Voz passiva | Reescrever em voz ativa |
-| 02 | Troubleshooting | "guys" | Substituir por "team" |
-| 03 | Referência de API | "simply call" | Remover "simply" |
+| 01 | Installation section | Passive voice | Rewrite in active voice |
+| 02 | Troubleshooting | "guys" | Replace with "team" |
+| 03 | API reference | "simply call" | Remove "simply" |
 ```
 
-## Antipadrões
+## Antipatterns
 
-- Revisar sem executar linters automatizados primeiro.
-- Estilo acima de substância.
-- Reescrever a voz da pessoa autora em vez de lapidá-la.
-- Ignorar acessibilidade (texto alternativo, níveis de título, texto de link).
+- Reviewing without running automated linters first.
+- Prioritizing style over substance.
+- Rewriting the author's voice instead of refining it.
+- Ignoring accessibility (alternative text, heading levels, link text).
 
-## Gate de qualidade
+## Quality gate
 
-Todo documento deve passar nos linters automatizados configurados antes da revisão humana.
+Every document must pass the configured automated linters before human review.

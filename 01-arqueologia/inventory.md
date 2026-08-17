@@ -1,85 +1,85 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Inventário Legado — Time `<preencher>`
+# Legacy Inventory — Team `<fill in>`
 
-> **Trilha:** [Kit do Time](../README.md) › [Estágio 1](README.md) › **Inventário**
+> **Track:** [Team Kit](../README.md) › [Stage 1](README.md) › **Inventory**
 
-**Primeiro artefato do Estágio 1.** Varredura de estrutura e contagem de arquivos sem abrir nenhum programa — apenas nomes de arquivo e estrutura de pastas.
+**First Stage 1 artifact.** Scan the structure and count files without opening any program—use only file names and folder structure.
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Par responsável pela varredura inicial |
-| **Pré-requisitos** | Acesso ao diretório `legado-sifap/` |
-| **Estágio** | Estágio 1 — Arqueologia, Passo 1 |
-| **Resultado esperado** | Contagens precisas, padrões de nomenclatura identificados, 3 itens incomuns sinalizados |
+| **Target audience** | Pair responsible for the initial scan |
+| **Prerequisites** | Access to the `legado-sifap/` directory |
+| **Stage** | Stage 1 — Archaeology, Step 1 |
+| **Expected outcome** | Accurate counts, identified naming patterns, and 3 unusual items flagged |
 
 > [!NOTE]
-> Este inventário é feito sem abrir nenhum programa. Trabalhe apenas sobre nomes de arquivo e estrutura de pastas. Ele será revisado conforme o time executa os passos de extração de regras, mapeamento de dependências e registro de mistérios.
+> Build this inventory without opening any program. Work only from file names and folder structure. It will be revised as the team extracts rules, maps dependencies, and records mysteries.
 
-**Data:** <!-- preencher: YYYY-MM-DD -->
-**Par responsável:** <!-- preencher -->
-**Caminho escaneado:** `01-arqueologia/legado-sifap/`
+**Date:** <!-- fill in: YYYY-MM-DD -->
+**Responsible pair:** <!-- fill in -->
+**Scanned path:** `01-arqueologia/legado-sifap/`
 
 ---
 
-## Estrutura de pastas
+## Folder structure
 
 ```text
-<!-- preencher: árvore de diretórios de legado-sifap/ -->
+<!-- fill in: directory tree for legado-sifap/ -->
 ```
 
 ---
 
-## Contagem de arquivos por tipo
+## File count by type
 
-| Extensão | Contagem | Propósito provável |
+| Extension | Count | Likely purpose |
 |---|---|---|
-| `.NSN` | <!-- preencher --> | Programas-fonte Natural |
+| `.NSN` | <!-- fill in --> | Natural source programs |
 | `.ddm` | <!-- preencher --> | Data Definition Modules (Adabas) |
-| `.md` / `.docx` | <!-- preencher --> | Documentação histórica |
+| `.md` / `.docx` | <!-- fill in --> | Historical documentation |
 
 ---
 
-## Padrões de convenção de nomes
+## Naming convention patterns
 
-| Prefixo | Contagem | Hipótese de domínio |
+| Prefix | Count | Domain hypothesis |
 |---|---|---|
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
 
 ---
 
-## Itens incomuns (top 3)
+## Unusual items (top 3)
 
-| # | Caminho do arquivo | O que o torna incomum | Investigação sugerida |
+| # | File path | What makes it unusual | Suggested investigation |
 |---|---|---|---|
-| 1 | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
-| 2 | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
-| 3 | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+| 1 | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+| 2 | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
+| 3 | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
 
 ---
 
-## Ordem de leitura proposta
+## Proposed reading order
 
-1. Arquivos DDM primeiro — revelam o modelo de dados antes de qualquer lógica.
-2. <!-- preencher: pontos de entrada batch -->
-3. <!-- preencher: programas mais conectados -->
-
----
-
-## Critério de pronto
-
-- [ ] Inventário existe com contagens precisas.
-- [ ] 3 ou mais padrões de nome identificados.
-- [ ] 3 itens incomuns sinalizados.
+1. DDM files first—they reveal the data model before any logic.
+2. <!-- fill in: batch entry points -->
+3. <!-- fill in: most connected programs -->
 
 ---
 
-### Continuar a leitura
+## Definition of done
 
-| Anterior | Próximo |
+- [ ] The inventory exists with accurate counts.
+- [ ] 3 or more naming patterns identified.
+- [ ] 3 unusual items flagged.
+
+---
+
+### Continue reading
+
+| Previous | Next |
 |---|---|
-| [GUIDE do Estágio 1](GUIDE.md)<br/><sub>Roteiro passo a passo.</sub> | [Catálogo de Regras](business-rules-catalog.md)<br/><sub>Passo 2 — extração de regras.</sub> |
+| [Stage 1 GUIDE](GUIDE.md)<br/><sub>Step-by-step schedule.</sub> | [Rules Catalog](business-rules-catalog.md)<br/><sub>Step 2 — rule extraction.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

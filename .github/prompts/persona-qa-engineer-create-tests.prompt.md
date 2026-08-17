@@ -1,70 +1,70 @@
 ---
 name: "create-tests"
 agent: "qa-engineer"
-description: "Gere uma classe de teste completa para um único REQ-ID, com happy path, limites e casos negativos."
+description: "Generate a complete test class for a single REQ-ID, including happy-path, boundary, and negative cases."
 tools: ["search", "edit", "execute"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /create-tests
 
-## Objetivo
+## Objective
 
-Você está escrevendo a classe de teste para **um `REQ-ID` específico** no SIFAP 2.0. Você produz testes JUnit 5 (Java) ou Vitest (TypeScript) prontos para colar, cobrindo caminho feliz, limites e casos negativos — e para por aí. Você não implementa código de produção; você não modifica a spec.
+You are writing the test class for **one specific `REQ-ID`** in SIFAP 2.0. You produce ready-to-paste JUnit 5 (Java) or Vitest (TypeScript) tests covering the happy path, boundaries, and negative cases—and stop there. You do not implement production code or modify the spec.
 
-## Entradas
+## Inputs
 
-Peça ao usuário o que estiver faltando.
+Ask the user for any missing information.
 
-- O `REQ-ID`, sua declaração EARS completa e seus critérios de aceitação em `specs/<NNN>-<feature>/spec.md`.
-- A classe ou componente sob teste.
-- O framework de teste — JUnit 5 + AssertJ + Mockito (backend) ou Vitest + Testing Library (frontend).
-- Quaisquer fixtures ou builders de teste existentes para reutilizar (`src/test/resources/fixtures/`, `__fixtures__/`).
+- The `REQ-ID`, its complete EARS statement, and its acceptance criteria in `specs/<NNN>-<feature>/spec.md`.
+- The class or component under test.
+- The test framework—JUnit 5 + AssertJ + Mockito (backend) or Vitest + Testing Library (frontend).
+- Any existing test fixtures or builders to reuse (`src/test/resources/fixtures/`, `__fixtures__/`).
 
-## Processo
+## Process
 
-1. **Decomponha a declaração EARS em casos testáveis.**
+1. **Break the EARS statement into testable cases.**
 
-- Ubiquitous (`O sistema deverá ...`) → 1 caminho feliz + 1 limite.
-- Event-driven (`Quando ...`) → 1 caminho feliz + 1 negativo ("o evento não aconteceu, nada deve mudar").
-- State-driven (`Enquanto ...`) → 1 caso por transição de estado (in-state, exit-state, re-entry).
-- Optional (`Onde ...`) → 1 com feature flag ligada, 1 com flag desligada.
-- Unwanted (`Se ..., então o sistema não deverá ...`) → pelo menos 2 casos negativos em limites diferentes.
+- Ubiquitous (`The system shall ...`) → 1 happy path + 1 boundary.
+- Event-driven (`When ...`) → 1 happy path + 1 negative case ("the event did not occur, so nothing should change").
+- State-driven (`While ...`) → 1 case per state transition (in-state, exit-state, re-entry).
+- Optional (`Where ...`) → 1 with the feature flag on, 1 with the flag off.
+- Unwanted (`If ..., then the system shall not ...`) → at least 2 negative cases at different boundaries.
 
-2. **Escolha fixtures, não dados de produção.** Reutilize os fixtures existentes; nunca copie PII real.
-3. **Nomeie testes pelo comportamento.** `should_<expected>_when_<condition>`, não `test1`. Snake_case em descrições de teste TS, camelCase em nomes de métodos JUnit.
-4. **Use comentários Given/When/Then ou separação AAA com linhas em branco.** Revisores precisam ler o teste em 10 segundos.
-5. **Use cadeias AssertJ para riqueza** (`assertThat(x).isEqualTo(y).as("REQ-XXX")`) — nunca `assertTrue(x.equals(y))`.
-6. **Marque com o requisito.** `@Tag("REQ-XXX")` no JUnit, ou `describe('REQ-XXX', ...)` no Vitest.
-7. **Faça mock apenas de colaboradores próprios.** Repositories sim, classes de framework não. Não faça mock de value objects ou funções puras.
-8. **Rode os testes** e confirme que todos falham com mensagens significativas (até que o código de produção seja escrito por `/implement`).
+2. **Choose fixtures, not production data.** Reuse existing fixtures; never copy real PII.
+3. **Name tests by behavior.** Use `should_<expected>_when_<condition>`, not `test1`. Use snake_case in TS test descriptions and camelCase in JUnit method names.
+4. **Use Given/When/Then comments or AAA separation with blank lines.** Reviewers must be able to read the test in 10 seconds.
+5. **Use AssertJ chains for rich assertions** (`assertThat(x).isEqualTo(y).as("REQ-XXX")`)—never `assertTrue(x.equals(y))`.
+6. **Tag with the requirement.** Use `@Tag("REQ-XXX")` in JUnit or `describe('REQ-XXX', ...)` in Vitest.
+7. **Mock only your own collaborators.** Repositories, yes; framework classes, no. Do not mock value objects or pure functions.
+8. **Run the tests** and confirm that all fail with meaningful messages (until production code is written by `/implement`).
 
-## Saída
+## Output
 
-Sua resposta final deve incluir:
+Your final response must include:
 
-- **Plano de testes** — uma tabela mapeando cada critério de aceitação para um nome de método de teste.
-- **Conteúdo completo do arquivo de teste** — pronto para colar no projeto.
-- **Adições de fixtures** se algum novo builder/factory for necessário (arquivo separado).
-- **Instrução de execução** — comando exato verificado no projeto.
-- **Mensagens de falha esperadas** — o que o usuário deve ver antes da implementação.
+- **Test plan**—a table mapping each acceptance criterion to a test method name.
+- **Complete test file content**—ready to paste into the project.
+- **Fixture additions** if a new builder/factory is needed (separate file).
+- **Execution instruction**—the exact command verified in the project.
+- **Expected failure messages**—what the user should see before implementation.
 
-## Anti-padrões
+## Anti-patterns
 
-- Escrever um teste gigante que exercita seis casos. Divida-os.
-- Fazer asserções sobre a implementação: campos privados, strings SQL exatas, texto de mensagens de log.
-- Fazer mock da classe sob teste ou de value objects.
-- Compartilhar estado mutável de fixtures entre testes. Construa dados novos por teste.
-- Testes sem tag de `REQ-ID` — eles não podem ser rastreados no relatório de lacunas de cobertura.
-- Pular casos negativos para EARS unwanted-behavior. Esse é o ponto central do padrão.
-- Usar `Thread.sleep` ou `await new Promise(r => setTimeout(r, 100))` para sincronização. Use awaitility ou matchers `findBy*`.
+- Writing one giant test that exercises six cases. Split it.
+- Asserting implementation details: private fields, exact SQL strings, or log-message text.
+- Mocking the class under test or value objects.
+- Sharing mutable fixture state across tests. Build fresh data for each test.
+- Tests without a `REQ-ID` tag—they cannot be traced in the coverage-gap report.
+- Skipping negative cases for unwanted-behavior EARS requirements. That is the core of the pattern.
+- Using `Thread.sleep` or `await new Promise(r => setTimeout(r, 100))` for synchronization. Use Awaitility or `findBy*` matchers.
 
-## Critérios de sucesso
+## Success Criteria
 
-- [ ] Todo critério de aceitação tem pelo menos um teste nomeado.
-- [ ] Pelo menos um caso de limite ou negativo está incluído.
-- [ ] Todos os testes carregam o `REQ-ID` como tag e na descrição da asserção.
-- [ ] Os testes falham antes da implementação, com mensagens claras, pelo motivo correto.
-- [ ] Nenhum código de produção é alterado.
-- [ ] Nenhum PII real ou credencial de produção aparece em fixtures.
-- [ ] O arquivo de teste compila e roda isoladamente (`./mvnw test -Dtest=...`).
+- [ ] Every acceptance criterion has at least one named test.
+- [ ] At least one boundary or negative case is included.
+- [ ] All tests carry the `REQ-ID` as a tag and in the assertion description.
+- [ ] Tests fail before implementation, with clear messages and for the correct reason.
+- [ ] No production code is changed.
+- [ ] No real PII or production credentials appear in fixtures.
+- [ ] The test file compiles and runs in isolation (`./mvnw test -Dtest=...`).

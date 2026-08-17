@@ -1,20 +1,20 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Fluxo SDLC e Passagens do Workshop
+# Workshop SDLC Flow and Handoffs
 
-> **Trilha:** [Kit do Time](../README.md) › [Docs](README.md) › **Fluxo SDLC**
+> **Path:** [Team Kit](../README.md) › [Docs](README.md) › **SDLC Flow**
 
-**Guia dos contratos entre pares** — resume as passagens de artefatos sem alterar horários ou ampliar entregáveis.
+**Guide to the contracts between pairs** — summarizes artifact handoffs without changing schedules or expanding deliverables.
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Todo o time |
-| **Pré-requisitos** | Ter lido [`00-TEAM-FLOW.md`](../00-TEAM-FLOW.md) |
-| **Resultado esperado** | Entender o que cada par entrega e o que o par seguinte recebe |
+| **Target audience** | The entire team |
+| **Prerequisites** | Read [`00-TEAM-FLOW.md`](../00-TEAM-FLOW.md) |
+| **Expected outcome** | Understand what each pair delivers and what the next pair receives |
 
 ---
 
-## Visão geral do fluxo
+## Flow overview
 
 ```mermaid
 %%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
@@ -23,13 +23,13 @@ flowchart LR
     classDef hand fill:#FFFFFF,stroke:#525252,color:#171717
     classDef result fill:#FFFFFF,stroke:#171717,color:#171717,stroke-width:2px
 
-    E1["Estágio 1<br/>Arqueologia<br/>11:00–14:00"]:::step
-    H1["Passagem H1<br/>14:00"]:::hand
-    E2["Estágio 2<br/>Spec Moderna<br/>14:00–15:00"]:::step
-    H2["Passagem H2<br/>15:00"]:::hand
-    E3["Estágio 3<br/>Implementação<br/>15:00–16:10"]:::step
-    H3["Passagem H3<br/>16:10"]:::hand
-    E4["Estágio 4<br/>Evolução<br/>16:10–16:50"]:::step
+    E1["Stage 1<br/>Archaeology<br/>11:00–14:00"]:::step
+    H1["Handoff H1<br/>14:00"]:::hand
+    E2["Stage 2<br/>Modern Specification<br/>14:00–15:00"]:::step
+    H2["Handoff H2<br/>15:00"]:::hand
+    E3["Stage 3<br/>Implementation<br/>15:00–16:10"]:::step
+    H3["Handoff H3<br/>16:10"]:::hand
+    E4["Stage 4<br/>Evolution<br/>16:10–16:50"]:::step
     DEMO["Demo<br/>17:00–17:30"]:::result
 
     E1 --> H1 --> E2 --> H2 --> E3 --> H3 --> E4 --> DEMO
@@ -37,20 +37,20 @@ flowchart LR
 
 ---
 
-## Agenda oficial
+## Official schedule
 
-| Horário | Estágio | Agente | Resultado esperado |
+| Time | Stage | Agent | Expected outcome |
 |---|---|---|---|
-| 11:00–12:00 e 13:30–14:00 | 1 — Arqueologia | `@archaeologist` | Evidência legada e uma feature fina definida |
-| 14:00–15:00 | 2 — Spec Moderna | `@architect` | `spec.md`, `plan.md` e `tasks.md` |
-| 15:00–16:10 | 3 — Implementação | `@builder` | Primeiro incremento com testes da feature |
-| 16:10–16:50 | 4 — Evolução | `@evolution` | Uma delegação ao Agent ou backlog revisável |
+| 11:00–12:00 and 13:30–14:00 | 1 — Archaeology | `@archaeologist` | Legacy evidence and one thin feature defined |
+| 14:00–15:00 | 2 — Modern Specification | `@architect` | `spec.md`, `plan.md`, and `tasks.md` |
+| 15:00–16:10 | 3 — Implementation | `@builder` | First tested feature increment |
+| 16:10–16:50 | 4 — Evolution | `@evolution` | One Agent delegation or a reviewable backlog |
 
 ---
 
-## Estrutura dos artefatos formais
+## Formal artifact structure
 
-Os artefatos formais Spec-Kit de uma feature ficam em:
+Formal Spec-Kit artifacts for a feature live in:
 
 ```text
 specs/<NNN>-<feature>/
@@ -59,38 +59,38 @@ specs/<NNN>-<feature>/
 └── tasks.md
 ```
 
-`02-spec-moderna/` guarda somente apoio e decisões de escopo. Não crie arquivos formais paralelos fora da pasta da feature.
+`02-spec-moderna/` stores only supporting material and scope decisions. Do not create parallel formal artifacts outside the feature folder.
 
 ---
 
-## Checklist de passagem
+## Handoff checklist
 
-| Passagem | Quando | De → Para | Entrega mínima | Pergunta de confirmação |
+| Handoff | When | From → To | Minimum delivery | Confirmation question |
 |---|---|---|---|---|
-| **H1** | 14:00 | Par 1 → Par 2 | Recorte, evidências `.NSN`/`.ddm` e dúvidas em aberto | "Lemos as fontes necessárias para a feature?" |
-| **H2** | 15:00 | Par 2 → Pares 3 e 4 | Caminho da feature, `spec.md`, `plan.md`, `tasks.md` e primeira tarefa | "A primeira tarefa e seus testes estão claros?" |
-| **H3** | 16:10 | Pares 3 e 4 → Par 5 | Estado do incremento, testes executados e pendências | "O que pode ser delegado sem mudar o escopo?" |
+| **H1** | 14:00 | Pair 1 → Pair 2 | Scope slice, `.NSN`/`.ddm` evidence, and open questions | "Have we read the sources required for the feature?" |
+| **H2** | 15:00 | Pair 2 → Pairs 3 and 4 | Feature path, `spec.md`, `plan.md`, `tasks.md`, and first task | "Are the first task and its tests clear?" |
+| **H3** | 16:10 | Pairs 3 and 4 → Pair 5 | Increment status, tests run, and pending work | "What can be delegated without changing scope?" |
 
-Cada passagem é uma conversa síncrona de 5 minutos. Uma lacuna não autoriza inventar requisitos, fontes legadas ou arquitetura — reduza o recorte ou registre a pendência.
+Each handoff is a five-minute synchronous conversation. A gap does not authorize inventing requirements, legacy sources, or architecture — reduce the scope or record the pending item.
 
 ---
 
-## Rastreabilidade
+## Traceability
 
-Antes de escrever EARS, o responsável lê a fonte legada atribuída. Toda REQ-ID em `spec.md` contém `source_legacy:` apontando para o arquivo `.NSN` ou `.ddm` correspondente, ou `[GREENFIELD]` com justificativa. O CI bloqueia pull requests para `develop` quando esse contrato é violado.
+Before writing EARS, the owner reads the assigned legacy source. Every REQ-ID in `spec.md` includes `source_legacy:` pointing to the corresponding `.NSN` or `.ddm` file, or `[GREENFIELD]` with a justification. CI blocks pull requests to `develop` when this contract is violated.
 
 ---
 
 ## Branches
 
-Crie `spec/<NNN>-<feature>` a partir de `develop` e integre em `develop`. Depois, crie `impl/<NNN>-<feature>` também a partir de `develop`. O fluxo é `spec/<NNN>-<feature>` → `develop` → `main`. Não existe branch `stage`.
+Create `spec/<NNN>-<feature>` from `develop` and integrate it into `develop`. Then create `impl/<NNN>-<feature>`, also from `develop`. The flow is `spec/<NNN>-<feature>` → `develop` → `main`. There is no `stage` branch.
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [Persona-Agent Matrix](persona-agent-matrix.md)<br/><sub>Quem protagoniza em cada etapa.</sub> | [4 Agentes Explicados](4-agents-explained.md)<br/><sub>Por que são 4 agentes.</sub> |
+| [Persona-Agent Matrix](persona-agent-matrix.md)<br/><sub>Who leads at each stage.</sub> | [Four Agents Explained](4-agents-explained.md)<br/><sub>Why there are four agents.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

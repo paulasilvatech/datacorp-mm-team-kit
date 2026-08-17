@@ -2,34 +2,34 @@
 
 # Persona — Requirements Engineer
 
-> **Trilha:** [Kit do Time](../../README.md) › [Personas](../OVERVIEW.md) › [Requirements Engineer](README.md) › **PERSONA**
+> **Trail:** [Team Kit](../../README.md) › [Personas](../OVERVIEW.md) › [Requirements Engineer](README.md) › **PERSONA**
 
-**Ficha completa da persona Requirements Engineer.** Define missão, responsabilidades por estágio, ferramentas, passagem de bastão e rubricas de avaliação.
+**Complete profile for the Requirements Engineer persona.** Defines the mission, responsibilities by stage, tools, handoff, and evaluation rubrics.
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Papel** | Requirements Engineer |
-| **Par** | 1 · Visão (junto com Product Owner) |
-| **Estágios de atuação** | Lidera 2 (EARS); apoia 1 e 3 |
-| **Artefatos que produz** | Catálogo de regras, seção de "Functional Requirements" em EARS, spec viva |
-| **Artefatos que consome** | Priorização do PO, programas `.NSN` do Estágio 1 |
-| **Handoff para** | Par 2 (Arquitetura) no Estágio 2 |
+| **Role** | Requirements Engineer |
+| **Pair** | 1 · Vision (with the Product Owner) |
+| **Active stages** | Leads 2 (EARS); supports 1 and 3 |
+| **Artifacts produced** | Rule catalog, "Functional Requirements" section in EARS, living specification |
+| **Artifacts consumed** | PO prioritization, Stage 1 `.NSN` programs |
+| **Handoff to** | Pair 2 (Architecture) in Stage 2 |
 
-![Estágio 1](https://img.shields.io/badge/Est%C3%A1gio-1%20%C2%B7%20Arqueologia-171717?style=flat-square) ![Estágio 2](https://img.shields.io/badge/Est%C3%A1gio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-404040?style=flat-square)
-
----
-
-## Conceito
-
-O Requirements Engineer transforma regras descobertas no legado em requisitos formais e testáveis. Na indústria, esse profissional garante que o sistema a ser construído resolve o problema certo — e que existe uma forma objetiva de verificar se foi construído corretamente.
-
-No SIFAP, as regras de negócio estão tacitamente codificadas em Natural — sem documentação atualizada, sem comentários, sem manual. O RE extrai essas regras dos programas `.NSN`, classifica-as (regra de negócio, validação, cálculo, integração) e as converte para notação EARS (Easy Approach to Requirements Syntax) com rastreabilidade explícita via `source_legacy:`.
-
-**Exemplo concreto no SIFAP:** o programa `SIFAP003.NSN` contém uma rotina de validação de CPF de beneficiário. O RE lê o código Natural, identifica a regra, atribui um REQ-ID (ex.: `REQ-042`) e escreve o requisito em EARS: "O sistema SHALL validar o CPF do beneficiário antes de processar o pagamento." Com `source_legacy: 01-arqueologia/legado-sifap/natural-programs/SIFAP003.NSN`.
+![Stage 1](https://img.shields.io/badge/Est%C3%A1gio-1%20%C2%B7%20Arqueologia-171717?style=flat-square) ![Stage 2](https://img.shields.io/badge/Est%C3%A1gio-2%20%C2%B7%20Especifica%C3%A7%C3%A3o-404040?style=flat-square)
 
 ---
 
-## Onde você atua no SDLC
+## Concept
+
+The Requirements Engineer transforms rules discovered in the legacy system into formal, testable requirements. In the industry, this professional ensures that the system being built solves the right problem — and that there is an objective way to verify that it was built correctly.
+
+In SIFAP (Payment Inspection and Administration System), business rules are tacitly encoded in Natural — without up-to-date documentation, comments, or a manual. The RE extracts these rules from the `.NSN` programs, classifies them (business rule, validation, calculation, integration), and converts them to EARS (Easy Approach to Requirements Syntax) with explicit traceability through `source_legacy:`.
+
+**Concrete SIFAP example:** the `SIFAP003.NSN` program contains a beneficiary CPF validation routine. The RE reads the Natural code, identifies the rule, assigns a REQ-ID (for example, `REQ-042`), and writes the requirement in EARS: "The system SHALL validate the beneficiary's CPF before processing the payment." With `source_legacy: 01-arqueologia/legado-sifap/natural-programs/SIFAP003.NSN`.
+
+---
+
+## Where you work in the SDLC
 
 ```mermaid
 %%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
@@ -38,125 +38,125 @@ flowchart LR
     classDef support fill:#FAFAFA,stroke:#A3A3A3,color:#404040
     classDef inactive fill:#FFFFFF,stroke:#E5E5E5,color:#A3A3A3
 
-    E1["Estágio 1<br/>Arqueologia"]:::support --> E2["Estágio 2<br/>Especificação"]:::active
-    E2 --> E3["Estágio 3<br/>Implementação"]:::support
-    E3 --> E4["Estágio 4<br/>Evolução"]:::inactive
+    E1["Stage 1<br/>Archaeology"]:::support --> E2["Stage 2<br/>Specification"]:::active
+    E2 --> E3["Stage 3<br/>Implementation"]:::support
+    E3 --> E4["Stage 4<br/>Evolution"]:::inactive
 ```
 
-- **Recebe de:** PO (priorização) e Estágio 1 (catálogo de regras)
-- **Faz passagem de bastão para:** Par 2 (Arquitetura) no Estágio 2
+- **Receives from:** PO (prioritization) and Stage 1 (rule catalog)
+- **Hands off to:** Pair 2 (Architecture) in Stage 2
 
 ---
 
-## Responsabilidades por estágio
+## Responsibilities by stage
 
-| **Estágio** | Você faz isso | Entregável que depende de você |
+| **Stage** | What you do | Deliverable that depends on you |
 |---|---|---|
-| **1 · Arqueologia** | Extrai regras candidatas dos programas Natural. Classifica: regra de negócio, validação, cálculo, integração. | Catálogo de regras (tabela) |
-| **2 · Especificação** | Converte o catálogo em requisitos EARS. Mantém rastreabilidade legado → requisito. Estrutura a spec com o PO. | Seção de "Functional Requirements" em notação EARS |
-| **3 · Implementação** | Responde dúvidas de requisito durante a codificação. Ajusta texto quando emerge ambiguidade real. | Spec viva, não congelada |
-| **4 · Evolução** | Revisa se as duas issues cobrem novo requisito ou ajuste de existente. | Coerência entre issues e spec |
+| **1 · Archaeology** | Extract candidate rules from Natural programs. Classify them as business rule, validation, calculation, or integration. | Rule catalog (table) |
+| **2 · Specification** | Convert the catalog into EARS requirements. Maintain legacy → requirement traceability. Structure the specification with the PO. | "Functional Requirements" section in EARS notation |
+| **3 · Implementation** | Answer requirement questions during coding. Adjust wording when real ambiguity emerges. | Living, not frozen, specification |
+| **4 · Evolution** | Review whether the two issues cover a new requirement or adjust an existing one. | Coherence between issues and specification |
 
 ---
 
-## Kit da persona
+## Persona kit
 
-| **Artefato** | Finalidade |
+| **Artifact** | Purpose |
 |---|---|
-| `.github/agents/requirements-engineer.agent.md` | Agente Copilot configurado para análise de requisitos |
-| `/spec-sync` — `persona-requirements-engineer-spec-sync.prompt.md` | Sincroniza a spec com mudanças do código |
-| `/contradiction-check` — `persona-requirements-engineer-contradiction-check.prompt.md` | Detecta conflitos entre requisitos |
-| `/ears-convert` — `persona-requirements-engineer-ears-convert.prompt.md` | Converte texto livre em EARS |
-| `.github/instructions/requirements.instructions.md` | Convenções de documentação de requisitos |
+| `.github/agents/requirements-engineer.agent.md` | Copilot agent configured for requirements analysis |
+| `/spec-sync` — `persona-requirements-engineer-spec-sync.prompt.md` | Synchronizes the specification with code changes |
+| `/contradiction-check` — `persona-requirements-engineer-contradiction-check.prompt.md` | Detects conflicts between requirements |
+| `/ears-convert` — `persona-requirements-engineer-ears-convert.prompt.md` | Converts free text into EARS |
+| `.github/instructions/requirements.instructions.md` | Requirements documentation conventions |
 
 ---
 
-## Ferramentas e primitivas
+## Tools and primitives
 
-- **GitHub Spec-Kit** — `/speckit.specify` é o terreno principal. O Specify CLI gera a base da spec para refinar em EARS.
-- **Copilot Chat** para validar coerência entre requisitos.
-- **MCP/filesystem** do repositório para navegar nos arquivos `.NSN` do legado e correlacionar com requisitos.
-- Prompts e skills do kit — extração de regras e conversão para EARS.
+- **GitHub Spec-Kit** — `/speckit.specify` is the primary workspace. Specify CLI generates the specification foundation to refine in EARS.
+- **Copilot Chat** to validate coherence between requirements.
+- Repository **MCP/filesystem** to navigate legacy `.NSN` files and correlate them with requirements.
+- Kit prompts and skills — rule extraction and conversion to EARS.
 
-**Cheat-sheets relevantes:**
+**Relevant cheat sheets:**
 
-- [`../../09-cheat-sheets/spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) — `/speckit.specify` e `/speckit.clarify` com exemplos EARS.
-- [`../../09-cheat-sheets/model-routing.md`](../../09-cheat-sheets/model-routing.md) — quando usar Claude Sonnet 4.6 vs. Opus 4.6.
-
----
-
-## Checklist de onboarding
-
-- [ ] **Ler esta ficha.** Missão, responsabilidades e passagem de bastão.
-- [ ] **Abrir o `README.md` do kit.** Confirmar que agents e prompts aparecem no Copilot Chat.
-- [ ] **Revisar os 6 padrões EARS.** Abrir [`../../02-spec-moderna/GUIDE.md`](../../02-spec-moderna/GUIDE.md) seção "Notação EARS".
-- [ ] **Identificar seu par.** Consultar [00-TEAM-FLOW.md](../../00-TEAM-FLOW.md).
-- [ ] **Anotar a passagem de bastão.** De quem você recebe e para quem entrega ao final de cada estágio.
+- [`../../09-cheat-sheets/spec-kit-workflow.md`](../../09-cheat-sheets/spec-kit-workflow.md) — `/speckit.specify` and `/speckit.clarify` with EARS examples.
+- [`../../09-cheat-sheets/model-routing.md`](../../09-cheat-sheets/model-routing.md) — when to use Claude Sonnet 4.6 vs. Opus 4.6.
 
 ---
 
-## Como se sair bem neste papel
+## Onboarding checklist
 
-- Seus requisitos usam verbos ativos e são testáveis.
-- Toda regra do legado tem rastreabilidade explícita ao requisito moderno via `source_legacy:`.
-- Você diz "isso está ambíguo, precisamos de uma decisão" antes do código ser escrito.
-- Usa os seis padrões EARS sem confundir (ubiquitous, event-driven, state-driven, unwanted, optional, complex).
+- [ ] **Read this profile.** Mission, responsibilities, and handoff.
+- [ ] **Open the kit `README.md`.** Confirm that agents and prompts appear in Copilot Chat.
+- [ ] **Review the 6 EARS patterns.** Open the "EARS Notation" section in [`../../02-spec-moderna/GUIDE.md`](../../02-spec-moderna/GUIDE.md).
+- [ ] **Identify your pair.** See [00-TEAM-FLOW.md](../../00-TEAM-FLOW.md).
+- [ ] **Note the handoff.** Who you receive from and who you deliver to at the end of each stage.
 
 ---
 
-## Erros comuns e como evitar
+## How to succeed in this role
 
-| **Sintoma** | Causa | Correção |
+- Your requirements use active verbs and are testable.
+- Every legacy rule has explicit traceability to the modern requirement through `source_legacy:`.
+- You say "this is ambiguous; we need a decision" before code is written.
+- Use the six EARS patterns without confusing them (ubiquitous, event-driven, state-driven, unwanted, optional, complex).
+
+---
+
+## Common mistakes and how to avoid them
+
+| **Symptom** | Cause | Correction |
 |---|---|---|
-| Requisito não tem critério de verificação | Escrito como parágrafo, não como EARS | Reescreva com verbo "SHALL" e condição explícita |
-| Regra do legado sem contraparte | Arqueologia incompleta | Revise o catálogo de regras antes de fechar a spec |
-| Requisito duplica conteúdo de ADR | Confusão entre requisito e decisão de design | Requisito descreve comportamento; ADR registra decisão arquitetural |
-| "O sistema deve usar Redis" entra na spec | Confusão entre requisito e implementação | Requisito funcional não menciona tecnologia |
+| Requirement has no verification criterion | Written as a paragraph, not as EARS | Rewrite with the verb "SHALL" and an explicit condition |
+| Legacy rule has no counterpart | Incomplete archaeology | Review the rule catalog before closing the specification |
+| Requirement duplicates ADR content | Confusion between a requirement and a design decision | A requirement describes behavior; an ADR records an architectural decision |
+| "The system must use Redis" enters the specification | Confusion between a requirement and implementation | A functional requirement does not mention technology |
 
 ---
 
-## 3 exemplos de prompt
+## 3 prompt examples
 
-1. **(Chat)** "Leia esta regra do SIFAP legado e converta para notação EARS: [cole a regra]. Identifique qual dos 6 padrões EARS se aplica e explique por quê."
-2. **(Chat)** "Analise estes 5 requisitos EARS e encontre: (a) ambiguidades que precisam de decisão do PO, (b) dependências entre eles, (c) requisitos conflitantes."
-3. **(Plan)** "No `spec.md`, planeje EARS para as regras confirmadas no catálogo. Escolha o padrão EARS a partir do comportamento observado."
+1. **(Chat)** "Read this rule from the legacy SIFAP and convert it to EARS notation: [paste the rule]. Identify which of the 6 EARS patterns applies and explain why."
+2. **(Chat)** "Analyze these 5 EARS requirements and find: (a) ambiguities that need a PO decision, (b) dependencies among them, and (c) conflicting requirements."
+3. **(Plan)** "In `spec.md`, plan EARS requirements for the confirmed rules in the catalog. Choose the EARS pattern based on the observed behavior."
 
 ---
 
-## Se travar
+## If you get stuck
 
-| **Situação** | O que fazer |
+| **Situation** | What to do |
 |---|---|
-| Não conhece EARS | Abra [`../../02-spec-moderna/GUIDE.md`](../../02-spec-moderna/GUIDE.md) seção "Notação EARS" — 6 padrões com exemplo |
-| Requisito ambíguo | Escreva duas interpretações e pergunte ao PO qual é a correta |
-| Muitas regras, pouco tempo | Priorize regras pelo risco e pelo impacto que o time registrou |
-| Spec-Kit não funciona | Restaure a ferramenta antes de criar artefatos formais; eles pertencem a `specs/<NNN>-<feature>/spec.md` |
+| Unfamiliar with EARS | Open the "EARS Notation" section in [`../../02-spec-moderna/GUIDE.md`](../../02-spec-moderna/GUIDE.md) — 6 patterns with examples |
+| Ambiguous requirement | Write two interpretations and ask the PO which is correct |
+| Many rules, little time | Prioritize rules by the risk and impact recorded by the team |
+| Spec-Kit does not work | Restore the tool before creating formal artifacts; they belong in `specs/<NNN>-<feature>/spec.md` |
 
 ---
 
-## Dependências
+## Dependencies
 
-| **Persona** | Relação | Artefato |
+| **Persona** | Relationship | Artifact |
 |---|---|---|
-| Product Owner | Você depende dele | Priorização das regras |
-| Developer | Depende de você | Requisitos claros para implementar |
-| QA Engineer | Depende de você | Requisitos testáveis com critérios de verificação |
-| Software Architect | Depende de você | Requisitos para desenhar bounded contexts |
+| Product Owner | You depend on them | Rule prioritization |
+| Developer | Depends on you | Clear requirements to implement |
+| QA Engineer | Depends on you | Testable requirements with verification criteria |
+| Software Architect | Depends on you | Requirements for designing bounded contexts |
 
 ---
 
-## Como você é avaliado
+## How you are evaluated
 
-- **Rubrica A2 (Coerência de Spec):** requisitos em EARS, numerados, rastreáveis ao legado.
-- **Rubrica A1 (Arqueologia):** catálogo de regras com classificação.
-- Critério: "Todo requisito tem verbo ativo e é testável."
+- **Rubric A2 (Specification Coherence):** requirements in EARS, numbered, and traceable to the legacy system.
+- **Rubric A1 (Archaeology):** rule catalog with classification.
+- Criterion: "Every requirement has an active verb and is testable."
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [Product Owner](../01-product-owner/PERSONA.md)<br/><sub>Par 1 · Visão · valida escopo e prioridades.</sub> | [Enterprise Architect](../03-enterprise-architect/PERSONA.md)<br/><sub>Par 2 · Arquitetura · C4 + ADRs estruturais.</sub> |
+| [Product Owner](../01-product-owner/PERSONA.md)<br/><sub>Pair 1 · Vision · validates scope and priorities.</sub> | [Enterprise Architect](../03-enterprise-architect/PERSONA.md)<br/><sub>Pair 2 · Architecture · C4 + structural ADRs.</sub> |
 
-<sub>[Voltar ao índice do kit](../../README.md)</sub>
+<sub>[Back to the kit index](../../README.md)</sub>

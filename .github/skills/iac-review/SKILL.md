@@ -1,64 +1,64 @@
 ---
 name: "iac-review"
-description: "Use ao revisar Terraform, Bicep ou CloudFormation, verificar drift ou fortalecer código de infraestrutura. Aciona com 'review terraform', 'review bicep', 'IaC review', 'drift detection', 'state file'."
+description: "Use when reviewing Terraform, Bicep, or CloudFormation, checking drift, or hardening infrastructure code. Triggers include 'review terraform', 'review bicep', 'IaC review', 'drift detection', and 'state file'."
 ---
 
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
-# Revisão de IaC
+# IaC review
 
-## Quando invocar
+## When to invoke
 
-- "Revise este módulo Terraform."
-- "Por que nosso plan está mostrando drift?"
-- "Este Bicep está pronto para produção?"
+- "Review this Terraform module."
+- "Why does our plan show drift?"
+- "Is this Bicep ready for production?"
 
-## Checklist de revisão
+## Review checklist
 
-### Estrutura
+### Structure
 
-- [ ] Modules são **composable** e têm uma única responsabilidade (um módulo = uma stack lógica, não um resource).
-- [ ] **Sem valores hardcoded** — tudo parametrizado com defaults sensatos.
-- [ ] **Entradas documentadas** (`description`, `type`, regras de `validation`); saídas também.
-- [ ] **README** na raiz do módulo com exemplo de uso.
+- [ ] Modules are **composable** and have a single responsibility (one module = one logical stack, not one resource).
+- [ ] **No hard-coded values**: parameterize everything with sensible defaults.
+- [ ] **Documented inputs** (`description`, `type`, and `validation` rules) and outputs.
+- [ ] A **README** at the module root with a usage example.
 
-### State e backends
+### State and backends
 
-- [ ] **Remote state** com locking (S3+DynamoDB, Azure Storage com blob lease, GCS).
-- [ ] State **nunca é commitado** no git; `.gitignore` cobre `*.tfstate*`.
-- [ ] State separado por ambiente; sem acoplamento implícito entre envs.
-- [ ] Acesso ao state controlado por IAM, não por credenciais compartilhadas.
+- [ ] **Remote state** with locking (S3+DynamoDB, Azure Storage with a blob lease, GCS).
+- [ ] State is **never committed** to Git; `.gitignore` covers `*.tfstate*`.
+- [ ] State is separated by environment, with no implicit coupling between environments.
+- [ ] IAM controls state access, not shared credentials.
 
-### Segurança
+### Security
 
-- [ ] Sem secrets no código ou em defaults de variables — use Key Vault / Secrets Manager / SOPS.
-- [ ] IAM com least privilege; sem `*:*` ou `Resource: "*"` salvo com justificativa.
-- [ ] Criptografia em repouso e em trânsito habilitada em todos os data stores.
-- [ ] Acesso público explicitamente negado salvo quando intencional; registre isso no README do módulo nesse caso.
-- [ ] `tfsec` / `checkov` / `PSRule` limpos, ou exceções documentadas.
+- [ ] No secrets in code or variable defaults. Use Key Vault / Secrets Manager / SOPS.
+- [ ] IAM follows least privilege, with no `*:*` or `Resource: "*"` unless justified.
+- [ ] Encryption at rest and in transit is enabled for all data stores.
+- [ ] Public access is explicitly denied unless intentional. Document intentional access in the module README.
+- [ ] `tfsec` / `checkov` / `PSRule` report no findings, or exceptions are documented.
 
-### Segurança de mudanças
+### Change safety
 
-- [ ] `terraform plan` incluído nos PRs como comentário (Atlantis / tfcmt / GH Actions).
-- [ ] `prevent_destroy` em resources com state (databases, KV, storage accounts).
-- [ ] Versões de provider **fixadas** (`~>` com major e minor explícitos).
-- [ ] Versões de module fixadas.
-- [ ] Diffs destrutivos exigem um segundo aprovador.
+- [ ] `terraform plan` is included in PRs as a comment (Atlantis / tfcmt / GH Actions).
+- [ ] `prevent_destroy` is set on stateful resources (databases, KV, storage accounts).
+- [ ] Provider versions are **pinned** (`~>` with explicit major and minor versions).
+- [ ] Module versions are pinned.
+- [ ] Destructive diffs require a second approver.
 
 ### Drift
 
-- [ ] Detecção de drift agendada (`terraform plan -detailed-exitcode` diário, ou Driftctl).
-- [ ] Drift cria um ticket automaticamente; nunca fica silencioso.
-- [ ] Sem mudanças manuais no console sem codificação posterior.
+- [ ] Scheduled drift detection (`terraform plan -detailed-exitcode` daily, or Driftctl).
+- [ ] Drift automatically creates a ticket and never remains silent.
+- [ ] No manual console changes without subsequently codifying them.
 
-## Achados comuns
+## Common findings
 
-- **`count` usado para listas que reordenam** → use `for_each` com chaves estáveis.
-- **`depends_on` por toda parte** → geralmente sinal de deps implícitas ausentes; remova salvo quando realmente necessário.
-- **Data sources usados para valores disponíveis em plan time** → chamadas de API desnecessárias, CI instável.
-- **Diferenças de ambiente por interpolação de string de `terraform.workspace`** → frágil; use tfvars ou stacks separadas.
+- **`count` used for lists that can reorder** → use `for_each` with stable keys.
+- **`depends_on` everywhere** → usually signals missing implicit dependencies; remove it unless truly necessary.
+- **Data sources used for values available at plan time** → unnecessary API calls and unstable CI.
+- **Environment differences through `terraform.workspace` string interpolation** → fragile; use tfvars or separate stacks.
 
-## Referências
+## References
 
 - [Terraform Style Guide](https://developer.hashicorp.com/terraform/language/style)
 - [Azure Verified Modules](https://azure.github.io/Azure-Verified-Modules/)

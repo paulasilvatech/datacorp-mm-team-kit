@@ -1,103 +1,103 @@
 ---
 name: "incident-rca"
 agent: "devops-engineer"
-description: "Conduza uma análise de causa raiz sem culpabilização para um incidente do SIFAP 2.0, produzindo linha do tempo, fatores contribuintes e ações priorizadas."
+description: "Conduct a blameless root cause analysis for a SIFAP 2.0 incident, producing a timeline, contributing factors, and prioritized actions."
 tools: ["search", "edit"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /incident-rca
 
-## Objetivo
+## Objective
 
-Você facilita uma **análise de causa raiz sem culpabilização** para um incidente do SIFAP 2.0. O entregável é um único documento — `docs/incidents/<YYYYMMDD>-<short-slug>.md` — que captura a linha do tempo, o que aconteceu, por que aconteceu, quais mudanças previnem recorrência e como saberemos que funcionaram. A saída é lida por engenharia, SRE, InfoSec officer e platform architect.
+You facilitate a **blameless root cause analysis** for a SIFAP 2.0 incident. The deliverable is a single document—`docs/incidents/<YYYYMMDD>-<short-slug>.md`—that captures the timeline, what happened, why it happened, which changes prevent recurrence, and how we will know they worked. The output is read by engineering, SRE, the InfoSec officer, and the platform architect.
 
-## Entradas
+## Inputs
 
-Peça ao usuário o que estiver faltando.
+Ask the user for anything that is missing.
 
-- ID do ticket do incidente e severidade (`SEV-1` a `SEV-4`).
-- Horário de detecção, horário de mitigação, horário de resolução (UTC).
-- Sistemas afetados e os `REQ-ID`s vinculados para SLOs violados.
-- Dados brutos da linha do tempo: PagerDuty, canal Slack, traces do Application Insights, timestamps de deployment.
-- Nomes dos respondedores (apenas para a linha do tempo — nunca para culpar).
+- Incident ticket ID and severity (`SEV-1` through `SEV-4`).
+- Detection time, mitigation time, and resolution time (UTC).
+- Affected systems and the `REQ-ID`s linked to violated SLOs.
+- Raw timeline data: PagerDuty, Slack channel, Application Insights traces, and deployment timestamps.
+- Responder names (for the timeline only—never for assigning blame).
 
-## Processo
+## Process
 
-1. **Reformule o impacto em termos de cliente.** Descreva o efeito observável,
-   não apenas o sintoma interno de infraestrutura.
-2. **Reconstrua a linha do tempo minuto a minuto.** UTC. Fonte de cada entrada: log, métrica, mensagem de chat ou lembrança humana (marque como `[recall]`).
-3. **Diferencie detecção, mitigação e resolução.**
+1. **Restate the impact in customer terms.** Describe the observable effect,
+   not only the internal infrastructure symptom.
+2. **Reconstruct the timeline minute by minute.** Use UTC. Cite the source for every entry: log, metric, chat message, or human recollection (mark as `[recall]`).
+3. **Distinguish detection, mitigation, and resolution.**
 
-- `T0` — primeiro sintoma em produção.
-- `Td` — primeira detecção por automação ou humano.
-- `Tm` — mitigação (o impacto para).
-- `Tr` — resolução completa (sistema totalmente recuperado).
+- `T0` — first symptom in production.
+- `Td` — first detection by automation or a person.
+- `Tm` — mitigation (customer impact stops).
+- `Tr` — full resolution (system fully recovered).
 
-4. **Encontre fatores contribuintes, não "a" causa.** Use os "Five Whys" e depois categorize cada fator como: code, configuration, dependency, process, observability ou organizational.
-5. **Identifique o que *quase* funcionou.** Defesas que dispararam, mas não foram suficientes — alarmes que paginaram tarde, runbooks que estavam 80% certos, fallbacks que ativaram mas deram timeout. Isso é ouro para prevenção.
-6. **Proponha ações.** Para cada fator contribuinte, escreva pelo menos uma ação com:
+4. **Find contributing factors, not "the" cause.** Use the "Five Whys," then categorize each factor as code, configuration, dependency, process, observability, or organizational.
+5. **Identify what *almost* worked.** Defenses that activated but were insufficient—alerts that paged too late, runbooks that were 80% correct, fallbacks that activated but timed out. This is valuable prevention evidence.
+6. **Propose actions.** For every contributing factor, write at least one action with:
 
-- Responsável (um nome, não um time).
-- Data-alvo.
-- Critérios de verificação (como saberemos que funcionou).
-- Tipo — `code`, `config`, `monitoring`, `process`, `documentation` ou `architecture`.
+- Owner (one person, not a team).
+- Target date.
+- Verification criteria (how we will know it worked).
+- Type—`code`, `config`, `monitoring`, `process`, `documentation`, or `architecture`.
 
-7. **Mantenha ausência de culpabilização.** Sem nomes pessoais associados a erros. "O engenheiro cometeu um erro de digitação" está errado; "O processo de deployment não detectou o erro de digitação" está certo.
-8. **Adicione um risco que você não corrigiu.** Seja honesto. Registre o que é caro demais para tratar agora e será reavaliado no próximo trimestre.
+7. **Remain blameless.** Do not associate personal names with mistakes. "The engineer made a typo" is wrong; "The deployment process did not detect the typo" is correct.
+8. **Add one risk you did not fix.** Be honest. Record what is too costly to address now and will be reassessed next quarter.
 
-## Saída
+## Output
 
-O entregável é um arquivo Markdown com esta estrutura:
+The deliverable is a Markdown file with this structure:
 
 ```markdown
-# Incidente <YYYYMMDD>-<slug>
+# Incident <YYYYMMDD>-<slug>
 
-- **Severidade**: <SEV>
-- **Impacto no cliente**: <!-- preencher -->
-- **Violação de SLO**: <!-- preencher: REQ-ID ou não aplicável -->
-- **Duração total**: <!-- preencher -->
+- **Severity**: <SEV>
+- **Customer impact**: <!-- fill in -->
+- **SLO violation**: <!-- fill in: REQ-ID or not applicable -->
+- **Total duration**: <!-- fill in -->
 
-## 1. Resumo
-Dois parágrafos. O que aconteceu, por quê, o que fizemos, quais mudanças.
+## 1. Summary
+Two paragraphs. What happened, why, what we did, and what will change.
 
-## 2. Linha do tempo (UTC)
-| Horário | Fonte | Evento |
+## 2. Timeline (UTC)
+| Time | Source | Event |
 |-------|---------------|-------|
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
 
-## 3. Fatores contribuintes
-<!-- preencher com fatores confirmados e suas evidências -->
+## 3. Contributing Factors
+<!-- fill in with confirmed factors and their evidence -->
 
-## 4. O que quase funcionou
-<!-- preencher com defesas observadas -->
+## 4. What Almost Worked
+<!-- fill in with observed defenses -->
 
-## 5. Ações
-| # | Ação | Responsável | Tipo | Prazo | Verificação |
+## 5. Actions
+| # | Action | Owner | Type | Due Date | Verification |
 |---|--------|-------|------|-----|--------------|
-| <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> | <!-- preencher --> |
+| <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> |
 
-## 6. Riscos aceitos (por enquanto)
-<!-- preencher com risco aceito, responsável e data de reavaliação -->
+## 6. Accepted Risks (for now)
+<!-- fill in with the accepted risk, owner, and reassessment date -->
 ```
 
-## Antipadrões
+## Anti-patterns
 
-- Nomear indivíduos ao lado de erros. RCAs são sobre sistemas, não pessoas.
-- "A causa foi X." Sempre existem múltiplos fatores contribuintes.
-- Ações sem responsáveis ou datas. Elas não vão acontecer.
-- Ações sem critérios de verificação. Não conseguimos dizer se funcionaram.
-- Esconder fatores contribuintes politicamente desconfortáveis. Confiança colapsa mais rápido que sistemas.
-- Tratar uma RCA como artefato de punição. Ela é um artefato de aprendizado.
-- Pular a linha do tempo porque é trabalhosa. A linha do tempo é a base de evidências.
+- Naming individuals alongside errors. RCAs are about systems, not people.
+- "The cause was X." There are always multiple contributing factors.
+- Actions without owners or dates. They will not happen.
+- Actions without verification criteria. We cannot tell whether they worked.
+- Hiding politically uncomfortable contributing factors. Trust collapses faster than systems.
+- Treating an RCA as a punishment artifact. It is a learning artifact.
+- Skipping the timeline because it is laborious. The timeline is the evidence base.
 
-## Critérios de sucesso
+## Success Criteria
 
-- [ ] Declaração de impacto no cliente em linguagem simples.
-- [ ] Linha do tempo inclui pelo menos timestamps de detecção, mitigação e resolução com fontes.
-- [ ] Pelo menos três fatores contribuintes em pelo menos duas categorias.
-- [ ] Cada ação tem responsável, tipo, prazo e critérios de verificação.
-- [ ] Pelo menos um item de "o que quase funcionou".
-- [ ] Pelo menos um risco aceito é nomeado honestamente.
-- [ ] Nenhum indivíduo é culpado pelo nome.
-- [ ] Referências SLO/REQ-ID são incluídas para requisitos violados.
+- [ ] Customer-impact statement in plain language.
+- [ ] The timeline includes at least detection, mitigation, and resolution timestamps with sources.
+- [ ] At least three contributing factors across at least two categories.
+- [ ] Every action has an owner, type, due date, and verification criteria.
+- [ ] At least one "what almost worked" item.
+- [ ] At least one accepted risk is named honestly.
+- [ ] No individual is blamed by name.
+- [ ] SLO/REQ-ID references are included for violated requirements.

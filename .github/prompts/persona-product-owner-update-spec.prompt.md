@@ -1,24 +1,24 @@
 ---
 name: "update-spec"
 agent: "product-owner"
-description: "Atualize spec.md para uma feature nova ou alterada. Use antes da implementação."
+description: "Update spec.md for a new or changed feature. Use before implementation."
 tools: ["search", "edit"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /update-spec
 
-## Passos
+## Steps
 
-1. Leia `specs/<NNN>-<feature>/spec.md`
-2. Leia `.specify/memory/constitution.md` para entender restrições
-3. Identifique a seção a atualizar
-4. Preserve requisitos inalterados
-5. Adicione/modifique requisitos para a nova feature
-6. Atualize a versão no frontmatter
+1. Read `specs/<NNN>-<feature>/spec.md`
+2. Read `.specify/memory/constitution.md` to understand constraints
+3. Identify the section to update
+4. Preserve unchanged requirements
+5. Add or modify requirements for the new feature
+6. Update the version in the frontmatter
 
-## Gate de Qualidade
+## Quality Gate
 
-- [ ] Novos requisitos têm critérios de aceitação
-- [ ] Nenhum requisito existente foi removido acidentalmente
-- [ ] Restrições de `.specify/memory/constitution.md` respeitadas
+- [ ] New requirements have acceptance criteria
+- [ ] No existing requirement was accidentally removed
+- [ ] Constraints in `.specify/memory/constitution.md` are respected

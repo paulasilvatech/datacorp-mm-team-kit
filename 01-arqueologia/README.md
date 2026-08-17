@@ -1,70 +1,70 @@
 <!-- markdownlint-disable MD013 MD033 MD041 -->
 
-# Estágio 1 — Arqueologia
+# Stage 1 — Archaeology
 
-> **Trilha:** [Kit do Time](../README.md) › **Estágio 1 — Arqueologia**
+> **Track:** [Team Kit](../README.md) › **Stage 1 — Archaeology**
 
-**Visão geral do Estágio 1.** Leia esta página antes de abrir o GUIDE; ela apresenta o objetivo, os artefatos esperados e os participantes.
+**Stage 1 overview.** Read this page before opening the GUIDE; it presents the objective, expected artifacts, and participants.
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
-| **Público-alvo** | Todos os 5 pares do time |
-| **Pré-requisitos** | Nenhum — este é o ponto de partida |
-| **Tempo estimado** | 90 min (11:00–12:00 + 13:30–14:00) |
-| **Estágio** | Estágio 1 — Arqueologia |
-| **Resultado esperado** | Catálogo de regras, mapa de dependências, glossário e relatório de descoberta |
+| **Target audience** | All 5 team pairs |
+| **Prerequisites** | None — this is the starting point |
+| **Estimated time** | 90 min (11:00–12:00 + 13:30–14:00) |
+| **Stage** | Stage 1 — Archaeology |
+| **Expected outcome** | Rules catalog, dependency map, glossary, and discovery report |
 
-![Estágio 1](https://img.shields.io/badge/Est%C3%A1gio-1%20%C2%B7%20Arqueologia-171717?style=flat-square) ![Portão obrigatório](https://img.shields.io/badge/Port%C3%A3o-Hard%20Gate-404040?style=flat-square) ![Pares todos em paralelo](https://img.shields.io/badge/Pares-Todos%20em%20paralelo-737373?style=flat-square)
+![Stage 1](https://img.shields.io/badge/Stage-1%20%C2%B7%20Archaeology-171717?style=flat-square) ![Mandatory gate](https://img.shields.io/badge/Gate-Hard%20Gate-404040?style=flat-square) ![All pairs in parallel](https://img.shields.io/badge/Pairs-All%20in%20parallel-737373?style=flat-square)
 
 > [!IMPORTANT]
-> **Leia primeiro:** [`LEGACY-EXPLORATION-CHECKLIST.md`](LEGACY-EXPLORATION-CHECKLIST.md) — portão obrigatório antes de iniciar o Estágio 2. Nenhum requisito EARS é aceito sem rastreabilidade ao código legado.
+> **Read first:** [`LEGACY-EXPLORATION-CHECKLIST.md`](LEGACY-EXPLORATION-CHECKLIST.md) — mandatory gate before starting Stage 2. No EARS requirement is accepted without traceability to legacy code.
 
 ---
 
-## O que é o Estágio 1
+## What Stage 1 is
 
-**Arqueologia de software** é a prática de extrair conhecimento de sistemas legados por meio de leitura sistemática do código-fonte, sem modificá-lo. No contexto deste workshop, a arqueologia tem um objetivo preciso: coletar evidências suficientes para escrever requisitos rastreáveis no Estágio 2.
+**Software archaeology** is the practice of extracting knowledge from legacy systems by systematically reading source code without modifying it. In this workshop, archaeology has a precise objective: gather enough evidence to write traceable requirements in Stage 2.
 
-O SIFAP tem 29 anos de operação. A maior parte do conhecimento sobre suas regras de negócio está no código Natural, não em documentação. Sem ler o código, a equipe escreveria especificações baseadas em suposição — o que o CI rejeita por exigir `source_legacy:` válido.
-
----
-
-## Onde isso encaixa no fluxo do workshop
-
-![Linha do tempo do dia: pré-evento, 4 estágios e demo, com as três passagens H1, H2, H3](../assets/timeline-stages.svg)
+SIFAP, the Payment Inspection and Administration System, has operated for 29 years. Most knowledge about its business rules is in the Natural code, not in documentation. Without reading the code, the team would write specifications based on assumptions—which CI rejects because it requires a valid `source_legacy:`.
 
 ---
 
-## Quem trabalha aqui
+## Where this fits in the workshop flow
 
-Todos os 5 pares trabalham em paralelo, cada um responsável por 3 programas Natural. O Par 1 (Visão) lidera a síntese ao final do estágio. Veja [`GUIDE.md`](GUIDE.md) para a divisão completa.
+![Day timeline: pre-event, 4 stages, and demo, with the three H1, H2, and H3 handoffs](../assets/timeline-stages.svg)
 
 ---
 
-## Artefatos do Estágio 1
+## Who works here
 
-| Arquivo | Propósito |
+All 5 pairs work in parallel, each responsible for 3 Natural programs. Pair 1 (Vision) leads the synthesis at the end of the stage. See [`GUIDE.md`](GUIDE.md) for the full assignment.
+
+---
+
+## Stage 1 artifacts
+
+| File | Purpose |
 |---|---|
-| [`LEGACY-EXPLORATION-CHECKLIST.md`](LEGACY-EXPLORATION-CHECKLIST.md) | **Portão obrigatório.** Posse de programa por par e critérios de conclusão antes do Estágio 2. |
-| [`GUIDE.md`](GUIDE.md) | Guia passo a passo com roteiro cronometrado. |
-| [`glossary.md`](glossary.md) | Glossário de termos e abreviações do domínio SIFAP. |
-| [`business-rules-catalog.md`](business-rules-catalog.md) | Catálogo de regras de negócio extraídas com `Programa Fonte` obrigatório. |
-| [`dependency-map.md`](dependency-map.md) | Mapa de dependências entre programas e DDMs. |
-| [`discovery-report.md`](discovery-report.md) | Relatório de descoberta — consolida as evidências do estágio. |
-| [`mysteries-checklist.md`](mysteries-checklist.md) | Checklist de rastreabilidade para perguntas em aberto. |
-| [`mysteries-found.md`](mysteries-found.md) | Registro detalhado de perguntas em aberto com evidência e responsável. |
-| [`COMO-COMPILAR-E-EXECUTAR.md`](COMO-COMPILAR-E-EXECUTAR.md) | **Trilha opcional.** Como compilar e executar o corpus legado em um ambiente Adabas/Natural real. Não é pré-requisito de nenhum estágio. |
+| [`LEGACY-EXPLORATION-CHECKLIST.md`](LEGACY-EXPLORATION-CHECKLIST.md) | **Mandatory gate.** Program ownership by pair and completion criteria before Stage 2. |
+| [`GUIDE.md`](GUIDE.md) | Step-by-step guide with a timed schedule. |
+| [`glossary.md`](glossary.md) | Glossary of SIFAP domain terms and abbreviations. |
+| [`business-rules-catalog.md`](business-rules-catalog.md) | Catalog of extracted business rules with mandatory `Source Program`. |
+| [`dependency-map.md`](dependency-map.md) | Dependency map between programs and DDMs. |
+| [`discovery-report.md`](discovery-report.md) | Discovery report consolidating the stage evidence. |
+| [`mysteries-checklist.md`](mysteries-checklist.md) | Traceability checklist for open questions. |
+| [`mysteries-found.md`](mysteries-found.md) | Detailed record of open questions with evidence and owner. |
+| [`COMO-COMPILAR-E-EXECUTAR.md`](COMO-COMPILAR-E-EXECUTAR.md) | **Optional track.** How to compile and run the legacy corpus in a real Adabas/Natural environment. It is not a prerequisite for any stage. |
 
-O código legado está em [`legado-sifap/`](legado-sifap/) (compartilhado pelo kit).
+The legacy code is in [`legado-sifap/`](legado-sifap/) (shared by the kit).
 
-Quem quiser executar o legado, em vez de apenas lê-lo, pode provisionar o lab opcional em [`infra/adabas-natural-lab/`](../infra/adabas-natural-lab/README.md): uma VM Azure com Adabas e Natural Community Edition. O percurso do corpus até um programa rodando — carga dos fontes, criação dos arquivos Adabas, compilação e execução — está em [`COMO-COMPILAR-E-EXECUTAR.md`](COMO-COMPILAR-E-EXECUTAR.md). É trilha avançada, exige assinatura Azure própria e nenhum artefato do Estágio 1 depende dela.
+Anyone who wants to run the legacy system instead of only reading it can provision the optional lab in [`infra/adabas-natural-lab/`](../infra/adabas-natural-lab/README.md): an Azure VM with Adabas and Natural Community Edition. The path from the corpus to a running program—loading sources, creating Adabas files, compiling, and running—is documented in [`COMO-COMPILAR-E-EXECUTAR.md`](COMO-COMPILAR-E-EXECUTAR.md). This advanced track requires your own Azure subscription, and no Stage 1 artifact depends on it.
 
 ---
 
-### Continuar a leitura
+### Continue reading
 
-| Anterior | Próximo |
+| Previous | Next |
 |---|---|
-| [Kit do Time](../README.md)<br/><sub>Hub principal do repositório.</sub> | [GUIDE do Estágio 1](GUIDE.md)<br/><sub>Roteiro cronometrado de 90 min para ler o legado e catalogar regras.</sub> |
+| [Team Kit](../README.md)<br/><sub>Main repository hub.</sub> | [Stage 1 GUIDE](GUIDE.md)<br/><sub>90-minute timed schedule for reading the legacy system and cataloging rules.</sub> |
 
-<sub>[Voltar ao índice do kit](../README.md)</sub>
+<sub>[Back to the kit index](../README.md)</sub>

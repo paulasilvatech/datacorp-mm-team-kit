@@ -1,23 +1,23 @@
 ---
 name: "acceptance-check"
 agent: "product-owner"
-description: "Verifique se o código atende aos critérios de aceitação de spec.md. Use durante UAT ou revisão de sprint."
+description: "Check whether the code meets the acceptance criteria in spec.md. Use during UAT or sprint review."
 tools: ["search"]
 ---
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
 # /acceptance-check
 
-## Passos
+## Steps
 
-1. Leia a seção relevante de `specs/<NNN>-<feature>/spec.md`
-2. Extraia todos os critérios Given/When/Then
-3. Busque no codebase implementações correspondentes
-4. Busque cobertura nos arquivos de teste
-5. Produza um relatório de conformidade
+1. Read the relevant section of `specs/<NNN>-<feature>/spec.md`
+2. Extract all Given/When/Then criteria
+3. Search the codebase for corresponding implementations
+4. Search test files for coverage
+5. Produce a compliance report
 
-## Saída
+## Output
 
-| Critério | Implementado | Testado | Status |
+| Criterion | Implemented | Tested | Status |
 |-----------|-------------|--------|--------|
-| [text] | Sim/Não | Sim/Não | Passa/Falha/Lacuna |
+| [text] | Yes/No | Yes/No | Pass/Fail/Gap |
