@@ -6,23 +6,11 @@
 
 ## Approved Tools — These Only
 
-This workshop uses a **fixed toolchain**. Using anything else fragments the team and breaks the demos.
-
-| Use these | Why |
-|-----------|-----|
-| **VS Code** (or VS Code Insiders) | The only editor for the entire team. |
-| **GitHub Copilot** (Ask + Plan + Agent modes) | Primary AI assistant. Copilot Workspace is also allowed for Issue → PR delegation. |
-| **GitHub Copilot CLI** *(optional)* | For terminal-based tasks. |
-| **GitHub Spec-Kit** (`Specify CLI` + `/speckit.*`) | Official Spec-Driven Development toolkit for specification, planning, tasks, and implementation. |
-| **GitHub** (Issues, PRs, Actions, Projects) | Source of truth for work, code, and CI. |
-| **Docker / Docker Compose** | Local environment parity when the team creates containers in its own prototype. |
-| **Terraform** | IaC (Azure provider). |
-
-**Do not use** other AI assistants (Cursor, Windsurf, Codex, Cline, Continue, Aider, Codeium, Tabnine), alternative IDEs (IntelliJ, Eclipse, Neovim), web chat UIs to generate code, or alternative SDD frameworks (Kiro, etc.). Mixing tools breaks specification → code → test traceability.
+This workshop uses a **fixed toolchain**: VS Code, GitHub Copilot (Ask + Plan + Agent modes), GitHub Spec-Kit, GitHub, Docker / Docker Compose, and Terraform. Other AI assistants, IDEs, web chat UIs, and SDD frameworks are not permitted because mixing tools breaks specification → code → test traceability. Full table: [`README.md`](../README.md).
 
 ## Project Context
 
-Modernization of the 29-year-old Natural/Adabas **SIFAP** legacy system (Payment Inspection and Administration System) to Java 21 + Next.js 15. Legacy code is in [`01-archaeology/legacy-sifap/`](../01-archaeology/legacy-sifap/): 24 Natural members (12 `.NSP`, 5 `.NSN`, 2 `.NSC`, 2 `.NSA`, 1 `.NSL`, 2 `.jcl`) and 4 `.ddm` DDMs plus 1 FDT listing. The [`natural-programs/`](../01-archaeology/legacy-sifap/natural-programs/README.md) README documents the 15-assigned / 9-supporting split.
+Modernization of the 29-year-old Natural/Adabas **SIFAP** legacy system (Payment Inspection and Administration System) to Java 21 + Next.js 15. Legacy code is in [`01-archaeology/legacy-sifap/`](../01-archaeology/legacy-sifap/): 24 Natural members, 4 `.ddm` DDMs, and 1 FDT listing. The [`natural-programs/`](../01-archaeology/legacy-sifap/natural-programs/README.md) README documents the 15-assigned / 9-supporting split.
 
 The kit uses **two agent layers** (one persona kit per person + one stage agent per team). See [`06-stage-agents/README.md`](../06-stage-agents/README.md) for details.
 
@@ -37,55 +25,35 @@ Use the skills in [`.github/skills/`](skills/) for specialized workflows. Copilo
 - **CI/CD:** GitHub Actions
 - **Testing:** JUnit 5 + Testcontainers (backend); Vitest + Testing Library (frontend)
 
-## Code Generation Rules
+## Cross-Cutting Implementation Rules
 
-### Java
+Detailed Java, TypeScript, database, security, infrastructure, and test rules live in [`.github/instructions/`](instructions/) and load automatically for matching paths.
 
-- Use Java 21 features: records for DTOs, sealed interfaces for discriminated unions, pattern matching, and virtual threads
-- Use `Optional` correctly — never return `null` from public methods
-- Use `@Transactional` only in the service layer, never in repositories
-- Validate inputs in the controller layer with `@Valid` + Bean Validation
-- Use English class names and comments
-- Unit tests are mandatory for business logic
-- Never expose sensitive data (CPF, benefit amounts) in logs — mask it
-
-### TypeScript / Next.js
-
-- Set `strict: true` in `tsconfig.json` — no exceptions
-- Use server actions for mutations; never expose secrets in client components
-- Prefer `async/await` over `.then()` chains
-- Use named exports only — no default exports in component files
-
-### REST APIs
-
-- Path convention: `/api/v1/{resource}`
-- Use HTTP verbs correctly (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`)
-- Return appropriate status codes (`201` for creation, `204` for no content, `409` for conflict)
-- Every endpoint must have OpenAPI/Swagger annotations
-
-### Terraform
-
-- Every resource must have `tags` including `project`, `environment`, and `owner`
-- Store secrets only through `azurerm_key_vault_secret` — never in `locals` or `variables`
-- Use one module per Azure service area (networking, compute, database, monitoring)
-- `terraform fmt` and `terraform validate` must pass before commit
-
-## Security Rules (OWASP Top 10)
-
-- Validate inputs at every system boundary
-- Never hardcode secrets, API keys, or credentials
-- Use JPA/JPQL only for SQL queries — no string concatenation
-- Configure CORS explicitly — no `*` wildcard in production
-- Use OAuth2/JWT authentication (Spring Security in the backend)
-- All Azure resources use Managed Identity for service-to-service authentication
+- Use English class names and comments.
+- Path REST APIs as `/api/v1/{resource}`.
+- Validate inputs at every system boundary.
+- Never hardcode secrets, API keys, or credentials.
+- Never expose sensitive data (CPF, benefit amounts) in logs — mask it.
+- Configure CORS explicitly — no `*` wildcard in production.
+- Use Managed Identity for Azure service-to-service authentication.
+- Write tests during implementation, not after the fact.
 
 ## Spec-Driven Development (Spec-Kit)
 
 - Every requirement uses **EARS notation** (Easy Approach to Requirements Syntax)
 - Every requirement has a unique **REQ-ID** in the `REQ-NNN` format
-- **Every requirement includes a `source_legacy:` line** pointing to `01-archaeology/legacy-sifap/natural-programs/*.{NSP,NSN,NSS,NSA,NSL,NSC,NSM,jcl}`, `01-archaeology/legacy-sifap/adabas-ddms/*.{NSD,ddm,txt}`, or `[GREENFIELD] + justification`. The `legacy-traceability` CI job rejects PRs that violate this rule. See [`01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md`](../01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md).
+- **Every requirement includes a `source_legacy:` line** pointing to legacy files or `[GREENFIELD] + justification.`
+  Use `01-archaeology/legacy-sifap/natural-programs/*.{NSP,NSN,NSS,NSA,NSL,NSC,NSM,jcl}` or `01-archaeology/legacy-sifap/adabas-ddms/*.{NSD,ddm,txt}` for legacy-backed requirements.
+  The `legacy-traceability` CI job rejects PRs that violate this rule. See [`01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md`](../01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md).
 - Tests trace to REQ-IDs through inline comments
-- Branch strategy: one prefix per persona/stage, each cut from `develop` (never from `spec/*`) and merged back `develop` → `main` (there is no `stage` branch): `spec/<NNN>-<feature>` (RE + SA, Stage 2), `impl/<NNN>-<feature>` (Dev + DBA + QA, Stage 3), `infra/<component>` (DevOps, Stage 4), `docs/<topic>` (Tech Writer), `agent/<issue-NN>` (Copilot Agent). Do not collapse `impl/` — or any other prefix — into `spec/`. Full per-persona table: [`00-GIT-WORKFLOW.md`](../00-GIT-WORKFLOW.md)
+- Branch strategy: one prefix per persona/stage, each cut from `develop` (never from `spec/*`) and merged back `develop` → `main`; there is no `stage` branch.
+  - `spec/<NNN>-<feature>` — RE + SA, Stage 2
+  - `impl/<NNN>-<feature>` — Dev + DBA + QA, Stage 3
+  - `infra/<component>` — DevOps, Stage 4
+  - `docs/<topic>` — Tech Writer
+  - `agent/<issue-NN>` — Copilot Agent
+  - Do not collapse `impl/` — or any other prefix — into `spec/`.
+  - Full per-persona table: [`00-GIT-WORKFLOW.md`](../00-GIT-WORKFLOW.md)
 - Before writing EARS requirements in Stage 2, the pair MUST have read their assigned Natural programs (HARD GATE — see the checklist above)
 
 ## Strict Rules — Do Not Do This
@@ -107,8 +75,6 @@ Use the skills in [`.github/skills/`](skills/) for specialized workflows. Copilo
 - Copilot's 3 modes (Ask · Plan · Agent): [`09-cheat-sheets/copilot-3-modes.md`](../09-cheat-sheets/copilot-3-modes.md)
 - Persona kits (read 2 per person; active artifacts are already consolidated in `.github/`): [`05-personas/`](../05-personas/)
 - Stage agents: [`06-stage-agents/`](../06-stage-agents/)
-- How every Copilot primitive is structured: [`PRIMITIVE-STANDARD.md`](PRIMITIVE-STANDARD.md) — the agent, prompt, instruction, skill, and hook standard the `copilot-primitives` CI job enforces.
 - SIFAP legacy system: [`01-archaeology/legacy-sifap/`](../01-archaeology/legacy-sifap/)
-- Modern prototype: the team creates `backend/` and `frontend/` during Stage 3 (neither exists yet); there is no ready-made application codebase to copy. `infra/` already exists (Adabas/Natural lab) and is extended, not created.
-- Known agent failures + the guardrail that catches each recurrence: [`docs/failures/README.md`](../docs/failures/README.md) — read it before finishing and add an entry whenever a mistake recurs.
+- Known agent failures + guardrails: [`docs/failures/README.md`](../docs/failures/README.md)
 - Spec-Kit SDD: <https://github.com/github/spec-kit>

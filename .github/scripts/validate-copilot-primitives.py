@@ -841,6 +841,24 @@ def check_pragmas(markdown_files: list[str], reporter: Reporter) -> None:
                 )
 
 
+GLOBAL_INSTRUCTIONS = ".github/copilot-instructions.md"
+GLOBAL_INSTRUCTIONS_MAX_LINES = 100
+
+
+def check_global_instructions_size(reporter: Reporter) -> None:
+    """Cap the repo-wide instructions file: it is injected into every request."""
+    if not (REPO_ROOT / GLOBAL_INSTRUCTIONS).is_file():
+        return
+    count = len(read_text(GLOBAL_INSTRUCTIONS).splitlines())
+    if count > GLOBAL_INSTRUCTIONS_MAX_LINES:
+        reporter.error(
+            "global-instructions-size", GLOBAL_INSTRUCTIONS, count,
+            f"{count} lines exceeds the {GLOBAL_INSTRUCTIONS_MAX_LINES}-line cap; "
+            "this file loads on every Copilot request. Move path-specific rules into "
+            ".github/instructions/*.instructions.md (see .github/PRIMITIVE-STANDARD.md)",
+        )
+
+
 def check_hackathon(text_files: list[str], reporter: Reporter) -> None:
     for rel in text_files:
         if rel in HACKATHON_EXEMPT_FILES:
@@ -946,6 +964,7 @@ def main() -> int:
         check_markdown_links(rel, reporter)
 
     check_pragmas(all_markdown, reporter)
+    check_global_instructions_size(reporter)
     check_hackathon(text_files, reporter)
     check_stale_paths(text_files, reporter)
     check_competing_tools(all_markdown, reporter)

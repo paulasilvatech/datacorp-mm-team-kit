@@ -84,6 +84,15 @@ File: `instructions/<name>.instructions.md`. Valid keys: `applyTo`, `name`, `des
 
 - Scope `applyTo` to concrete globs. `applyTo: "**"` injects the file into every request and **fails the gate**; many files competing for one path such as `**/*.tf` caused failure #6.
 
+### Repo-wide instructions (`copilot-instructions.md`)
+
+This file takes **no frontmatter** and is injected into every Chat, agent, and code-review request on every surface, so each line carries a recurring token cost. Keep it **at or under 100 lines**.
+
+- Put only **broadly applicable** content here: project context, the target stack, cross-cutting rules, and the strict do-not list. GitHub's guidance is that instructions be "short, self-contained statements."
+- **Do not restate language- or path-specific rules.** Path-scoped files exist so you can "avoid overloading your repository-wide instructions"; Java, TypeScript, Terraform, database, and security detail belongs in `instructions/*.instructions.md`, which load automatically for matching paths.
+- Keep the **stack declaration** here even though scoped files repeat it: whether `applyTo` matches a directory that does not exist yet is undocumented, and `backend/` and `frontend/` are created only in Stage 3.
+- Avoid the documented anti-patterns: directives to go read another document, tool or extension routing, tone mandates, and response-length limits.
+
 ### Skill frontmatter
 
 File: `skills/<dir>/SKILL.md`. Only `name` and `description` are valid.
