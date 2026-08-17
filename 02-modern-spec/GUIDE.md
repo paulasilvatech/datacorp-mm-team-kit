@@ -52,12 +52,12 @@ specs/<NNN>-<feature>/
 └── tasks.md
 ```
 
-`spec.md` contains the EARS requirements, `plan.md` records the technical plan, and `tasks.md` orders the implementable work. Do not create parallel files with legacy names in `02-spec-moderna/`.
+`spec.md` contains the EARS requirements, `plan.md` records the technical plan, and `tasks.md` orders the implementable work. Do not create parallel files with legacy names in `02-modern-spec/`.
 
-`02-spec-moderna/` contains supporting material for the stage. Its templates and [`scope-decisions.md`](scope-decisions.md) record scope decisions, trade-offs, and references for the conversation. They do not replace the feature's three formal artifacts.
+`02-modern-spec/` contains supporting material for the stage. Its templates and [`scope-decisions.md`](scope-decisions.md) record scope decisions, trade-offs, and references for the conversation. They do not replace the feature's three formal artifacts.
 
 > [!CAUTION]
-> **Traceability HARD GATE.** Before drafting any EARS requirement, read the program or DDM that supports it. Every REQ-ID in `specs/<NNN>-<feature>/spec.md` needs a `source_legacy:` line pointing to `01-arqueologia/legado-sifap/.../*.NSN` or `*.ddm`. A capability with no legacy equivalent uses `[GREENFIELD]` with a rationale. Without this, CI rejects the PR.
+> **Traceability HARD GATE.** Before drafting any EARS requirement, read the program or DDM that supports it. Every REQ-ID in `specs/<NNN>-<feature>/spec.md` needs a `source_legacy:` line pointing to `01-archaeology/legacy-sifap/.../*.NSN` or `*.ddm`. A capability with no legacy equivalent uses `[GREENFIELD]` with a rationale. Without this, CI rejects the PR.
 
 ---
 
@@ -155,7 +155,7 @@ Pair 2 presents live to Pairs 3 and 4:
 - [ ] A small feature has `spec.md`, `plan.md`, and `tasks.md` in `specs/<NNN>-<feature>/`.
 - [ ] Every requirement has a valid `source_legacy:` or a justified `[GREENFIELD]`.
 - [ ] `tasks.md` includes tests alongside business-rule implementation.
-- [ ] Scope decisions are recorded in `02-spec-moderna/`.
+- [ ] Scope decisions are recorded in `02-modern-spec/`.
 - [ ] The PO confirmed the scope and the H2 handoff occurred by 15:00.
 
 ---
@@ -175,10 +175,10 @@ Pair 2 presents live to Pairs 3 and 4:
 ## References
 
 - [Spec-Kit reference card](../09-cheat-sheets/spec-kit-workflow.md)
-- [EARS notation](../07-conceitos/05-notacao-ears.md)
-- [Architecture Decision Records](../07-conceitos/06-architecture-decision-records.md)
+- [EARS notation](../07-concepts/05-ears-notation.md)
+- [Architecture Decision Records](../07-concepts/06-architecture-decision-records.md)
 - [Official Spec-Kit](https://github.com/github/spec-kit)
-- [SIFAP legacy system](../01-arqueologia/legado-sifap/)
+- [SIFAP legacy system](../01-archaeology/legacy-sifap/)
 
 ---
 
@@ -186,6 +186,6 @@ Pair 2 presents live to Pairs 3 and 4:
 
 | Previous | Next |
 |---|---|
-| [Stage 1 — Archaeology](../01-arqueologia/README.md)<br/><sub>Archaeology summary and links to the detailed GUIDE.</sub> | [Stage 3 — Implementation](../03-implementacao/GUIDE.md)<br/><sub>15:00–16:10 · Java 21 + Spring Boot + Next.js, with tests.</sub> |
+| [Stage 1 — Archaeology](../01-archaeology/README.md)<br/><sub>Archaeology summary and links to the detailed GUIDE.</sub> | [Stage 3 — Implementation](../03-implementation/GUIDE.md)<br/><sub>15:00–16:10 · Java 21 + Spring Boot + Next.js, with tests.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>

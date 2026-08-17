@@ -41,7 +41,7 @@ At the end of Stage 4, before the team starts preparing the demo presentation.
 
 ## Output Format
 
-A Markdown file at `04-evolucao/agent-experience-report.md`:
+A Markdown file at `04-evolution/agent-experience-report.md`:
 
 ```markdown
 # Agent Experience Report — [Team Name]
@@ -100,7 +100,7 @@ Wait for the team's answer. Record it verbatim.
 Wait for the team's answer. Record it verbatim.
 
 **Step 7 — Compile the report.**
-Format all answers in `04-evolucao/agent-experience-report.md`. Add metadata: team name, today's date, which stages the team completed, and which agents it used.
+Format all answers in `04-evolution/agent-experience-report.md`. Add metadata: team name, today's date, which stages the team completed, and which agents it used.
 
 Do not add commentary, analysis, or recommendations. The team's voice is the content. If the team wants to add raw notes or additional thoughts, include them in an optional "Raw Notes" section.
 

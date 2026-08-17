@@ -55,10 +55,10 @@ flowchart TD
 | # | Document | Core concept | Main stage |
 |---|---|---|---|
 | 01 | [Spec-Driven Development](01-spec-driven-development.md) | Spec-Kit cycle: specify → plan → tasks → implement | Stage 2 |
-| 02 | [Agents and Personas](02-agentes-e-personas.md) | Individual persona kit × shared stage agent | All |
-| 03 | [Visual Glossary](03-glossario-visual.md) | 30+ terms with a definition, SIFAP example, and reference | All |
-| 04 | [Copilot's 3 Modes](04-3-modos-do-copilot.md) | Ask · Plan · Agent—criteria and anti-patterns | All |
-| 05 | [EARS Notation](05-notacao-ears.md) | 6 EARS patterns (5 basic + Complex), REQ-ID, and `source_legacy:` | Stage 2 |
+| 02 | [Agents and Personas](02-agents-and-personas.md) | Individual persona kit × shared stage agent | All |
+| 03 | [Visual Glossary](03-visual-glossary.md) | 30+ terms with a definition, SIFAP example, and reference | All |
+| 04 | [Copilot's 3 Modes](04-3-copilot-modes.md) | Ask · Plan · Agent—criteria and anti-patterns | All |
+| 05 | [EARS Notation](05-ears-notation.md) | 6 EARS patterns (5 basic + Complex), REQ-ID, and `source_legacy:` | Stage 2 |
 | 06 | [Architecture Decision Records](06-architecture-decision-records.md) | Anatomy, when to write one, and the ADR lifecycle | Stage 2 |
 
 ---
@@ -79,7 +79,7 @@ flowchart TD
 Before starting Stage 1, confirm that you can answer these questions without referring to documentation:
 
 - [ ] What is Spec-Kit, and what is the `/speckit.specify` command for?
-- [ ] What is the difference between a persona kit (in `05-personas/`) and a stage agent (in `06-agentes-de-estagio/`)?
+- [ ] What is the difference between a persona kit (in `05-personas/`) and a stage agent (in `06-stage-agents/`)?
 - [ ] When should you use Ask instead of Agent in Copilot?
 - [ ] What is EARS, and why is the `source_legacy:` field mandatory?
 - [ ] What is an ADR, and in what situation would you write one?

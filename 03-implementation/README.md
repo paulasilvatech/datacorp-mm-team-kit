@@ -36,6 +36,6 @@
 
 | Previous | Next |
 |---|---|
-| [Stage 2 — Specification](../02-spec-moderna/README.md)<br/><sub>Modern specification summary and links to ADR templates.</sub> | [Stage 3 — GUIDE](GUIDE.md)<br/><sub>15:00–16:10 · Java 21 + Spring Boot + Next.js, with tests.</sub> |
+| [Stage 2 — Specification](../02-modern-spec/README.md)<br/><sub>Modern specification summary and links to ADR templates.</sub> | [Stage 3 — GUIDE](GUIDE.md)<br/><sub>15:00–16:10 · Java 21 + Spring Boot + Next.js, with tests.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>

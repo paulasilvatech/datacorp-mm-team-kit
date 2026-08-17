@@ -1,14 +1,14 @@
 ---
 description: "Use when writing or reviewing requirements, EARS specifications, acceptance criteria, traceability, and docs-backed requirements."
-applyTo: "docs/**/*.md,specs/**/*.md,02-spec-moderna/**/*.md"
+applyTo: "docs/**/*.md,specs/**/*.md,02-modern-spec/**/*.md"
 ---
 
 # Requirements Conventions — EARS and Legacy Traceability
 
-This file activates when you write or review Markdown under `docs/`, `specs/`, or `02-spec-moderna/`. It teaches how to phrase requirements in EARS notation, assign REQ-IDs, and attach the mandatory `source_legacy:` line that CI enforces. It teaches the *form* of a good requirement — it does not decide *what* to require; that comes from the team's own reading of the legacy corpus.
+This file activates when you write or review Markdown under `docs/`, `specs/`, or `02-modern-spec/`. It teaches how to phrase requirements in EARS notation, assign REQ-IDs, and attach the mandatory `source_legacy:` line that CI enforces. It teaches the *form* of a good requirement — it does not decide *what* to require; that comes from the team's own reading of the legacy corpus.
 
 > [!IMPORTANT]
-> Before writing EARS requirements, the pair MUST have read their assigned Natural programs (hard gate — see [`LEGACY-EXPLORATION-CHECKLIST.md`](../../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md) and [`natural-adabas.instructions.md`](natural-adabas.instructions.md)).
+> Before writing EARS requirements, the pair MUST have read their assigned Natural programs (hard gate — see [`LEGACY-EXPLORATION-CHECKLIST.md`](../../01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md) and [`natural-adabas.instructions.md`](natural-adabas.instructions.md)).
 
 ## EARS Patterns
 
@@ -32,7 +32,7 @@ The [`ears-validate`](../skills/ears-validate/SKILL.md) skill owns the quality c
 WHEN a resource is submitted with an identifier that already exists,
 the system SHALL reject the request and return HTTP 409.
 
-- source_legacy: 01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSP#L40-L88
+- source_legacy: 01-archaeology/legacy-sifap/natural-programs/<PROGRAM>.NSP#L40-L88
 - acceptance: Given an existing resource, When the same identifier is submitted,
   Then the response is 409 and no new record is created.
 ```
@@ -45,14 +45,14 @@ IDs are unique and take the form `REQ-NNN` (`REQ-021`) or `REQ-AREA-NNN` (`REQ-P
 
 The `legacy-traceability` job in [`spec-quality.yml`](../workflows/spec-quality.yml) **fails the build** if any declared REQ-ID in `specs/` lacks a valid `source_legacy:` line within 20 lines of its declaration. A value is valid when it is one of:
 
-- A path under `01-arqueologia/legado-sifap/natural-programs/` with extension `.NSP`, `.NSN`, `.NSS`, `.NSA`, `.NSL`, `.NSC`, `.NSM`, or `.jcl`.
-- A path under `01-arqueologia/legado-sifap/adabas-ddms/` with extension `.NSD`, `.ddm`, or `.txt`.
+- A path under `01-archaeology/legacy-sifap/natural-programs/` with extension `.NSP`, `.NSN`, `.NSS`, `.NSA`, `.NSL`, `.NSC`, `.NSM`, or `.jcl`.
+- A path under `01-archaeology/legacy-sifap/adabas-ddms/` with extension `.NSD`, `.ddm`, or `.txt`.
 - `[GREENFIELD] <one-line justification>` (justification must be non-empty).
 
 An optional line anchor `#L<start>` or `#L<start>-L<end>` may follow the path, and the file **must actually exist on disk** — the gate reads it. Quotes are optional but must be balanced.
 
 ```markdown
-- source_legacy: 01-arqueologia/legado-sifap/adabas-ddms/<DDM>.ddm#L12-L30
+- source_legacy: 01-archaeology/legacy-sifap/adabas-ddms/<DDM>.ddm#L12-L30
 - source_legacy: "[GREENFIELD] no legacy audit trail exists; required for compliance"
 ```
 

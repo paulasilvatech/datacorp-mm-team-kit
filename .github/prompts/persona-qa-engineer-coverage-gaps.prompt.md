@@ -35,12 +35,12 @@ Ask the user for anything that is missing.
 - Cross-reference the `spec-traceability` job output in `.github/workflows/spec-quality.yml` for `REQ-ID`s CI already flags as untested
 - Map each `REQ-ID` to its tests and rate it `MISSING`, `WEAK`, or `OK`
 - Inspect EARS variants for hidden negative and state-transition cases
-- Check legacy-derived edge cases generically against `01-arqueologia/legado-sifap/natural-programs/`
+- Check legacy-derived edge cases generically against `01-archaeology/legacy-sifap/natural-programs/`
 - Score every gap by risk and deliver the prioritized list
 
 ## What I Will NOT Do
 
-- Invent SIFAP behavior, a missing requirement, or a legacy edge case — I reference `01-arqueologia/legado-sifap/` generically and ask the team when a value is unknown
+- Invent SIFAP behavior, a missing requirement, or a legacy edge case — I reference `01-archaeology/legacy-sifap/` generically and ask the team when a value is unknown
 - Write the tests (`/create-tests`), implement fixes (`@builder`), or edit the spec (`@requirements-engineer`)
 - Report a line-coverage percentage as if it were behavior coverage
 - Count redundant happy-path tests as sufficient, or treat UI snapshot tests as UX requirement coverage
@@ -67,7 +67,7 @@ A Markdown report returned inline:
 | REQ-015 | Event-driven | WEAK | 4 | add "event did not occur" negative test |
 
 ### Legacy-derived edge cases still uncovered
-- Boundary from a Natural program in `01-arqueologia/legado-sifap/natural-programs/` — confirm with the team, then map to REQ-014.
+- Boundary from a Natural program in `01-archaeology/legacy-sifap/natural-programs/` — confirm with the team, then map to REQ-014.
 
 ### Suggested test additions
 1. `AmountRuleTest#should_reject_when_amount_below_minimum`
@@ -79,7 +79,7 @@ A Markdown report returned inline:
 - [ ] Every in-scope `REQ-ID` appears exactly once in the report
 - [ ] Each gap has a risk score (probability × impact) and a one-line test recipe
 - [ ] Negative / unwanted-behavior requirements without a negative test are marked `WEAK` or `MISSING`
-- [ ] Legacy-derived edge cases are explicitly checked against `01-arqueologia/legado-sifap/natural-programs/`
+- [ ] Legacy-derived edge cases are explicitly checked against `01-archaeology/legacy-sifap/natural-programs/`
 - [ ] The top three gaps carry actionable test names ready for assignment
 - [ ] The output is ready to paste into a sprint-planning ticket
 
@@ -100,7 +100,7 @@ For each `REQ-ID`, list the covering tests and rate it: `MISSING` (none), `WEAK`
 Event-driven and unwanted-behavior (`If ...`) requirements almost always need a negative test. State-driven (`While ...`) requirements need a transition test. Flag any that lack one.
 
 **Step 5 — Cross-check the legacy system.**
-For requirements mapped to a Natural program in `01-arqueologia/legado-sifap/natural-programs/`, confirm that the edge cases the team identified in Stage 1 are covered. Reference paths generically — do not assert what a specific program computes.
+For requirements mapped to a Natural program in `01-archaeology/legacy-sifap/natural-programs/`, confirm that the edge cases the team identified in Stage 1 are covered. Reference paths generically — do not assert what a specific program computes.
 
 **Step 6 — Score by risk.**
 Rate probability (how often it runs in production) and impact (financial, regulatory, security) on a 1–3 scale. Risk = probability × impact. Put the highest risk first.

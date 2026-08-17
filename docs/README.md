@@ -17,7 +17,7 @@
 
 - [ ] **Before starting the day** — read [sdlc-flow-guide.md](sdlc-flow-guide.md) to understand the complete map.
 - [ ] **When choosing your personas** — read [persona-agent-matrix.md](persona-agent-matrix.md) to learn when you lead, support, or observe.
-- [ ] **During Stage 1** — update the [Stage 1 glossary](../01-arqueologia/glossary.md) and record terms with a legacy source.
+- [ ] **During Stage 1** — update the [Stage 1 glossary](../01-archaeology/glossary.md) and record terms with a legacy source.
 - [ ] **For every technical decision** — create an ADR in [adr/](adr/).
 - [ ] **At the end of the day** — review [runbook.md](runbook.md) so another person can run and operate the system.
 
@@ -26,7 +26,7 @@
 | Path | Purpose |
 |---|---|
 | [`adr/`](adr/) | Architecture decision records (one file per decision) |
-| [`../01-arqueologia/glossary.md`](../01-arqueologia/glossary.md) | Domain glossary — completed during Stage 1 |
+| [`../01-archaeology/glossary.md`](../01-archaeology/glossary.md) | Domain glossary — completed during Stage 1 |
 | [`4-agents-explained.md`](4-agents-explained.md) | Explanation of the four stage agents and their relationship to persona kits |
 | [`persona-agent-matrix.md`](persona-agent-matrix.md) | Matrix showing who leads, supports, or observes at each stage |
 | [`sdlc-flow-guide.md`](sdlc-flow-guide.md) | Complete flow of the day, handoffs, and deliverables |
@@ -53,7 +53,7 @@
 
 - [Team flow](../00-TEAM-FLOW.md)
 - [Consolidated persona kits](../05-personas/) — read `PERSONA.md` inside the kit for your role
-- [Stage guides](../01-arqueologia/GUIDE.md)
+- [Stage guides](../01-archaeology/GUIDE.md)
 
 ---
 
@@ -61,6 +61,6 @@
 
 | Previous | Next |
 |---|---|
-| [Reference Cards](../09-cheat-sheets/README.md)<br/><sub>Three one-page cards: Copilot, Spec-Kit, and models.</sub> | [Visual Glossary](../07-conceitos/03-glossario-visual.md)<br/><sub>30+ technical terms from the SIFAP domain.</sub> |
+| [Reference Cards](../09-cheat-sheets/README.md)<br/><sub>Three one-page cards: Copilot, Spec-Kit, and models.</sub> | [Visual Glossary](../07-concepts/03-visual-glossary.md)<br/><sub>30+ technical terms from the SIFAP domain.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>

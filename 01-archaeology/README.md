@@ -51,11 +51,11 @@ All 5 pairs work in parallel, each responsible for 3 Natural programs. Pair 1 (V
 | [`discovery-report.md`](discovery-report.md) | Discovery report consolidating the stage evidence. |
 | [`mysteries-checklist.md`](mysteries-checklist.md) | Traceability checklist for open questions. |
 | [`mysteries-found.md`](mysteries-found.md) | Detailed record of open questions with evidence and owner. |
-| [`COMO-COMPILAR-E-EXECUTAR.md`](COMO-COMPILAR-E-EXECUTAR.md) | **Optional track.** How to compile and run the legacy corpus in a real Adabas/Natural environment. It is not a prerequisite for any stage. |
+| [`HOW-TO-COMPILE-AND-RUN.md`](HOW-TO-COMPILE-AND-RUN.md) | **Optional track.** How to compile and run the legacy corpus in a real Adabas/Natural environment. It is not a prerequisite for any stage. |
 
-The legacy code is in [`legado-sifap/`](legado-sifap/) (shared by the kit).
+The legacy code is in [`legacy-sifap/`](legacy-sifap/) (shared by the kit).
 
-Anyone who wants to run the legacy system instead of only reading it can provision the optional lab in [`infra/adabas-natural-lab/`](../infra/adabas-natural-lab/README.md): an Azure VM with Adabas and Natural Community Edition. The path from the corpus to a running program—loading sources, creating Adabas files, compiling, and running—is documented in [`COMO-COMPILAR-E-EXECUTAR.md`](COMO-COMPILAR-E-EXECUTAR.md). This advanced track requires your own Azure subscription, and no Stage 1 artifact depends on it.
+Anyone who wants to run the legacy system instead of only reading it can provision the optional lab in [`infra/adabas-natural-lab/`](../infra/adabas-natural-lab/README.md): an Azure VM with Adabas and Natural Community Edition. The path from the corpus to a running program—loading sources, creating Adabas files, compiling, and running—is documented in [`HOW-TO-COMPILE-AND-RUN.md`](HOW-TO-COMPILE-AND-RUN.md). This advanced track requires your own Azure subscription, and no Stage 1 artifact depends on it.
 
 ---
 

@@ -50,10 +50,10 @@ Use this agent after the team has legacy discoveries and needs to transform them
 
 | Input | Location |
 |---|---|
-| Stage 1 rule catalog | `01-arqueologia/business-rules-catalog.md` |
+| Stage 1 rule catalog | `01-archaeology/business-rules-catalog.md` |
 | Dependency map | In the catalog or a separate Mermaid file |
 | Open questions | Catalog section |
-| Legacy exploration checklist | `01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md` |
+| Legacy exploration checklist | `01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md` |
 
 ---
 
@@ -64,7 +64,7 @@ Use this agent after the team has legacy discoveries and needs to transform them
 | Feature specification | `specs/<NNN>-<feature>/spec.md` |
 | Technical plan | `specs/<NNN>-<feature>/plan.md` |
 | Implementable task list | `specs/<NNN>-<feature>/tasks.md` |
-| Supporting scope decisions | `02-spec-moderna/` (support only, not a second specification location) |
+| Supporting scope decisions | `02-modern-spec/` (support only, not a second specification location) |
 
 ---
 
@@ -100,7 +100,7 @@ without a source, and record open questions separately.
 
 - [ ] `spec.md`, `plan.md`, and `tasks.md` exist in `specs/<NNN>-<feature>/`.
 - [ ] Every requirement has `source_legacy:` pointing to `.NSN` or `.ddm`, or `[GREENFIELD]` with a rationale.
-- [ ] Supporting scope decisions are in `02-spec-moderna/`.
+- [ ] Supporting scope decisions are in `02-modern-spec/`.
 - [ ] The Product Owner reviewed and approved the scope during the 15:00 handoff.
 
 ---

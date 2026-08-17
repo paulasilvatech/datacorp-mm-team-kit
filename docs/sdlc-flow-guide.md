@@ -57,7 +57,7 @@ specs/<NNN>-<feature>/
 └── tasks.md
 ```
 
-`02-spec-moderna/` stores only supporting material and scope decisions. Do not create parallel formal artifacts outside the feature folder.
+`02-modern-spec/` stores only supporting material and scope decisions. Do not create parallel formal artifacts outside the feature folder.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: "map-dependencies"
 description: "Maps program-to-program (CALLNAT, INCLUDE) and program-to-data (DDM access) dependencies for a selected scope."
-argument-hint: "scope=01-arqueologia/legado-sifap/natural-programs/ recursive=true"
+argument-hint: "scope=01-archaeology/legacy-sifap/natural-programs/ recursive=true"
 agent: "archaeologist"
 tools: ["read", "search", "edit"]
 ---
@@ -17,8 +17,8 @@ After the team completes the initial inventory and wants to understand how the p
 
 ## Preconditions
 
-- `01-arqueologia/inventory.md` exists
-- The `01-arqueologia/legado-sifap/` folder is accessible
+- `01-archaeology/inventory.md` exists
+- The `01-archaeology/legacy-sifap/` folder is accessible
 - The team selected a scope: a single program, a batch flow, or a transaction family
 
 ## Inputs the Team Must Provide
@@ -39,11 +39,11 @@ After the team completes the initial inventory and wants to understand how the p
 - Invent connections not present in the source code — every edge must have a file and line number
 - Guess what a CALLNAT target does based on its name — I only map the edge, not the target's behavior
 - Assume any program structure — I read what is actually there
-- Follow references outside the `01-arqueologia/legado-sifap/` folder
+- Follow references outside the `01-archaeology/legacy-sifap/` folder
 
 ## Output Format
 
-A Mermaid file at `01-arqueologia/dependency-map.mmd` and a supporting Markdown file at `01-arqueologia/dependency-map.md`:
+A Mermaid file at `01-archaeology/dependency-map.mmd` and a supporting Markdown file at `01-archaeology/dependency-map.md`:
 
 ```markdown
 # Dependency Map — [Scope Description]
@@ -79,7 +79,7 @@ Within the scope, search for every occurrence of `CALLNAT`. For each one, extrac
 - The line number
 - The passed parameters (list them; do not interpret them)
 
-Verify that each target subprogram exists as a file in the `01-arqueologia/legado-sifap/` folder. If it does not, add it to the broken-reference list.
+Verify that each target subprogram exists as a file in the `01-archaeology/legacy-sifap/` folder. If it does not, add it to the broken-reference list.
 
 **Step 3 — Search for INCLUDE directives.**
 Within the scope, search for every `INCLUDE` statement. For each one, extract:
@@ -119,12 +119,12 @@ List any CALLNAT targets or INCLUDEs that reference files not found in the codeb
 Add an observations section recording the total programs in scope, total edges found, most connected program (highest degree), most accessed DDM, and any isolated programs (without incoming or outgoing edges).
 
 **Step 8 — Write output files.**
-Write the Mermaid diagram to `01-arqueologia/dependency-map.mmd` and the supporting documentation to `01-arqueologia/dependency-map.md`.
+Write the Mermaid diagram to `01-archaeology/dependency-map.mmd` and the supporting documentation to `01-archaeology/dependency-map.md`.
 
 Every edge must cite a source file and line number. If you cannot find a source for an edge, do not include it. Do not fabricate connections.
 
 ## Invocation Example
 
 ```
-/map-dependencies scope=01-arqueologia/legado-sifap/natural-programs/ recursive=true
+/map-dependencies scope=01-archaeology/legacy-sifap/natural-programs/ recursive=true
 ```

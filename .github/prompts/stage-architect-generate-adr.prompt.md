@@ -43,7 +43,7 @@ Whenever the team faces a design choice with at least 2 viable options during St
 
 ## Output Format
 
-A Markdown file at `02-spec-moderna/ADRs/adr-NNN-<slug>.md`:
+A Markdown file at `02-modern-spec/ADRs/adr-NNN-<slug>.md`:
 
 ```markdown
 # ADR-NNN: [Title]
@@ -60,7 +60,7 @@ A Markdown file at `02-spec-moderna/ADRs/adr-NNN-<slug>.md`:
 - Related Requirements: REQ-NNN
 ```
 
-See [`02-spec-moderna/templates/ADR.template.md`](../../02-spec-moderna/templates/ADR.template.md) for the skeleton.
+See [`02-modern-spec/templates/ADR.template.md`](../../02-modern-spec/templates/ADR.template.md) for the skeleton.
 
 ## Definition of Done
 
@@ -88,8 +88,8 @@ If the team provides only 1 option, ask: "Which alternatives did you consider an
 Search the team's artifacts for relevant context:
 
 - Check `specs/<NNN>-<feature>/spec.md` for requirements that constrain this decision
-- Check `02-spec-moderna/bounded-contexts.md` for module boundaries that affect the choice
-- Check `01-arqueologia/discovery-report.md` for legacy patterns that inform the trade-offs
+- Check `02-modern-spec/bounded-contexts.md` for module boundaries that affect the choice
+- Check `01-archaeology/discovery-report.md` for legacy patterns that inform the trade-offs
 
 **Step 3 — Analyze each option.**
 For each option, write:
@@ -118,7 +118,7 @@ Write the ADR in MADR format:
 - **Related Requirements**: Any REQ-IDs affected by or constraining this decision
 
 **Step 6 — Number and file the ADR.**
-Check `02-spec-moderna/ADRs/` for existing ADRs. Assign the next sequential number. Write to `02-spec-moderna/ADRs/adr-NNN-<slug>.md`, where `<slug>` is a kebab-case version of the title.
+Check `02-modern-spec/ADRs/` for existing ADRs. Assign the next sequential number. Write to `02-modern-spec/ADRs/adr-NNN-<slug>.md`, where `<slug>` is a kebab-case version of the title.
 
 Create the `ADRs/` directory if it does not exist.
 

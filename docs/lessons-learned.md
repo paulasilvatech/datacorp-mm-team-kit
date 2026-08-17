@@ -20,7 +20,7 @@
 ### 1. "We do not need to inspect the legacy system — the briefing is enough"
 
 - **Consequence:** the team writes EARS without `source_legacy:`. CI rejects the pull request at 14:30. The team loses an hour redoing the work.
-- **Remedy:** enforce the Stage 1 hard gate — the facilitator validates it at 13:50. See [`01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md).
+- **Remedy:** enforce the Stage 1 hard gate — the facilitator validates it at 13:50. See [`01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md`](../01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md).
 
 ### 2. "I will start coding while someone else writes the specification"
 
@@ -60,7 +60,7 @@
 ### 9. Running `terraform apply` instead of `plan`
 
 - **Consequence:** Azure resources are created and billed immediately. The workshop does not authorize `apply`.
-- **Remedy:** run only `terraform plan`. See [`04-evolucao/GUIDE.md`](../04-evolucao/GUIDE.md).
+- **Remedy:** run only `terraform plan`. See [`04-evolution/GUIDE.md`](../04-evolution/GUIDE.md).
 
 ### 10. Not rehearsing the demonstration
 

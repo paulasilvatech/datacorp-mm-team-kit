@@ -142,7 +142,7 @@ Use Spec-Kit whenever the team starts a new feature in Stage 2. Even when a feat
 
 - [Official Spec-Kit repository](https://github.com/github/spec-kit)
 - [Command cheat sheet](../09-cheat-sheets/spec-kit-workflow.md)
-- [Stage 2 Guide](../02-spec-moderna/GUIDE.md)
+- [Stage 2 Guide](../02-modern-spec/GUIDE.md)
 
 ---
 
@@ -150,6 +150,6 @@ Use Spec-Kit whenever the team starts a new feature in Stage 2. Even when a feat
 
 | Previous | Next |
 |---|---|
-| [Concepts Index](00-README.md)<br/><sub>What you will learn and in what order.</sub> | [Agents and Personas](02-agentes-e-personas.md)<br/><sub>The two context layers in Copilot Chat.</sub> |
+| [Concepts Index](00-README.md)<br/><sub>What you will learn and in what order.</sub> | [Agents and Personas](02-agents-and-personas.md)<br/><sub>The two context layers in Copilot Chat.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>

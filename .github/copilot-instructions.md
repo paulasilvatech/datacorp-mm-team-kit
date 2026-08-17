@@ -22,9 +22,9 @@ This workshop uses a **fixed toolchain**. Using anything else fragments the team
 
 ## Project Context
 
-Modernization of the 29-year-old Natural/Adabas **SIFAP** legacy system (Payment Inspection and Administration System) to Java 21 + Next.js 15. Legacy code is in [`01-arqueologia/legado-sifap/`](../01-arqueologia/legado-sifap/) (12 `.NSP` programs + 5 `.NSN` subprograms + 4 `.NSD` DDMs).
+Modernization of the 29-year-old Natural/Adabas **SIFAP** legacy system (Payment Inspection and Administration System) to Java 21 + Next.js 15. Legacy code is in [`01-archaeology/legacy-sifap/`](../01-archaeology/legacy-sifap/) (12 `.NSP` programs + 5 `.NSN` subprograms + 4 `.NSD` DDMs).
 
-The kit uses **two agent layers** (one persona kit per person + one stage agent per team). See [`06-agentes-de-estagio/README.md`](../06-agentes-de-estagio/README.md) for details.
+The kit uses **two agent layers** (one persona kit per person + one stage agent per team). See [`06-stage-agents/README.md`](../06-stage-agents/README.md) for details.
 
 Use the skills in [`.github/skills/`](skills/) for specialized workflows. Copilot selects the relevant skill from its description; do not duplicate specialized workflows in these global instructions.
 
@@ -83,7 +83,7 @@ Use the skills in [`.github/skills/`](skills/) for specialized workflows. Copilo
 
 - Every requirement uses **EARS notation** (Easy Approach to Requirements Syntax)
 - Every requirement has a unique **REQ-ID** in the `REQ-NNN` format
-- **Every requirement includes a `source_legacy:` line** pointing to `01-arqueologia/legado-sifap/natural-programs/*.{NSP,NSN,NSS,NSA,NSL,NSC,NSM,jcl}`, `01-arqueologia/legado-sifap/adabas-ddms/*.{NSD,ddm,txt}`, or `[GREENFIELD] + justification`. The `legacy-traceability` CI job rejects PRs that violate this rule. See [`01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md).
+- **Every requirement includes a `source_legacy:` line** pointing to `01-archaeology/legacy-sifap/natural-programs/*.{NSP,NSN,NSS,NSA,NSL,NSC,NSM,jcl}`, `01-archaeology/legacy-sifap/adabas-ddms/*.{NSD,ddm,txt}`, or `[GREENFIELD] + justification`. The `legacy-traceability` CI job rejects PRs that violate this rule. See [`01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md`](../01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md).
 - Tests trace to REQ-IDs through inline comments
 - Branch strategy: `spec/<NNN>-<feature>` → `develop` → `main` (no `stage`; see [`00-GIT-WORKFLOW.md`](../00-GIT-WORKFLOW.md))
 - Before writing EARS requirements in Stage 2, the pair MUST have read their assigned Natural programs (HARD GATE — see the checklist above)
@@ -104,7 +104,7 @@ Use the skills in [`.github/skills/`](skills/) for specialized workflows. Copilo
 - Git workflow: [`00-GIT-WORKFLOW.md`](../00-GIT-WORKFLOW.md)
 - Copilot's 3 modes (Ask · Plan · Agent): [`09-cheat-sheets/copilot-3-modes.md`](../09-cheat-sheets/copilot-3-modes.md)
 - Persona kits (read 2 per person; active artifacts are already consolidated in `.github/`): [`05-personas/`](../05-personas/)
-- Stage agents: [`06-agentes-de-estagio/`](../06-agentes-de-estagio/)
-- SIFAP legacy system: [`01-arqueologia/legado-sifap/`](../01-arqueologia/legado-sifap/)
+- Stage agents: [`06-stage-agents/`](../06-stage-agents/)
+- SIFAP legacy system: [`01-archaeology/legacy-sifap/`](../01-archaeology/legacy-sifap/)
 - Modern prototype: created by the team during Stage 3 in `backend/`, `frontend/`, and, if necessary, `infra/`; there is no ready-made codebase to copy.
 - Spec-Kit SDD: <https://github.com/github/spec-kit>

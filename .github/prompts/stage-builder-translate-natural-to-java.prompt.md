@@ -1,7 +1,7 @@
 ---
 name: "translate-natural-to-java"
 description: "Translates a Natural program into idiomatic Java 21 + Spring Boot 3.3 while preserving business semantics."
-argument-hint: "file=01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSN context=<context> package=<java.package>"
+argument-hint: "file=01-archaeology/legacy-sifap/natural-programs/<PROGRAM>.NSN context=<context> package=<java.package>"
 agent: "builder"
 tools: ["read", "search", "edit", "execute"]
 ---
@@ -20,11 +20,11 @@ At the beginning of Stage 3, when the team starts implementing bounded contexts 
 - `specs/<NNN>-<feature>/plan.md` exists with the required package structure
 - `specs/<NNN>-<feature>/spec.md` exists with EARS requirements
 - The bounded context and target package are known
-- The Natural source file is accessible in `01-arqueologia/legado-sifap/`
+- The Natural source file is accessible in `01-archaeology/legacy-sifap/`
 
 ## Inputs the Team Must Provide
 
-- The path to the Natural program file (for example, `01-arqueologia/legado-sifap/natural-programs/PGXXXXXX.NSN`)
+- The path to the Natural program file (for example, `01-archaeology/legacy-sifap/natural-programs/PGXXXXXX.NSN`)
 - The bounded context and target Java package
 - Any related EARS requirements (REQ-IDs)
 
@@ -136,5 +136,5 @@ If a Natural construct has no clean Java idiom, present two alternatives to the 
 ## Invocation Example
 
 ```
-/translate-natural-to-java file=01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSN context=<context> package=<java.package>
+/translate-natural-to-java file=01-archaeology/legacy-sifap/natural-programs/<PROGRAM>.NSN context=<context> package=<java.package>
 ```

@@ -44,12 +44,12 @@ General data-modeling patterns for moving Adabas structures to PostgreSQL:
 
 ## What This Agent Does NOT Know
 
-- The DDM field names, types, or MU/PE structures in the legacy folder; read them under `01-arqueologia/legado-sifap/`
+- The DDM field names, types, or MU/PE structures in the legacy folder; read them under `01-archaeology/legacy-sifap/`
 - Which queries the legacy programs run; derive indexes from that evidence, not assumptions
 - The bounded contexts that shape table ownership; the Software Architect supplies them
 - The current schema, migrations, and JPA entities until read from disk
 
-All of this must emerge from the team's own investigation of `01-arqueologia/legado-sifap/` and the artifacts already on disk; the agent never fills these gaps with assumptions.
+All of this must emerge from the team's own investigation of `01-archaeology/legacy-sifap/` and the artifacts already on disk; the agent never fills these gaps with assumptions.
 
 ## Available Prompts
 

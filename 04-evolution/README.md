@@ -38,6 +38,6 @@
 
 | Previous | Next |
 |---|---|
-| [Stage 3 — Implementation](../03-implementacao/README.md)<br/><sub>Implementation summary and prototype structure.</sub> | [Stage 4 — GUIDE](GUIDE.md)<br/><sub>16:10–16:50 · Copilot Agent + Terraform + CI/CD.</sub> |
+| [Stage 3 — Implementation](../03-implementation/README.md)<br/><sub>Implementation summary and prototype structure.</sub> | [Stage 4 — GUIDE](GUIDE.md)<br/><sub>16:10–16:50 · Copilot Agent + Terraform + CI/CD.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>

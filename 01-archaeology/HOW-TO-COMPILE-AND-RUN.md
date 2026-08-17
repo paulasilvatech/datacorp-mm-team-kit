@@ -7,7 +7,7 @@
 | Field | Value |
 |---|---|
 | **Target audience** | DevOps, DBA, Tech Lead, or anyone who wants to validate a legacy rule empirically |
-| **Prerequisites** | A provisioned and accessible [`infra/adabas-natural-lab/`](../infra/adabas-natural-lab/README.md) lab; read [`COMO-LER-NATURAL.md`](legado-sifap/COMO-LER-NATURAL.md) |
+| **Prerequisites** | A provisioned and accessible [`infra/adabas-natural-lab/`](../infra/adabas-natural-lab/README.md) lab; read [`HOW-TO-READ-NATURAL.md`](legacy-sifap/HOW-TO-READ-NATURAL.md) |
 | **Estimated time** | 2 to 4 hours, outside the day's schedule |
 | **Stage** | Stage 1 — Archaeology (optional track) |
 | **Expected outcome** | At least one corpus member compiled without errors and one program run in the lab |
@@ -38,7 +38,7 @@ The workshop's main path is to **read** legacy code and extract traceable busine
 
 | If your objective is… | Then… |
 |---|---|
-| Write EARS requirements with `source_legacy:` | Keep reading. Use [`GUIDE.md`](GUIDE.md) and [`COMO-LER-NATURAL.md`](legado-sifap/COMO-LER-NATURAL.md). This guide will not help. |
+| Write EARS requirements with `source_legacy:` | Keep reading. Use [`GUIDE.md`](GUIDE.md) and [`HOW-TO-READ-NATURAL.md`](legacy-sifap/HOW-TO-READ-NATURAL.md). This guide will not help. |
 | Understand what a calculation produces for a specific input | Reading plus a spreadsheet solves this in minutes. Reproducing the calculation in Java in Stage 3 is the real test. |
 | Confirm whether a question in [`mysteries-found.md`](mysteries-found.md) has an answer in runtime behavior | This track may help—but the result remains a **hypothesis**, because the lab is not SIFAP's production environment. |
 | Learn how a Natural/Adabas stack is operated in practice | This is the legitimate use case for this guide. |
@@ -63,7 +63,7 @@ This has two direct consequences:
 
 ### 2.2. The library is the namespace
 
-A Natural library is **flat**: there are no subdirectories, and every member is resolved **by name** (maximum 8 characters). `CALLNAT 'SUBVALCP'`, `INCLUDE CCAUDIT`, and `LOCAL USING PDACALC` look for those names in the current library. See [`COMO-LER-NATURAL.md`, section 2](legado-sifap/COMO-LER-NATURAL.md#2-os-membros-de-uma-biblioteca-natural).
+A Natural library is **flat**: there are no subdirectories, and every member is resolved **by name** (maximum 8 characters). `CALLNAT 'SUBVALCP'`, `INCLUDE CCAUDIT`, and `LOCAL USING PDACALC` look for those names in the current library. See [`HOW-TO-READ-NATURAL.md`, section 2](legacy-sifap/HOW-TO-READ-NATURAL.md#2-os-membros-de-uma-biblioteca-natural).
 
 The corpus JCLs identify the library SIFAP used in production:
 
@@ -75,7 +75,7 @@ BATCHPGT
 FIN
 ```
 
-Source: [`SIFAPJ01.jcl`](legado-sifap/natural-programs/SIFAPJ01.jcl). Use `SIFAPPRD` as the library name in the lab so the JCLs remain readable as documentation.
+Source: [`SIFAPJ01.jcl`](legacy-sifap/natural-programs/SIFAPJ01.jcl). Use `SIFAPPRD` as the library name in the lab so the JCLs remain readable as documentation.
 
 ### 2.3. Compilation commands
 
@@ -134,7 +134,7 @@ flowchart LR
 
 ### 2.5. What the corpus includes and omits
 
-Verified inventory of [`legado-sifap/`](legado-sifap/):
+Verified inventory of [`legacy-sifap/`](legacy-sifap/):
 
 | Type | Quantity | Note |
 |---|---|---|
@@ -193,14 +193,14 @@ The corpus remains read-only in the repository. The following steps copy it; the
 
 ```bash
 LAB_IP="<public lab ip>"
-scp -r 01-arqueologia/legado-sifap sifapadmin@"$LAB_IP":/tmp/
+scp -r 01-archaeology/legacy-sifap sifapadmin@"$LAB_IP":/tmp/
 ```
 
 - [ ] **Move it to the directory mounted in the Natural container.** On the VM over SSH:
 
 ```bash
 sudo mkdir -p /opt/sifap/corpus
-sudo cp -r /tmp/legado-sifap/* /opt/sifap/corpus/
+sudo cp -r /tmp/legacy-sifap/* /opt/sifap/corpus/
 ls /opt/sifap/corpus/natural-programs
 ```
 
@@ -225,7 +225,7 @@ The corpus extensions (`.NSP`, `.NSN`, `.NSA`, `.NSL`, `.NSC`) are already the o
 - [ ] **Install NaturalONE** on your workstation by following the Software AG documentation.
 - [ ] **Register the development server** at `<ip>:2700`.
 - [ ] **Create a Natural project** with the `SIFAPPRD` library.
-- [ ] **Import the members** from `01-arqueologia/legado-sifap/natural-programs/` into the project.
+- [ ] **Import the members** from `01-archaeology/legacy-sifap/natural-programs/` into the project.
 - [ ] **Upload to the server** and continue to section 5.
 
 **Path B—work inside the container.**
@@ -256,17 +256,17 @@ Reversing this order produces a DDM that compiles and a program that fails on it
 
 | File | What it is | How to use it |
 |---|---|---|
-| [`FDT-150-BENEFICIARIO.txt`](legado-sifap/adabas-ddms/FDT-150-BENEFICIARIO.txt) | `ADAREP` output for the physical FDT of file 150 | Ready specification for defining file 150 |
-| [`BENEFICIARIO.ddm`](legado-sifap/adabas-ddms/BENEFICIARIO.ddm) | `LISTDDM` listing—DBID 057, FNR 150 | Source for the long names in DDM 150 |
-| [`PROGRAMA-SOCIAL.ddm`](legado-sifap/adabas-ddms/PROGRAMA-SOCIAL.ddm) | `LISTDDM` listing—DBID 057, FNR 151 | Specification for file **and** DDM 151 |
-| [`PAGAMENTO.ddm`](legado-sifap/adabas-ddms/PAGAMENTO.ddm) | `LISTDDM` listing—DBID 057, FNR 152 | Specification for file **and** DDM 152 |
-| [`AUDITORIA.ddm`](legado-sifap/adabas-ddms/AUDITORIA.ddm) | `LISTDDM` listing—DBID 057, FNR 153 | Specification for file **and** DDM 153 |
+| [`FDT-150-BENEFICIARIO.txt`](legacy-sifap/adabas-ddms/FDT-150-BENEFICIARIO.txt) | `ADAREP` output for the physical FDT of file 150 | Ready specification for defining file 150 |
+| [`BENEFICIARIO.ddm`](legacy-sifap/adabas-ddms/BENEFICIARIO.ddm) | `LISTDDM` listing—DBID 057, FNR 150 | Source for the long names in DDM 150 |
+| [`PROGRAMA-SOCIAL.ddm`](legacy-sifap/adabas-ddms/PROGRAMA-SOCIAL.ddm) | `LISTDDM` listing—DBID 057, FNR 151 | Specification for file **and** DDM 151 |
+| [`PAGAMENTO.ddm`](legacy-sifap/adabas-ddms/PAGAMENTO.ddm) | `LISTDDM` listing—DBID 057, FNR 152 | Specification for file **and** DDM 152 |
+| [`AUDITORIA.ddm`](legacy-sifap/adabas-ddms/AUDITORIA.ddm) | `LISTDDM` listing—DBID 057, FNR 153 | Specification for file **and** DDM 153 |
 
 Only file 150 has a published FDT. For 151, 152, and 153, the FDT must be **derived from the DDM listing**, which provides all necessary columns.
 
 ### 5.3. How to derive an FDT from a DDM listing
 
-The mapping between columns is documented in [`adabas-ddms/README.md`](legado-sifap/adabas-ddms/README.md) and can be checked against the real FDT for file 150:
+The mapping between columns is documented in [`adabas-ddms/README.md`](legacy-sifap/adabas-ddms/README.md) and can be checked against the real FDT for file 150:
 
 | DDM column | Becomes in the FDT | Example in file 150 |
 |---|---|---|
@@ -533,9 +533,9 @@ This guide separates what has been checked from what remains open. A confidently
 
 ## References
 
-- [`legado-sifap/COMO-LER-NATURAL.md`](legado-sifap/COMO-LER-NATURAL.md)—reading Natural programs without knowing the language.
-- [`legado-sifap/natural-programs/README.md`](legado-sifap/natural-programs/README.md)—inventory of the 15 assigned programs and 9 supporting members.
-- [`legado-sifap/adabas-ddms/README.md`](legado-sifap/adabas-ddms/README.md)—how to read a DDM listing and the difference between DDM and FDT.
+- [`legacy-sifap/HOW-TO-READ-NATURAL.md`](legacy-sifap/HOW-TO-READ-NATURAL.md)—reading Natural programs without knowing the language.
+- [`legacy-sifap/natural-programs/README.md`](legacy-sifap/natural-programs/README.md)—inventory of the 15 assigned programs and 9 supporting members.
+- [`legacy-sifap/adabas-ddms/README.md`](legacy-sifap/adabas-ddms/README.md)—how to read a DDM listing and the difference between DDM and FDT.
 - [`infra/adabas-natural-lab/README.md`](../infra/adabas-natural-lab/README.md)—provisioning the Adabas + Natural Community Edition lab on Azure.
 - [`LEGACY-EXPLORATION-CHECKLIST.md`](LEGACY-EXPLORATION-CHECKLIST.md)—the actual Stage 1 gate, which does not require execution.
 - Official Software AG documentation for Natural, Natural Development Server, NaturalONE, and Adabas—the required source for every syntax item marked "to be confirmed" in section 10.
@@ -546,6 +546,6 @@ This guide separates what has been checked from what remains open. A confidently
 
 | Previous | Next |
 |---|---|
-| [Legacy Exploration Checklist](LEGACY-EXPLORATION-CHECKLIST.md)<br/><sub>The mandatory gate before Stage 2.</sub> | [How to Read a Natural Program](legado-sifap/COMO-LER-NATURAL.md)<br/><sub>Business-rule-oriented reading tutorial.</sub> |
+| [Legacy Exploration Checklist](LEGACY-EXPLORATION-CHECKLIST.md)<br/><sub>The mandatory gate before Stage 2.</sub> | [How to Read a Natural Program](legacy-sifap/HOW-TO-READ-NATURAL.md)<br/><sub>Business-rule-oriented reading tutorial.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>

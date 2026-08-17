@@ -7,7 +7,7 @@
 | Field | Value |
 |---|---|
 | **Target audience** | All 5 pairs |
-| **Prerequisites** | Read [`README.md`](README.md) and access the `legado-sifap/` directory |
+| **Prerequisites** | Read [`README.md`](README.md) and access the `legacy-sifap/` directory |
 | **Estimated time** | 90 min (11:00–12:00 + 13:30–14:00) |
 | **Stage** | Stage 1 — Archaeology |
 | **Expected outcome** | Candidate rules catalog, discovery report, and completed H1 handoff |
@@ -94,8 +94,8 @@ Pair 2 confirms that it received enough evidence to start `specs/<NNN>-<feature>
 ## References
 
 - [Exploration checklist](LEGACY-EXPLORATION-CHECKLIST.md)—gate verification and criteria by pair.
-- [Stage 2 guide](../02-spec-moderna/GUIDE.md)—next step after the H1 handoff.
-- [How to read Natural](legado-sifap/COMO-LER-NATURAL.md)—syntax tutorial for non-developers.
+- [Stage 2 guide](../02-modern-spec/GUIDE.md)—next step after the H1 handoff.
+- [How to read Natural](legacy-sifap/HOW-TO-READ-NATURAL.md)—syntax tutorial for non-developers.
 
 ---
 

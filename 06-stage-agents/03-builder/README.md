@@ -54,8 +54,8 @@ Use this agent when the specification exists and the team needs to build. `@buil
 | Feature specification | `specs/<NNN>-<feature>/spec.md` |
 | Technical plan | `specs/<NNN>-<feature>/plan.md` |
 | Task list | `specs/<NNN>-<feature>/tasks.md` |
-| Architecture ADRs | `02-spec-moderna/` or `docs/adr/` |
-| Mapped DDMs | `01-arqueologia/business-rules-catalog.md` |
+| Architecture ADRs | `02-modern-spec/` or `docs/adr/` |
+| Mapped DDMs | `01-archaeology/business-rules-catalog.md` |
 
 ---
 

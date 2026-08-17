@@ -263,7 +263,7 @@ Every commit that implements specification behavior must include `Implements REQ
 
 During the H3 handoff (around 17:00), Pair 3 delivers working code to Pair 5 (Operations), which handles Terraform and CI/CD in Stage 4. Pair 4 continues final testing.
 
-See [`../04-evolucao/GUIDE.md`](../04-evolucao/GUIDE.md) for the next stage.
+See [`../04-evolution/GUIDE.md`](../04-evolution/GUIDE.md) for the next stage.
 
 ---
 
@@ -290,6 +290,6 @@ See [`../04-evolucao/GUIDE.md`](../04-evolucao/GUIDE.md) for the next stage.
 
 | Previous | Next |
 |---|---|
-| [Stage 2 — Specification](../02-spec-moderna/GUIDE.md)<br/><sub>14:00–15:00 · Write EARS requirements, ADRs, and C4 diagrams.</sub> | [Stage 4 — Evolution](../04-evolucao/GUIDE.md)<br/><sub>16:10–16:50 · Copilot Agent + Terraform + CI/CD.</sub> |
+| [Stage 2 — Specification](../02-modern-spec/GUIDE.md)<br/><sub>14:00–15:00 · Write EARS requirements, ADRs, and C4 diagrams.</sub> | [Stage 4 — Evolution](../04-evolution/GUIDE.md)<br/><sub>16:10–16:50 · Copilot Agent + Terraform + CI/CD.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>

@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # First 15 minutes: start here
 
 > **Track:** [Team kit](README.md) › **Start here**
@@ -70,7 +68,7 @@ The team has **five people and 10 personas** (each person covers two personas, i
 
 You will see acronyms and technical terms today (EARS, ADR, REQ-ID, DDM, Flyway, JPA...). You do not need to memorize any of them. Open this page in a tab and come back when you need it:
 
-[`07-conceitos/03-glossario-visual.md`](07-conceitos/03-glossario-visual.md)
+[`07-concepts/03-visual-glossary.md`](07-concepts/03-visual-glossary.md)
 
 Every term has three lines: **what it is**, an **everyday analogy**, and **where it appears**. Use it freely.
 
@@ -115,7 +113,7 @@ You have **two personas**. Read the `PERSONA.md` for each one:
 
 ### 5a. Open the Stage 1 guide
 
-[`01-arqueologia/GUIDE.md`](01-arqueologia/GUIDE.md)
+[`01-archaeology/GUIDE.md`](01-archaeology/GUIDE.md)
 
 Read only:
 
@@ -152,7 +150,7 @@ Before you move on, verify this:
 
 - [ ] I know which pair I am in and which two personas I have
 - [ ] I have `00-TEAM-FLOW.md` open in a tab (the day's schedule)
-- [ ] I have `glossario-visual.md` open in another tab (for jargon lookups)
+- [ ] I have `visual-glossary.md` open in another tab (for jargon lookups)
 - [ ] I read the `PERSONA.md` files for my two personas (and focused on the three recommended sections)
 - [ ] I know what will happen in Stage 1
 - [ ] I know Copilot's three modes (Ask, Plan, Agent)
@@ -179,11 +177,11 @@ If you have never opened VS Code, Docker, or Copilot, this literal walkthrough g
 | **20** | Go back to VS Code -> Copilot icon in the activity bar | The Copilot Chat panel opens on the right |
 | **22** | In chat, type: *"Hello. What can you do?"* | Copilot responds and explains the three modes |
 | **25** | Select the day's agent from the chat dropdown | You see `@archaeologist`, `@architect`, `@builder`, and `@evolution` in the list |
-| **28** | Open two tabs in the browser: [`00-TEAM-FLOW.md`](00-TEAM-FLOW.md) and [`07-conceitos/03-glossario-visual.md`](07-conceitos/03-glossario-visual.md) | Two pinned tabs stay open for reference |
+| **28** | Open two tabs in the browser: [`00-TEAM-FLOW.md`](00-TEAM-FLOW.md) and [`07-concepts/03-visual-glossary.md`](07-concepts/03-visual-glossary.md) | Two pinned tabs stay open for reference |
 | **32** | Open your two persona folders in `05-personas/0X-.../` and read each `PERSONA.md` | You know your two missions for the day |
 | **42** | Validate the consolidated `.github/`: `ls .github/agents .github/prompts .github/skills` | The folders exist and already contain agents, prompts, and skills |
 | **45** | Reload VS Code: `Cmd+Shift+P` -> *Reload Window* | Slash commands such as `/ears-convert` appear when you type `/` in Chat |
-| **50** | Open [`01-arqueologia/GUIDE.md`](01-arqueologia/GUIDE.md) and read the "Who reads what" section | You know which three `.NSN` programs your pair will read |
+| **50** | Open [`01-archaeology/GUIDE.md`](01-archaeology/GUIDE.md) and read the "Who reads what" section | You know which three `.NSN` programs your pair will read |
 | **55** | Agree with your pair on who covers which persona | Both of you know who does what |
 | **60** | You are ready to start Stage 1 | - |
 
@@ -210,10 +208,10 @@ If you have never opened VS Code, Docker, or Copilot, this literal walkthrough g
 |---|---|
 | I do not know which pair I am in | Ask the room facilitator |
 | I cannot find my `PERSONA.md` | The folder is `05-personas/0X-name/PERSONA.md` - confirm the number in Step 1 |
-| A glossary term is still not clear | Open `07-conceitos/03-glossario-visual.md` and use Ctrl+F |
+| A glossary term is still not clear | Open `07-concepts/03-visual-glossary.md` and use Ctrl+F |
 | VS Code or Copilot does not open | Go to `00-SETUP.md` § "Step 1: Check your laptop prerequisites" |
 | The schedule looks very tight | It is. Trust the pair split. You will not do everything alone |
-| I do not code. Will I get lost? | No. See `01-arqueologia/legado-sifap/COMO-LER-NATURAL.md` (for Stage 1) and the defaults in your `PERSONA.md` |
+| I do not code. Will I get lost? | No. See `01-archaeology/legacy-sifap/HOW-TO-READ-NATURAL.md` (for Stage 1) and the defaults in your `PERSONA.md` |
 
 </details>
 

@@ -110,7 +110,7 @@ You understand the model when you can explain these three statements to someone 
 
 ## References
 
-- [Agent kits](../06-agentes-de-estagio/README.md)
+- [Agent kits](../06-stage-agents/README.md)
 - [Persona-agent matrix](persona-agent-matrix.md)
 - [Complete SDLC flow](sdlc-flow-guide.md)
 - [Persona kits](../05-personas/README.md)

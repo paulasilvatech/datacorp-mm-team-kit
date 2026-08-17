@@ -49,7 +49,7 @@ General technical-leadership patterns that transfer to any modernization:
 - Which programs or features are highest-risk; the team's prioritization supplies this
 - The current contents of AGENTS.md, CODEMAP.md, and the `.github/` primitives until read from disk
 
-All of this must emerge from the team's own investigation of `01-arqueologia/legado-sifap/` and the artifacts already on disk; the agent never fills these gaps with assumptions.
+All of this must emerge from the team's own investigation of `01-archaeology/legacy-sifap/` and the artifacts already on disk; the agent never fills these gaps with assumptions.
 
 ## Available Prompts
 

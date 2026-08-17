@@ -7,7 +7,7 @@
 | Field | Value |
 |---|---|
 | **Target audience** | All pairs—complete during Stage 1 |
-| **Prerequisites** | Access to `legado-sifap/natural-programs/` and `adabas-ddms/` |
+| **Prerequisites** | Access to `legacy-sifap/natural-programs/` and `adabas-ddms/` |
 | **Estimated time** | Completed throughout the 90 minutes |
 | **Stage** | Stage 1 — Archaeology |
 | **Expected outcome** | Complete reading matrix by pair and verified completion criteria |
@@ -24,8 +24,8 @@
 
 Every `REQ-ID` in `specs/<NNN>-<feature>/spec.md` must have a `source_legacy:` line pointing to one of the following:
 
-- a specific `.NSN` program in `01-arqueologia/legado-sifap/natural-programs/` (preferably with a line range);
-- a specific `.ddm` file in `01-arqueologia/legado-sifap/adabas-ddms/`;
+- a specific `.NSN` program in `01-archaeology/legacy-sifap/natural-programs/` (preferably with a line range);
+- a specific `.ddm` file in `01-archaeology/legacy-sifap/adabas-ddms/`;
 - `[GREENFIELD]` with a one-line justification.
 
 CI rejects PRs to `develop` if any `REQ-ID` lacks a `source_legacy:` line. Facilitators perform spot checks during the H2 handoff at 15:00.

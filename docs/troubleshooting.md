@@ -67,9 +67,9 @@
 | Field | Details |
 |---|---|
 | **Symptom** | The `@archaeologist` agent does not appear in the Chat selector |
-| **Cause 1** | The `06-agentes-de-estagio/` directory is not in the workspace |
+| **Cause 1** | The `06-stage-agents/` directory is not in the workspace |
 | **Cause 2** | The GitHub Copilot Chat extension is out of date |
-| **Fix** | Run `ls 06-agentes-de-estagio/` to confirm that the directory is present. Update the extension from the VS Code Extensions view |
+| **Fix** | Run `ls 06-stage-agents/` to confirm that the directory is present. Update the extension from the VS Code Extensions view |
 | **How to confirm** | The agent appears in the Chat dropdown |
 
 ### Copilot responds without the relevant context
@@ -114,10 +114,10 @@ specify version
 |---|---|
 | **Symptom** | CI blocks the pull request with a traceability error |
 | **Likely cause** | One or more EARS requirements do not include a `source_legacy:` line |
-| **Fix** | Open `specs/<NNN>-<feature>/spec.md`, locate REQ-IDs without `source_legacy:`, and add the field, pointing to `01-arqueologia/legado-sifap/...#L<linha>` or marking it as `[GREENFIELD] <motivo>` |
+| **Fix** | Open `specs/<NNN>-<feature>/spec.md`, locate REQ-IDs without `source_legacy:`, and add the field, pointing to `01-archaeology/legacy-sifap/...#L<linha>` or marking it as `[GREENFIELD] <motivo>` |
 | **How to confirm** | CI passes on the next run |
 
-See [`07-conceitos/05-notacao-ears.md`](../07-conceitos/05-notacao-ears.md) for the correct format.
+See [`07-concepts/05-ears-notation.md`](../07-concepts/05-ears-notation.md) for the correct format.
 
 ### `/speckit.clarify` is asking too many questions
 

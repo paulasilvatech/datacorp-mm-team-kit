@@ -110,7 +110,7 @@ outdated example).
 
 **Step 4 — Verify legacy mappings.**
 For any document claiming a module replaces a Natural program, verify the cited
-source under `01-arqueologia/legado-sifap/natural-programs/`. Do not assert the
+source under `01-archaeology/legacy-sifap/natural-programs/`. Do not assert the
 program's behavior — only confirm the claim matches its cited evidence.
 
 **Step 5 — Cross-check ADRs.**

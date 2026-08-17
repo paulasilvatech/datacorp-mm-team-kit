@@ -108,6 +108,6 @@ Each `PERSONA.md` details a "When stuck" section. Here is one line per persona:
 
 | Previous | Next |
 |---|---|
-| [SETUP](../00-SETUP.md)<br/><sub>Laptop setup: Git, VS Code, Copilot, Spec-Kit, branch protection.</sub> | [Stage 1 — Archaeology](../01-arqueologia/GUIDE.md)<br/><sub>11:00–12:00 + 13:30–14:00 · Read the legacy system and catalog business rules.</sub> |
+| [SETUP](../00-SETUP.md)<br/><sub>Laptop setup: Git, VS Code, Copilot, Spec-Kit, branch protection.</sub> | [Stage 1 — Archaeology](../01-archaeology/GUIDE.md)<br/><sub>11:00–12:00 + 13:30–14:00 · Read the legacy system and catalog business rules.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>

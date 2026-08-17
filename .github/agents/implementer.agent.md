@@ -49,7 +49,7 @@ General implementation patterns for a Java 21 + Next.js 15 Modular Monolith:
 - What the legacy program actually does; the Stage 1 and 2 artifacts and the cited legacy file supply this
 - The current contents of the codebase, migrations, and `.specify/memory/constitution.md` until read from disk
 
-All of this must emerge from the team's own investigation of `01-arqueologia/legado-sifap/` and the artifacts already on disk; the agent never fills these gaps with assumptions.
+All of this must emerge from the team's own investigation of `01-archaeology/legacy-sifap/` and the artifacts already on disk; the agent never fills these gaps with assumptions.
 
 ## Available Prompts
 

@@ -19,7 +19,7 @@
 ## Context
 
 > [!NOTE]
-> Describe the problem motivating this decision. Reference the business objective, legacy constraint, or stakeholder need. Be specific. Cite REQ-IDs or programs in `01-arqueologia/legado-sifap/` when relevant.
+> Describe the problem motivating this decision. Reference the business objective, legacy constraint, or stakeholder need. Be specific. Cite REQ-IDs or programs in `01-archaeology/legacy-sifap/` when relevant.
 
 _Complete this section._
 
@@ -113,6 +113,6 @@ We will adopt Flyway as the migration tool. Each schema change will be represent
 
 | Previous | Next |
 |---|---|
-| [ADRs — Index](README.md)<br/><sub>Index of recorded decisions.</sub> | [Modern Specification](../../02-spec-moderna/GUIDE.md)<br/><sub>Where ADRs are produced.</sub> |
+| [ADRs — Index](README.md)<br/><sub>Index of recorded decisions.</sub> | [Modern Specification](../../02-modern-spec/GUIDE.md)<br/><sub>Where ADRs are produced.</sub> |
 
 <sub>[Back to the kit index](../../README.md)</sub>

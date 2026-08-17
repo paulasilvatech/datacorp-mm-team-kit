@@ -11,7 +11,7 @@ labels: feature
 
 ## Legacy Traceability
 
-<!-- Required for every REQ-ID: source_legacy: 01-arqueologia/legado-sifap/natural-programs/<FILE>.NSN#L<start>-L<end>
+<!-- Required for every REQ-ID: source_legacy: 01-archaeology/legacy-sifap/natural-programs/<FILE>.NSN#L<start>-L<end>
      or source_legacy: "[GREENFIELD] <one-line justification>". -->
 
 ## Description

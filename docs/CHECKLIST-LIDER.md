@@ -40,7 +40,7 @@
 
 - [ ] **11:00** — The entire team has selected `@archaeologist` in Chat.
 - [ ] **11:10** — Every pair knows which three Natural programs it will read.
-- [ ] **11:10** — Every pair knows **which four canonical mysteries** it owns (`SIFAP-M-NN`; see [`mysteries-checklist.md`](../01-arqueologia/mysteries-checklist.md)).
+- [ ] **11:10** — Every pair knows **which four canonical mysteries** it owns (`SIFAP-M-NN`; see [`mysteries-checklist.md`](../01-archaeology/mysteries-checklist.md)).
 - [ ] **11:30** — Two-minute stand-up: each pair states one finding.
 - [ ] **11:45** — Every pair has recorded evidence and questions from its assigned programs.
 

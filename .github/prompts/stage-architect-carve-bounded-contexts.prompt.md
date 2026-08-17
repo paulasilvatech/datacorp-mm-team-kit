@@ -1,7 +1,7 @@
 ---
 name: "carve-bounded-contexts"
 description: "Evaluates the Stage 1 boundary hypotheses and decides bounded contexts for the Modular Monolith."
-argument-hint: "report=01-arqueologia/discovery-report.md"
+argument-hint: "report=01-archaeology/discovery-report.md"
 agent: "architect"
 tools: ["read", "search", "edit"]
 ---
@@ -17,7 +17,7 @@ At the beginning of Stage 2, immediately after reviewing the Stage 1 discovery r
 
 ## Preconditions
 
-- `01-arqueologia/discovery-report.md` exists with at least 3 boundary hypotheses
+- `01-archaeology/discovery-report.md` exists with at least 3 boundary hypotheses
 - The team reviewed the discovery report and is ready to make architectural decisions
 
 ## Inputs the Team Must Provide
@@ -42,7 +42,7 @@ At the beginning of Stage 2, immediately after reviewing the Stage 1 discovery r
 
 ## Output Format
 
-A Markdown file at `02-spec-moderna/bounded-contexts.md`:
+A Markdown file at `02-modern-spec/bounded-contexts.md`:
 
 ```markdown
 # Bounded Context Map
@@ -73,14 +73,14 @@ A Markdown file at `02-spec-moderna/bounded-contexts.md`:
 You are the `@architect`. The team is starting Stage 2 and needs to decide bounded contexts for the Modular Monolith.
 
 **Step 1 — Read the discovery report.**
-Open `01-arqueologia/discovery-report.md`. Extract the boundary-hypothesis section. List each hypothesis with its name, included programs, owned DDMs, and rationale.
+Open `01-archaeology/discovery-report.md`. Extract the boundary-hypothesis section. List each hypothesis with its name, included programs, owned DDMs, and rationale.
 
 **Step 2 — Evaluate against three criteria.**
 For each hypothesis, analyze:
 
-**Cohesion** — Do the business rules in this group relate to the same business capability? Check by reviewing the confirmed rules in `01-arqueologia/business-rules-catalog.md` that belong to this group. High cohesion = strong candidate.
+**Cohesion** — Do the business rules in this group relate to the same business capability? Check by reviewing the confirmed rules in `01-archaeology/business-rules-catalog.md` that belong to this group. High cohesion = strong candidate.
 
-**Coupling** — How many dependencies cross this boundary? Check the dependency map in `01-arqueologia/dependency-map.md`. Count edges that would cross between this context and others. Low coupling = strong candidate. High coupling suggests the boundary may be misplaced.
+**Coupling** — How many dependencies cross this boundary? Check the dependency map in `01-archaeology/dependency-map.md`. Count edges that would cross between this context and others. Low coupling = strong candidate. High coupling suggests the boundary may be misplaced.
 
 **Frequency of change** — In the legacy system, which programs in this group were likely modified together? Use file-naming patterns and call relationships as proxies. Programs that call one another extensively probably change together and belong in the same context.
 
@@ -119,10 +119,10 @@ Reinforce that this is a Modular Monolith. Communication is in-process, not HTTP
 Create a Mermaid diagram showing all contexts as boxes, with labeled arrows for communication relationships. Use the kit color palette: fill `#0f172a`, stroke `#334155`, text `#e2e8f0`.
 
 **Step 7 — Write the output.**
-Write to `02-spec-moderna/bounded-contexts.md`.
+Write to `02-modern-spec/bounded-contexts.md`.
 
 ## Invocation Example
 
 ```
-/carve-bounded-contexts report=01-arqueologia/discovery-report.md
+/carve-bounded-contexts report=01-archaeology/discovery-report.md
 ```

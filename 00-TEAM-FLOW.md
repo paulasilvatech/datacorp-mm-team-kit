@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Team flow: how five people cover 10 personas
 
 > **Track:** [Team kit](README.md) › **Team flow**
@@ -123,11 +121,11 @@ Between **10:00 and 10:45**, **every pair** does the same four actions. Speciali
 
 | Pair | Action at 11:00 |
 |---|---|
-| **1 - Vision** | PO opens [`00-TEAM-FLOW.md`](00-TEAM-FLOW.md) and the day schedule; RE opens [`01-arqueologia/legado-sifap/natural-programs/`](01-arqueologia/legado-sifap/natural-programs/) and starts the rule catalog. |
-| **2 - Architecture** | EA opens [`01-arqueologia/legado-sifap/legacy-docs/`](01-arqueologia/legado-sifap/legacy-docs/) and records dependencies that affect the slice; SA prepares boundary questions. |
+| **1 - Vision** | PO opens [`00-TEAM-FLOW.md`](00-TEAM-FLOW.md) and the day schedule; RE opens [`01-archaeology/legacy-sifap/natural-programs/`](01-archaeology/legacy-sifap/natural-programs/) and starts the rule catalog. |
+| **2 - Architecture** | EA opens [`01-archaeology/legacy-sifap/legacy-docs/`](01-archaeology/legacy-sifap/legacy-docs/) and records dependencies that affect the slice; SA prepares boundary questions. |
 | **3 - Implementation** | TL defines branch strategy, PR template, definition of done, and standard paths (`backend/`, `frontend/`, `infra/` when needed). |
-| **4 - Quality** | DBA opens [`01-arqueologia/legado-sifap/adabas-ddms/`](01-arqueologia/legado-sifap/adabas-ddms/) and starts the field mapping; QA prepares the test strategy for the prototype that the team will create. |
-| **5 - Operations** | DevOps plans the CI/IaC work that the team will create in this repository; TW opens the template at [`01-arqueologia/glossary.md`](01-arqueologia/glossary.md). |
+| **4 - Quality** | DBA opens [`01-archaeology/legacy-sifap/adabas-ddms/`](01-archaeology/legacy-sifap/adabas-ddms/) and starts the field mapping; QA prepares the test strategy for the prototype that the team will create. |
+| **5 - Operations** | DevOps plans the CI/IaC work that the team will create in this repository; TW opens the template at [`01-archaeology/glossary.md`](01-archaeology/glossary.md). |
 
 ---
 
@@ -170,9 +168,9 @@ Good: "Goal: validate CPF in `BeneficioService`. Tried: `@CPF` from Bean Validat
 
 | Artifact | Path | Done means |
 |---|---|---|
-| Rule catalog | `01-arqueologia/business-rules-catalog.md` | Candidate slice rules have the source `.NSN` or `.ddm` recorded |
-| Discovery report | `01-arqueologia/discovery-report.md` | Thin slice, evidence, and open questions for the chosen feature |
-| Supporting materials consulted | `01-arqueologia/` | Glossary, dependencies, and mysteries appear only when they help explain the slice |
+| Rule catalog | `01-archaeology/business-rules-catalog.md` | Candidate slice rules have the source `.NSN` or `.ddm` recorded |
+| Discovery report | `01-archaeology/discovery-report.md` | Thin slice, evidence, and open questions for the chosen feature |
+| Supporting materials consulted | `01-archaeology/` | Glossary, dependencies, and mysteries appear only when they help explain the slice |
 
 ### Handoff H2: spec to code (end of Stage 2, ~15:00)
 
@@ -184,7 +182,7 @@ Good: "Goal: validate CPF in `BeneficioService`. Tried: `@CPF` from Bean Validat
 | Formal specification | `specs/<NNN>-<feature>/spec.md` | Thin feature with REQ-IDs, EARS, and `source_legacy:` in every requirement |
 | Formal plan | `specs/<NNN>-<feature>/plan.md` | Decisions, risks, and approach are sufficient to start implementation |
 | Formal tasks | `specs/<NNN>-<feature>/tasks.md` | Implementation and test order are defined for the feature |
-| Scope decision | `02-spec-moderna/scope-decisions.md` | The PO confirmed what is in scope and what stays deferred |
+| Scope decision | `02-modern-spec/scope-decisions.md` | The PO confirmed what is in scope and what stays deferred |
 
 ### Handoff H3: code to ops (end of Stage 3, ~16:10)
 
@@ -243,6 +241,6 @@ Good: "Goal: validate CPF in `BeneficioService`. Tried: `@CPF` from Bean Validat
 
 | Previous | Next |
 |---|---|
-| [First 15 minutes](00-COMECE-AQUI.md)<br/><sub>Opening walkthrough with five numbered steps for anyone to get started.</sub> | [Setup](00-SETUP.md)<br/><sub>Laptop setup: Git, VS Code, Copilot, Spec-Kit, branch protection.</sub> |
+| [First 15 minutes](00-START-HERE.md)<br/><sub>Opening walkthrough with five numbered steps for anyone to get started.</sub> | [Setup](00-SETUP.md)<br/><sub>Laptop setup: Git, VS Code, Copilot, Spec-Kit, branch protection.</sub> |
 
 <sub>[Back to the kit index](README.md)</sub>

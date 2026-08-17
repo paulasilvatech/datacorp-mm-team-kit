@@ -113,7 +113,7 @@ Translate the Adabas model needed by the selected scope into a PostgreSQL relati
 
 | Situation | What to do |
 |---|---|
-| Unknown DDM format | Open `01-arqueologia/legado-sifap/adabas-ddms/`—the comments help explain each field |
+| Unknown DDM format | Open `01-archaeology/legacy-sifap/adabas-ddms/`—the comments help explain each field |
 | Broken migration | Never edit an existing migration. Create a new one: `V5__fix_xxx.sql` |
 | Unsure which index to create | For a field in `WHERE` or `JOIN` on a table with more than 100,000 rows, create the index |
 | PostgreSQL unavailable | Check whether Docker is running: `docker ps \| grep postgres` |

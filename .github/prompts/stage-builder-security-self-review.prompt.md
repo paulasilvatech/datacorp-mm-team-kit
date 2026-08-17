@@ -44,7 +44,7 @@ After a bounded context has been implemented (entities, services, controllers, t
 
 ## Output Format
 
-A Markdown report at `03-implementacao/security-review-[context].md`:
+A Markdown report at `03-implementation/security-review-[context].md`:
 
 ```markdown
 # Security Self-Review — [Bounded Context]
@@ -118,7 +118,7 @@ Search for:
 Flag any write endpoint (POST, PUT, DELETE) without rate limiting. Note: the team may not implement rate limiting during the workshop, but it must be documented as a production concern.
 
 **Step 7 — Compile the report.**
-Write to `03-implementacao/security-review-[context].md`, with all findings ordered by severity (High first). Include a summary count and a section listing areas where a real scanner (SAST/DAST) should be run.
+Write to `03-implementation/security-review-[context].md`, with all findings ordered by severity (High first). Include a summary count and a section listing areas where a real scanner (SAST/DAST) should be run.
 
 This report does not block Stage 4 — it is informational. The team decides which findings to fix now and which to defer.
 

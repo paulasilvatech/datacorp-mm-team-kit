@@ -18,7 +18,7 @@ After a Natural program has been translated to Java (`/translate-natural-to-java
 ## Preconditions
 
 - The Java translation exists and compiles
-- The original Natural source is accessible in `01-arqueologia/legado-sifap/`
+- The original Natural source is accessible in `01-archaeology/legacy-sifap/`
 - The Javadoc in the translated code references the Natural source file and lines
 
 ## Inputs the Team Must Provide

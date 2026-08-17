@@ -49,7 +49,7 @@ General quality-engineering patterns that transfer to any modernization:
 - Which requirements exist yet; read `specs/<NNN>-<feature>/spec.md` and `tasks.md`
 - The current test suite, coverage, and CI configuration until read from disk
 
-All of this must emerge from the team's own investigation of `01-arqueologia/legado-sifap/` and the artifacts already on disk; the agent never fills these gaps with assumptions.
+All of this must emerge from the team's own investigation of `01-archaeology/legacy-sifap/` and the artifacts already on disk; the agent never fills these gaps with assumptions.
 
 ## Available Prompts
 

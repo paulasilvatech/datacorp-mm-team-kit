@@ -30,7 +30,7 @@ description: "Use when validating requirements against EARS notation patterns. T
 - [ ] No implementation details ("use Redis"), only behavior.
 - [ ] Includes a REQ-ID in the `REQ-NNN` format.
 - [ ] Includes at least one acceptance criterion.
-- [ ] **Includes a non-empty `source_legacy:` pointing to `01-arqueologia/legado-sifap/natural-programs/*.NSN`, `01-arqueologia/legado-sifap/adabas-ddms/*.ddm`, or `[GREENFIELD] + justification`.**
+- [ ] **Includes a non-empty `source_legacy:` pointing to `01-archaeology/legacy-sifap/natural-programs/*.NSN`, `01-archaeology/legacy-sifap/adabas-ddms/*.ddm`, or `[GREENFIELD] + justification`.**
 
 ## Common defects
 
@@ -47,7 +47,7 @@ description: "Use when validating requirements against EARS notation patterns. T
 ### REQ-NNN (<pattern>)
 <EARS statement>
 
-source_legacy: 01-arqueologia/legado-sifap/natural-programs/<FILE>.NSN#L<start>-L<end>
+source_legacy: 01-archaeology/legacy-sifap/natural-programs/<FILE>.NSN#L<start>-L<end>
 _(or `[GREENFIELD] <justification>` when there is no legacy equivalent)_
 
 **Acceptance criteria**

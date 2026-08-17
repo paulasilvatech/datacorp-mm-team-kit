@@ -98,12 +98,12 @@
 
 - [ ] Read the `PERSONA.md` for your role in [`05-personas/`](../05-personas/) — understand your responsibilities.
 - [ ] Read your row in this matrix — understand your intensity at each stage.
-- [ ] At the start of each stage, open the agent-kit README in [`06-agentes-de-estagio/`](../06-agentes-de-estagio/).
+- [ ] At the start of each stage, open the agent-kit README in [`06-stage-agents/`](../06-stage-agents/).
 - [ ] Activate the current stage agent in Copilot Chat and begin working.
 
 ## References
 
-- [Agent kits](../06-agentes-de-estagio/README.md)
+- [Agent kits](../06-stage-agents/README.md)
 - [Agent architecture](4-agents-explained.md)
 - [Consolidated persona kits](../05-personas/)
 

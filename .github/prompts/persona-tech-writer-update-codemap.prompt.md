@@ -112,7 +112,7 @@ state, linked REQ-ID ranges, and owning persona (named from `05-personas/`).
 
 **Step 4 — Link tests and legacy lineage.**
 Link each module to its test directory. Where the team confirmed a module replaces
-a Natural program under `01-arqueologia/legado-sifap/natural-programs/`, cite the
+a Natural program under `01-archaeology/legacy-sifap/natural-programs/`, cite the
 file and evidence. Never guess a mapping.
 
 **Step 5 — Surface dependencies and order.**

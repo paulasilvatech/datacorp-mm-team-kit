@@ -58,11 +58,11 @@
 
 ### Adabas
 
-The mainframe database where SIFAP (Payment Inspection and Administration System) has stored data for 29 years. Unlike conventional relational databases, it supports multiple-value fields (MU) and periodic groups (PE). DDMs contain its file definitions. It appears in Stage 1 when inspecting `01-arqueologia/legado-sifap/adabas-ddms/`.
+The mainframe database where SIFAP (Payment Inspection and Administration System) has stored data for 29 years. Unlike conventional relational databases, it supports multiple-value fields (MU) and periodic groups (PE). DDMs contain its file definitions. It appears in Stage 1 when inspecting `01-archaeology/legacy-sifap/adabas-ddms/`.
 
 ### DDM — Data Definition Module
 
-An Adabas `.ddm` file that describes the structure of a "file" (equivalent to a table): fields, types, sizes, and occurrences. SIFAP example: `BENEFICIARIO.ddm` defines the fields in the beneficiary registry. Location: `01-arqueologia/legado-sifap/adabas-ddms/`.
+An Adabas `.ddm` file that describes the structure of a "file" (equivalent to a table): fields, types, sizes, and occurrences. SIFAP example: `BENEFICIARIO.ddm` defines the fields in the beneficiary registry. Location: `01-archaeology/legacy-sifap/adabas-ddms/`.
 
 ### MU — Multiple-Value field
 
@@ -70,11 +70,11 @@ An Adabas field that stores multiple values in a single record—for example, a 
 
 ### Natural (programming language)
 
-A programming language from the 1980s used with Adabas. SIFAP programs are stored in `.NSN` files. It has imperative syntax with `IF`/`END-IF` and `FOR`/`END-FOR`, without object orientation. Reading guide: [`01-arqueologia/legado-sifap/COMO-LER-NATURAL.md`](../01-arqueologia/legado-sifap/COMO-LER-NATURAL.md).
+A programming language from the 1980s used with Adabas. SIFAP programs are stored in `.NSN` files. It has imperative syntax with `IF`/`END-IF` and `FOR`/`END-FOR`, without object orientation. Reading guide: [`01-archaeology/legacy-sifap/HOW-TO-READ-NATURAL.md`](../01-archaeology/legacy-sifap/HOW-TO-READ-NATURAL.md).
 
 ### NSN (`.NSN` file)
 
-The extension for Natural programs. It is equivalent to `.java` or `.py`, but for Natural. SIFAP has 15 `.NSN` programs in `01-arqueologia/legado-sifap/natural-programs/`.
+The extension for Natural programs. It is equivalent to `.java` or `.py`, but for Natural. SIFAP has 15 `.NSN` programs in `01-archaeology/legacy-sifap/natural-programs/`.
 
 ### PE — Periodic Group
 
@@ -90,7 +90,7 @@ The identifier for a business rule extracted from the legacy system during Stage
 
 ### EARS — Easy Approach to Requirements Syntax
 
-A standardized notation for writing unambiguous requirements. It provides six syntax patterns (ubiquitous, event-driven, state-driven, optional, unwanted, and complex) that replace vague statements with fixed-format sentences and objective tests. See [05 — EARS Notation](05-notacao-ears.md) for details.
+A standardized notation for writing unambiguous requirements. It provides six syntax patterns (ubiquitous, event-driven, state-driven, optional, unwanted, and complex) that replace vague statements with fixed-format sentences and objective tests. See [05 — EARS Notation](05-ears-notation.md) for details.
 
 ### REQ-ID
 
@@ -98,7 +98,7 @@ A unique requirement identifier (for example, `REQ-042`). Every Stage 3 commit t
 
 ### `source_legacy:`
 
-A mandatory field in every REQ-ID that points to the source section in the legacy system. Format: `01-arqueologia/legado-sifap/natural-programs/CALCPGTO.NSN#L120-L198`. For new functionality, use `[GREENFIELD] <justification>`. If it is missing, CI rejects the change.
+A mandatory field in every REQ-ID that points to the source section in the legacy system. Format: `01-archaeology/legacy-sifap/natural-programs/CALCPGTO.NSN#L120-L198`. For new functionality, use `[GREENFIELD] <justification>`. If it is missing, CI rejects the change.
 
 ### Greenfield
 
@@ -114,7 +114,7 @@ GitHub's official tool for Spec-Driven Development. It provides the `/speckit.sp
 
 ### ADR — Architecture Decision Record
 
-A short Markdown file that records an architecture decision: its context, the decision made, alternatives considered, and consequences. It ensures that future team members understand decisions made today. Template: `02-spec-moderna/ADR-TEMPLATE.md`. See [06 — Architecture Decision Records](06-architecture-decision-records.md) for details.
+A short Markdown file that records an architecture decision: its context, the decision made, alternatives considered, and consequences. It ensures that future team members understand decisions made today. Template: `02-modern-spec/ADR-TEMPLATE.md`. See [06 — Architecture Decision Records](06-architecture-decision-records.md) for details.
 
 ### Bounded Context
 
@@ -222,6 +222,6 @@ This chain is what CI verifies in every PR. Whenever you are unsure about what y
 
 | Previous | Next |
 |---|---|
-| [Agents and Personas](02-agentes-e-personas.md)<br/><sub>The two context layers in Copilot Chat.</sub> | [Copilot's 3 Modes](04-3-modos-do-copilot.md)<br/><sub>Ask, Plan, and Agent—objective selection criteria.</sub> |
+| [Agents and Personas](02-agents-and-personas.md)<br/><sub>The two context layers in Copilot Chat.</sub> | [Copilot's 3 Modes](04-3-copilot-modes.md)<br/><sub>Ask, Plan, and Agent—objective selection criteria.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>

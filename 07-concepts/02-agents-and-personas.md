@@ -97,10 +97,10 @@ At the start of each work block, the entire team selects the same stage agent in
 
 | Stage | Agent | Thematic framing | Lead roles |
 |---|---|---|---|
-| Stage 1 — Archaeology | [`@archaeologist`](../06-agentes-de-estagio/01-archaeologist/) | Reading and interpreting legacy Natural/Adabas code | Requirements Engineer, Tech Writer |
-| Stage 2 — Specification | [`@architect`](../06-agentes-de-estagio/02-architect/) | EARS specifications, ADRs, and the C4 model | Enterprise Architect, Software Architect |
-| Stage 3 — Implementation | [`@builder`](../06-agentes-de-estagio/03-builder/) | Java 21, JPA, Testcontainers, and Next.js 15 code | Developer, DBA, QA Engineer |
-| Stage 4 — Evolution | [`@evolution`](../06-agentes-de-estagio/04-evolution/) | Delegation to Agent mode, IaC, and CI/CD | DevOps Engineer, Tech Writer |
+| Stage 1 — Archaeology | [`@archaeologist`](../06-stage-agents/01-archaeologist/) | Reading and interpreting legacy Natural/Adabas code | Requirements Engineer, Tech Writer |
+| Stage 2 — Specification | [`@architect`](../06-stage-agents/02-architect/) | EARS specifications, ADRs, and the C4 model | Enterprise Architect, Software Architect |
+| Stage 3 — Implementation | [`@builder`](../06-stage-agents/03-builder/) | Java 21, JPA, Testcontainers, and Next.js 15 code | Developer, DBA, QA Engineer |
+| Stage 4 — Evolution | [`@evolution`](../06-stage-agents/04-evolution/) | Delegation to Agent mode, IaC, and CI/CD | DevOps Engineer, Tech Writer |
 
 ### Practical difference
 
@@ -177,7 +177,7 @@ At the start of each work block, the entire team selects the same stage agent in
 ## References
 
 - [Complete persona list](../05-personas/OVERVIEW.md)
-- [Stage agents](../06-agentes-de-estagio/)
+- [Stage agents](../06-stage-agents/)
 - [Copilot's 3 Modes cheat sheet](../09-cheat-sheets/copilot-3-modes.md)
 
 ---
@@ -186,6 +186,6 @@ At the start of each work block, the entire team selects the same stage agent in
 
 | Previous | Next |
 |---|---|
-| [Spec-Driven Development](01-spec-driven-development.md)<br/><sub>Why to specify before coding and the Spec-Kit cycle.</sub> | [Visual Glossary](03-glossario-visual.md)<br/><sub>30+ terms with a definition, SIFAP example, and reference.</sub> |
+| [Spec-Driven Development](01-spec-driven-development.md)<br/><sub>Why to specify before coding and the Spec-Kit cycle.</sub> | [Visual Glossary](03-visual-glossary.md)<br/><sub>30+ terms with a definition, SIFAP example, and reference.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>

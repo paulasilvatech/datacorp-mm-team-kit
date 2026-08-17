@@ -36,8 +36,8 @@ Use this skill to guide behavior-preserving modernization of legacy systems. The
 
 ## Folder contract
 
-- `01-arqueologia/legado-sifap/**`: legacy source evidence and behavior. Read-only.
-- `01-arqueologia/**` and `specs/<NNN>-<feature>/`: briefs, assessments, maps, rule catalogs, EARS specs, and reports.
+- `01-archaeology/legacy-sifap/**`: legacy source evidence and behavior. Read-only.
+- `01-archaeology/**` and `specs/<NNN>-<feature>/`: briefs, assessments, maps, rule catalogs, EARS specs, and reports.
 - `backend/**` and `frontend/**`: transformed or replacement implementation and tests.
 
 ## Rules
@@ -58,14 +58,14 @@ Use this skill to guide behavior-preserving modernization of legacy systems. The
 
 ## Output template
 
-Record each modernized module as an assessment note under `01-arqueologia/`, linked to its target under `backend/` or `frontend/`:
+Record each modernized module as an assessment note under `01-archaeology/`, linked to its target under `backend/` or `frontend/`:
 
 ```markdown
 ## Modernization record - <legacy module>
 
 | Field | Value |
 |---|---|
-| Legacy source | 01-arqueologia/legado-sifap/natural-programs/<FILE>.NSN |
+| Legacy source | 01-archaeology/legacy-sifap/natural-programs/<FILE>.NSN |
 | Target module | backend/src/main/java/<package>/ |
 | Stage reached | Brief / Assess / Extract / Map / Reimagine / Transform / Harden |
 | Behavior evidence | <characterization test path> |

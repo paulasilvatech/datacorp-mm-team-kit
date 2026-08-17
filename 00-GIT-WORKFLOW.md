@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Team Git workflow: each persona on its own branch
 
 > **Track:** [Team kit](README.md) › **Git workflow**
@@ -290,6 +288,6 @@ If you complete all nine steps, **you know enough Git for the workshop**. Everyt
 
 | Previous | Next |
 |---|---|
-| [Team flow](00-TEAM-FLOW.md)<br/><sub>Day schedule, handoffs, 20-minute rule, definition of done.</sub> | [Stage 1: archaeology](01-arqueologia/GUIDE.md)<br/><sub>Read the legacy system and catalog business rules.</sub> |
+| [Team flow](00-TEAM-FLOW.md)<br/><sub>Day schedule, handoffs, 20-minute rule, definition of done.</sub> | [Stage 1: archaeology](01-archaeology/GUIDE.md)<br/><sub>Read the legacy system and catalog business rules.</sub> |
 
 <sub>[Back to the kit index](README.md)</sub>

@@ -31,7 +31,7 @@ During Stage 3/4, when a task in `plan.md` requires a schema change, or when map
 - The linked `REQ-ID` and its EARS statement
 - The data scale: row counts for affected tables and peak QPS
 - The deployment window: mandatory zero downtime, or an allowed maintenance window
-- The legacy reference, if any—the Adabas DDM in `01-arqueologia/legado-sifap/adabas-ddms/` this maps from
+- The legacy reference, if any—the Adabas DDM in `01-archaeology/legacy-sifap/adabas-ddms/` this maps from
 - Ask the user for anything that is missing.
 
 ## What I Will Do

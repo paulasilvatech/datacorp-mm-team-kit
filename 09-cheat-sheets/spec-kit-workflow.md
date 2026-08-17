@@ -149,7 +149,7 @@ On macOS/Linux, scripts are stored in `.specify/scripts/bash/`. Features generat
 - [Spec-Kit on GitHub](https://github.com/github/spec-kit)
 - [Official documentation](https://github.github.io/spec-kit/)
 - [Installation guide](https://github.com/github/spec-kit/blob/main/docs/installation.md)
-- [Spec-Driven Development](../07-conceitos/01-spec-driven-development.md)
+- [Spec-Driven Development](../07-concepts/01-spec-driven-development.md)
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: "write-ears-spec"
 description: "Guides the team in recording confirmed EARS requirements in spec.md with mandatory traceability."
-argument-hint: "feature=NNN-feature-name rules=01-arqueologia/business-rules-catalog.md"
+argument-hint: "feature=NNN-feature-name rules=01-archaeology/business-rules-catalog.md"
 agent: "architect"
 tools: ["read", "search", "edit"]
 ---
@@ -15,14 +15,14 @@ prompt does not fill in requirements, acceptance criteria, or architecture throu
 
 ## Preconditions
 
-- `01-arqueologia/business-rules-catalog.md` contains the scope evidence;
+- `01-archaeology/business-rules-catalog.md` contains the scope evidence;
 - the team identified the `specs/<NNN>-<feature>/` folder;
 - the team read each source before drafting.
 
 ## Process
 
 1. Confirm with the team which rules belong to the narrow feature. Record
-   deferrals in `02-spec-moderna/scope-decisions.md`.
+   deferrals in `02-modern-spec/scope-decisions.md`.
 2. For each confirmed rule, validate the `.NSN` or `.ddm` source and only then
    propose a testable EARS requirement.
 3. Assign unique REQ-IDs and include `source_legacy:` in each one with the path and,
@@ -31,7 +31,7 @@ prompt does not fill in requirements, acceptance criteria, or architecture throu
 4. Record Given/When/Then criteria only for behaviors supported by the
    evidence or scope decision.
 5. For every question not yet validated in
-   `01-arqueologia/mysteries-found.md`, preserve the question, evidence
+   `01-archaeology/mysteries-found.md`, preserve the question, evidence
    in `path:line` format, impact, unconfirmed hypothesis, owner, and status under
    “Open Questions.” Do not convert it into a requirement, propose an answer, or
    change its status.
@@ -44,7 +44,7 @@ prompt does not fill in requirements, acceptance criteria, or architecture throu
 - Do not promote a hypothesis or open question to a requirement.
 - Do not require a specific number of requirements, C4 diagrams, ADRs, or endpoints: reduce the
   scope if Stage 2 runs out of time.
-- Do not write formal artifacts in `02-spec-moderna/`.
+- Do not write formal artifacts in `02-modern-spec/`.
 
 ## Definition of Done
 

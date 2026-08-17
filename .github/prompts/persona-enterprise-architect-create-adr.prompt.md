@@ -18,7 +18,7 @@ When a decision blocks `plan.md`, is costly to reverse, affects more than one te
 ## Preconditions
 
 - The decision topic is stated
-- The target location is known: project-wide -> `docs/adr/` (template `docs/adr/0000-template.md`); feature-scoped -> `specs/<NNN>-<feature>/` (template `02-spec-moderna/ADR-TEMPLATE.md`)
+- The target location is known: project-wide -> `docs/adr/` (template `docs/adr/0000-template.md`); feature-scoped -> `specs/<NNN>-<feature>/` (template `02-modern-spec/ADR-TEMPLATE.md`)
 - The next ADR number has been checked to avoid a collision
 - Linked REQ-IDs and `.specify/memory/constitution.md` are accessible
 
@@ -33,7 +33,7 @@ When a decision blocks `plan.md`, is costly to reverse, affects more than one te
 
 ## What I Will Do
 
-- Choose the correct template: `docs/adr/0000-template.md` (project) or `02-spec-moderna/ADR-TEMPLATE.md` (feature)
+- Choose the correct template: `docs/adr/0000-template.md` (project) or `02-modern-spec/ADR-TEMPLATE.md` (feature)
 - Pick a verb-led decision title and the next non-colliding number
 - Set the status correctly: Proposed, Accepted, Superseded by NNNN, or Rejected
 - Write honest context (forces, constraints, prior ADRs)
@@ -111,7 +111,7 @@ and CI runs `flyway:migrate` on every PR to `develop`.
 You are the `@enterprise-architect` recording a durable answer to "why did we do it this way?"
 
 **Step 1 — Pick the template and location.**
-Project-wide decision -> `docs/adr/` with `docs/adr/0000-template.md`; feature-scoped -> `specs/<NNN>-<feature>/` with `02-spec-moderna/ADR-TEMPLATE.md`.
+Project-wide decision -> `docs/adr/` with `docs/adr/0000-template.md`; feature-scoped -> `specs/<NNN>-<feature>/` with `02-modern-spec/ADR-TEMPLATE.md`.
 
 **Step 2 — Choose a precise title and number.**
 Use a verb-led title framed as a decision ("Integrate the legacy Adabas data through a REST adapter"), and the next number that does not collide with existing files.

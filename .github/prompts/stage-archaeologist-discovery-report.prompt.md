@@ -19,10 +19,10 @@ At the end of Stage 1, after the team completes the inventory, business-rule ext
 
 All four Stage 1 artifacts must exist:
 
-- `01-arqueologia/inventory.md` (from `/archaeology-kickoff`)
-- `01-arqueologia/business-rules-catalog.md` (from `/extract-business-rules`)
-- `01-arqueologia/dependency-map.md` (from `/map-dependencies`)
-- `01-arqueologia/mysteries-found.md` (from `/catalog-mysteries`)
+- `01-archaeology/inventory.md` (from `/archaeology-kickoff`)
+- `01-archaeology/business-rules-catalog.md` (from `/extract-business-rules`)
+- `01-archaeology/dependency-map.md` (from `/map-dependencies`)
+- `01-archaeology/mysteries-found.md` (from `/catalog-mysteries`)
 
 If any artifact is missing or empty, the agent will refuse to generate the report and list what is missing.
 
@@ -48,7 +48,7 @@ If any artifact is missing or empty, the agent will refuse to generate the repor
 
 ## Output Format
 
-A Markdown file at `01-arqueologia/discovery-report.md`:
+A Markdown file at `01-archaeology/discovery-report.md`:
 
 ```markdown
 # Discovery Report — Stage 1
@@ -81,7 +81,7 @@ A Markdown file at `01-arqueologia/discovery-report.md`:
 You are the `@archaeologist`. Stage 1 is ending. The team needs a single document that captures everything it discovered, ready for the `@architect` to use in Stage 2.
 
 **Step 1 — Verify inputs.**
-Verify that all four required artifacts exist under `01-arqueologia/`:
+Verify that all four required artifacts exist under `01-archaeology/`:
 
 1. `inventory.md`
 2. `business-rules-catalog.md`
@@ -106,7 +106,7 @@ From the dependency map, list verified program-to-program and program-to-data ed
 
 From the inventory, summarize the documented DDM structures.
 
-Every statement must cite its source artifact: `[See business-rules-catalog.md, Rule #3](../../01-arqueologia/business-rules-catalog.md)`.
+Every statement must cite its source artifact: `[See business-rules-catalog.md, Rule #3](../../01-archaeology/business-rules-catalog.md)`.
 
 **Step 4 — Build the "What Introduces Risk" section.**
 From the open-question catalog, extract only rows whose status does not record
@@ -134,7 +134,7 @@ At the end of the report, list all four source artifacts with relative paths so 
 **Step 7 — Add team sign-off.**
 Add a team sign-off section: "Reviewed by: [names], Date: [date], Confidence: [high/medium/low]." Leave it blank for the team to complete.
 
-Write the complete report to `01-arqueologia/discovery-report.md`. The report must be self-contained and fewer than 3 printed pages.
+Write the complete report to `01-archaeology/discovery-report.md`. The report must be self-contained and fewer than 3 printed pages.
 
 ## Invocation Example
 

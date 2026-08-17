@@ -44,6 +44,6 @@
 
 | Previous | Next |
 |---|---|
-| [Stage 1 — Archaeology](../01-arqueologia/README.md)<br/><sub>Archaeology summary and links to the detailed GUIDE.</sub> | [Stage 2 — GUIDE](GUIDE.md)<br/><sub>14:00–15:00 · Create spec.md, plan.md, and tasks.md for a thin feature.</sub> |
+| [Stage 1 — Archaeology](../01-archaeology/README.md)<br/><sub>Archaeology summary and links to the detailed GUIDE.</sub> | [Stage 2 — GUIDE](GUIDE.md)<br/><sub>14:00–15:00 · Create spec.md, plan.md, and tasks.md for a thin feature.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>

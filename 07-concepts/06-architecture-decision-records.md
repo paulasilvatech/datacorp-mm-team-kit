@@ -199,8 +199,8 @@ List objective pros and cons for each in the SIFAP context."
 
 ## References
 
-- [Blank ADR template](../02-spec-moderna/ADR-TEMPLATE.md)
-- [Stage 2 Guide](../02-spec-moderna/GUIDE.md)
+- [Blank ADR template](../02-modern-spec/ADR-TEMPLATE.md)
+- [Stage 2 Guide](../02-modern-spec/GUIDE.md)
 - [adr.github.io — official pattern](https://adr.github.io)
 
 ---
@@ -209,6 +209,6 @@ List objective pros and cons for each in the SIFAP context."
 
 | Previous | Next |
 |---|---|
-| [EARS Notation](05-notacao-ears.md)<br/><sub>How to write unambiguous requirements.</sub> | [Personas (Overview)](../05-personas/OVERVIEW.md)<br/><sub>Choose your two workshop roles.</sub> |
+| [EARS Notation](05-ears-notation.md)<br/><sub>How to write unambiguous requirements.</sub> | [Personas (Overview)](../05-personas/OVERVIEW.md)<br/><sub>Choose your two workshop roles.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>

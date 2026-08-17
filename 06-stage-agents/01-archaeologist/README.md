@@ -7,7 +7,7 @@
 | Field | Value |
 |---|---|
 | **Target audience** | Entire team during Stage 1, with all pairs working in parallel |
-| **Prerequisites** | `01-arqueologia/legado-sifap/` available in the workspace |
+| **Prerequisites** | `01-archaeology/legacy-sifap/` available in the workspace |
 | **Estimated time** | 11:00–12:00 + 13:30–14:00 |
 | **Stage** | Stage 1 — Archaeology |
 | **Expected outcome** | Rule catalog with sources, mapped DDMs, open questions, and defined feature scope |
@@ -43,7 +43,7 @@ Use this agent while the team reads legacy code. `@archaeologist` helps the team
 - It does not read legacy code unless the team opens the file
 - It does not turn a hypothesis into a confirmed requirement
 - It does not suggest modern architecture (that is the `@architect` role in Stage 2)
-- It does not edit files in `01-arqueologia/legado-sifap/` (read-only)
+- It does not edit files in `01-archaeology/legacy-sifap/` (read-only)
 
 ---
 
@@ -51,9 +51,9 @@ Use this agent while the team reads legacy code. `@archaeologist` helps the team
 
 | Input | Location |
 |---|---|
-| Assigned Natural programs | `01-arqueologia/legado-sifap/natural-programs/*.NSN` |
-| Adabas DDMs | `01-arqueologia/legado-sifap/adabas-ddms/*.ddm` |
-| Exploration checklist | `01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md` |
+| Assigned Natural programs | `01-archaeology/legacy-sifap/natural-programs/*.NSN` |
+| Adabas DDMs | `01-archaeology/legacy-sifap/adabas-ddms/*.ddm` |
+| Exploration checklist | `01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md` |
 
 ---
 
@@ -61,7 +61,7 @@ Use this agent while the team reads legacy code. `@archaeologist` helps the team
 
 | Artifact | Location |
 |---|---|
-| Business-rule catalog | `01-arqueologia/business-rules-catalog.md` |
+| Business-rule catalog | `01-archaeology/business-rules-catalog.md` |
 | Dependency map (Mermaid) | In the catalog or a separate file |
 | Open-question list | Dedicated section in the catalog |
 | Selected feature scope | Recorded before the 14:00 handoff |
@@ -77,7 +77,7 @@ Use this agent while the team reads legacy code. `@archaeologist` helps the team
 
 ```text
 I am starting Stage 1 — Archaeology.
-We have Natural/Adabas code in 01-arqueologia/legado-sifap/.
+We have Natural/Adabas code in 01-archaeology/legacy-sifap/.
 Help the team examine the assigned programs and record only evidence
 and open questions for the scope we will select. Do not infer answers.
 ```
@@ -112,7 +112,7 @@ and open questions for the scope we will select. Do not infer answers.
 | Copilot gives vague generalizations | No file is open in the editor | Open the `.NSN` file and cite the specific section in the prompt |
 | Business rule has no source | The team accepted a hypothesis as fact | Mark it as a mystery until code evidence exists |
 | Time is lost detailing out-of-scope areas | No scope decision was made | Select the thin feature before 12:00 and limit reading to it |
-| Legacy files are edited | Confusion about the stage's role | `01-arqueologia/legado-sifap/` is read-only |
+| Legacy files are edited | Confusion about the stage's role | `01-archaeology/legacy-sifap/` is read-only |
 
 ---
 

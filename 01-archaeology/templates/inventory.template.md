@@ -22,7 +22,7 @@ tags: ["template", "inventory", "archaeology", "stage-1"]
 > Build the inventory without opening any program. Work only from file names and folder structure.
 
 **Date:** <!-- placeholder: YYYY-MM-DD -->
-**Scanned path:** `01-arqueologia/legado-sifap/`
+**Scanned path:** `01-archaeology/legacy-sifap/`
 
 ---
 

@@ -44,12 +44,12 @@ General technical-writing patterns that transfer to any codebase:
 
 ## What This Agent Does NOT Know
 
-- The meaning of legacy terms and abbreviations; build the glossary from the team's discovery under `01-arqueologia/legado-sifap/`
+- The meaning of legacy terms and abbreviations; build the glossary from the team's discovery under `01-archaeology/legacy-sifap/`
 - The system's real endpoints, commands, and ports; read them from the team's code, not assumptions
 - Which decisions were made in the last hour; ask the stage-leading pair what has not been written down
 - The current README, CODEMAP, ADRs, and `docs/` until read from disk
 
-All of this must emerge from the team's own investigation of `01-arqueologia/legado-sifap/` and the artifacts already on disk; the agent never fills these gaps with assumptions.
+All of this must emerge from the team's own investigation of `01-archaeology/legacy-sifap/` and the artifacts already on disk; the agent never fills these gaps with assumptions.
 
 ## Available Prompts
 

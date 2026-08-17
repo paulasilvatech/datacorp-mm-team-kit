@@ -23,7 +23,7 @@ The Requirements Engineer transforms rules discovered in the legacy system into 
 
 In SIFAP (Payment Inspection and Administration System), business rules are tacitly encoded in Natural — without up-to-date documentation, comments, or a manual. The RE extracts these rules from the `.NSN` programs, classifies them (business rule, validation, calculation, integration), and converts them to EARS (Easy Approach to Requirements Syntax) with explicit traceability through `source_legacy:`.
 
-**Concrete SIFAP example:** the `SIFAP003.NSN` program contains a beneficiary CPF validation routine. The RE reads the Natural code, identifies the rule, assigns a REQ-ID (for example, `REQ-042`), and writes the requirement in EARS: "The system SHALL validate the beneficiary's CPF before processing the payment." With `source_legacy: 01-arqueologia/legado-sifap/natural-programs/SIFAP003.NSN`.
+**Concrete SIFAP example:** the `SIFAP003.NSN` program contains a beneficiary CPF validation routine. The RE reads the Natural code, identifies the rule, assigns a REQ-ID (for example, `REQ-042`), and writes the requirement in EARS: "The system SHALL validate the beneficiary's CPF before processing the payment." With `source_legacy: 01-archaeology/legacy-sifap/natural-programs/SIFAP003.NSN`.
 
 ---
 
@@ -87,7 +87,7 @@ flowchart LR
 
 - [ ] **Read this profile.** Mission, responsibilities, and handoff.
 - [ ] **Open the kit `README.md`.** Confirm that agents and prompts appear in Copilot Chat.
-- [ ] **Review the 6 EARS patterns.** Open the "EARS Notation" section in [`../../02-spec-moderna/GUIDE.md`](../../02-spec-moderna/GUIDE.md).
+- [ ] **Review the 6 EARS patterns.** Open the "EARS Notation" section in [`../../02-modern-spec/GUIDE.md`](../../02-modern-spec/GUIDE.md).
 - [ ] **Identify your pair.** See [00-TEAM-FLOW.md](../../00-TEAM-FLOW.md).
 - [ ] **Note the handoff.** Who you receive from and who you deliver to at the end of each stage.
 
@@ -125,7 +125,7 @@ flowchart LR
 
 | **Situation** | What to do |
 |---|---|
-| Unfamiliar with EARS | Open the "EARS Notation" section in [`../../02-spec-moderna/GUIDE.md`](../../02-spec-moderna/GUIDE.md) — 6 patterns with examples |
+| Unfamiliar with EARS | Open the "EARS Notation" section in [`../../02-modern-spec/GUIDE.md`](../../02-modern-spec/GUIDE.md) — 6 patterns with examples |
 | Ambiguous requirement | Write two interpretations and ask the PO which is correct |
 | Many rules, little time | Prioritize rules by the risk and impact recorded by the team |
 | Spec-Kit does not work | Restore the tool before creating formal artifacts; they belong in `specs/<NNN>-<feature>/spec.md` |

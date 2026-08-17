@@ -13,20 +13,20 @@ Turn confirmed user stories into formal EARS requirements in `specs/<NNN>-<featu
 
 ## When to Invoke
 
-At the start of Stage 2, after the pair has read its assigned Natural programs (the HARD GATE in `01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`) and the team has agreed on one narrow feature.
+At the start of Stage 2, after the pair has read its assigned Natural programs (the HARD GATE in `01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md`) and the team has agreed on one narrow feature.
 
 ## Preconditions
 
 - `specs/<NNN>-<feature>/` exists (created by the Specify CLI)
 - `.specify/memory/constitution.md` exists
-- `01-arqueologia/business-rules-catalog.md` holds the confirmed rules with their source line ranges
+- `01-archaeology/business-rules-catalog.md` holds the confirmed rules with their source line ranges
 - The pair has actually read the legacy files it intends to cite
 
 ## Inputs the Team Must Provide
 
 - `feature=<NNN>-<feature>` — the folder under `specs/`
 - The user stories or confirmed business rules to formalize (a path or inline text)
-- For each story, its legacy source: a `01-arqueologia/legado-sifap/natural-programs/*.{NSP,NSN,NSS,NSA,NSL,NSC,NSM,jcl}` or `01-arqueologia/legado-sifap/adabas-ddms/*.{NSD,ddm,txt}` path, or an explicit `[GREENFIELD]` justification
+- For each story, its legacy source: a `01-archaeology/legacy-sifap/natural-programs/*.{NSP,NSN,NSS,NSA,NSL,NSC,NSM,jcl}` or `01-archaeology/legacy-sifap/adabas-ddms/*.{NSD,ddm,txt}` path, or an explicit `[GREENFIELD]` justification
 - Ask the user for anything that is missing.
 
 ## What I Will Do
@@ -55,7 +55,7 @@ Append EARS blocks to `specs/<NNN>-<feature>/spec.md`. The `REQ-ID:` key and the
 REQ-PAY-014:
   pattern: unwanted
   text: "If a payment line references a beneficiary that is not active, then the system shall reject the line and record the rejection reason."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSP#L<start>-L<end>
+  source_legacy: 01-archaeology/legacy-sifap/natural-programs/<PROGRAM>.NSP#L<start>-L<end>
   acceptance:
     - "Given an inactive beneficiary, when the batch processes the line, then the line is rejected with reason INACTIVE_BENEFICIARY."
   priority: P0
@@ -112,5 +112,5 @@ No requirement ships without a `source_legacy:` line; the `legacy-traceability` 
 ## Invocation Example
 
 ```
-/spec feature=001-pagamento-beneficio stories=02-spec-moderna/user-stories.md
+/spec feature=001-pagamento-beneficio stories=02-modern-spec/user-stories.md
 ```

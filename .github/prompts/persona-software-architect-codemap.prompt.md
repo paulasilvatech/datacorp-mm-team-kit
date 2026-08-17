@@ -129,7 +129,7 @@ List any component with no requirement as "no REQ-ID found" for team review. Do
 not invent a REQ-ID to close the gap.
 
 **Step 5 — Record legacy lineage.**
-Name only the Natural program under `01-arqueologia/legado-sifap/natural-programs/`
+Name only the Natural program under `01-archaeology/legacy-sifap/natural-programs/`
 the team confirmed a component replaces, citing the evidence (for example, a rule
 in `business-rules-catalog.md`). If unconfirmed, write "unmapped" — never guess.
 

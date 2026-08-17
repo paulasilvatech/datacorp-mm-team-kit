@@ -21,7 +21,7 @@ architecture, endpoints, contracts, or diagrams without evidence from the featur
 
 ## Process
 
-1. Read `spec.md`, `plan.md`, and the scope decisions in `02-spec-moderna/`.
+1. Read `spec.md`, `plan.md`, and the scope decisions in `02-modern-spec/`.
 2. Request evidence for any boundary, integration, or contract not described
    by the feature. Record the question; do not fill gaps through assumptions.
 3. Describe in `plan.md` the smallest module, data, and communication structure
@@ -36,7 +36,7 @@ architecture, endpoints, contracts, or diagrams without evidence from the featur
 - Do not write implementation code.
 - Do not fill in requirements, endpoints, schemas, or decisions that the team
   has not confirmed.
-- Do not use `02-spec-moderna/` as the location for `spec.md`, `plan.md`, or
+- Do not use `02-modern-spec/` as the location for `spec.md`, `plan.md`, or
   `tasks.md`.
 
 ## Definition of Done

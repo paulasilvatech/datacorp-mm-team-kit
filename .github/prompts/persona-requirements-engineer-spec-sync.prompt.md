@@ -67,7 +67,7 @@ Proposed patch for each Undocumented item:
 ```diff
 + ### REQ-PAY-041 (unwanted)
 + If a payment line duplicates an already-imported line, then the system shall ignore the duplicate.
-+ source_legacy: 01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSP#L<start>-L<end>
++ source_legacy: 01-archaeology/legacy-sifap/natural-programs/<PROGRAM>.NSP#L<start>-L<end>
 ```
 
 Then a "Top 3 drifts by risk" list, ordered by business impact and incident likelihood.

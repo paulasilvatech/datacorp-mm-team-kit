@@ -67,7 +67,7 @@ The system shall <action>.
 REQ-001:
   pattern: ubiquitous
   text: "The system shall record the date and time of every change to beneficiary records."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/CADBENEF.NSP#L45-L52
+  source_legacy: 01-archaeology/legacy-sifap/natural-programs/CADBENEF.NSP#L45-L52
   acceptance:
     - "Every modified beneficiary record contains a modification timestamp"
     - "The timestamp uses the UTC time zone"
@@ -99,7 +99,7 @@ When <event>, the system shall <action>.
 REQ-042:
   pattern: event-driven
   text: "When a benefit payment is processed, the system shall calculate the net amount by deducting the current contributions."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/CALCPGTO.NSN#L120-L198
+  source_legacy: 01-archaeology/legacy-sifap/natural-programs/CALCPGTO.NSN#L120-L198
   acceptance:
     - "Given a beneficiary with a gross amount of R$ 1,000.00 and an 11% contribution rate, the calculated net amount is R$ 890.00"
     - "The result is recorded in the pagamentos table with CALCULATED status"
@@ -131,7 +131,7 @@ While <state condition>, the system shall <action>.
 REQ-078:
   pattern: state-driven
   text: "While the beneficiary has SUSPENDED status, the system shall block the processing of new payments for that beneficiary."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/CTRLPGTO.NSN#L33-L41
+  source_legacy: 01-archaeology/legacy-sifap/natural-programs/CTRLPGTO.NSN#L33-L41
   acceptance:
     - "An attempt to process a payment for a SUSPENDED beneficiary returns the BENEFICIARIO_SUSPENSO error"
     - "No payment record is created for a SUSPENDED beneficiary"
@@ -155,7 +155,7 @@ Where <selected option>, the system shall <action>.
 REQ-105:
   pattern: optional
   text: "Where the operator selects CSV export, the system shall generate the file with a header in the first row and UTF-8 encoding."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/EXPRELAT.NSN#L201-L215
+  source_legacy: 01-archaeology/legacy-sifap/natural-programs/EXPRELAT.NSN#L201-L215
   acceptance:
     - "The generated file has a .csv extension"
     - "The first row contains the column names"
@@ -180,7 +180,7 @@ The system shall not <prohibited behavior>.
 REQ-200:
   pattern: unwanted
   text: "The system shall not expose a beneficiary's complete tax ID in API responses—it shall display only the last four digits."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/CADBENEF.NSP#L88-L90
+  source_legacy: 01-archaeology/legacy-sifap/natural-programs/CADBENEF.NSP#L88-L90
   acceptance:
     - "Endpoint GET /api/v1/beneficiarios/{id} returns the tax ID in the format ***.***.***-XX"
     - "Application logs never record the tax ID"
@@ -204,7 +204,7 @@ While <state>, when <event>, where <option>, the system shall <action>.
 REQ-250:
   pattern: complex
   text: "While the beneficiary has ACTIVE status, when a new payment is processed, where the selected method is account credit, the system shall record the bank account number in the payment history."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/CTRLPGTO.NSN#L55-L72
+  source_legacy: 01-archaeology/legacy-sifap/natural-programs/CTRLPGTO.NSN#L55-L72
   acceptance:
     - "An ACTIVE beneficiary payment using account credit records the bank account in the history"
     - "A payment for a SUSPENDED beneficiary does not trigger this flow"
@@ -296,9 +296,9 @@ Which confirmed catalog rules do not yet have a REQ-ID?
 
 ## References
 
-- [Stage 2 Guide](../02-spec-moderna/GUIDE.md)
+- [Stage 2 Guide](../02-modern-spec/GUIDE.md)
 - [Spec-Kit cheat sheet](../09-cheat-sheets/spec-kit-workflow.md)
-- [LEGACY-EXPLORATION-CHECKLIST](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md)
+- [LEGACY-EXPLORATION-CHECKLIST](../01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md)
 
 ---
 
@@ -306,6 +306,6 @@ Which confirmed catalog rules do not yet have a REQ-ID?
 
 | Previous | Next |
 |---|---|
-| [Copilot's 3 Modes](04-3-modos-do-copilot.md)<br/><sub>Ask, Plan, and Agent—selection criteria.</sub> | [Architecture Decision Records](06-architecture-decision-records.md)<br/><sub>How to record decisions for the future team.</sub> |
+| [Copilot's 3 Modes](04-3-copilot-modes.md)<br/><sub>Ask, Plan, and Agent—selection criteria.</sub> | [Architecture Decision Records](06-architecture-decision-records.md)<br/><sub>How to record decisions for the future team.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>

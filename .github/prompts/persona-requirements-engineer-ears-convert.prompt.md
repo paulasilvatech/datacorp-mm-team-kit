@@ -13,11 +13,11 @@ Convert a list of informal statements into well-formed EARS requirements — eac
 
 ## When to Invoke
 
-In Stage 2, when the team has raw statements (from stakeholders or `01-arqueologia/business-rules-catalog.md`) together with their legacy sources, and needs them formalized.
+In Stage 2, when the team has raw statements (from stakeholders or `01-archaeology/business-rules-catalog.md`) together with their legacy sources, and needs them formalized.
 
 ## Preconditions
 
-- The pair has read the cited legacy programs (the HARD GATE in `01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`)
+- The pair has read the cited legacy programs (the HARD GATE in `01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md`)
 - Each input statement already has an identified legacy source or a `[GREENFIELD]` justification
 - `.specify/memory/constitution.md` exists for constraint cross-checks
 
@@ -54,14 +54,14 @@ One YAML block per requirement, so the CI gate can parse the `source_legacy:` li
 REQ-PAY-014:
   pattern: unwanted
   text: "If a payment line references a beneficiary that is not active, then the system shall reject the line."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSP#L<start>-L<end>
+  source_legacy: 01-archaeology/legacy-sifap/natural-programs/<PROGRAM>.NSP#L<start>-L<end>
   original: "inactive people should not be paid"
   notes: ""
 
 REQ-PAY-018:
   pattern: needs-clarification
   text: "NEEDS-CLARIFICATION: 'the batch must be fast' states no measurable target."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSP#L<start>-L<end>
+  source_legacy: 01-archaeology/legacy-sifap/natural-programs/<PROGRAM>.NSP#L<start>-L<end>
   original: "the batch must be fast"
   notes: "Ask the team for a throughput or latency target (for example, N records per minute)."
 ```
@@ -82,7 +82,7 @@ You are the `@requirements-engineer`. The team brings informal statements; you t
 **Step 1 — Gate on the legacy source.**
 For every statement, confirm a `natural-programs`/`adabas-ddms` path or a `[GREENFIELD]` justification. If any is missing, respond with the refusal below and stop until it is provided:
 
-> "I cannot issue this EARS statement yet. Specify which file in `01-arqueologia/legado-sifap/` is the source (for example, `01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSP`) or mark it as `[GREENFIELD]` with a one-line justification. CI rejects EARS statements without `source_legacy`."
+> "I cannot issue this EARS statement yet. Specify which file in `01-archaeology/legacy-sifap/` is the source (for example, `01-archaeology/legacy-sifap/natural-programs/<PROGRAM>.NSP`) or mark it as `[GREENFIELD]` with a one-line justification. CI rejects EARS statements without `source_legacy`."
 
 **Step 2 — Classify the pattern.**
 Assign exactly one pattern, then defer edge cases to the [`ears-validate`](../skills/ears-validate/SKILL.md) skill:
@@ -113,5 +113,5 @@ Never invent a source and never assert what a legacy program contains. A stateme
 ## Invocation Example
 
 ```
-/ears-convert input=01-arqueologia/business-rules-catalog.md domain=PAY
+/ears-convert input=01-archaeology/business-rules-catalog.md domain=PAY
 ```

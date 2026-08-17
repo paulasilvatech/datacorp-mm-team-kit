@@ -1,7 +1,7 @@
 ---
 name: "generate-jpa-from-fdt"
 description: "Generates JPA entity classes from Adabas FDT definitions, using JSONB for MU/PE fields."
-argument-hint: "ddm=01-arqueologia/legado-sifap/adabas-ddms/<DDM>.ddm context=<context> package=<java.package> dateformat=<format>"
+argument-hint: "ddm=01-archaeology/legacy-sifap/adabas-ddms/<DDM>.ddm context=<context> package=<java.package> dateformat=<format>"
 agent: "builder"
 tools: ["read", "search", "edit", "execute"]
 ---
@@ -17,13 +17,13 @@ At the beginning of Stage 3, when the team is setting up the data layer for a bo
 
 ## Preconditions
 
-- `02-spec-moderna/bounded-contexts.md` exists (to determine which context owns this DDM)
-- The DDM file is accessible in `01-arqueologia/legado-sifap/adabas-ddms/`
+- `02-modern-spec/bounded-contexts.md` exists (to determine which context owns this DDM)
+- The DDM file is accessible in `01-archaeology/legacy-sifap/adabas-ddms/`
 - The team selected the target package based on the modular monolith design
 
 ## Inputs the Team Must Provide
 
-- The path to the DDM file (for example, `01-arqueologia/legado-sifap/adabas-ddms/DDMXXXXX.ddm`)
+- The path to the DDM file (for example, `01-archaeology/legacy-sifap/adabas-ddms/DDMXXXXX.ddm`)
 - The bounded context and target Java package
 - The date format used in the legacy system (for example, packed `YYYYMMDD` or alpha `YYYY-MM-DD`)
 
@@ -122,7 +122,7 @@ For any field whose two-character Adabas name has no clear English equivalent:
 private String xxValue;
 ```
 
-If the field is not yet in `01-arqueologia/mysteries-found.md`, tell the team
+If the field is not yet in `01-archaeology/mysteries-found.md`, tell the team
 that a person must record it as an open question with `path:line` evidence. Do not
 describe an answer, confirm a hypothesis, or change the catalog status.
 
@@ -144,5 +144,5 @@ Ensure that the entity class compiles. Report any problems.
 ## Invocation Example
 
 ```
-/generate-jpa-from-fdt ddm=01-arqueologia/legado-sifap/adabas-ddms/<DDM>.ddm context=<context> package=<java.package> dateformat=<format>
+/generate-jpa-from-fdt ddm=01-archaeology/legacy-sifap/adabas-ddms/<DDM>.ddm context=<context> package=<java.package> dateformat=<format>
 ```

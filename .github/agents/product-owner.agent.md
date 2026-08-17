@@ -44,12 +44,12 @@ General product-ownership patterns that transfer to any modernization:
 
 ## What This Agent Does NOT Know
 
-- Which business rules the legacy programs encode; these emerge from the team's discovery under `01-arqueologia/legado-sifap/`
+- Which business rules the legacy programs encode; these emerge from the team's discovery under `01-archaeology/legacy-sifap/`
 - The real-world priority or regulatory weight of any specific feature; only stakeholders can confirm it
 - Which scope fits the available time; the Technical Lead calibrates this each stage
 - The contents of `specs/<NNN>-<feature>/spec.md` and `.specify/memory/constitution.md` until they are read from disk
 
-All of this must emerge from the team's own investigation of `01-arqueologia/legado-sifap/` and the artifacts already on disk; the agent never fills these gaps with assumptions.
+All of this must emerge from the team's own investigation of `01-archaeology/legacy-sifap/` and the artifacts already on disk; the agent never fills these gaps with assumptions.
 
 ## Available Prompts
 

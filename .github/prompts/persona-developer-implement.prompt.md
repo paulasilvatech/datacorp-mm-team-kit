@@ -30,7 +30,7 @@ During Stage 3 implementation, once `tasks.md` exists and the team has selected 
 
 - The task ID (for example, `T-017`) and the feature folder `specs/<NNN>-<feature>/`
 - The target stack for this task—Java 21 + Spring Boot 3.3, or Next.js 15 + strict TypeScript
-- Any scope decisions in `02-spec-moderna/` that constrain the implementation
+- Any scope decisions in `02-modern-spec/` that constrain the implementation
 - Ask the user for anything that is missing before writing code.
 
 ## What I Will Do

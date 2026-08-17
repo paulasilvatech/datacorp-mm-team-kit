@@ -21,7 +21,7 @@ Spec-Driven Development (SDD) is the practice of fully specifying a feature, inc
 
 **Why it matters:** without an upfront specification, code grows without traceable direction. Workshop CI verifies that every REQ-ID has `source_legacy:` pointing to the actual legacy system. This ensures that SIFAP 2.0 implements the rules of the original SIFAP (Payment Inspection and Administration System).
 
-**Use case:** in Stage 1, the team identifies that `CALC-BENEFICIO.NSN` contains annual adjustment calculation logic. In Stage 2, that logic becomes `REQ-015` in `spec.md` with `source_legacy: 01-arqueologia/legado-sifap/natural-programs/CALC-BENEFICIO.NSN`. In Stage 3, the test either passes or fails, completing the traceability chain.
+**Use case:** in Stage 1, the team identifies that `CALC-BENEFICIO.NSN` contains annual adjustment calculation logic. In Stage 2, that logic becomes `REQ-015` in `spec.md` with `source_legacy: 01-archaeology/legacy-sifap/natural-programs/CALC-BENEFICIO.NSN`. In Stage 3, the test either passes or fails, completing the traceability chain.
 
 ---
 
@@ -102,9 +102,9 @@ flowchart LR
 
 ---
 
-## Relationship to `02-spec-moderna/`
+## Relationship to `02-modern-spec/`
 
-`02-spec-moderna/` does not contain a second specification. Use it to record scope decisions and Stage 2 supporting material. The feature's EARS requirements, technical plan, and tasks belong in `specs/<NNN>-<feature>/spec.md`, `plan.md`, and `tasks.md`.
+`02-modern-spec/` does not contain a second specification. Use it to record scope decisions and Stage 2 supporting material. The feature's EARS requirements, technical plan, and tasks belong in `specs/<NNN>-<feature>/spec.md`, `plan.md`, and `tasks.md`.
 
 ---
 
@@ -122,7 +122,7 @@ flowchart LR
 ## References
 
 - [Spec-Kit reference card](../09-cheat-sheets/spec-kit-workflow.md)
-- [EARS notation](../07-conceitos/05-notacao-ears.md)
+- [EARS notation](../07-concepts/05-ears-notation.md)
 - [Official Spec-Kit](https://github.com/github/spec-kit)
 - [Spec-Driven Development](https://github.com/github/spec-kit/blob/main/spec-driven.md)
 
@@ -132,6 +132,6 @@ flowchart LR
 
 | Previous | Next |
 |---|---|
-| [Spec-Kit in 1 page](../09-cheat-sheets/spec-kit-workflow.md)<br/><sub>Sequence: specify → clarify → plan → tasks → analyze.</sub> | [Stage 2 — Specification](../02-spec-moderna/GUIDE.md)<br/><sub>Create the specification from the team's discovery.</sub> |
+| [Spec-Kit in 1 page](../09-cheat-sheets/spec-kit-workflow.md)<br/><sub>Sequence: specify → clarify → plan → tasks → analyze.</sub> | [Stage 2 — Specification](../02-modern-spec/GUIDE.md)<br/><sub>Create the specification from the team's discovery.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>

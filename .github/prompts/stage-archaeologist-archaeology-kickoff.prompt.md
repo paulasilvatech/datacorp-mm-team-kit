@@ -1,7 +1,7 @@
 ---
 name: "archaeology-kickoff"
 description: "Starts Stage 1 — guides the team through the legacy folder and produces an initial inventory."
-argument-hint: "path=01-arqueologia/legado-sifap/"
+argument-hint: "path=01-archaeology/legacy-sifap/"
 agent: "archaeologist"
 tools: ["read", "search", "edit"]
 ---
@@ -13,21 +13,21 @@ Guide the team through the legacy codebase with a top-down inventory before read
 
 ## When to Invoke
 
-At the very beginning of Stage 1, immediately after the team receives access to the `01-arqueologia/legado-sifap/` folder.
+At the very beginning of Stage 1, immediately after the team receives access to the `01-archaeology/legacy-sifap/` folder.
 
 ## Preconditions
 
-- The `01-arqueologia/legado-sifap/` folder is available in the workspace; it is part of the kit and does not depend on a setup script
+- The `01-archaeology/legacy-sifap/` folder is available in the workspace; it is part of the kit and does not depend on a setup script
 - The team has not opened individual programs yet
 
 ## Inputs the Team Must Provide
 
-- The path to the legacy folder (normally `01-arqueologia/legado-sifap/`)
+- The path to the legacy folder (normally `01-archaeology/legacy-sifap/`)
 - Confirmation that the team has not started reading individual files (this prompt is for orientation, not deep reading)
 
 ## What I Will Do
 
-- Scan the `01-arqueologia/legado-sifap/` folder recursively and list all directories
+- Scan the `01-archaeology/legacy-sifap/` folder recursively and list all directories
 - Count files by extension (`.NSN`, `.cpy`, `.ddm`, `.map`, and any others)
 - Classify programs by naming-pattern prefixes (for example, `BN-*` for batch, `PG-*` for online)
 - Flag the top 3 items that appear unusual based on name length, file size, or location
@@ -42,7 +42,7 @@ At the very beginning of Stage 1, immediately after the team receives access to 
 
 ## Output Format
 
-A Markdown file at `01-arqueologia/inventory.md` with:
+A Markdown file at `01-archaeology/inventory.md` with:
 
 ```markdown
 # Legacy Inventory — [Team Name]
@@ -83,12 +83,12 @@ Identify the 3 most unusual items in the folder. "Unusual" means any of the foll
 Based on the identified patterns, propose which files to read first. Prioritize: (a) batch entry points (usually identifiable by prefix patterns), (b) DDM files (to understand data before code), and (c) the most connected programs (files whose names appear as arguments in other file names, suggesting CALLNAT relationships). Clearly state that this is a hypothesis — the actual reading order will change when the team begins tracing dependencies.
 
 **Step 6 — Generate the inventory.**
-Write the complete inventory to `01-arqueologia/inventory.md` using the output format above. Include the date, a placeholder for the team name, and a note that this is the first pass — to be revised as the team reads individual files.
+Write the complete inventory to `01-archaeology/inventory.md` using the output format above. Include the date, a placeholder for the team name, and a note that this is the first pass — to be revised as the team reads individual files.
 
 Do not open any file to read its contents. This prompt operates only on file names and folder structure. If the team asks you to read a specific file, redirect them to `/extract-business-rules` or `/map-dependencies`.
 
 ## Invocation Example
 
 ```
-/archaeology-kickoff path=01-arqueologia/legado-sifap/
+/archaeology-kickoff path=01-archaeology/legacy-sifap/
 ```

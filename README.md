@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Team kit: SIFAP 2.0 workshop
 
 > **Track:** **Team kit** (you are here)
@@ -16,9 +14,9 @@
 
 | I am... | Start here |
 |---|---|
-| **First time here or non-technical profile** | [`00-COMECE-AQUI.md`](00-COMECE-AQUI.md) - 15 guided minutes |
+| **First time here or non-technical profile** | [`00-START-HERE.md`](00-START-HERE.md) - 15 guided minutes |
 | **Developer, I want the schedule** | [`00-TEAM-FLOW.md`](00-TEAM-FLOW.md) - 10 minutes |
-| **I want to understand the concepts first** | [`07-conceitos/`](07-conceitos/) - core concepts |
+| **I want to understand the concepts first** | [`07-concepts/`](07-concepts/) - core concepts |
 | **I want to set up my environment** | [`00-SETUP.md`](00-SETUP.md) - laptop + Copilot |
 | **How does Git work in this workshop?** | [`00-GIT-WORKFLOW.md`](00-GIT-WORKFLOW.md) - one branch per persona |
 | **Something went wrong** | [`docs/troubleshooting.md`](docs/troubleshooting.md) |
@@ -65,23 +63,23 @@ flowchart LR
 ```text
 workspace/
 ├── README.md                       <- you are here
-├── 00-COMECE-AQUI.md               <- 15 min for anyone
+├── 00-START-HERE.md               <- 15 min for anyone
 ├── 00-SETUP.md                     <- set up laptop + Copilot
 ├── 00-TEAM-FLOW.md                 <- canonical schedule for the day
 ├── 00-SITEMAP.md                   <- visual map of the kit
 ├── 00-GIT-WORKFLOW.md              <- branches, PRs, merges
 │
-├── 01-arqueologia/                 STAGE 1 - read legacy SIFAP
+├── 01-archaeology/                 STAGE 1 - read legacy SIFAP
 │   ├── GUIDE.md                    (stage walkthrough)
 │   ├── LEGACY-EXPLORATION-CHECKLIST.md  (required gate before Stage 2)
-│   └── legado-sifap/               (15 .NSN + 4 DDMs + historical docs)
-├── 02-spec-moderna/                STAGE 2 - write EARS, ADRs, C4
-├── 03-implementacao/               STAGE 3 - Java + Next.js + tests
-├── 04-evolucao/                    STAGE 4 - Agent mode + Terraform
+│   └── legacy-sifap/               (15 .NSN + 4 DDMs + historical docs)
+├── 02-modern-spec/                STAGE 2 - write EARS, ADRs, C4
+├── 03-implementation/               STAGE 3 - Java + Next.js + tests
+├── 04-evolution/                    STAGE 4 - Agent mode + Terraform
 │
 ├── 05-personas/                    10 personas (pick 2 = your pair)
-├── 06-agentes-de-estagio/          4 Copilot agents (1 per stage)
-├── 07-conceitos/                   core concepts (EARS, ADR, SDD, agents)
+├── 06-stage-agents/          4 Copilot agents (1 per stage)
+├── 07-concepts/                   core concepts (EARS, ADR, SDD, agents)
 ├── 09-cheat-sheets/                3 quick reference cards
 │
 ├── docs/                           FAQ, troubleshooting, runbook, ADRs
@@ -133,11 +131,11 @@ The kit includes **two layers** that cover different axes (role x stage). Use bo
 | Layer | What it is | When to load it | How to use it |
 |---|---|---|---|
 | [`05-personas/`](05-personas/) | Your persona kit (responsibilities, prompts, skills) | Once during setup | Read your two `PERSONA.md` files; agents/prompts/skills are already consolidated in `.github/` |
-| [`06-agentes-de-estagio/`](06-agentes-de-estagio/) | The current stage agent (`@archaeologist` -> `@evolution`) | At every stage | Use the agent picker in Copilot Chat |
+| [`06-stage-agents/`](06-stage-agents/) | The current stage agent (`@archaeologist` -> `@evolution`) | At every stage | Use the agent picker in Copilot Chat |
 
 **They are not duplicates.** Persona = your individual role. Agent = the stage the whole team is in right now.
 
-Full explanation: [`07-conceitos/02-agentes-e-personas.md`](07-conceitos/02-agentes-e-personas.md)
+Full explanation: [`07-concepts/02-agents-and-personas.md`](07-concepts/02-agents-and-personas.md)
 
 ---
 
@@ -186,7 +184,7 @@ cat 00-TEAM-FLOW.md
 - [ ] **Read the core concepts** (non-developers: start here).
 
 ```bash
-cat 07-conceitos/00-README.md
+cat 07-concepts/00-README.md
 ```
 
 - [ ] **Read your two personas.**
@@ -204,10 +202,10 @@ ls .github/agents .github/prompts .github/skills
 
 ### 3. Workshop day: follow the four stages
 
-- [ ] `01-arqueologia/GUIDE.md` - read the legacy code, extract rules
-- [ ] `02-spec-moderna/GUIDE.md` - EARS, ADRs, C4
-- [ ] `03-implementacao/GUIDE.md` - Java + Next.js + tests
-- [ ] `04-evolucao/GUIDE.md` - Agent mode + Terraform
+- [ ] `01-archaeology/GUIDE.md` - read the legacy code, extract rules
+- [ ] `02-modern-spec/GUIDE.md` - EARS, ADRs, C4
+- [ ] `03-implementation/GUIDE.md` - Java + Next.js + tests
+- [ ] `04-evolution/GUIDE.md` - Agent mode + Terraform
 
 ---
 
@@ -219,7 +217,7 @@ Most modernization projects fail not because the team does not know how to write
 
 This kit exists to prevent that:
 
-- The legacy code ships with the workshop (in [`01-arqueologia/legado-sifap/`](01-arqueologia/legado-sifap/))
+- The legacy code ships with the workshop (in [`01-archaeology/legacy-sifap/`](01-archaeology/legacy-sifap/))
 - Traceability (`source_legacy:`) is required by CI
 - H1, H2, and H3 handoffs are scheduled in the timeline
 - Roles are explicit (10 `PERSONA.md` files)
@@ -252,7 +250,7 @@ Every document here follows five principles:
 | **Bounded context** | Domain boundary that groups concepts with a coherent meaning (for example: Payment, Benefit, Inspection in SIFAP) |
 | **CI green** | State in which the continuous integration pipeline passes all checks; required before merging a Pull Request |
 
-Full glossary with 30+ terms: [`07-conceitos/03-glossario-visual.md`](07-conceitos/03-glossario-visual.md)
+Full glossary with 30+ terms: [`07-concepts/03-visual-glossary.md`](07-concepts/03-visual-glossary.md)
 
 ---
 
@@ -260,6 +258,6 @@ Full glossary with 30+ terms: [`07-conceitos/03-glossario-visual.md`](07-conceit
 
 | Previous | Next |
 |---|---|
-| - | [00 - Start here](00-COMECE-AQUI.md)<br/><sub>15-minute walkthrough for anyone.</sub> |
+| - | [00 - Start here](00-START-HERE.md)<br/><sub>15-minute walkthrough for anyone.</sub> |
 
 <sub>[Back to the kit index](README.md)</sub>

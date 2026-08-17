@@ -145,7 +145,7 @@ jobs:
           )
           source_pattern = re.compile(r"^\s*source_legacy\s*:\s*(.+?)\s*$")
           legacy_source_pattern = re.compile(
-              r"01-arqueologia/legado-sifap/"
+              r"01-archaeology/legacy-sifap/"
               r"(?:natural-programs/[A-Za-z0-9_-]+\.(?:NSP|NSN|NSS|NSA|NSL|NSC|NSM|jcl)|"
               r"adabas-ddms/[A-Za-z0-9_-]+\.(?:NSD|ddm|txt))"
               r"(?:#L[1-9]\d*(?:-L[1-9]\d*)?)?$"
@@ -214,7 +214,7 @@ jobs:
               print(
                   "\nUse either "
                   "source_legacy: "
-                  "01-arqueologia/legado-sifap/natural-programs/<FILE>.NSN"
+                  "01-archaeology/legacy-sifap/natural-programs/<FILE>.NSN"
                   "#L<start>-L<end>"
               )
               print(

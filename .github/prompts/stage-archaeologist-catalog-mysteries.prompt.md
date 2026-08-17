@@ -1,7 +1,7 @@
 ---
 name: "catalog-mysteries"
 description: "Records open questions with traceable evidence without attempting to resolve them."
-argument-hint: "scope=01-arqueologia/"
+argument-hint: "scope=01-archaeology/"
 agent: "archaeologist"
 tools: ["read", "search", "edit"]
 ---
@@ -20,7 +20,7 @@ the available evidence.
 ## Preconditions
 
 - The requester identifies the artifacts authorized for review.
-- The legacy content in `01-arqueologia/legado-sifap/` is available as read-only.
+- The legacy content in `01-archaeology/legacy-sifap/` is available as read-only.
 - Each record contains or awaits evidence in `path:line` format.
 
 ## What I Will Do
@@ -35,12 +35,12 @@ the available evidence.
 - Resolve, explain, confirm, or infer an answer to a mystery.
 - Treat a hypothesis as fact or change its status independently.
 - Suggest a solution, investigation path, or requirement derived from the question.
-- Modify any file under `01-arqueologia/legado-sifap/`.
+- Modify any file under `01-archaeology/legacy-sifap/`.
 - Remove evidence or traceability provided by the team.
 
 ## Output Format
 
-Update only `01-arqueologia/mysteries-found.md` with this structure:
+Update only `01-archaeology/mysteries-found.md` with this structure:
 
 ```markdown
 | ID | Open question | Evidence (`path:line`) | Impact | Hypothesis (unconfirmed) | Responsible person/area | Status |
@@ -50,7 +50,7 @@ Update only `01-arqueologia/mysteries-found.md` with this structure:
 
 In `ID`, use the canonical identifier provided by the person (`SIFAP-M-01` … `SIFAP-M-20`)
 or `BONUS` for a finding outside the canonical list. There are **20 canonical mysteries, 4 per
-pair** — see `01-arqueologia/mysteries-checklist.md`. Do not infer or assign the ID
+pair** — see `01-archaeology/mysteries-checklist.md`. Do not infer or assign the ID
 independently: the person reading the code decides which mystery the evidence corresponds to.
 
 Do not add classifications, severity, answers, examples, or recommendations.
@@ -74,5 +74,5 @@ produces or confirms it.
 ## Invocation Example
 
 ```text
-/catalog-mysteries scope=01-arqueologia/
+/catalog-mysteries scope=01-archaeology/
 ```

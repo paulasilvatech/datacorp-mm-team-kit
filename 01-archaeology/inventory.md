@@ -7,7 +7,7 @@
 | Field | Value |
 |---|---|
 | **Target audience** | Pair responsible for the initial scan |
-| **Prerequisites** | Access to the `legado-sifap/` directory |
+| **Prerequisites** | Access to the `legacy-sifap/` directory |
 | **Stage** | Stage 1 — Archaeology, Step 1 |
 | **Expected outcome** | Accurate counts, identified naming patterns, and 3 unusual items flagged |
 
@@ -16,14 +16,14 @@
 
 **Date:** <!-- fill in: YYYY-MM-DD -->
 **Responsible pair:** <!-- fill in -->
-**Scanned path:** `01-arqueologia/legado-sifap/`
+**Scanned path:** `01-archaeology/legacy-sifap/`
 
 ---
 
 ## Folder structure
 
 ```text
-<!-- fill in: directory tree for legado-sifap/ -->
+<!-- fill in: directory tree for legacy-sifap/ -->
 ```
 
 ---

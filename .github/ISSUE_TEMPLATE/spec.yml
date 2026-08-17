@@ -56,7 +56,7 @@ body:
       label: Legacy traceability (source_legacy)
       description: Every REQ-ID must cite a Natural .NSN, an Adabas .ddm, or a justified [GREENFIELD] source.
       value: |
-        source_legacy: 01-arqueologia/legado-sifap/natural-programs/<FILE>.NSN#L<start>-L<end>
+        source_legacy: 01-archaeology/legacy-sifap/natural-programs/<FILE>.NSN#L<start>-L<end>
         # or: source_legacy: "[GREENFIELD] <one-line justification>"
     validations:
       required: true

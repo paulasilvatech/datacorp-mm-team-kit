@@ -53,7 +53,7 @@ Use this agent when the prototype exists and the team needs to turn local work i
 | Stage 3 backend/frontend | `backend/`, `frontend/` |
 | Known pending work | Stage 3 handoff notes |
 | Feature `spec.md` | `specs/<NNN>-<feature>/spec.md` |
-| ADRs and technical plan | `02-spec-moderna/` or `docs/adr/` |
+| ADRs and technical plan | `02-modern-spec/` or `docs/adr/` |
 
 ---
 

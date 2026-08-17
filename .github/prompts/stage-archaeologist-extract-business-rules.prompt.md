@@ -1,7 +1,7 @@
 ---
 name: "extract-business-rules"
 description: "Extracts business rules from a Natural program by reading IF/THEN/ELSE blocks and confirming them against documentation."
-argument-hint: "file=01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSN docs=01-arqueologia/legado-sifap/legacy-docs/"
+argument-hint: "file=01-archaeology/legacy-sifap/natural-programs/<PROGRAM>.NSN docs=01-archaeology/legacy-sifap/legacy-docs/"
 agent: "archaeologist"
 tools: ["read", "search", "edit"]
 ---
@@ -17,21 +17,21 @@ After the team completes the initial inventory (`/archaeology-kickoff`) and sele
 
 ## Preconditions
 
-- `01-arqueologia/inventory.md` exists
+- `01-archaeology/inventory.md` exists
 - The team selected a specific Natural program file to analyze
-- The `01-arqueologia/legado-sifap/` folder is accessible
+- The `01-archaeology/legacy-sifap/` folder is accessible
 
 ## Inputs the Team Must Provide
 
-- The full path to the Natural program to analyze (for example, `01-arqueologia/legado-sifap/natural-programs/PGXXXXXX.NSN`)
-- Any available documentation paths in `01-arqueologia/legado-sifap/legacy-docs/` (optional — used for confirmation)
+- The full path to the Natural program to analyze (for example, `01-archaeology/legacy-sifap/natural-programs/PGXXXXXX.NSN`)
+- Any available documentation paths in `01-archaeology/legacy-sifap/legacy-docs/` (optional — used for confirmation)
 
 ## What I Will Do
 
 - Read the specified program from top to bottom
 - Identify every conditional block: `IF...THEN...ELSE...END-IF`, `DECIDE ON`, `AT BREAK OF`, and comparison operators
 - Formulate a candidate business rule in clear language for each conditional block
-- Cross-reference documentation in `01-arqueologia/legado-sifap/legacy-docs/`, if available
+- Cross-reference documentation in `01-archaeology/legacy-sifap/legacy-docs/`, if available
 - Classify each rule as **confirmed** (matched in documentation), **inferred** (code only, without documentation support), or **mystery** (unclear logic)
 - Draft EARS notation candidates for confirmed rules
 
@@ -45,7 +45,7 @@ After the team completes the initial inventory (`/archaeology-kickoff`) and sele
 
 ## Output Format
 
-Append to `01-arqueologia/business-rules-catalog.md`:
+Append to `01-archaeology/business-rules-catalog.md`:
 
 ```markdown
 ## Rules from [file-name]
@@ -111,12 +111,12 @@ For any conditional block where:
 Mark it as `<!-- mystery: [description of what is unclear] -->` and add it to the catalog with the "mystery" classification.
 
 **Step 7 — Generate results.**
-Append the results to `01-arqueologia/business-rules-catalog.md`. If the file does not exist, create it with a header. Every rule entry must include the rule number, clear-language statement, EARS candidate, source file and line range, classification, and notes.
+Append the results to `01-archaeology/business-rules-catalog.md`. If the file does not exist, create it with a header. Every rule entry must include the rule number, clear-language statement, EARS candidate, source file and line range, classification, and notes.
 
 Do not infer rules from program names or file organization. Read the actual code. If the purpose of a block remains genuinely unclear after careful reading, it is a mystery — not a rule.
 
 ## Invocation Example
 
 ```
-/extract-business-rules file=01-arqueologia/legado-sifap/natural-programs/PGMAIN01.NSN docs=01-arqueologia/legado-sifap/legacy-docs/
+/extract-business-rules file=01-archaeology/legacy-sifap/natural-programs/PGMAIN01.NSN docs=01-archaeology/legacy-sifap/legacy-docs/
 ```

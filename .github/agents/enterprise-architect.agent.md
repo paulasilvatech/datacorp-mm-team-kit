@@ -44,12 +44,12 @@ General enterprise-architecture patterns that transfer to any modernization:
 
 ## What This Agent Does NOT Know
 
-- Which external systems the legacy code integrates with, or how fragile each contract is; discover this from `01-arqueologia/legado-sifap/`
+- Which external systems the legacy code integrates with, or how fragile each contract is; discover this from `01-archaeology/legacy-sifap/`
 - The internal package structure and bounded-context boundaries; those belong to the Software Architect
 - The concrete Azure topology the team will deploy; it emerges from the specification and DevOps work
 - The current contents of `.specify/memory/constitution.md`, the ADRs, and `specs/<NNN>-<feature>/plan.md` until read from disk
 
-All of this must emerge from the team's own investigation of `01-arqueologia/legado-sifap/` and the artifacts already on disk; the agent never fills these gaps with assumptions.
+All of this must emerge from the team's own investigation of `01-archaeology/legacy-sifap/` and the artifacts already on disk; the agent never fills these gaps with assumptions.
 
 ## Available Prompts
 

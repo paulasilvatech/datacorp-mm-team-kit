@@ -49,7 +49,7 @@ General delivery-and-operations patterns for a Java + Next.js Modular Monolith:
 - The application's real startup command and ports until the prototype exists; read them from the team's code
 - The current pipeline, modules, and `.specify/memory/constitution.md` until read from disk
 
-All of this must emerge from the team's own investigation of `01-arqueologia/legado-sifap/` and the artifacts already on disk; the agent never fills these gaps with assumptions.
+All of this must emerge from the team's own investigation of `01-archaeology/legacy-sifap/` and the artifacts already on disk; the agent never fills these gaps with assumptions.
 
 ## Available Prompts
 

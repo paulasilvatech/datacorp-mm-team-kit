@@ -54,7 +54,7 @@ An edited `spec.md` plus a change report presented to the team:
 
 | REQ-ID | Action | source_legacy | Note |
 |---|---|---|---|
-| REQ-PAY-021 | Added | 01-arqueologia/legado-sifap/natural-programs/<PROGRAM>.NSP#L<start>-L<end> | New rounding rule confirmed with the team |
+| REQ-PAY-021 | Added | 01-archaeology/legacy-sifap/natural-programs/<PROGRAM>.NSP#L<start>-L<end> | New rounding rule confirmed with the team |
 | REQ-PAY-014 | Modified | (unchanged) | Threshold changed from 30 to 45 days |
 | REQ-PAY-009 | Removed | (n/a) | Superseded by REQ-PAY-021; deferred to backlog |
 ```

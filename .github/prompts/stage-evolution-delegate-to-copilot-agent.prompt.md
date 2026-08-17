@@ -1,7 +1,7 @@
 ---
 name: "delegate-to-copilot-agent"
 description: "Delegates an issue to the GitHub Copilot Agent in the cloud and tracks the resulting PR."
-argument-hint: "issue=04-evolucao/issues/<slug>.md"
+argument-hint: "issue=04-evolution/issues/<slug>.md"
 agent: "evolution"
 tools: ["read", "search", "edit", "github/*"]
 ---
@@ -17,7 +17,7 @@ After the team has reviewed and approved an issue draft from `/write-github-issu
 
 ## Preconditions
 
-- An issue draft exists at `04-evolucao/issues/<slug>.md`
+- An issue draft exists at `04-evolution/issues/<slug>.md`
 - The team reviewed and approved the draft
 - The team has push access to the GitHub repository
 
@@ -41,7 +41,7 @@ After the team has reviewed and approved an issue draft from `/write-github-issu
 
 ## Output Format
 
-A delegation tracking file at `04-evolucao/delegations/<issue-slug>.md`:
+A delegation tracking file at `04-evolution/delegations/<issue-slug>.md`:
 
 ```markdown
 # Delegation: [Issue Title]
@@ -78,7 +78,7 @@ Tell the team how to post the issue:
 
 ```bash
 # Option 1: GitHub CLI
-gh issue create --title "[title]" --body-file 04-evolucao/issues/<slug>.md --label "enhancement,copilot-agent"
+gh issue create --title "[title]" --body-file 04-evolution/issues/<slug>.md --label "enhancement,copilot-agent"
 
 # Option 2: GitHub UI
 # 1. Open the repository's Issues tab
@@ -114,10 +114,10 @@ Prepare a checklist of typical AI failure modes the team should watch for:
 Write a clear statement: "This is delegation, not automation. The team owns the review, the merge decision, and any consequences. Copilot Agent is a contributor, not an approver."
 
 **Step 6 — Write the delegation file.**
-Generate the output at `04-evolucao/delegations/<issue-slug>.md`. Leave a placeholder for the issue URL that the team will fill in after posting.
+Generate the output at `04-evolution/delegations/<issue-slug>.md`. Leave a placeholder for the issue URL that the team will fill in after posting.
 
 ## Invocation Example
 
 ```
-/delegate-to-copilot-agent issue=04-evolucao/issues/<slug>.md
+/delegate-to-copilot-agent issue=04-evolution/issues/<slug>.md
 ```

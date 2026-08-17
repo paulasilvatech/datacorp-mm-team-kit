@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD013 MD033 MD041 -->
-
 # Setup guide: from zero to code
 
 > **Track:** [Team kit](README.md) › **Setup**
@@ -65,7 +63,7 @@ On your laptop, you clone only your team's repository:
 > The exact organization will be provided by the facilitators on the workshop day. It will belong to the Enterprise [software-gbb-workshops](https://github.com/enterprises/software-gbb-workshops).
 
 > [!IMPORTANT]
-> Never push to the main workshop repository. Your team's commits go only to `workshop-team-XX`. The legacy **Payment Inspection and Administration System (SIFAP)** already ships in the kit under `01-arqueologia/legado-sifap/` and is reading material, not editing material.
+> Never push to the main workshop repository. Your team's commits go only to `workshop-team-XX`. The legacy **Payment Inspection and Administration System (SIFAP)** already ships in the kit under `01-archaeology/legacy-sifap/` and is reading material, not editing material.
 
 ---
 
@@ -128,7 +126,7 @@ git clone https://github.com/<WORKSHOP_ORG>/workshop-team-01.git
 cd workshop-team-01
 
 # 3. Confirm that the template came across intact
-ls 01-arqueologia/legado-sifap .github/agents .github/prompts .github/instructions .github/skills
+ls 01-archaeology/legacy-sifap .github/agents .github/prompts .github/instructions .github/skills
 
 # 4. Create the team's integration branch
 git checkout -b develop
@@ -257,7 +255,7 @@ specify version
 ### 6.5 Confirm that the template came across intact
 
 ```bash
-ls 01-arqueologia/legado-sifap .github/agents .github/prompts .github/instructions .github/skills
+ls 01-archaeology/legacy-sifap .github/agents .github/prompts .github/instructions .github/skills
 ```
 
 ---
@@ -587,7 +585,7 @@ git push -u origin spec/<NNN>-<feature>
 ```text
 1. After each merge to develop, look for drift in ADRs and the glossary
 2. Run the /doc-drift prompt (active prompt: .github/prompts/persona-tech-writer-doc-drift.prompt.md)
-3. Update 01-arqueologia/glossary.md, docs/adr/, and the READMEs
+3. Update 01-archaeology/glossary.md, docs/adr/, and the READMEs
 4. Open one small PR per documentation update
 ```
 

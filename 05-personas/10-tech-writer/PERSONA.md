@@ -121,17 +121,17 @@ The Tech Writer is the team's most cross-cutting persona. To avoid waiting for s
 ## Ready-to-use prompts
 
 1. **(Ask)** _"Review this README and identify TODO sections, inconsistent terminology, and outdated information such as ports, credentials, and endpoints. Propose corrections."_
-2. **(Plan)** _"In ADR-001.md, plan how to complete Context, Decision, and Consequences using the template in `02-spec-moderna/ADR-TEMPLATE.md`."_
-3. **(Ask)** _"Create an honest Copilot Agent experience report: what worked, what surprised us, and what failed. Use the template in `04-evolucao/agent-experience-report.md`."_
+2. **(Plan)** _"In ADR-001.md, plan how to complete Context, Decision, and Consequences using the template in `02-modern-spec/ADR-TEMPLATE.md`."_
+3. **(Ask)** _"Create an honest Copilot Agent experience report: what worked, what surprised us, and what failed. Use the template in `04-evolution/agent-experience-report.md`."_
 
 ## Emergency defaults
 
 | Situation | What to do |
 |---|---|
-| ADR format is unknown | Open `02-spec-moderna/ADR-TEMPLATE.md` and copy and complete the three required sections |
+| ADR format is unknown | Open `02-modern-spec/ADR-TEMPLATE.md` and copy and complete the three required sections |
 | README is empty | Start with: (1) what the system is, (2) how to run it, (3) available endpoints |
 | Glossary is blocked | Ask Copilot: _"List every abbreviation found in the SIFAP `.NSN` files and expand each one."_ |
-| Agent report is empty | Open `04-evolucao/agent-experience-report.md`; the template has ready-to-fill sections |
+| Agent report is empty | Open `04-evolution/agent-experience-report.md`; the template has ready-to-fill sections |
 
 ## Dependencies
 
@@ -154,6 +154,6 @@ The Tech Writer is the team's most cross-cutting persona. To avoid waiting for s
 
 | Previous | Next |
 |---|---|
-| [DevOps Engineer — PERSONA](../09-devops-engineer/PERSONA.md)<br/><sub>Pair 5 — Operations — Terraform, GitHub Actions, and runbook.</sub> | [Stage 1 — Archaeology](../../01-arqueologia/GUIDE.md)<br/><sub>11:00–12:00 — Read the legacy system and catalog business rules.</sub> |
+| [DevOps Engineer — PERSONA](../09-devops-engineer/PERSONA.md)<br/><sub>Pair 5 — Operations — Terraform, GitHub Actions, and runbook.</sub> | [Stage 1 — Archaeology](../../01-archaeology/GUIDE.md)<br/><sub>11:00–12:00 — Read the legacy system and catalog business rules.</sub> |
 
 <sub>[Back to the kit index](../../README.md)</sub>

@@ -42,7 +42,7 @@ At the beginning of Stage 4, when the team identifies work that can be delegated
 
 ## Output Format
 
-A draft file at `04-evolucao/issues/<slug>.md`:
+A draft file at `04-evolution/issues/<slug>.md`:
 
 ```markdown
 # Issue: [Title]
@@ -110,7 +110,7 @@ Explicitly state what this issue does NOT cover. This prevents scope creep in th
 Suggest labels: `enhancement` or `bug`, the bounded context name, and `copilot-agent`.
 
 **Step 8 — Write the draft.**
-Generate the output at `04-evolucao/issues/<slug>.md`, where `<slug>` is a kebab-case version of the title. The team reviews this draft before posting it as an actual GitHub issue.
+Generate the output at `04-evolution/issues/<slug>.md`, where `<slug>` is a kebab-case version of the title. The team reviews this draft before posting it as an actual GitHub issue.
 
 Remind the team: this is a draft. Review it, adjust the scope if necessary, then post it manually through the GitHub UI or `gh issue create`.
 

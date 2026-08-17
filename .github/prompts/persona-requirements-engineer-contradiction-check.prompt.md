@@ -35,7 +35,7 @@ After a batch of requirements exists (end of Stage 2, or before a spec PR merges
 - Compare pairs within each domain, then across domains
 - Detect the four classic contradictions: Direct, Threshold, State, Actor
 - Check each requirement against the constitution (security, data, compliance rules)
-- Check against legacy invariants cited in `01-arqueologia/legado-sifap/legacy-docs/` (regression risk)
+- Check against legacy invariants cited in `01-archaeology/legacy-sifap/legacy-docs/` (regression risk)
 - Rate severity (Critical, Major, Minor) and propose one resolution per finding
 
 ## What I Will NOT Do
@@ -110,7 +110,7 @@ Group REQ-IDs by domain (`PAY-*`, `BEN-*`, and so on). Compare each pair within 
 Any requirement that violates a constitutional rule contradicts the constitution itself — usually the security, data, or compliance rules.
 
 **Step 5 — Check against legacy invariants.**
-If a REQ contradicts behavior the legacy SIFAP enforced, flag it as a regression risk. Quote the invariant from the actual file in `01-arqueologia/legado-sifap/legacy-docs/` with a line reference; never recall it.
+If a REQ contradicts behavior the legacy SIFAP enforced, flag it as a regression risk. Quote the invariant from the actual file in `01-archaeology/legacy-sifap/legacy-docs/` with a line reference; never recall it.
 
 **Step 6 — Rate severity.**
 Critical (no implementation satisfies both), Major (resolvable only by changing a REQ), Minor (terminology mismatch hiding agreement).

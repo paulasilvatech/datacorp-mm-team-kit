@@ -87,7 +87,7 @@ flowchart LR
 - [ ] **Open the kit `README.md`.** Confirm that agents and prompts appear in Copilot Chat.
 - [ ] **Identify your pair.** See [00-TEAM-FLOW.md](../../00-TEAM-FLOW.md).
 - [ ] **Note the handoff.** Who you receive from and who you deliver to at the end of each stage.
-- [ ] **Have an example of a well-written issue.** See the template in [`../../04-evolucao/GUIDE.md`](../../04-evolucao/GUIDE.md).
+- [ ] **Have an example of a well-written issue.** See the template in [`../../04-evolution/GUIDE.md`](../../04-evolution/GUIDE.md).
 
 ---
 
@@ -124,7 +124,7 @@ flowchart LR
 | **Situation** | What to do |
 |---|---|
 | Stuck on prioritization | Compare impact, risk, dependencies, and available time; record the decision |
-| Do not know how to write an issue | Copy the template from [`../../04-evolucao/GUIDE.md`](../../04-evolucao/GUIDE.md) and adapt it |
+| Do not know how to write an issue | Copy the template from [`../../04-evolution/GUIDE.md`](../../04-evolution/GUIDE.md) and adapt it |
 | Team wants everything in scope | Say: "We have 70 minutes for implementation; choose one thin feature" |
 | Business question has no answer | Document it as an assumption and continue |
 

@@ -12,7 +12,7 @@
 | **Expected outcome** | Catalog with `Source Program` completed for every candidate rule |
 
 > [!NOTE]
-> Each rule cites the source program with a line range (`file.NSN:Lstart-Lend`) and is classified as **Confirmed** (corroborated by historical documentation in `legado-sifap/legacy-docs/`), **Inferred** (from code only), or **Mystery** (an open question—also record it in [`mysteries-found.md`](mysteries-found.md) with `path:line` evidence, an unconfirmed hypothesis, owner, and status).
+> Each rule cites the source program with a line range (`file.NSN:Lstart-Lend`) and is classified as **Confirmed** (corroborated by historical documentation in `legacy-sifap/legacy-docs/`), **Inferred** (from code only), or **Mystery** (an open question—also record it in [`mysteries-found.md`](mysteries-found.md) with `path:line` evidence, an unconfirmed hypothesis, owner, and status).
 
 > [!IMPORTANT]
 > Step-by-step guide: [`GUIDE.md`](GUIDE.md).

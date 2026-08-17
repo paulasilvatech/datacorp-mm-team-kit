@@ -117,6 +117,6 @@
 
 | Previous | Next |
 |---|---|
-| [Stage 1 GUIDE](GUIDE.md)<br/><sub>Step-by-step schedule.</sub> | [Stage 2 — Modern Spec](../02-spec-moderna/README.md)<br/><sub>H1 handoff and start of EARS.</sub> |
+| [Stage 1 GUIDE](GUIDE.md)<br/><sub>Step-by-step schedule.</sub> | [Stage 2 — Modern Spec](../02-modern-spec/README.md)<br/><sub>H1 handoff and start of EARS.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>

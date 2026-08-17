@@ -9,7 +9,7 @@
 | Field | Value |
 |---|---|
 | **Target audience** | All personas |
-| **Prerequisites** | Read [Agents and Personas](02-agentes-e-personas.md) |
+| **Prerequisites** | Read [Agents and Personas](02-agents-and-personas.md) |
 | **Estimated time** | 15 minutes |
 | **Stage** | All stages |
 | **Expected outcome** | Know which mode to use for each task without hesitation |
@@ -149,8 +149,8 @@ Use these estimates to choose a mode during the workshop. Actual time varies wit
 ## References
 
 - [One-page cheat sheet for the 3 modes](../09-cheat-sheets/copilot-3-modes.md)
-- [Agents and Personas](02-agentes-e-personas.md)
-- [Stage 4 Guide — Agent mode in practice](../04-evolucao/GUIDE.md)
+- [Agents and Personas](02-agents-and-personas.md)
+- [Stage 4 Guide — Agent mode in practice](../04-evolution/GUIDE.md)
 
 ---
 
@@ -158,6 +158,6 @@ Use these estimates to choose a mode during the workshop. Actual time varies wit
 
 | Previous | Next |
 |---|---|
-| [Visual Glossary](03-glossario-visual.md)<br/><sub>30+ terms with definitions and SIFAP examples.</sub> | [EARS Notation](05-notacao-ears.md)<br/><sub>How to write unambiguous requirements.</sub> |
+| [Visual Glossary](03-visual-glossary.md)<br/><sub>30+ terms with definitions and SIFAP examples.</sub> | [EARS Notation](05-ears-notation.md)<br/><sub>How to write unambiguous requirements.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>

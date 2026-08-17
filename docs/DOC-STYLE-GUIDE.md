@@ -216,7 +216,7 @@ Every section that describes executable actions becomes a GFM checklist:
 ```markdown
 ## Step by step
 
-- [ ] **Step 1 — Read the assigned programs.** Open `01-arqueologia/legado-sifap/natural-programs/`.
+- [ ] **Step 1 — Read the assigned programs.** Open `01-archaeology/legacy-sifap/natural-programs/`.
 - [ ] **Step 2 — Record rules.** Complete `business-rules-catalog.md`.
 - [ ] **Step 3 — Validate.** Run `npm run lint:docs`.
 ```
@@ -290,7 +290,7 @@ Replace current footers with this format (no emojis):
 
 | Previous | Next |
 |---|---|
-| [Previous title](previous-file.md)<br/><sub>One-line summary.</sub> | [Next title](next-file.md)<br/><sub>One-line summary.</sub> |
+| Previous title (`previous-file.md`)<br/><sub>One-line summary.</sub> | Next title (`next-file.md`)<br/><sub>One-line summary.</sub> |
 
 <sub>[Back to the kit index](../README.md)</sub>
 ```
@@ -331,17 +331,17 @@ Do not skip heading levels (`#` → `##` → `###`).
 
 ---
 
-## 10. Agreed file renames (07-conceitos)
+## 10. Agreed file renames (07-concepts)
 
 | Current file | New name |
 |---|---|
-| `07-conceitos/01-spec-kit-como-mario-maker.md` | `07-conceitos/01-spec-driven-development.md` |
-| `07-conceitos/02-agentes-como-super-mario.md` | `07-conceitos/02-agentes-e-personas.md` |
-| `07-conceitos/05-ears-receita-de-cogumelo.md` | `07-conceitos/05-notacao-ears.md` |
-| `07-conceitos/06-adr-carta-da-princesa.md` | `07-conceitos/06-architecture-decision-records.md` |
+| `07-concepts/01-spec-kit-como-mario-maker.md` | `07-concepts/01-spec-driven-development.md` |
+| `07-concepts/02-agentes-como-super-mario.md` | `07-concepts/02-agents-and-personas.md` |
+| `07-concepts/05-ears-receita-de-cogumelo.md` | `07-concepts/05-ears-notation.md` |
+| `07-concepts/06-adr-carta-da-princesa.md` | `07-concepts/06-architecture-decision-records.md` |
 
-The other files (`00-README.md`, `03-glossario-visual.md`,
-`04-3-modos-do-copilot.md`) keep their names.
+The other files (`00-README.md`, `03-visual-glossary.md`,
+`04-3-copilot-modes.md`) keep their names.
 
 Rename files with `git mv`. Every agent that finds links to the former names
 must update them to the new names.

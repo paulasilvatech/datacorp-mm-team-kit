@@ -17,7 +17,7 @@
 <details>
 <summary><strong>I do not code. Can I participate?</strong></summary>
 
-Yes. The Product Owner and Tech Writer personas, and part of QA, do not require coding. Read [`07-conceitos/`](../07-conceitos/) first to become familiar with the concepts. Every `PERSONA.md` includes an "emergency defaults" section.
+Yes. The Product Owner and Tech Writer personas, and part of QA, do not require coding. Read [`07-concepts/`](../07-concepts/) first to become familiar with the concepts. Every `PERSONA.md` includes an "emergency defaults" section.
 
 </details>
 
@@ -45,7 +45,7 @@ Yes, but coordinate with the team. Pairs 1, 4, and 5 accommodate non-technical p
 <details>
 <summary><strong>What is SIFAP?</strong></summary>
 
-SIFAP (Payment Inspection and Administration System) is a 29-year-old government payment system written in Natural/Adabas. The workshop simulates modernizing it to Java 21 + Next.js 15. See [`01-arqueologia/legado-sifap/README.md`](../01-arqueologia/legado-sifap/README.md).
+SIFAP (Payment Inspection and Administration System) is a 29-year-old government payment system written in Natural/Adabas. The workshop simulates modernizing it to Java 21 + Next.js 15. See [`01-archaeology/legacy-sifap/README.md`](../01-archaeology/legacy-sifap/README.md).
 
 </details>
 
@@ -67,7 +67,7 @@ Sonnet 4.6 for most tasks. Haiku for mechanical, repetitive tasks. Opus for comp
 - **Plan** — plan a change across multiple files.
 - **Agent** — delegate a complete Issue.
 
-Reference: [`07-conceitos/04-3-modos-do-copilot.md`](../07-conceitos/04-3-modos-do-copilot.md).
+Reference: [`07-concepts/04-3-copilot-modes.md`](../07-concepts/04-3-copilot-modes.md).
 
 </details>
 
@@ -92,7 +92,7 @@ No. The toolchain is fixed: use only GitHub Copilot. See [`.github/copilot-instr
 <details>
 <summary><strong>Why does every EARS requirement need `source_legacy:`?</strong></summary>
 
-To ensure the team modernized the real system, not only the briefing. CI rejects pull requests without this field. See [`01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md).
+To ensure the team modernized the real system, not only the briefing. CI rejects pull requests without this field. See [`01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md`](../01-archaeology/LEGACY-EXPLORATION-CHECKLIST.md).
 
 </details>
 
