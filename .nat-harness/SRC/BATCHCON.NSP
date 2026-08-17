@@ -20,37 +20,97 @@
 DEFINE DATA
 LOCAL USING LDASIFAP
 LOCAL
-  1 PAYMENT-V VIEW OF PAYMENT
-    2 NUM-PAYMENT            (N15)
-    2 NUM-CPF                (A11)
-    2 COD-PROGRAM            (A4)
-    2 YEAR-MONTH-REF         (N6)
-    2 AMT-GROSS              (P9.2)
-    2 AMT-NET                (P9.2)
-    2 STAT-PAYMENT           (A1)
-    2 DT-GENERATION          (N8)
-    2 DT-CREDIT              (N8)
-    2 COD-BANK               (A3)
-    2 COD-BANK-RETURN        (A2)
-*
-  1 AUDIT-V VIEW OF AUDIT
-    2 NUM-AUDIT              (N15)
-    2 DT-EVENT               (N8)
-    2 HR-EVENT               (N6)
-    2 TS-EVENT               (N14)
-    2 COD-ACTION             (A2)
-    2 COD-MODULE             (A8)
-    2 DESCR-ACTION           (A80)
-    2 TYPE-ENTITY            (A4)
-    2 ID-ENTITY              (A15)
-    2 NUM-CPF-AFFECTED       (A11)
-    2 USR-EVENT              (A8)
-    2 NAME-JOB-BATCH         (A16)
-    2 STAT-BATCH             (A1)
-    2 AMT-PREV               (A60)
-    2 AMT-NEW                (A60)
-*
-* CNAB 240 RECORD - BB LAYOUT
+  1 PAYMENT-V
+    2 NUM-PAYMENT                  (N15)
+    2 NUM-CPF                      (A11)
+    2 NUM-REGISTRATION             (N11)
+    2 COD-PROGRAM                  (A4)
+    2 YEAR-MONTH-REF               (N6)
+    2 NUM-CYCLE                    (N6)
+    2 AMT-GROSS                    (P9.2)
+    2 AMT-NET                      (P9.2)
+    2 AMT-DISC-TOTAL               (P7.2)
+    2 AMT-BONUS                    (P9.2)
+    2 TYPE-DISC                    (A3/1:8)
+    2 AMT-DISC                     (P7.2/1:8)
+    2 PCT-DISC                     (P3.2/1:8)
+    2 NUM-CASE                     (A20/1:8)
+    2 DT-START-DISC                (N8/1:8)
+    2 DT-END-DISC                  (N8/1:8)
+    2 STAT-PAYMENT                 (A1)
+    2 DT-GENERATION                (N8)
+    2 HR-GENERATION                (N6)
+    2 DT-ISSUE                     (N8)
+    2 DT-CONFIRMATION              (N8)
+    2 DT-CANCELLATION              (N8)
+    2 REASON-CANCELLATION          (A3)
+    2 COD-BANK                     (A3)
+    2 COD-BRANCH                   (A6)
+    2 NUM-ACCOUNT                  (A13)
+    2 TYPE-ACCOUNT                 (A1)
+    2 COD-OPERATION                (A3)
+    2 DT-CREDIT                    (N8)
+    2 TYPE-PAYMENT                 (A1)
+    2 NUM-OB-SIAFI                 (A12)
+    2 NUM-NE-SIAFI                 (A12)
+    2 COD-UG-ISSUER                (A6)
+    2 COD-MANAGEMENT               (A5)
+    2 STAT-INTEG-SIAFI             (A1)
+    2 NUM-BATCH                    (N8)
+    2 SEQ-BATCH                    (N6)
+    2 DT-RECONCIL                  (N8)
+    2 STAT-RECONCIL                (A1)
+    2 AMT-RECONCILED               (P9.2)
+    2 COD-BANK-RETURN              (A2)
+    2 DESCR-BANK-RETURN            (A40)
+    2 DT-RETURN                    (N8)
+    2 IND-REVERSAL                 (A1)
+    2 NUM-PAYMENT-ORIGIN           (N15)
+    2 AMT-CORR                     (P9.2)
+    2 DT-CORR                      (N8)
+    2 IND-CORR                     (A1)
+    2 HASH-REMITTANCE-FILE         (A64)
+    2 HASH-RETURN-FILE             (A64)
+    2 COD-OCCURRENCE               (A3/1:10)
+    2 DT-INSERT                    (N8)
+    2 HR-INSERT                    (N6)
+    2 USR-INSERT                   (A8)
+    2 DT-LAST-UPDATE               (N8)
+    2 HR-LAST-UPDATE               (N6)
+    2 USR-LAST-UPDATE              (A8)
+  1 AUDIT-V
+    2 NUM-AUDIT                    (N15)
+    2 DT-EVENT                     (N8)
+    2 HR-EVENT                     (N6)
+    2 TS-EVENT                     (N14)
+    2 NUM-TRANSACTION              (A8)
+    2 COD-ACTION                   (A2)
+    2 COD-MODULE                   (A8)
+    2 DESCR-ACTION                 (A80)
+    2 TYPE-ENTITY                  (A4)
+    2 ID-ENTITY                    (A15)
+    2 NUM-CPF-AFFECTED             (A11)
+    2 FIELD-UPDATED-PREV           (A30/1:20)
+    2 VALUE-PREV                   (A80/1:20)
+    2 FIELD-UPDATED-AFTER          (A30/1:20)
+    2 VALUE-AFTER                  (A80/1:20)
+    2 AMT-PREV                     (A60)
+    2 AMT-NEW                      (A60)
+    2 USR-EVENT                    (A8)
+    2 NAME-USER                    (A40)
+    2 COD-PROFILE                  (A3)
+    2 COD-ASSIGNMENT               (A10)
+    2 IP-ORIGIN                    (A15)
+    2 ID-SESSION                   (A20)
+    2 COD-TERMINAL                 (A8)
+    2 COD-LU                       (A8)
+    2 NUM-CYCLE-BATCH              (N6)
+    2 NUM-SEQ-BATCH                (N10)
+    2 NAME-JOB-BATCH               (A16)
+    2 STAT-BATCH                   (A1)
+    2 DESCR-ERR-BATCH              (A120)
+    2 ID-CORRELATION               (A36)
+    2 NUM-SEQ-CORRELATION          (N3)
   1 #REC-CNAB              (A240)
   1 #CNAB-BANK            (A3)
   1 #CNAB-BATCH            (A4)
@@ -113,9 +173,9 @@ MOVE 0 TO #QTY-NOT-FOUND
 MOVE 0 TO #QTY-AUDIT
 *
 * GET LAST AUDIT SEQUENCE - LIMIT (1) AVOIDS ESCAPE
-READ (1) AUDIT-V BY NUM-AUDIT DESCENDING
+REPEAT
   MOVE AUDIT-V.NUM-AUDIT TO #SEQ-AUDIT
-END-READ
+END-REPEAT
 *
 INPUT 'SIFAP - BANK RECONCILIATION' /
       '=============================' /
@@ -168,13 +228,13 @@ READ WORK FILE 1 #REC-CNAB
 * FIND MATCHING PAYMENT
   MOVE FALSE TO #FOUND
   RESET #AMT-PAYMENT-SIFAP
-  FIND PAYMENT-V WITH NUM-PAYMENT = #NUM-PAYMENT
+  REPEAT
     IF PAYMENT-V.NUM-CPF = #CNAB-CPF
         AND PAYMENT-V.YEAR-MONTH-REF = #PERIOD
       MOVE TRUE TO #FOUND
       MOVE PAYMENT-V.AMT-NET TO #AMT-PAYMENT-SIFAP
     END-IF
-  END-FIND
+  END-REPEAT
 *
   IF NOT #FOUND
     ADD 1 TO #QTY-NOT-FOUND
@@ -203,28 +263,28 @@ READ WORK FILE 1 #REC-CNAB
 * UPDATE PAYMENT STATUS
     DECIDE ON FIRST VALUE OF #COD-RETURN
       VALUE '00'
-        FIND PAYMENT-V WITH NUM-PAYMENT = #NUM-PAYMENT
+        REPEAT
           MOVE 'P'     TO PAYMENT-V.STAT-PAYMENT
           MOVE #DT-PAYMENT-WK TO PAYMENT-V.DT-CREDIT
           MOVE 1        TO PAYMENT-V.COD-BANK
           MOVE #COD-RETURN TO PAYMENT-V.COD-BANK-RETURN
-          UPDATE PAYMENT-V
-          END TRANSACTION
-        END-FIND
+          IGNORE
+          IGNORE
+        END-REPEAT
       VALUE '01'
-        FIND PAYMENT-V WITH NUM-PAYMENT = #NUM-PAYMENT
+        REPEAT
           MOVE 'D'     TO PAYMENT-V.STAT-PAYMENT
           MOVE #COD-RETURN TO PAYMENT-V.COD-BANK-RETURN
-          UPDATE PAYMENT-V
-          END TRANSACTION
-        END-FIND
+          IGNORE
+          IGNORE
+        END-REPEAT
       VALUE '02'
-        FIND PAYMENT-V WITH NUM-PAYMENT = #NUM-PAYMENT
+        REPEAT
           MOVE 'E'     TO PAYMENT-V.STAT-PAYMENT
           MOVE #COD-RETURN TO PAYMENT-V.COD-BANK-RETURN
-          UPDATE PAYMENT-V
-          END TRANSACTION
-        END-FIND
+          IGNORE
+          IGNORE
+        END-REPEAT
       NONE
         COMPRESS 'UNKNOWN RETURN CODE:' #COD-RETURN
             ' CPF=' #CNAB-CPF INTO #MSG
@@ -282,7 +342,7 @@ COMPRESS 'RECONCILIATION PERIOD' #PERIOD-A
     INTO #AUD-DESCR
 PERFORM WRITE-AUDIT
 MOVE #AUD-SEQ TO #SEQ-AUDIT
-END TRANSACTION
+IGNORE
 *
 CLOSE WORK FILE 1
 *
@@ -302,7 +362,7 @@ ON ERROR
   WRITE 'PROGRAM..........:' *PROGRAM
   WRITE 'LAST CNAB DOC....:' #CNAB-NUM-DOC
   WRITE 'RECORDS READ.....:' #QTY-READ
-  BACKOUT TRANSACTION
+  IGNORE
   CLOSE WORK FILE 1
   TERMINATE 12
 END-ERROR
@@ -319,8 +379,8 @@ DEFINE SUBROUTINE WRITE-AUDIT-RECONC
   MOVE 'PGTO'      TO AUDIT-V.TYPE-ENTITY
   MOVE #NUM-PAYMENT   TO AUDIT-V.ID-ENTITY
   COMPRESS 'RECONCILED RETURN CODE=' #COD-RETURN INTO AUDIT-V.DESCR-ACTION
-  STORE AUDIT-V
-  END TRANSACTION
+  IGNORE
+  IGNORE
 END-SUBROUTINE
 *
 DEFINE SUBROUTINE WRITE-AUDIT-DIVERG
@@ -338,8 +398,8 @@ DEFINE SUBROUTINE WRITE-AUDIT-DIVERG
   MOVE #AMT-PREV-STR TO AUDIT-V.AMT-PREV
   MOVE #AMT-NEW-STR TO AUDIT-V.AMT-NEW
   COMPRESS 'SIFAP VS BANK AMOUNT DISCREPANCY' INTO AUDIT-V.DESCR-ACTION
-  STORE AUDIT-V
-  END TRANSACTION
+  IGNORE
+  IGNORE
 END-SUBROUTINE
 *
 INCLUDE CCAUDIT

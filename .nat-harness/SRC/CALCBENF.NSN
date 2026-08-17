@@ -17,39 +17,176 @@ DEFINE DATA
 PARAMETER USING PDACALC
 LOCAL USING LDASIFAP
 LOCAL
-  1 BENEFICIARY-V VIEW OF BENEFIC
-    2 NUM-CPF            (A11)
-    2 FULL-NAME          (A60)
-    2 DT-BIRTH           (N8)
-    2 STAT-BENEFICIARY   (A1)
-    2 COD-PROGRAM        (A4)
-    2 AMT-FAMILY-INCOME  (P9.2)
-    2 QTY-DEPEND         (N2)
-    2 COD-REGION         (A2)
-    2 UF                 (A2)
-    2 NUM-NIS            (N11)
-*
-  1 PAYMENT-V VIEW OF PAYMENT
-    2 NUM-PAYMENT        (N15)
-    2 NUM-CPF            (A11)
-    2 COD-PROGRAM        (A4)
-    2 YEAR-MONTH-REF     (N6)     /* YYYYMM */
-    2 AMT-GROSS          (P9.2)
-    2 AMT-DISC-TOTAL     (P7.2)
-    2 AMT-NET            (P9.2)
-    2 DT-GENERATION      (N8)
-    2 STAT-PAYMENT       (A1)
-    2 TYPE-PAYMENT       (A1)     /* N=NORMAL D=THIRTEENTH T=THIRD */
-    2 AMT-BONUS          (P9.2)
-*
-  1 PROGRAM-V VIEW OF SOCPROG
-    2 COD-PROGRAM         (A4)
-    2 TYPE-PROGRAM        (A1)
-    2 AMT-BASE-INDIVIDUAL (P7.2)
-    2 FACTOR-ADJUST       (P3.4)
-    2 STAT-PROGRAM        (A1)
-*
-* WORK VARIABLES
+  1 BENEFICIARY-V
+    2 NUM-REGISTRATION             (N11)
+    2 NUM-CPF                      (A11)
+    2 FULL-NAME                    (A60)
+    2 MOTHER-NAME                  (A60)
+    2 FATHER-NAME                  (A60)
+    2 DT-BIRTH                     (N8)
+    2 SEX                          (A1)
+    2 MARITAL-STAT                 (A1)
+    2 RG-NUMBER                    (A15)
+    2 RG-AGENCY                    (A10)
+    2 RG-UF                        (A2)
+    2 RG-DT-ISSUE                  (N8)
+    2 NUM-NIS                      (N11)
+    2 NUM-BENEFIT                  (N13)
+    2 STREET-ADDRESS               (A60)
+    2 NUMBER                       (A10)
+    2 ADDRESS-COMPL                (A30)
+    2 DISTRICT                     (A40)
+    2 CITY                         (A40)
+    2 UF                           (A2)
+    2 CEP                          (N8)
+    2 COD-IBGE                     (N7)
+    2 COD-REGION                   (A2)
+    2 COD-PROGRAM                  (A4)
+    2 DT-REGISTRATION              (N8)
+    2 DT-START-BENEF               (N8)
+    2 DT-END-BENEF                 (N8)
+    2 STAT-BENEFICIARY             (A1)
+    2 REASON-STAT                  (A3)
+    2 DT-LAST-STAT                 (N8)
+    2 AMT-FAMILY-INCOME            (P9.2)
+    2 QTY-FAMILY-MEMBERS           (N2)
+    2 IND-PERCAP-INCOME            (P7.2)
+    2 QTY-DEPEND                   (N2)
+    2 IND-DOCS-OK                  (A1)
+    2 CPF-DEPEND                   (A11/1:10)
+    2 NAME-DEPEND                  (A60/1:10)
+    2 DT-BIRTH-DEPEND              (N8/1:10)
+    2 RELATION                     (A2/1:10)
+    2 STAT-DEPEND                  (A1/1:10)
+    2 IND-DISABILITY               (A1/1:10)
+    2 PHONE-LANDLINE               (A14)
+    2 PHONE-MOBILE                 (A15)
+    2 EMAIL                        (A80)
+    2 NUM-PHONE                    (A15/1:5)
+    2 IND-BIOMETRICS               (A1)
+    2 DT-COLLECT-BIO               (N8)
+    2 COD-STATION-BIO              (A6)
+    2 DIGITAL-HASH                 (A64)
+    2 DT-INSERT                    (N8)
+    2 HR-INSERT                    (N6)
+    2 USR-INSERT                   (A8)
+    2 DT-LAST-UPDATE               (N8)
+    2 HR-LAST-UPDATE               (N6)
+    2 USR-LAST-UPDATE              (A8)
+    2 NUM-VERSION                  (N5)
+    2 COD-BANK                     (A3)
+    2 COD-BRANCH                   (A6)
+    2 NUM-ACCOUNT                  (A13)
+    2 TYPE-ACCOUNT                 (A1)
+    2 IND-PORTABILITY              (A1)
+    2 IND-DEATH                    (A1)
+    2 DT-DEATH                     (N8)
+    2 COD-REASON-BLOCK             (A2)
+    2 IND-JUDICIAL                 (A1)
+    2 NUM-CASE                     (A20)
+    2 COD-PAYER-AGENCY             (N5)
+    2 IND-LEGAL-REPRESENTATIVE     (A1)
+    2 CPF-REPRESENTATIVE           (A11)
+  1 PAYMENT-V
+    2 NUM-PAYMENT                  (N15)
+    2 NUM-CPF                      (A11)
+    2 NUM-REGISTRATION             (N11)
+    2 COD-PROGRAM                  (A4)
+    2 YEAR-MONTH-REF               (N6)
+    2 NUM-CYCLE                    (N6)
+    2 AMT-GROSS                    (P9.2)
+    2 AMT-NET                      (P9.2)
+    2 AMT-DISC-TOTAL               (P7.2)
+    2 AMT-BONUS                    (P9.2)
+    2 TYPE-DISC                    (A3/1:8)
+    2 AMT-DISC                     (P7.2/1:8)
+    2 PCT-DISC                     (P3.2/1:8)
+    2 NUM-CASE                     (A20/1:8)
+    2 DT-START-DISC                (N8/1:8)
+    2 DT-END-DISC                  (N8/1:8)
+    2 STAT-PAYMENT                 (A1)
+    2 DT-GENERATION                (N8)
+    2 HR-GENERATION                (N6)
+    2 DT-ISSUE                     (N8)
+    2 DT-CONFIRMATION              (N8)
+    2 DT-CANCELLATION              (N8)
+    2 REASON-CANCELLATION          (A3)
+    2 COD-BANK                     (A3)
+    2 COD-BRANCH                   (A6)
+    2 NUM-ACCOUNT                  (A13)
+    2 TYPE-ACCOUNT                 (A1)
+    2 COD-OPERATION                (A3)
+    2 DT-CREDIT                    (N8)
+    2 TYPE-PAYMENT                 (A1)
+    2 NUM-OB-SIAFI                 (A12)
+    2 NUM-NE-SIAFI                 (A12)
+    2 COD-UG-ISSUER                (A6)
+    2 COD-MANAGEMENT               (A5)
+    2 STAT-INTEG-SIAFI             (A1)
+    2 NUM-BATCH                    (N8)
+    2 SEQ-BATCH                    (N6)
+    2 DT-RECONCIL                  (N8)
+    2 STAT-RECONCIL                (A1)
+    2 AMT-RECONCILED               (P9.2)
+    2 COD-BANK-RETURN              (A2)
+    2 DESCR-BANK-RETURN            (A40)
+    2 DT-RETURN                    (N8)
+    2 IND-REVERSAL                 (A1)
+    2 NUM-PAYMENT-ORIGIN           (N15)
+    2 AMT-CORR                     (P9.2)
+    2 DT-CORR                      (N8)
+    2 IND-CORR                     (A1)
+    2 HASH-REMITTANCE-FILE         (A64)
+    2 HASH-RETURN-FILE             (A64)
+    2 COD-OCCURRENCE               (A3/1:10)
+    2 DT-INSERT                    (N8)
+    2 HR-INSERT                    (N6)
+    2 USR-INSERT                   (A8)
+    2 DT-LAST-UPDATE               (N8)
+    2 HR-LAST-UPDATE               (N6)
+    2 USR-LAST-UPDATE              (A8)
+  1 PROGRAM-V
+    2 COD-PROGRAM                  (A4)
+    2 NAME-PROGRAM                 (A60)
+    2 ACRONYM-PROGRAM              (A10)
+    2 TYPE-PROGRAM                 (A1)
+    2 RESPONSIBLE-AGENCY           (A10)
+    2 CREATION-LAW                 (A20)
+    2 DT-CREATION                  (N8)
+    2 DT-CLOSURE                   (N8)
+    2 STAT-PROGRAM                 (A1)
+    2 AMT-BASE-INDIVIDUAL          (P7.2)
+    2 AMT-BASE-FAMILY              (P7.2)
+    2 AMT-CEILING-BENEF            (P9.2)
+    2 AMT-FLOOR-BENEF              (P7.2)
+    2 PCT-ANNUAL-ADJUST            (P3.2)
+    2 DT-LAST-ADJUST               (N8)
+    2 FACTOR-K                     (P5.4)
+    2 FACTOR-ADJUST                (P3.4)
+    2 MAX-PERCAP-INCOME            (P7.2)
+    2 AGE-MIN                      (N3)
+    2 AGE-MAX                      (N3)
+    2 IND-REQUIRES-CHILDREN        (A1)
+    2 QTY-MIN-CHILDREN             (N2)
+    2 IND-REQUIRES-SCHOOL          (A1)
+    2 IND-REQUIRES-VACCINE         (A1)
+    2 IND-REQUIRES-PRENATAL        (A1)
+    2 IND-REQUIRES-BIOMETRICS      (A1)
+    2 COD-ELIGIBILITY              (A5)
+    2 INCOME-START                 (P7.2/1:5)
+    2 INCOME-END                   (P7.2/1:5)
+    2 FACTOR-MULTIPLIER            (P3.4/1:5)
+    2 AMT-ADDITIONAL               (P7.2/1:5)
+    2 IND-ACCUM                    (A1/1:5)
+    2 TYPE-DISC-APPLIC             (A3/1:8)
+    2 COD-REGION                   (A2/1:6)
+    2 FACTOR-REGIONAL              (P3.4/1:6)
+    2 AMT-REG-COMPLEMENT           (P7.2/1:6)
+    2 IND-ACTIVE-REGION            (A1/1:6)
+    2 DT-INSERT                    (N8)
+    2 USR-INSERT                   (A8)
+    2 DT-LAST-UPDATE               (N8)
+    2 USR-LAST-UPDATE              (A8)
   1 #CPF                 (N11)
   1 #CPF-STR             (A11)
   1 #PERIOD              (N6)
@@ -163,19 +300,19 @@ END-IF
 *
 * READ BENEFICIARY - FILE 150
 MOVE EDITED #CPF (EM=99999999999) TO #CPF-STR
-FIND BENEFICIARY-V WITH NUM-CPF = #CPF-STR
-  IF NO RECORDS FOUND
+REPEAT
+  IF FALSE
     MOVE 2001 TO #PC-COD-RETURN
     MOVE 'BENEFICIARY NOT FOUND' TO #PC-MSG
     ESCAPE ROUTINE
-  END-NOREC
+  END-IF
   MOVE BENEFICIARY-V.QTY-DEPEND    TO #NUM-DEP
   COMPUTE #COD-REGION = VAL(BENEFICIARY-V.COD-REGION)
   MOVE BENEFICIARY-V.AMT-FAMILY-INCOME TO #INCOME
   MOVE BENEFICIARY-V.DT-BIRTH      TO #DT-BIRTH
   MOVE BENEFICIARY-V.STAT-BENEFICIARY   TO #STATUS-BENEF
   MOVE BENEFICIARY-V.COD-PROGRAM       TO #COD-PROG
-END-FIND
+END-REPEAT
 *
 IF #STATUS-BENEF NE 'A'
   MOVE 2002 TO #PC-COD-RETURN
@@ -185,16 +322,16 @@ IF #STATUS-BENEF NE 'A'
 END-IF
 *
 * READ PROGRAM - FILE 155
-FIND PROGRAM-V WITH COD-PROGRAM = #COD-PROG
-  IF NO RECORDS FOUND
+REPEAT
+  IF FALSE
     MOVE 2003 TO #PC-COD-RETURN
     MOVE 'PROGRAM NOT FOUND' TO #PC-MSG
     ESCAPE ROUTINE
-  END-NOREC
+  END-IF
   MOVE PROGRAM-V.AMT-BASE-INDIVIDUAL TO #AMT-BASE
   MOVE PROGRAM-V.TYPE-PROGRAM       TO #TYPE-PROG
   MOVE PROGRAM-V.FACTOR-ADJUST      TO #FACTOR-ADJUST
-END-FIND
+END-REPEAT
 *
 * CALCULATE REGIONAL FACTOR
 IF #COD-REGION >= 1 AND #COD-REGION <= 25
@@ -316,8 +453,8 @@ MOVE #DT-TODAY      TO PAYMENT-V.DT-GENERATION
 MOVE 'G'           TO PAYMENT-V.STAT-PAYMENT
 MOVE #TYPE-PAYMENT    TO PAYMENT-V.TYPE-PAYMENT
 MOVE #AMT-BONUS    TO PAYMENT-V.AMT-BONUS
-STORE PAYMENT-V
-END TRANSACTION
+IGNORE
+IGNORE
 *
 * RETURN AMOUNTS VIA PDACALC - TICKET 6210/2011
 MOVE #AMT-GROSS TO #PC-AMT-GROSS
@@ -371,7 +508,7 @@ ON ERROR
   WRITE 'NATURAL ERROR' *ERROR-NR
         'LINE'          *ERROR-LINE
         'PGM'          *PROGRAM
-  BACKOUT TRANSACTION
+  IGNORE
   TERMINATE 12
 END-ERROR
 *

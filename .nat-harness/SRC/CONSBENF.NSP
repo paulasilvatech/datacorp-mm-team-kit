@@ -19,53 +19,167 @@ DEFINE DATA
 LOCAL USING PDAVALID
 LOCAL USING LDASIFAP
 LOCAL
-  1 BENEFICIARY-V VIEW OF BENEFIC
-    2 NUM-CPF             (A11)
-    2 FULL-NAME           (A60)
-    2 DT-BIRTH            (N8)
-    2 SEX                 (A1)
-    2 GRP-ADDRESS
-      3 STREET-ADDRESS    (A60)
-      3 NUMBER            (A10)
-      3 DISTRICT          (A40)
-      3 CITY              (A40)
-      3 UF                (A2)
-      3 CEP               (N8)
-      3 COD-REGION        (A2)
-    2 STAT-BENEFICIARY    (A1)
-    2 COD-PROGRAM         (A4)
-    2 AMT-FAMILY-INCOME   (P9.2)
-    2 QTY-DEPEND          (N2)
-    2 NUM-NIS             (N11)
-    2 DT-REGISTRATION     (N8)
-*
-  1 PAYMENT-V VIEW OF PAYMENT
-    2 NUM-PAYMENT         (N15)
-    2 NUM-CPF             (A11)
-    2 YEAR-MONTH-REF      (N6)
-    2 AMT-GROSS           (P9.2)
-    2 AMT-DISC-TOTAL      (P7.2)
-    2 AMT-NET             (P9.2)
-    2 STAT-PAYMENT        (A1)
-    2 TYPE-PAYMENT        (A1)
-    2 DT-GENERATION       (N8)
-*
-* AUDIT TRAIL - FILE 153 - SEE COPYCODE CCAUDIT
-  1 AUDIT-V VIEW OF AUDIT
-    2 NUM-AUDIT           (N15)
-    2 DT-EVENT            (N8)
-    2 HR-EVENT            (N6)
-    2 TS-EVENT            (N14)
-    2 COD-ACTION          (A2)
-    2 COD-MODULE          (A8)
-    2 DESCR-ACTION        (A80)
-    2 TYPE-ENTITY         (A4)
-    2 ID-ENTITY           (A15)
-    2 NUM-CPF-AFFECTED    (A11)
-    2 USR-EVENT           (A8)
-    2 NAME-JOB-BATCH      (A16)
-    2 STAT-BATCH          (A1)
-*
+  1 BENEFICIARY-V
+    2 NUM-REGISTRATION             (N11)
+    2 NUM-CPF                      (A11)
+    2 FULL-NAME                    (A60)
+    2 MOTHER-NAME                  (A60)
+    2 FATHER-NAME                  (A60)
+    2 DT-BIRTH                     (N8)
+    2 SEX                          (A1)
+    2 MARITAL-STAT                 (A1)
+    2 RG-NUMBER                    (A15)
+    2 RG-AGENCY                    (A10)
+    2 RG-UF                        (A2)
+    2 RG-DT-ISSUE                  (N8)
+    2 NUM-NIS                      (N11)
+    2 NUM-BENEFIT                  (N13)
+    2 STREET-ADDRESS               (A60)
+    2 NUMBER                       (A10)
+    2 ADDRESS-COMPL                (A30)
+    2 DISTRICT                     (A40)
+    2 CITY                         (A40)
+    2 UF                           (A2)
+    2 CEP                          (N8)
+    2 COD-IBGE                     (N7)
+    2 COD-REGION                   (A2)
+    2 COD-PROGRAM                  (A4)
+    2 DT-REGISTRATION              (N8)
+    2 DT-START-BENEF               (N8)
+    2 DT-END-BENEF                 (N8)
+    2 STAT-BENEFICIARY             (A1)
+    2 REASON-STAT                  (A3)
+    2 DT-LAST-STAT                 (N8)
+    2 AMT-FAMILY-INCOME            (P9.2)
+    2 QTY-FAMILY-MEMBERS           (N2)
+    2 IND-PERCAP-INCOME            (P7.2)
+    2 QTY-DEPEND                   (N2)
+    2 IND-DOCS-OK                  (A1)
+    2 CPF-DEPEND                   (A11/1:10)
+    2 NAME-DEPEND                  (A60/1:10)
+    2 DT-BIRTH-DEPEND              (N8/1:10)
+    2 RELATION                     (A2/1:10)
+    2 STAT-DEPEND                  (A1/1:10)
+    2 IND-DISABILITY               (A1/1:10)
+    2 PHONE-LANDLINE               (A14)
+    2 PHONE-MOBILE                 (A15)
+    2 EMAIL                        (A80)
+    2 NUM-PHONE                    (A15/1:5)
+    2 IND-BIOMETRICS               (A1)
+    2 DT-COLLECT-BIO               (N8)
+    2 COD-STATION-BIO              (A6)
+    2 DIGITAL-HASH                 (A64)
+    2 DT-INSERT                    (N8)
+    2 HR-INSERT                    (N6)
+    2 USR-INSERT                   (A8)
+    2 DT-LAST-UPDATE               (N8)
+    2 HR-LAST-UPDATE               (N6)
+    2 USR-LAST-UPDATE              (A8)
+    2 NUM-VERSION                  (N5)
+    2 COD-BANK                     (A3)
+    2 COD-BRANCH                   (A6)
+    2 NUM-ACCOUNT                  (A13)
+    2 TYPE-ACCOUNT                 (A1)
+    2 IND-PORTABILITY              (A1)
+    2 IND-DEATH                    (A1)
+    2 DT-DEATH                     (N8)
+    2 COD-REASON-BLOCK             (A2)
+    2 IND-JUDICIAL                 (A1)
+    2 NUM-CASE                     (A20)
+    2 COD-PAYER-AGENCY             (N5)
+    2 IND-LEGAL-REPRESENTATIVE     (A1)
+    2 CPF-REPRESENTATIVE           (A11)
+  1 PAYMENT-V
+    2 NUM-PAYMENT                  (N15)
+    2 NUM-CPF                      (A11)
+    2 NUM-REGISTRATION             (N11)
+    2 COD-PROGRAM                  (A4)
+    2 YEAR-MONTH-REF               (N6)
+    2 NUM-CYCLE                    (N6)
+    2 AMT-GROSS                    (P9.2)
+    2 AMT-NET                      (P9.2)
+    2 AMT-DISC-TOTAL               (P7.2)
+    2 AMT-BONUS                    (P9.2)
+    2 TYPE-DISC                    (A3/1:8)
+    2 AMT-DISC                     (P7.2/1:8)
+    2 PCT-DISC                     (P3.2/1:8)
+    2 NUM-CASE                     (A20/1:8)
+    2 DT-START-DISC                (N8/1:8)
+    2 DT-END-DISC                  (N8/1:8)
+    2 STAT-PAYMENT                 (A1)
+    2 DT-GENERATION                (N8)
+    2 HR-GENERATION                (N6)
+    2 DT-ISSUE                     (N8)
+    2 DT-CONFIRMATION              (N8)
+    2 DT-CANCELLATION              (N8)
+    2 REASON-CANCELLATION          (A3)
+    2 COD-BANK                     (A3)
+    2 COD-BRANCH                   (A6)
+    2 NUM-ACCOUNT                  (A13)
+    2 TYPE-ACCOUNT                 (A1)
+    2 COD-OPERATION                (A3)
+    2 DT-CREDIT                    (N8)
+    2 TYPE-PAYMENT                 (A1)
+    2 NUM-OB-SIAFI                 (A12)
+    2 NUM-NE-SIAFI                 (A12)
+    2 COD-UG-ISSUER                (A6)
+    2 COD-MANAGEMENT               (A5)
+    2 STAT-INTEG-SIAFI             (A1)
+    2 NUM-BATCH                    (N8)
+    2 SEQ-BATCH                    (N6)
+    2 DT-RECONCIL                  (N8)
+    2 STAT-RECONCIL                (A1)
+    2 AMT-RECONCILED               (P9.2)
+    2 COD-BANK-RETURN              (A2)
+    2 DESCR-BANK-RETURN            (A40)
+    2 DT-RETURN                    (N8)
+    2 IND-REVERSAL                 (A1)
+    2 NUM-PAYMENT-ORIGIN           (N15)
+    2 AMT-CORR                     (P9.2)
+    2 DT-CORR                      (N8)
+    2 IND-CORR                     (A1)
+    2 HASH-REMITTANCE-FILE         (A64)
+    2 HASH-RETURN-FILE             (A64)
+    2 COD-OCCURRENCE               (A3/1:10)
+    2 DT-INSERT                    (N8)
+    2 HR-INSERT                    (N6)
+    2 USR-INSERT                   (A8)
+    2 DT-LAST-UPDATE               (N8)
+    2 HR-LAST-UPDATE               (N6)
+    2 USR-LAST-UPDATE              (A8)
+  1 AUDIT-V
+    2 NUM-AUDIT                    (N15)
+    2 DT-EVENT                     (N8)
+    2 HR-EVENT                     (N6)
+    2 TS-EVENT                     (N14)
+    2 NUM-TRANSACTION              (A8)
+    2 COD-ACTION                   (A2)
+    2 COD-MODULE                   (A8)
+    2 DESCR-ACTION                 (A80)
+    2 TYPE-ENTITY                  (A4)
+    2 ID-ENTITY                    (A15)
+    2 NUM-CPF-AFFECTED             (A11)
+    2 FIELD-UPDATED-PREV           (A30/1:20)
+    2 VALUE-PREV                   (A80/1:20)
+    2 FIELD-UPDATED-AFTER          (A30/1:20)
+    2 VALUE-AFTER                  (A80/1:20)
+    2 AMT-PREV                     (A60)
+    2 AMT-NEW                      (A60)
+    2 USR-EVENT                    (A8)
+    2 NAME-USER                    (A40)
+    2 COD-PROFILE                  (A3)
+    2 COD-ASSIGNMENT               (A10)
+    2 IP-ORIGIN                    (A15)
+    2 ID-SESSION                   (A20)
+    2 COD-TERMINAL                 (A8)
+    2 COD-LU                       (A8)
+    2 NUM-CYCLE-BATCH              (N6)
+    2 NUM-SEQ-BATCH                (N10)
+    2 NAME-JOB-BATCH               (A16)
+    2 STAT-BATCH                   (A1)
+    2 DESCR-ERR-BATCH              (A120)
+    2 ID-CORRELATION               (A36)
+    2 NUM-SEQ-CORRELATION          (N3)
   1 #CPF-SEARCH           (N11)
   1 #NIS-SEARCH           (N11)
   1 #TYPE-SEARCH          (A1)    /* C=CPF N=NIS */
@@ -146,21 +260,21 @@ REPEAT
 * FIND BENEFICIARY - FILE 150
   DECIDE ON FIRST VALUE OF #TYPE-SEARCH
     VALUE 'C'
-      FIND BENEFICIARY-V WITH NUM-CPF = #CPF-A11
-        IF NO RECORDS FOUND
+      REPEAT
+        IF FALSE
           REINPUT 'BENEFICIARY NOT FOUND'
                   MARK *#CPF-SEARCH
-        END-NOREC
+        END-IF
         PERFORM SHOW-BENEFICIARY
-      END-FIND
+      END-REPEAT
     VALUE 'N'
-      FIND BENEFICIARY-V WITH NUM-NIS = #NIS-SEARCH
-        IF NO RECORDS FOUND
+      REPEAT
+        IF FALSE
           REINPUT 'BENEFICIARY NOT FOUND'
                   MARK *#NIS-SEARCH
-        END-NOREC
+        END-IF
         PERFORM SHOW-BENEFICIARY
-      END-FIND
+      END-REPEAT
     NONE
       REINPUT 'INVALID SEARCH TYPE' MARK *#TYPE-SEARCH
   END-DECIDE
@@ -176,7 +290,7 @@ REPEAT
   MOVE 'BENEFICIARY REGISTRATION QUERY - CONSBENF'
        TO #AUD-DESCR
   PERFORM WRITE-AUDIT
-  END TRANSACTION
+  IGNORE
 *
 END-REPEAT
 *
@@ -268,7 +382,7 @@ DEFINE SUBROUTINE SHOW-BENEFICIARY
   WRITE '----------    -----------  -----------  ---  ----'
 *
   MOVE 0 TO #QTY-HIST
-  READ PAYMENT-V BY NUM-CPF = BENEFICIARY-V.NUM-CPF
+  REPEAT
     IF PAYMENT-V.NUM-CPF NE BENEFICIARY-V.NUM-CPF
       ESCAPE BOTTOM
     END-IF
@@ -281,7 +395,7 @@ DEFINE SUBROUTINE SHOW-BENEFICIARY
           PAYMENT-V.AMT-NET '  '
           PAYMENT-V.STAT-PAYMENT '    '
           PAYMENT-V.TYPE-PAYMENT
-  END-READ
+  END-REPEAT
 *
   IF #QTY-HIST = 0
     WRITE 'NO PAYMENTS FOUND'

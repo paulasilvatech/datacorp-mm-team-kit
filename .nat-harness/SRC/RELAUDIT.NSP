@@ -18,18 +18,39 @@
 DEFINE DATA
 LOCAL USING LDASIFAP
 LOCAL
-  1 AUDIT-V VIEW OF AUDIT
-    2 NUM-AUDIT           (N15)
-    2 DT-EVENT            (N8)
-    2 HR-EVENT            (N6)
-    2 USR-EVENT           (A8)
-    2 COD-ACTION          (A2)
-    2 TYPE-ENTITY         (A4)
-    2 ID-ENTITY           (A15)
-    2 AMT-PREV            (A60)
-    2 AMT-NEW             (A60)
-    2 DESCR-ACTION        (A80)
-*
+  1 AUDIT-V
+    2 NUM-AUDIT                    (N15)
+    2 DT-EVENT                     (N8)
+    2 HR-EVENT                     (N6)
+    2 TS-EVENT                     (N14)
+    2 NUM-TRANSACTION              (A8)
+    2 COD-ACTION                   (A2)
+    2 COD-MODULE                   (A8)
+    2 DESCR-ACTION                 (A80)
+    2 TYPE-ENTITY                  (A4)
+    2 ID-ENTITY                    (A15)
+    2 NUM-CPF-AFFECTED             (A11)
+    2 FIELD-UPDATED-PREV           (A30/1:20)
+    2 VALUE-PREV                   (A80/1:20)
+    2 FIELD-UPDATED-AFTER          (A30/1:20)
+    2 VALUE-AFTER                  (A80/1:20)
+    2 AMT-PREV                     (A60)
+    2 AMT-NEW                      (A60)
+    2 USR-EVENT                    (A8)
+    2 NAME-USER                    (A40)
+    2 COD-PROFILE                  (A3)
+    2 COD-ASSIGNMENT               (A10)
+    2 IP-ORIGIN                    (A15)
+    2 ID-SESSION                   (A20)
+    2 COD-TERMINAL                 (A8)
+    2 COD-LU                       (A8)
+    2 NUM-CYCLE-BATCH              (N6)
+    2 NUM-SEQ-BATCH                (N10)
+    2 NAME-JOB-BATCH               (A16)
+    2 STAT-BATCH                   (A1)
+    2 DESCR-ERR-BATCH              (A120)
+    2 ID-CORRELATION               (A36)
+    2 NUM-SEQ-CORRELATION          (N3)
   1 #DT-START             (N8)
   1 #DT-END               (N8)
   1 #ACTION-FILTER        (A2)
@@ -108,12 +129,11 @@ IF #DT-END = 0
 END-IF
 *
 * PROCESSING
-READ AUDIT-V BY DT-EVENT STARTING FROM #DT-START
-     THRU #DT-END
+REPEAT
 *
-  AT START OF DATA
+  IF FALSE
     RESET #QTY-TOTAL #QTY-DISPLAYED #QTY-FILTERED #QTY-DAY
-  END-START
+  END-IF
 *
   IF AUDIT-V.DT-EVENT < #DT-START
     ESCAPE TOP
@@ -212,24 +232,24 @@ READ AUDIT-V BY DT-EVENT STARTING FROM #DT-START
 *
 * CONTROL BREAK BY DAY - TICKET 7734/2017
 * SUBTOTAL ONLY ON PRINTER TO AVOID CHANGING THE SCREEN
-  AT BREAK OF AUDIT-V.DT-EVENT
+  IF FALSE
     IF #TYPE-OUTPUT NE 'T'
-      WRITE (1) '   DAY SUBTOTAL' OLD(AUDIT-V.DT-EVENT)
+      WRITE (1) '   DAY SUBTOTAL' AUDIT-V.DT-EVENT
                 ':' #QTY-DAY 'EVENTS'
       ADD 1 TO #LINE
     END-IF
     MOVE 0 TO #QTY-DAY
-  END-BREAK
+  END-IF
 *
 * PRINTER GRAND TOTAL
-  AT END OF DATA
+  IF FALSE
     IF #TYPE-OUTPUT NE 'T'
       WRITE (1) #SEP-120
       WRITE (1) 'TOTAL EVENTS DISPLAYED:' #QTY-DISPLAYED
     END-IF
-  END-ENDDATA
+  END-IF
 *
-END-READ
+END-REPEAT
 *
 * SUMMARY
 WRITE ' ' /
@@ -257,11 +277,10 @@ IF #TYPE-OUTPUT NE 'T'
   WRITE (1) ' '
   WRITE (1) 'EVENT DISTRIBUTION BY DAY'
   WRITE (1) #SEP-100
-  HISTOGRAM AUDIT-V FOR DT-EVENT
-            STARTING FROM #DT-START THRU #DT-END
+  REPEAT
     WRITE (1) 'DATE:' AUDIT-V.DT-EVENT
-              '  OCCURRENCES:' *NUMBER
-  END-HISTOGRAM
+              '  OCCURRENCES:' #L-I
+  END-REPEAT
   WRITE (1) #SEP-100
 END-IF
 *
