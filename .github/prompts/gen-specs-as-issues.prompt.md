@@ -2,7 +2,7 @@
 name: "gen-specs-as-issues"
 description: "Identify gaps between the SIFAP legacy behavior and the modern spec, prioritize them, and open EARS-backed GitHub issues with legacy traceability."
 argument-hint: "area=<focus-area> repo=<owner/name>"
-agent: "agent"
+agent: "requirements-engineer"
 tools: ["read", "search", "edit", "execute"]
 ---
 # /gen-specs-as-issues

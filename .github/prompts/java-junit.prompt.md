@@ -2,7 +2,7 @@
 name: "java-junit"
 description: "Write effective JUnit 5 unit and parameterized tests, deferring the best-practice checklist to the java-junit skill."
 argument-hint: "class=<ClassUnderTest>"
-agent: "agent"
+agent: "qa-engineer"
 tools: ["read", "search", "edit"]
 ---
 # /java-junit

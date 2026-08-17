@@ -2,7 +2,7 @@
 name: "azure-resource-health-diagnose"
 description: "Diagnose an Azure resource's health from logs and telemetry and produce a remediation plan, deferring the workflow to the azure-resource-health-diagnose skill."
 argument-hint: "resource=<name> rg=<resource-group>"
-agent: "agent"
+agent: "devops-engineer"
 tools: ["read", "search", "execute"]
 ---
 # /azure-resource-health-diagnose

@@ -2,7 +2,7 @@
 name: "create-spring-boot-java-project"
 description: "Scaffold the SIFAP 2.0 Spring Boot backend skeleton (Java 21 + PostgreSQL 16), deferring the mechanics to the create-spring-boot-java-project skill."
 argument-hint: "projectName=<artifactId>"
-agent: "agent"
+agent: "implementer"
 tools: ["read", "edit", "search", "execute"]
 ---
 # /create-spring-boot-java-project

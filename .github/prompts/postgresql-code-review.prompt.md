@@ -2,7 +2,7 @@
 name: "postgresql-code-review"
 description: "Review SQL and schema for PostgreSQL 16 best practices and anti-patterns, deferring the checklist to the postgresql-code-review skill."
 argument-hint: "selection=<sql-or-schema>"
-agent: "agent"
+agent: "dba"
 tools: ["read", "search"]
 ---
 # /postgresql-code-review

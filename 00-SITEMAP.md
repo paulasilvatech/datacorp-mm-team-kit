@@ -56,6 +56,19 @@ flowchart LR
 
 ---
 
+## Copilot primitives in `.github/`
+
+The kit ships four kinds of Copilot primitive. Each has a human-readable index; Copilot itself loads the underlying files automatically.
+
+| Primitive | Index | What it holds |
+|---|---|---|
+| Instructions | [`.github/instructions/README.md`](.github/instructions/README.md) | Path-scoped `*.instructions.md` rules applied by `applyTo` glob |
+| Prompts | [`.github/prompts/README.md`](.github/prompts/README.md) | Slash-command `*.prompt.md` tasks for the stage and persona agents |
+| Skills | [`.github/skills/README.md`](.github/skills/README.md) | 43 auto-loaded `SKILL.md` capabilities matched by `description` |
+| Agents | [`.github/agents/README.md`](.github/agents/README.md) | 17 `@`-invocable agents in two layers (stage + persona) |
+
+---
+
 ## Contents of `07-concepts/`
 
 | File | Contents |

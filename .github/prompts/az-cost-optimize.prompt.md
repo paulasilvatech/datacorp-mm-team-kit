@@ -2,7 +2,7 @@
 name: "az-cost-optimize"
 description: "Analyze Azure resources and Terraform IaC for cost savings and open tracking GitHub issues, deferring the workflow to the az-cost-optimize skill."
 argument-hint: "rg=<resource-group> repo=<owner/name>"
-agent: "agent"
+agent: "devops-engineer"
 tools: ["read", "search", "execute"]
 ---
 # /az-cost-optimize

@@ -2,7 +2,7 @@
 name: "comment-code-generate-a-tutorial"
 description: "Refactor a source file, add beginner-friendly instructional comments, and generate a README tutorial, deferring the workflow to the comment-code-generate-a-tutorial skill."
 argument-hint: "file=<path-to-source>"
-agent: "agent"
+agent: "tech-writer"
 tools: ["read", "edit", "search"]
 ---
 # /comment-code-generate-a-tutorial

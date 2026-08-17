@@ -2,7 +2,7 @@
 name: "postgresql-optimization"
 description: "Optimize PostgreSQL 16 queries, indexes, and schema using PostgreSQL-specific features, deferring the workflow to the postgresql-optimization skill."
 argument-hint: "selection=<sql-or-query>"
-agent: "agent"
+agent: "dba"
 tools: ["read", "search", "execute"]
 ---
 # /postgresql-optimization

@@ -2,7 +2,7 @@
 name: "playwright-generate-test"
 description: "Generate a Playwright end-to-end test from a scenario using Playwright MCP, deferring the procedure to the playwright-generate-test skill."
 argument-hint: "scenario=\"<user flow to test>\""
-agent: "agent"
+agent: "qa-engineer"
 tools: ["read", "search", "edit", "execute"]
 ---
 # /playwright-generate-test

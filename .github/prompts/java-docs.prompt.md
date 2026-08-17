@@ -2,7 +2,7 @@
 name: "java-docs"
 description: "Apply Javadoc best practices to Java types and members, deferring the full checklist to the java-docs skill."
 argument-hint: "target=<file-or-package>"
-agent: "agent"
+agent: "tech-writer"
 tools: ["read", "edit", "search"]
 ---
 # /java-docs

@@ -79,8 +79,6 @@ INSTRUCTION_RETIRED_KEYS: dict[str, str] = {}
 
 SKILL_NONSTANDARD_KEYS = {"license", "allowed-tools", "compatibility", "metadata"}
 
-BUILTIN_AGENTS = {"ask", "agent", "plan"}
-
 # --- Hook schema ------------------------------------------------------------
 
 HOOK_EVENTS = {
@@ -354,11 +352,10 @@ def check_prompts(prompt_files: list[str], valid_agent_ids: set[str], reporter: 
             PROMPT_RETIRED_KEYS, reporter, "prompts",
         )
         agent_value = get_top_value(fm_lines, "agent")
-        if agent_value and agent_value not in BUILTIN_AGENTS and agent_value not in valid_agent_ids:
+        if agent_value and agent_value not in valid_agent_ids:
             reporter.error(
                 "referential-integrity", rel, 1,
-                f"prompt targets agent '{agent_value}', which is not a built-in "
-                "(ask/agent/plan) nor a known agent in .github/agents/",
+                f'agent: "{agent_value}" does not match any agent in .github/agents/',
             )
 
 
@@ -426,8 +423,14 @@ def check_skills(skill_files: list[str], reporter: Reporter) -> None:
             )
 
 
-def build_agent_registry(agent_files: list[str]) -> set[str]:
-    """Valid agent identifiers: each agent's frontmatter name plus its file stem."""
+def build_agent_registry(agent_files: list[str], reporter: Reporter) -> set[str]:
+    """Valid agent identifiers, taken from the files present in .github/agents/.
+
+    The canonical id is the frontmatter `name:`, falling back to the file stem
+    when `name:` is absent. When both are present they must agree; a mismatch is
+    reported because a prompt that binds by one spelling would silently miss the
+    other.
+    """
     ids: set[str] = set()
     for rel in agent_files:
         stem = Path(rel).name[: -len(".agent.md")]
@@ -437,6 +440,12 @@ def build_agent_registry(agent_files: list[str]) -> set[str]:
             name = get_top_value(fm_lines, "name")
             if name:
                 ids.add(name)
+                if name != stem:
+                    reporter.error(
+                        "referential-integrity", rel, 1,
+                        f"agent name '{name}' does not match file stem '{stem}'; "
+                        "rename so the declared name and file agree",
+                    )
     return ids
 
 
@@ -918,7 +927,7 @@ def main() -> int:
         if not looks_binary(read_bytes(f))
     ]
 
-    valid_agent_ids = build_agent_registry(agent_files)
+    valid_agent_ids = build_agent_registry(agent_files, reporter)
 
     check_agents(agent_files, reporter)
     check_prompts(prompt_files, valid_agent_ids, reporter)

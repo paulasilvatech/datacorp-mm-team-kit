@@ -2,7 +2,7 @@
 name: "java-springboot"
 description: "Apply Spring Boot best practices for the SIFAP 2.0 backend, deferring the detailed checklist to the java-springboot skill."
 argument-hint: "target=<file-or-module>"
-agent: "agent"
+agent: "implementer"
 tools: ["read", "search", "edit"]
 ---
 # /java-springboot

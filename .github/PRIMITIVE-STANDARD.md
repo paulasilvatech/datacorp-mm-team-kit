@@ -29,13 +29,13 @@ Prefer updating an existing primitive over adding a near-duplicate one.
 ### Markdown and style
 
 - [ ] English only. No emojis — convey NOTE, TIP, IMPORTANT, WARNING, and CAUTION with GFM alerts such as `> [!NOTE]`.
-- [ ] Exactly one H1 (`#`) per file — the document title, below the frontmatter.
+- [ ] Exactly one H1 (`#`) per file — the document title, below the frontmatter. The primitive validator enforces this; markdownlint's MD025 (multiple top-level headings) is disabled.
 - [ ] The blank line between the closing `---` and the H1 is optional, and both forms lint clean: agents, prompts, and skills omit it, while the instruction files keep one. MD022 does not fire on the frontmatter boundary and is not overridden, so match the sibling files in the same directory rather than forcing a churn-only diff.
 - [ ] Never skip a heading level; go `#`, then `##`, then `###`.
-- [ ] Every fenced code block declares a language (for example `java`, `json`, `text`, or `bash`).
+- [ ] Every fenced code block declares a language (for example `java`, `json`, `text`, or `bash`) — a house convention upheld in review, since markdownlint's MD040 is disabled.
 - [ ] Use real GFM tables (with the `|---|` separator row) whenever there are two or more dimensions, and `- [ ]` checklists for anything the reader must verify.
 - [ ] End with exactly one trailing newline. No trailing whitespace, hard tabs, or consecutive blank lines.
-- [ ] Never disable a markdownlint rule inline with an HTML comment pragma (failure #2). The root [`../.markdownlint-cli2.jsonc`](../.markdownlint-cli2.jsonc) is the only lint config; an inline pragma duplicates it and burns context-window tokens for zero instructional value.
+- [ ] Never disable a markdownlint rule inline with an HTML comment pragma (failure #2). The root [`../.markdownlint-cli2.jsonc`](../.markdownlint-cli2.jsonc) is the only lint config; an inline pragma duplicates it and burns context-window tokens for zero instructional value. The pragmas stripped from 158 files disabled exactly the rules that config already disables — pure redundancy that changed nothing but cost tokens.
 
 ### Content and accuracy
 
@@ -48,7 +48,7 @@ Prefer updating an existing primitive over adding a near-duplicate one.
 
 ## Frontmatter by primitive type
 
-Frontmatter is a closed schema per type: an unknown, retired, or invalid key **fails the `copilot-primitives` gate**. Keys marked platform-specific are silently ignored on other surfaces, so they are safe to keep. Quote `name` and `description` string values — the established house convention across the kit; the few unquoted skill imports are drift still being normalized, not a counter-pattern.
+Frontmatter is a closed schema per type: an unknown, retired, or invalid key **fails the `copilot-primitives` gate**. Keys marked platform-specific are silently ignored on other surfaces, so they are safe to keep. Quote `name` and `description` string values — the established house convention, currently held by every agent, prompt, instruction, and skill in the kit.
 
 ### Agent frontmatter
 
@@ -180,6 +180,8 @@ A Stage agent may prefix the last-but-two heading with its stage, for example `#
 
 ### Prompt skeleton
 
+`## Prompt Body` is plain Markdown addressed to the agent in the second person — never a code fence. Open with a role line such as `You are the @<agent-id>.`, then drive the work with `**Step 1 — ...**`, `**Step 2 — ...**` bold step headers, each followed by bullets.
+
 ````markdown
 ---
 name: "<slash-command>"
@@ -216,7 +218,15 @@ tools: ["read", "search", "edit"]
 
 ## Prompt Body
 
-You are the `@<agent-id>`. <Numbered, step-by-step instructions.>
+You are the `@<agent-id>`. <One-line framing of the task.>
+
+**Step 1 — <action>**
+
+- <instruction>
+
+**Step 2 — <action>**
+
+- <instruction>
 
 ## Invocation Example
 
@@ -315,6 +325,7 @@ Flat file `hooks/<name>.json`, with the referenced script in `hooks/<name>/` and
 
 - The **`copilot-primitives`** job in [`workflows/spec-quality.yml`](workflows/spec-quality.yml) runs [`scripts/validate-copilot-primitives.py`](scripts/validate-copilot-primitives.py): frontmatter schemas, `prompt -> agent` and `handoff -> agent` integrity, one H1, a single trailing newline, relative-link resolution under `.github/`, banned pragmas, banned tooling, stale paths, and the required body sections above.
 - The **`markdown-lint`** job runs the root [`../.markdownlint-cli2.jsonc`](../.markdownlint-cli2.jsonc); **`spec-traceability`** and **`legacy-traceability`** enforce REQ-ID and `source_legacy` coverage.
+- That config disables `MD025` and `MD040` among others, so do not conflate the two gates: "exactly one H1" fails the primitive validator (never markdownlint), and "every fence declares a language" is a review convention, not a lint failure.
 - Every recurring mistake earns an entry and a named guardrail in [`../docs/failures/README.md`](../docs/failures/README.md). Read it before finishing a primitive change, and add an entry when a mistake recurs.
 
 Reference implementations to copy from: [`agents/archaeologist.agent.md`](agents/archaeologist.agent.md), [`prompts/stage-archaeologist-extract-business-rules.prompt.md`](prompts/stage-archaeologist-extract-business-rules.prompt.md), [`skills/ears-validate/SKILL.md`](skills/ears-validate/SKILL.md), [`instructions/modular-monolith.instructions.md`](instructions/modular-monolith.instructions.md), and [`hooks/tool-guardian.json`](hooks/tool-guardian.json).
