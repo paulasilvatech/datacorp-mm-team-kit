@@ -56,7 +56,9 @@ jobs:
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3
         with:
-          terraform_version: "1.9.5"
+          # Must match infra/*/versions.tf (~> 1.14.0). An older CLI cannot read the module
+          # at all, so every agent task touching infra/ would fail on init.
+          terraform_version: "1.14.6"
 
       - name: Warm backend dependencies
         run: |
