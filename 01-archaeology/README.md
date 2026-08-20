@@ -17,6 +17,9 @@
 > [!IMPORTANT]
 > **Read first:** [`LEGACY-EXPLORATION-CHECKLIST.md`](LEGACY-EXPLORATION-CHECKLIST.md) — mandatory gate before starting Stage 2. No EARS requirement is accepted without traceability to legacy code.
 
+> [!TIP]
+> **The system is running, not just archived.** The same programs you are about to read execute in a shared environment at <https://sifap-lab-438k30.eastus2.cloudapp.azure.com> — `/terminal/` opens a real Natural session against the loaded Adabas files. Ask the facilitator for the credentials. Reading the source is still the gate; the live system is there to make the evidence concrete.
+
 ---
 
 ## What Stage 1 is

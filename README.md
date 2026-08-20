@@ -27,6 +27,22 @@
 
 ---
 
+## The live legacy system
+
+SIFAP is not only reading material. **One shared environment runs the real Natural/Adabas system** — the legacy programs cataloged, the four Adabas files loaded, and a live Natural session you can type into. Every team uses that same instance; nobody deploys anything.
+
+| What | Where |
+|---|---|
+| **Live system** | <https://sifap-lab-438k30.eastus2.cloudapp.azure.com> |
+| **Natural session (green-screen terminal)** | `/terminal/` |
+| **Adabas administration console** | `/admin/` |
+| **Credentials** | Shared by the facilitator. They are never committed to this repository |
+
+> [!NOTE]
+> The environment is time-boxed to the workshop day and holds synthetic data only. If the URL does not answer, the lab is stopped between sessions — ask the facilitator. The Terraform module that builds it lives in [`infra/adabas-natural-lab/`](infra/adabas-natural-lab/) and is reference material: teams are not expected to run it.
+
+---
+
 ## How the workshop is organized
 
 The workshop has **four sequential stages** and **five persona pairs** that work in parallel inside each stage. The final goal is a working SIFAP 2.0 demo.
