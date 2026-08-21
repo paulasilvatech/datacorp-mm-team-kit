@@ -557,5 +557,6 @@
                 "agent-host-copilotcli:huggingface/zai-org/GLM-5.2-FP8:zai-org"
             ]
         }
-    }
+    },
+    "python-envs.defaultEnvManager": "ms-python.python:system"
 }
